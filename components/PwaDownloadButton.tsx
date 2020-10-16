@@ -12,7 +12,6 @@ const PwaDownloadButton: FC<PwaDownloadProps> = ({
 }: PwaDownloadProps): ReactElement => (
   <Button
     type="button"
-    accent
     onClick={(): Promise<void> => PwaDownloadEvent.prompt()}
   >
     Download Santa Barbara Reentry
