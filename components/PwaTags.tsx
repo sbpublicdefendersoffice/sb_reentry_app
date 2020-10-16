@@ -2,7 +2,6 @@ import Head from 'next/head'
 
 const PwaTags = () => (
   <Head>
-    <title>PWA Experiment</title>
     <link rel="icon" href="./images/favicon.ico" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="apple-touch-icon" href="./images/logo192.png" />
