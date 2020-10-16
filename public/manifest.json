@@ -4,7 +4,7 @@
   "theme_color": "#2f4cb8",
   "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "/service-worker.js",
+  "start_url": "/",
   "scope":"/",
   "icons": [
     {
