@@ -83,16 +83,20 @@ const Home: FC = (): ReactElement => {
               className="margin-left-3"
             />
           </div>
-          <NavDropDownButton
-            label="Links"
-            menuId="links"
-            isOpen={isMenuOpen}
-            onToggle={(): void => setIsMenuOpen(!isMenuOpen)}
-          />
-          <Menu items={PageLinks} isOpen={isMenuOpen} />
+          <div>
+            <NavDropDownButton
+              label="Links"
+              menuId="links"
+              isOpen={isMenuOpen}
+              onToggle={(): void => setIsMenuOpen(!isMenuOpen)}
+            />
+            <Menu items={PageLinks} isOpen={isMenuOpen} />
+          </div>
         </Header>
         {downloadEvent && (
-          <PwaDownloadButton PwaDownloadEvent={downloadEvent} />
+          <div style={{ marginTop: '5rem' }}>
+            <PwaDownloadButton PwaDownloadEvent={downloadEvent} />
+          </div>
         )}
       </main>
     </>
