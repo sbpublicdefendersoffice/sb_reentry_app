@@ -4,7 +4,8 @@
   "theme_color": "#2f4cb8",
   "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/service-worker.js",
+  "scope":"/",
   "icons": [
     {
       "src": "./images/logo192.png",
@@ -15,8 +16,7 @@
     {
       "src": "./images/logo512.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "maskable"
+      "sizes": "512x512"
     }
   ]
 }
