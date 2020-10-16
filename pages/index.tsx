@@ -1,12 +1,14 @@
 import Head from 'next/head'
+
+import PwaTags from '../components/PwaTags'
 import styles from '../styles/Home.module.css'
 
 const Home = () => {
   return (
     <>
+      <PwaTags />
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Santa Barbara Reentry</title>
       </Head>
       <main className={styles.container}>
         SB App
@@ -16,7 +18,11 @@ const Home = () => {
           rel="noopener noreferrer"
         >
           Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+          <img
+            src="./images/vercel.svg"
+            alt="Vercel Logo"
+            className={styles.logo}
+          />
         </a>
       </main>
     </>

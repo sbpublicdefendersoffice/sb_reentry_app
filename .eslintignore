@@ -1,3 +1,6 @@
 # dependencies
 /node_modules
 /build
+
+# pwa files
+/public/*.js
