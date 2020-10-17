@@ -1,7 +1,7 @@
 {
   "name": "Santa Barbara Reentry",
   "short_name": "Santa Barbara Reentry",
-  "theme_color": "#2f4cb8",
+  "theme_color": "#0059a8",
   "background_color": "#ffffff",
   "display": "standalone",
   "start_url": "/",
