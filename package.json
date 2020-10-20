@@ -35,5 +35,8 @@
     "stylelint-config-prettier": "8.0.2",
     "stylelint-config-standard": "20.0.0",
     "typescript": "4.0.3"
+  },
+  "resolutions": {
+    "**/**/object-path": "^0.11.5"
   }
 }
