@@ -1,0 +1,43 @@
+.IconTile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: var(--med-heading);
+  border-radius: var(--radius);
+  padding: 1rem 0;
+  text-align: center;
+  border: var(--border-width) solid transparent;
+}
+
+.IconTile:hover {
+  border: var(--border-width) solid var(--blue);
+}
+
+.IconTile:hover > a {
+  color: var(--blue);
+}
+
+.IconTile .link {
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+}
+
+.icon {
+  width: 15rem;
+  height: 15rem;
+}
+
+@media (max-width: 500px) {
+  .IconTile {
+    width: 30%;
+    margin: 0;
+    font-size: var(--standard-text);
+  }
+
+  .icon {
+    width: 8rem;
+    height: 8rem;
+  }
+}

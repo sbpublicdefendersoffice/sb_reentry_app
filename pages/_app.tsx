@@ -1,8 +1,8 @@
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from 'next/app'
 
-import '@trussworks/react-uswds/lib/uswds.css'
-import '@trussworks/react-uswds/lib/index.css'
+import '../styles/globals.css'
+import '../styles/variables.css'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />

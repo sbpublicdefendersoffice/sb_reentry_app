@@ -6,21 +6,18 @@
     }
   },
   "extends": [
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react/recommended",
-      "plugin:prettier/recommended",
-      "prettier/react",
-      "prettier/@typescript-eslint"
-    ],
-  "plugins": [
-    "@typescript-eslint",
-    "react",
-    "prettier"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/@typescript-eslint"
   ],
+  "plugins": ["@typescript-eslint", "react", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/explicit-module-boundary-types": 0,
-    "@typescript-eslint/no-var-requires": 0
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-explicit-any": 0
   },
   "globals": {
     "React": "writable"
