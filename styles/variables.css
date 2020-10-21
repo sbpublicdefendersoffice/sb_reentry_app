@@ -5,7 +5,8 @@
   --blue: #005ea2;
 
   /* Spacing Variables */
-  --radius: 0.25rem;
+  --radius-small: 0.25rem;
+  --radius-medium: 1rem;
   --border-width: 0.1rem;
 
   /* Text Variables */

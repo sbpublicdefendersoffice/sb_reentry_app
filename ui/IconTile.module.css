@@ -4,18 +4,20 @@
   align-items: center;
   margin: 1rem 0;
   font-size: var(--med-heading);
-  border-radius: var(--radius);
+  border-radius: var(--radius-medium);
   padding: 1rem 0;
   text-align: center;
   border: var(--border-width) solid transparent;
 }
 
-.IconTile:hover {
-  border: var(--border-width) solid var(--blue);
+.IconTile:hover,
+.IconTile:active {
+  background-color: var(--blue);
 }
 
-.IconTile:hover > a {
-  color: var(--blue);
+.IconTile:hover > a,
+.IconTile:active > a {
+  color: var(--white);
 }
 
 .IconTile .link {
@@ -32,7 +34,7 @@
 @media (max-width: 500px) {
   .IconTile {
     width: 30%;
-    margin: 0;
+    margin: 0.25rem 0 0 0;
     font-size: var(--standard-text);
   }
 
