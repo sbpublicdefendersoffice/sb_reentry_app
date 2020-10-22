@@ -4,7 +4,7 @@ import type { AppProps /*, AppContext */ } from 'next/app'
 import '../styles/globals.css'
 import '../styles/variables.css'
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />
 }
 
@@ -20,4 +20,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 //   return { ...appProps }
 // }
 
-export default MyApp
+export default App

@@ -20,13 +20,13 @@
   color: var(--white);
 }
 
-.IconTile .link {
+.Link {
   display: inherit;
   flex-direction: inherit;
   align-items: inherit;
 }
 
-.icon {
+.Icon {
   width: 15rem;
   height: 15rem;
 }
@@ -38,7 +38,7 @@
     font-size: var(--standard-text);
   }
 
-  .icon {
+  .Icon {
     width: 8rem;
     height: 8rem;
   }

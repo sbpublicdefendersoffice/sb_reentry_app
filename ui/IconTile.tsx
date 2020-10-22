@@ -11,8 +11,8 @@ interface IconTileProps {
 
 const IconTile = ({ children, label, path, href }: IconTileProps) => (
   <div className={styles.IconTile}>
-    <a className={styles.link} href={href}>
-      <img className={styles.icon} src={path} alt={label} />
+    <a className={styles.Link} href={href}>
+      <img className={styles.Icon} src={path} alt={label} />
       <span>{children}</span>
     </a>
   </div>
