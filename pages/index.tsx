@@ -6,7 +6,7 @@ import routes, { RouteInfo } from '../constants/routes'
 import { PwaTags, Header } from '../components'
 import { Button, IconTile, PublicPage, WrapContainer } from '../ui'
 
-export interface BeforeInstallPromptEvent extends Event {
+interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
   readonly userChoice: Promise<{
     outcome: 'accepted' | 'dismissed'
