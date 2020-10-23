@@ -1,44 +1,12 @@
-import { useState, useEffect, ReactElement, FC } from 'react'
+import { useState, useEffect, ReactElement } from 'react'
 import Head from 'next/head'
 import NextLink from 'next/link'
-import {
-  Header,
-  Title,
-  Menu,
-  Link,
-  NavDropDownButton,
-} from '@trussworks/react-uswds'
 
-import { PwaTags, PwaDownloadButton } from '../components'
-import fixes from '../styles/fixer-classes.module.css'
+import routes, { RouteInfo } from '../constants/routes'
+import { PwaTags, Header } from '../components'
+import { Button, IconTile, PublicPage, WrapContainer } from '../ui'
 
-const linkList: string[] = [
-  'Food',
-  'Medical Support',
-  'Transportation',
-  'Mental Health',
-  'Social Services',
-  'Clothing',
-  'Resource Directory',
-  'Legal Services',
-  'Community Support Services',
-  'Employment',
-  'Long Term Housing',
-  'Emergency Shelter',
-  'Substance Use Treatment',
-]
-
-const PageLinks: ReactElement[] = linkList.map((label: string, i: number) => {
-  const url = `/${label.replace(/\s/g, '').toLowerCase()}`
-
-  return (
-    <NextLink href={url} key={i}>
-      <Link href={url}>{label}</Link>
-    </NextLink>
-  )
-})
-
-export interface BeforeInstallPromptEvent extends Event {
+interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
   readonly userChoice: Promise<{
     outcome: 'accepted' | 'dismissed'
@@ -47,8 +15,18 @@ export interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>
 }
 
-const Home: FC = (): ReactElement => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+const PageLinks: ReactElement[] = routes.map((link: RouteInfo, i: number) => {
+  const { route, title, imgPath } = link
+  return (
+    <NextLink href={route} key={i}>
+      <IconTile href={route} label={title} path={imgPath}>
+        {title}
+      </IconTile>
+    </NextLink>
+  )
+})
+
+const Home = () => {
   const [
     downloadEvent,
     setDownloadEvent,
@@ -70,35 +48,15 @@ const Home: FC = (): ReactElement => {
       <Head>
         <title>Santa Barbara Reentry</title>
       </Head>
-      <main>
-        <Header className="bg-primary height-card">
-          <div className="grid-container-widescreen display-flex flex-align-center height-full">
-            <Title className={`${fixes.marginFix} text-white font-serif-xl`}>
-              Santa Barbara Reentry
-            </Title>
-            <img
-              src="./images/logo192.png"
-              alt="County of Santa Barbara Logo"
-              height="100px"
-              className="margin-left-3"
-            />
-          </div>
-          <div>
-            <NavDropDownButton
-              label="Links"
-              menuId="links"
-              isOpen={isMenuOpen}
-              onToggle={(): void => setIsMenuOpen(!isMenuOpen)}
-            />
-            <Menu items={PageLinks} isOpen={isMenuOpen} />
-          </div>
-        </Header>
+      <PublicPage>
+        <Header />
+        <WrapContainer width="90%">{PageLinks}</WrapContainer>
         {downloadEvent && (
-          <div style={{ marginTop: '5rem' }}>
-            <PwaDownloadButton PwaDownloadEvent={downloadEvent} />
-          </div>
+          <Button onClickFunc={(): Promise<void> => downloadEvent.prompt()}>
+            Download Santa Barbara Reentry
+          </Button>
         )}
-      </main>
+      </PublicPage>
     </>
   )
 }

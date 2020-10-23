@@ -1,12 +1,11 @@
 /* eslint-disable react/display-name */
-import { ReactElement } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-import BackButton from '../components/BackButton'
+import Button from '../ui/Button'
 
-export default (): ReactElement => {
-  const { pathname } = useRouter()
+export default () => {
+  const { pathname, back } = useRouter()
   const topic: string = pathname.slice(1)
 
   return (
@@ -15,7 +14,9 @@ export default (): ReactElement => {
         <title>{topic}</title>
       </Head>
       <span>Important information about {topic}</span>
-      <BackButton />
+      <Button block onClickFunc={() => back()}>
+        Button
+      </Button>
     </>
   )
 }

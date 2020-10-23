@@ -1,0 +1,14 @@
+.Button {
+  min-height: 2.5rem;
+  border: none;
+  background-color: var(--blue);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  outline: none;
+}
+
+.ButtonText {
+  margin: 0.5rem;
+  font-size: var(--med-heading);
+  color: var(--white);
+}
