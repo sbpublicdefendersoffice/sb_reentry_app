@@ -46,7 +46,7 @@ const routes: RouteInfo[] = [
   { title: 'Housing', route: '/housing', imgPath: './icons/housing.svg' },
   {
     title: 'Substance Use',
-    route: '/substanceusetreatment',
+    route: '/substanceuse',
     imgPath: './icons/substanceuse.svg',
   },
 ]
