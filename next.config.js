@@ -1,6 +1,6 @@
 const withPWA = require('next-pwa')
 
-const pwaOptions = {
+const nextConfigOptions = {
   target: 'serverless',
   pwa: {
     dest: 'public',
@@ -9,4 +9,4 @@ const pwaOptions = {
   },
 }
 
-module.exports = withPWA(pwaOptions)
+module.exports = withPWA(nextConfigOptions)
