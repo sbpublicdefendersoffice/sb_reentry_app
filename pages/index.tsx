@@ -52,7 +52,7 @@ const Home = () => {
         <Header />
         <WrapContainer width="90%">{PageLinks}</WrapContainer>
         {downloadEvent && (
-          <Button onClickFunc={(): Promise<void> => downloadEvent.prompt()}>
+          <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
             Download Santa Barbara Reentry
           </Button>
         )}

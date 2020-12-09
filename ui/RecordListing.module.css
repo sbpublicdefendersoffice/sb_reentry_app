@@ -1,0 +1,16 @@
+.RecordListing {
+  width: 50%;
+  margin: 0.5rem;
+  font-size: var(--med-heading);
+  border-radius: var(--radius-medium);
+  padding: 1rem;
+  text-align: center;
+  border: var(--border-width) solid var(--blue);
+  cursor: pointer;
+}
+
+.RecordListing:hover,
+.RecordListing:active {
+  background-color: var(--blue);
+  color: var(--white);
+}
