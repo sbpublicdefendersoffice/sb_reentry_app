@@ -1,3 +1,5 @@
+export type Holder = { [title: string]: Array<string | number> }
+
 export interface OrgRecord {
   createdTime: string
   fields: {
@@ -34,4 +36,41 @@ export interface OrgRecord {
     schedule_notes?: string
   }
   id: string
+}
+
+export interface LocationRecord {
+  id?: number
+  city?: string
+  address?: string
+  address_2?: string
+  name?: string
+  state?: string
+  email?: string
+  zip?: number
+  phone?: string
+  website?: string
+  notes?: string
+  services?: string
+  schedule?: ScheduleRecord[]
+}
+
+export interface ScheduleRecord {
+  location_name?: string
+  locations_id?: number
+  open_time?: string
+  close_time?: string
+  day?: string
+  ordinal_open?: string
+  notes?: string
+}
+
+export interface SortedRecord {
+  name?: string
+  website?: string
+  languages_spoken?: string
+  notes?: string
+  categories?: string[]
+  tags?: string[]
+  id?: string
+  locations: LocationRecord[]
 }

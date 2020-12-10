@@ -14,7 +14,7 @@ export default () => {
         <title>{topic}</title>
       </Head>
       <span>Important information about {topic}</span>
-      <Button block onClickFunc={() => back()}>
+      <Button block onClick={() => back()}>
         Button
       </Button>
     </>

@@ -1,0 +1,5 @@
+.ScheduleRecordDisplay {
+  width: max-content;
+  margin: 1rem auto;
+  border-bottom: var(--border-width) solid var(--black);
+}

@@ -20,5 +20,10 @@ body {
 
 a {
   text-decoration: none;
+  border-bottom: var(--border-width) dotted var(--grey);
+  color: var(--grey);
+}
+
+a:hover {
   color: var(--black);
 }

@@ -1,30 +1,57 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ReactElement } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
-import { OrgRecord } from '../../types/records'
-
+import { Header, OrgRecordDisplay } from '../../components'
+import { Button, PublicPage } from '../../ui'
+import { SortedRecord } from '../../types/records'
 import { fetchSingleOrgRecord } from '../../services/GET'
+
+const fetchString = 'Fetching Organization Info...'
 
 const IdPage = () => {
   const [
     singleFetchedRecord,
     setSingleFetchedRecord,
-  ] = useState<OrgRecord | null>(null)
-  const { query } = useRouter()
+  ] = useState<SortedRecord | null>(null)
+  const [timeoutBackButton, setTimeoutBackButton] = useState<boolean>(false)
+  const { query, back } = useRouter()
+  const { id } = query
 
   useEffect(() => {
-    fetchSingleOrgRecord(String(query?.id), setSingleFetchedRecord)
-  }, [query])
+    if (id) fetchSingleOrgRecord(String(id), setSingleFetchedRecord)
+  }, [id])
+
+  useEffect(() => {
+    let buttonTimeout: number
+    if (!singleFetchedRecord)
+      buttonTimeout = window.setTimeout(() => setTimeoutBackButton(true), 3000)
+    return () => window.clearTimeout(buttonTimeout)
+  }, [singleFetchedRecord])
+
+  const backButton: ReactElement = <Button onClick={back}>Back</Button>
 
   return (
-    <>
-      {singleFetchedRecord &&
-        Object.entries(singleFetchedRecord.fields).map(([key, value]) => (
-          <p key={key}>
-            {key}: {value.toString()}
-          </p>
-        ))}
-    </>
+    <PublicPage>
+      <Header />
+      {singleFetchedRecord ? (
+        <>
+          <Head>
+            <title>{singleFetchedRecord.name}</title>
+          </Head>
+          {backButton}
+          <OrgRecordDisplay singleFetchedRecord={singleFetchedRecord} />
+        </>
+      ) : (
+        <>
+          <Head>
+            <title>{fetchString}</title>
+          </Head>
+          {timeoutBackButton && backButton}
+          <span>{fetchString}</span>
+        </>
+      )}
+    </PublicPage>
   )
 }
 
