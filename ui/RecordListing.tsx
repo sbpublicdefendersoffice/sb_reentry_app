@@ -4,13 +4,20 @@ import styles from './RecordListing.module.css'
 
 interface RecordListingProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode
+  interactive?: boolean
 }
 
 const RecordListing = forwardRef<HTMLElement, RecordListingProps>(
   function Listing(props: RecordListingProps, ref) {
-    const { children, ...other } = props
+    const { children, interactive, className, ...other } = props
     return (
-      <article ref={ref} className={styles.RecordListing} {...other}>
+      <article
+        ref={ref}
+        className={`${styles.RecordListing} ${
+          interactive ? styles.active : ''
+        } ${className ? className : ''}`}
+        {...other}
+      >
         {children}
       </article>
     )

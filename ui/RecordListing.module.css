@@ -9,8 +9,12 @@
   cursor: pointer;
 }
 
-.RecordListing:hover,
-.RecordListing:active {
+.active {
+  display: initial;
+}
+
+.active:hover,
+.active:active {
   background-color: var(--blue);
   color: var(--white);
 }

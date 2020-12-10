@@ -1,3 +1,4 @@
 .LocationRecordDisplay {
-  display: inherit;
+  width: 100%;
+  cursor: auto;
 }

@@ -35,6 +35,7 @@ const SubstanceUse = () => {
             <RecordListing
               key={record.id}
               title={record.id}
+              interactive
               onClick={e =>
                 // @ts-ignore
                 push('/substanceuse/[id]', `/substanceuse/${e.target.title}`)

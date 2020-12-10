@@ -15,11 +15,12 @@
   "plugins": ["@typescript-eslint", "react", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "@typescript-eslint/explicit-module-boundary-types": 0,
-    "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/no-explicit-any": 0,
+    "react/no-unescaped-entities": 0,
     "@typescript-eslint/ban-ts-comment": 0,
-    "react/no-unescaped-entities": 0
+    "@typescript-eslint/no-inferrable-types": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-var-requires": 0
   },
   "globals": {
     "React": "writable"
