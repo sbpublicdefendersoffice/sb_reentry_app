@@ -50,7 +50,6 @@ export const fetchSingleOrgRecord = async (
   const organizedRecord: SortedRecord = {
     locations: [],
   }
-  console.log(organizedRecord)
 
   organizedRecord.id = translatedRecord.id
 
@@ -64,7 +63,7 @@ export const fetchSingleOrgRecord = async (
 
   Object.entries(translatedRecord.fields).forEach(([key, value]) => {
     const cleanedKey: string = key.replace(splitRegEx, '')
-    if (key.startsWith('org') && key !== 'org_id') {
+    if (key.startsWith('org')) {
       const recordsToNotCopy: string[] = [
         'org_id',
         'org_schedule',
