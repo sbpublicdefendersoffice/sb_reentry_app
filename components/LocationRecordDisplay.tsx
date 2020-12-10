@@ -45,15 +45,17 @@ const LocationRecordDisplay = ({
       {address && (
         <>
           <h3>Address:</h3>
-          <p>{fullAddress}</p>
-          <p>{cityStateZip}</p>
-          <a
-            href={`https://www.google.com/maps/place/${addressForUrl}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Find on Google Maps
-          </a>
+          <address>
+            <p>{fullAddress}</p>
+            <p>{cityStateZip}</p>
+            <a
+              href={`https://www.google.com/maps/place/${addressForUrl}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Find on Google Maps
+            </a>
+          </address>
         </>
       )}
       {phone && (
@@ -92,10 +94,14 @@ const LocationRecordDisplay = ({
         </>
       )}
       {notes && <p>{notes}</p>}
-      {Boolean(schedule.length) &&
-        schedule.map((scheduleInfo, i) => (
-          <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
-        ))}
+      {Boolean(schedule.length) && (
+        <>
+          <h3>Schedule:</h3>
+          {schedule.map((scheduleInfo, i) => (
+            <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
+          ))}
+        </>
+      )}
     </RecordListing>
   )
 }
