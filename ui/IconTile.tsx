@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import NextLink from 'next/link'
 
 import styles from './IconTile.module.css'
 
@@ -11,10 +12,12 @@ interface IconTileProps {
 
 const IconTile = ({ children, label, path, href }: IconTileProps) => (
   <div className={styles.IconTile}>
-    <a className={`${styles.Link} not-text-link`} href={href}>
-      <img className={styles.Icon} src={path} alt={label} />
-      <span>{children}</span>
-    </a>
+    <NextLink href={href}>
+      <a className={`${styles.Link} not-text-link`}>
+        <img className={styles.Icon} src={path} alt={label} />
+        <span>{children}</span>
+      </a>
+    </NextLink>
   </div>
 )
 

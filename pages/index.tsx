@@ -1,6 +1,5 @@
 import { useState, useEffect, ReactElement } from 'react'
 import Head from 'next/head'
-import NextLink from 'next/link'
 
 import routes, { RouteInfo } from '../constants/routes'
 import { PwaTags, Header } from '../components'
@@ -18,11 +17,9 @@ interface BeforeInstallPromptEvent extends Event {
 const PageLinks: ReactElement[] = routes.map((link: RouteInfo, i: number) => {
   const { route, title, imgPath } = link
   return (
-    <NextLink href={route} key={i}>
-      <IconTile href={route} label={title} path={imgPath}>
-        {title}
-      </IconTile>
-    </NextLink>
+    <IconTile key={i} href={route} label={title} path={imgPath}>
+      {title}
+    </IconTile>
   )
 })
 
