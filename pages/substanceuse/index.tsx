@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-import { Header } from '../../components'
+import { Header, Search } from '../../components'
 import { Button, PublicPage, RecordListing } from '../../ui'
 
 import { OrgRecord } from '../../types/records'
@@ -30,20 +30,29 @@ const SubstanceUse = () => {
         <Button block onClick={back}>
           Back
         </Button>
-        {Boolean(fetchedRecords?.length) &&
-          fetchedRecords.map(record => (
-            <RecordListing
-              key={record.id}
-              title={record.id}
-              interactive
-              onClick={e =>
-                // @ts-ignore
-                push('/substanceuse/[id]', `/substanceuse/${e.target.title}`)
-              }
-            >
-              {record.fields.org_name}
-            </RecordListing>
-          ))}
+        {fetchedRecords && (
+          <Search
+            originalRecords={fetchedRecords}
+            setRecords={setFetchedRecords}
+          />
+        )}
+        {Boolean(fetchedRecords?.length) && (
+          <>
+            {fetchedRecords.map(record => (
+              <RecordListing
+                key={record.id}
+                title={record.id}
+                interactive
+                onClick={e =>
+                  // @ts-ignore
+                  push('/substanceuse/[id]', `/substanceuse/${e.target.title}`)
+                }
+              >
+                {record.fields.org_name}
+              </RecordListing>
+            ))}
+          </>
+        )}
       </PublicPage>
     </>
   )

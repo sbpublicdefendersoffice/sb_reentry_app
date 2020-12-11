@@ -23,7 +23,7 @@ a {
   color: var(--black);
 }
 
-a:not(.icon-tile) {
+a:not(.not-text-link) {
   border-bottom: var(--border-width) dotted var(--grey);
   color: var(--grey);
 }

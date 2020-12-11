@@ -18,12 +18,29 @@ const OPTIONS_OBJECT = {
   },
 }
 
+export const fetchAllRecords = async (
+  recordSetFunction: Dispatch<SetStateAction<OrgRecord[]>>,
+): Promise<void> => {
+  const fetchRecords: Response = await fetch(
+    `${BASE_URL}/organization?fields%5B%5D=org_name&fields%5B%5D=org_tags&fields%5B%5D=org_categories`,
+    OPTIONS_OBJECT,
+  )
+  const translatedRecords: Records<OrgRecord[]> = await fetchRecords.json()
+  // @ts-ignore
+  const sortedRecords: OrgRecord[] = translatedRecords.records.sort(
+    (a: OrgRecord, b: OrgRecord) =>
+      a.fields.org_name?.localeCompare(b.fields.org_name),
+  )
+
+  recordSetFunction(sortedRecords)
+}
+
 export const fetchRecordsByCategory = async (
   category: string,
   recordSetFunction: Dispatch<SetStateAction<OrgRecord[]>>,
 ): Promise<void> => {
   const fetchRecords: Response = await fetch(
-    `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name`,
+    `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name&fields%5B%5D=org_tags`,
     OPTIONS_OBJECT,
   )
   const translatedRecords: Records<OrgRecord[]> = await fetchRecords.json()
