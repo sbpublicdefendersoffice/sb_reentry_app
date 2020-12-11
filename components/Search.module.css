@@ -1,0 +1,7 @@
+.Search {
+  outline: none;
+  border: var(--border-width) solid var(--blue);
+  border-radius: var(--radius-small);
+  margin: var(--margin-std);
+  font-size: var(--large-text);
+}
