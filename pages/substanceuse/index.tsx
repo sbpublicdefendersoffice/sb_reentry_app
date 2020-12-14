@@ -56,6 +56,20 @@ const SubstanceUse = () => {
             ))}
           </>
         )}
+        {fetchedRecords?.offset && (
+          <Button
+            onClick={() =>
+              fetchRecordsByCategory(
+                substanceUse.toLowerCase(),
+                setFetchedRecords,
+                fetchedRecords?.offset,
+              )
+            }
+          >
+            Fetch More Records
+          </Button>
+        )}
+        {/* TODO: Have to fix teh back button refetching problem somehow, perhaps have these records in a global context to never have to fetch more than once? */}
       </PublicPage>
     </>
   )

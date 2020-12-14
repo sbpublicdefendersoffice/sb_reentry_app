@@ -7,20 +7,15 @@ import {
   SortedRecord,
   ScheduleRecord,
   TranslatedRecordResponse,
-  RequestOptionsObject,
 } from '../types/records'
 
 const BASE_URL = `https://api.airtable.com/v0/${process.env.NEXT_PUBLIC_AIRTABLE_BASE}`
 
-const constructOptionsObject = (offset?: string): RequestOptionsObject => {
-  const OPTIONS_OBJECT: RequestOptionsObject = {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
-    },
-  }
-  if (offset) OPTIONS_OBJECT.headers.offset = offset
-  return OPTIONS_OBJECT
+const OPTIONS_OBJECT = {
+  method: 'GET',
+  headers: {
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
+  },
 }
 
 export const fetchRecordsByCategory = async (
@@ -29,16 +24,23 @@ export const fetchRecordsByCategory = async (
   offset?: string,
 ): Promise<void> => {
   const fetchRecords: Response = await fetch(
-    `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name&fields%5B%5D=org_tags`,
-    constructOptionsObject(offset),
+    `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name&fields%5B%5D=org_tags${
+      offset ? `&offset=${offset}` : ''
+    }`,
+    OPTIONS_OBJECT,
   )
   const translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
   // @ts-ignore
-  translatedRecords.records.sort((a: OrgRecord, b: OrgRecord) =>
+  translatedRecords?.records?.sort((a: OrgRecord, b: OrgRecord) =>
     a.fields.org_name?.localeCompare(b.fields.org_name),
   )
 
-  recordSetFunction(translatedRecords)
+  if (offset)
+    recordSetFunction(prevState => ({
+      offset: translatedRecords.offset,
+      records: [...prevState.records, ...translatedRecords?.records],
+    }))
+  else recordSetFunction(translatedRecords)
 }
 
 export const fetchSingleOrgRecord = async (
@@ -47,7 +49,7 @@ export const fetchSingleOrgRecord = async (
 ): Promise<void> => {
   const fetchRecord: Response = await fetch(
     `${BASE_URL}/organization/${recordId}`,
-    constructOptionsObject(),
+    OPTIONS_OBJECT,
   )
 
   const translatedRecord: OrgRecord = await fetchRecord.json()
