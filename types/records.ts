@@ -1,5 +1,18 @@
 export type Holder = { [title: string]: Array<string | number> }
 
+export interface RequestOptionsObject {
+  method: string
+  headers: {
+    Authorization: string
+    offset?: string
+  }
+}
+
+export interface TranslatedRecordResponse {
+  offset?: string
+  records: OrgRecord[]
+}
+
 export interface OrgRecord {
   createdTime: string
   fields: {

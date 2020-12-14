@@ -5,13 +5,13 @@ import {
   useState,
   useEffect,
 } from 'react'
-import { OrgRecord } from '../types/records'
+import { OrgRecord, TranslatedRecordResponse } from '../types/records'
 
 import styles from './Search.module.css'
 
 interface SearchProps {
   originalRecords: OrgRecord[]
-  setRecords: Dispatch<SetStateAction<OrgRecord[]>>
+  setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
 }
 
 const Search = ({ originalRecords, setRecords }: SearchProps) => {
@@ -27,12 +27,17 @@ const Search = ({ originalRecords, setRecords }: SearchProps) => {
     const { value } = target
     if (savedOriginalRecords) {
       if (value) {
-        setRecords(
-          savedOriginalRecords.filter(record =>
+        setRecords(previousState => ({
+          ...previousState,
+          records: savedOriginalRecords.filter(record =>
             record.fields?.org_tags?.join('').includes(value.toLowerCase()),
           ),
-        )
-      } else setRecords(savedOriginalRecords)
+        }))
+      } else
+        setRecords(previousState => ({
+          ...previousState,
+          records: savedOriginalRecords,
+        }))
     }
   }
 

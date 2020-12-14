@@ -1,5 +1,4 @@
 import { SetStateAction, Dispatch } from 'react'
-import { Records } from 'airtable'
 
 import {
   OrgRecord,
@@ -7,50 +6,39 @@ import {
   LocationRecord,
   SortedRecord,
   ScheduleRecord,
+  TranslatedRecordResponse,
+  RequestOptionsObject,
 } from '../types/records'
 
 const BASE_URL = `https://api.airtable.com/v0/${process.env.NEXT_PUBLIC_AIRTABLE_BASE}`
 
-const OPTIONS_OBJECT = {
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
-  },
-}
-
-export const fetchAllRecords = async (
-  recordSetFunction: Dispatch<SetStateAction<OrgRecord[]>>,
-): Promise<void> => {
-  const fetchRecords: Response = await fetch(
-    `${BASE_URL}/organization?fields%5B%5D=org_name&fields%5B%5D=org_tags&fields%5B%5D=org_categories`,
-    OPTIONS_OBJECT,
-  )
-  const translatedRecords: Records<OrgRecord[]> = await fetchRecords.json()
-  // @ts-ignore
-  const sortedRecords: OrgRecord[] = translatedRecords.records.sort(
-    (a: OrgRecord, b: OrgRecord) =>
-      a.fields.org_name?.localeCompare(b.fields.org_name),
-  )
-
-  recordSetFunction(sortedRecords)
+const constructOptionsObject = (offset?: string): RequestOptionsObject => {
+  const OPTIONS_OBJECT: RequestOptionsObject = {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
+    },
+  }
+  if (offset) OPTIONS_OBJECT.headers.offset = offset
+  return OPTIONS_OBJECT
 }
 
 export const fetchRecordsByCategory = async (
   category: string,
-  recordSetFunction: Dispatch<SetStateAction<OrgRecord[]>>,
+  recordSetFunction: Dispatch<SetStateAction<TranslatedRecordResponse>>,
+  offset?: string,
 ): Promise<void> => {
   const fetchRecords: Response = await fetch(
     `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name&fields%5B%5D=org_tags`,
-    OPTIONS_OBJECT,
+    constructOptionsObject(offset),
   )
-  const translatedRecords: Records<OrgRecord[]> = await fetchRecords.json()
+  const translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
   // @ts-ignore
-  const sortedRecords: OrgRecord[] = translatedRecords.records.sort(
-    (a: OrgRecord, b: OrgRecord) =>
-      a.fields.org_name?.localeCompare(b.fields.org_name),
+  translatedRecords.records.sort((a: OrgRecord, b: OrgRecord) =>
+    a.fields.org_name?.localeCompare(b.fields.org_name),
   )
 
-  recordSetFunction(sortedRecords)
+  recordSetFunction(translatedRecords)
 }
 
 export const fetchSingleOrgRecord = async (
@@ -59,7 +47,7 @@ export const fetchSingleOrgRecord = async (
 ): Promise<void> => {
   const fetchRecord: Response = await fetch(
     `${BASE_URL}/organization/${recordId}`,
-    OPTIONS_OBJECT,
+    constructOptionsObject(),
   )
 
   const translatedRecord: OrgRecord = await fetchRecord.json()
