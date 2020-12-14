@@ -18,6 +18,9 @@ const OPTIONS_OBJECT = {
   },
 }
 
+const sortByName = (a: OrgRecord, b: OrgRecord): number =>
+  a.fields.org_name?.localeCompare(b.fields.org_name)
+
 export const fetchRecordsByCategory = async (
   category: string,
   recordSetFunction: Dispatch<SetStateAction<TranslatedRecordResponse>>,
@@ -31,14 +34,14 @@ export const fetchRecordsByCategory = async (
   )
   const translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
   // @ts-ignore
-  translatedRecords?.records?.sort((a: OrgRecord, b: OrgRecord) =>
-    a.fields.org_name?.localeCompare(b.fields.org_name),
-  )
+  translatedRecords?.records?.sort(sortByName)
 
   if (offset)
     recordSetFunction(prevState => ({
       offset: translatedRecords.offset,
-      records: [...prevState.records, ...translatedRecords?.records],
+      records: [...prevState.records, ...translatedRecords?.records].sort(
+        sortByName,
+      ),
     }))
   else recordSetFunction(translatedRecords)
 }
