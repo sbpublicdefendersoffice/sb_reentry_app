@@ -5,13 +5,16 @@ import Head from 'next/head'
 import { Header, Search } from '../../components'
 import { Button, PublicPage, RecordListing } from '../../ui'
 
-import { OrgRecord } from '../../types/records'
+import { TranslatedRecordResponse } from '../../types/records'
 import { fetchRecordsByCategory } from '../../services/GET'
 
 const substanceUse = 'Substance Use'
 
 const SubstanceUse = () => {
-  const [fetchedRecords, setFetchedRecords] = useState<OrgRecord[] | null>(null)
+  const [
+    fetchedRecords,
+    setFetchedRecords,
+  ] = useState<TranslatedRecordResponse | null>(null)
 
   useEffect((): void => {
     fetchRecordsByCategory(substanceUse.toLowerCase(), setFetchedRecords)
@@ -32,13 +35,13 @@ const SubstanceUse = () => {
         </Button>
         {fetchedRecords && (
           <Search
-            originalRecords={fetchedRecords}
+            originalRecords={fetchedRecords.records}
             setRecords={setFetchedRecords}
           />
         )}
-        {Boolean(fetchedRecords?.length) && (
+        {Boolean(fetchedRecords?.records?.length) && (
           <>
-            {fetchedRecords.map(record => (
+            {fetchedRecords?.records?.map(record => (
               <RecordListing
                 key={record.id}
                 title={record.id}
@@ -53,6 +56,20 @@ const SubstanceUse = () => {
             ))}
           </>
         )}
+        {fetchedRecords?.offset && (
+          <Button
+            onClick={() =>
+              fetchRecordsByCategory(
+                substanceUse.toLowerCase(),
+                setFetchedRecords,
+                fetchedRecords?.offset,
+              )
+            }
+          >
+            Fetch More Records
+          </Button>
+        )}
+        {/* TODO: Have to fix teh back button refetching problem somehow, perhaps have these records in a global context to never have to fetch more than once? */}
       </PublicPage>
     </>
   )

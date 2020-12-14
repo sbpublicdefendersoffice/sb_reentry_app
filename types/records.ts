@@ -1,5 +1,10 @@
 export type Holder = { [title: string]: Array<string | number> }
 
+export interface TranslatedRecordResponse {
+  offset?: string
+  records: OrgRecord[]
+}
+
 export interface OrgRecord {
   createdTime: string
   fields: {
