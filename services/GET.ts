@@ -120,6 +120,8 @@ export const fetchSingleOrgRecord = async (
     obj.notes = locInfo.notes && locInfo.notes[i] ? locInfo.notes[i] : null
     obj.services =
       locInfo.services && locInfo.services[i] ? locInfo.services[i] : null
+
+    obj.org_name = organizedRecord.name ? organizedRecord.name : null
     obj.schedule = []
 
     organizedRecord.locations.push(obj)

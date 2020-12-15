@@ -56,6 +56,7 @@ export interface LocationRecord {
   website?: string
   notes?: string
   services?: string
+  org_name?: string
   schedule?: ScheduleRecord[]
 }
 
@@ -77,5 +78,5 @@ export interface SortedRecord {
   categories?: string[]
   tags?: string[]
   id?: string
-  locations: LocationRecord[]
+  locations?: LocationRecord[]
 }

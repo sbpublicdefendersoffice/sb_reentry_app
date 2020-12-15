@@ -1,6 +1,6 @@
 import { RecordListing } from '../ui'
 
-import { ScheduleRecordDisplay } from './'
+import { ScheduleRecordDisplay, SendText } from './'
 import { LocationRecord } from '../types/records'
 
 import styles from './LocationRecordDisplay.module.css'
@@ -25,6 +25,7 @@ const LocationRecordDisplay = ({
     website,
     email,
     notes,
+    org_name,
   } = locationInfo
 
   const fullAddress: string = `${address || ''}${
@@ -56,6 +57,11 @@ const LocationRecordDisplay = ({
               Find on Google Maps
             </a>
           </address>
+          <SendText
+            org_name={org_name}
+            fullAddress={fullAddress}
+            cityStateZip={cityStateZip}
+          />
         </>
       )}
       {phone && (
