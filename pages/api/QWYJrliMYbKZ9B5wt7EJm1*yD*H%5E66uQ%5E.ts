@@ -26,20 +26,21 @@ const text = async (
   // TODO: put in a try catch block and trigger from the front end, and add more error handling too
 
   if (correctHost && correctAuth) {
-    const texter = twilio(secretId, authToken)
+    try {
+      const texter = twilio(secretId, authToken)
 
-    //back that git up
-    const text = await texter.messages.create({
-      to: '+number',
-      from: process.env.NEXT_PUBLIC_FROM_NUMBER,
-      body: message as string,
-    })
+      const text = await texter.messages.create({
+        to: '+1',
+        from: process.env.NEXT_PUBLIC_FROM_NUMBER,
+        body: message as string,
+      })
 
-    const response = await text.toJSON()
-    console.log(response)
-  }
-
-  res.json({ date: Date.now() })
+      const response = await text.toJSON()
+      res.json(response)
+    } catch (error) {
+      res.json(error)
+    }
+  } else res.json('you are not authorized to access this route')
 }
 
 export default text
