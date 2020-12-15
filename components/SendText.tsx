@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { Button } from '../ui'
+import { Button, Input } from '../ui'
 
 interface SendTextProps {
   org_name: string
@@ -41,7 +41,7 @@ const SendText = ({ org_name, fullAddress, cityStateZip }: SendTextProps) => {
 
   return (
     <form onSubmit={postText}>
-      <input onChange={e => setNumberToSendTo(e.target.value)} />
+      <Input onChange={e => setNumberToSendTo(e.target.value)} />
       <Button type="submit">{inputErrorMsg || 'Send Location Info'}</Button>
     </form>
   )

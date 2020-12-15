@@ -5,9 +5,9 @@ import {
   useState,
   useEffect,
 } from 'react'
-import { OrgRecord, TranslatedRecordResponse } from '../types/records'
 
-import styles from './Search.module.css'
+import { Input } from '../ui'
+import { OrgRecord, TranslatedRecordResponse } from '../types/records'
 
 interface SearchProps {
   originalRecords: OrgRecord[]
@@ -41,13 +41,7 @@ const Search = ({ originalRecords, setRecords }: SearchProps) => {
     }
   }
 
-  return (
-    <input
-      className={styles.Search}
-      onChange={handleChange}
-      placeholder="Search..."
-    />
-  )
+  return <Input onChange={handleChange} placeholder="Search..." />
 }
 
 export default Search
