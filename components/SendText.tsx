@@ -31,7 +31,6 @@ const SendText = ({ org_name, fullAddress, cityStateZip }: SendTextProps) => {
 
       const textResponse = await text.json()
       if (textResponse.errorCode) throw new Error('Error with Message')
-      console.log(textResponse)
     } catch (error) {
       console.error(error)
       setInputErrorMsg(error.message)
