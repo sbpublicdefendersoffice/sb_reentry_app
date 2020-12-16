@@ -2,8 +2,8 @@ import { useState, useEffect, ReactElement } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-import { Header, OrgRecordDisplay } from '../../components'
-import { Button, PublicPage } from '../../ui'
+import { OrgRecordDisplay } from '../../components'
+import { Button } from '../../ui'
 import { SortedRecord } from '../../types/records'
 import { fetchSingleOrgRecord } from '../../services/GET'
 
@@ -32,8 +32,7 @@ const IdPage = () => {
   const backButton: ReactElement = <Button onClick={back}>Back</Button>
 
   return (
-    <PublicPage>
-      <Header />
+    <>
       {singleFetchedRecord ? (
         <>
           <Head>
@@ -51,7 +50,7 @@ const IdPage = () => {
           <span>{fetchString}</span>
         </>
       )}
-    </PublicPage>
+    </>
   )
 }
 

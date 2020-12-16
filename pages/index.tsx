@@ -2,7 +2,7 @@ import { useState, useEffect, ReactElement } from 'react'
 import Head from 'next/head'
 
 import routes, { RouteInfo } from '../constants/routes'
-import { PwaTags, Header } from '../components'
+import { PwaTags } from '../components'
 import { Button, IconTile, PublicPage, WrapContainer } from '../ui'
 
 interface BeforeInstallPromptEvent extends Event {
@@ -45,15 +45,12 @@ const Home = () => {
       <Head>
         <title>Santa Barbara Reentry</title>
       </Head>
-      <PublicPage>
-        <Header />
-        <WrapContainer width="90%">{PageLinks}</WrapContainer>
-        {downloadEvent && (
-          <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
-            Download Santa Barbara Reentry
-          </Button>
-        )}
-      </PublicPage>
+      <WrapContainer width="90%">{PageLinks}</WrapContainer>
+      {downloadEvent && (
+        <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
+          Download Santa Barbara Reentry
+        </Button>
+      )}
     </>
   )
 }
