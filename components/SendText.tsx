@@ -40,7 +40,10 @@ const SendText = ({ org_name, fullAddress, cityStateZip }: SendTextProps) => {
 
   return (
     <form onSubmit={postText}>
-      <Input onChange={e => setNumberToSendTo(e.target.value)} />
+      <Input
+        onChange={e => setNumberToSendTo(e.target.value)}
+        placeholder="Enter Phone #"
+      />
       <Button type="submit">{inputErrorMsg || 'Send Location Info'}</Button>
     </form>
   )
