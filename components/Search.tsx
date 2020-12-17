@@ -41,7 +41,7 @@ const Search = ({ originalRecords, setRecords }: SearchProps) => {
     }
   }
 
-  return <Input onChange={handleChange} placeholder="Search..." />
+  return <Input onChange={handleChange} placeholder="Search..." role="search" />
 }
 
 export default Search
