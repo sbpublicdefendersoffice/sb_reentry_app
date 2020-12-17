@@ -17,6 +17,7 @@ const RecordListing = forwardRef<HTMLElement, RecordListingProps>(
           interactive ? styles.active : ''
         } ${className ? className : ''}`}
         {...other}
+        role="listitem"
       >
         {children}
       </article>

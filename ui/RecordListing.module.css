@@ -3,7 +3,7 @@
   margin: 0.5rem 0;
   font-size: var(--med-heading);
   border-radius: var(--radius-medium);
-  padding: 1rem;
+  padding: var(--pad-lg);
   text-align: center;
   border: var(--border-width) solid var(--blue);
   cursor: pointer;

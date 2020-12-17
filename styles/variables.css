@@ -9,7 +9,10 @@
   --radius-small: 0.25rem;
   --radius-medium: 1rem;
   --border-width: 0.1rem;
+  --margin-sm: 0.5rem;
   --margin-std: 1rem;
+  --pad-std: 0.5rem;
+  --pad-lg: 1rem;
   --screen-minus-header: calc(100vh - 10rem);
 
   /* Text Variables */

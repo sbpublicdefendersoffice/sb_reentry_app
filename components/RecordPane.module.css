@@ -1,6 +1,6 @@
 .RecordPane {
   align-self: flex-start;
-  padding: 0.5rem;
+  padding: var(--pad-std);
   display: flex;
   flex-direction: column;
   height: var(--screen-minus-header);

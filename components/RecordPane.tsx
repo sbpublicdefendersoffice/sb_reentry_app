@@ -32,6 +32,7 @@ const RecordPane = ({ category, landingPage }: RecordPaneProps) => {
       className={`${styles.RecordPane} ${
         landingPage ? styles.landingPage : styles.infoPage
       }`}
+      role="list"
     >
       <h2>{category}</h2>
       <Button block onClick={back}>

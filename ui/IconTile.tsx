@@ -14,7 +14,7 @@ const IconTile = ({ children, label, path, href }: IconTileProps) => (
   <div className={styles.IconTile}>
     <NextLink href={href}>
       <a className={`${styles.Link} not-text-link`}>
-        <img className={styles.Icon} src={path} alt={label} />
+        <img className={styles.Icon} src={path} alt={`${label}_icon`} />
         <span>{children}</span>
       </a>
     </NextLink>

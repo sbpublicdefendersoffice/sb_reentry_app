@@ -1,5 +1,4 @@
 import { ReactElement, Fragment } from 'react'
-import Head from 'next/head'
 
 import routes, { RouteInfo } from '../constants/routes'
 import { PwaTags, PwaDownload } from '../components'
@@ -19,9 +18,6 @@ const PageLinks: ReactElement[] = routes.map((link: RouteInfo, i: number) => {
 const Home = () => (
   <>
     <PwaTags />
-    <Head>
-      <title>Santa Barbara Reentry</title>
-    </Head>
     <WrapContainer width="90%">{PageLinks}</WrapContainer>
     <PwaDownload />
   </>

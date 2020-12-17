@@ -2,3 +2,7 @@
   width: 100%;
   cursor: auto;
 }
+
+.LocationRecordDisplay > h3 {
+  margin: var(--margin-std) 0;
+}

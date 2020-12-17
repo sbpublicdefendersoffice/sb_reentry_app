@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import styles from './Header.module.css'
 
 const Header = () => (
-  <header className={styles.Header}>
+  <header role="banner" className={styles.Header}>
     <div className={styles.HeaderContainer}>
       <NextLink href="/" as="/">
         <a className="not-text-link">
@@ -12,7 +12,7 @@ const Header = () => (
       </NextLink>
       <img
         src="/images/logo192.png"
-        alt="County of Santa Barbara Logo"
+        alt="County of Santa Barbara Public Defender's Office Logo"
         className={styles.Logo}
       />
     </div>
