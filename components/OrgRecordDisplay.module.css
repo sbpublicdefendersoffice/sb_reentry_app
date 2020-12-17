@@ -7,3 +7,7 @@
 .listing {
   cursor: auto;
 }
+
+.listing > * {
+  margin: 0 0 var(--margin-std) 0;
+}
