@@ -25,7 +25,7 @@ const IdPage = () => {
       {singleFetchedRecord && (
         <>
           <Head>
-            <title>{singleFetchedRecord.name}</title>
+            <title>{`Santa Barbara Reentry | ${singleFetchedRecord.name}`}</title>
           </Head>
           <RecordPane category={substanceUse} />
           <OrgRecordDisplay singleFetchedRecord={singleFetchedRecord} />

@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   margin: 1rem 0;
-  font-size: var(--med-heading);
+  font-size: var(--large-text);
   border-radius: var(--radius-medium);
   padding: 1rem 0;
   text-align: center;
