@@ -5,7 +5,7 @@
   margin: 1rem 0;
   font-size: var(--large-text);
   border-radius: var(--radius-medium);
-  padding: 1rem 0;
+  padding: var(--pad-std) 0;
   text-align: center;
   border: var(--border-width) solid transparent;
 }
