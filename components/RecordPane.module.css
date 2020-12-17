@@ -1,0 +1,10 @@
+.RecordPane {
+  width: 33%;
+  align-self: flex-start;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  height: calc(100vh - 10rem);
+  text-align: center;
+}

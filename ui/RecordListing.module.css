@@ -1,6 +1,6 @@
 .RecordListing {
-  width: 50%;
-  margin: 0.5rem;
+  width: 100%;
+  margin: 0.5rem 0;
   font-size: var(--med-heading);
   border-radius: var(--radius-medium);
   padding: 1rem;
