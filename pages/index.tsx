@@ -1,18 +1,25 @@
-import { useState, useEffect, ReactElement } from 'react'
+import {
+  // useState, useEffect,
+  ReactElement,
+} from 'react'
 import Head from 'next/head'
 
 import routes, { RouteInfo } from '../constants/routes'
-import { PwaTags } from '../components'
-import { Button, IconTile, PublicPage, WrapContainer } from '../ui'
+import { PwaTags, PwaDownload } from '../components'
+import {
+  // Button,
+  IconTile,
+  WrapContainer,
+} from '../ui'
 
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: string[]
-  readonly userChoice: Promise<{
-    outcome: 'accepted' | 'dismissed'
-    platform: string
-  }>
-  prompt(): Promise<void>
-}
+// interface BeforeInstallPromptEvent extends Event {
+//   readonly platforms: string[]
+//   readonly userChoice: Promise<{
+//     outcome: 'accepted' | 'dismissed'
+//     platform: string
+//   }>
+//   prompt(): Promise<void>
+// }
 
 const PageLinks: ReactElement[] = routes.map((link: RouteInfo, i: number) => {
   const { route, title, imgPath } = link
@@ -24,20 +31,20 @@ const PageLinks: ReactElement[] = routes.map((link: RouteInfo, i: number) => {
 })
 
 const Home = () => {
-  const [
-    downloadEvent,
-    setDownloadEvent,
-  ] = useState<BeforeInstallPromptEvent | null>(null)
+  // const [
+  //   downloadEvent,
+  //   setDownloadEvent,
+  // ] = useState<BeforeInstallPromptEvent | null>(null)
 
-  useEffect(() => {
-    const handleDownloadEvent = e => {
-      e.preventDefault()
-      setDownloadEvent(e)
-    }
-    addEventListener('beforeinstallprompt', handleDownloadEvent)
+  // useEffect(() => {
+  //   const handleDownloadEvent = e => {
+  //     e.preventDefault()
+  //     setDownloadEvent(e)
+  //   }
+  //   addEventListener('beforeinstallprompt', handleDownloadEvent)
 
-    return () => removeEventListener('beforeinstallprompt', handleDownloadEvent)
-  }, [])
+  //   return () => removeEventListener('beforeinstallprompt', handleDownloadEvent)
+  // }, [])
 
   return (
     <>
@@ -46,11 +53,12 @@ const Home = () => {
         <title>Santa Barbara Reentry</title>
       </Head>
       <WrapContainer width="90%">{PageLinks}</WrapContainer>
-      {downloadEvent && (
+      {/* {downloadEvent && (
         <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
           Download Santa Barbara Reentry
         </Button>
-      )}
+      )} */}
+      <PwaDownload />
     </>
   )
 }

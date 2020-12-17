@@ -1,7 +1,10 @@
+import { useRouter } from 'next/router'
+
 import { LocationRecordDisplay } from './'
 import { RecordListing } from '../ui'
 
 import { SortedRecord } from '../types/records'
+import { Button } from '../ui'
 
 import styles from './OrgRecordDisplay.module.css'
 
@@ -10,6 +13,8 @@ interface OrgRecordDisplayProps {
 }
 
 const OrgRecordDisplay = ({ singleFetchedRecord }: OrgRecordDisplayProps) => {
+  const { back } = useRouter()
+
   const {
     locations,
     name,
@@ -19,9 +24,10 @@ const OrgRecordDisplay = ({ singleFetchedRecord }: OrgRecordDisplayProps) => {
   } = singleFetchedRecord
 
   return (
-    <>
-      <h2>{name}</h2>
-      <RecordListing className={styles.OrgRecordDisplay}>
+    <div className={styles.OrgRecordDisplay}>
+      <RecordListing className={styles.listing}>
+        <Button onClick={back}>Back</Button>
+        <h2>{name}</h2>
         {website && (
           <p>
             Org Website:{' '}
@@ -41,7 +47,7 @@ const OrgRecordDisplay = ({ singleFetchedRecord }: OrgRecordDisplayProps) => {
           </>
         )}
       </RecordListing>
-    </>
+    </div>
   )
 }
 

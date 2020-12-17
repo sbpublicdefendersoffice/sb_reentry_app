@@ -11,9 +11,10 @@ import styles from './RecordPane.module.css'
 
 interface RecordPaneProps {
   category: string
+  landingPage?: boolean
 }
 
-const RecordPane = ({ category }: RecordPaneProps) => {
+const RecordPane = ({ category, landingPage }: RecordPaneProps) => {
   const [
     fetchedRecords,
     setFetchedRecords,
@@ -27,7 +28,11 @@ const RecordPane = ({ category }: RecordPaneProps) => {
 
   const { back, push } = useRouter()
   return (
-    <div className={styles.RecordPane}>
+    <div
+      className={`${styles.RecordPane} ${
+        landingPage ? styles.landingPage : styles.infoPage
+      }`}
+    >
       <h2>{category}</h2>
       <Button block onClick={back}>
         Back
@@ -61,9 +66,7 @@ const RecordPane = ({ category }: RecordPaneProps) => {
               interactive
               onClick={e =>
                 // @ts-ignore
-                push(`/${url}/[id]`, `/${url}/${e.target.title}`, {
-                  shallow: true,
-                })
+                push(`/${url}/[id]`, `/${url}/${e.target.title}`)
               }
             >
               {record.fields.org_name}

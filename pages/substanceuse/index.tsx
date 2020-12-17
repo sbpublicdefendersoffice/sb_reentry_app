@@ -9,7 +9,7 @@ const SubstanceUse = () => (
     <Head>
       <title>{substanceUse}</title>
     </Head>
-    <RecordPane category={substanceUse} />
+    <RecordPane category={substanceUse} landingPage />
   </>
 )
 

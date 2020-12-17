@@ -1,7 +1,9 @@
 .OrgRecordDisplay {
-  width: 70%;
+  overflow: scroll;
+  height: var(--screen-minus-header);
+  flex: 1;
+}
+
+.listing {
   cursor: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }

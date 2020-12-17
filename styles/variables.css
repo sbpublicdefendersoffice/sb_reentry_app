@@ -10,6 +10,7 @@
   --radius-medium: 1rem;
   --border-width: 0.1rem;
   --margin-std: 1rem;
+  --screen-minus-header: calc(100vh - 10rem);
 
   /* Text Variables */
   --standard-text: 1rem;
