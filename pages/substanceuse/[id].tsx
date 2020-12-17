@@ -1,57 +1,37 @@
-import { useState, useEffect, ReactElement } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 
-import { Header, OrgRecordDisplay } from '../../components'
-import { Button, PublicPage } from '../../ui'
+import { OrgRecordDisplay, RecordPane } from '../../components'
 import { SortedRecord } from '../../types/records'
 import { fetchSingleOrgRecord } from '../../services/GET'
 
-const fetchString = 'Fetching Organization Info...'
+const substanceUse: string = 'Substance Use'
 
 const IdPage = () => {
   const [
     singleFetchedRecord,
     setSingleFetchedRecord,
   ] = useState<SortedRecord | null>(null)
-  const [timeoutBackButton, setTimeoutBackButton] = useState<boolean>(false)
-  const { query, back } = useRouter()
+  const { query } = useRouter()
   const { id } = query
 
   useEffect(() => {
     if (id) fetchSingleOrgRecord(String(id), setSingleFetchedRecord)
   }, [id])
 
-  useEffect(() => {
-    let buttonTimeout: number
-    if (!singleFetchedRecord)
-      buttonTimeout = window.setTimeout(() => setTimeoutBackButton(true), 3000)
-    return () => window.clearTimeout(buttonTimeout)
-  }, [singleFetchedRecord])
-
-  const backButton: ReactElement = <Button onClick={back}>Back</Button>
-
   return (
-    <PublicPage>
-      <Header />
-      {singleFetchedRecord ? (
+    <>
+      {singleFetchedRecord && (
         <>
           <Head>
             <title>{singleFetchedRecord.name}</title>
           </Head>
-          {backButton}
+          <RecordPane category={substanceUse} />
           <OrgRecordDisplay singleFetchedRecord={singleFetchedRecord} />
         </>
-      ) : (
-        <>
-          <Head>
-            <title>{fetchString}</title>
-          </Head>
-          {timeoutBackButton && backButton}
-          <span>{fetchString}</span>
-        </>
       )}
-    </PublicPage>
+    </>
   )
 }
 

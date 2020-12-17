@@ -1,0 +1,26 @@
+.RecordPane {
+  align-self: flex-start;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  height: var(--screen-minus-header);
+  text-align: center;
+}
+
+.landingPage {
+  width: max(50%, 25rem);
+  overflow: initial;
+  margin: 0 auto;
+}
+
+.infoPage {
+  width: 33%;
+  overflow: scroll;
+  margin: none;
+}
+
+@media (max-width: 700px) {
+  .infoPage {
+    display: none;
+  }
+}

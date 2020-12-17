@@ -1,11 +1,20 @@
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from 'next/app'
+import { Header } from '../components'
+import { PublicPage } from '../ui'
 
 import '../styles/globals.css'
 import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Header />
+      <PublicPage>
+        <Component {...pageProps} />
+      </PublicPage>
+    </>
+  )
 }
 
 // Only uncomment this method if you have blocking data requirements for
