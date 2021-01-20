@@ -1,24 +1,12 @@
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
 import Head from 'next/head'
 
+import useSingleRecord from '../../hooks/useSingleRecord'
 import { OrgRecordDisplay, RecordPane } from '../../components'
-import { SortedRecord } from '../../types/records'
-import { fetchSingleOrgRecord } from '../../services/GET'
 
-const substanceUse: string = 'Substance Use'
+const category: string = 'Community Support'
 
 const IdPage = () => {
-  const [
-    singleFetchedRecord,
-    setSingleFetchedRecord,
-  ] = useState<SortedRecord | null>(null)
-  const { query } = useRouter()
-  const { id } = query
-
-  useEffect(() => {
-    if (id) fetchSingleOrgRecord(String(id), setSingleFetchedRecord)
-  }, [id])
+  const { singleFetchedRecord } = useSingleRecord()
 
   return (
     <>
@@ -27,7 +15,7 @@ const IdPage = () => {
           <Head>
             <title>{`Santa Barbara Reentry | ${singleFetchedRecord.name}`}</title>
           </Head>
-          <RecordPane category={substanceUse} />
+          <RecordPane category={category} />
           <OrgRecordDisplay singleFetchedRecord={singleFetchedRecord} />
         </>
       )}
