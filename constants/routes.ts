@@ -35,7 +35,7 @@ const routes: RouteInfo[] = [
   },
   {
     title: 'Community Support',
-    route: '/communitysupportservices',
+    route: '/communitysupport',
     imgPath: './icons/community.svg',
   },
   {
