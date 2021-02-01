@@ -15,8 +15,8 @@
   "dependencies": {
     "next": "^10.0.6",
     "next-pwa": "3.1.5",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "twilio": "^3.54.0"
   },
   "devDependencies": {
