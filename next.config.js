@@ -1,3 +1,4 @@
+require('webpack')
 const withPWA = require('next-pwa')
 
 const nextConfigOptions = {
