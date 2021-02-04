@@ -118,9 +118,12 @@ export const fetchSingleOrgRecord = async (
     obj.website =
       locInfo.website && locInfo.website[i] ? locInfo.website[i] : null
     obj.notes = locInfo.notes && locInfo.notes[i] ? locInfo.notes[i] : null
+    obj.latitude =
+      locInfo.latitude && locInfo.latitude[i] ? locInfo.latitude[i] : null
+    obj.longitude =
+      locInfo.longitude && locInfo.longitude[i] ? locInfo.longitude[i] : null
     obj.services =
       locInfo.services && locInfo.services[i] ? locInfo.services[i] : null
-
     obj.org_name = organizedRecord.name ? organizedRecord.name : null
     obj.schedule = []
 

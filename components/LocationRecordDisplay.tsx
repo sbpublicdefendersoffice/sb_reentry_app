@@ -26,6 +26,8 @@ const LocationRecordDisplay = ({
     email,
     notes,
     org_name,
+    latitude,
+    longitude,
   } = locationInfo
 
   const fullAddress: string = `${address || ''}${

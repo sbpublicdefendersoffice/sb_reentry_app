@@ -30,6 +30,8 @@ export interface OrgRecord {
     location_website?: string[]
     location_notes?: string[]
     location_services?: string
+    location_latitude?: number[]
+    location_longitude?: number[]
     services_names?: string[]
     services_id?: number[]
     schedule_location_name?: string
@@ -57,6 +59,8 @@ export interface LocationRecord {
   notes?: string
   services?: string
   org_name?: string
+  latitude?: number
+  longitude?: number
   schedule?: ScheduleRecord[]
 }
 
@@ -79,4 +83,6 @@ export interface SortedRecord {
   tags?: string[]
   id?: string
   locations?: LocationRecord[]
+  latitude?: number
+  longitude?: number
 }
