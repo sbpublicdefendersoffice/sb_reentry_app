@@ -11,7 +11,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function InputFunc(
   ref,
 ) {
   const { block, className, ...other } = props
-  console.log(className)
+
   return (
     <input
       ref={ref}

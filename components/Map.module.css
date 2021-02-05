@@ -1,3 +1,13 @@
 .Map {
   padding: var(--pad-std);
+  flex: 1;
+}
+
+.MapBox {
+  border-radius: var(--radius-small);
+}
+
+.Pin {
+  height: 35px;
+  width: 350px;
 }
