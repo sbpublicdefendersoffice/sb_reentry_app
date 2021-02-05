@@ -1,6 +1,6 @@
 import { RecordListing } from '../ui'
 
-import { ScheduleRecordDisplay, SendText } from './'
+import { Map, ScheduleRecordDisplay, SendText } from './'
 import { LocationRecord } from '../types/records'
 
 import styles from './LocationRecordDisplay.module.css'
@@ -44,72 +44,75 @@ const LocationRecordDisplay = ({
 
   return (
     <RecordListing className={styles.LocationRecordDisplay}>
-      {name && <p>{name}</p>}
-      {address && (
-        <>
-          <h3>Address:</h3>
-          <address>
-            <p>{fullAddress}</p>
-            <p>{cityStateZip}</p>
-            <a
-              href={`https://www.google.com/maps/place/${addressForUrl}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Find on Google Maps
+      <div className={styles.LocationAddressInformation}>
+        {name && <p>{name}</p>}
+        {address && (
+          <>
+            <h3>Address:</h3>
+            <address>
+              <p>{fullAddress}</p>
+              <p>{cityStateZip}</p>
+              <a
+                href={`https://www.google.com/maps/place/${addressForUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Find on Google Maps
+              </a>
+            </address>
+            <SendText
+              org_name={org_name}
+              fullAddress={fullAddress}
+              cityStateZip={cityStateZip}
+            />
+          </>
+        )}
+        {phone && (
+          <>
+            <h3>Phone #:</h3>
+            <p>{phone}</p>
+            <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>Click to call</a>
+          </>
+        )}
+        {website && (
+          <>
+            <h3>Location Website:</h3>
+            <a href={website} target="_blank" rel="noopener noreferrer">
+              {website}
             </a>
-          </address>
-          <SendText
-            org_name={org_name}
-            fullAddress={fullAddress}
-            cityStateZip={cityStateZip}
-          />
-        </>
-      )}
-      {phone && (
-        <>
-          <h3>Phone #:</h3>
-          <p>{phone}</p>
-          <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>Click to call</a>
-        </>
-      )}
-      {website && (
-        <>
-          <h3>Location Website:</h3>
-          <a href={website} target="_blank" rel="noopener noreferrer">
-            {website}
-          </a>
-        </>
-      )}
-      {services && (
-        <>
-          <h3>Services Offered:</h3>
-          <p>{services}</p>
-        </>
-      )}
-      {email && (
-        <>
-          <h3>Email:</h3>
-          <p>
-            <a
-              href={`mailto:${email}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {email}
-            </a>
-          </p>
-        </>
-      )}
-      {notes && <p>{notes}</p>}
-      {Boolean(schedule.length) && (
-        <>
-          <h3>Schedule:</h3>
-          {schedule.map((scheduleInfo, i) => (
-            <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
-          ))}
-        </>
-      )}
+          </>
+        )}
+        {services && (
+          <>
+            <h3>Services Offered:</h3>
+            <p>{services}</p>
+          </>
+        )}
+        {email && (
+          <>
+            <h3>Email:</h3>
+            <p>
+              <a
+                href={`mailto:${email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {email}
+              </a>
+            </p>
+          </>
+        )}
+        {notes && <p>{notes}</p>}
+        {Boolean(schedule.length) && (
+          <>
+            <h3>Schedule:</h3>
+            {schedule.map((scheduleInfo, i) => (
+              <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
+            ))}
+          </>
+        )}
+      </div>
+      <Map latitude={latitude} longitude={longitude} />
     </RecordListing>
   )
 }

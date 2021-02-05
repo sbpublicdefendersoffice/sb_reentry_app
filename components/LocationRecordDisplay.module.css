@@ -1,8 +1,13 @@
 .LocationRecordDisplay {
   width: 100%;
   cursor: auto;
+  display: flex;
 }
 
 .LocationRecordDisplay > h3 {
   margin: var(--margin-std) 0;
+}
+
+.LocationAddressInformation {
+  width: 50%;
 }
