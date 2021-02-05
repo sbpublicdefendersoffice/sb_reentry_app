@@ -44,7 +44,7 @@ const LocationRecordDisplay = ({
 
   return (
     <RecordListing className={styles.LocationRecordDisplay}>
-      <div className={styles.LocationAddressInformation}>
+      <div className={styles.LocationAddressInformation} id="LocationInfo">
         {name && <p>{name}</p>}
         {address && (
           <>
