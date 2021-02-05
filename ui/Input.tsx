@@ -10,12 +10,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function InputFunc(
   props: InputProps,
   ref,
 ) {
-  const { block, ...other } = props
+  const { block, className, ...other } = props
 
   return (
     <input
       ref={ref}
-      className={styles.Input}
+      className={`${styles.Input} ${className && `${className}`}`}
       style={{ display: block ? 'block' : 'initial' }}
       {...other}
     />

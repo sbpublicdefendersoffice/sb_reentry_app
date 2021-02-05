@@ -12,3 +12,12 @@
   font-size: var(--med-heading);
   color: var(--white);
 }
+
+.Button:active {
+  background-color: var(--white);
+  border: solid var(--border-width) var(--blue);
+}
+
+.Button:active > .ButtonText {
+  color: var(--blue);
+}

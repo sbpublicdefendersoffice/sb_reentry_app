@@ -1,8 +1,20 @@
 .LocationRecordDisplay {
   width: 100%;
   cursor: auto;
+  display: flex;
+  flex-direction: row;
 }
 
 .LocationRecordDisplay > h3 {
   margin: var(--margin-std) 0;
+}
+
+.LocationAddressInformation {
+  flex: 1;
+}
+
+@media (max-width: 700px) {
+  .LocationRecordDisplay {
+    flex-direction: column;
+  }
 }

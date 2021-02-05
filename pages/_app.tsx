@@ -17,6 +17,10 @@ const App = ({ Component, pageProps }: AppProps) => {
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
         />
         <title>Santa Barbara Reentry</title>
+        <link
+          href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
+          rel="stylesheet"
+        />
       </Head>
       <Header />
       <PublicPage>
