@@ -25,7 +25,7 @@ const OrgRecordDisplay = ({ singleFetchedRecord }: OrgRecordDisplayProps) => {
 
   return (
     <div className={styles.OrgRecordDisplay} role="list">
-      <RecordListing className={styles.listing}>
+      <RecordListing border={false} className={styles.listing}>
         <Button onClick={back}>Back</Button>
         <h2>{name}</h2>
         {website && (

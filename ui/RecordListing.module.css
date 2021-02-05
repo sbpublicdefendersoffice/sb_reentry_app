@@ -2,11 +2,14 @@
   width: 100%;
   margin: 0.5rem 0;
   font-size: var(--med-heading);
-  border-radius: var(--radius-medium);
+  border-radius: var(--radius-small);
   padding: var(--pad-lg);
   text-align: center;
-  border: var(--border-width) solid var(--blue);
   cursor: pointer;
+}
+
+.border {
+  border: var(--border-width) solid var(--blue);
 }
 
 .active {
