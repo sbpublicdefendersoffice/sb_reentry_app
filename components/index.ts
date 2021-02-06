@@ -1,6 +1,7 @@
 export { default as Header } from './Header'
 export { default as LocationRecordDisplay } from './LocationRecordDisplay'
 export { default as Map } from './Map'
+export { default as MapAlt } from './MapAlt'
 export { default as OrgRecordDisplay } from './OrgRecordDisplay'
 export { default as PwaDownload } from './PwaDownload'
 export { default as PwaTags } from './PwaTags'

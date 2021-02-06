@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import { LocationRecordDisplay } from './'
+import { MapAlt, LocationRecordDisplay } from './'
 import { RecordListing } from '../ui'
 
 import { SortedRecord } from '../types/records'
@@ -41,6 +41,12 @@ const OrgRecordDisplay = ({ singleFetchedRecord }: OrgRecordDisplayProps) => {
         {Boolean(locations.length) && (
           <>
             <h3>Locations:</h3>
+            <MapAlt
+              latLongInfo={locations.map(locationInfo => ({
+                latitude: locationInfo.latitude,
+                longitude: locationInfo.longitude,
+              }))}
+            />
             {locations.map((locationInfo, i) => (
               <LocationRecordDisplay key={i} locationInfo={locationInfo} />
             ))}
