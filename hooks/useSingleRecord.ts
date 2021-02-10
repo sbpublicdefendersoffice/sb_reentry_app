@@ -14,15 +14,13 @@ const useSingleRecord = () => {
 
   const requestParams: string[] = asPath.slice(1).split('/')
   const requestReady: number = requestParams.length
+  const category: string = requestParams[0]
+  const id: string = requestParams[1]
 
   useEffect(() => {
-    if (requestReady)
-      fetchSingleOrgRecord(
-        requestParams[0],
-        requestParams[1],
-        setSingleFetchedRecord,
-      )
-  }, [requestReady])
+    if (requestReady && id !== '[id]')
+      fetchSingleOrgRecord(category, id, setSingleFetchedRecord)
+  }, [requestReady, id])
 
   return { singleFetchedRecord }
 }
