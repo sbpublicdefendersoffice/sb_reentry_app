@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { SetStateAction, Dispatch } from 'react'
 import { useRouter } from 'next/router'
 
 import { Search } from '../components'
@@ -11,19 +11,12 @@ import styles from './RecordPane.module.css'
 
 interface RecordPaneProps {
   category: string
+  orgInfo: TranslatedRecordResponse
+  setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
 }
 
-const RecordPane = ({ category }: RecordPaneProps) => {
-  const [
-    fetchedRecords,
-    setFetchedRecords,
-  ] = useState<TranslatedRecordResponse | null>(null)
-
+const RecordPane = ({ category, orgInfo, setRecords }: RecordPaneProps) => {
   const lowCategory: string = category.toLowerCase()
-
-  useEffect((): void => {
-    fetchRecordsByCategory(lowCategory, setFetchedRecords)
-  }, [])
 
   const url: string = lowCategory.replace(' ', '')
 
@@ -32,28 +25,21 @@ const RecordPane = ({ category }: RecordPaneProps) => {
   return (
     <div className={`${styles.RecordPane} ${styles.infoPage}`} role="list">
       <h2>{category}</h2>
-      {fetchedRecords && (
-        <Search
-          originalRecords={fetchedRecords.records}
-          setRecords={setFetchedRecords}
-        />
+      {orgInfo && (
+        <Search originalRecords={orgInfo.records} setRecords={setRecords} />
       )}
-      {fetchedRecords?.offset && (
+      {orgInfo?.offset && (
         <Button
           onClick={() =>
-            fetchRecordsByCategory(
-              lowCategory,
-              setFetchedRecords,
-              fetchedRecords?.offset,
-            )
+            fetchRecordsByCategory(lowCategory, setRecords, orgInfo?.offset)
           }
         >
           Fetch More Records
         </Button>
       )}
-      {Boolean(fetchedRecords?.records?.length) && (
+      {Boolean(orgInfo?.records?.length) && (
         <>
-          {fetchedRecords?.records?.map(record => (
+          {orgInfo?.records?.map(record => (
             <RecordListing
               key={record.id}
               title={record.id}

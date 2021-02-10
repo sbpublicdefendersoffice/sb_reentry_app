@@ -1,16 +1,37 @@
 import Head from 'next/head'
+import { useState, useEffect } from 'react'
+
+import { TranslatedRecordResponse } from '../../types/records'
+import { fetchRecordsByCategory } from '../../services/GET'
 
 import { RecordPane } from '../../components'
 
-const communitySupport: string = 'Community Support'
+const category: string = 'Community Support'
 
-const CommunitySupport = () => (
-  <>
-    <Head>
-      <title>{`Santa Barbara Reentry | ${communitySupport}`}</title>
-    </Head>
-    <RecordPane category={communitySupport} />
-  </>
-)
+const SubstanceUse = () => {
+  const [
+    fetchedRecords,
+    setFetchedRecords,
+  ] = useState<TranslatedRecordResponse | null>(null)
 
-export default CommunitySupport
+  const lowCategory: string = category.toLowerCase()
+
+  useEffect((): void => {
+    fetchRecordsByCategory(lowCategory, setFetchedRecords)
+  }, [])
+
+  return (
+    <>
+      <Head>
+        <title>{`Santa Barbara Reentry | ${category}`}</title>
+      </Head>
+      <RecordPane
+        orgInfo={fetchedRecords}
+        category={category}
+        setRecords={setFetchedRecords}
+      />
+    </>
+  )
+}
+
+export default SubstanceUse

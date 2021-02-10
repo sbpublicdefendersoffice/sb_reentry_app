@@ -1,16 +1,37 @@
 import Head from 'next/head'
+import { useState, useEffect } from 'react'
+
+import { TranslatedRecordResponse } from '../../types/records'
+import { fetchRecordsByCategory } from '../../services/GET'
 
 import { RecordPane } from '../../components'
 
-const legalServices: string = 'Legal Services'
+const category: string = 'Legal Services'
 
-const LegalServices = () => (
-  <>
-    <Head>
-      <title>{`Santa Barbara Reentry | ${legalServices}`}</title>
-    </Head>
-    <RecordPane category={legalServices} />
-  </>
-)
+const SubstanceUse = () => {
+  const [
+    fetchedRecords,
+    setFetchedRecords,
+  ] = useState<TranslatedRecordResponse | null>(null)
 
-export default LegalServices
+  const lowCategory: string = category.toLowerCase()
+
+  useEffect((): void => {
+    fetchRecordsByCategory(lowCategory, setFetchedRecords)
+  }, [])
+
+  return (
+    <>
+      <Head>
+        <title>{`Santa Barbara Reentry | ${category}`}</title>
+      </Head>
+      <RecordPane
+        orgInfo={fetchedRecords}
+        category={category}
+        setRecords={setFetchedRecords}
+      />
+    </>
+  )
+}
+
+export default SubstanceUse
