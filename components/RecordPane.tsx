@@ -26,7 +26,8 @@ const RecordPane = ({ category, landingPage }: RecordPaneProps) => {
 
   const url: string = category.toLowerCase().replace(' ', '')
 
-  const { back, push } = useRouter()
+  const { push } = useRouter()
+
   return (
     <div
       className={`${styles.RecordPane} ${
@@ -35,10 +36,6 @@ const RecordPane = ({ category, landingPage }: RecordPaneProps) => {
       role="list"
     >
       <h2>{category}</h2>
-      <Button block onClick={back}>
-        Back
-      </Button>
-
       {fetchedRecords && (
         <Search
           originalRecords={fetchedRecords.records}
