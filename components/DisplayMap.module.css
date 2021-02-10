@@ -8,8 +8,3 @@
 .MapBox {
   border-radius: var(--radius-small);
 }
-
-.Pin {
-  height: 35px;
-  width: 35px;
-}

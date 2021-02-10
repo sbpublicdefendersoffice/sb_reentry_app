@@ -1,9 +1,10 @@
-import ReactMapboxGL, { Marker, ScaleControl } from 'react-mapbox-gl'
+import { Fragment } from 'react'
+import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
 
 import { mapboxStylingURL, mapContainerStyle } from '../constants/maps'
 import useMapInfo from '../hooks/useMapInfo'
+import MapMarker from './MapMarker'
 
-import { LocationInfo } from '../types/maps'
 import { LocationRecord } from '../types/records'
 
 import styles from './DisplayMap.module.css'
@@ -32,18 +33,11 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
           zoom={[zoom]}
         >
           {Boolean(latLongInfo.length) &&
-            latLongInfo.map((coords: LocationInfo, i: number) => {
-              const { longitude, latitude } = coords
-              return (
-                <Marker
-                  key={i}
-                  coordinates={[longitude, latitude]}
-                  anchor="bottom"
-                >
-                  <img src="/images/heart.svg" className={styles.Pin} />
-                </Marker>
-              )
-            })}
+            latLongInfo.map((locationRecord: LocationRecord, i: number) => (
+              <Fragment key={i}>
+                <MapMarker locationRecord={locationRecord} />
+              </Fragment>
+            ))}
           <ScaleControl measurement="mi" position="top-right" />
         </MapboxMap>
       }
