@@ -1,7 +1,7 @@
 .Button {
   min-height: 2.5rem;
   border: none;
-  background-color: var(--blue);
+  background-color: var(--primary);
   border-radius: var(--radius-small);
   cursor: pointer;
   outline: none;
@@ -15,9 +15,9 @@
 
 .Button:active {
   background-color: var(--white);
-  border: solid var(--border-width) var(--blue);
+  border: solid var(--border-width) var(--highlight);
 }
 
 .Button:active > .ButtonText {
-  color: var(--blue);
+  color: var(--highlight);
 }

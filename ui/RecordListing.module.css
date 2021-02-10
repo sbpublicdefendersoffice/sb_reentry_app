@@ -9,7 +9,7 @@
 }
 
 .border {
-  border: var(--border-width) solid var(--blue);
+  border: var(--border-width) solid var(--primary);
 }
 
 .active {
@@ -18,6 +18,6 @@
 
 .active:hover,
 .active:active {
-  background-color: var(--blue);
+  background-color: var(--primary);
   color: var(--white);
 }

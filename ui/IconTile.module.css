@@ -12,7 +12,7 @@
 
 .IconTile:hover,
 .IconTile:active {
-  background-color: var(--blue);
+  background-color: var(--highlight);
 }
 
 .IconTile:hover > a,

@@ -1,9 +1,12 @@
 :root {
   /* Color Variables */
   --white: #fff;
-  --black: #000;
-  --blue: #005ea2;
-  --grey: #6d777e;
+  --text: #292929;
+  --primary: #12385e;
+  --secondary: #4c7fa1;
+  --highlight: #005ea2;
+  --light-text: #e5e5e5;
+  --highlight-2: #cd7f32;
 
   /* Spacing Variables */
   --radius-small: 0.25rem;
