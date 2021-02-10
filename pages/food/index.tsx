@@ -9,7 +9,7 @@ const Food = () => (
     <Head>
       <title>{`Santa Barbara Reentry | ${food}`}</title>
     </Head>
-    <RecordPane category={food} landingPage />
+    <RecordPane category={food} />
   </>
 )
 

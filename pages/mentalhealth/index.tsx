@@ -9,7 +9,7 @@ const MentalHealth = () => (
     <Head>
       <title>{`Santa Barbara Reentry | ${mentalHealth}`}</title>
     </Head>
-    <RecordPane category={mentalHealth} landingPage />
+    <RecordPane category={mentalHealth} />
   </>
 )
 

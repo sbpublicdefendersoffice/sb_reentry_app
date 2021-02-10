@@ -9,7 +9,7 @@ const CommunitySupport = () => (
     <Head>
       <title>{`Santa Barbara Reentry | ${communitySupport}`}</title>
     </Head>
-    <RecordPane category={communitySupport} landingPage />
+    <RecordPane category={communitySupport} />
   </>
 )
 

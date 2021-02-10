@@ -11,30 +11,26 @@ import styles from './RecordPane.module.css'
 
 interface RecordPaneProps {
   category: string
-  landingPage?: boolean
 }
 
-const RecordPane = ({ category, landingPage }: RecordPaneProps) => {
+const RecordPane = ({ category }: RecordPaneProps) => {
   const [
     fetchedRecords,
     setFetchedRecords,
   ] = useState<TranslatedRecordResponse | null>(null)
 
+  const lowCategory: string = category.toLowerCase()
+
   useEffect((): void => {
-    fetchRecordsByCategory(category.toLowerCase(), setFetchedRecords)
+    fetchRecordsByCategory(lowCategory, setFetchedRecords)
   }, [])
 
-  const url: string = category.toLowerCase().replace(' ', '')
+  const url: string = lowCategory.replace(' ', '')
 
   const { push } = useRouter()
 
   return (
-    <div
-      className={`${styles.RecordPane} ${
-        landingPage ? styles.landingPage : styles.infoPage
-      }`}
-      role="list"
-    >
+    <div className={`${styles.RecordPane} ${styles.infoPage}`} role="list">
       <h2>{category}</h2>
       {fetchedRecords && (
         <Search
@@ -46,7 +42,7 @@ const RecordPane = ({ category, landingPage }: RecordPaneProps) => {
         <Button
           onClick={() =>
             fetchRecordsByCategory(
-              category.toLowerCase(),
+              lowCategory,
               setFetchedRecords,
               fetchedRecords?.offset,
             )

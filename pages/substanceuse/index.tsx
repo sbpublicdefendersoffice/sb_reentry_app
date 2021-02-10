@@ -9,7 +9,7 @@ const SubstanceUse = () => (
     <Head>
       <title>{`Santa Barbara Reentry | ${substanceUse}`}</title>
     </Head>
-    <RecordPane category={substanceUse} landingPage />
+    <RecordPane category={substanceUse} />
   </>
 )
 

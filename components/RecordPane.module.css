@@ -7,12 +7,6 @@
   text-align: center;
 }
 
-.landingPage {
-  width: max(50%, 25rem);
-  overflow: initial;
-  margin: 0 auto;
-}
-
 .infoPage {
   width: 33%;
   overflow: scroll;

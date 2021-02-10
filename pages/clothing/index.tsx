@@ -9,7 +9,7 @@ const Clothing = () => (
     <Head>
       <title>{`Santa Barbara Reentry | ${clothing}`}</title>
     </Head>
-    <RecordPane category={clothing} landingPage />
+    <RecordPane category={clothing} />
   </>
 )
 

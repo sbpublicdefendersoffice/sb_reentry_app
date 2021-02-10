@@ -9,7 +9,7 @@ const Transportation = () => (
     <Head>
       <title>{`Santa Barbara Reentry | ${transportation}`}</title>
     </Head>
-    <RecordPane category={transportation} landingPage />
+    <RecordPane category={transportation} />
   </>
 )
 

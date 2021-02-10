@@ -9,7 +9,7 @@ const ResourceDirectory = () => (
     <Head>
       <title>{`Santa Barbara Reentry | ${resourceDirectory}`}</title>
     </Head>
-    <RecordPane category={resourceDirectory} landingPage />
+    <RecordPane category={resourceDirectory} />
   </>
 )
 

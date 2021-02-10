@@ -32,7 +32,7 @@ export const fetchRecordsByCategory = async (
   offset?: string,
 ): Promise<void> => {
   const fetchRecords: Response = await fetch(
-    `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name&fields%5B%5D=org_tags${
+    `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name&fields%5B%5D=org_tags&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude${
       offset ? `&offset=${offset}` : ''
     }`,
     OPTIONS_OBJECT,
