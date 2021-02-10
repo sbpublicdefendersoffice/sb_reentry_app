@@ -15,7 +15,12 @@ const OPTIONS_OBJECT = {
   method: 'GET',
   headers: {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
+    Referer: 'http://airtable.com',
   },
+  // mode: 'cors',
+  // cache: 'no-store',
+  referer: 'http://airtable.com',
+  refererPolicy: 'origin-when-cross-origin',
 }
 
 const sortByName = (a: OrgRecord, b: OrgRecord): number =>
