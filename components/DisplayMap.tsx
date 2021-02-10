@@ -19,7 +19,7 @@ const MapboxMap = ReactMapboxGL({
 const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
   return (
-    <div className={styles.Map}>
+    <div className={styles.DisplayMap}>
       {
         // @ts-ignore
         <MapboxMap

@@ -1,10 +1,6 @@
 import { RecordListing } from '../ui'
 
-import {
-  // Map,
-  ScheduleRecordDisplay,
-  SendText,
-} from './'
+import { ScheduleRecordDisplay, SendText } from './'
 import { LocationRecord } from '../types/records'
 
 import styles from './LocationRecordDisplay.module.css'
@@ -30,8 +26,6 @@ const LocationRecordDisplay = ({
     email,
     notes,
     org_name,
-    // latitude,
-    // longitude,
   } = locationInfo
 
   const fullAddress: string = `${address || ''}${
@@ -48,10 +42,7 @@ const LocationRecordDisplay = ({
 
   return (
     <RecordListing className={styles.LocationRecordDisplay}>
-      <div
-        className={styles.LocationAddressInformation}
-        // id="LocationInfo"
-      >
+      <div className={styles.LocationAddressInformation}>
         {name && <p>{name}</p>}
         {address && (
           <>
@@ -119,7 +110,6 @@ const LocationRecordDisplay = ({
           </>
         )}
       </div>
-      {/* <Map latitude={latitude} longitude={longitude} /> */}
     </RecordListing>
   )
 }
