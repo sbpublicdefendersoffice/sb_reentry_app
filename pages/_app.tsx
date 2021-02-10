@@ -2,7 +2,7 @@
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
-import { Header } from '../components'
+import { Header, Navigator } from '../components'
 import { PublicPage } from '../ui'
 
 import '../styles/globals.css'
@@ -22,6 +22,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           rel="stylesheet"
         />
       </Head>
+      <Navigator />
       <Header />
       <PublicPage>
         <Component {...pageProps} />
