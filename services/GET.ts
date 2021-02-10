@@ -52,6 +52,7 @@ export const fetchRecordsByCategory = async (
 }
 
 export const fetchSingleOrgRecord = async (
+  category: string,
   recordId: string,
   recordSetFunction: Dispatch<SetStateAction<SortedRecord>>,
 ): Promise<void> => {
@@ -130,6 +131,7 @@ export const fetchSingleOrgRecord = async (
     obj.services =
       locInfo.services && locInfo.services[i] ? locInfo.services[i] : null
     obj.org_name = organizedRecord.name ? organizedRecord.name : null
+    obj.category = category ? category : null
     obj.schedule = []
 
     organizedRecord.locations.push(obj)

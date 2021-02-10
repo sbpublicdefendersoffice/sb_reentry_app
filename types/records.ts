@@ -46,6 +46,7 @@ export interface OrgRecord {
 }
 
 export interface LocationRecord {
+  category?: string
   id?: number
   city?: string
   address?: string
