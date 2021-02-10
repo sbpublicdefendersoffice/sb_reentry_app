@@ -40,7 +40,6 @@ const OrgRecordDisplay = ({ singleFetchedRecord }: OrgRecordDisplayProps) => {
         {notes && <p>{notes}</p>}
         {Boolean(locations.length) && (
           <>
-            <h3>Locations:</h3>
             <DisplayMap latLongInfo={locations} />
             {locations.map((locationInfo, i) => (
               <LocationRecordDisplay key={i} locationInfo={locationInfo} />

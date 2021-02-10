@@ -1,8 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { Button, Input } from '../ui'
 
-import styles from './SendText.module.css'
-
 interface SendTextProps {
   org_name: string
   fullAddress: string
@@ -43,7 +41,6 @@ const SendText = ({ org_name, fullAddress, cityStateZip }: SendTextProps) => {
   return (
     <form onSubmit={postText}>
       <Input
-        className={styles.TextNumberInput}
         onChange={e => setNumberToSendTo(e.target.value)}
         placeholder="Enter Phone #"
       />
