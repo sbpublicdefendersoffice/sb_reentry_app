@@ -1,15 +1,17 @@
 .DisplayMap {
   padding: var(--pad-std);
   flex: 1;
-  height: 30rem;
   width: 100%;
+}
+
+.SearchPageSize {
+  height: var(--screen-minus-header);
+}
+
+.OrgPageSize {
+  height: 30rem;
 }
 
 .MapBox {
   border-radius: var(--radius-small);
-}
-
-.Pin {
-  height: 35px;
-  width: 35px;
 }

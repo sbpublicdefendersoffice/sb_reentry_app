@@ -1,11 +1,26 @@
 import Head from 'next/head'
+import { useState, useEffect } from 'react'
 
 import useSingleRecord from '../../hooks/useSingleRecord'
+import { TranslatedRecordResponse } from '../../types/records'
+import { fetchRecordsByCategory } from '../../services/GET'
+
 import { OrgRecordDisplay, RecordPane } from '../../components'
 
 const category: string = 'Employment'
 
 const IdPage = () => {
+  const [
+    fetchedRecords,
+    setFetchedRecords,
+  ] = useState<TranslatedRecordResponse | null>(null)
+
+  const lowCategory: string = category.toLowerCase()
+
+  useEffect((): void => {
+    fetchRecordsByCategory(lowCategory, setFetchedRecords)
+  }, [])
+
   const { singleFetchedRecord } = useSingleRecord()
 
   return (
@@ -15,7 +30,11 @@ const IdPage = () => {
           <Head>
             <title>{`Santa Barbara Reentry | ${singleFetchedRecord.name}`}</title>
           </Head>
-          <RecordPane category={category} />
+          <RecordPane
+            orgInfo={fetchedRecords}
+            category={category}
+            setRecords={setFetchedRecords}
+          />
           <OrgRecordDisplay singleFetchedRecord={singleFetchedRecord} />
         </>
       )}

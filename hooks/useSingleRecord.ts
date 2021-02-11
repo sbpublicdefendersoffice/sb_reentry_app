@@ -10,12 +10,17 @@ const useSingleRecord = () => {
     setSingleFetchedRecord,
   ] = useState<SortedRecord | null>(null)
 
-  const { query } = useRouter()
-  const { id } = query
+  const { asPath } = useRouter()
+
+  const requestParams: string[] = asPath.slice(1).split('/')
+  const requestReady: number = requestParams.length
+  const category: string = requestParams[0]
+  const id: string = requestParams[1]
 
   useEffect(() => {
-    if (id) fetchSingleOrgRecord(String(id), setSingleFetchedRecord)
-  }, [id])
+    if (requestReady && id !== '[id]')
+      fetchSingleOrgRecord(category, id, setSingleFetchedRecord)
+  }, [requestReady, id])
 
   return { singleFetchedRecord }
 }

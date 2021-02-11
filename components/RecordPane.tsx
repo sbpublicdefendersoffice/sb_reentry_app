@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { SetStateAction, Dispatch } from 'react'
 import { useRouter } from 'next/router'
 
 import { Search } from '../components'
@@ -11,53 +11,35 @@ import styles from './RecordPane.module.css'
 
 interface RecordPaneProps {
   category: string
-  landingPage?: boolean
+  orgInfo: TranslatedRecordResponse
+  setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
 }
 
-const RecordPane = ({ category, landingPage }: RecordPaneProps) => {
-  const [
-    fetchedRecords,
-    setFetchedRecords,
-  ] = useState<TranslatedRecordResponse | null>(null)
+const RecordPane = ({ category, orgInfo, setRecords }: RecordPaneProps) => {
+  const lowCategory: string = category.toLowerCase()
 
-  useEffect((): void => {
-    fetchRecordsByCategory(category.toLowerCase(), setFetchedRecords)
-  }, [])
-
-  const url: string = category.toLowerCase().replace(' ', '')
+  const url: string = lowCategory.replace(' ', '')
 
   const { push } = useRouter()
 
   return (
-    <div
-      className={`${styles.RecordPane} ${
-        landingPage ? styles.landingPage : styles.infoPage
-      }`}
-      role="list"
-    >
+    <div className={`${styles.RecordPane} ${styles.infoPage}`} role="list">
       <h2>{category}</h2>
-      {fetchedRecords && (
-        <Search
-          originalRecords={fetchedRecords.records}
-          setRecords={setFetchedRecords}
-        />
+      {orgInfo && (
+        <Search originalRecords={orgInfo.records} setRecords={setRecords} />
       )}
-      {fetchedRecords?.offset && (
+      {orgInfo?.offset && (
         <Button
           onClick={() =>
-            fetchRecordsByCategory(
-              category.toLowerCase(),
-              setFetchedRecords,
-              fetchedRecords?.offset,
-            )
+            fetchRecordsByCategory(lowCategory, setRecords, orgInfo?.offset)
           }
         >
           Fetch More Records
         </Button>
       )}
-      {Boolean(fetchedRecords?.records?.length) && (
+      {Boolean(orgInfo?.records?.length) && (
         <>
-          {fetchedRecords?.records?.map(record => (
+          {orgInfo?.records?.map(record => (
             <RecordListing
               key={record.id}
               title={record.id}

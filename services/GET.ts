@@ -32,7 +32,7 @@ export const fetchRecordsByCategory = async (
   offset?: string,
 ): Promise<void> => {
   const fetchRecords: Response = await fetch(
-    `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name&fields%5B%5D=org_tags${
+    `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name&fields%5B%5D=org_tags&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude${
       offset ? `&offset=${offset}` : ''
     }`,
     OPTIONS_OBJECT,
@@ -40,9 +40,11 @@ export const fetchRecordsByCategory = async (
   const translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
   // @ts-ignore
   translatedRecords?.records?.sort(sortByName)
+  translatedRecords.category = category.replaceAll(' ', '')
 
   if (offset)
     recordSetFunction(prevState => ({
+      ...prevState,
       offset: translatedRecords.offset,
       records: [...prevState.records, ...translatedRecords?.records].sort(
         sortByName,
@@ -52,6 +54,7 @@ export const fetchRecordsByCategory = async (
 }
 
 export const fetchSingleOrgRecord = async (
+  category: string,
   recordId: string,
   recordSetFunction: Dispatch<SetStateAction<SortedRecord>>,
 ): Promise<void> => {
@@ -130,6 +133,7 @@ export const fetchSingleOrgRecord = async (
     obj.services =
       locInfo.services && locInfo.services[i] ? locInfo.services[i] : null
     obj.org_name = organizedRecord.name ? organizedRecord.name : null
+    obj.category = category ? category : null
     obj.schedule = []
 
     organizedRecord.locations.push(obj)

@@ -2,6 +2,7 @@ export type Holder = { [title: string]: Array<string | number> }
 
 export interface TranslatedRecordResponse {
   offset?: string
+  category: string
   records: OrgRecord[]
 }
 
@@ -46,6 +47,7 @@ export interface OrgRecord {
 }
 
 export interface LocationRecord {
+  category?: string
   id?: number
   city?: string
   address?: string
