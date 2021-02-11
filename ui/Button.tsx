@@ -17,7 +17,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function ButtonFunc(
     <button
       ref={ref}
       style={{ display: block ? 'block' : 'initial' }}
-      className={`${styles.Button} `}
+      className={`${styles.Button} ${className}`}
       role="button"
       {...other}
     >

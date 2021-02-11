@@ -1,0 +1,8 @@
+.Popup {
+  user-select: none;
+  position: fixed;
+  z-index: 10000;
+  background-color: var(--highlight-2);
+  color: var(--light-text);
+  padding: var(--pad-sm) var(--pad-std);
+}

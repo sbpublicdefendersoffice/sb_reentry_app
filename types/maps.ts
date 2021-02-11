@@ -14,3 +14,8 @@ export type LocationState = {
   centerArr: CenterArr
   zoom: number
 }
+
+export interface PopupInfo {
+  clientX: number
+  clientY: number
+}

@@ -64,6 +64,7 @@ export interface LocationRecord {
   latitude?: number
   longitude?: number
   schedule?: ScheduleRecord[]
+  uuid?: string
 }
 
 export interface ScheduleRecord {

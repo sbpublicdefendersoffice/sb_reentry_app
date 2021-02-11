@@ -42,6 +42,7 @@ const SubstanceUse = () => {
                 longitude,
                 latitude: record.fields.location_latitude[i],
                 name: record.fields.org_name,
+                uuid: record.id,
               }),
             )
             arr = [...arr, ...newLocationRecords]

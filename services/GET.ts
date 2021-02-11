@@ -112,6 +112,7 @@ export const fetchSingleOrgRecord = async (
   for (let i = 0; i < locMaxLength; i++) {
     const obj: any = {}
 
+    obj.uuid = translatedRecord.id
     obj.id = locInfo.id && locInfo.id[i] ? locInfo.id[i] : null
     obj.city = locInfo.city && locInfo.city[i] ? locInfo.city[i] : null
     obj.address =
