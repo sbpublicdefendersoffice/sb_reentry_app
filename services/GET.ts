@@ -40,9 +40,11 @@ export const fetchRecordsByCategory = async (
   const translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
   // @ts-ignore
   translatedRecords?.records?.sort(sortByName)
+  translatedRecords.category = category
 
   if (offset)
     recordSetFunction(prevState => ({
+      ...prevState,
       offset: translatedRecords.offset,
       records: [...prevState.records, ...translatedRecords?.records].sort(
         sortByName,
