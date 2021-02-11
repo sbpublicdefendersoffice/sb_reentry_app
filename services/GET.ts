@@ -40,7 +40,7 @@ export const fetchRecordsByCategory = async (
   const translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
   // @ts-ignore
   translatedRecords?.records?.sort(sortByName)
-  translatedRecords.category = category
+  translatedRecords.category = category.replaceAll(' ', '')
 
   if (offset)
     recordSetFunction(prevState => ({
