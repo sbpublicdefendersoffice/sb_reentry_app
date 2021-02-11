@@ -13,7 +13,7 @@ import { RecordPane } from '../../components'
 
 const category: string = 'Transportation'
 
-const SubstanceUse = () => {
+const LandingPage = () => {
   const [
     fetchedRecords,
     setFetchedRecords,
@@ -73,4 +73,4 @@ const SubstanceUse = () => {
   )
 }
 
-export default SubstanceUse
+export default LandingPage

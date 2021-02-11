@@ -1,4 +1,5 @@
 import { useState, MouseEvent } from 'react'
+import { useRouter } from 'next/router'
 import { Marker } from 'react-mapbox-gl'
 
 import Popup from './Popup'
@@ -13,10 +14,17 @@ interface MapMarkerProps {
 
 const MapMarker = ({ locationRecord }: MapMarkerProps) => {
   const [popup, setPopup] = useState<PopupInfo | null>(null)
+
+  const { push, query } = useRouter()
+
   const { longitude, latitude, category, name, uuid } = locationRecord
 
   const setPopupLocation = ({ clientX, clientY }: MouseEvent): void =>
     setPopup({ clientX, clientY })
+
+  const linkToRecord = () => {
+    if (query?.id !== uuid) push(`/${category}/[id]`, `/${category}/${uuid}`)
+  }
 
   return (
     <>
@@ -32,6 +40,7 @@ const MapMarker = ({ locationRecord }: MapMarkerProps) => {
           onMouseEnter={setPopupLocation}
           onMouseMove={setPopupLocation}
           onMouseLeave={() => setPopup(null)}
+          onClick={linkToRecord}
         />
       </Marker>
     </>

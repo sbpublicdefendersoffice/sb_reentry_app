@@ -13,7 +13,7 @@ import { RecordPane } from '../../components'
 
 const category: string = 'Medical Support'
 
-const SubstanceUse = () => {
+const LandingPage = () => {
   const [
     fetchedRecords,
     setFetchedRecords,
@@ -42,6 +42,7 @@ const SubstanceUse = () => {
                 longitude,
                 latitude: record.fields.location_latitude[i],
                 name: record.fields.org_name,
+                uuid: record.id,
               }),
             )
             arr = [...arr, ...newLocationRecords]
@@ -72,4 +73,4 @@ const SubstanceUse = () => {
   )
 }
 
-export default SubstanceUse
+export default LandingPage
