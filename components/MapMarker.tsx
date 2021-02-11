@@ -22,7 +22,7 @@ const MapMarker = ({ locationRecord }: MapMarkerProps) => {
   const setPopupLocation = ({ clientX, clientY }: MouseEvent): void =>
     setPopup({ clientX, clientY })
 
-  const linkToRecord = () => {
+  const linkToRecord = (): void => {
     if (query?.id !== uuid) push(`/${category}/[id]`, `/${category}/${uuid}`)
   }
 
