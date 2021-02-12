@@ -5,16 +5,17 @@
   flex-direction: column;
   height: var(--screen-minus-header);
   text-align: center;
-}
-
-.infoPage {
   width: 33%;
   overflow: scroll;
   margin: none;
 }
 
+.title {
+  cursor: pointer;
+}
+
 @media (max-width: 700px) {
-  .infoPage {
+  .RecordPane {
     display: none;
   }
 }

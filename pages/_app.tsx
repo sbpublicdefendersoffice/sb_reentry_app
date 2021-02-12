@@ -8,28 +8,26 @@ import { PublicPage } from '../ui'
 import '../styles/globals.css'
 import '../styles/variables.css'
 
-const App = ({ Component, pageProps }: AppProps) => {
-  return (
-    <>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
-        />
-        <title>Santa Barbara Reentry</title>
-        <link
-          href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
-          rel="stylesheet"
-        />
-      </Head>
-      <Navigator />
-      <Header />
-      <PublicPage>
-        <Component {...pageProps} />
-      </PublicPage>
-    </>
-  )
-}
+const App = ({ Component, pageProps }: AppProps) => (
+  <>
+    <Head>
+      <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
+      />
+      <title>Santa Barbara Reentry</title>
+      <link
+        href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
+        rel="stylesheet"
+      />
+    </Head>
+    <Navigator />
+    <Header />
+    <PublicPage>
+      <Component {...pageProps} />
+    </PublicPage>
+  </>
+)
 
 // Only uncomment this method if you have blocking data requirements for
 // every single page in your application. This disables the ability to
