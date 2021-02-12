@@ -20,6 +20,7 @@ const MapboxMap = ReactMapboxGL({
 
 const DisplayMap = ({ latLongInfo, page }: DisplayMapProps) => {
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
+
   return (
     <div
       className={`${styles.DisplayMap} ${
@@ -37,7 +38,7 @@ const DisplayMap = ({ latLongInfo, page }: DisplayMapProps) => {
           animationOptions={{ animate: false }}
           zoom={[zoom]}
         >
-          {Boolean(latLongInfo.length) &&
+          {Boolean(latLongInfo?.length) &&
             latLongInfo.map((locationRecord: LocationRecord, i: number) => (
               <Fragment key={i}>
                 <MapMarker locationRecord={locationRecord} />

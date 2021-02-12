@@ -62,9 +62,8 @@ const CategoryPageContainer = ({ category }: CategoryPageContainerProps) => {
         category={category}
         setRecords={setFetchedRecords}
       />
-      {Boolean(convertedLocRecords?.length) && (
-        <DisplayMap latLongInfo={convertedLocRecords} page="search" />
-      )}
+
+      <DisplayMap latLongInfo={convertedLocRecords} page="search" />
     </>
   )
 }
