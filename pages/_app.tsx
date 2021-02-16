@@ -1,5 +1,5 @@
 // import App from "next/app";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
@@ -11,7 +11,14 @@ import '../styles/globals.css'
 import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const [language, setLanguage] = useState<Language>('english')
+  const [language, setLanguage] = useState<Language | null>(null)
+
+  useEffect(() => {
+    const { language } = window.navigator
+    if (language.startsWith('es')) setLanguage('spanish')
+    else setLanguage('english')
+  }, [])
+
   return (
     <>
       <Head>
@@ -25,13 +32,15 @@ const App = ({ Component, pageProps }: AppProps) => {
           rel="stylesheet"
         />
       </Head>
-      <LangProvider value={{ language, setLanguage }}>
-        <Navigator />
-        <Header />
-        <PublicPage>
-          <Component {...pageProps} />
-        </PublicPage>
-      </LangProvider>
+      {language && (
+        <LangProvider value={{ language, setLanguage }}>
+          <Navigator />
+          <Header />
+          <PublicPage>
+            <Component {...pageProps} />
+          </PublicPage>
+        </LangProvider>
+      )}
     </>
   )
 }
