@@ -10,11 +10,18 @@ export interface OrgRecord {
   createdTime: string
   fields: {
     org_name?: string
+    org_name_spanish?: string
     org_website?: string
     org_languages_spoken?: string
+    org_languages_spoken_spanish?: string
+    org_customers_served?: string
+    org_customers_served_spanish?: string
     org_notes?: string
+    org_notes_spanish?: string
     org_categories?: string[]
+    org_categories_spanish?: string[]
     org_tags?: string[]
+    org_tags_spanish?: string[]
     org_locations?: string[]
     org_services?: string[]
     org_schedule?: string[]
@@ -24,12 +31,14 @@ export interface OrgRecord {
     location_address?: string[]
     location_address_2?: string[]
     location_name?: string[]
+    location_name_spanish?: string[]
     location_state?: string[]
     location_email?: string[]
     location_zip?: number[]
     location_phone?: string[]
     location_website?: string[]
     location_notes?: string[]
+    location_notes_spanish?: string[]
     location_services?: string
     location_latitude?: number[]
     location_longitude?: number[]
@@ -42,6 +51,7 @@ export interface OrgRecord {
     schedule_day?: string
     schedule_ordinal_open?: string
     schedule_notes?: string
+    schedule_notes_spanish?: string
   }
   id: string
 }

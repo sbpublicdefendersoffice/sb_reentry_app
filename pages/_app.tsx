@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
-import { Language, Provider as LangProvider } from '../hooks/useLanguage'
+import { Language } from '../types/language'
+import { Provider as LangProvider } from '../hooks/useLanguage'
 import { Header, Navigator } from '../components'
 import { PublicPage } from '../ui'
 

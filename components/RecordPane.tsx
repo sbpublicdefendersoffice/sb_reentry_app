@@ -2,10 +2,9 @@ import { SetStateAction, Dispatch } from 'react'
 import { useRouter } from 'next/router'
 
 import { Search } from '../components'
-import { Button, RecordListing } from '../ui'
+import { RecordListing } from '../ui'
 
 import { TranslatedRecordResponse } from '../types/records'
-import { fetchRecordsByCategory } from '../services/GET'
 
 import styles from './RecordPane.module.css'
 

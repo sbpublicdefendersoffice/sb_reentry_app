@@ -1,11 +1,6 @@
 import { createContext, useContext } from 'react'
 
-export type Language = 'english' | 'spanish'
-
-interface AppLanguageProps {
-  language: Language
-  setLanguage: (language: Language) => void
-}
+import { AppLanguageProps } from '../types/language'
 
 const AppLanguage = createContext<AppLanguageProps | null>(null)
 
