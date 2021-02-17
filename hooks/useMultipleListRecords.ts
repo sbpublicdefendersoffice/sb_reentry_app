@@ -10,6 +10,11 @@ const sortByName = (a: OrgRecord, b: OrgRecord): number =>
 
 const useMultipleListRecords = (category: string) => {
   const [
+    unsortedRecords,
+    setUnsortedRecords,
+  ] = useState<TranslatedRecordResponse | null>(null)
+
+  const [
     fetchedRecords,
     setFetchedRecords,
   ] = useState<TranslatedRecordResponse | null>(null)
@@ -18,13 +23,13 @@ const useMultipleListRecords = (category: string) => {
 
   useEffect(() => {
     if (category && language) {
-      fetchRecordsByCategory(category, setFetchedRecords, language)
+      fetchRecordsByCategory(category, setUnsortedRecords, language)
     }
   }, [category, language])
 
   useEffect(() => {
-    if (fetchedRecords) {
-      const tempRecords = fetchedRecords
+    if (unsortedRecords) {
+      const tempRecords = unsortedRecords
 
       //@ts-ignore
       tempRecords.records.sort(sortByName)
@@ -42,7 +47,7 @@ const useMultipleListRecords = (category: string) => {
 
       setFetchedRecords(tempRecords)
     }
-  }, [fetchedRecords])
+  }, [unsortedRecords])
 
   return { fetchedRecords, setFetchedRecords }
 }
