@@ -16,20 +16,20 @@ const OrgPageContainer = ({ category }: OrgPageContainerProps) => {
     lowCategory,
   )
 
-  const { singleFetchedRecord } = useSingleRecord()
+  const { sortedRecord } = useSingleRecord()
 
   return (
-    singleFetchedRecord && (
+    sortedRecord && (
       <>
         <Head>
-          <title>{`Santa Barbara Reentry | ${singleFetchedRecord.name}`}</title>
+          <title>{`Santa Barbara Reentry | ${sortedRecord.name}`}</title>
         </Head>
         <RecordPane
           orgInfo={fetchedRecords}
           category={category}
           setRecords={setFetchedRecords}
         />
-        <OrgRecordDisplay singleFetchedRecord={singleFetchedRecord} />
+        <OrgRecordDisplay sortedRecord={sortedRecord} />
       </>
     )
   )

@@ -6,17 +6,11 @@ import { SortedRecord } from '../types/records'
 import styles from './OrgRecordDisplay.module.css'
 
 interface OrgRecordDisplayProps {
-  singleFetchedRecord: SortedRecord
+  sortedRecord: SortedRecord
 }
 
-const OrgRecordDisplay = ({ singleFetchedRecord }: OrgRecordDisplayProps) => {
-  const {
-    locations,
-    name,
-    website,
-    languages_spoken,
-    notes,
-  } = singleFetchedRecord
+const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
+  const { locations, name, website, languages_spoken, notes } = sortedRecord
 
   return (
     <div className={styles.OrgRecordDisplay} role="list">
