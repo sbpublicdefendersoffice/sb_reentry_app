@@ -1,9 +1,7 @@
 import Head from 'next/head'
-import { useState, useEffect } from 'react'
 
 import useSingleRecord from '../hooks/useSingleRecord'
-import { TranslatedRecordResponse } from '../types/records'
-import { fetchRecordsByCategory } from '../services/GET'
+import useMultipleListRecords from '../hooks/useMultipleListRecords'
 
 import { OrgRecordDisplay, RecordPane } from './'
 
@@ -12,14 +10,12 @@ interface OrgPageContainerProps {
 }
 
 const OrgPageContainer = ({ category }: OrgPageContainerProps) => {
-  const [
-    fetchedRecords,
-    setFetchedRecords,
-  ] = useState<TranslatedRecordResponse | null>(null)
   const lowCategory: string = category.toLowerCase()
-  useEffect((): void => {
-    fetchRecordsByCategory(lowCategory, setFetchedRecords)
-  }, [])
+
+  const { fetchedRecords, setFetchedRecords } = useMultipleListRecords(
+    lowCategory,
+  )
+
   const { singleFetchedRecord } = useSingleRecord()
 
   return (

@@ -8,6 +8,7 @@ import {
   ScheduleRecord,
   TranslatedRecordResponse,
 } from '../types/records'
+import { Language } from '../types/language'
 
 const BASE_URL = `https://api.airtable.com/v0/${process.env.NEXT_PUBLIC_AIRTABLE_BASE}`
 
@@ -17,20 +18,25 @@ const OPTIONS_OBJECT = {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
     Referer: 'http://airtable.com',
   },
-  // mode: 'cors',
-  // cache: 'no-store',
   referer: 'http://airtable.com',
   refererPolicy: 'origin-when-cross-origin',
 }
 
-const sortByName = (a: OrgRecord, b: OrgRecord): number =>
-  a.fields.org_name?.localeCompare(b.fields.org_name)
-
 export const fetchRecordsByCategory = async (
   category: string,
   recordSetFunction: Dispatch<SetStateAction<TranslatedRecordResponse>>,
+  language: Language,
 ): Promise<void> => {
-  const fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&fields%5B%5D=org_name&fields%5B%5D=org_name_spanish&fields%5B%5D=org_tags&fields%5B%5D=org_tags_spanish`
+  let fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude`
+
+  if (language === 'english')
+    fetchString = fetchString.concat(
+      '&fields%5B%5D=org_name&fields%5B%5D=org_tags',
+    )
+  else
+    fetchString = fetchString.concat(
+      '&fields%5B%5D=org_name_spanish&fields%5B%5D=org_tags_spanish',
+    )
 
   const fetchRecords: Response = await fetch(fetchString, OPTIONS_OBJECT)
   let translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
@@ -41,12 +47,12 @@ export const fetchRecordsByCategory = async (
 
     const { offset, records } = translatedRecords
 
-    const nextPage = await fetch(
+    const nextPage: Response = await fetch(
       `${fetchString}&offset=${offset}`,
       OPTIONS_OBJECT,
     )
 
-    const translatedNextPage = await nextPage.json()
+    const translatedNextPage: TranslatedRecordResponse = await nextPage.json()
 
     const [pageRecords, pageOffset] = [
       translatedNextPage.records,
@@ -58,10 +64,6 @@ export const fetchRecordsByCategory = async (
     if (pageOffset) translatedRecords.offset = pageOffset
     else delete translatedRecords.offset
   }
-
-  // @ts-ignore
-  translatedRecords?.records?.sort(sortByName)
-  translatedRecords.category = category.replaceAll(' ', '')
 
   recordSetFunction(translatedRecords)
 }
