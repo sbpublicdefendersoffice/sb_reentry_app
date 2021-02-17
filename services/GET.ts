@@ -29,28 +29,41 @@ const sortByName = (a: OrgRecord, b: OrgRecord): number =>
 export const fetchRecordsByCategory = async (
   category: string,
   recordSetFunction: Dispatch<SetStateAction<TranslatedRecordResponse>>,
-  offset?: string,
 ): Promise<void> => {
-  const fetchRecords: Response = await fetch(
-    `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name&fields%5B%5D=org_tags&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude${
-      offset ? `&offset=${offset}` : ''
-    }`,
-    OPTIONS_OBJECT,
-  )
-  const translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
+  const fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=org_name&fields%5B%5D=org_tags&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude`
+
+  const fetchRecords: Response = await fetch(fetchString, OPTIONS_OBJECT)
+  let translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
+
+  while (translatedRecords.offset) {
+    // Airtable API has a 5 request per second limit. Hence the delay below
+    window.setTimeout(() => null, 200)
+
+    const { offset, records } = translatedRecords
+
+    const nextPage = await fetch(
+      `${fetchString}&offset=${offset}`,
+      OPTIONS_OBJECT,
+    )
+
+    const translatedNextPage = await nextPage.json()
+
+    const [pageRecords, pageOffset] = [
+      translatedNextPage.records,
+      translatedNextPage.offset,
+    ]
+
+    translatedRecords.records = [...records, ...pageRecords]
+
+    if (pageOffset) translatedRecords.offset = pageOffset
+    else delete translatedRecords.offset
+  }
+
   // @ts-ignore
   translatedRecords?.records?.sort(sortByName)
   translatedRecords.category = category.replaceAll(' ', '')
 
-  if (offset)
-    recordSetFunction(prevState => ({
-      ...prevState,
-      offset: translatedRecords.offset,
-      records: [...prevState.records, ...translatedRecords?.records].sort(
-        sortByName,
-      ),
-    }))
-  else recordSetFunction(translatedRecords)
+  recordSetFunction(translatedRecords)
 }
 
 export const fetchSingleOrgRecord = async (

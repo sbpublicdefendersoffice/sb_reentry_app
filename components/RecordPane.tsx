@@ -33,15 +33,6 @@ const RecordPane = ({ category, orgInfo, setRecords }: RecordPaneProps) => {
       {orgInfo && (
         <Search originalRecords={orgInfo.records} setRecords={setRecords} />
       )}
-      {orgInfo?.offset && (
-        <Button
-          onClick={() =>
-            fetchRecordsByCategory(lowCategory, setRecords, orgInfo?.offset)
-          }
-        >
-          Fetch More Records
-        </Button>
-      )}
       {Boolean(orgInfo?.records?.length) && (
         <>
           {orgInfo?.records?.map(record => (
