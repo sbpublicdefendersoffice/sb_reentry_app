@@ -7,7 +7,7 @@ import styles from './LangSwitcher.module.css'
 const LangSwitcher = () => {
   const { language, setLanguage } = useLanguage()
 
-  const [isChecked, setIsChecked] = useState<boolean>(false)
+  const [isChecked, setIsChecked] = useState<boolean>(language === 'spanish')
   const [disabled, setDisabled] = useState<boolean>(false)
   const initialRender = useRef<boolean>(true)
 
