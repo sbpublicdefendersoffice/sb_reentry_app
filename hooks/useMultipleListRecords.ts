@@ -31,10 +31,6 @@ const useMultipleListRecords = (category: string) => {
     if (unsortedRecords) {
       const tempRecords = unsortedRecords
 
-      //@ts-ignore
-      tempRecords.records.sort(sortByName)
-      tempRecords.category = category.replaceAll(' ', '')
-
       //TODO: fix below temp hack for spanish language records
       if (language === 'spanish') {
         tempRecords.records.map((record: OrgRecord) => {
@@ -44,6 +40,10 @@ const useMultipleListRecords = (category: string) => {
           return record
         })
       }
+
+      //@ts-ignore
+      tempRecords.records.sort(sortByName)
+      tempRecords.category = category.replaceAll(' ', '')
 
       setFetchedRecords(tempRecords)
     }

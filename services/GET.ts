@@ -3,7 +3,7 @@ import { SetStateAction, Dispatch } from 'react'
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
 import { Language } from '../types/language'
 
-const BASE_URL = `https://api.airtable.com/v0/${process.env.NEXT_PUBLIC_AIRTABLE_BASE}`
+const BASE_URL: string = `https://api.airtable.com/v0/${process.env.NEXT_PUBLIC_AIRTABLE_BASE}`
 
 const OPTIONS_OBJECT = {
   method: 'GET',
@@ -24,13 +24,10 @@ export const fetchRecordsByCategory = async (
     let fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude`
 
     if (language === 'english')
-      fetchString = fetchString.concat(
-        '&fields%5B%5D=org_name&fields%5B%5D=org_tags',
-      )
+      fetchString += '&fields%5B%5D=org_name&fields%5B%5D=org_tags'
     else
-      fetchString = fetchString.concat(
-        '&fields%5B%5D=org_name_spanish&fields%5B%5D=org_tags_spanish',
-      )
+      fetchString +=
+        '&fields%5B%5D=org_name_spanish&fields%5B%5D=org_tags_spanish'
 
     const fetchRecords: Response = await fetch(fetchString, OPTIONS_OBJECT)
     let translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
