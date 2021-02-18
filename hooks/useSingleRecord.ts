@@ -8,6 +8,7 @@ import {
   LocationRecord,
   ScheduleRecord,
 } from '../types/records'
+import useLanguage from '../hooks/useLanguage'
 import { fetchSingleOrgRecord } from '../services/GET'
 
 const useSingleRecord = () => {
@@ -19,6 +20,7 @@ const useSingleRecord = () => {
   const [sortedRecord, setSortedRecord] = useState<SortedRecord | null>(null)
 
   const { asPath } = useRouter()
+  const { language } = useLanguage()
 
   const requestParams: string[] = asPath.slice(1).split('/')
   const requestReady: number = requestParams.length
@@ -91,23 +93,42 @@ const useSingleRecord = () => {
           locInfo.address_2 && locInfo.address_2[i]
             ? locInfo.address_2[i]
             : null
-        obj.name = locInfo.name && locInfo.name[i] ? locInfo.name[i] : null
+
+        if (locInfo.name && locInfo.name[i]) {
+          if (language === 'spanish') obj.name = locInfo.name_spanish[i]
+          else obj.name = locInfo.name[i]
+        } else obj.name = null
+
         obj.state = locInfo.state && locInfo.state[i] ? locInfo.state[i] : null
         obj.email = locInfo.email && locInfo.email[i] ? locInfo.email[i] : null
         obj.zip = locInfo.zip && locInfo.zip[i] ? locInfo.zip[i] : null
         obj.phone = locInfo.phone && locInfo.phone[i] ? locInfo.phone[i] : null
         obj.website =
           locInfo.website && locInfo.website[i] ? locInfo.website[i] : null
-        obj.notes = locInfo.notes && locInfo.notes[i] ? locInfo.notes[i] : null
+
+        if (locInfo.notes && locInfo.notes[i]) {
+          if (language === 'spanish') obj.notes = locInfo.notes_spanish[i]
+          else obj.notes = locInfo.notes[i]
+        } else obj.notes = null
+
         obj.latitude =
           locInfo.latitude && locInfo.latitude[i] ? locInfo.latitude[i] : null
         obj.longitude =
           locInfo.longitude && locInfo.longitude[i]
             ? locInfo.longitude[i]
             : null
-        obj.services =
-          locInfo.services && locInfo.services[i] ? locInfo.services[i] : null
-        obj.org_name = organizedRecord.name ? organizedRecord.name : null
+
+        if (locInfo.services && locInfo.services[i]) {
+          if (language === 'spanish') obj.services = locInfo.services_spanish[i]
+          else obj.services = locInfo.services[i]
+        } else obj.services = null
+
+        if (organizedRecord.name) {
+          if (language === 'spanish')
+            obj.org_name = organizedRecord.name_spanish
+          else obj.org_name = organizedRecord.name
+        } else obj.org_name = null
+
         obj.category = category ? category : null
         obj.schedule = []
 

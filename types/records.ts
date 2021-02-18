@@ -89,6 +89,7 @@ export interface ScheduleRecord {
 
 export interface SortedRecord {
   name?: string
+  name_spanish?: string
   website?: string
   languages_spoken?: string
   notes?: string
