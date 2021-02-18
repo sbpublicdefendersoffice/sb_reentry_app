@@ -28,12 +28,4 @@ const WrapContainer = forwardRef<HTMLDivElement, WrapContainerProps>(
   },
 )
 
-// const WrapContainer = ({ children, width }: WrapContainerProps) => (
-//   <section className={styles.WrapContainer}>
-//     <div style={{ width: width || '100%' }} className={styles.Elements}>
-//       {children}
-//     </div>
-//   </section>
-// )
-
 export default WrapContainer
