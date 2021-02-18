@@ -33,7 +33,7 @@ const LangSwitcher = () => {
         className={styles.input}
         type="checkbox"
         id="lang-input"
-        onClick={() => setIsChecked(!isChecked)}
+        onChange={() => setIsChecked(!isChecked)}
         checked={isChecked}
         disabled={disabled}
       />

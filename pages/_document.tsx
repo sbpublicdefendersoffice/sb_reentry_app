@@ -13,10 +13,6 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#2f4cb8" />
           {/*  */}
           <link rel="icon" href="./images/heart.svg" type="image/svg+xml" />
-          <meta
-            name="description"
-            content="Santa Barbara Reentry Project, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay."
-          />
         </Head>
         <body>
           <Main />
