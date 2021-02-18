@@ -1,11 +1,9 @@
 import NextLink from 'next/link'
-import LangSwitcher from './LangSwitcher'
 
 import styles from './Header.module.css'
 
 const Header = () => (
   <header role="banner" className={styles.Header}>
-    <LangSwitcher />
     <div className={styles.HeaderContainer}>
       <NextLink href="/" as="/">
         <a className="not-text-link">

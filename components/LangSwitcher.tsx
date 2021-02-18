@@ -1,18 +1,26 @@
+import { useState, useEffect } from 'react'
+
 import useLanguage from '../hooks/useLanguage'
-import { Button } from '../ui'
+
+import styles from './LangSwitcher.module.css'
 
 const LangSwitcher = () => {
   const { language, setLanguage } = useLanguage()
 
-  const switchLang = () => {
+  const [isChecked, setIsChecked] = useState<boolean>(false)
+
+  useEffect(() => {
     if (language === 'english') setLanguage('spanish')
     else setLanguage('english')
-  }
+  }, [isChecked])
 
   return (
-    <Button onClick={switchLang}>
-      Switch To {language === 'english' ? 'Spanish' : 'English'}
-    </Button>
+    <input
+      className={styles.LangSwitcher}
+      type="checkbox"
+      onClick={() => setIsChecked(!isChecked)}
+      checked={isChecked}
+    />
   )
 }
 
