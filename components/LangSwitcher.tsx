@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import useLanguage from '../hooks/useLanguage'
 
@@ -8,10 +8,14 @@ const LangSwitcher = () => {
   const { language, setLanguage } = useLanguage()
 
   const [isChecked, setIsChecked] = useState<boolean>(false)
+  const initialRender = useRef<boolean>(true)
 
   useEffect(() => {
-    if (language === 'english') setLanguage('spanish')
-    else setLanguage('english')
+    if (initialRender.current) initialRender.current = false
+    else {
+      if (language === 'english') setLanguage('spanish')
+      else setLanguage('english')
+    }
   }, [isChecked])
 
   return (
