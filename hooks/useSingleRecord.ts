@@ -155,13 +155,20 @@ const useSingleRecord = () => {
           scheInfo.close_time && scheInfo.close_time[i]
             ? scheInfo.close_time[i]
             : null
-        obj.day = scheInfo.day && scheInfo.day[i] ? scheInfo.day[i] : null
         obj.ordinal_open =
           scheInfo.ordinal_open && scheInfo.ordinal_open[i]
             ? scheInfo.ordinal_open[i]
             : null
-        obj.notes =
-          scheInfo.notes && scheInfo.notes[i] ? scheInfo.notes[i] : null
+
+        if (scheInfo.day && scheInfo.day[i]) {
+          if (language === 'spanish') obj.day = scheInfo.day_spanish[i]
+          else obj.day = scheInfo.day[i]
+        } else obj.day = null
+
+        if (scheInfo.notes && scheInfo.notes[i]) {
+          if (language === 'spanish') obj.notes = scheInfo.notes_spanish[i]
+          else obj.notes = scheInfo.notes[i]
+        } else obj.notes = null
 
         scheduleHolder.push(obj)
       }
