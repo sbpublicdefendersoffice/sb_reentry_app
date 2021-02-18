@@ -92,9 +92,13 @@ export interface SortedRecord {
   name_spanish?: string
   website?: string
   languages_spoken?: string
+  languages_spoken_spanish?: string
   notes?: string
+  notes_spanish?: string
   categories?: string[]
+  categories_spanish?: string[]
   tags?: string[]
+  tags_spanish?: string[]
   id?: string
   locations?: LocationRecord[]
   latitude?: number

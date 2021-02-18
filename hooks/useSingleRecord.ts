@@ -30,7 +30,7 @@ const useSingleRecord = () => {
   useEffect(() => {
     if (requestReady && id !== '[id]')
       fetchSingleOrgRecord(id, setSingleFetchedRecord)
-  }, [requestReady, id])
+  }, [requestReady, id, language])
 
   useEffect(() => {
     if (singleFetchedRecord) {
@@ -183,6 +183,15 @@ const useSingleRecord = () => {
           loc[locationTargetIndex].schedule.push(schedule)
         }
       })
+
+      if (language === 'spanish') {
+        organizedRecord.name = organizedRecord.name_spanish
+        organizedRecord.notes = organizedRecord.notes_spanish
+        organizedRecord.languages_spoken =
+          organizedRecord.languages_spoken_spanish
+        organizedRecord.categories = organizedRecord.categories_spanish
+        organizedRecord.tags = organizedRecord.tags_spanish
+      }
 
       setSortedRecord(organizedRecord)
     }

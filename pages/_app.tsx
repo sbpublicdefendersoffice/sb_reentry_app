@@ -17,7 +17,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     const { language } = window.navigator
     if (language.startsWith('es')) setLanguage('spanish')
-    else setLanguage('spanish')
+    else setLanguage('english')
   }, [])
 
   return (
