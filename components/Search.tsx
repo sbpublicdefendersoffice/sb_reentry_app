@@ -8,6 +8,8 @@ import {
 
 import { Input } from '../ui'
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
+import { ENGLISH } from '../types/language'
+
 import useLanguage from '../hooks/useLanguage'
 
 interface SearchProps {
@@ -47,7 +49,7 @@ const Search = ({ originalRecords, setRecords }: SearchProps) => {
   return (
     <Input
       onChange={handleChange}
-      placeholder={language === 'english' ? 'Search...' : 'Buscar...'}
+      placeholder={language === ENGLISH ? 'Search...' : 'Buscar...'}
       role="search"
     />
   )

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
-import { Language } from '../types/language'
+import { Language, ENGLISH, SPANISH } from '../types/language'
 import { Provider as LangProvider } from '../hooks/useLanguage'
 import { Header, LangSwitcher, Navigator } from '../components'
 import { PublicPage } from '../ui'
@@ -16,8 +16,8 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   useEffect(() => {
     const { language } = window.navigator
-    if (language.startsWith('es')) setLanguage('spanish')
-    else setLanguage('english')
+    if (language.startsWith('es')) setLanguage(SPANISH)
+    else setLanguage(ENGLISH)
   }, [])
 
   return (
@@ -26,7 +26,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta
           name="description"
           content={
-            language === 'english'
+            language === ENGLISH
               ? 'Santa Barbara Reentry Project, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.'
               : 'Santa Barbara Reentry Project, una aplicación web dinámica para ayudar a las personas afectadas por la justicia a acceder a los recursos para ayudar a una reincorporación exitosa después de una estancia en la cárcel o prisión.'
           }

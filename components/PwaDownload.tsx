@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { Button } from '../ui'
 import useLanguage from '../hooks/useLanguage'
+import { ENGLISH } from '../types/language'
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
@@ -34,8 +35,7 @@ const PwaDownload = () => {
     <>
       {downloadEvent && (
         <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
-          {language === 'english' ? 'Download' : 'Descarga'} Santa Barbara
-          Reentry
+          {language === ENGLISH ? 'Download' : 'Descarga'} Santa Barbara Reentry
         </Button>
       )}
     </>
