@@ -5,11 +5,15 @@ import { LocationRecord, OrgRecord } from '../types/records'
 import useMultipleListRecords from '../hooks/useMultipleListRecords'
 
 interface CategoryPageContainerProps {
-  category: string
+  displayCategory: string
+  routeCategory: string
 }
 
-const CategoryPageContainer = ({ category }: CategoryPageContainerProps) => {
-  const lowCategory: string = category.toLowerCase()
+const CategoryPageContainer = ({
+  displayCategory,
+  routeCategory,
+}: CategoryPageContainerProps) => {
+  const lowCategory: string = routeCategory.toLowerCase()
 
   const { fetchedRecords, setFetchedRecords } = useMultipleListRecords(
     lowCategory,
@@ -50,7 +54,8 @@ const CategoryPageContainer = ({ category }: CategoryPageContainerProps) => {
     <>
       <RecordPane
         orgInfo={fetchedRecords}
-        category={category}
+        displayCategory={displayCategory}
+        routeCategory={routeCategory}
         setRecords={setFetchedRecords}
       />
 

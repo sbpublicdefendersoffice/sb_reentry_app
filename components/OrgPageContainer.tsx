@@ -24,11 +24,11 @@ const OrgPageContainer = ({ category }: OrgPageContainerProps) => {
         <Head>
           <title>{`Santa Barbara Reentry | ${sortedRecord.name}`}</title>
         </Head>
-        <RecordPane
+        {/* <RecordPane
           orgInfo={fetchedRecords}
           category={category}
           setRecords={setFetchedRecords}
-        />
+        /> */}
         <OrgRecordDisplay sortedRecord={sortedRecord} />
       </>
     )

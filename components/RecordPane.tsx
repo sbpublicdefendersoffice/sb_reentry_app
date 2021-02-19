@@ -9,15 +9,21 @@ import { TranslatedRecordResponse } from '../types/records'
 import styles from './RecordPane.module.css'
 
 interface RecordPaneProps {
-  category: string
+  displayCategory: string
+  routeCategory: string
   orgInfo: TranslatedRecordResponse
   setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
 }
 
-const RecordPane = ({ category, orgInfo, setRecords }: RecordPaneProps) => {
+const RecordPane = ({
+  displayCategory,
+  routeCategory,
+  orgInfo,
+  setRecords,
+}: RecordPaneProps) => {
   const { push, route } = useRouter()
 
-  const lowCategory: string = category.toLowerCase()
+  const lowCategory: string = routeCategory.toLowerCase()
   const url: string = `/${lowCategory.replace(' ', '')}`
 
   const pushToCategory = () => {
@@ -27,7 +33,7 @@ const RecordPane = ({ category, orgInfo, setRecords }: RecordPaneProps) => {
   return (
     <div className={styles.RecordPane} role="list">
       <h2 className={styles.title} onClick={pushToCategory}>
-        {category}
+        {displayCategory}
       </h2>
       {orgInfo && (
         <Search originalRecords={orgInfo.records} setRecords={setRecords} />
