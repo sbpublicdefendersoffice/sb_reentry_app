@@ -8,6 +8,9 @@ import {
 
 import { Input } from '../ui'
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
+import { ENGLISH } from '../types/language'
+
+import useLanguage from '../hooks/useLanguage'
 
 interface SearchProps {
   originalRecords: OrgRecord[]
@@ -15,6 +18,8 @@ interface SearchProps {
 }
 
 const Search = ({ originalRecords, setRecords }: SearchProps) => {
+  const { language } = useLanguage()
+
   const [savedOriginalRecords, setSavedOriginalRecords] = useState<
     OrgRecord[] | null
   >(null)
@@ -41,7 +46,13 @@ const Search = ({ originalRecords, setRecords }: SearchProps) => {
     }
   }
 
-  return <Input onChange={handleChange} placeholder="Search..." role="search" />
+  return (
+    <Input
+      onChange={handleChange}
+      placeholder={language === ENGLISH ? 'Search...' : 'Buscar...'}
+      role="search"
+    />
+  )
 }
 
 export default Search

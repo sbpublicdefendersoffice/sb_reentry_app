@@ -2,23 +2,28 @@ import { SetStateAction, Dispatch } from 'react'
 import { useRouter } from 'next/router'
 
 import { Search } from '../components'
-import { Button, RecordListing } from '../ui'
+import { RecordListing } from '../ui'
 
 import { TranslatedRecordResponse } from '../types/records'
-import { fetchRecordsByCategory } from '../services/GET'
 
 import styles from './RecordPane.module.css'
 
 interface RecordPaneProps {
-  category: string
+  displayCategory: string
+  routeCategory: string
   orgInfo: TranslatedRecordResponse
   setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
 }
 
-const RecordPane = ({ category, orgInfo, setRecords }: RecordPaneProps) => {
+const RecordPane = ({
+  displayCategory,
+  routeCategory,
+  orgInfo,
+  setRecords,
+}: RecordPaneProps) => {
   const { push, route } = useRouter()
 
-  const lowCategory: string = category.toLowerCase()
+  const lowCategory: string = routeCategory.toLowerCase()
   const url: string = `/${lowCategory.replace(' ', '')}`
 
   const pushToCategory = () => {
@@ -28,19 +33,10 @@ const RecordPane = ({ category, orgInfo, setRecords }: RecordPaneProps) => {
   return (
     <div className={styles.RecordPane} role="list">
       <h2 className={styles.title} onClick={pushToCategory}>
-        {category}
+        {displayCategory}
       </h2>
       {orgInfo && (
         <Search originalRecords={orgInfo.records} setRecords={setRecords} />
-      )}
-      {orgInfo?.offset && (
-        <Button
-          onClick={() =>
-            fetchRecordsByCategory(lowCategory, setRecords, orgInfo?.offset)
-          }
-        >
-          Fetch More Records
-        </Button>
       )}
       {Boolean(orgInfo?.records?.length) && (
         <>

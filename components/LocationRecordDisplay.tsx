@@ -3,10 +3,36 @@ import { RecordListing } from '../ui'
 import { ScheduleRecordDisplay, SendText } from './'
 import { LocationRecord } from '../types/records'
 
+import useLanguage from '../hooks/useLanguage'
+import { CopyHolder } from '../types/language'
+
 import styles from './LocationRecordDisplay.module.css'
 
 interface LocationRecordDisplayProps {
   locationInfo: LocationRecord
+}
+
+const copy: CopyHolder = {
+  english: {
+    address: 'Address',
+    find: 'Find on Google Maps',
+    phone: 'Phone #',
+    call: 'Click to call',
+    locationSite: 'Location Website',
+    services: 'Services Offered',
+    email: 'Email',
+    schedule: 'Schedule',
+  },
+  spanish: {
+    address: 'Dirección',
+    find: 'Buscar en Google Maps',
+    phone: 'Teléfono #',
+    call: 'Haz clic para llamar',
+    locationSite: 'Ubicación Página Web',
+    services: 'Servicios Ofrecidos',
+    email: 'Correo',
+    schedule: 'Calendario',
+  },
 }
 
 const LocationRecordDisplay = ({
@@ -28,6 +54,9 @@ const LocationRecordDisplay = ({
     org_name,
   } = locationInfo
 
+  const { language } = useLanguage()
+  const activeCopy = copy[language]
+
   const fullAddress: string = `${address || ''}${
     address_2 ? `, ${address_2}` : ''
   }`
@@ -46,7 +75,7 @@ const LocationRecordDisplay = ({
         {name && <p>{name}</p>}
         {address && (
           <>
-            <h3>Address:</h3>
+            <h3>{activeCopy.address}:</h3>
             <address>
               <p>{fullAddress}</p>
               <p>{cityStateZip}</p>
@@ -55,7 +84,7 @@ const LocationRecordDisplay = ({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Find on Google Maps
+                {activeCopy.find}
               </a>
             </address>
             <SendText
@@ -67,14 +96,16 @@ const LocationRecordDisplay = ({
         )}
         {phone && (
           <>
-            <h3>Phone #:</h3>
+            <h3>{activeCopy.phone}:</h3>
             <p>{phone}</p>
-            <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>Click to call</a>
+            <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
+              {activeCopy.call}
+            </a>
           </>
         )}
         {website && (
           <>
-            <h3>Location Website:</h3>
+            <h3>{activeCopy.locationSite}:</h3>
             <a href={website} target="_blank" rel="noopener noreferrer">
               {website}
             </a>
@@ -82,13 +113,13 @@ const LocationRecordDisplay = ({
         )}
         {services && (
           <>
-            <h3>Services Offered:</h3>
+            <h3>{activeCopy.services}:</h3>
             <p>{services}</p>
           </>
         )}
         {email && (
           <>
-            <h3>Email:</h3>
+            <h3>{activeCopy.email}:</h3>
             <p>
               <a
                 href={`mailto:${email}`}
@@ -103,7 +134,7 @@ const LocationRecordDisplay = ({
         {notes && <p>{notes}</p>}
         {Boolean(schedule.length) && (
           <>
-            <h3>Schedule:</h3>
+            <h3>{activeCopy.schedule}:</h3>
             {schedule.map((scheduleInfo, i) => (
               <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
             ))}

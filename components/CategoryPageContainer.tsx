@@ -1,32 +1,27 @@
 import { useState, useEffect } from 'react'
 
 import { DisplayMap, RecordPane } from './'
-import {
-  TranslatedRecordResponse,
-  LocationRecord,
-  OrgRecord,
-} from '../types/records'
-import { fetchRecordsByCategory } from '../services/GET'
+import { LocationRecord, OrgRecord } from '../types/records'
+import useMultipleListRecords from '../hooks/useMultipleListRecords'
 
 interface CategoryPageContainerProps {
-  category: string
+  displayCategory: string
+  routeCategory: string
 }
 
-const CategoryPageContainer = ({ category }: CategoryPageContainerProps) => {
-  const [
-    fetchedRecords,
-    setFetchedRecords,
-  ] = useState<TranslatedRecordResponse | null>(null)
+const CategoryPageContainer = ({
+  displayCategory,
+  routeCategory,
+}: CategoryPageContainerProps) => {
+  const lowCategory: string = routeCategory.toLowerCase()
+
+  const { fetchedRecords, setFetchedRecords } = useMultipleListRecords(
+    lowCategory,
+  )
 
   const [convertedLocRecords, setConvertedLocRecords] = useState<
     LocationRecord[] | null
   >(null)
-
-  const lowCategory: string = category.toLowerCase()
-
-  useEffect((): void => {
-    fetchRecordsByCategory(lowCategory, setFetchedRecords)
-  }, [])
 
   useEffect((): void => {
     if (fetchedRecords) {
@@ -59,7 +54,8 @@ const CategoryPageContainer = ({ category }: CategoryPageContainerProps) => {
     <>
       <RecordPane
         orgInfo={fetchedRecords}
-        category={category}
+        displayCategory={displayCategory}
+        routeCategory={routeCategory}
         setRecords={setFetchedRecords}
       />
 

@@ -1,39 +1,40 @@
 import Head from 'next/head'
-import { useState, useEffect } from 'react'
 
 import useSingleRecord from '../hooks/useSingleRecord'
-import { TranslatedRecordResponse } from '../types/records'
-import { fetchRecordsByCategory } from '../services/GET'
+import useMultipleListRecords from '../hooks/useMultipleListRecords'
 
 import { OrgRecordDisplay, RecordPane } from './'
 
 interface OrgPageContainerProps {
-  category: string
+  displayCategory: string
+  routeCategory: string
 }
 
-const OrgPageContainer = ({ category }: OrgPageContainerProps) => {
-  const [
-    fetchedRecords,
-    setFetchedRecords,
-  ] = useState<TranslatedRecordResponse | null>(null)
-  const lowCategory: string = category.toLowerCase()
-  useEffect((): void => {
-    fetchRecordsByCategory(lowCategory, setFetchedRecords)
-  }, [])
-  const { singleFetchedRecord } = useSingleRecord()
+const OrgPageContainer = ({
+  displayCategory,
+  routeCategory,
+}: OrgPageContainerProps) => {
+  const lowCategory: string = routeCategory.toLowerCase()
+
+  const { fetchedRecords, setFetchedRecords } = useMultipleListRecords(
+    lowCategory,
+  )
+
+  const { sortedRecord } = useSingleRecord()
 
   return (
-    singleFetchedRecord && (
+    sortedRecord && (
       <>
         <Head>
-          <title>{`Santa Barbara Reentry | ${singleFetchedRecord.name}`}</title>
+          <title>{`Santa Barbara Reentry | ${sortedRecord.name}`}</title>
         </Head>
         <RecordPane
           orgInfo={fetchedRecords}
-          category={category}
+          displayCategory={displayCategory}
+          routeCategory={routeCategory}
           setRecords={setFetchedRecords}
         />
-        <OrgRecordDisplay singleFetchedRecord={singleFetchedRecord} />
+        <OrgRecordDisplay sortedRecord={sortedRecord} />
       </>
     )
   )
