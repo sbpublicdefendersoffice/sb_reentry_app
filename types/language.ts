@@ -5,5 +5,10 @@ export interface AppLanguageProps {
   setLanguage: (language: Language) => void
 }
 
+export interface CopyHolder {
+  english: { [key: string]: string }
+  spanish: { [key: string]: string }
+}
+
 export const ENGLISH: Language = 'english'
 export const SPANISH: Language = 'spanish'

@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, MutableRefObject } from 'react'
 
 import useLanguage from '../hooks/useLanguage'
-import { ENGLISH, SPANISH } from '../types/language'
+import { ENGLISH, SPANISH, CopyHolder } from '../types/language'
 
 import styles from './LangSwitcher.module.css'
 
-const copy = {
+const copy: CopyHolder = {
   english: {
     english: 'English',
     spanish: 'Spanish',
@@ -18,26 +18,29 @@ const copy = {
 
 const LangSwitcher = () => {
   const { language, setLanguage } = useLanguage()
-
   const activeCopy = copy[language]
 
   const [isChecked, setIsChecked] = useState<boolean>(language === SPANISH)
-  const [disabled, setDisabled] = useState<boolean>(false)
-  const initialRender = useRef<boolean>(true)
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
-  useEffect(() => {
-    if (initialRender.current) initialRender.current = false
+  const isInitialRender: MutableRefObject<boolean> = useRef<boolean>(true)
+
+  useEffect((): void => {
+    if (isInitialRender.current) isInitialRender.current = false
     else {
-      setDisabled(true)
+      setIsDisabled(true)
       if (language === ENGLISH) setLanguage(SPANISH)
       else setLanguage(ENGLISH)
-      setTimeout(() => setDisabled(false), 400)
+      setTimeout((): void => setIsDisabled(false), 400)
     }
   }, [isChecked])
 
   return (
     <label className={styles.LangSwitcher} htmlFor="lang-input">
-      <span style={{ color: isChecked ? 'var(--deselected)' : 'var(--white)' }}>
+      <span
+        className={styles.label}
+        style={{ color: isChecked ? 'var(--deselected)' : 'var(--white)' }}
+      >
         {activeCopy.english}
       </span>
       <input
@@ -46,10 +49,13 @@ const LangSwitcher = () => {
         id="lang-input"
         onChange={() => setIsChecked(!isChecked)}
         checked={isChecked}
-        disabled={disabled}
+        disabled={isDisabled}
       />
       <span className={styles.slider} />
-      <span style={{ color: isChecked ? 'var(--white)' : 'var(--deselected)' }}>
+      <span
+        className={styles.label}
+        style={{ color: isChecked ? 'var(--white)' : 'var(--deselected)' }}
+      >
         {activeCopy.spanish}
       </span>
     </label>

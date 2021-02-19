@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react'
 import { Button, Input } from '../ui'
 
 import useLanguage from '../hooks/useLanguage'
+import { CopyHolder } from '../types/language'
 
 interface SendTextProps {
   org_name: string
@@ -9,7 +10,7 @@ interface SendTextProps {
   cityStateZip: string
 }
 
-const copy = {
+const copy: CopyHolder = {
   english: {
     error: 'Phone Number is 10 digits, numbers only',
     placeholder: 'Phone Number',

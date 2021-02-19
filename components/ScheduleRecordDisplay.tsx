@@ -1,10 +1,9 @@
+import useLanguage from '../hooks/useLanguage'
+
 import { ScheduleRecord } from '../types/records'
+import { CopyHolder } from '../types/language'
 
 import styles from './ScheduleRecordDisplay.module.css'
-
-interface ScheduleRecordDisplayProps {
-  scheduleInfo: ScheduleRecord
-}
 
 const timeParser = (timeStr: string): string => {
   const splitTime: Array<string | number> = timeStr.split(':')
@@ -25,25 +24,53 @@ const ordinalParser = (days: string): string =>
         .replace('4', 'Fourth')
         .replace('5', 'Fifth')} week${days.length > 1 && 's'} of the month.`
 
+interface ScheduleRecordDisplayProps {
+  scheduleInfo: ScheduleRecord
+}
+
+const copy: CopyHolder = {
+  english: {
+    timeOpen: 'Time Open',
+    to: ' to ',
+    daysOpen: 'Days Open',
+    notes: 'Notes',
+  },
+  spanish: {
+    timeOpen: 'Tiempo Abierto',
+    to: ' a ',
+    daysOpen: 'Dia Abierto',
+    notes: 'Notas',
+  },
+}
+
 const ScheduleRecordDisplay = ({
   scheduleInfo,
 }: ScheduleRecordDisplayProps) => {
+  const { language } = useLanguage()
+  const activeCopy = copy[language]
+
   const { open_time, close_time, day, ordinal_open, notes } = scheduleInfo
 
   return (
     <section className={styles.ScheduleRecordDisplay}>
       {open_time && close_time && (
         <p>
-          Time Open: {timeParser(open_time)} to {timeParser(close_time)}
+          {activeCopy.timeOpen}: {timeParser(open_time)}
+          {activeCopy.to}
+          {timeParser(close_time)}
         </p>
       )}
       {day && (
         <p>
-          {`Day${day.length > 3 ? 's' : ''}`} Open: {day}
+          {`Day${day.length > 3 ? 's' : ''}`} {activeCopy.daysOpen}: {day}
         </p>
       )}
       {ordinal_open && <p>{ordinalParser(ordinal_open)}</p>}
-      {notes && <p>Notes: {notes}</p>}
+      {notes && (
+        <p>
+          {activeCopy.daysOpen}: {notes}
+        </p>
+      )}
     </section>
   )
 }

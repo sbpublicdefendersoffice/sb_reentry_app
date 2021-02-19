@@ -9,6 +9,10 @@
   user-select: none;
 }
 
+.label {
+  transition: 0.4s;
+}
+
 .input {
   opacity: 0;
   width: 0;

@@ -3,6 +3,7 @@ import { RecordListing } from '../ui'
 
 import useLanguage from '../hooks/useLanguage'
 import { SortedRecord } from '../types/records'
+import { CopyHolder } from '../types/language'
 
 import styles from './OrgRecordDisplay.module.css'
 
@@ -10,7 +11,7 @@ interface OrgRecordDisplayProps {
   sortedRecord: SortedRecord
 }
 
-const copy = {
+const copy: CopyHolder = {
   english: { website: 'Site: ', lang: 'Languages Spoken: ' },
   spanish: { website: 'Sitio: ', lang: 'Idiomas Hablados: ' },
 }
