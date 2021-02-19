@@ -27,7 +27,7 @@ const LangSwitcher = () => {
         className={styles.label}
         style={{ color: isChecked ? 'var(--deselected)' : 'var(--white)' }}
       >
-        English
+        {language === 'english' ? 'English' : 'Inglés'}
       </span>
       <input
         className={styles.input}
@@ -42,7 +42,7 @@ const LangSwitcher = () => {
         className={styles.label}
         style={{ color: isChecked ? 'var(--white)' : 'var(--deselected)' }}
       >
-        Spanish
+        {language === 'english' ? 'Spanish' : 'Español'}
       </span>
     </label>
   )
