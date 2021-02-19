@@ -6,11 +6,15 @@ import useMultipleListRecords from '../hooks/useMultipleListRecords'
 import { OrgRecordDisplay, RecordPane } from './'
 
 interface OrgPageContainerProps {
-  category: string
+  displayCategory: string
+  routeCategory: string
 }
 
-const OrgPageContainer = ({ category }: OrgPageContainerProps) => {
-  const lowCategory: string = category.toLowerCase()
+const OrgPageContainer = ({
+  displayCategory,
+  routeCategory,
+}: OrgPageContainerProps) => {
+  const lowCategory: string = routeCategory.toLowerCase()
 
   const { fetchedRecords, setFetchedRecords } = useMultipleListRecords(
     lowCategory,
@@ -24,11 +28,12 @@ const OrgPageContainer = ({ category }: OrgPageContainerProps) => {
         <Head>
           <title>{`Santa Barbara Reentry | ${sortedRecord.name}`}</title>
         </Head>
-        {/* <RecordPane
+        <RecordPane
           orgInfo={fetchedRecords}
-          category={category}
+          displayCategory={displayCategory}
+          routeCategory={routeCategory}
           setRecords={setFetchedRecords}
-        /> */}
+        />
         <OrgRecordDisplay sortedRecord={sortedRecord} />
       </>
     )
