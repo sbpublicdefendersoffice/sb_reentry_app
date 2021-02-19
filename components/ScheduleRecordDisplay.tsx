@@ -1,9 +1,66 @@
 import useLanguage from '../hooks/useLanguage'
 
 import { ScheduleRecord } from '../types/records'
-import { CopyHolder } from '../types/language'
+import { CopyHolder, Language } from '../types/language'
 
 import styles from './ScheduleRecordDisplay.module.css'
+
+const copy: CopyHolder = {
+  english: {
+    timeOpen: 'Time Open',
+    to: ' to ',
+    daysOpen: 'Days Open',
+    notes: 'Notes',
+    everyWeek: 'Open Every Week',
+    first: 'First',
+    second: 'Second',
+    third: 'Third',
+    fourth: 'Fourth',
+    fifth: 'Fifth',
+    week: 'week',
+    ofMonth: 'of the month.',
+  },
+  spanish: {
+    timeOpen: 'Tiempo Abierto',
+    to: ' a ',
+    daysOpen: 'Dia Abierto',
+    notes: 'Notas',
+    everyWeek: 'Abierto Todas Las Semanas',
+    first: 'Primero',
+    second: 'Segundo',
+    third: 'Tercero',
+    fourth: 'Cuarto',
+    fifth: 'Quinto',
+    week: 'semana',
+    ofMonth: 'del mes.',
+  },
+}
+
+const ordinalParser = (
+  days: string,
+  langOption: { language: Language },
+): string => {
+  const { language } = langOption
+  const activeCopy = copy[language]
+  const {
+    everyWeek,
+    first,
+    second,
+    third,
+    fourth,
+    fifth,
+    week,
+    ofMonth,
+  } = activeCopy
+  return days === '1, 2, 3, 4, 5'
+    ? everyWeek
+    : `Open ${days
+        .replace('1', first)
+        .replace('2', second)
+        .replace('3', third)
+        .replace('4', fourth)
+        .replace('5', fifth)} ${week}${days.length > 1 && 's'} ${ofMonth}.`
+}
 
 const timeParser = (timeStr: string): string => {
   const splitTime: Array<string | number> = timeStr.split(':')
@@ -14,33 +71,8 @@ const timeParser = (timeStr: string): string => {
   return `${splitTime[0]}:${splitTime[1]} ${amOrPm}`
 }
 
-const ordinalParser = (days: string): string =>
-  days === '1, 2, 3, 4, 5'
-    ? 'Open Every Week'
-    : `Open ${days
-        .replace('1', 'First')
-        .replace('2', 'Second')
-        .replace('3', 'Third')
-        .replace('4', 'Fourth')
-        .replace('5', 'Fifth')} week${days.length > 1 && 's'} of the month.`
-
 interface ScheduleRecordDisplayProps {
   scheduleInfo: ScheduleRecord
-}
-
-const copy: CopyHolder = {
-  english: {
-    timeOpen: 'Time Open',
-    to: ' to ',
-    daysOpen: 'Days Open',
-    notes: 'Notes',
-  },
-  spanish: {
-    timeOpen: 'Tiempo Abierto',
-    to: ' a ',
-    daysOpen: 'Dia Abierto',
-    notes: 'Notas',
-  },
 }
 
 const ScheduleRecordDisplay = ({
@@ -65,7 +97,7 @@ const ScheduleRecordDisplay = ({
           {`Day${day.length > 3 ? 's' : ''}`} {activeCopy.daysOpen}: {day}
         </p>
       )}
-      {ordinal_open && <p>{ordinalParser(ordinal_open)}</p>}
+      {ordinal_open && <p>{ordinalParser(ordinal_open, { language })}</p>}
       {notes && (
         <p>
           {activeCopy.daysOpen}: {notes}
