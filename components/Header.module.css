@@ -19,7 +19,7 @@
 .Title {
   color: var(--white);
   grid-area: title;
-  font-weight: 400;
+  font-weight: 100;
 }
 
 .Logo {

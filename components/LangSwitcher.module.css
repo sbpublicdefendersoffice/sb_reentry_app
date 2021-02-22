@@ -5,12 +5,13 @@
   display: flex;
   cursor: pointer;
   color: var(--white);
-  font-size: 1.5rem;
+  font-size: var(--large-text);
   user-select: none;
 }
 
 .label {
   transition: 0.4s;
+  font-weight: 100;
 }
 
 .input {
@@ -20,7 +21,7 @@
 }
 
 .slider {
-  margin: 0 0.25rem;
+  margin: 0 var(--margin-sm);
   width: 3rem;
   height: 1.75rem;
   border: 0.25rem solid var(--highlight);

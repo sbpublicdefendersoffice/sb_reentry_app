@@ -10,7 +10,7 @@
   cursor: pointer;
   color: var(--white);
   font-size: var(--xlrg-text);
-  margin: 0 var(--margin-sm) 0 var(--margin-sm);
+  margin: 0 var(--margin-sm);
 }
 
 .Arrows:active {
