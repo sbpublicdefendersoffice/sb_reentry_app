@@ -39,7 +39,10 @@ const LangSwitcher = () => {
     <label className={styles.LangSwitcher} htmlFor="lang-input">
       <span
         className={styles.label}
-        style={{ color: isChecked ? 'var(--deselected)' : 'var(--dark)' }}
+        style={{
+          color: isChecked ? 'var(--deselected)' : 'var(--dark)',
+          fontWeight: isChecked ? 100 : 400,
+        }}
       >
         {activeCopy.english}
       </span>
@@ -54,7 +57,10 @@ const LangSwitcher = () => {
       <span className={styles.slider} />
       <span
         className={styles.label}
-        style={{ color: isChecked ? 'var(--dark)' : 'var(--deselected)' }}
+        style={{
+          color: isChecked ? 'var(--dark)' : 'var(--deselected)',
+          fontWeight: isChecked ? 400 : 100,
+        }}
       >
         {activeCopy.spanish}
       </span>

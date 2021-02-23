@@ -43,3 +43,29 @@
 .input:checked + .slider::before {
   transform: translateX(1.25rem);
 }
+
+@media (max-width: 500px) {
+  .LangSwitcher {
+    left: 0;
+    transform: none;
+    font-size: var(--standard-text);
+  }
+
+  .label {
+    font-weight: 400;
+  }
+
+  .slider {
+    height: 1.25rem;
+    width: 2.25rem;
+  }
+
+  .slider::before {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .input:checked + .slider::before {
+    transform: translateX(1rem);
+  }
+}
