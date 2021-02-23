@@ -17,7 +17,7 @@
 
 .IconTile:hover > a,
 .IconTile:active > a {
-  color: var(--white);
+  color: var(--light);
 }
 
 .Link {

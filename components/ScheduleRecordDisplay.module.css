@@ -1,7 +1,7 @@
 .ScheduleRecordDisplay {
   width: 100%;
   margin: var(--margin-std) auto;
-  border-bottom: var(--border-width) solid var(--light-text);
+  border-bottom: var(--border-width) solid var(--light-2);
 }
 
 .ScheduleRecordDisplay > * {

@@ -20,5 +20,5 @@
 .active:hover,
 .active:active {
   background-color: var(--primary);
-  color: var(--white);
+  color: var(--light);
 }

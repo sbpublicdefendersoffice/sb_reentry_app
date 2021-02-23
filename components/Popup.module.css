@@ -3,6 +3,6 @@
   position: fixed;
   z-index: 10000;
   background-color: var(--highlight-2);
-  color: var(--light-text);
+  color: var(--light-2);
   padding: var(--pad-sm) var(--pad-std);
 }

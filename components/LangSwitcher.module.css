@@ -4,8 +4,8 @@
   left: 50%;
   display: flex;
   cursor: pointer;
-  background-color: var(--light-text);
-  color: var(--white);
+  background-color: var(--light-2);
+  color: var(--light);
   font-size: var(--med-text);
   user-select: none;
   transform: translateX(-50%);
@@ -36,7 +36,7 @@
   content: '';
   width: 1.25rem;
   height: 1.25rem;
-  background-color: var(--white);
+  background-color: var(--light);
   transition: 0.4s;
 }
 

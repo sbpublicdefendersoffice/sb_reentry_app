@@ -10,11 +10,11 @@
 .ButtonText {
   margin: 0.5rem;
   font-size: var(--med-text);
-  color: var(--white);
+  color: var(--light);
 }
 
 .Button:active {
-  background-color: var(--white);
+  background-color: var(--light);
   border-color: var(--highlight);
 }
 
@@ -25,8 +25,8 @@
 .Button:disabled {
   user-select: none;
   pointer-events: none;
-  background-color: var(--light-text);
-  border-color: var(--light-text);
+  background-color: var(--light-2);
+  border-color: var(--light-2);
 }
 
 .Button:disabled > .ButtonText {

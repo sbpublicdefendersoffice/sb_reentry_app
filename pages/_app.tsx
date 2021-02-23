@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { Language, ENGLISH, SPANISH } from '../types/language'
 import { Provider as LangProvider } from '../hooks/useLanguage'
-import { Header, LangSwitcher } from '../components'
+import { Footer, Header, LangSwitcher } from '../components'
 import { PublicPage } from '../ui'
 
 import '../styles/globals.css'
@@ -44,6 +44,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <PublicPage>
             <Component {...pageProps} />
           </PublicPage>
+          <Footer />
         </LangProvider>
       )}
     </>
