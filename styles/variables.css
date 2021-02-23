@@ -18,7 +18,7 @@
   --pad-sm: 0.25rem;
   --pad-std: 0.5rem;
   --pad-lg: 1rem;
-  --screen-minus-header: calc(100vh - 10rem);
+  --screen-minus-header: calc(100vh - 7rem);
 
   /* Text Variables */
   --standard-text: 1rem;

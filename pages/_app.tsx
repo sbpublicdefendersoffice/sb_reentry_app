@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { Language, ENGLISH, SPANISH } from '../types/language'
 import { Provider as LangProvider } from '../hooks/useLanguage'
-import { Header, LangSwitcher, Navigator } from '../components'
+import { Header, LangSwitcher } from '../components'
 import { PublicPage } from '../ui'
 
 import '../styles/globals.css'
@@ -40,7 +40,6 @@ const App = ({ Component, pageProps }: AppProps) => {
       {language && (
         <LangProvider value={{ language, setLanguage }}>
           <LangSwitcher />
-          <Navigator />
           <Header />
           <PublicPage>
             <Component {...pageProps} />

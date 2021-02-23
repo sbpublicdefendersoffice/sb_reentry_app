@@ -16,7 +16,7 @@
 
 .Details[open] > .summary {
   background-color: var(--white);
-  color: var(--black);
+  color: var(--text);
   border: var(--border-width) solid var(--deselected);
   border-radius: var(--radius-small);
 }
