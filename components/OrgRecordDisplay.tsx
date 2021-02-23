@@ -25,7 +25,7 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   return (
     <div className={styles.OrgRecordDisplay} role="list">
       <RecordListing border={false} className={styles.listing}>
-        <h2 className={styles.heading}>{name}</h2>
+        <h1 className={styles.heading}>{name}</h1>
         {website && (
           <p>
             {activeCopy.website}

@@ -1,7 +1,7 @@
 .Button {
   min-height: 2.5rem;
-  border: none;
-  background-color: var(--primary);
+  background-color: var(--highlight);
+  border: solid var(--border-width) var(--highlight);
   border-radius: var(--radius-small);
   cursor: pointer;
   outline: none;
@@ -15,9 +15,20 @@
 
 .Button:active {
   background-color: var(--white);
-  border: solid var(--border-width) var(--highlight);
+  border-color: var(--highlight);
 }
 
 .Button:active > .ButtonText {
   color: var(--highlight);
+}
+
+.Button:disabled {
+  user-select: none;
+  pointer-events: none;
+  background-color: var(--light-text);
+  border-color: var(--light-text);
+}
+
+.Button:disabled > .ButtonText {
+  color: var(--deselected);
 }
