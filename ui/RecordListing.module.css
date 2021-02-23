@@ -1,7 +1,8 @@
 .RecordListing {
-  width: 100%;
+  /* width: 100%; */
   margin: 0.5rem 0;
   font-size: var(--med-heading);
+  font-weight: 400;
   border-radius: var(--radius-small);
   padding: var(--pad-lg);
   text-align: center;

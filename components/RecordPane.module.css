@@ -1,6 +1,6 @@
 .RecordPane {
   align-self: flex-start;
-  padding: var(--pad-std);
+  padding: var(--pad-lg);
   display: flex;
   flex-direction: column;
   height: var(--screen-minus-header);
@@ -15,8 +15,17 @@
   font-weight: 400;
 }
 
+.details {
+  padding: var(--pad-std);
+  display: inherit;
+  flex-direction: inherit;
+  height: inherit;
+  overflow: inherit;
+}
+
 @media (max-width: 700px) {
   .RecordPane {
-    display: none;
+    width: 100%;
+    height: max-content;
   }
 }

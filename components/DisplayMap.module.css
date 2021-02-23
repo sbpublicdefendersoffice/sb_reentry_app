@@ -4,14 +4,14 @@
   width: 100%;
 }
 
-.SearchPageSize {
-  height: var(--screen-minus-header);
-}
-
-.OrgPageSize {
+.DisplayMap[open] {
   height: 30rem;
 }
 
+.SearchPageSize {
+  height: var(--screen-minus-header) !important;
+}
+
 .MapBox {
-  border-radius: var(--radius-small);
+  outline: none;
 }

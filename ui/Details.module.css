@@ -1,0 +1,28 @@
+.Details {
+  user-select: none;
+  font-size: var(--large-text);
+  overflow: hidden;
+  text-align: start;
+}
+
+.summary {
+  padding: var(--pad-std);
+  outline: none;
+  display: none;
+  background-color: var(--light-text);
+  color: var(--deselected);
+  border-radius: var(--radius-small);
+}
+
+.Details[open] > .summary {
+  background-color: var(--white);
+  color: var(--black);
+  border: var(--border-width) solid var(--deselected);
+  border-radius: var(--radius-small);
+}
+
+@media (max-width: 700px) {
+  .summary {
+    display: block;
+  }
+}

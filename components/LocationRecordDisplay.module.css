@@ -13,12 +13,12 @@
   flex: 1;
 }
 
+.heading {
+  font-weight: 400;
+}
+
 @media (max-width: 700px) {
   .LocationRecordDisplay {
     flex-direction: column;
   }
-}
-
-.heading {
-  font-weight: 400;
 }

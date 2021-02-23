@@ -5,3 +5,9 @@
   flex-wrap: wrap;
   padding: 0 var(--pad-std);
 }
+
+@media (max-width: 700px) {
+  .PublicPage {
+    flex-direction: column;
+  }
+}
