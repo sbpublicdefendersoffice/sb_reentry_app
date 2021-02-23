@@ -14,11 +14,13 @@ const Details = forwardRef<HTMLDetailsElement, DetailsProps>(
     useEffect(() => {
       const openDetailsOnLargeScreen = (): void => {
         // @ts-ignore
-        const detailsDomElement: HTMLDetailsElement = document.getElementById(
-          'details-element',
+        const detailsDomElements: NodeList = document.querySelectorAll(
+          '.details-element',
         )
-        if (!detailsDomElement.open && innerWidth >= 700)
-          detailsDomElement.open = true
+        if (innerWidth >= 700)
+          detailsDomElements.forEach((ele: HTMLDetailsElement): void => {
+            if (!ele.open) ele.open = true
+          })
       }
 
       addEventListener('resize', openDetailsOnLargeScreen)
@@ -29,7 +31,7 @@ const Details = forwardRef<HTMLDetailsElement, DetailsProps>(
     return (
       <details
         ref={ref}
-        className={`${styles.Details} ${className}`}
+        className={`${styles.Details} ${className} details-element`}
         id="details-element"
         {...other}
       >

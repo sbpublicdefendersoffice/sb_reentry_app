@@ -4,7 +4,7 @@
   font-size: var(--med-heading);
   font-weight: 400;
   border-radius: var(--radius-small);
-  padding: var(--pad-lg);
+  padding: var(--pad-lg) 0;
   text-align: center;
   cursor: pointer;
 }
