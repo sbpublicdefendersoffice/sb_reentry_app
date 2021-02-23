@@ -1,6 +1,6 @@
 .Details {
   user-select: none;
-  font-size: var(--large-text);
+  font-size: var(--med-text);
   overflow: hidden;
   text-align: start;
 }

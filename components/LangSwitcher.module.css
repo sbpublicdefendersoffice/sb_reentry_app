@@ -6,7 +6,7 @@
   cursor: pointer;
   background-color: var(--light-text);
   color: var(--white);
-  font-size: var(--large-text);
+  font-size: var(--med-text);
   user-select: none;
   transform: translateX(-50%);
 }

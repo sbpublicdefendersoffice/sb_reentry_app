@@ -9,7 +9,7 @@
 
 .ButtonText {
   margin: 0.5rem;
-  font-size: var(--med-heading);
+  font-size: var(--med-text);
   color: var(--white);
 }
 

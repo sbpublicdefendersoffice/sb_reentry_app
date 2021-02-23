@@ -18,6 +18,7 @@
 
 .Title {
   color: var(--primary);
+  font-size: var(--large-text);
   grid-area: title;
   font-weight: 100;
 }

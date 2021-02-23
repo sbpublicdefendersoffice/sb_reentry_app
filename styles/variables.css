@@ -22,7 +22,6 @@
 
   /* Text Variables */
   --standard-text: 1rem;
-  --med-heading: 1.3rem;
-  --large-text: 1.6rem;
-  --xlrg-text: 2rem;
+  --med-text: 1.3rem;
+  --large-text: 2rem;
 }

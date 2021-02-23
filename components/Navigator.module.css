@@ -9,7 +9,7 @@
   user-select: none;
   cursor: pointer;
   color: var(--white);
-  font-size: var(--xlrg-text);
+  font-size: var(--large-text);
   margin: 0 var(--margin-sm);
 }
 
