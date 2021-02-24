@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { Language, ENGLISH, SPANISH } from '../types/language'
 import { Provider as LangProvider } from '../hooks/useLanguage'
-import { Header, LangSwitcher, Navigator } from '../components'
+import { Footer, Header, LangSwitcher } from '../components'
 import { PublicPage } from '../ui'
 
 import '../styles/globals.css'
@@ -36,19 +36,15 @@ const App = ({ Component, pageProps }: AppProps) => {
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
         />
         <title>Santa Barbara Reentry</title>
-        <link
-          href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
-          rel="stylesheet"
-        />
       </Head>
       {language && (
         <LangProvider value={{ language, setLanguage }}>
           <LangSwitcher />
-          <Navigator />
           <Header />
           <PublicPage>
             <Component {...pageProps} />
           </PublicPage>
+          <Footer />
         </LangProvider>
       )}
     </>

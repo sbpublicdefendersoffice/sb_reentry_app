@@ -3,5 +3,5 @@
   border: var(--border-width) solid var(--primary);
   border-radius: var(--radius-small);
   margin: var(--margin-std);
-  font-size: var(--large-text);
+  font-size: var(--med-text);
 }

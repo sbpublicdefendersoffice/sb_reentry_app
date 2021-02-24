@@ -1,11 +1,11 @@
 :root {
   /* Color Variables */
-  --white: #fff;
-  --text: #292929;
+  --light: #fff;
+  --dark: #292929;
   --primary: #12385e;
   --secondary: #4c7fa1;
   --highlight: #005ea2;
-  --light-text: #e5e5e5;
+  --light-2: #e5e5e5;
   --highlight-2: #cd7f32;
   --deselected: #7e7e7e;
 
@@ -18,11 +18,10 @@
   --pad-sm: 0.25rem;
   --pad-std: 0.5rem;
   --pad-lg: 1rem;
-  --screen-minus-header: calc(100vh - 10rem);
+  --screen-minus-header: calc(100vh - 7rem);
 
   /* Text Variables */
   --standard-text: 1rem;
-  --med-heading: 1.3rem;
-  --large-text: 1.6rem;
-  --xlrg-text: 2rem;
+  --med-text: 1.3rem;
+  --large-text: 2rem;
 }

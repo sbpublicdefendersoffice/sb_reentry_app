@@ -1,4 +1,5 @@
 export { default as Button } from './Button'
+export { default as Details } from './Details'
 export { default as IconTile } from './IconTile'
 export { default as Input } from './Input'
 export { default as PublicPage } from './PublicPage'

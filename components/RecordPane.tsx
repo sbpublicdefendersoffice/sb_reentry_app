@@ -2,7 +2,7 @@ import { SetStateAction, Dispatch } from 'react'
 import { useRouter } from 'next/router'
 
 import { Search } from '../components'
-import { RecordListing } from '../ui'
+import { RecordListing, Details } from '../ui'
 
 import { TranslatedRecordResponse } from '../types/records'
 
@@ -38,23 +38,29 @@ const RecordPane = ({
       {orgInfo && (
         <Search originalRecords={orgInfo.records} setRecords={setRecords} />
       )}
-      {Boolean(orgInfo?.records?.length) && (
-        <>
-          {orgInfo?.records?.map(record => (
-            <RecordListing
-              key={record.id}
-              title={record.id}
-              interactive
-              onClick={e =>
-                // @ts-ignore
-                push(`${url}/[id]`, `${url}/${e.target.title}`)
-              }
-            >
-              {record.fields.org_name}
-            </RecordListing>
-          ))}
-        </>
-      )}
+      <Details
+        className={styles.details}
+        open
+        summary={`${displayCategory} Records`}
+      >
+        {Boolean(orgInfo?.records?.length) && (
+          <>
+            {orgInfo?.records?.map(record => (
+              <RecordListing
+                key={record.id}
+                title={record.id}
+                interactive
+                onClick={e =>
+                  // @ts-ignore
+                  push(`${url}/[id]`, `${url}/${e.target.title}`)
+                }
+              >
+                {record.fields.org_name}
+              </RecordListing>
+            ))}
+          </>
+        )}
+      </Details>
     </div>
   )
 }

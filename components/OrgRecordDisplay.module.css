@@ -4,6 +4,11 @@
   flex: 1;
 }
 
+.heading {
+  font-weight: 400;
+  font-size: var(--large-text);
+}
+
 .listing {
   cursor: auto;
 }

@@ -75,7 +75,7 @@ const LocationRecordDisplay = ({
         {name && <p>{name}</p>}
         {address && (
           <>
-            <h3>{activeCopy.address}:</h3>
+            <h3 className={styles.heading}>{activeCopy.address}:</h3>
             <address>
               <p>{fullAddress}</p>
               <p>{cityStateZip}</p>
@@ -96,7 +96,7 @@ const LocationRecordDisplay = ({
         )}
         {phone && (
           <>
-            <h3>{activeCopy.phone}:</h3>
+            <h3 className={styles.heading}>{activeCopy.phone}:</h3>
             <p>{phone}</p>
             <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
               {activeCopy.call}
@@ -105,7 +105,7 @@ const LocationRecordDisplay = ({
         )}
         {website && (
           <>
-            <h3>{activeCopy.locationSite}:</h3>
+            <h3 className={styles.heading}>{activeCopy.locationSite}:</h3>
             <a href={website} target="_blank" rel="noopener noreferrer">
               {website}
             </a>
@@ -113,13 +113,13 @@ const LocationRecordDisplay = ({
         )}
         {services && (
           <>
-            <h3>{activeCopy.services}:</h3>
+            <h3 className={styles.heading}>{activeCopy.services}:</h3>
             <p>{services}</p>
           </>
         )}
         {email && (
           <>
-            <h3>{activeCopy.email}:</h3>
+            <h3 className={styles.heading}>{activeCopy.email}:</h3>
             <p>
               <a
                 href={`mailto:${email}`}
@@ -134,7 +134,7 @@ const LocationRecordDisplay = ({
         {notes && <p>{notes}</p>}
         {Boolean(schedule.length) && (
           <>
-            <h3>{activeCopy.schedule}:</h3>
+            <h3 className={styles.heading}>{activeCopy.schedule}:</h3>
             {schedule.map((scheduleInfo, i) => (
               <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
             ))}

@@ -4,6 +4,7 @@ import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
 import { mapboxStylingURL, mapContainerStyle } from '../constants/maps'
 import useMapInfo from '../hooks/useMapInfo'
 import MapMarker from './MapMarker'
+import { Details } from '../ui'
 
 import { LocationRecord } from '../types/records'
 
@@ -22,10 +23,11 @@ const DisplayMap = ({ latLongInfo, page }: DisplayMapProps) => {
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
 
   return (
-    <div
-      className={`${styles.DisplayMap} ${
-        page === 'search' ? styles.SearchPageSize : styles.OrgPageSize
-      }`}
+    <Details
+      open
+      summary="Map"
+      className={`${styles.DisplayMap} 
+      ${page === 'search' ? styles.SearchPageSize : ''}`}
     >
       {
         // @ts-ignore
@@ -47,7 +49,7 @@ const DisplayMap = ({ latLongInfo, page }: DisplayMapProps) => {
           <ScaleControl measurement="mi" position="top-right" />
         </MapboxMap>
       }
-    </div>
+    </Details>
   )
 }
 

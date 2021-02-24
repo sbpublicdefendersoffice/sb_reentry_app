@@ -1,9 +1,10 @@
 .RecordListing {
-  width: 100%;
+  /* width: 100%; */
   margin: 0.5rem 0;
-  font-size: var(--med-heading);
+  font-size: var(--med-text);
+  font-weight: 400;
   border-radius: var(--radius-small);
-  padding: var(--pad-lg);
+  padding: var(--pad-lg) 0;
   text-align: center;
   cursor: pointer;
 }
@@ -19,5 +20,5 @@
 .active:hover,
 .active:active {
   background-color: var(--primary);
-  color: var(--white);
+  color: var(--light);
 }

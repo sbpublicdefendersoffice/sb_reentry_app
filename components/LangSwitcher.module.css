@@ -1,16 +1,19 @@
 .LangSwitcher {
+  padding: var(--pad-sm) var(--pad-std);
   position: absolute;
-  left: 0.5rem;
-  top: 0.5rem;
+  left: 50%;
   display: flex;
   cursor: pointer;
-  color: var(--white);
-  font-size: 1.5rem;
+  background-color: var(--light-2);
+  color: var(--light);
+  font-size: var(--med-text);
   user-select: none;
+  transform: translateX(-50%);
 }
 
 .label {
   transition: 0.4s;
+  font-weight: 100;
 }
 
 .input {
@@ -20,11 +23,11 @@
 }
 
 .slider {
-  margin: 0 0.25rem;
+  margin: 0 var(--margin-sm);
   width: 3rem;
   height: 1.75rem;
-  border: 0.25rem solid var(--highlight);
-  background-color: var(--highlight);
+  border: 0.25rem solid var(--secondary);
+  background-color: var(--secondary);
   transition: 0.4s;
 }
 
@@ -33,10 +36,36 @@
   content: '';
   width: 1.25rem;
   height: 1.25rem;
-  background-color: var(--white);
+  background-color: var(--light);
   transition: 0.4s;
 }
 
 .input:checked + .slider::before {
   transform: translateX(1.25rem);
+}
+
+@media (max-width: 500px) {
+  .LangSwitcher {
+    left: 0;
+    transform: none;
+    font-size: var(--standard-text);
+  }
+
+  .label {
+    font-weight: 400;
+  }
+
+  .slider {
+    height: 1.25rem;
+    width: 2.25rem;
+  }
+
+  .slider::before {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .input:checked + .slider::before {
+    transform: translateX(1rem);
+  }
 }

@@ -14,13 +14,14 @@ body {
   min-height: 100vh;
   min-width: 100vw;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  color: var(--text);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: var(--dark);
 }
 
 a {
   text-decoration: none;
-  color: var(--text);
+  color: var(--dark);
 }
 
 a:not(.not-text-link) {
@@ -29,5 +30,5 @@ a:not(.not-text-link) {
 }
 
 a:hover {
-  color: var(--text);
+  color: var(--dark);
 }
