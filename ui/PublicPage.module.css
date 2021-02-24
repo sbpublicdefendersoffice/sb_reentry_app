@@ -1,5 +1,6 @@
 .PublicPage {
   width: 100%;
+  min-height: var(--screen-minus-header);
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

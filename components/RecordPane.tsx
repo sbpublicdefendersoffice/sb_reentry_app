@@ -1,7 +1,7 @@
 import { SetStateAction, Dispatch } from 'react'
 import { useRouter } from 'next/router'
 
-import { Search } from '../components'
+import { Search, LeafLoader } from '../components'
 import { RecordListing, Details } from '../ui'
 
 import { TranslatedRecordResponse } from '../types/records'
@@ -43,7 +43,7 @@ const RecordPane = ({
         open
         summary={`${displayCategory} Records`}
       >
-        {Boolean(orgInfo?.records?.length) && (
+        {Boolean(orgInfo?.records?.length) ? (
           <>
             {orgInfo?.records?.map(record => (
               <RecordListing
@@ -59,6 +59,8 @@ const RecordPane = ({
               </RecordListing>
             ))}
           </>
+        ) : (
+          <LeafLoader />
         )}
       </Details>
     </div>

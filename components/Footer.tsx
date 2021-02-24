@@ -26,7 +26,7 @@ const Footer = () => (
       </div>
     </div>
     <em>
-      <span className={styles.copyright}>{copyright}</span>
+      <span className={styles.copyright}>{copyright}</span>{' '}
       <a
         className={styles.copyright}
         href="https://www.countyofsb.org/defender"
