@@ -1,4 +1,4 @@
-import { DisplayMap, LocationRecordDisplay } from './'
+import { DisplayMap, LocationRecordDisplay, LeafLoader } from './'
 import { RecordListing } from '../ui'
 
 import useLanguage from '../hooks/useLanguage'
@@ -19,6 +19,8 @@ const copy: CopyHolder = {
 const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
+
+  if (!sortedRecord) return <LeafLoader />
 
   const { locations, name, website, languages_spoken, notes } = sortedRecord
 

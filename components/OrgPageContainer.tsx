@@ -10,6 +10,8 @@ interface OrgPageContainerProps {
   routeCategory: string
 }
 
+import styles from './OrgPageContainer.module.css'
+
 const OrgPageContainer = ({
   displayCategory,
   routeCategory,
@@ -23,20 +25,18 @@ const OrgPageContainer = ({
   const { sortedRecord } = useSingleRecord()
 
   return (
-    sortedRecord && (
-      <>
-        <Head>
-          <title>{`Santa Barbara Reentry | ${sortedRecord.name}`}</title>
-        </Head>
-        <RecordPane
-          orgInfo={fetchedRecords}
-          displayCategory={displayCategory}
-          routeCategory={routeCategory}
-          setRecords={setFetchedRecords}
-        />
-        <OrgRecordDisplay sortedRecord={sortedRecord} />
-      </>
-    )
+    <div className={styles.OrgPageContainer}>
+      <Head>
+        <title>{`Santa Barbara Reentry | ${sortedRecord?.name}`}</title>
+      </Head>
+      <RecordPane
+        orgInfo={fetchedRecords}
+        displayCategory={displayCategory}
+        routeCategory={routeCategory}
+        setRecords={setFetchedRecords}
+      />
+      <OrgRecordDisplay sortedRecord={sortedRecord} />
+    </div>
   )
 }
 
