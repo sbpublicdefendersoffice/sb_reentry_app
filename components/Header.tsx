@@ -2,7 +2,7 @@ import NextLink from 'next/link'
 
 import styles from './Header.module.css'
 
-import { FreshStartLogo } from './'
+import { FreshStartLogo } from '../ui'
 
 const Header = () => (
   <header role="banner" className={styles.Header}>

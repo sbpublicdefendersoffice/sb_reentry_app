@@ -1,7 +1,6 @@
 export { default as CategoryPageContainer } from './CategoryPageContainer'
 export { default as DisplayMap } from './DisplayMap'
 export { default as Footer } from './Footer'
-export { default as FreshStartLogo } from './FreshStartLogo'
 export { default as Header } from './Header'
 export { default as LangSwitcher } from './LangSwitcher'
 export { default as LocationRecordDisplay } from './LocationRecordDisplay'

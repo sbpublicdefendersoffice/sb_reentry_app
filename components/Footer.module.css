@@ -14,7 +14,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 40% auto min-content 1% min-content;
-  grid-template-areas: 'nav . logo1 . logo2';
+  grid-template-areas: 'nav . logo2 . logo1';
 }
 
 .Nav {
@@ -34,6 +34,15 @@
 
 .Logo1 {
   grid-area: logo1;
+  background-color: var(--primary);
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+}
+
+.leaf {
+  width: 3.5rem;
+  transform: translateY(-0.5rem);
 }
 
 .Logo2 {
@@ -47,7 +56,7 @@
 @media (max-width: 500px) {
   .container {
     grid-template-columns: 50% auto min-content min-content;
-    grid-template-areas: 'nav . logo1 logo2';
+    grid-template-areas: 'nav . logo2 logo1';
   }
 
   .Nav {
