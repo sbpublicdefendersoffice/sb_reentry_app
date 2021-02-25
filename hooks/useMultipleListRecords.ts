@@ -4,6 +4,7 @@ import { fetchRecordsByCategory } from '../services/GET'
 import useLanguage from './useLanguage'
 
 import { TranslatedRecordResponse, OrgRecord } from '../types/records'
+import { SPANISH } from '../types/language'
 
 const sortByName = (a: OrgRecord, b: OrgRecord): number =>
   a.fields.org_name?.localeCompare(b.fields.org_name)
@@ -32,7 +33,7 @@ const useMultipleListRecords = (category: string) => {
       const tempRecords = unsortedRecords
 
       //TODO: fix below temp hack for spanish language records
-      if (language === 'spanish') {
+      if (language === SPANISH) {
         tempRecords.records.map((record: OrgRecord) => {
           record.fields.org_name = record.fields.org_name_spanish
           record.fields.org_tags = record.fields.org_tags_spanish

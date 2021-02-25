@@ -11,6 +11,8 @@ import {
 import useLanguage from '../hooks/useLanguage'
 import { fetchSingleOrgRecord } from '../services/GET'
 
+import { SPANISH } from '../types/language'
+
 const useSingleRecord = () => {
   const [
     singleFetchedRecord,
@@ -95,7 +97,7 @@ const useSingleRecord = () => {
             : null
 
         if (locInfo.name && locInfo.name[i]) {
-          if (language === 'spanish') obj.name = locInfo.name_spanish[i]
+          if (language === SPANISH) obj.name = locInfo.name_spanish[i]
           else obj.name = locInfo.name[i]
         } else obj.name = null
 
@@ -107,7 +109,7 @@ const useSingleRecord = () => {
           locInfo.website && locInfo.website[i] ? locInfo.website[i] : null
 
         if (locInfo.notes && locInfo.notes[i]) {
-          if (language === 'spanish') obj.notes = locInfo.notes_spanish[i]
+          if (language === SPANISH) obj.notes = locInfo.notes_spanish[i]
           else obj.notes = locInfo.notes[i]
         } else obj.notes = null
 
@@ -119,13 +121,12 @@ const useSingleRecord = () => {
             : null
 
         if (locInfo.services && locInfo.services[i]) {
-          if (language === 'spanish') obj.services = locInfo.services_spanish[i]
+          if (language === SPANISH) obj.services = locInfo.services_spanish[i]
           else obj.services = locInfo.services[i]
         } else obj.services = null
 
         if (organizedRecord.name) {
-          if (language === 'spanish')
-            obj.org_name = organizedRecord.name_spanish
+          if (language === SPANISH) obj.org_name = organizedRecord.name_spanish
           else obj.org_name = organizedRecord.name
         } else obj.org_name = null
 
@@ -161,12 +162,12 @@ const useSingleRecord = () => {
             : null
 
         if (scheInfo.day && scheInfo.day[i]) {
-          if (language === 'spanish') obj.day = scheInfo.day_spanish[i]
+          if (language === SPANISH) obj.day = scheInfo.day_spanish[i]
           else obj.day = scheInfo.day[i]
         } else obj.day = null
 
         if (scheInfo.notes && scheInfo.notes[i]) {
-          if (language === 'spanish') obj.notes = scheInfo.notes_spanish[i]
+          if (language === SPANISH) obj.notes = scheInfo.notes_spanish[i]
           else obj.notes = scheInfo.notes[i]
         } else obj.notes = null
 
@@ -184,7 +185,7 @@ const useSingleRecord = () => {
         }
       })
 
-      if (language === 'spanish') {
+      if (language === SPANISH) {
         organizedRecord.name = organizedRecord.name_spanish
         organizedRecord.notes = organizedRecord.notes_spanish
         organizedRecord.languages_spoken =

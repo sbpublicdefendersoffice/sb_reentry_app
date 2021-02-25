@@ -16,11 +16,13 @@ const copy: CopyHolder = {
     orgInfo: 'Organization Info',
     website: 'Site: ',
     lang: 'Languages Spoken: ',
+    location: 'Locations',
   },
   spanish: {
     orgInfo: 'Información de la Organización',
     website: 'Sitio: ',
     lang: 'Idiomas Hablados: ',
+    location: 'Ubicaciones',
   },
 }
 
@@ -55,7 +57,7 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
       {Boolean(locations.length) && (
         <>
           <DisplayMap latLongInfo={locations} page="org" />
-          <Details open summary="Locations">
+          <Details open summary={activeCopy.location}>
             {locations.map((locationInfo, i) => (
               <LocationRecordDisplay key={i} locationInfo={locationInfo} />
             ))}

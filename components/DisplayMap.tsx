@@ -8,6 +8,7 @@ import { Details } from '../ui'
 import useLanguage from '../hooks/useLanguage'
 
 import { LocationRecord } from '../types/records'
+import { ENGLISH } from '../types/language'
 
 import styles from './DisplayMap.module.css'
 
@@ -27,7 +28,7 @@ const DisplayMap = ({ latLongInfo, page }: DisplayMapProps) => {
   return (
     <Details
       open
-      summary={language === 'english' ? 'Map' : 'Mapa'}
+      summary={language === ENGLISH ? 'Map' : 'Mapa'}
       className={`${styles.DisplayMap} 
       ${page === 'search' ? styles.SearchPageSize : ''}`}
     >

@@ -1,6 +1,6 @@
 .Header {
   width: 100%;
-  height: 7rem;
+  height: var(--header-size);
   background-color: var(--primary);
   display: flex;
   justify-content: center;

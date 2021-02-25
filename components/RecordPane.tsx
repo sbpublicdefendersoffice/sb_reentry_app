@@ -6,6 +6,7 @@ import { RecordListing, Details } from '../ui'
 import useLanguage from '../hooks/useLanguage'
 
 import { TranslatedRecordResponse } from '../types/records'
+import { ENGLISH } from '../types/language'
 
 import styles from './RecordPane.module.css'
 
@@ -44,7 +45,7 @@ const RecordPane = ({
         open
         className={styles.details}
         summary={`${displayCategory} ${
-          language === 'english' ? 'Records' : 'Registros'
+          language === ENGLISH ? 'Records' : 'Registros'
         }`}
       >
         {Boolean(orgInfo?.records?.length) ? (
