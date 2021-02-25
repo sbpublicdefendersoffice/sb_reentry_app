@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 
 import { Search, LeafLoader } from '../components'
 import { RecordListing, Details } from '../ui'
+import useLanguage from '../hooks/useLanguage'
 
 import { TranslatedRecordResponse } from '../types/records'
 
@@ -22,6 +23,7 @@ const RecordPane = ({
   setRecords,
 }: RecordPaneProps) => {
   const { push, route } = useRouter()
+  const { language } = useLanguage()
 
   const lowCategory: string = routeCategory.toLowerCase()
   const url: string = `/${lowCategory.replace(' ', '')}`
@@ -41,7 +43,9 @@ const RecordPane = ({
       <Details
         className={styles.details}
         open
-        summary={`${displayCategory} Records`}
+        summary={`${displayCategory} ${
+          language === 'english' ? 'Records' : 'Registros'
+        }`}
       >
         {Boolean(orgInfo?.records?.length) ? (
           <>

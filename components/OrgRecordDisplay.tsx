@@ -1,5 +1,5 @@
 import { DisplayMap, LocationRecordDisplay, LeafLoader } from './'
-import { RecordListing } from '../ui'
+import { Details } from '../ui'
 
 import useLanguage from '../hooks/useLanguage'
 import { SortedRecord } from '../types/records'
@@ -12,8 +12,16 @@ interface OrgRecordDisplayProps {
 }
 
 const copy: CopyHolder = {
-  english: { website: 'Site: ', lang: 'Languages Spoken: ' },
-  spanish: { website: 'Sitio: ', lang: 'Idiomas Hablados: ' },
+  english: {
+    orgInfo: 'Organization Info',
+    website: 'Site: ',
+    lang: 'Languages Spoken: ',
+  },
+  spanish: {
+    orgInfo: 'Información de la Organización',
+    website: 'Sitio: ',
+    lang: 'Idiomas Hablados: ',
+  },
 }
 
 const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
@@ -26,7 +34,7 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
 
   return (
     <div className={styles.OrgRecordDisplay} role="list">
-      <RecordListing border={false} className={styles.listing}>
+      <Details summary={activeCopy.orgInfo} className={styles.listing}>
         <h1 className={styles.heading}>{name}</h1>
         {website && (
           <p>
@@ -43,15 +51,15 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
           </p>
         )}
         {notes && <p>{notes}</p>}
-        {Boolean(locations.length) && (
-          <>
-            <DisplayMap latLongInfo={locations} page="org" />
-            {locations.map((locationInfo, i) => (
-              <LocationRecordDisplay key={i} locationInfo={locationInfo} />
-            ))}
-          </>
-        )}
-      </RecordListing>
+      </Details>
+      {Boolean(locations.length) && (
+        <>
+          <DisplayMap latLongInfo={locations} page="org" />
+          {locations.map((locationInfo, i) => (
+            <LocationRecordDisplay key={i} locationInfo={locationInfo} />
+          ))}
+        </>
+      )}
     </div>
   )
 }

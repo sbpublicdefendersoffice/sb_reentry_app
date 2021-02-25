@@ -2,6 +2,7 @@
   overflow: scroll;
   height: var(--screen-minus-header);
   flex: 1;
+  padding: var(--pad-std);
 }
 
 .heading {
@@ -15,4 +16,8 @@
 
 .listing > * {
   margin: 0 0 var(--margin-std) 0;
+}
+
+.listing > :not(summary) {
+  text-align: center;
 }
