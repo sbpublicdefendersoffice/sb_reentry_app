@@ -1,0 +1,10 @@
+.OrgPageContainer {
+  display: flex;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .OrgPageContainer {
+    flex-direction: column;
+  }
+}

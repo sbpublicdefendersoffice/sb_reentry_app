@@ -5,8 +5,10 @@ import { mapboxStylingURL, mapContainerStyle } from '../constants/maps'
 import useMapInfo from '../hooks/useMapInfo'
 import MapMarker from './MapMarker'
 import { Details } from '../ui'
+import useLanguage from '../hooks/useLanguage'
 
 import { LocationRecord } from '../types/records'
+import { ENGLISH } from '../types/language'
 
 import styles from './DisplayMap.module.css'
 
@@ -20,12 +22,13 @@ const MapboxMap = ReactMapboxGL({
 })
 
 const DisplayMap = ({ latLongInfo, page }: DisplayMapProps) => {
+  const { language } = useLanguage()
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
 
   return (
     <Details
       open
-      summary="Map"
+      summary={language === ENGLISH ? 'Map' : 'Mapa'}
       className={`${styles.DisplayMap} 
       ${page === 'search' ? styles.SearchPageSize : ''}`}
     >

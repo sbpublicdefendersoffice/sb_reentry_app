@@ -3,6 +3,7 @@
   font-size: var(--med-text);
   overflow: hidden;
   text-align: start;
+  padding: var(--pad-sm);
 }
 
 .summary {

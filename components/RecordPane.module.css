@@ -16,7 +16,6 @@
 }
 
 .details {
-  padding: var(--pad-std);
   display: inherit;
   flex-direction: inherit;
   height: inherit;

@@ -1,5 +1,5 @@
-import { DisplayMap, LocationRecordDisplay } from './'
-import { RecordListing } from '../ui'
+import { DisplayMap, LocationRecordDisplay, LeafLoader } from './'
+import { Details } from '../ui'
 
 import useLanguage from '../hooks/useLanguage'
 import { SortedRecord } from '../types/records'
@@ -12,19 +12,31 @@ interface OrgRecordDisplayProps {
 }
 
 const copy: CopyHolder = {
-  english: { website: 'Site: ', lang: 'Languages Spoken: ' },
-  spanish: { website: 'Sitio: ', lang: 'Idiomas Hablados: ' },
+  english: {
+    orgInfo: 'Organization Info',
+    website: 'Site: ',
+    lang: 'Languages Spoken: ',
+    location: 'Locations',
+  },
+  spanish: {
+    orgInfo: 'Información de la Organización',
+    website: 'Sitio: ',
+    lang: 'Idiomas Hablados: ',
+    location: 'Ubicaciones',
+  },
 }
 
 const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
+  if (!sortedRecord) return <LeafLoader />
+
   const { locations, name, website, languages_spoken, notes } = sortedRecord
 
   return (
     <div className={styles.OrgRecordDisplay} role="list">
-      <RecordListing border={false} className={styles.listing}>
+      <Details open summary={activeCopy.orgInfo} className={styles.listing}>
         <h1 className={styles.heading}>{name}</h1>
         {website && (
           <p>
@@ -41,15 +53,17 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
           </p>
         )}
         {notes && <p>{notes}</p>}
-        {Boolean(locations.length) && (
-          <>
-            <DisplayMap latLongInfo={locations} page="org" />
+      </Details>
+      {Boolean(locations.length) && (
+        <>
+          <DisplayMap latLongInfo={locations} page="org" />
+          <Details open summary={activeCopy.location}>
             {locations.map((locationInfo, i) => (
               <LocationRecordDisplay key={i} locationInfo={locationInfo} />
             ))}
-          </>
-        )}
-      </RecordListing>
+          </Details>
+        </>
+      )}
     </div>
   )
 }

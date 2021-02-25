@@ -40,7 +40,7 @@ const LangSwitcher = () => {
       <span
         className={styles.label}
         style={{
-          color: isChecked ? 'var(--deselected)' : 'var(--dark)',
+          color: isChecked ? 'var(--deselected)' : 'var(--primary)',
           fontWeight: isChecked ? 100 : 400,
         }}
       >
@@ -58,7 +58,7 @@ const LangSwitcher = () => {
       <span
         className={styles.label}
         style={{
-          color: isChecked ? 'var(--dark)' : 'var(--deselected)',
+          color: isChecked ? 'var(--primary)' : 'var(--deselected)',
           fontWeight: isChecked ? 400 : 100,
         }}
       >

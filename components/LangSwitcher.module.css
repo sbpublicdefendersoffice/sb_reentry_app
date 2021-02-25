@@ -1,14 +1,13 @@
 .LangSwitcher {
   padding: var(--pad-sm) var(--pad-std);
   position: absolute;
-  left: 50%;
+  right: 0;
   display: flex;
   cursor: pointer;
   background-color: var(--light-2);
   color: var(--light);
   font-size: var(--med-text);
   user-select: none;
-  transform: translateX(-50%);
 }
 
 .label {
@@ -46,8 +45,6 @@
 
 @media (max-width: 500px) {
   .LangSwitcher {
-    left: 0;
-    transform: none;
     font-size: var(--standard-text);
   }
 

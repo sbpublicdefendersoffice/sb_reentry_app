@@ -2,19 +2,17 @@ import NextLink from 'next/link'
 
 import styles from './Header.module.css'
 
-import SBPDLogo from './SBPDLogo'
+import { FreshStartLogo } from '../ui'
 
 const Header = () => (
   <header role="banner" className={styles.Header}>
     <div className={styles.HeaderContainer}>
       <NextLink href="/" as="/">
         <a className="not-text-link">
-          <h1 className={styles.Title}>Santa Barbara Reentry</h1>
+          <FreshStartLogo className={styles.FreshStart} color="light" />
         </a>
       </NextLink>
-      <div className={styles.Logo}>
-        <SBPDLogo />
-      </div>
+      {/* TODO: Full Page Search */}
     </div>
   </header>
 )

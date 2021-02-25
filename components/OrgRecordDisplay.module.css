@@ -13,6 +13,7 @@
   cursor: auto;
 }
 
-.listing > * {
+.listing > :not(summary) {
   margin: 0 0 var(--margin-std) 0;
+  text-align: center;
 }

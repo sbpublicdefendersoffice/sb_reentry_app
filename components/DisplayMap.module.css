@@ -1,5 +1,4 @@
 .DisplayMap {
-  padding: var(--pad-std);
   flex: 1;
   width: 100%;
 }

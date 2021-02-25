@@ -1,4 +1,5 @@
 import SBPDLogo from './SBPDLogo'
+import FreshStartLeaf from '../ui/FreshStartLeaf'
 
 import styles from './Footer.module.css'
 
@@ -17,15 +18,15 @@ const Footer = () => (
         <span>item four</span>
         <span>item five</span>
       </nav>
-      <div className={styles.Logo1}>
-        <SBPDLogo />
-      </div>
       <div className={styles.Logo2}>
         <SBPDLogo />
       </div>
+      <div className={styles.Logo1}>
+        <FreshStartLeaf className={styles.leaf} />
+      </div>
     </div>
     <em>
-      <span className={styles.copyright}>{copyright}</span>
+      <span className={styles.copyright}>{copyright}</span>{' '}
       <a
         className={styles.copyright}
         href="https://www.countyofsb.org/defender"
