@@ -7,7 +7,7 @@ export default class MyDocument extends Document {
         <Head>
           <link
             rel="preconnect"
-            href="https://fonts.gstatic.com"
+            href="https://fonts.googleapis.com/"
             crossOrigin="true"
           />
           <link
@@ -22,12 +22,11 @@ export default class MyDocument extends Document {
             // @ts-ignore
             onLoad="this.media='all'"
           />
-          <noscript>
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap"
-            />
-          </noscript>
+          <link
+            rel="preconnect"
+            href="https://api.mapbox.com/"
+            crossOrigin="true"
+          />
           <link
             rel="preload"
             as="style"
@@ -36,7 +35,19 @@ export default class MyDocument extends Document {
           <link
             href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
             rel="stylesheet"
+            // @ts-ignore
+            onLoad="this.onload=null;this.rel='stylesheet'"
           />
+          <noscript>
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap"
+            />
+            <link
+              rel="stylesheet"
+              href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
+            />
+          </noscript>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           {/* PWA Tags */}
