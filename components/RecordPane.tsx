@@ -57,7 +57,7 @@ const RecordPane = ({
                 interactive
                 onClick={e =>
                   // @ts-ignore
-                  push(`${url}/[id]`, `${url}/${e.target.title}`)
+                  push('/[category]/[id]', `${url}/${e.target.title}`)
                 }
               >
                 {record.fields.org_name}
