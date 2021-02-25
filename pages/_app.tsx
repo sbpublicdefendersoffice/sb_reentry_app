@@ -7,7 +7,6 @@ import { siteTitle } from '../constants/copy'
 import { Language, ENGLISH, SPANISH } from '../types/language'
 import { Provider as LangProvider } from '../hooks/useLanguage'
 import { Footer, Header, LangSwitcher } from '../components'
-import { PublicPage } from '../ui'
 
 import '../styles/globals.css'
 import '../styles/variables.css'
@@ -42,9 +41,9 @@ const App = ({ Component, pageProps }: AppProps) => {
         <LangProvider value={{ language, setLanguage }}>
           <LangSwitcher />
           <Header />
-          <PublicPage>
+          <main>
             <Component {...pageProps} />
-          </PublicPage>
+          </main>
           <Footer />
         </LangProvider>
       )}
