@@ -10,5 +10,6 @@
 @media (max-width: 700px) {
   .PublicPage {
     flex-direction: column;
+    justify-content: flex-start;
   }
 }

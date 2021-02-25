@@ -8,7 +8,7 @@
 }
 
 .SearchPageSize {
-  height: var(--screen-minus-header);
+  height: var(--screen-minus-header) !important;
 }
 
 .MapBox {

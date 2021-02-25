@@ -41,8 +41,8 @@ const RecordPane = ({
         <Search originalRecords={orgInfo.records} setRecords={setRecords} />
       )}
       <Details
-        className={styles.details}
         open
+        className={styles.details}
         summary={`${displayCategory} ${
           language === 'english' ? 'Records' : 'Registros'
         }`}

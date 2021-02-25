@@ -34,7 +34,7 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
 
   return (
     <div className={styles.OrgRecordDisplay} role="list">
-      <Details summary={activeCopy.orgInfo} className={styles.listing}>
+      <Details open summary={activeCopy.orgInfo} className={styles.listing}>
         <h1 className={styles.heading}>{name}</h1>
         {website && (
           <p>
@@ -55,9 +55,11 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
       {Boolean(locations.length) && (
         <>
           <DisplayMap latLongInfo={locations} page="org" />
-          {locations.map((locationInfo, i) => (
-            <LocationRecordDisplay key={i} locationInfo={locationInfo} />
-          ))}
+          <Details open summary="Locations">
+            {locations.map((locationInfo, i) => (
+              <LocationRecordDisplay key={i} locationInfo={locationInfo} />
+            ))}
+          </Details>
         </>
       )}
     </div>
