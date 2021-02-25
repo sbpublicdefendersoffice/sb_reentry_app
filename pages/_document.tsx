@@ -29,6 +29,11 @@ export default class MyDocument extends Document {
             />
           </noscript>
           <link
+            rel="preload"
+            as="style"
+            href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
+          />
+          <link
             href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
             rel="stylesheet"
           />
