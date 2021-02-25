@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 
 import useLanguage from '../../hooks/useLanguage'
 
+import { siteTitle } from '../../constants/copy'
 import { CategoryPageContainer } from '../../components'
 import categories from '../../constants/categories'
 
@@ -16,7 +17,7 @@ const LandingPage = () => {
   return (
     <>
       <Head>
-        <title>{`Santa Barbara Reentry | ${displayCategory}`}</title>
+        <title>{`${siteTitle} | ${displayCategory}`}</title>
       </Head>
       <CategoryPageContainer
         displayCategory={displayCategory}

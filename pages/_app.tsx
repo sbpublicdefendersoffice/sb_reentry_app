@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
+import { siteTitle } from '../constants/copy'
 import { Language, ENGLISH, SPANISH } from '../types/language'
 import { Provider as LangProvider } from '../hooks/useLanguage'
 import { Footer, Header, LangSwitcher } from '../components'
@@ -35,7 +36,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
         />
-        <title>Santa Barbara Reentry</title>
+        <title>{siteTitle}</title>
       </Head>
       {language && (
         <LangProvider value={{ language, setLanguage }}>
