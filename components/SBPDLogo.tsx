@@ -13,6 +13,8 @@ const SBPDLogo = () => {
 
   return (
     <img
+      width="6rem"
+      height="6rem"
       src="/images/logo192.png"
       alt={altText[language]}
       className={styles.SBPDLogo}
