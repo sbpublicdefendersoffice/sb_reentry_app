@@ -2,11 +2,24 @@ import NextLink from 'next/link'
 
 import routes, { RouteInfo } from '../constants/routes'
 import useLanguage from '../hooks/useLanguage'
+import { CopyHolder } from '../types/language'
 
 import styles from './ResourceHub.module.css'
 
+const copy: CopyHolder = {
+  english: {
+    hub: 'Resource Hub',
+    direction: 'Click on an image to seek support',
+  },
+  spanish: {
+    hub: 'Centro de Recursos',
+    direction: 'Haga clic en una imagen para buscar apoyo',
+  },
+}
+
 const ResourceHub = () => {
   const { language } = useLanguage()
+  const activeCopy = copy[language]
 
   const PageTiles = routes.map((link: RouteInfo, i: number) => {
     const { route, imgPath } = link
@@ -32,6 +45,8 @@ const ResourceHub = () => {
 
   return (
     <section className={styles.ResourceHub}>
+      <h1 className={styles.title}>{activeCopy.hub}</h1>
+      <p className={styles.text}>{activeCopy.direction}</p>
       <div className={styles.tileContainer}>{PageTiles}</div>
     </section>
   )

@@ -1,0 +1,21 @@
+.PwaDownload {
+  width: 100%;
+  min-height: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: var(--pad-lg) 0;
+  background-color: var(--light-blue);
+}
+
+.title {
+  font-weight: 100;
+  font-size: var(--large-text);
+  color: var(--dark);
+}
+
+.text {
+  margin: var(--margin-lg) 0;
+  color: var(--deselected);
+}
