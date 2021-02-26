@@ -1,22 +1,28 @@
 import Head from 'next/head'
+import Error from 'next/error'
 import { useRouter } from 'next/router'
 
 import useLanguage from '../../hooks/useLanguage'
 
+import { siteTitle } from '../../constants/copy'
 import { CategoryPageContainer } from '../../components'
 import categories from '../../constants/categories'
 
 const LandingPage = () => {
-  const { route } = useRouter()
+  const { asPath } = useRouter()
   const { language } = useLanguage()
 
-  const displayCategory: string = categories[route][language].category
-  const routeCategory: string = categories[route].english.category
+  const validCategory = categories[asPath]
+
+  if (!validCategory) return <Error statusCode={404} />
+
+  const displayCategory: string = validCategory[language].category
+  const routeCategory: string = validCategory.english.category
 
   return (
     <>
       <Head>
-        <title>{`Santa Barbara Reentry | ${displayCategory}`}</title>
+        <title>{`${siteTitle} | ${displayCategory}`}</title>
       </Head>
       <CategoryPageContainer
         displayCategory={displayCategory}

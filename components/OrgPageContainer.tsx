@@ -2,6 +2,7 @@ import Head from 'next/head'
 
 import useSingleRecord from '../hooks/useSingleRecord'
 import useMultipleListRecords from '../hooks/useMultipleListRecords'
+import { siteTitle } from '../constants/copy'
 
 import { OrgRecordDisplay, RecordPane } from './'
 
@@ -27,7 +28,7 @@ const OrgPageContainer = ({
   return (
     <div className={styles.OrgPageContainer}>
       <Head>
-        <title>{`Santa Barbara Reentry | ${sortedRecord?.name}`}</title>
+        <title>{`${siteTitle} | ${sortedRecord?.name}`}</title>
       </Head>
       <RecordPane
         orgInfo={fetchedRecords}

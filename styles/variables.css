@@ -6,6 +6,7 @@
   --secondary: #4c7fa1;
   --highlight: #005ea2;
   --light-2: #e5e5e5;
+  --light-blue: #e3e8ee;
   --highlight-2: #cd7f32;
   --deselected: #7e7e7e;
 
@@ -15,6 +16,7 @@
   --border-width: 0.1rem;
   --margin-sm: 0.5rem;
   --margin-std: 1rem;
+  --margin-lg: 1.7rem;
   --pad-sm: 0.25rem;
   --pad-std: 0.5rem;
   --pad-lg: 1rem;
@@ -24,5 +26,5 @@
   /* Text Variables */
   --standard-text: 1rem;
   --med-text: 1.3rem;
-  --large-text: 2rem;
+  --large-text: 3rem;
 }

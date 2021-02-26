@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { Button } from '../ui'
 import useLanguage from '../hooks/useLanguage'
-import { ENGLISH } from '../types/language'
+import { CopyHolder } from '../types/language'
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: string[]
@@ -13,8 +13,25 @@ interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>
 }
 
+import styles from './PwaDownload.module.css'
+
+const copy: CopyHolder = {
+  english: {
+    title: 'Take Fresh Start with you!',
+    instructions: 'Download the app to access our resources, wherever you are',
+    download: 'Download Fresh Start',
+  },
+  spanish: {
+    title: '¡Lleve Fresh Start con usted!',
+    instructions:
+      'Descarga la aplicación para acceder a nuestros recursos, estés donde estés',
+    download: 'Descargar Nuevo Comienzo',
+  },
+}
+
 const PwaDownload = () => {
   const { language } = useLanguage()
+  const activeCopy = copy[language]
 
   const [
     downloadEvent,
@@ -34,9 +51,13 @@ const PwaDownload = () => {
   return (
     <>
       {downloadEvent && (
-        <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
-          {language === ENGLISH ? 'Download' : 'Descarga'} Santa Barbara Reentry
-        </Button>
+        <div className={styles.PwaDownload}>
+          <h1 className={styles.title}>{activeCopy.title}</h1>
+          <p className={styles.text}>{activeCopy.instructions}</p>
+          <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
+            {activeCopy.download}
+          </Button>
+        </div>
       )}
     </>
   )
