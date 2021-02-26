@@ -1,11 +1,12 @@
-.WrapContainer {
+.ResourceHub {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
 }
 
-.Elements {
+.tiles {
+  width: 90%;
   height: inherit;
   display: inherit;
   flex-wrap: wrap;
