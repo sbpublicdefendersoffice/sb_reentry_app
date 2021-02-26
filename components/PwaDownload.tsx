@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { Button } from '../ui'
+import { Button, Title } from '../ui'
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 
@@ -52,7 +52,7 @@ const PwaDownload = () => {
     <>
       {downloadEvent && (
         <div className={styles.PwaDownload}>
-          <h1 className={styles.title}>{activeCopy.title}</h1>
+          <Title>{activeCopy.title}</Title>
           <p className={styles.text}>{activeCopy.instructions}</p>
           <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
             {activeCopy.download}

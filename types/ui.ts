@@ -1,0 +1,10 @@
+export type color =
+  | 'light'
+  | 'dark'
+  | 'primary'
+  | 'secondary'
+  | 'highlight'
+  | 'light-2'
+  | 'light-blue'
+  | 'highlight-2'
+  | 'deselected'

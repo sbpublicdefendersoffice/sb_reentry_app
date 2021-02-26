@@ -4,6 +4,7 @@ import routes, { RouteInfo } from '../constants/routes'
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 
+import { Title } from '../ui'
 import styles from './ResourceHub.module.css'
 
 const copy: CopyHolder = {
@@ -45,7 +46,7 @@ const ResourceHub = () => {
 
   return (
     <section className={styles.ResourceHub}>
-      <h1 className={styles.title}>{activeCopy.hub}</h1>
+      <Title>{activeCopy.hub}</Title>
       <p className={styles.text}>{activeCopy.direction}</p>
       <div className={styles.tileContainer}>{PageTiles}</div>
     </section>

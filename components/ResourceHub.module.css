@@ -48,12 +48,6 @@
   height: 15rem;
 }
 
-.title {
-  font-weight: 100;
-  font-size: var(--large-text);
-  color: var(--dark);
-}
-
 .text {
   margin: var(--margin-lg) 0;
   color: var(--deselected);
