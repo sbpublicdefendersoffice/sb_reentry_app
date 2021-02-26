@@ -1,31 +1,38 @@
-import { ReactElement, Fragment } from 'react'
+import NextLink from 'next/link'
 
 import routes, { RouteInfo } from '../constants/routes'
 import useLanguage from '../hooks/useLanguage'
-
-import { IconTile } from '../ui'
 
 import styles from './ResourceHub.module.css'
 
 const ResourceHub = () => {
   const { language } = useLanguage()
 
-  const PageTiles: ReactElement[] = routes.map((link: RouteInfo, i: number) => {
+  const PageTiles = routes.map((link: RouteInfo, i: number) => {
     const { route, imgPath } = link
     const title: string = link[`title_${language}`]
 
     return (
-      <Fragment key={i}>
-        <IconTile href={route} label={title} path={imgPath}>
-          {title}
-        </IconTile>
-      </Fragment>
+      <div key={i} className={styles.singleTileHolder}>
+        <NextLink href={route}>
+          <a className={`${styles.link} not-text-link`}>
+            <img
+              width="15rem"
+              height="15rem"
+              className={styles.image}
+              src={imgPath}
+              alt={`${title}_icon`}
+            />
+            <span>{title}</span>
+          </a>
+        </NextLink>
+      </div>
     )
   })
 
   return (
     <section className={styles.ResourceHub}>
-      <div className={styles.tiles}>{PageTiles}</div>
+      <div className={styles.tileContainer}>{PageTiles}</div>
     </section>
   )
 }

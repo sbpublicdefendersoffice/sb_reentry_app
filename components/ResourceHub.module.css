@@ -5,10 +5,56 @@
   justify-content: center;
 }
 
-.tiles {
+.tileContainer {
   width: 90%;
   height: inherit;
   display: inherit;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.singleTileHolder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: var(--med-text);
+  border-radius: var(--radius-medium);
+  padding: var(--pad-std) 0;
+  text-align: center;
+  border: var(--border-width) solid transparent;
+}
+
+.singleTileHolder:hover,
+.singleTileHolder:active {
+  background-color: var(--highlight);
+}
+
+.singleTileHolder:hover > a,
+.singleTileHolder:active > a {
+  color: var(--light);
+}
+
+.link {
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+}
+
+.image {
+  width: 15rem;
+  height: 15rem;
+}
+
+@media (max-width: 500px) {
+  .singleTileHolder {
+    width: 30%;
+    margin: 0.25rem 0 0 0;
+    font-size: var(--standard-text);
+  }
+
+  .image {
+    width: 8rem;
+    height: 8rem;
+  }
 }
