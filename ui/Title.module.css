@@ -3,3 +3,9 @@
   font-size: var(--large-text);
   color: var(--dark);
 }
+
+@media (max-width: 700px) {
+  .Title {
+    font-size: var(--heading-text);
+  }
+}

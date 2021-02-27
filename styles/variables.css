@@ -26,5 +26,6 @@
   /* Text Variables */
   --standard-text: 1rem;
   --med-text: 1.3rem;
+  --heading-text: 2rem;
   --large-text: 3rem;
 }

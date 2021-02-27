@@ -9,4 +9,8 @@ export type Color =
   | 'highlight-2'
   | 'deselected'
 
-export type TextSize = 'standard-text' | 'med-text' | 'large-text'
+export type TextSize =
+  | 'standard-text'
+  | 'med-text'
+  | 'heading-text'
+  | 'large-text'

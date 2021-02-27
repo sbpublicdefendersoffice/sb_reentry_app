@@ -50,15 +50,17 @@ const PwaDownload = () => {
 
   return (
     <>
-      <div className={styles.PwaDownload}>
-        <Title>{activeCopy.title}</Title>
-        <Paragraph color="deselected" className={styles.text}>
-          {activeCopy.instructions}
-        </Paragraph>
-        <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
-          {activeCopy.download}
-        </Button>
-      </div>
+      {downloadEvent && (
+        <div className={styles.PwaDownload}>
+          <Title>{activeCopy.title}</Title>
+          <Paragraph color="deselected" className={styles.text}>
+            {activeCopy.instructions}
+          </Paragraph>
+          <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
+            {activeCopy.download}
+          </Button>
+        </div>
+      )}
     </>
   )
 }

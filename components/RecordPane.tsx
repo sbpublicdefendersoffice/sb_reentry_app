@@ -2,7 +2,7 @@ import { SetStateAction, Dispatch } from 'react'
 import { useRouter } from 'next/router'
 
 import { Search, LeafLoader } from '../components'
-import { RecordListing, Details } from '../ui'
+import { Card, Details, Paragraph } from '../ui'
 import useLanguage from '../hooks/useLanguage'
 
 import { TranslatedRecordResponse } from '../types/records'
@@ -35,9 +35,13 @@ const RecordPane = ({
 
   return (
     <div className={styles.RecordPane} role="list">
-      <h2 className={styles.title} onClick={pushToCategory}>
+      <Paragraph
+        size="heading-text"
+        className={styles.title}
+        onClick={pushToCategory}
+      >
         {displayCategory}
-      </h2>
+      </Paragraph>
       {orgInfo && (
         <Search originalRecords={orgInfo.records} setRecords={setRecords} />
       )}
@@ -51,7 +55,7 @@ const RecordPane = ({
         {Boolean(orgInfo?.records?.length) ? (
           <>
             {orgInfo?.records?.map(record => (
-              <RecordListing
+              <Card
                 key={record.id}
                 title={record.id}
                 interactive
@@ -60,8 +64,17 @@ const RecordPane = ({
                   push('/[category]/[id]', `${url}/${e.target.title}`)
                 }
               >
-                {record.fields.org_name}
-              </RecordListing>
+                <Paragraph
+                  title={record.id}
+                  size="med-text"
+                  onClick={e =>
+                    // @ts-ignore
+                    push('/[category]/[id]', `${url}/${e.target.title}`)
+                  }
+                >
+                  {record.fields.org_name}
+                </Paragraph>
+              </Card>
             ))}
           </>
         ) : (

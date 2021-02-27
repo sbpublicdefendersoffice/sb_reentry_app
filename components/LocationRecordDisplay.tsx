@@ -1,4 +1,4 @@
-import { RecordListing, Paragraph } from '../ui'
+import { Card, Paragraph } from '../ui'
 
 import { ScheduleRecordDisplay, SendText } from './'
 import { LocationRecord } from '../types/records'
@@ -70,7 +70,7 @@ const LocationRecordDisplay = ({
   )
 
   return (
-    <RecordListing className={styles.LocationRecordDisplay}>
+    <Card className={styles.LocationRecordDisplay}>
       <div className={styles.LocationAddressInformation}>
         {name && <Paragraph size="med-text">{name}</Paragraph>}
         {address && (
@@ -141,7 +141,7 @@ const LocationRecordDisplay = ({
           </>
         )}
       </div>
-    </RecordListing>
+    </Card>
   )
 }
 
