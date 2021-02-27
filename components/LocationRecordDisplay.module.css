@@ -16,6 +16,11 @@
   font-weight: 100;
 }
 
+.subHeading {
+  margin: var(--margin-sm) 0;
+  font-weight: bold;
+}
+
 @media (max-width: 700px) {
   .LocationRecordDisplay {
     flex-direction: column;

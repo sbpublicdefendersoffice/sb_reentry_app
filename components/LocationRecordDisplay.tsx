@@ -72,10 +72,16 @@ const LocationRecordDisplay = ({
   return (
     <Card className={styles.LocationRecordDisplay}>
       <div className={styles.LocationAddressInformation}>
-        {name && <Paragraph size="med-text">{name}</Paragraph>}
+        {name && (
+          <Paragraph size="heading-text" className={styles.heading}>
+            {name}
+          </Paragraph>
+        )}
         {address && (
           <>
-            <h3 className={styles.heading}>{activeCopy.address}:</h3>
+            <Paragraph size="med-text" className={styles.subHeading}>
+              {activeCopy.address}:
+            </Paragraph>
             <address>
               <Paragraph size="med-text">{fullAddress}</Paragraph>
               <Paragraph size="med-text">{cityStateZip}</Paragraph>
@@ -96,7 +102,9 @@ const LocationRecordDisplay = ({
         )}
         {phone && (
           <>
-            <h3 className={styles.heading}>{activeCopy.phone}:</h3>
+            <Paragraph size="med-text" className={styles.subHeading}>
+              {activeCopy.phone}:
+            </Paragraph>
             <Paragraph size="med-text">{phone}</Paragraph>
             <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
               {activeCopy.call}
@@ -105,7 +113,9 @@ const LocationRecordDisplay = ({
         )}
         {website && (
           <>
-            <h3 className={styles.heading}>{activeCopy.locationSite}:</h3>
+            <Paragraph size="med-text" className={styles.subHeading}>
+              {activeCopy.locationSite}:
+            </Paragraph>
             <a href={website} target="_blank" rel="noopener noreferrer">
               {website}
             </a>
@@ -113,13 +123,17 @@ const LocationRecordDisplay = ({
         )}
         {services && (
           <>
-            <h3 className={styles.heading}>{activeCopy.services}:</h3>
+            <Paragraph size="med-text" className={styles.subHeading}>
+              {activeCopy.services}:
+            </Paragraph>
             <Paragraph size="med-text">{services}</Paragraph>
           </>
         )}
         {email && (
           <>
-            <h3 className={styles.heading}>{activeCopy.email}:</h3>
+            <Paragraph size="med-text" className={styles.subHeading}>
+              {activeCopy.email}:
+            </Paragraph>
             <Paragraph size="med-text">
               <a
                 href={`mailto:${email}`}
@@ -134,7 +148,9 @@ const LocationRecordDisplay = ({
         {notes && <Paragraph size="med-text">{notes}</Paragraph>}
         {Boolean(schedule.length) && (
           <>
-            <h3 className={styles.heading}>{activeCopy.schedule}:</h3>
+            <Paragraph size="med-text" className={styles.subHeading}>
+              {activeCopy.schedule}:
+            </Paragraph>
             {schedule.map((scheduleInfo, i) => (
               <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
             ))}
