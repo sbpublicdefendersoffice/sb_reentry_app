@@ -3,6 +3,8 @@ import useLanguage from '../hooks/useLanguage'
 import { ScheduleRecord } from '../types/records'
 import { CopyHolder, Language } from '../types/language'
 
+import { Paragraph } from '../ui'
+
 import styles from './ScheduleRecordDisplay.module.css'
 
 const copy: CopyHolder = {
@@ -86,22 +88,26 @@ const ScheduleRecordDisplay = ({
   return (
     <section className={styles.ScheduleRecordDisplay}>
       {open_time && close_time && (
-        <p>
+        <Paragraph size="med-text">
           {activeCopy.timeOpen}: {timeParser(open_time)}
           {activeCopy.to}
           {timeParser(close_time)}
-        </p>
+        </Paragraph>
       )}
       {day && (
-        <p>
+        <Paragraph size="med-text">
           {`Day${day.length > 3 ? 's' : ''}`} {activeCopy.daysOpen}: {day}
-        </p>
+        </Paragraph>
       )}
-      {ordinal_open && <p>{ordinalParser(ordinal_open, { language })}</p>}
+      {ordinal_open && (
+        <Paragraph size="med-text">
+          {ordinalParser(ordinal_open, { language })}
+        </Paragraph>
+      )}
       {notes && (
-        <p>
+        <Paragraph size="med-text">
           {activeCopy.daysOpen}: {notes}
-        </p>
+        </Paragraph>
       )}
     </section>
   )

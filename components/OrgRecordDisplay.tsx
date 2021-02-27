@@ -1,11 +1,12 @@
 import { DisplayMap, LocationRecordDisplay, LeafLoader } from './'
-import { Details } from '../ui'
+import { Details, Title } from '../ui'
 
 import useLanguage from '../hooks/useLanguage'
 import { SortedRecord } from '../types/records'
 import { CopyHolder } from '../types/language'
 
 import styles from './OrgRecordDisplay.module.css'
+import { Paragraph } from '../ui'
 
 interface OrgRecordDisplayProps {
   sortedRecord: SortedRecord
@@ -37,22 +38,22 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   return (
     <div className={styles.OrgRecordDisplay} role="list">
       <Details open summary={activeCopy.orgInfo} className={styles.listing}>
-        <h1 className={styles.heading}>{name}</h1>
+        <Title>{name}</Title>
         {website && (
-          <p>
+          <Paragraph size="med-text">
             {activeCopy.website}
             <a href={website} target="_blank" rel="noopener noreferrer">
               {website}
             </a>
-          </p>
+          </Paragraph>
         )}
         {languages_spoken && (
-          <p>
+          <Paragraph size="med-text">
             {activeCopy.lang}
             {languages_spoken}
-          </p>
+          </Paragraph>
         )}
-        {notes && <p>{notes}</p>}
+        {notes && <Paragraph size="med-text">{notes}</Paragraph>}
       </Details>
       {Boolean(locations.length) && (
         <>

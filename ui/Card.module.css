@@ -1,12 +1,10 @@
-.RecordListing {
-  /* width: 100%; */
+.Card {
   margin: 0.5rem 0;
-  font-size: var(--med-text);
-  font-weight: 400;
+
+  /* font-size: var(--med-text); */
   border-radius: var(--radius-small);
   padding: var(--pad-lg) 0;
   text-align: center;
-  cursor: pointer;
 }
 
 .border {
@@ -14,11 +12,16 @@
 }
 
 .active {
-  display: initial;
+  display: auto;
 }
 
 .active:hover,
 .active:active {
+  cursor: pointer;
   background-color: var(--primary);
-  color: var(--light);
+}
+
+.active:hover *,
+.active:active * {
+  color: var(--light) !important;
 }
