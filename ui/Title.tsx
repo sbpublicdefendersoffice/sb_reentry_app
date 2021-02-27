@@ -1,10 +1,10 @@
 import { forwardRef, HTMLAttributes, ReactNode } from 'react'
-import { color } from '../types/ui'
+import { Color } from '../types/ui'
 
 import styles from './Title.module.css'
 
 interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
-  color?: color
+  color?: Color
   children: ReactNode
 }
 
@@ -18,7 +18,7 @@ const Title = forwardRef<HTMLHeadingElement, TitleProps>(function TitleFunc(
     <h1
       ref={ref}
       className={`${styles.Title} ${className && `${className}`}`}
-      style={{ color: color ? `var(--${color})` : 'initial' }}
+      style={{ color: color ? `var(--${color})` : 'auto' }}
       {...other}
     >
       {children}

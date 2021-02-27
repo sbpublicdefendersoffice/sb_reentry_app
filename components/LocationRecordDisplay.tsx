@@ -1,4 +1,4 @@
-import { RecordListing } from '../ui'
+import { RecordListing, Paragraph } from '../ui'
 
 import { ScheduleRecordDisplay, SendText } from './'
 import { LocationRecord } from '../types/records'
@@ -72,13 +72,13 @@ const LocationRecordDisplay = ({
   return (
     <RecordListing className={styles.LocationRecordDisplay}>
       <div className={styles.LocationAddressInformation}>
-        {name && <p>{name}</p>}
+        {name && <Paragraph size="med-text">{name}</Paragraph>}
         {address && (
           <>
             <h3 className={styles.heading}>{activeCopy.address}:</h3>
             <address>
-              <p>{fullAddress}</p>
-              <p>{cityStateZip}</p>
+              <Paragraph size="med-text">{fullAddress}</Paragraph>
+              <Paragraph size="med-text">{cityStateZip}</Paragraph>
               <a
                 href={`https://www.google.com/maps/place/${addressForUrl}`}
                 target="_blank"
@@ -97,7 +97,7 @@ const LocationRecordDisplay = ({
         {phone && (
           <>
             <h3 className={styles.heading}>{activeCopy.phone}:</h3>
-            <p>{phone}</p>
+            <Paragraph size="med-text">{phone}</Paragraph>
             <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
               {activeCopy.call}
             </a>
@@ -114,13 +114,13 @@ const LocationRecordDisplay = ({
         {services && (
           <>
             <h3 className={styles.heading}>{activeCopy.services}:</h3>
-            <p>{services}</p>
+            <Paragraph size="med-text">{services}</Paragraph>
           </>
         )}
         {email && (
           <>
             <h3 className={styles.heading}>{activeCopy.email}:</h3>
-            <p>
+            <Paragraph size="med-text">
               <a
                 href={`mailto:${email}`}
                 target="_blank"
@@ -128,10 +128,10 @@ const LocationRecordDisplay = ({
               >
                 {email}
               </a>
-            </p>
+            </Paragraph>
           </>
         )}
-        {notes && <p>{notes}</p>}
+        {notes && <Paragraph size="med-text">{notes}</Paragraph>}
         {Boolean(schedule.length) && (
           <>
             <h3 className={styles.heading}>{activeCopy.schedule}:</h3>

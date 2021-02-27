@@ -32,8 +32,8 @@
   background-color: var(--highlight);
 }
 
-.singleTileHolder:hover > a,
-.singleTileHolder:active > a {
+.singleTileHolder:hover *,
+.singleTileHolder:active * {
   color: var(--light);
 }
 
@@ -50,7 +50,6 @@
 
 .text {
   margin: var(--margin-lg) 0;
-  color: var(--deselected);
 }
 
 @media (max-width: 500px) {

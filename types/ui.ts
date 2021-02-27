@@ -1,4 +1,4 @@
-export type color =
+export type Color =
   | 'light'
   | 'dark'
   | 'primary'
@@ -8,3 +8,5 @@ export type color =
   | 'light-blue'
   | 'highlight-2'
   | 'deselected'
+
+export type TextSize = 'standard-text' | 'med-text' | 'large-text'

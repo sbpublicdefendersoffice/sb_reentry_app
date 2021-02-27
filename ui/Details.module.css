@@ -1,6 +1,5 @@
 .Details {
   user-select: none;
-  font-size: var(--med-text);
   overflow: hidden;
   text-align: start;
   padding: var(--pad-sm);
@@ -8,6 +7,7 @@
 
 .summary {
   padding: var(--pad-std);
+  font-size: var(--med-text);
   outline: none;
   display: none;
   background-color: var(--light-2);
