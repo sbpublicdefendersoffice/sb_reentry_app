@@ -1,20 +1,35 @@
-.Header {
+/* .Header {
   width: 100%;
   height: var(--header-size);
   background-color: var(--primary);
   display: flex;
   justify-content: center;
   border-bottom: var(--border-width) solid var(--light-2);
+} */
+.Header {
+  width: 100%;
+  height: 10rem;
+  background-color: var(--primary);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+}
+.HeaderContainer {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
 }
 
-.HeaderContainer {
+/* .HeaderContainer {
   width: 90%;
   height: 100%;
   display: grid;
   align-items: center;
   grid-template-columns: max-content auto min-content;
   grid-template-areas: 'freshstart . search';
-}
+} */
 
 .FreshStart {
   grid-area: freshstart;
@@ -24,10 +39,84 @@
 .Search {
   grid-area: search;
 }
+.NavListItem {
+  width: 3rem;
+  display: inline;
+  margin-top: 6rem;
+  white-space: nowrap;
+  margin-left: 11rem;
+  clear: both;
+}
+.Burger {
+  display: none;
+}
+.Title {
+  color: white;
+  font-weight: 400;
+  white-space: nowrap;
+}
 
 @media (max-width: 500px) {
   .FreshStart {
     grid-area: freshstart;
     width: 15rem;
   }
+  .Burger {
+    margin-right: 20rem;
+    display: visible;
+  }
+  .NavListItem {
+    display: none;
+  }
 }
+
+/* @media (max-width: 500px) {
+  .Burger {
+    margin-right: 20rem;
+    display: visible;
+  }
+}
+@media (max-width: 500px) {
+  .NavListItem {
+    display: none;
+  }
+} */
+
+/* .Header {
+  width: 100%;
+  height: 10rem;
+  background-color: var(--primary);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  }
+  .HeaderContainer {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  }
+  .Title {
+  color: var(--white);
+  font-weight: 400;
+  white-space: nowrap;
+  }
+  .Logo {
+  width: 10rem;
+  margin-left: 4rem;
+  }
+  .NavListItem {
+  width: 3rem;
+  display: inline;
+  margin-top: 6rem;
+  white-space: nowrap;
+  margin-left: 11rem;
+  clear: both;
+  }
+  @media (max-width: 500px) {
+  .Logo {
+  display: none;
+  }
+  }
+   */
