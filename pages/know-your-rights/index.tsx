@@ -12,6 +12,9 @@ import Link from '@material-ui/core/Link'
 import Typography from '@material-ui/core/Typography'
 import Modal from '@material-ui/core/Modal'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
+import { ENGLISH } from '../../types/language'
+
+import useLanguage from '../../hooks/useLanguage'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,53 +59,82 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 )
+interface Item {
+  name: string
+  spanishName: string
+  organization: string
+  flyerPDF: string
+  spanishFlyerPDF: string
+}
 const KnowYourRights = () => {
   const classes = useStyles()
+  const { language } = useLanguage()
   const [open, setOpen] = React.useState(false)
-  const [activeItem, setActiveItem] = React.useState({})
-  console.log('styles')
-  const flyers = [
+  const [activeItem, setActiveItem] = React.useState<Item | null>(null)
+
+  const flyers: Item[] = [
     {
       name: 'Police Interaction for Black and Brown People',
+      spanishName: 'Interacción policial para personas negras y morenas',
       organization: 'ACLU',
-      profilePic: 'https://i.ibb.co/xFcqtKz/KYR-Black-Brown-Police-ENGLISH.jpg',
+      flyerPDF: 'https://i.ibb.co/xFcqtKz/KYR-Black-Brown-Police-ENGLISH.jpg',
+      spanishFlyerPDF:
+        'https://i.ibb.co/P5jTZcp/KYR-Black-and-Brown-Spanish.jpg',
     },
     {
       name:
         'What to do if questioned by Police, FBI, Custom Agents or Immigration Officers',
+      spanishName:
+        'Qué hacer si es interrogado por la policía, el FBI, agentes de aduanas o oficiales de inmigración',
       organization: 'ACLU',
-      profilePic:
-        'https://i.ibb.co/VDHYQQd/KYR-Questioned-by-Police-ENGLISH.jpg',
+      flyerPDF: 'https://i.ibb.co/VDHYQQd/KYR-Questioned-by-Police-ENGLISH.jpg',
+      spanishFlyerPDF:
+        'https://i.ibb.co/0y6VVXk/KYR-Questioned-by-Police-SPANISH.jpg',
     },
+
     {
       name: 'Know your rights: Police Interactions ',
+      spanishName: 'Conozca sus derechos: Interacciones policiales',
       organization: 'ACLU',
-      profilePic:
-        'https://i.ibb.co/gP9yVBJ/KYR-Police-Interactions-English.jpg',
+      flyerPDF: 'https://i.ibb.co/gP9yVBJ/KYR-Police-Interactions-English.jpg',
+      spanishFlyerPDF:
+        'https://i.ibb.co/cT7HSNB/KYR-Police-Interactions-SPANISH.jpg',
     },
     {
       name: 'Know your rights: the TRUST ACT ',
+      spanishName: 'Conozca sus derechos: la LEY DE CONFIANZA',
       organization: 'ACLU',
-      profilePic: 'https://i.ibb.co/vL9bChn/TRUST-ACT-KYR.jpg',
+      flyerPDF: 'https://i.ibb.co/vL9bChn/TRUST-ACT-KYR.jpg',
+      spanishFlyerPDF:
+        'https://i.ibb.co/0y6VVXk/KYR-Questioned-by-Police-SPANISH.jpg',
     },
     {
       name: 'Know your rights on trains and buses ',
+      spanishName: 'Conozca sus derechos en trenes y autobuses',
       organization: 'ACLU',
-      profilePic:
+      flyerPDF:
         'https://i.ibb.co/XxKGDYD/KYR-Trains-and-Buses-Immigration-ENGLISH.jpg',
+      spanishFlyerPDF:
+        'https://i.ibb.co/9gLM3qz/KYR-Trains-and-Buses-2-SPANISH.jpg',
     },
   ]
   const handleOpen = item => {
+    console.log('item:', item)
     setActiveItem(item)
     setOpen(true)
   }
   const handleClose = () => {
     setOpen(false)
   }
+
   return (
     <>
       <Head>
-        <title>{`Santa Barbara Reentry | Know Your Rights`}</title>
+        <title>
+          {`Santa Barbara Reentry | ${
+            language === ENGLISH ? `Know your Rights` : `Conoce tus derechos `
+          }`}
+        </title>
       </Head>
       <div>
         <Typography
@@ -112,7 +144,7 @@ const KnowYourRights = () => {
           variant="h2"
           component="h3"
         >
-          Know your Rights
+          {language === ENGLISH ? `Know your Rights` : `Conoce tus derechos `}
         </Typography>
         <Grid
           container
@@ -129,13 +161,23 @@ const KnowYourRights = () => {
                     <button type="button" onClick={() => handleOpen(flyer)}>
                       <CardMedia
                         className={classes.media}
-                        image={flyer.profilePic}
-                        title="Contemplative Reptile"
+                        image={
+                          language === ENGLISH
+                            ? `${flyer.flyerPDF}`
+                            : `${flyer.spanishFlyerPDF} `
+                        }
+                        title={
+                          language === ENGLISH
+                            ? `${flyer.name}`
+                            : `${flyer.spanishName} `
+                        }
                       />
 
                       <CardContent className={classes.cardContent}>
                         <Typography gutterBottom variant="h5" component="h2">
-                          {flyer.name}
+                          {language === ENGLISH
+                            ? `${flyer.name}`
+                            : `${flyer.spanishName} `}
                         </Typography>
 
                         <Typography gutterBottom variant="h5" component="h2">
@@ -159,12 +201,17 @@ const KnowYourRights = () => {
                 <button onClick={handleClose}>
                   <HighlightOffIcon className={classes.icons} />
                 </button>
-                {/* <img
-                  style={{ marginTop: '2rem' }}
-                  id="simple-modal-title"
-                  src={activeItem.profilePic}
-                  alt="some text"
-                /> */}
+                {activeItem && (
+                  <img
+                    style={{ marginTop: '2rem' }}
+                    id="simple-modal-title"
+                    src={
+                      language === ENGLISH
+                        ? `${activeItem.flyerPDF}`
+                        : `${activeItem.spanishFlyerPDF} `
+                    }
+                  />
+                )}
               </div>
             </Modal>
           </Grid>
