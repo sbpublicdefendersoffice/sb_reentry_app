@@ -44,8 +44,7 @@ const SuccessStories = () => {
       name: 'Lisa Rising',
       role: 'Student',
       organization: 'Underground Scholars UCSB',
-      profilePic:
-        'https://ibb.co/xhHhNkt][img]https://i.ibb.co/kK1Kt7s/lisarising.jpg',
+      profilePic: 'https://i.ibb.co/kK1Kt7s/lisarising.jpg',
       bio: `My name is Lisandra "Lisa" Barrera Rising. I currently attend Santa Barbara City College in pursuit to attaining my major in Sociology. I have proudly overcome the systemic oppression of the injustice system by beating a 13 year opiate addiction, losing and regaining parental custody over my daughter while going in and out of jail. Today, I have found a passion in my academic journey and want to support and encourage anybody else going through the same challenges I once experienced. Anything is possible through community and valuable resources! Let's all stand to make a change and prove society we can persevere despite our pasts mistakes.`,
       spanishBio: `Mi nombre es Lisandra "Lisa" Barrera Rising. Actualmente asisto a Santa Barbara City College en pos de obtener mi especialización en Sociología. He superado con orgullo la opresión sistémica del sistema de injusticia superando una adicción a los opiáceos durante 13 años, perdiendo y recuperando la custodia de los padres sobre mi hija mientras entraba y salía de la cárcel. Hoy, he encontrado una pasión en mi viaje académico y quiero apoyar y alentar a cualquier otra persona que atraviese los mismos desafíos que una vez experimenté. ¡Todo es posible a través de la comunidad y recursos valiosos! Estemos todos para hacer un cambio y demostrarle a la sociedad que podemos perseverar a pesar de los errores del pasado.`,
     },
