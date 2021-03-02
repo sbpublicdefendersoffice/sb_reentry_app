@@ -7,7 +7,8 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import { ENGLISH } from '../../types/language'
+import { CopyHolder, ENGLISH } from '../../types/language'
+import Grid from '@material-ui/core/Grid'
 
 import useLanguage from '../../hooks/useLanguage'
 const useStyles = makeStyles({
@@ -24,6 +25,16 @@ const useStyles = makeStyles({
 const SuccessStories = () => {
   const { language } = useLanguage()
   const classes = useStyles()
+  const copy: CopyHolder = {
+    english: {
+      title: 'Success Stories',
+    },
+
+    spanish: {
+      title: 'Historias de éxito',
+    },
+  }
+  const activeCopy = copy[language]
   const successStories = [
     {
       name: 'Arturo "Cheech" Raygoza',
@@ -52,61 +63,63 @@ const SuccessStories = () => {
   return (
     <>
       <Head>
-        <title>{`Santa Barbara Reentry | ${
-          language === ENGLISH ? 'Success Stories' : 'Historias de éxito'
-        }`}</title>
+        <title>{`Santa Barbara Reentry | ${activeCopy.title}`}</title>
       </Head>
-      {successStories.map((successStory, key) => {
-        return (
-          <div
-            key={key}
-            style={{ width: '100%', marginRight: '3rem', padding: '2rem' }}
-          >
-            {' '}
-            <Typography align="center" gutterBottom variant="h5" component="h2">
-              {language === ENGLISH ? 'Success Stories' : 'Historias de éxito'}{' '}
-            </Typography>
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image={successStory.profilePic}
-                  title={
-                    language === ENGLISH
-                      ? `${successStory.alt} `
-                      : `${successStory.spanishAlt} `
-                  }
-                />
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {successStory.name}
-                  </Typography>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {language === ENGLISH
-                      ? `${successStory.role} `
-                      : `${successStory.spanishRole} `}
-                  </Typography>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {language === ENGLISH
-                      ? `${successStory.organization} `
-                      : `${successStory.spanishOrganization} `}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {language === ENGLISH
-                      ? `${successStory.bio} `
-                      : `${successStory.spanishBio} `}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </div>
-        )
-      })}
-      {}
+      <Typography
+        style={{ marginTop: '2rem' }}
+        align="center"
+        gutterBottom
+        variant="h2"
+        component="h2"
+      >
+        {activeCopy.title}{' '}
+      </Typography>
+      <Grid container style={{ justifyContent: 'center' }} spacing={3}>
+        {successStories.map((successStory, key) => {
+          return (
+            <Grid item xs={12} sm={2} key={key}>
+              <Card className={classes.root}>
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.media}
+                    image={successStory.profilePic}
+                    title={
+                      language === ENGLISH
+                        ? `${successStory.alt} `
+                        : `${successStory.spanishAlt} `
+                    }
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {successStory.name}
+                    </Typography>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {language === ENGLISH
+                        ? `${successStory.role} `
+                        : `${successStory.spanishRole} `}
+                    </Typography>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {language === ENGLISH
+                        ? `${successStory.organization} `
+                        : `${successStory.spanishOrganization} `}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      {language === ENGLISH
+                        ? `${successStory.bio} `
+                        : `${successStory.spanishBio} `}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          )
+        })}
+        {}
+      </Grid>
     </>
   )
 }
