@@ -13,9 +13,7 @@ import Grid from '@material-ui/core/Grid'
 import useLanguage from '../../hooks/useLanguage'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+
 import ListItemText from '@material-ui/core/ListItemText'
 
 const probations = [
