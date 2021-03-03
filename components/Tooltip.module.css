@@ -1,0 +1,11 @@
+.Tooltip {
+  color: var(--highlight);
+  font-weight: bold;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.Tooltip:active,
+.Tooltip:hover {
+  color: var(--highlight-2);
+}

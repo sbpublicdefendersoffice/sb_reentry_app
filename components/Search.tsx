@@ -7,8 +7,10 @@ import {
 } from 'react'
 
 import { Input } from '../ui'
+import Tooltip from './Tooltip'
+
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
-import { ENGLISH } from '../types/language'
+import { CopyHolder } from '../types/language'
 
 import useLanguage from '../hooks/useLanguage'
 
@@ -17,8 +19,22 @@ interface SearchProps {
   setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
 }
 
+import styles from './Search.module.css'
+
+const copy: CopyHolder = {
+  english: {
+    search: 'Search...',
+    popup: 'You can search by name, category or keyword',
+  },
+  spanish: {
+    search: 'Buscar...',
+    popup: 'Puede buscar por nombre, categoría o palabra clave',
+  },
+}
+
 const Search = ({ originalRecords, setRecords }: SearchProps) => {
   const { language } = useLanguage()
+  const activeCopy = copy[language]
 
   const [savedOriginalRecords, setSavedOriginalRecords] = useState<
     OrgRecord[] | null
@@ -47,11 +63,15 @@ const Search = ({ originalRecords, setRecords }: SearchProps) => {
   }
 
   return (
-    <Input
-      onChange={handleChange}
-      placeholder={language === ENGLISH ? 'Search...' : 'Buscar...'}
-      role="search"
-    />
+    <div className={styles.Search}>
+      <Tooltip>{activeCopy.popup}</Tooltip>
+      <Input
+        className={styles.Input}
+        onChange={handleChange}
+        placeholder={activeCopy.search}
+        role="search"
+      />
+    </div>
   )
 }
 
