@@ -10,6 +10,7 @@ import useLanguage from '../../hooks/useLanguage'
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    margin: 'auto',
   },
   media: {
     height: '20rem',
@@ -30,6 +31,7 @@ const SuccessStories = () => {
       title: 'Historias de éxito',
     },
   }
+
   const activeCopy = copy[language]
   const successStories = [
     {
