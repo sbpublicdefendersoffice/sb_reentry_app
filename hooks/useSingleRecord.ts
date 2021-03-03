@@ -9,7 +9,6 @@ import {
   ScheduleRecord,
 } from '../types/records'
 import useLanguage from '../hooks/useLanguage'
-import { fetchSingleOrgRecord } from '../services/GET'
 
 import { SPANISH } from '../types/language'
 
@@ -30,8 +29,19 @@ const useSingleRecord = () => {
   const id: string = requestParams[1]
 
   useEffect(() => {
-    if (requestReady && id !== '[id]')
-      fetchSingleOrgRecord(id, setSingleFetchedRecord)
+    const airtableApiRouteFetch = async () => {
+      if (requestReady && id !== '[id]') {
+        const apiRequest = await fetch('/api/singleairtablerecord', {
+          method: 'POST',
+          body: JSON.stringify({ id }),
+        })
+
+        const apiResponse = await apiRequest.json()
+
+        setSingleFetchedRecord(apiResponse)
+      }
+    }
+    airtableApiRouteFetch()
   }, [requestReady, id, language])
 
   useEffect(() => {
