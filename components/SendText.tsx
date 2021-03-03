@@ -1,6 +1,11 @@
 import { FormEvent, useState } from 'react'
 import { Button, Input } from '../ui'
 
+import {
+  validatePhoneNumber,
+  INVALID_NUMBER,
+  POST,
+} from '../helpers/validators'
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 
@@ -35,24 +40,20 @@ const SendText = ({ org_name, fullAddress, cityStateZip }: SendTextProps) => {
   const postText = async (e: FormEvent): Promise<void> => {
     e.preventDefault()
     try {
-      const validPhoneNumber: RegExp = /^[0-9]{10}$/
-      if (!validPhoneNumber.test(numberToSendTo))
-        throw new Error(activeCopy.error)
+      const validPhoneNumber = validatePhoneNumber(numberToSendTo)
+      if (!validPhoneNumber) throw new Error(INVALID_NUMBER)
 
       const messageToSend = { to: numberToSendTo, message: textToSend }
-      const text = await fetch('/api/QWYJrliMYbKZ9B5wt7EJm1*yD*H%5E66uQ%5E', {
-        method: 'POST',
-        headers: {
-          Authorization: process.env.NEXT_PUBLIC_SECRET_TEXT_KEY,
-        },
+      const text = await fetch('/api/twilio', {
+        method: POST,
         body: JSON.stringify(messageToSend),
       })
 
       const textResponse = await text.json()
-      if (textResponse.errorCode) throw new Error('Error with Message')
+      if (textResponse.error) throw new Error(textResponse.error)
     } catch (error) {
-      console.error(error)
-      setInputErrorMsg(error.message)
+      if (error.message === INVALID_NUMBER) setInputErrorMsg(activeCopy.error)
+      else setInputErrorMsg(error.message)
       setTimeout(() => setInputErrorMsg(null), 3000)
     }
   }

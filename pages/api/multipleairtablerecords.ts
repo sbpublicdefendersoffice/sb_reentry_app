@@ -1,26 +1,22 @@
-import { SetStateAction, Dispatch } from 'react'
+import { NextApiRequest, NextApiResponse } from 'next'
 
-import { OrgRecord, TranslatedRecordResponse } from '../types/records'
-import { Language, ENGLISH } from '../types/language'
+import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
 
-const BASE_URL: string = `https://api.airtable.com/v0/${process.env.NEXT_PUBLIC_AIRTABLE_BASE}`
+import { TranslatedRecordResponse } from '../../types/records'
+import { ENGLISH } from '../../types/language'
 
-const OPTIONS_OBJECT = {
-  method: 'GET',
-  headers: {
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`,
-    Referer: 'http://airtable.com',
-  },
-  referer: 'http://airtable.com',
-  refererPolicy: 'origin-when-cross-origin',
-}
+import { validateRequest, POST } from '../../helpers/validators'
 
-export const fetchRecordsByCategory = async (
-  category: string,
-  recordSetFunction: Dispatch<SetStateAction<TranslatedRecordResponse>>,
-  language: Language,
+const fetchRecordsByCategory = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
 ): Promise<void> => {
   try {
+    if (!validateRequest(req, POST))
+      throw new Error('Unauthorized origin or method')
+
+    const { category, language } = JSON.parse(req.body)
+
     let fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude`
 
     if (language === ENGLISH)
@@ -34,7 +30,7 @@ export const fetchRecordsByCategory = async (
 
     while (translatedRecords.offset) {
       // Airtable API has a 5 request per second limit. Hence the delay below
-      window.setTimeout(() => null, 200)
+      setTimeout(() => null, 200)
 
       const { offset, records } = translatedRecords
 
@@ -56,26 +52,10 @@ export const fetchRecordsByCategory = async (
       else delete translatedRecords.offset
     }
 
-    recordSetFunction(translatedRecords)
+    res.json(translatedRecords)
   } catch (error) {
     console.error(error)
   }
 }
 
-export const fetchSingleOrgRecord = async (
-  recordId: string,
-  recordSetFunction: Dispatch<SetStateAction<OrgRecord>>,
-): Promise<void> => {
-  try {
-    const fetchRecord: Response = await fetch(
-      `${BASE_URL}/organization/${recordId}`,
-      OPTIONS_OBJECT,
-    )
-
-    const translatedRecord: OrgRecord = await fetchRecord.json()
-
-    recordSetFunction(translatedRecord)
-  } catch (error) {
-    console.error(error)
-  }
-}
+export default fetchRecordsByCategory
