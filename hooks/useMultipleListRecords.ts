@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 
-import { fetchRecordsByCategory } from '../services/GET'
 import useLanguage from './useLanguage'
 
 import { TranslatedRecordResponse, OrgRecord } from '../types/records'
@@ -23,9 +22,19 @@ const useMultipleListRecords = (category: string) => {
   const { language } = useLanguage()
 
   useEffect(() => {
-    if (category && language) {
-      fetchRecordsByCategory(category, setUnsortedRecords, language)
+    const airtableApiRouteFetch = async () => {
+      if (category && language) {
+        const apiRequest = await fetch('/api/multipleairtablerecords', {
+          method: 'POST',
+          body: JSON.stringify({ category, language }),
+        })
+
+        const apiResponse = await apiRequest.json()
+
+        setUnsortedRecords(apiResponse)
+      }
     }
+    airtableApiRouteFetch()
   }, [category, language])
 
   useEffect(() => {
