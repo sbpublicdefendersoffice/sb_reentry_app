@@ -1,7 +1,11 @@
 import { FormEvent, useState } from 'react'
 import { Button, Input } from '../ui'
 
-import { validatePhoneNumber, INVALID_NUMBER } from '../helpers/validators'
+import {
+  validatePhoneNumber,
+  INVALID_NUMBER,
+  POST,
+} from '../helpers/validators'
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 
@@ -41,7 +45,7 @@ const SendText = ({ org_name, fullAddress, cityStateZip }: SendTextProps) => {
 
       const messageToSend = { to: numberToSendTo, message: textToSend }
       const text = await fetch('/api/twilio', {
-        method: 'POST',
+        method: POST,
         body: JSON.stringify(messageToSend),
       })
 

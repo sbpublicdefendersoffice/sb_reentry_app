@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import useLanguage from './useLanguage'
 
+import { POST } from '../helpers/validators'
 import { TranslatedRecordResponse, OrgRecord } from '../types/records'
 import { SPANISH } from '../types/language'
 
@@ -25,7 +26,7 @@ const useMultipleListRecords = (category: string) => {
     const airtableApiRouteFetch = async () => {
       if (category && language) {
         const apiRequest = await fetch('/api/multipleairtablerecords', {
-          method: 'POST',
+          method: POST,
           body: JSON.stringify({ category, language }),
         })
 

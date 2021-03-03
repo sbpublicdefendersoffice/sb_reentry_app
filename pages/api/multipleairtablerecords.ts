@@ -5,11 +5,16 @@ import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
 import { TranslatedRecordResponse } from '../../types/records'
 import { ENGLISH } from '../../types/language'
 
+import { validateRequest, POST } from '../../helpers/validators'
+
 const fetchRecordsByCategory = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
   try {
+    if (!validateRequest(req, POST))
+      throw new Error('Unauthorized origin or method')
+
     const { category, language } = JSON.parse(req.body)
 
     let fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude`

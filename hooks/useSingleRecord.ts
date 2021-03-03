@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
+import { POST } from '../helpers/validators'
 import {
   SortedRecord,
   OrgRecord,
@@ -32,7 +33,7 @@ const useSingleRecord = () => {
     const airtableApiRouteFetch = async () => {
       if (requestReady && id !== '[id]') {
         const apiRequest = await fetch('/api/singleairtablerecord', {
-          method: 'POST',
+          method: POST,
           body: JSON.stringify({ id }),
         })
 
