@@ -6,6 +6,12 @@ export const validatePhoneNumber = (num: string): boolean =>
 
 export const INVALID_NUMBER: string = 'Invalid Number'
 
+export const POST: AllowedMethod = 'POST'
+export const GET: AllowedMethod = 'GET'
+
+const LOCAL: AllowedURL = 'localhost:3000'
+const DEPLOYED: AllowedURL = 'santabarbarareentry.netlify.app'
+
 export const validateRequest = (
   req: NextApiRequest,
   methodToAllow: AllowedMethod,
@@ -13,17 +19,9 @@ export const validateRequest = (
   const { headers, method } = req
   const { host } = headers
 
-  const allowedURLS: AllowedURL[] = [
-    'localhost:3000',
-    'santabarbarareentry.netlify.app',
-  ]
-
-  const isAllowedURL: boolean = allowedURLS.includes(host as AllowedURL)
+  const isAllowedURL: boolean = host === LOCAL || host.endsWith(DEPLOYED)
   const isAllowedMethod: boolean = methodToAllow === method
 
   if (isAllowedURL && isAllowedMethod) return true
   else return false
 }
-
-export const POST: AllowedMethod = 'POST'
-export const GET: AllowedMethod = 'GET'
