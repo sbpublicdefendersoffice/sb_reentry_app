@@ -24,11 +24,13 @@ import styles from './Search.module.css'
 const copy: CopyHolder = {
   english: {
     search: 'Search...',
-    popup: 'You can search by name, category or keyword',
+    tooltip:
+      'You can search by organization, keywords, address, city, zip code or service you need',
   },
   spanish: {
     search: 'Buscar...',
-    popup: 'Puede buscar por nombre, categoría o palabra clave',
+    tooltip:
+      'Puede buscar por organización, palabras clave, dirección, ciudad, código postal o servicio que necesita',
   },
 }
 
@@ -64,7 +66,7 @@ const Search = ({ originalRecords, setRecords }: SearchProps) => {
 
   return (
     <div className={styles.Search}>
-      <Tooltip>{activeCopy.popup}</Tooltip>
+      <Tooltip>{activeCopy.tooltip}</Tooltip>
       <Input
         className={styles.Input}
         onChange={handleChange}
