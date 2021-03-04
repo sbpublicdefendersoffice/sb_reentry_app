@@ -14,12 +14,12 @@ import { CopyHolder } from '../types/language'
 
 import useLanguage from '../hooks/useLanguage'
 
-interface SearchProps {
+interface FetchedDataSearchProps {
   originalRecords: OrgRecord[]
   setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
 }
 
-import styles from './Search.module.css'
+import styles from './FetchedDataSearch.module.css'
 
 const copy: CopyHolder = {
   english: {
@@ -34,7 +34,10 @@ const copy: CopyHolder = {
   },
 }
 
-const Search = ({ originalRecords, setRecords }: SearchProps) => {
+const FetchedDataSearch = ({
+  originalRecords,
+  setRecords,
+}: FetchedDataSearchProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
@@ -65,7 +68,7 @@ const Search = ({ originalRecords, setRecords }: SearchProps) => {
   }
 
   return (
-    <div className={styles.Search}>
+    <div className={styles.FetchedDataSearch}>
       <Tooltip>{activeCopy.tooltip}</Tooltip>
       <Input
         className={styles.Input}
@@ -77,4 +80,4 @@ const Search = ({ originalRecords, setRecords }: SearchProps) => {
   )
 }
 
-export default Search
+export default FetchedDataSearch

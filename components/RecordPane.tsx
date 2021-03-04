@@ -1,7 +1,7 @@
 import { SetStateAction, Dispatch } from 'react'
 import { useRouter } from 'next/router'
 
-import { Search, LeafLoader } from '../components'
+import { FetchedDataSearch, LeafLoader } from '../components'
 import { Card, Details, Paragraph } from '../ui'
 import useLanguage from '../hooks/useLanguage'
 
@@ -43,7 +43,10 @@ const RecordPane = ({
         {displayCategory}
       </Paragraph>
       {orgInfo && (
-        <Search originalRecords={orgInfo.records} setRecords={setRecords} />
+        <FetchedDataSearch
+          originalRecords={orgInfo.records}
+          setRecords={setRecords}
+        />
       )}
       <Details
         open
