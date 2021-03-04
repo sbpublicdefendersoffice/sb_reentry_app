@@ -11,6 +11,7 @@ import Tooltip from './Tooltip'
 
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
 import { CopyHolder } from '../types/language'
+import { searchCopy } from '../constants/copy'
 
 import useLanguage from '../hooks/useLanguage'
 
@@ -39,7 +40,7 @@ const FetchedDataSearch = ({
   setRecords,
 }: FetchedDataSearchProps) => {
   const { language } = useLanguage()
-  const activeCopy = copy[language]
+  const activeCopy = searchCopy[language]
 
   const [savedOriginalRecords, setSavedOriginalRecords] = useState<
     OrgRecord[] | null
