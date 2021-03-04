@@ -1,24 +1,12 @@
 import { useState, useEffect, useRef, MutableRefObject } from 'react'
 
 import useLanguage from '../hooks/useLanguage'
-import { ENGLISH, SPANISH, CopyHolder } from '../types/language'
+import { ENGLISH, SPANISH } from '../types/language'
 
 import styles from './LangSwitcher.module.css'
 
-const copy: CopyHolder = {
-  english: {
-    english: 'English',
-    spanish: 'Spanish',
-  },
-  spanish: {
-    english: 'Inglés',
-    spanish: 'Español',
-  },
-}
-
 const LangSwitcher = () => {
   const { language, setLanguage } = useLanguage()
-  const activeCopy = copy[language]
 
   const [isChecked, setIsChecked] = useState<boolean>(language === SPANISH)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
@@ -44,7 +32,7 @@ const LangSwitcher = () => {
           fontWeight: isChecked ? 100 : 400,
         }}
       >
-        {activeCopy.english}
+        English
       </span>
       <input
         className={styles.input}
@@ -62,7 +50,7 @@ const LangSwitcher = () => {
           fontWeight: isChecked ? 400 : 100,
         }}
       >
-        {activeCopy.spanish}
+        Español
       </span>
     </label>
   )

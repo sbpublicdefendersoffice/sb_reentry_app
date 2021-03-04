@@ -1,10 +1,9 @@
-import { useState, MouseEvent } from 'react'
 import { useRouter } from 'next/router'
 import { Marker } from 'react-mapbox-gl'
 
 import Popup from './Popup'
+import { usePopup } from '../hooks'
 import { LocationRecord } from '../types/records'
-import { PopupInfo } from '../types/maps'
 
 import styles from './MapMarker.module.css'
 
@@ -13,14 +12,10 @@ interface MapMarkerProps {
 }
 
 const MapMarker = ({ locationRecord }: MapMarkerProps) => {
-  const [popup, setPopup] = useState<PopupInfo | null>(null)
-
   const { push, query } = useRouter()
+  const { popupLocation, setPopupLocation, clearPopupLocation } = usePopup()
 
   const { longitude, latitude, category, name, uuid } = locationRecord
-
-  const setPopupLocation = ({ clientX, clientY }: MouseEvent): void =>
-    setPopup({ clientX, clientY })
 
   const linkToRecord = (): void => {
     if (query?.id !== uuid) push('/[category]/[id]', `/${category}/${uuid}`)
@@ -28,8 +23,8 @@ const MapMarker = ({ locationRecord }: MapMarkerProps) => {
 
   return (
     <>
-      {popup && name && (
-        <Popup clientX={popup.clientX} clientY={popup.clientY}>
+      {popupLocation && name && (
+        <Popup clientX={popupLocation.clientX} clientY={popupLocation.clientY}>
           {name}
         </Popup>
       )}
@@ -39,7 +34,7 @@ const MapMarker = ({ locationRecord }: MapMarkerProps) => {
           className={styles.MapMarker}
           onMouseEnter={setPopupLocation}
           onMouseMove={setPopupLocation}
-          onMouseLeave={() => setPopup(null)}
+          onMouseLeave={clearPopupLocation}
           onClick={linkToRecord}
         />
       </Marker>
