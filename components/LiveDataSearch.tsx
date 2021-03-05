@@ -4,9 +4,11 @@ import debounce from 'lodash/debounce'
 import useLanguage from '../hooks/useLanguage'
 
 import Tooltip from './Tooltip'
+
 import { Input, Paragraph } from '../ui'
 import { POST } from '../helpers/validators'
 import { searchCopy } from '../constants/copy'
+import useGlobalSearch from '../hooks/useGlobalSearch'
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
 
 import styles from './LiveDataSearch.module.css'
@@ -18,7 +20,7 @@ const LiveDataSearch = () => {
   const activeCopy = searchCopy[language]
 
   const [searchQuery, setSearchQuery] = useState<string>('')
-  const [searchResults, setSearchResults] = useState<OrgRecord[] | null>(null)
+  const { searchResults, setSearchResults } = useGlobalSearch()
 
   const sendQuery = async (): Promise<void> => {
     if (searchQuery) {
