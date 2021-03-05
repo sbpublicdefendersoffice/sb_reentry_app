@@ -6,6 +6,7 @@ import {
   FormEvent,
   MouseEvent,
 } from 'react'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import debounce from 'lodash/debounce'
 
@@ -87,15 +88,12 @@ const LiveDataSearch = () => {
         {searchQuery &&
           searchResults &&
           searchResults.map((record: OrgRecord, i: number) => (
-            <li
-              className={styles.Result}
-              onClick={() => console.log(record.id)}
-              key={i}
-              tabIndex={0}
-            >
-              <Paragraph size="med-text">
-                {record.fields.org_name || record.fields.org_name_spanish}
-              </Paragraph>
+            <li className={styles.Result} key={i} tabIndex={0}>
+              <NextLink href="/search/[id]" as={`/search/${record.id}`}>
+                <Paragraph size="med-text">
+                  {record.fields.org_name || record.fields.org_name_spanish}
+                </Paragraph>
+              </NextLink>
             </li>
           ))}
       </ul>

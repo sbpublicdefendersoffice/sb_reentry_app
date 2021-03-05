@@ -33,6 +33,8 @@ const RecordPane = ({
     if (url !== route) push(url, url)
   }
 
+  if (!orgInfo) return <LeafLoader />
+
   return (
     <div className={styles.RecordPane} role="list">
       <Paragraph
@@ -55,7 +57,7 @@ const RecordPane = ({
           language === ENGLISH ? 'Records' : 'Registros'
         }`}
       >
-        {Boolean(orgInfo?.records?.length) ? (
+        {Boolean(orgInfo?.records?.length) && (
           <>
             {orgInfo?.records?.map(record => (
               <Card
@@ -80,8 +82,6 @@ const RecordPane = ({
               </Card>
             ))}
           </>
-        ) : (
-          <LeafLoader />
         )}
       </Details>
     </div>

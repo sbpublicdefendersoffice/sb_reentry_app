@@ -25,13 +25,13 @@ const useSingleRecord = () => {
   const { language } = useLanguage()
 
   const requestParams: string[] = asPath.slice(1).split('/')
-  const requestReady: number = requestParams.length
+  const isRequestReady: boolean = Boolean(requestParams.length)
   const category: string = requestParams[0]
   const id: string = requestParams[1]
 
   useEffect(() => {
     const airtableApiRouteFetch = async () => {
-      if (requestReady && id !== '[id]') {
+      if (isRequestReady && id !== '[id]') {
         const apiRequest = await fetch('/api/singleairtablerecord', {
           method: POST,
           body: JSON.stringify({ id }),
@@ -43,7 +43,7 @@ const useSingleRecord = () => {
       }
     }
     airtableApiRouteFetch()
-  }, [requestReady, id, language])
+  }, [isRequestReady, id, language])
 
   useEffect(() => {
     if (singleFetchedRecord) {
