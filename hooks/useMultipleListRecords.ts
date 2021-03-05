@@ -25,7 +25,7 @@ const useMultipleListRecords = (category: string) => {
   useEffect(() => {
     const airtableApiRouteFetch = async () => {
       if (category && language) {
-        const apiRequest = await fetch('/api/multipleairtablerecords', {
+        const apiRequest = await fetch('/api/airtablerecordsbycategory', {
           method: POST,
           body: JSON.stringify({ category, language }),
         })

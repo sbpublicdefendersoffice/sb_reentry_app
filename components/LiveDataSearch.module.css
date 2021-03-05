@@ -1,10 +1,37 @@
 .LiveDataSearch {
+  /* for dev only */
+  position: absolute;
+  right: 0;
+  top: 31.5px;
+
+  /* for dev only */
+  background-color: var(--light);
   width: 20rem;
-  display: flex;
-  align-items: center;
   border: var(--border-width) solid var(--primary);
   border-radius: var(--radius-small);
-  padding: var(--pad-sm) var(--pad-lg);
+  padding: 0 var(--pad-lg);
+  z-index: 20;
+}
+
+.SearchAndResultsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-height: 2rem;
+  overflow: scroll;
+}
+
+.SearchAndResultsContainer:focus-within {
+  max-height: 40rem;
+}
+
+.SearchContainer {
+  width: 100%;
+  display: inherit;
+  align-items: center;
+  min-height: inherit;
+  height: 2rem;
 }
 
 .Input {
@@ -16,4 +43,20 @@
 .SearchIcon {
   margin: 0 var(--margin-std) 0 0;
   user-select: none;
+}
+
+.ResultsContainer {
+  list-style-type: none;
+  width: 100%;
+}
+
+.Result {
+  padding: var(--pad-sm) 0;
+  border-top: var(--border-width) solid var(--light-2);
+  outline: none;
+  cursor: pointer;
+}
+
+.Result:hover > p {
+  color: var(--highlight);
 }
