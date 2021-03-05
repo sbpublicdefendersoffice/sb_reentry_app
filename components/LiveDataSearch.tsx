@@ -1,4 +1,12 @@
-import { useState, useCallback, useEffect, ChangeEvent } from 'react'
+import {
+  useState,
+  useCallback,
+  useEffect,
+  ChangeEvent,
+  FormEvent,
+  MouseEvent,
+} from 'react'
+import { useRouter } from 'next/router'
 import debounce from 'lodash/debounce'
 
 import useLanguage from '../hooks/useLanguage'
@@ -16,11 +24,19 @@ import styles from './LiveDataSearch.module.css'
 const delayTimeInMs: number = 500
 
 const LiveDataSearch = () => {
+  const { push } = useRouter()
   const { language } = useLanguage()
   const activeCopy = searchCopy[language]
 
   const [searchQuery, setSearchQuery] = useState<string>('')
   const { searchResults, setSearchResults } = useGlobalSearch()
+
+  const handleSubmit = (
+    e: FormEvent<HTMLFormElement> | MouseEvent<HTMLSpanElement>,
+  ): void => {
+    e.preventDefault()
+    if (searchQuery) push('/search', `/search?query=${searchQuery}`)
+  }
 
   const sendQuery = async (): Promise<void> => {
     if (searchQuery) {
@@ -54,7 +70,7 @@ const LiveDataSearch = () => {
 
   return (
     <section className={styles.LiveDataSearch}>
-      <div className={styles.SearchContainer}>
+      <form className={styles.SearchContainer} onSubmit={handleSubmit}>
         <Input
           className={styles.Input}
           value={searchQuery}
@@ -62,9 +78,11 @@ const LiveDataSearch = () => {
           placeholder={activeCopy.search}
           role="search"
         />
-        <span className={styles.SearchIcon}>&#128269;</span>
+        <span className={styles.SearchIcon} onClick={handleSubmit}>
+          &#128269;
+        </span>
         <Tooltip>{activeCopy.tooltip}</Tooltip>
-      </div>
+      </form>
       <ul className={styles.ResultsContainer}>
         {searchQuery &&
           searchResults &&
