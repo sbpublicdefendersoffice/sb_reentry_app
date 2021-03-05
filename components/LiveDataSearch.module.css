@@ -11,27 +11,23 @@
   border-radius: var(--radius-small);
   padding: 0 var(--pad-lg);
   z-index: 20;
-}
-
-.SearchAndResultsContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  max-height: 2rem;
-  overflow: scroll;
+  min-height: 2.5rem;
+  max-height: 2.5rem;
+  overflow: hidden;
 }
 
-.SearchAndResultsContainer:focus-within {
+.LiveDataSearch:focus-within {
   max-height: 40rem;
+  overflow: scroll;
 }
 
 .SearchContainer {
   width: 100%;
   display: inherit;
   align-items: center;
-  min-height: inherit;
-  height: 2rem;
 }
 
 .Input {
@@ -41,7 +37,7 @@
 }
 
 .SearchIcon {
-  margin: 0 var(--margin-std) 0 0;
+  margin-right: var(--margin-std);
   user-select: none;
 }
 
@@ -59,4 +55,8 @@
 
 .Result:hover > p {
   color: var(--highlight);
+}
+
+.LiveDataSearch:not(:focus-within) * .Result {
+  border-top: none;
 }

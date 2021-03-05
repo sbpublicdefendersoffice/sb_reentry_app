@@ -31,6 +31,7 @@ const LiveDataSearch = () => {
       })
 
       const response: TranslatedRecordResponse = await call.json()
+
       setSearchResults(response.records)
     }
   }
@@ -44,43 +45,41 @@ const LiveDataSearch = () => {
     searchQuery,
   ])
 
-  useEffect(() => {
+  useEffect((): void => {
     delayedQuery()
     return delayedQuery.cancel
   }, [searchQuery, delayedQuery])
 
   return (
-    <div className={styles.LiveDataSearch}>
-      <div className={styles.SearchAndResultsContainer}>
-        <div className={styles.SearchContainer}>
-          <Input
-            className={styles.Input}
-            value={searchQuery}
-            onChange={handleChange}
-            placeholder={activeCopy.search}
-            role="search"
-          />
-          <span className={styles.SearchIcon}>&#128269;</span>
-          <Tooltip>{activeCopy.tooltip}</Tooltip>
-        </div>
-        <ul className={styles.ResultsContainer}>
-          {searchQuery &&
-            searchResults &&
-            searchResults.map((record: OrgRecord, i: number) => (
-              <li
-                className={styles.Result}
-                onClick={() => console.log(record.id)}
-                key={i}
-                tabIndex={0}
-              >
-                <Paragraph size="med-text">
-                  {record.fields.org_name || record.fields.org_name_spanish}
-                </Paragraph>
-              </li>
-            ))}
-        </ul>
+    <section className={styles.LiveDataSearch}>
+      <div className={styles.SearchContainer}>
+        <Input
+          className={styles.Input}
+          value={searchQuery}
+          onChange={handleChange}
+          placeholder={activeCopy.search}
+          role="search"
+        />
+        <span className={styles.SearchIcon}>&#128269;</span>
+        <Tooltip>{activeCopy.tooltip}</Tooltip>
       </div>
-    </div>
+      <ul className={styles.ResultsContainer}>
+        {searchQuery &&
+          searchResults &&
+          searchResults.map((record: OrgRecord, i: number) => (
+            <li
+              className={styles.Result}
+              onClick={() => console.log(record.id)}
+              key={i}
+              tabIndex={0}
+            >
+              <Paragraph size="med-text">
+                {record.fields.org_name || record.fields.org_name_spanish}
+              </Paragraph>
+            </li>
+          ))}
+      </ul>
+    </section>
   )
 }
 
