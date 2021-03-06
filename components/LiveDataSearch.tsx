@@ -51,7 +51,7 @@ const LiveDataSearch = () => {
 
       const response: TranslatedRecordResponse = await call.json()
 
-      setSearchResults(response.records)
+      setSearchResults(response)
     }
   }
 
@@ -87,7 +87,7 @@ const LiveDataSearch = () => {
       <ul className={styles.ResultsContainer}>
         {searchQuery &&
           searchResults &&
-          searchResults.map((record: OrgRecord, i: number) => (
+          searchResults.records.map((record: OrgRecord, i: number) => (
             <li className={styles.Result} key={i} tabIndex={0}>
               <NextLink href="/search/[id]" as={`/search/${record.id}`}>
                 <Paragraph size="med-text">

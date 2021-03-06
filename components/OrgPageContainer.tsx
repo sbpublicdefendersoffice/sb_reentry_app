@@ -1,7 +1,6 @@
 import Head from 'next/head'
 
-import useSingleRecord from '../hooks/useSingleRecord'
-import useMultipleListRecords from '../hooks/useMultipleListRecords'
+import { useMultipleListRecords, useSingleRecord } from '../hooks'
 import { siteTitle } from '../constants/copy'
 
 import { OrgRecordDisplay, RecordPane } from './'

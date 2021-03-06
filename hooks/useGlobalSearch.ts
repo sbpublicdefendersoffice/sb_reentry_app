@@ -1,11 +1,11 @@
 import { createContext, useContext } from 'react'
 
-import { OrgRecord } from '../types/records'
+import { TranslatedRecordResponse } from '../types/records'
 
 interface GlobalSearchProps {
-  searchResults: OrgRecord[]
+  searchResults: TranslatedRecordResponse
   // eslint-disable-next-line no-unused-vars
-  setSearchResults: (searchResults: OrgRecord[]) => void
+  setSearchResults: (searchResults: TranslatedRecordResponse) => void
 }
 
 const GlobalSearch = createContext<GlobalSearchProps | null>(null)

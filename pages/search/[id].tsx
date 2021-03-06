@@ -1,8 +1,19 @@
-import { OrgPageContainer } from '../../components'
+import Head from 'next/head'
+
+import useSingleRecord from '../../hooks/useSingleRecord'
+import { OrgRecordDisplay } from '../../components'
+import { siteTitle } from '../../constants/copy'
 
 const SearchIdPage = () => {
+  const { sortedRecord } = useSingleRecord()
+
   return (
-    <OrgPageContainer displayCategory={'Search'} routeCategory={'Search'} />
+    <>
+      <Head>
+        <title>{`${siteTitle} | ${sortedRecord?.name}`}</title>
+      </Head>
+      <OrgRecordDisplay sortedRecord={sortedRecord} />
+    </>
   )
 }
 
