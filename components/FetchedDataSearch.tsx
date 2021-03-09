@@ -10,7 +10,6 @@ import { Input } from '../ui'
 import Tooltip from './Tooltip'
 
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
-import { CopyHolder } from '../types/language'
 import { searchCopy } from '../constants/copy'
 
 import useLanguage from '../hooks/useLanguage'
@@ -21,19 +20,6 @@ interface FetchedDataSearchProps {
 }
 
 import styles from './FetchedDataSearch.module.css'
-
-const copy: CopyHolder = {
-  english: {
-    search: 'Search...',
-    tooltip:
-      'You can search by organization, keywords, address, city, zip code or service you need',
-  },
-  spanish: {
-    search: 'Buscar...',
-    tooltip:
-      'Puede buscar por organización, palabras clave, dirección, ciudad, código postal o servicio que necesita',
-  },
-}
 
 const FetchedDataSearch = ({
   originalRecords,
