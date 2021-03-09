@@ -25,7 +25,7 @@ const MapMarker = ({ locationRecord }: MapMarkerProps) => {
     uuid,
     multiple_categories,
   } = locationRecord
-  const isSearchPage: boolean = pathname === '/search'
+  const isSearchPage: boolean = pathname.startsWith('/search')
 
   useEffect(() => {
     if (isSearchPage) setImgSrc(multiple_categories[0])
