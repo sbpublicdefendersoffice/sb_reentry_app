@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Marker } from 'react-mapbox-gl'
 
@@ -12,13 +13,29 @@ interface MapMarkerProps {
 }
 
 const MapMarker = ({ locationRecord }: MapMarkerProps) => {
-  const { push, query } = useRouter()
+  const [imgSrc, setImgSrc] = useState<string>('')
+  const { push, pathname, query } = useRouter()
   const { popupLocation, setPopupLocation, clearPopupLocation } = usePopup()
 
-  const { longitude, latitude, category, name, uuid } = locationRecord
+  const {
+    longitude,
+    latitude,
+    single_category,
+    name,
+    uuid,
+    multiple_categories,
+  } = locationRecord
+  const isSearchPage: boolean = pathname === '/search'
+
+  useEffect(() => {
+    if (isSearchPage) setImgSrc(multiple_categories[0])
+    else setImgSrc(single_category)
+  }, [])
 
   const linkToRecord = (): void => {
-    if (query?.id !== uuid) push('/[category]/[id]', `/${category}/${uuid}`)
+    if (query?.id !== uuid)
+      if (isSearchPage) push('/search/[id]', `/search/${uuid}`)
+      else push('/[category]/[id]', `/${single_category}/${uuid}`)
   }
 
   return (
@@ -30,7 +47,7 @@ const MapMarker = ({ locationRecord }: MapMarkerProps) => {
       )}
       <Marker coordinates={[longitude, latitude]} anchor="bottom">
         <img
-          src={`/icons/${category}_marker.svg`}
+          src={`/icons/${imgSrc}_marker.svg`}
           className={styles.MapMarker}
           onMouseEnter={setPopupLocation}
           onMouseMove={setPopupLocation}

@@ -14,7 +14,10 @@ export const filterOutLocationlessRecords = (
       if (longCheck) {
         const newLocationRecords = longCheck.map(
           (longitude: number, i: number) => ({
-            category: locRecordsToFilter.category || 'Search',
+            multiple_categories: record.fields.org_categories.map(
+              (category: string): string => category.replaceAll(' ', ''),
+            ),
+            single_category: locRecordsToFilter.category || 'search',
             longitude,
             latitude: record.fields.location_latitude[i],
             name: record.fields.org_name,
