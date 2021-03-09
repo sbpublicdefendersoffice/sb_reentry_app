@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 
 import { DisplayMap, RecordPane } from './'
-import { LocationRecord, OrgRecord } from '../types/records'
+import { filterOutLocationlessRecords } from '../helpers/filters'
+import { LocationRecord } from '../types/records'
 import useMultipleListRecords from '../hooks/useMultipleListRecords'
 
 interface CategoryPageContainerProps {
@@ -25,26 +26,8 @@ const CategoryPageContainer = ({
 
   useEffect((): void => {
     if (fetchedRecords) {
-      const mappedLocRecords: LocationRecord[] = fetchedRecords.records.reduce(
-        (arr: LocationRecord[], record: OrgRecord) => {
-          const longCheck: number[] = record.fields.location_longitude
-
-          if (longCheck) {
-            const newLocationRecords = longCheck.map(
-              (longitude: number, i: number) => ({
-                category: fetchedRecords.category,
-                longitude,
-                latitude: record.fields.location_latitude[i],
-                name: record.fields.org_name,
-                uuid: record.id,
-              }),
-            )
-            arr = [...arr, ...newLocationRecords]
-          }
-
-          return arr
-        },
-        [],
+      const mappedLocRecords: LocationRecord[] = filterOutLocationlessRecords(
+        fetchedRecords,
       )
       setConvertedLocRecords(mappedLocRecords)
     }

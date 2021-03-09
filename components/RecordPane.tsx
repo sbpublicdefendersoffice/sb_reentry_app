@@ -1,7 +1,7 @@
 import { SetStateAction, Dispatch } from 'react'
 import { useRouter } from 'next/router'
 
-import { Search, LeafLoader } from '../components'
+import { FetchedDataSearch, LeafLoader } from '../components'
 import { Card, Details, Paragraph } from '../ui'
 import useLanguage from '../hooks/useLanguage'
 
@@ -33,6 +33,8 @@ const RecordPane = ({
     if (url !== route) push(url, url)
   }
 
+  if (!orgInfo) return <LeafLoader />
+
   return (
     <div className={styles.RecordPane} role="list">
       <Paragraph
@@ -43,7 +45,10 @@ const RecordPane = ({
         {displayCategory}
       </Paragraph>
       {orgInfo && (
-        <Search originalRecords={orgInfo.records} setRecords={setRecords} />
+        <FetchedDataSearch
+          originalRecords={orgInfo.records}
+          setRecords={setRecords}
+        />
       )}
       <Details
         open
@@ -52,7 +57,7 @@ const RecordPane = ({
           language === ENGLISH ? 'Records' : 'Registros'
         }`}
       >
-        {Boolean(orgInfo?.records?.length) ? (
+        {Boolean(orgInfo?.records?.length) && (
           <>
             {orgInfo?.records?.map(record => (
               <Card
@@ -77,8 +82,6 @@ const RecordPane = ({
               </Card>
             ))}
           </>
-        ) : (
-          <LeafLoader />
         )}
       </Details>
     </div>

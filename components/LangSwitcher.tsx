@@ -1,12 +1,15 @@
 import { useState, useEffect, useRef, MutableRefObject } from 'react'
 
-import useLanguage from '../hooks/useLanguage'
+import { useLanguage, useGlobalSearch } from '../hooks'
 import { ENGLISH, SPANISH } from '../types/language'
 
 import styles from './LangSwitcher.module.css'
 
+const disabledTimeInMs: number = 400
+
 const LangSwitcher = () => {
   const { language, setLanguage } = useLanguage()
+  const { setSearchResults } = useGlobalSearch()
 
   const [isChecked, setIsChecked] = useState<boolean>(language === SPANISH)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
@@ -14,12 +17,16 @@ const LangSwitcher = () => {
   const isInitialRender: MutableRefObject<boolean> = useRef<boolean>(true)
 
   useEffect((): void => {
+    if (!isInitialRender.current) setSearchResults(null)
+  }, [language])
+
+  useEffect((): void => {
     if (isInitialRender.current) isInitialRender.current = false
     else {
       setIsDisabled(true)
       if (language === ENGLISH) setLanguage(SPANISH)
       else setLanguage(ENGLISH)
-      setTimeout((): void => setIsDisabled(false), 400)
+      setTimeout((): void => setIsDisabled(false), disabledTimeInMs)
     }
   }, [isChecked])
 
