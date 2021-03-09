@@ -5,14 +5,20 @@ import Head from 'next/head'
 
 import { siteTitle } from '../constants/copy'
 import { Language, ENGLISH, SPANISH } from '../types/language'
+import { TranslatedRecordResponse } from '../types/records'
 import { Provider as LangProvider } from '../hooks/useLanguage'
-import { Footer, Header, LangSwitcher } from '../components'
+import { Provider as GlobalSearchProvider } from '../hooks/useGlobalSearch'
+import { Footer, Header, LangSwitcher, LiveDataSearch } from '../components'
 
 import '../styles/globals.css'
 import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [language, setLanguage] = useState<Language | null>(null)
+  const [
+    searchResults,
+    setSearchResults,
+  ] = useState<TranslatedRecordResponse | null>(null)
 
   useEffect(() => {
     const { language } = window.navigator
@@ -39,12 +45,15 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       {language && (
         <LangProvider value={{ language, setLanguage }}>
-          <LangSwitcher />
-          <Header />
-          <main>
-            <Component {...pageProps} />
-          </main>
-          <Footer />
+          <GlobalSearchProvider value={{ searchResults, setSearchResults }}>
+            <LangSwitcher />
+            <Header />
+            <LiveDataSearch />
+            <main>
+              <Component {...pageProps} />
+            </main>
+            <Footer />
+          </GlobalSearchProvider>
         </LangProvider>
       )}
     </>
