@@ -20,6 +20,7 @@ export const filterOutLocationlessRecords = (
             single_category: locRecordsToFilter.category || 'search',
             longitude,
             latitude: record.fields.location_latitude[i],
+            city: record.fields.locations_city[i],
             name: record.fields.org_name,
             uuid: record.id,
           }),
