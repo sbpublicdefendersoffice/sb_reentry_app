@@ -61,6 +61,7 @@ const FetchedDataSearch = ({
         Send Text
       </label>
       <Input
+        type="search"
         id="category-search"
         className={styles.Input}
         onChange={handleChange}

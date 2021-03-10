@@ -76,6 +76,7 @@ const LiveDataSearch = () => {
           Global Search
         </label>
         <Input
+          type="search"
           id="global-search"
           className={styles.Input}
           value={searchQuery}
