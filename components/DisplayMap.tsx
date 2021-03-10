@@ -1,9 +1,9 @@
-import { Fragment } from 'react'
+import { Fragment, Dispatch, SetStateAction } from 'react'
 import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
 
 import { mapboxStylingURL, mapContainerStyle } from '../constants/maps'
 import useMapInfo from '../hooks/useMapInfo'
-import MapMarker from './MapMarker'
+import { MapMarker, CityFilter } from './'
 import { Details } from '../ui'
 import useLanguage from '../hooks/useLanguage'
 
@@ -13,15 +13,16 @@ import { ENGLISH } from '../types/language'
 import styles from './DisplayMap.module.css'
 
 interface DisplayMapProps {
-  latLongInfo: LocationRecord[]
   page: 'search' | 'org'
+  latLongInfo: LocationRecord[]
+  setLatLongInfo?: Dispatch<SetStateAction<LocationRecord[]>>
 }
 
 const MapboxMap = ReactMapboxGL({
   accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
 })
 
-const DisplayMap = ({ latLongInfo, page }: DisplayMapProps) => {
+const DisplayMap = ({ page, latLongInfo, setLatLongInfo }: DisplayMapProps) => {
   const { language } = useLanguage()
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
 
@@ -32,6 +33,7 @@ const DisplayMap = ({ latLongInfo, page }: DisplayMapProps) => {
       className={`${styles.DisplayMap} 
       ${page === 'search' ? styles.SearchPageSize : ''}`}
     >
+      {setLatLongInfo && <CityFilter />}
       {
         // @ts-ignore
         <MapboxMap
