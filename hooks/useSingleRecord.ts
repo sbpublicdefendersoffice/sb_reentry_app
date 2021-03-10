@@ -141,7 +141,10 @@ const useSingleRecord = () => {
           else obj.org_name = organizedRecord.name
         } else obj.org_name = null
 
-        obj.category = category ? category : null
+        obj.multiple_categories = organizedRecord.categories.map(
+          (category: string): string => category.replaceAll(' ', ''),
+        )
+        obj.single_category = category ? category : null
         obj.schedule = []
 
         organizedRecord.locations.push(obj)
