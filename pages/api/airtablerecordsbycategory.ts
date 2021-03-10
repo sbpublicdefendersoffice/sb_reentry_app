@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import cacheData from 'memory-cache'
 
 import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
-import { hourInMs } from '../../constants/cache'
 
 import { TranslatedRecordResponse } from '../../types/records'
 import { ENGLISH } from '../../types/language'
@@ -19,12 +17,6 @@ const fetchRecordsByCategory = async (
 
     const { category, language } = JSON.parse(req.body)
 
-    // const key: string = `${category}_${language}`
-    // const cachedData = cacheData.get(key)
-
-    // if (cachedData) {
-    //   res.json(cachedData)
-    // } else {
     let fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&fields%5B%5D=org_categories`
 
     if (language === ENGLISH)
@@ -60,10 +52,7 @@ const fetchRecordsByCategory = async (
       else delete translatedRecords.offset
     }
 
-    // cacheData.put(key, translatedRecords, hourInMs)
-
     res.json(translatedRecords)
-    // }
   } catch (error) {
     console.error(error)
   }
