@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { validateRequest, POST } from '../../helpers/validators'
 import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
 
+import { key, value } from '../../constants/cache'
 import { TranslatedRecordResponse } from '../../types/records'
 import { SPANISH } from '../../types/language'
 
@@ -22,6 +23,7 @@ const globalAirtableSearch = async (
     const fetchRecords: Response = await fetch(fetchString, OPTIONS_OBJECT)
     const translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
 
+    res.setHeader(key, value)
     res.json(translatedRecords)
   } catch (error) {
     console.error(error)

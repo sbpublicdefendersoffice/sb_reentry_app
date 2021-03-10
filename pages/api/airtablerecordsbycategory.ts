@@ -4,6 +4,7 @@ import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
 
 import { TranslatedRecordResponse } from '../../types/records'
 import { ENGLISH } from '../../types/language'
+import { key, value } from '../../constants/cache'
 
 import { validateRequest, POST } from '../../helpers/validators'
 
@@ -51,6 +52,8 @@ const fetchRecordsByCategory = async (
       if (pageOffset) translatedRecords.offset = pageOffset
       else delete translatedRecords.offset
     }
+
+    res.setHeader(key, value)
 
     res.json(translatedRecords)
   } catch (error) {

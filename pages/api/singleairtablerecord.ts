@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import { OrgRecord } from '../../types/records'
 import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
+import { key, value } from '../../constants/cache'
 
 import { validateRequest, POST } from '../../helpers/validators'
 
@@ -21,6 +22,7 @@ const fetchSingleOrgRecord = async (
     )
     const translatedRecord: OrgRecord = await fetchRecord.json()
 
+    res.setHeader(key, value)
     res.json(translatedRecord)
   } catch (error) {
     console.error(error)
