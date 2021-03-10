@@ -57,7 +57,11 @@ const FetchedDataSearch = ({
   return (
     <div className={styles.FetchedDataSearch}>
       <Tooltip>{activeCopy.tooltip}</Tooltip>
+      <label className={styles.Label} htmlFor="category-search">
+        Send Text
+      </label>
       <Input
+        id="category-search"
         className={styles.Input}
         onChange={handleChange}
         placeholder={activeCopy.search}
