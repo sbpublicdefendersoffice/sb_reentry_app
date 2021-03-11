@@ -8,7 +8,9 @@ import {
 
 import Checkbox from '../ui/Checkbox'
 import { citiesByCountyRegion } from '../constants/maps'
+import { CopyHolder, ENGLISH } from '../types/language'
 import { LocationRecord } from '../types/records'
+import useLanguage from '../hooks/useLanguage'
 
 import styles from './CityFilter.module.css'
 
@@ -23,7 +25,25 @@ interface CountyVisibilityFilter {
   northCounty: boolean
 }
 
+type VisibilityAsArray = [string, boolean]
+
+const copy: CopyHolder = {
+  english: {
+    southCounty: 'South County',
+    centralCounty: 'Central County',
+    northCounty: 'North County',
+  },
+  spanish: {
+    southCounty: 'Condado del sur',
+    centralCounty: 'Condado central',
+    northCounty: 'Condado del norte',
+  },
+}
+
 const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
+  const { language } = useLanguage()
+  const activeCopy = copy[language]
+
   const [
     isRegionVisible,
     setIsRegionVisible,
@@ -50,16 +70,19 @@ const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
 
       setIsRegionVisible(newVisibilityState)
 
-      const visibilityEntries: [string, boolean][] = Object.entries(
+      const visibilityEntries: VisibilityAsArray[] = Object.entries(
         newVisibilityState,
       )
-      const regionIsVisible = (region: [string, boolean]): boolean => region[1]
+      const regionIsVisible = (region: VisibilityAsArray): boolean => region[1]
 
       if (visibilityEntries.every(regionIsVisible))
         setLatLongInfo(originalLocInfo)
       else {
         const citiesToRemove: string[] = visibilityEntries.reduce(
-          (arrOfCities: string[], currentEntry) => {
+          (
+            arrOfCities: string[],
+            currentEntry: VisibilityAsArray,
+          ): string[] => {
             if (!currentEntry[1])
               arrOfCities = [
                 ...arrOfCities,
@@ -69,19 +92,23 @@ const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
           },
           [],
         )
-        const filteredCities = originalLocInfo.filter(
-          record => !citiesToRemove.includes(record.city),
+        const filteredCities: LocationRecord[] = originalLocInfo.filter(
+          (record: LocationRecord) => !citiesToRemove.includes(record.city),
         )
+
         setLatLongInfo(filteredCities)
       }
     }
   }
 
   return (
-    <form className={styles.CityFilter}>
+    <form
+      className={styles.CityFilter}
+      style={{ width: `${language === ENGLISH ? 7.25 : 8.5}rem` }}
+    >
       <div className={styles.CheckboxHolder}>
         <label className={styles.Label} htmlFor="southCounty">
-          South County
+          {activeCopy.southCounty}
         </label>
         <Checkbox
           checked={isRegionVisible.southCounty}
@@ -91,7 +118,7 @@ const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
       </div>
       <div className={styles.CheckboxHolder}>
         <label className={styles.Label} htmlFor="centralCounty">
-          Central County
+          {activeCopy.centralCounty}
         </label>
         <Checkbox
           checked={isRegionVisible.centralCounty}
@@ -101,7 +128,7 @@ const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
       </div>
       <div className={styles.CheckboxHolder}>
         <label className={styles.Label} htmlFor="northCounty">
-          North County
+          {activeCopy.northCounty}
         </label>
         <Checkbox
           checked={isRegionVisible.northCounty}

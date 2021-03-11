@@ -37,7 +37,7 @@
 }
 
 .SearchIcon {
-  margin-right: var(--margin-std);
+  margin: 0 var(--margin-sm);
   user-select: none;
 }
 

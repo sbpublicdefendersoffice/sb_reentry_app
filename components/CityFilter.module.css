@@ -12,7 +12,6 @@
 }
 
 .CheckboxHolder {
-  width: 7.25rem;
   display: flex;
   justify-content: space-between;
   padding: 4px 0;

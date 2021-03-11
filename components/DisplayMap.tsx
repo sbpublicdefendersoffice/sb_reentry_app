@@ -26,8 +26,6 @@ const DisplayMap = ({ page, latLongInfo, setLatLongInfo }: DisplayMapProps) => {
   const { language } = useLanguage()
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
 
-  const mapDataReady: boolean = Boolean(latLongInfo?.length)
-
   return (
     <Details
       open
@@ -49,7 +47,7 @@ const DisplayMap = ({ page, latLongInfo, setLatLongInfo }: DisplayMapProps) => {
           animationOptions={{ animate: false }}
           zoom={[zoom]}
         >
-          {mapDataReady &&
+          {Boolean(latLongInfo?.length) &&
             latLongInfo.map((locationRecord: LocationRecord, i: number) => (
               <Fragment key={i}>
                 <MapMarker locationRecord={locationRecord} />
