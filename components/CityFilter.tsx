@@ -1,8 +1,21 @@
-import { ChangeEvent, useState } from 'react'
+import {
+  useState,
+  useEffect,
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+} from 'react'
 
 import Checkbox from '../ui/Checkbox'
+import { citiesByCountyRegion } from '../constants/maps'
+import { LocationRecord } from '../types/records'
 
 import styles from './CityFilter.module.css'
+
+interface CityFilterProps {
+  latLongInfo: LocationRecord[]
+  setLatLongInfo: Dispatch<SetStateAction<LocationRecord[]>>
+}
 
 interface CountyVisibilityFilter {
   southCounty: boolean
@@ -10,25 +23,59 @@ interface CountyVisibilityFilter {
   northCounty: boolean
 }
 
-const checkedState: CountyVisibilityFilter = {
-  southCounty: true,
-  centralCounty: true,
-  northCounty: true,
-}
-
-// TODO: pass down state and set up holding original state and filtering pattern, style checkbox ui component
-
-const CityFilter = () => {
+const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
   const [
     isRegionVisible,
     setIsRegionVisible,
-  ] = useState<CountyVisibilityFilter>(checkedState)
+  ] = useState<CountyVisibilityFilter>({
+    southCounty: true,
+    centralCounty: true,
+    northCounty: true,
+  })
 
-  const handleCheck = (e: ChangeEvent<HTMLInputElement>): void =>
-    setIsRegionVisible({
-      ...isRegionVisible,
-      [e.target.id]: !isRegionVisible[e.target.id],
-    })
+  const [originalLocInfo, setOriginalLocInfo] = useState<
+    LocationRecord[] | null
+  >(null)
+
+  useEffect((): void => {
+    if (latLongInfo) setOriginalLocInfo(latLongInfo)
+  }, [])
+
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>): void => {
+    if (originalLocInfo) {
+      const newVisibilityState: CountyVisibilityFilter = {
+        ...isRegionVisible,
+        [e.target.id]: !isRegionVisible[e.target.id],
+      }
+
+      setIsRegionVisible(newVisibilityState)
+
+      const visibilityEntries: [string, boolean][] = Object.entries(
+        newVisibilityState,
+      )
+      const regionIsVisible = (region: [string, boolean]): boolean => region[1]
+
+      if (visibilityEntries.every(regionIsVisible))
+        setLatLongInfo(originalLocInfo)
+      else {
+        const citiesToRemove: string[] = visibilityEntries.reduce(
+          (arrOfCities: string[], currentEntry) => {
+            if (!currentEntry[1])
+              arrOfCities = [
+                ...arrOfCities,
+                ...citiesByCountyRegion[currentEntry[0]],
+              ]
+            return arrOfCities
+          },
+          [],
+        )
+        const filteredCities = originalLocInfo.filter(
+          record => !citiesToRemove.includes(record.city),
+        )
+        setLatLongInfo(filteredCities)
+      }
+    }
+  }
 
   return (
     <form className={styles.CityFilter}>

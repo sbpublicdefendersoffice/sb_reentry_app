@@ -6,13 +6,13 @@ export const mapContainerStyle: { [name: string]: string } = {
 }
 
 type CountyBreakdown = {
-  south: string[]
-  central: string[]
-  north: string[]
+  southCounty: string[]
+  centralCounty: string[]
+  northCounty: string[]
 }
 
 export const citiesByCountyRegion: CountyBreakdown = {
-  south: [
+  southCounty: [
     'Carpinteria',
     'Goleta',
     'Isla Vista',
@@ -20,6 +20,6 @@ export const citiesByCountyRegion: CountyBreakdown = {
     'Santa Barbara',
     'Summerland',
   ],
-  central: ['Buellton', 'Lompoc', 'New Cuyama', 'Santa Ynez', 'Solvang'],
-  north: ['Guadalupe', 'Los Alamos', 'Orcutt', 'Santa Maria'],
+  centralCounty: ['Buellton', 'Lompoc', 'New Cuyama', 'Santa Ynez', 'Solvang'],
+  northCounty: ['Guadalupe', 'Los Alamos', 'Orcutt', 'Santa Maria'],
 }

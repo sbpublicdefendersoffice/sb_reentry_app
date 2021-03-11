@@ -26,6 +26,8 @@ const DisplayMap = ({ page, latLongInfo, setLatLongInfo }: DisplayMapProps) => {
   const { language } = useLanguage()
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
 
+  const mapDataReady: boolean = Boolean(latLongInfo?.length)
+
   return (
     <Details
       open
@@ -33,7 +35,9 @@ const DisplayMap = ({ page, latLongInfo, setLatLongInfo }: DisplayMapProps) => {
       className={`${styles.DisplayMap} 
       ${page === 'search' ? styles.SearchPageSize : ''}`}
     >
-      {setLatLongInfo && <CityFilter />}
+      {latLongInfo && setLatLongInfo && (
+        <CityFilter latLongInfo={latLongInfo} setLatLongInfo={setLatLongInfo} />
+      )}
       {
         // @ts-ignore
         <MapboxMap
@@ -45,7 +49,7 @@ const DisplayMap = ({ page, latLongInfo, setLatLongInfo }: DisplayMapProps) => {
           animationOptions={{ animate: false }}
           zoom={[zoom]}
         >
-          {Boolean(latLongInfo?.length) &&
+          {mapDataReady &&
             latLongInfo.map((locationRecord: LocationRecord, i: number) => (
               <Fragment key={i}>
                 <MapMarker locationRecord={locationRecord} />
