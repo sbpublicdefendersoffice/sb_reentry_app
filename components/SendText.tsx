@@ -28,6 +28,8 @@ const copy: CopyHolder = {
   },
 }
 
+import styles from './SendText.module.css'
+
 const SendText = ({ org_name, fullAddress, cityStateZip }: SendTextProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
@@ -60,7 +62,11 @@ const SendText = ({ org_name, fullAddress, cityStateZip }: SendTextProps) => {
 
   return (
     <form onSubmit={postText}>
+      <label className={styles.Label} htmlFor="send-text">
+        Send Text
+      </label>
       <Input
+        id="send-text"
         onChange={e => setNumberToSendTo(e.target.value)}
         placeholder={activeCopy.placeholder}
       />

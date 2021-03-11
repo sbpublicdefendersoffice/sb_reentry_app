@@ -17,7 +17,7 @@ const fetchRecordsByCategory = async (
 
     const { category, language } = JSON.parse(req.body)
 
-    let fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&fields%5B%5D=org_categories`
+    let fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&fields%5B%5D=locations_city&fields%5B%5D=org_categories`
 
     if (language === ENGLISH)
       fetchString += '&fields%5B%5D=org_name&fields%5B%5D=org_tags'

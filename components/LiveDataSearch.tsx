@@ -72,7 +72,12 @@ const LiveDataSearch = () => {
   return (
     <section className={styles.LiveDataSearch}>
       <form className={styles.SearchContainer} onSubmit={handleSubmit}>
+        <label className={styles.Label} htmlFor="global-search">
+          Global Search
+        </label>
         <Input
+          type="search"
+          id="global-search"
           className={styles.Input}
           value={searchQuery}
           onChange={handleChange}

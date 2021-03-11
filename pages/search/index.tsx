@@ -51,7 +51,11 @@ const GlobalSearchLanding = () => {
   return (
     <>
       {convertedLocRecords && (
-        <DisplayMap latLongInfo={convertedLocRecords} page="search" />
+        <DisplayMap
+          latLongInfo={convertedLocRecords}
+          setLatLongInfo={setConvertedLocRecords}
+          page="search"
+        />
       )}
     </>
   )

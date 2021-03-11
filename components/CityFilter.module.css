@@ -1,0 +1,29 @@
+.CityFilter {
+  position: absolute;
+  z-index: 10;
+  top: 1rem;
+  left: 1rem;
+  box-shadow: rgb(0 0 0 / 30%) 0 1px 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--light);
+  opacity: 0.85;
+  align-items: baseline;
+  padding: 3px 7px;
+}
+
+.CheckboxHolder {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.Label {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 700px) {
+  .CityFilter {
+    top: 3.65rem;
+  }
+}

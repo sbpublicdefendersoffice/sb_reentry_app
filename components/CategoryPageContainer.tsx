@@ -42,7 +42,11 @@ const CategoryPageContainer = ({
         setRecords={setFetchedRecords}
       />
 
-      <DisplayMap latLongInfo={convertedLocRecords} page="search" />
+      <DisplayMap
+        latLongInfo={convertedLocRecords}
+        setLatLongInfo={setConvertedLocRecords}
+        page="search"
+      />
     </>
   )
 }

@@ -7,3 +7,9 @@
 .Input {
   flex-grow: 1;
 }
+
+.Label {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}

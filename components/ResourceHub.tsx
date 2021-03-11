@@ -47,9 +47,7 @@ const ResourceHub = () => {
   return (
     <section className={styles.ResourceHub}>
       <Title>{activeCopy.hub}</Title>
-      <Paragraph color="deselected" className={styles.text}>
-        {activeCopy.direction}
-      </Paragraph>
+      <Paragraph className={styles.text}>{activeCopy.direction}</Paragraph>
       <div className={styles.tileContainer}>{PageTiles}</div>
     </section>
   )
