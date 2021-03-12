@@ -13,7 +13,7 @@ export const StyledBurgerItems = styled.nav`
   z-index: 10;
   transition: transform 0.3s ease-in-out;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
-  @media (max-width: 500) {
+  @media (max-width: 700) {
     width: 100%;
   }
   a {
@@ -25,7 +25,7 @@ export const StyledBurgerItems = styled.nav`
     color: white;
     text-decoration: none;
     transition: color 0.3s linear;
-    @media (max-width: 500) {
+    @media (max-width: 700) {
       font-size: 1.5rem;
       text-align: center;
     }

@@ -1,8 +1,11 @@
 .LiveDataSearch {
   /* for dev only */
-  position: absolute;
-  right: 0;
-  top: 31.5px;
+
+  /* position: absolute; */
+
+  /* right: 0; */
+
+  /* top: 31.5px; */
 
   /* for dev only */
   background-color: var(--light);

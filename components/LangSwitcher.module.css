@@ -1,8 +1,12 @@
 .LangSwitcher {
   padding: var(--pad-sm) var(--pad-std);
-  position: absolute;
-  right: 0;
+
+  /* position: absolute; */
+
+  /* right: 0; */
+  width: fit-content;
   display: flex;
+  align-items: center;
   cursor: pointer;
   background-color: var(--light-2);
   color: var(--light);
