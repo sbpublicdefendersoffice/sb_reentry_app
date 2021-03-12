@@ -1,9 +1,5 @@
 import NextLink from 'next/link'
 import { useState, useRef } from 'react'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import Grid from '@material-ui/core/Grid'
-import ListItemText from '@material-ui/core/ListItemText'
 
 import Burger from './Burger'
 import BurgerItems from './BurgerItems'
@@ -11,7 +7,7 @@ import useLanguage from '../hooks/useLanguage'
 import styles from './Header.module.css'
 import { useOnClickOutside } from '../hooks/useOnClickOutside'
 import { CopyHolder } from '../types/language'
-import { FreshStartLogo } from '../ui'
+import { FreshStartLogo, Paragraph } from '../ui'
 
 const copy: CopyHolder = {
   english: {
@@ -38,59 +34,50 @@ const Header = () => {
 
   return (
     <header role="banner" className={styles.Header}>
-      <Grid container spacing={3}>
+      <div className={styles.HeaderContainer}>
         <NextLink href="/" as="/">
           <a className="not-text-link">
-            <FreshStartLogo
-              style={{ fontWeight: 'bold', fontSize: '1.5rem' }}
-              className={styles.FreshStart}
-              color="light"
-            />
+            <FreshStartLogo className={styles.FreshStart} color="light" />
           </a>
         </NextLink>
-        <Grid item xs={6} sm={4}>
-          <List className={styles.HeaderContainer}>
-            <ListItem className={styles.NavListItem}>
-              <ListItemText>
-                <NextLink href="/checklist" as="/checklist">
-                  <a>
-                    <h2 className={styles.Title}>{activeCopy.checklist}</h2>
-                  </a>
-                </NextLink>
-              </ListItemText>
-            </ListItem>
-            <ListItem className={styles.NavListItem}>
-              <ListItemText>
-                <NextLink href="/success-stories" as="/success-stories">
-                  <a>
-                    <h2 className={styles.Title}>{activeCopy.successStory}</h2>
-                  </a>
-                </NextLink>
-              </ListItemText>
-            </ListItem>
-            <ListItem className={styles.NavListItem}>
-              <ListItemText>
-                <NextLink href="/know-your-rights" as="/know-your-rights">
-                  <a>
-                    <h2 className={styles.Title}>
-                      {activeCopy.knowYourRights}
-                    </h2>
-                  </a>
-                </NextLink>
-              </ListItemText>
-            </ListItem>
-            <ListItem className={styles.NavListItem}>
-              <ListItemText>
-                <NextLink href="/about-us" as="/about-us">
-                  <a>
-                    <h2 className={styles.Title}>{activeCopy.aboutUs}</h2>
-                  </a>
-                </NextLink>
-              </ListItemText>
-            </ListItem>
-          </List>
-        </Grid>
-      </Grid>
+        <nav className={styles.Nav}>
+          <div className={styles.NavContainer}>
+            <NextLink href="/checklist" as="/checklist">
+              <h2 className={styles.Title}>{activeCopy.checklist}</h2>
+            </NextLink>
+            <Paragraph
+              className={styles.Separators}
+              color="light"
+              size="heading-text"
+            >
+              |
+            </Paragraph>
+            <NextLink href="/success-stories" as="/success-stories">
+              <h2 className={styles.Title}>{activeCopy.successStory}</h2>
+            </NextLink>
+            <Paragraph
+              className={styles.Separators}
+              color="light"
+              size="heading-text"
+            >
+              |
+            </Paragraph>
+            <NextLink href="/know-your-rights" as="/know-your-rights">
+              <h2 className={styles.Title}>{activeCopy.knowYourRights}</h2>
+            </NextLink>
+            <Paragraph
+              className={styles.Separators}
+              color="light"
+              size="heading-text"
+            >
+              |
+            </Paragraph>
+            <NextLink href="/about-us" as="/about-us">
+              <h2 className={styles.Title}>{activeCopy.aboutUs}</h2>
+            </NextLink>
+          </div>
+        </nav>
+      </div>
       <div ref={node}>
         <Burger open={open} setOpen={setOpen} />
         <BurgerItems open={open} setOpen={setOpen} />

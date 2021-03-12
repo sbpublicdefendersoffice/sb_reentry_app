@@ -1,7 +1,5 @@
 .Card {
   margin: 0.5rem 0;
-
-  /* font-size: var(--med-text); */
   border-radius: var(--radius-small);
   padding: var(--pad-lg) 0;
   text-align: center;
