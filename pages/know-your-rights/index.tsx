@@ -1,22 +1,20 @@
 import Head from 'next/head'
-import React from 'react'
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import { useState } from 'react'
+import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardActionArea from '@material-ui/core/CardActionArea'
-import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
-import Link from '@material-ui/core/Link'
 import Typography from '@material-ui/core/Typography'
 import Modal from '@material-ui/core/Modal'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
+
 import { ENGLISH } from '../../types/language'
 
 import useLanguage from '../../hooks/useLanguage'
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       maxWidth: '70%',
@@ -66,58 +64,58 @@ interface Item {
   flyerPDF: string
   spanishFlyerPDF: string
 }
+const flyers: Item[] = [
+  {
+    name: 'Police Interaction for Black and Brown People',
+    spanishName: 'Interacción policial para personas negras y morenas',
+    organization: 'ACLU',
+    flyerPDF: 'https://i.ibb.co/xFcqtKz/KYR-Black-Brown-Police-ENGLISH.jpg',
+    spanishFlyerPDF: 'https://i.ibb.co/P5jTZcp/KYR-Black-and-Brown-Spanish.jpg',
+  },
+  {
+    name:
+      'What to do if questioned by Police, FBI, Custom Agents or Immigration Officers',
+    spanishName:
+      'Qué hacer si es interrogado por la policía, el FBI, agentes de aduanas o oficiales de inmigración',
+    organization: 'ACLU',
+    flyerPDF: 'https://i.ibb.co/VDHYQQd/KYR-Questioned-by-Police-ENGLISH.jpg',
+    spanishFlyerPDF:
+      'https://i.ibb.co/0y6VVXk/KYR-Questioned-by-Police-SPANISH.jpg',
+  },
+
+  {
+    name: 'Know your rights: Police Interactions ',
+    spanishName: 'Conozca sus derechos: Interacciones policiales',
+    organization: 'ACLU',
+    flyerPDF: 'https://i.ibb.co/gP9yVBJ/KYR-Police-Interactions-English.jpg',
+    spanishFlyerPDF:
+      'https://i.ibb.co/cT7HSNB/KYR-Police-Interactions-SPANISH.jpg',
+  },
+  {
+    name: 'Know your rights: the TRUST ACT ',
+    spanishName: 'Conozca sus derechos: la LEY DE CONFIANZA',
+    organization: 'ACLU',
+    flyerPDF: 'https://i.ibb.co/vL9bChn/TRUST-ACT-KYR.jpg',
+    spanishFlyerPDF:
+      'https://i.ibb.co/0y6VVXk/KYR-Questioned-by-Police-SPANISH.jpg',
+  },
+  {
+    name: 'Know your rights on trains and buses ',
+    spanishName: 'Conozca sus derechos en trenes y autobuses',
+    organization: 'ACLU',
+    flyerPDF:
+      'https://i.ibb.co/XxKGDYD/KYR-Trains-and-Buses-Immigration-ENGLISH.jpg',
+    spanishFlyerPDF:
+      'https://i.ibb.co/9gLM3qz/KYR-Trains-and-Buses-2-SPANISH.jpg',
+  },
+]
+
 const KnowYourRights = () => {
   const classes = useStyles()
   const { language } = useLanguage()
-  const [open, setOpen] = React.useState(false)
-  const [activeItem, setActiveItem] = React.useState<Item | null>(null)
+  const [open, setOpen] = useState(false)
+  const [activeItem, setActiveItem] = useState<Item | null>(null)
 
-  const flyers: Item[] = [
-    {
-      name: 'Police Interaction for Black and Brown People',
-      spanishName: 'Interacción policial para personas negras y morenas',
-      organization: 'ACLU',
-      flyerPDF: 'https://i.ibb.co/xFcqtKz/KYR-Black-Brown-Police-ENGLISH.jpg',
-      spanishFlyerPDF:
-        'https://i.ibb.co/P5jTZcp/KYR-Black-and-Brown-Spanish.jpg',
-    },
-    {
-      name:
-        'What to do if questioned by Police, FBI, Custom Agents or Immigration Officers',
-      spanishName:
-        'Qué hacer si es interrogado por la policía, el FBI, agentes de aduanas o oficiales de inmigración',
-      organization: 'ACLU',
-      flyerPDF: 'https://i.ibb.co/VDHYQQd/KYR-Questioned-by-Police-ENGLISH.jpg',
-      spanishFlyerPDF:
-        'https://i.ibb.co/0y6VVXk/KYR-Questioned-by-Police-SPANISH.jpg',
-    },
-
-    {
-      name: 'Know your rights: Police Interactions ',
-      spanishName: 'Conozca sus derechos: Interacciones policiales',
-      organization: 'ACLU',
-      flyerPDF: 'https://i.ibb.co/gP9yVBJ/KYR-Police-Interactions-English.jpg',
-      spanishFlyerPDF:
-        'https://i.ibb.co/cT7HSNB/KYR-Police-Interactions-SPANISH.jpg',
-    },
-    {
-      name: 'Know your rights: the TRUST ACT ',
-      spanishName: 'Conozca sus derechos: la LEY DE CONFIANZA',
-      organization: 'ACLU',
-      flyerPDF: 'https://i.ibb.co/vL9bChn/TRUST-ACT-KYR.jpg',
-      spanishFlyerPDF:
-        'https://i.ibb.co/0y6VVXk/KYR-Questioned-by-Police-SPANISH.jpg',
-    },
-    {
-      name: 'Know your rights on trains and buses ',
-      spanishName: 'Conozca sus derechos en trenes y autobuses',
-      organization: 'ACLU',
-      flyerPDF:
-        'https://i.ibb.co/XxKGDYD/KYR-Trains-and-Buses-Immigration-ENGLISH.jpg',
-      spanishFlyerPDF:
-        'https://i.ibb.co/9gLM3qz/KYR-Trains-and-Buses-2-SPANISH.jpg',
-    },
-  ]
   const handleOpen = item => {
     console.log('item:', item)
     setActiveItem(item)

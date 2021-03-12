@@ -1,9 +1,7 @@
 import NextLink from 'next/link'
-import styles from './Header.module.css'
 import { bool, func } from 'prop-types'
+
 import { StyledBurgerItems } from './BurgerItems.module.js'
-import React, { useState } from 'react'
-import { FunctionsRounded } from '@material-ui/icons'
 import { ENGLISH } from '../types/language'
 
 import useLanguage from '../hooks/useLanguage'
@@ -44,8 +42,10 @@ const BurgerItems = ({ open, setOpen }) => {
     </StyledBurgerItems>
   )
 }
+
 BurgerItems.propTypes = {
   open: bool.isRequired,
   setOpen: func.isRequired,
 }
+
 export default BurgerItems
