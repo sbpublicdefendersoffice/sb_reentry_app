@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import { CopyHolder, ENGLISH } from '../../types/language'
 import Grid from '@material-ui/core/Grid'
 import useLanguage from '../../hooks/useLanguage'
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
     textAlign: 'center',
   },
 })
+
 const SuccessStories = () => {
   const { language } = useLanguage()
   const classes = useStyles()
@@ -42,8 +44,8 @@ const SuccessStories = () => {
       organization: 'Alan Hancock College',
       spanishOrganization: 'Universidad Allan Hancock',
       profilePic: 'https://i.ibb.co/R0mMtMv/BIO-Picture.jpg',
-      alt: 'picture of Arturo Raygoza',
-      spanishAlt: 'foto de Arturo Raygoza',
+      alt: 'Picture of Arturo Raygoza',
+      spanishAlt: 'Foto de Arturo Raygoza',
       bio:
         'I am a formerly incarcerated student who after thirteen years in and out of prison, graduated with my AS degree in Automotive Technology. I recently switched my career to Sociology with Transfer and plan on attending either UCSB or Berkeley. I’m currently President of the B.I.G.E.(Beyond Incarceration Greater Education) Club which helps formerly incarcerated individuals enroll in college and lower recidivism. I also work for Allan Hancock College’s Beyond Barriers program as a student mentor, giving back to my community what was freely given to me.',
       spanishBio:
@@ -51,8 +53,10 @@ const SuccessStories = () => {
     },
     {
       name: 'Lisa Rising',
-      role: 'Student',
+      role: 'Underground Scholars Santa Barbara Ambassador',
+      spanishRole: 'Embajador de Underground Scholars en Santa Bárbara',
       organization: 'Underground Scholars UCSB',
+      spanishOrganization: 'Colegio de la ciudad de Santa Bárbara',
       profilePic: 'https://i.ibb.co/kK1Kt7s/lisarising.jpg',
       bio: `My name is Lisandra "Lisa" Barrera Rising. I currently attend Santa Barbara City College in pursuit to attaining my major in Sociology. I have proudly overcome the systemic oppression of the injustice system by beating a 13 year opiate addiction, losing and regaining parental custody over my daughter while going in and out of jail. Today, I have found a passion in my academic journey and want to support and encourage anybody else going through the same challenges I once experienced. Anything is possible through community and valuable resources! Let's all stand to make a change and prove society we can persevere despite our pasts mistakes.`,
       spanishBio: `Mi nombre es Lisandra "Lisa" Barrera Rising. Actualmente asisto a Santa Barbara City College en pos de obtener mi especialización en Sociología. He superado con orgullo la opresión sistémica del sistema de injusticia superando una adicción a los opiáceos durante 13 años, perdiendo y recuperando la custodia de los padres sobre mi hija mientras entraba y salía de la cárcel. Hoy, he encontrado una pasión en mi viaje académico y quiero apoyar y alentar a cualquier otra persona que atraviese los mismos desafíos que una vez experimenté. ¡Todo es posible a través de la comunidad y recursos valiosos! Estemos todos para hacer un cambio y demostrarle a la sociedad que podemos perseverar a pesar de los errores del pasado.`,

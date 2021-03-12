@@ -1,13 +1,4 @@
 .LiveDataSearch {
-  /* for dev only */
-
-  /* position: absolute; */
-
-  /* right: 0; */
-
-  /* top: 31.5px; */
-
-  /* for dev only */
   background-color: var(--light);
   width: 20rem;
   border: var(--border-width) solid var(--primary);
@@ -34,7 +25,7 @@
 }
 
 .Input {
-  border: none;
+  border: none !important;
   flex: 1;
   margin: 0;
 }
@@ -68,4 +59,13 @@
   opacity: 0;
   width: 0;
   height: 0;
+}
+
+@media (max-width: 500px) {
+  .LiveDataSearch {
+    width: 15rem;
+  }
+  .Input {
+    width: 50%;
+  }
 }

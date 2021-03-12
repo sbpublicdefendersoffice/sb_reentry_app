@@ -1,9 +1,5 @@
 .LangSwitcher {
   padding: var(--pad-sm) var(--pad-std);
-
-  /* position: absolute; */
-
-  /* right: 0; */
   width: fit-content;
   display: flex;
   align-items: center;
@@ -12,6 +8,9 @@
   color: var(--light);
   font-size: var(--med-text);
   user-select: none;
+  max-height: fit-content;
+  height: 2.5rem;
+  transition: 0.4s;
 }
 
 .label {
@@ -50,6 +49,7 @@
 @media (max-width: 500px) {
   .LangSwitcher {
     font-size: var(--standard-text);
+    height: 2rem;
   }
 
   .label {

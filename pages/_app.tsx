@@ -45,6 +45,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             <div
               style={{
                 display: 'flex',
+                position: 'absolute',
                 justifyContent: 'space-between',
                 width: '100%',
               }}
