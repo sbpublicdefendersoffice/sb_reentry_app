@@ -6,7 +6,8 @@ import Head from 'next/head'
 import { siteTitle } from '../constants/copy'
 import { Language, ENGLISH, SPANISH } from '../types/language'
 import { Provider as LangProvider } from '../hooks/useLanguage'
-import { Footer, Header, LangSwitcher } from '../components'
+import { GlobalSearchProvider } from '../hooks/useGlobalSearch'
+import { Footer, Header, LangSwitcher, LiveDataSearch } from '../components'
 
 import '../styles/globals.css'
 import '../styles/variables.css'
@@ -39,12 +40,15 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       {language && (
         <LangProvider value={{ language, setLanguage }}>
-          <LangSwitcher />
-          <Header />
-          <main>
-            <Component {...pageProps} />
-          </main>
-          <Footer />
+          <GlobalSearchProvider>
+            <LangSwitcher />
+            <Header />
+            <LiveDataSearch />
+            <main>
+              <Component {...pageProps} />
+            </main>
+            <Footer />
+          </GlobalSearchProvider>
         </LangProvider>
       )}
     </>

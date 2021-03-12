@@ -7,18 +7,26 @@ import {
 } from 'react'
 
 import { Input } from '../ui'
+import Tooltip from './Tooltip'
+
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
-import { ENGLISH } from '../types/language'
+import { searchCopy } from '../constants/copy'
 
 import useLanguage from '../hooks/useLanguage'
 
-interface SearchProps {
+interface FetchedDataSearchProps {
   originalRecords: OrgRecord[]
   setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
 }
 
-const Search = ({ originalRecords, setRecords }: SearchProps) => {
+import styles from './FetchedDataSearch.module.css'
+
+const FetchedDataSearch = ({
+  originalRecords,
+  setRecords,
+}: FetchedDataSearchProps) => {
   const { language } = useLanguage()
+  const activeCopy = searchCopy[language]
 
   const [savedOriginalRecords, setSavedOriginalRecords] = useState<
     OrgRecord[] | null
@@ -47,12 +55,21 @@ const Search = ({ originalRecords, setRecords }: SearchProps) => {
   }
 
   return (
-    <Input
-      onChange={handleChange}
-      placeholder={language === ENGLISH ? 'Search...' : 'Buscar...'}
-      role="search"
-    />
+    <div className={styles.FetchedDataSearch}>
+      <Tooltip>{activeCopy.tooltip}</Tooltip>
+      <label className={styles.Label} htmlFor="category-search">
+        Send Text
+      </label>
+      <Input
+        type="search"
+        id="category-search"
+        className={styles.Input}
+        onChange={handleChange}
+        placeholder={activeCopy.search}
+        role="search"
+      />
+    </div>
   )
 }
 
-export default Search
+export default FetchedDataSearch

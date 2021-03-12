@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
+import { POST } from '../helpers/validators'
 import {
   SortedRecord,
   OrgRecord,
@@ -9,7 +10,6 @@ import {
   ScheduleRecord,
 } from '../types/records'
 import useLanguage from '../hooks/useLanguage'
-import { fetchSingleOrgRecord } from '../services/GET'
 
 import { SPANISH } from '../types/language'
 
@@ -25,14 +25,25 @@ const useSingleRecord = () => {
   const { language } = useLanguage()
 
   const requestParams: string[] = asPath.slice(1).split('/')
-  const requestReady: number = requestParams.length
+  const isRequestReady: boolean = Boolean(requestParams.length)
   const category: string = requestParams[0]
   const id: string = requestParams[1]
 
   useEffect(() => {
-    if (requestReady && id !== '[id]')
-      fetchSingleOrgRecord(id, setSingleFetchedRecord)
-  }, [requestReady, id, language])
+    const airtableApiRouteFetch = async () => {
+      if (isRequestReady && id !== '[id]') {
+        const apiRequest = await fetch('/api/singleairtablerecord', {
+          method: POST,
+          body: JSON.stringify({ id }),
+        })
+
+        const apiResponse = await apiRequest.json()
+
+        setSingleFetchedRecord(apiResponse)
+      }
+    }
+    airtableApiRouteFetch()
+  }, [isRequestReady, id, language])
 
   useEffect(() => {
     if (singleFetchedRecord) {
@@ -130,7 +141,10 @@ const useSingleRecord = () => {
           else obj.org_name = organizedRecord.name
         } else obj.org_name = null
 
-        obj.category = category ? category : null
+        obj.multiple_categories = organizedRecord.categories.map(
+          (category: string): string => category.replaceAll(' ', ''),
+        )
+        obj.single_category = category ? category : null
         obj.schedule = []
 
         organizedRecord.locations.push(obj)
