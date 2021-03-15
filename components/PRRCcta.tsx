@@ -39,9 +39,11 @@ const PRRCcta = () => {
         <nav className={styles.Links}>
           <a className={styles.Link} href={'tel:8056924890'}>
             {activeCopy.callSb}
+            <p>(805) 692-4890</p>
           </a>
           <a className={styles.Link} href={'tel:8053467620'}>
             {activeCopy.callSm}
+            <p>(805) 346-7620</p>
           </a>
         </nav>
       </div>
