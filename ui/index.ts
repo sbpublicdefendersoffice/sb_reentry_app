@@ -1,6 +1,5 @@
 export { default as Button } from './Button'
 export { default as Card } from './Card'
-export { default as Checkbox } from './Checkbox'
 export { default as Details } from './Details'
 export { default as FreshStartLeaf } from './FreshStartLeaf'
 export { default as FreshStartLogo } from './FreshStartLogo'

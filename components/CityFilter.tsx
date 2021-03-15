@@ -6,7 +6,6 @@ import {
   SetStateAction,
 } from 'react'
 
-import Checkbox from '../ui/Checkbox'
 import { citiesByCountyRegion } from '../constants/maps'
 import { CopyHolder, ENGLISH } from '../types/language'
 import { LocationRecord } from '../types/records'
@@ -73,7 +72,10 @@ const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
       const visibilityEntries: VisibilityAsArray[] = Object.entries(
         newVisibilityState,
       )
-      const regionIsVisible = (region: VisibilityAsArray): boolean => region[1]
+      const regionIsVisible = (region: VisibilityAsArray): boolean => {
+        const isRegionVisible: boolean = region[1]
+        return isRegionVisible
+      }
 
       if (visibilityEntries.every(regionIsVisible))
         setLatLongInfo(originalLocInfo)
@@ -83,11 +85,10 @@ const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
             arrOfCities: string[],
             currentEntry: VisibilityAsArray,
           ): string[] => {
-            if (!currentEntry[1])
-              arrOfCities = [
-                ...arrOfCities,
-                ...citiesByCountyRegion[currentEntry[0]],
-              ]
+            const [region, visible] = currentEntry
+
+            if (!visible)
+              arrOfCities = [...arrOfCities, ...citiesByCountyRegion[region]]
             return arrOfCities
           },
           [],
@@ -106,36 +107,19 @@ const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
       className={styles.CityFilter}
       style={{ width: `${language === ENGLISH ? 7.25 : 8.5}rem` }}
     >
-      <div className={styles.CheckboxHolder}>
-        <label className={styles.Label} htmlFor="southCounty">
-          {activeCopy.southCounty}
-        </label>
-        <Checkbox
-          checked={isRegionVisible.southCounty}
-          onChange={handleCheck}
-          id="southCounty"
-        />
-      </div>
-      <div className={styles.CheckboxHolder}>
-        <label className={styles.Label} htmlFor="centralCounty">
-          {activeCopy.centralCounty}
-        </label>
-        <Checkbox
-          checked={isRegionVisible.centralCounty}
-          onChange={handleCheck}
-          id="centralCounty"
-        />
-      </div>
-      <div className={styles.CheckboxHolder}>
-        <label className={styles.Label} htmlFor="northCounty">
-          {activeCopy.northCounty}
-        </label>
-        <Checkbox
-          checked={isRegionVisible.northCounty}
-          onChange={handleCheck}
-          id="northCounty"
-        />
-      </div>
+      {Object.keys(isRegionVisible).map((region: string) => (
+        <div key={region} className={styles.CheckboxHolder}>
+          <label className={styles.Label} htmlFor={region}>
+            {activeCopy[region]}
+          </label>
+          <input
+            type="checkbox"
+            checked={isRegionVisible[region]}
+            onChange={handleCheck}
+            id={region}
+          />
+        </div>
+      ))}
     </form>
   )
 }
