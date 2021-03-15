@@ -51,7 +51,7 @@ const PwaDownload = () => {
   return (
     <>
       {downloadEvent && (
-        <CallToAction blueBg className={styles.PwaDownload}>
+        <CallToAction className={styles.PwaDownload}>
           <Title>{activeCopy.title}</Title>
           <Paragraph className={styles.Text}>
             {activeCopy.instructions}

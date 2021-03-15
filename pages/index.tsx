@@ -1,8 +1,9 @@
-import { PwaDownload, ResourceHub } from '../components'
+import { PwaDownload, ResourceHub, PRRCcta } from '../components'
 
 const Home = () => (
   <>
     <ResourceHub />
+    <PRRCcta />
     <PwaDownload />
   </>
 )

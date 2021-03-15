@@ -6,4 +6,5 @@
   align-items: center;
   flex-direction: column;
   padding: var(--pad-lg) 0;
+  text-align: center;
 }
