@@ -5,4 +5,5 @@
   background-color: var(--highlight-2);
   color: var(--light-2);
   padding: var(--pad-sm) var(--pad-std);
+  text-align: center;
 }

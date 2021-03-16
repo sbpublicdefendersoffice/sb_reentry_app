@@ -53,7 +53,7 @@ const DisplayMap = ({ page, latLongInfo, setLatLongInfo }: DisplayMapProps) => {
                 <MapMarker locationRecord={locationRecord} />
               </Fragment>
             ))}
-          <ScaleControl measurement="mi" position="top-right" />
+          <ScaleControl measurement="mi" position="bottom-right" />
         </MapboxMap>
       }
     </Details>
