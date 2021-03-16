@@ -2,8 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
 
-import { TranslatedRecordResponse } from '../../types/records'
-import { ENGLISH } from '../../types/language'
+import { TranslatedRecordResponse, OrgRecord } from '../../types/records'
+import { SPANISH } from '../../types/language'
 
 import { validateRequest, POST } from '../../helpers/validators'
 
@@ -17,13 +17,9 @@ const fetchRecordsByCategory = async (
 
     const { category, language } = JSON.parse(req.body)
 
-    let fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&fields%5B%5D=locations_city&fields%5B%5D=org_categories`
+    const append: string = language === SPANISH ? `_${SPANISH}` : ''
 
-    if (language === ENGLISH)
-      fetchString += '&fields%5B%5D=org_name&fields%5B%5D=org_tags'
-    else
-      fetchString +=
-        '&fields%5B%5D=org_name_spanish&fields%5B%5D=org_tags_spanish'
+    const fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&fields%5B%5D=locations_city&fields%5B%5D=org_categories&fields%5B%5D=org_name${append}&fields%5B%5D=org_tags${append}&sort%5B0%5D%5Bfield%5D=org_name${append}`
 
     const fetchRecords: Response = await fetch(fetchString, OPTIONS_OBJECT)
     let translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
@@ -51,6 +47,17 @@ const fetchRecordsByCategory = async (
       if (pageOffset) translatedRecords.offset = pageOffset
       else delete translatedRecords.offset
     }
+
+    if (language === SPANISH) {
+      translatedRecords.records.map((record: OrgRecord) => {
+        record.fields.org_name = record.fields.org_name_spanish
+        record.fields.org_tags = record.fields.org_tags_spanish
+
+        return record
+      })
+    }
+
+    translatedRecords.category = category.replace(/\s/g, '')
 
     res.json(translatedRecords)
   } catch (error) {
