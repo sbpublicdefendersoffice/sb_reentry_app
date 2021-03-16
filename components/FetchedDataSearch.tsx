@@ -56,7 +56,6 @@ const FetchedDataSearch = ({
 
   return (
     <div className={styles.FetchedDataSearch}>
-      <Tooltip>{activeCopy.tooltip}</Tooltip>
       <label className={styles.Label} htmlFor="category-search">
         Send Text
       </label>
@@ -68,6 +67,7 @@ const FetchedDataSearch = ({
         placeholder={activeCopy.search}
         role="search"
       />
+      <Tooltip>{activeCopy.tooltip}</Tooltip>
     </div>
   )
 }

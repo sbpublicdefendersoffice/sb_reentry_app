@@ -41,18 +41,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       {language && (
         <LangProvider value={{ language, setLanguage }}>
           <GlobalSearchProvider>
+            <LangSwitcher />
             <Header />
-            <div
-              style={{
-                display: 'flex',
-                position: 'absolute',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <LangSwitcher />
-              <LiveDataSearch />
-            </div>
+            <LiveDataSearch />
             <main>
               <Component {...pageProps} />
             </main>
