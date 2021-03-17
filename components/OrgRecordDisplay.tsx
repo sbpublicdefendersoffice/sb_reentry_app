@@ -60,7 +60,11 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
           <DisplayMap latLongInfo={locations} page="org" />
           <Details open summary={activeCopy.location}>
             {locations.map((locationInfo, i) => (
-              <LocationRecordDisplay key={i} locationInfo={locationInfo} />
+              <LocationRecordDisplay
+                key={i}
+                locationInfo={locationInfo}
+                id={String(i)}
+              />
             ))}
           </Details>
         </>

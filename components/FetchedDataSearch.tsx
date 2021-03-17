@@ -15,6 +15,7 @@ import { searchCopy } from '../constants/copy'
 import useLanguage from '../hooks/useLanguage'
 
 interface FetchedDataSearchProps {
+  displayCategory: string
   originalRecords: OrgRecord[]
   setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
 }
@@ -22,6 +23,7 @@ interface FetchedDataSearchProps {
 import styles from './FetchedDataSearch.module.css'
 
 const FetchedDataSearch = ({
+  displayCategory,
   originalRecords,
   setRecords,
 }: FetchedDataSearchProps) => {
@@ -64,7 +66,7 @@ const FetchedDataSearch = ({
         id="category-search"
         className={styles.Input}
         onChange={handleChange}
-        placeholder={activeCopy.search}
+        placeholder={`${activeCopy.search} ${displayCategory}...`}
         role="search"
       />
       <Tooltip>{activeCopy.tooltip}</Tooltip>

@@ -21,7 +21,7 @@ export const filterOutLocationlessRecords = (
             longitude,
             latitude: record.fields.location_latitude[i],
             city: record.fields.locations_city[i].trim(),
-            name: record.fields.org_name,
+            name: record.fields.org_name || record.fields.org_name_spanish,
             uuid: record.id,
           }),
         )

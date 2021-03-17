@@ -46,6 +46,7 @@ const RecordPane = ({
       </Paragraph>
       {orgInfo && (
         <FetchedDataSearch
+          displayCategory={displayCategory}
           originalRecords={orgInfo.records}
           setRecords={setRecords}
         />
