@@ -81,7 +81,7 @@ const LiveDataSearch = () => {
           className={styles.Input}
           value={searchQuery}
           onChange={handleChange}
-          placeholder={activeCopy.search}
+          placeholder={`${activeCopy.search}...`}
           role="search"
         />
         <span className={styles.SearchIcon} onClick={handleSubmit}>

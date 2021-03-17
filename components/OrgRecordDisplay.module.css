@@ -2,6 +2,7 @@
   overflow: scroll;
   height: var(--screen-minus-header);
   flex: 1;
+  padding-top: 3rem
 }
 
 .listing {
