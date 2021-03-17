@@ -13,6 +13,7 @@ interface SendTextProps {
   org_name: string
   fullAddress: string
   cityStateZip: string
+  id: string
 }
 
 const copy: CopyHolder = {
@@ -30,7 +31,12 @@ const copy: CopyHolder = {
 
 import styles from './SendText.module.css'
 
-const SendText = ({ org_name, fullAddress, cityStateZip }: SendTextProps) => {
+const SendText = ({
+  org_name,
+  fullAddress,
+  cityStateZip,
+  id,
+}: SendTextProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
@@ -60,13 +66,15 @@ const SendText = ({ org_name, fullAddress, cityStateZip }: SendTextProps) => {
     }
   }
 
+  const textId: string = `${org_name}${id}`
+
   return (
     <form onSubmit={postText}>
-      <label className={styles.Label} htmlFor="send-text">
+      <label className={styles.Label} htmlFor={textId}>
         Send Text
       </label>
       <Input
-        id="send-text"
+        id={textId}
         onChange={e => setNumberToSendTo(e.target.value)}
         placeholder={activeCopy.placeholder}
       />

@@ -10,6 +10,7 @@ import styles from './LocationRecordDisplay.module.css'
 
 interface LocationRecordDisplayProps {
   locationInfo: LocationRecord
+  id: string
 }
 
 const copy: CopyHolder = {
@@ -37,6 +38,7 @@ const copy: CopyHolder = {
 
 const LocationRecordDisplay = ({
   locationInfo,
+  id,
 }: LocationRecordDisplayProps) => {
   const {
     schedule,
@@ -94,6 +96,7 @@ const LocationRecordDisplay = ({
               </a>
             </address>
             <SendText
+              id={id}
               org_name={org_name}
               fullAddress={fullAddress}
               cityStateZip={cityStateZip}
