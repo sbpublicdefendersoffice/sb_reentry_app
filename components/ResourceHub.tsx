@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 
-import routes, { RouteInfo } from '../constants/routes'
+import { resourceRoutes, RouteInfo } from '../constants/routes'
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 
@@ -22,7 +22,7 @@ const ResourceHub = () => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
-  const PageTiles = routes.map((link: RouteInfo, i: number) => {
+  const PageTiles = resourceRoutes.map((link: RouteInfo, i: number) => {
     const { route, imgPath } = link
     const title: string = link[`title_${language}`]
 
