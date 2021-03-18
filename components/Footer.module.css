@@ -13,7 +13,7 @@
   height: 90%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 40% auto min-content 1% min-content;
+  grid-template-columns: auto auto min-content 1% min-content;
   grid-template-areas: 'nav . logo2 . logo1';
 }
 
@@ -24,6 +24,19 @@
   align-items: flex-end;
   padding: var(--pad-std);
   font-size: var(--med-text);
+}
+
+.Link {
+  font-size: var(--med-text);
+  margin-right: 1rem;
+  cursor: pointer;
+  border-bottom: var(--border-width) dotted transparent;
+}
+
+.Link:hover,
+.Link:active {
+  border-bottom-color: var(--secondary);
+  color: var(--secondary);
 }
 
 .Logo1,
@@ -54,11 +67,11 @@
 
 @media (max-width: 500px) {
   .container {
-    grid-template-columns: 50% auto min-content min-content;
+    grid-template-columns: auto auto min-content min-content;
     grid-template-areas: 'nav . logo2 logo1';
   }
 
-  .Nav {
+  .Link {
     font-size: var(--standard-text);
   }
 }

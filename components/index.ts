@@ -1,6 +1,7 @@
 export { default as AccessLineCta } from './AccessLineCta'
 export { default as CategoryPageContainer } from './CategoryPageContainer'
 export { default as CityFilter } from './CityFilter'
+export { default as Disclaimer } from './Disclaimer'
 export { default as DisplayMap } from './DisplayMap'
 export { default as FetchedDataSearch } from './FetchedDataSearch'
 export { default as Footer } from './Footer'

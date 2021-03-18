@@ -1,4 +1,4 @@
-import { DisplayMap, LocationRecordDisplay, LeafLoader } from './'
+import { DisplayMap, Disclaimer, LocationRecordDisplay, LeafLoader } from './'
 import { Details, Title } from '../ui'
 
 import useLanguage from '../hooks/useLanguage'
@@ -38,7 +38,7 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   return (
     <div className={styles.OrgRecordDisplay} role="list">
       <Details open summary={activeCopy.orgInfo} className={styles.listing}>
-        <Title>{name}</Title>
+        <Title className={styles.DisplayTitle}>{name}</Title>
         {website && (
           <Paragraph size="med-text">
             {activeCopy.website}
@@ -54,6 +54,7 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
           </Paragraph>
         )}
         {notes && <Paragraph size="med-text">{notes}</Paragraph>}
+        <Disclaimer />
       </Details>
       {Boolean(locations.length) && (
         <>
