@@ -29,6 +29,7 @@ const LiveDataSearch = () => {
   const { language } = useLanguage()
   const activeCopy = searchCopy[language]
 
+  const [isFocused, setIsFocused] = useState<boolean>(false)
   const [searchQuery, setSearchQuery] = useState<string>('')
   const { searchResults, setSearchResults } = useGlobalSearch()
 
@@ -36,7 +37,10 @@ const LiveDataSearch = () => {
     e: FormEvent<HTMLFormElement> | MouseEvent<HTMLSpanElement>,
   ): void => {
     e.preventDefault()
-    if (searchQuery) push('/search', `/search?query=${searchQuery}`)
+    if (searchQuery) {
+      push('/search', `/search?query=${searchQuery}`)
+      setIsFocused(false)
+    }
   }
 
   const sendQuery = async (): Promise<void> => {
@@ -70,7 +74,13 @@ const LiveDataSearch = () => {
   }, [searchQuery, delayedQuery])
 
   return (
-    <section className={styles.LiveDataSearch}>
+    <section
+      className={`${styles.LiveDataSearch} ${
+        isFocused ? styles.LiveDataSearchFocused : ''
+      }`}
+      onBlur={() => setIsFocused(false)}
+      onFocus={() => setIsFocused(true)}
+    >
       <form className={styles.SearchContainer} onSubmit={handleSubmit}>
         <label className={styles.Label} htmlFor="global-search">
           Global Search
@@ -93,7 +103,12 @@ const LiveDataSearch = () => {
         {searchQuery &&
           searchResults &&
           searchResults.records.map((record: OrgRecord, i: number) => (
-            <li className={styles.Result} key={i} tabIndex={0}>
+            <li
+              className={styles.Result}
+              key={i}
+              tabIndex={0}
+              onClick={() => setIsFocused(false)}
+            >
               <NextLink href="/search/[id]" as={`/search/${record.id}`}>
                 <Paragraph size="med-text">
                   {record.fields.org_name || record.fields.org_name_spanish}

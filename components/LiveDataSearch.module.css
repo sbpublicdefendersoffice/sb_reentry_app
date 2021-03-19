@@ -15,7 +15,7 @@
   overflow: hidden;
 }
 
-.LiveDataSearch:focus-within {
+.LiveDataSearchFocused {
   max-height: 40rem;
   overflow: scroll;
 }
