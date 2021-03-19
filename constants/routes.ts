@@ -1,9 +1,4 @@
-export interface RouteInfo {
-  title_english: string
-  title_spanish: string
-  route: string
-  imgPath?: string
-}
+import { RouteInfo } from '../types/routes'
 
 export const resourceRoutes: RouteInfo[] = [
   {

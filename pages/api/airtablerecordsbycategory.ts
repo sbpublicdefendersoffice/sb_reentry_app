@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
 
 import { TranslatedRecordResponse, OrgRecord } from '../../types/records'
-import { SPANISH } from '../../types/language'
+import { SPANISH } from '../../constants/language'
 
 import { validateRequest, POST } from '../../helpers/validators'
 

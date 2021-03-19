@@ -1,7 +1,8 @@
 import NextLink from 'next/link'
 import { ReactElement, Fragment } from 'react'
 
-import { staticPageRoutes, RouteInfo } from '../constants/routes'
+import { staticPageRoutes } from '../constants/routes'
+import { RouteInfo } from '../types/routes'
 import useLanguage from '../hooks/useLanguage'
 import SBPDLogo from './SBPDLogo'
 import { FreshStartLeaf, Paragraph } from '../ui'

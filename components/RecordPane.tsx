@@ -6,7 +6,7 @@ import { Card, Details, Paragraph } from '../ui'
 import useLanguage from '../hooks/useLanguage'
 
 import { TranslatedRecordResponse } from '../types/records'
-import { ENGLISH } from '../types/language'
+import { ENGLISH } from '../constants/language'
 
 import styles from './RecordPane.module.css'
 

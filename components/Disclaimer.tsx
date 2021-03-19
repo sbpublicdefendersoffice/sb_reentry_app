@@ -20,12 +20,12 @@ const Disclaimer = () => {
   const activeCopy = copy[language]
 
   return (
-    <div>
-      <em>
-        <Paragraph>{activeCopy.disclaimer}: </Paragraph>
-        <Paragraph>{activeCopy.disclaimerCopy}</Paragraph>
-      </em>
-    </div>
+    <em>
+      <Paragraph>
+        <strong>{activeCopy.disclaimer}: </strong>
+        {activeCopy.disclaimerCopy}
+      </Paragraph>
+    </em>
   )
 }
 

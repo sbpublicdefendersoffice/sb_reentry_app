@@ -6,6 +6,7 @@
   flex-direction: column;
   text-align: center;
   padding: var(--pad-std);
+  margin-top: var(--margin-std);
 }
 
 .container {
@@ -73,5 +74,11 @@
 
   .Link {
     font-size: var(--standard-text);
+    margin-right: 0;
+  }
+
+  .Nav {
+    flex-direction: column;
+    text-align: left;
   }
 }

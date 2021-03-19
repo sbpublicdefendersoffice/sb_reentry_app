@@ -30,6 +30,7 @@ main {
 a {
   text-decoration: none;
   color: var(--dark);
+  word-break: break-all;
 }
 
 a:not(.not-text-link) {
@@ -45,5 +46,6 @@ a:hover {
   main {
     flex-direction: column;
     justify-content: flex-start;
+    padding-top: 3rem;
   }
 }

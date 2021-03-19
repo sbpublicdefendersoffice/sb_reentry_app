@@ -4,10 +4,8 @@ import { Marker } from 'react-mapbox-gl'
 
 import Popup from './Popup'
 import { usePopup } from '../hooks'
-import { LocationRecord } from '../types/records'
-
+import { LocationRecord, CopyHolder } from '../types'
 import useLanguage from '../hooks/useLanguage'
-import { CopyHolder } from '../types/language'
 
 import styles from './MapMarker.module.css'
 

@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter'
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser'
 import ForumIcon from '@material-ui/icons/Forum'
-import { ENGLISH } from '../../types/language'
+import { ENGLISH } from '../../constants/language'
 
 import useLanguage from '../../hooks/useLanguage'
 const useStyles = makeStyles((theme: Theme) =>
