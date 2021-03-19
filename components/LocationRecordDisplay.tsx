@@ -76,6 +76,7 @@ const LocationRecordDisplay = ({
           {name}
         </Paragraph>
       )}
+      {notes && <Paragraph size="med-text">{notes}</Paragraph>}
       {address && (
         <>
           <Paragraph size="med-text" className={styles.subHeading}>
@@ -148,7 +149,6 @@ const LocationRecordDisplay = ({
           </Paragraph>
         </>
       )}
-      {notes && <Paragraph size="med-text">{notes}</Paragraph>}
       {Boolean(schedule.length) && (
         <>
           <Paragraph size="med-text" className={styles.subHeading}>

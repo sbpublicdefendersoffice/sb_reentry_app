@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.LocationRecordDisplay > * {
+  margin-bottom: var(--pad-lg);
+}
+
 .heading {
   font-weight: 100;
 }

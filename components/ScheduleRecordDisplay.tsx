@@ -10,7 +10,8 @@ const copy: CopyHolder = {
   english: {
     timeOpen: 'Time Open',
     to: ' to ',
-    daysOpen: 'Days Open',
+    day: 'Day',
+    open: 'Open',
     notes: 'Notes',
     everyWeek: 'Open Every Week',
     first: 'First',
@@ -24,7 +25,8 @@ const copy: CopyHolder = {
   spanish: {
     timeOpen: 'Tiempo Abierto',
     to: ' a ',
-    daysOpen: 'Dia Abierto',
+    day: 'Day',
+    open: 'Abierto',
     notes: 'Notas',
     everyWeek: 'Abierto Todas Las Semanas',
     first: 'Primero',
@@ -84,18 +86,23 @@ const ScheduleRecordDisplay = ({
 
   const { open_time, close_time, day, ordinal_open, notes } = scheduleInfo
 
+  const daysOpen: string = `${activeCopy.day}${day?.length > 3 ? 's' : ''} ${
+    activeCopy.open
+  }`
+
   return (
     <section className={styles.ScheduleRecordDisplay}>
       {open_time && close_time && (
         <Paragraph size="med-text">
-          {activeCopy.timeOpen}: {timeParser(open_time)}
+          <strong>{activeCopy.timeOpen}: </strong>
+          {timeParser(open_time)}
           {activeCopy.to}
           {timeParser(close_time)}
         </Paragraph>
       )}
       {day && (
         <Paragraph size="med-text">
-          {`Day${day.length > 3 ? 's' : ''}`} {activeCopy.daysOpen}: {day}
+          <strong>{daysOpen}</strong>: {day}
         </Paragraph>
       )}
       {ordinal_open && (
@@ -105,7 +112,7 @@ const ScheduleRecordDisplay = ({
       )}
       {notes && (
         <Paragraph size="med-text">
-          {activeCopy.daysOpen}: {notes}
+          <strong>{activeCopy.notes}:</strong> {notes}
         </Paragraph>
       )}
     </section>
