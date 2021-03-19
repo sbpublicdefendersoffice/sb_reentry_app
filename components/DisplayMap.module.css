@@ -3,4 +3,5 @@
   flex: 1;
   width: 100%;
   height: var(--screen-minus-header) !important;
+  padding: 0 calc(var(--pad-lg) + var(--pad-sm));
 }

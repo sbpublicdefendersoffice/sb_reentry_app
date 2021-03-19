@@ -36,7 +36,6 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
       {
         // @ts-ignore
         <MapboxMap
-          className={styles.MapBox}
           style={mapboxStylingURL}
           containerStyle={mapContainerStyle}
           center={centerArr}
