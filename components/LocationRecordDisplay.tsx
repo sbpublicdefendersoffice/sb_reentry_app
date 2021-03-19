@@ -108,10 +108,7 @@ const LocationRecordDisplay = ({
           <Paragraph size="med-text">
             {phone}
             <br />
-            <a
-              className={styles.Links}
-              href={`tel:${phone.replace(/[^0-9]/g, '')}`}
-            >
+            <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
               {activeCopy.call}
             </a>
           </Paragraph>
@@ -121,12 +118,7 @@ const LocationRecordDisplay = ({
         <>
           <Paragraph size="med-text" className={styles.subHeading}>
             {activeCopy.locationSite}:
-            <a
-              className={styles.Links}
-              href={website}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={website} target="_blank" rel="noopener noreferrer">
               {website}
             </a>
           </Paragraph>
@@ -147,7 +139,6 @@ const LocationRecordDisplay = ({
           </Paragraph>
           <Paragraph size="med-text">
             <a
-              className={styles.Links}
               href={`mailto:${email}`}
               target="_blank"
               rel="noopener noreferrer"

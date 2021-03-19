@@ -74,5 +74,11 @@
 
   .Link {
     font-size: var(--standard-text);
+    margin-right: 0;
+  }
+
+  .Nav {
+    flex-direction: column;
+    text-align: left;
   }
 }
