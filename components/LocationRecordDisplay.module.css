@@ -1,15 +1,11 @@
 .LocationRecordDisplay {
-  cursor: auto;
+  padding: var(--pad-lg);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-.LocationRecordDisplay > h3 {
-  margin: var(--margin-std) 0;
-}
-
-.LocationAddressInformation {
-  flex: 1;
+.Links {
+  word-break: break-all;
 }
 
 .heading {
@@ -19,10 +15,5 @@
 .subHeading {
   margin: var(--margin-sm) 0;
   font-weight: bold;
-}
-
-@media (max-width: 700px) {
-  .LocationRecordDisplay {
-    flex-direction: column;
-  }
+  text-align: start;
 }

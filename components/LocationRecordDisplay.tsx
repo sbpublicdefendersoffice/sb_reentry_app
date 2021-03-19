@@ -64,100 +64,110 @@ const LocationRecordDisplay = ({
     `${city || state ? ', ' : ''}${zip}` || ''
   }`
 
-  const addressForUrl: string = `${fullAddress}+${cityStateZip}`.replace(
-    /\s/g,
-    '+',
-  )
+  // const addressForUrl: string = `${fullAddress}+${cityStateZip}`.replace(
+  //   /\s/g,
+  //   '+',
+  // )
 
   return (
     <Card className={styles.LocationRecordDisplay}>
-      <div className={styles.LocationAddressInformation}>
-        {name && (
-          <Paragraph size="heading-text" className={styles.heading}>
-            {name}
+      {name && (
+        <Paragraph size="heading-text" className={styles.heading}>
+          {name}
+        </Paragraph>
+      )}
+      {address && (
+        <>
+          <Paragraph size="med-text" className={styles.subHeading}>
+            {activeCopy.address}:
           </Paragraph>
-        )}
-        {address && (
-          <>
-            <Paragraph size="med-text" className={styles.subHeading}>
-              {activeCopy.address}:
-            </Paragraph>
-            <address>
-              <Paragraph size="med-text">{fullAddress}</Paragraph>
-              <Paragraph size="med-text">{cityStateZip}</Paragraph>
-              <a
+          <address>
+            <Paragraph size="med-text">{fullAddress}</Paragraph>
+            <Paragraph size="med-text">{cityStateZip}</Paragraph>
+            {/* <a
                 href={`https://www.google.com/maps/place/${addressForUrl}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {activeCopy.find}
-              </a>
-            </address>
-            <SendText
-              id={id}
-              org_name={org_name}
-              fullAddress={fullAddress}
-              cityStateZip={cityStateZip}
-            />
-          </>
-        )}
-        {phone && (
-          <>
-            <Paragraph size="med-text" className={styles.subHeading}>
-              {activeCopy.phone}:
-            </Paragraph>
-            <Paragraph size="med-text">{phone}</Paragraph>
-            <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
+              </a> */}
+          </address>
+          <SendText
+            id={id}
+            org_name={org_name}
+            fullAddress={fullAddress}
+            cityStateZip={cityStateZip}
+          />
+        </>
+      )}
+      {phone && (
+        <>
+          <Paragraph size="med-text" className={styles.subHeading}>
+            {activeCopy.phone}:
+          </Paragraph>
+          <Paragraph size="med-text">
+            {phone}
+            <br />
+            <a
+              className={styles.Links}
+              href={`tel:${phone.replace(/[^0-9]/g, '')}`}
+            >
               {activeCopy.call}
             </a>
-          </>
-        )}
-        {website && (
-          <>
-            <Paragraph size="med-text" className={styles.subHeading}>
-              {activeCopy.locationSite}:
-            </Paragraph>
-            <a href={website} target="_blank" rel="noopener noreferrer">
+          </Paragraph>
+        </>
+      )}
+      {website && (
+        <>
+          <Paragraph size="med-text" className={styles.subHeading}>
+            {activeCopy.locationSite}:
+            <a
+              className={styles.Links}
+              href={website}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {website}
             </a>
-          </>
-        )}
-        {services && (
-          <>
-            <Paragraph size="med-text" className={styles.subHeading}>
-              {activeCopy.services}:
-            </Paragraph>
-            <Paragraph size="med-text">{services}</Paragraph>
-          </>
-        )}
-        {email && (
-          <>
-            <Paragraph size="med-text" className={styles.subHeading}>
-              {activeCopy.email}:
-            </Paragraph>
-            <Paragraph size="med-text">
-              <a
-                href={`mailto:${email}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {email}
-              </a>
-            </Paragraph>
-          </>
-        )}
-        {notes && <Paragraph size="med-text">{notes}</Paragraph>}
-        {Boolean(schedule.length) && (
-          <>
-            <Paragraph size="med-text" className={styles.subHeading}>
-              {activeCopy.schedule}:
-            </Paragraph>
-            {schedule.map((scheduleInfo, i) => (
-              <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
-            ))}
-          </>
-        )}
-      </div>
+          </Paragraph>
+        </>
+      )}
+      {services && (
+        <>
+          <Paragraph size="med-text" className={styles.subHeading}>
+            {activeCopy.services}:
+          </Paragraph>
+          <Paragraph size="med-text">{services}</Paragraph>
+        </>
+      )}
+      {email && (
+        <>
+          <Paragraph size="med-text" className={styles.subHeading}>
+            {activeCopy.email}:
+          </Paragraph>
+          <Paragraph size="med-text">
+            <a
+              className={styles.Links}
+              href={`mailto:${email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {email}
+            </a>
+          </Paragraph>
+        </>
+      )}
+      {notes && <Paragraph size="med-text">{notes}</Paragraph>}
+      {Boolean(schedule.length) && (
+        <>
+          <Paragraph size="med-text" className={styles.subHeading}>
+            {activeCopy.schedule}:
+          </Paragraph>
+          {schedule.map((scheduleInfo, i) => (
+            <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
+          ))}
+        </>
+      )}
     </Card>
   )
 }

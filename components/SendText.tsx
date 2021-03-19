@@ -69,11 +69,12 @@ const SendText = ({
   const textId: string = `${org_name}${id}`
 
   return (
-    <form onSubmit={postText}>
+    <form className={styles.SendText} onSubmit={postText}>
       <label className={styles.Label} htmlFor={textId}>
         Send Text
       </label>
       <Input
+        className={styles.Input}
         id={textId}
         onChange={e => setNumberToSendTo(e.target.value)}
         placeholder={activeCopy.placeholder}
