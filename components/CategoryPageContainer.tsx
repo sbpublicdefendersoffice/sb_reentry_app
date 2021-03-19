@@ -45,7 +45,6 @@ const CategoryPageContainer = ({
       <DisplayMap
         latLongInfo={convertedLocRecords}
         setLatLongInfo={setConvertedLocRecords}
-        page="search"
       />
     </>
   )

@@ -13,7 +13,6 @@ import { ENGLISH } from '../types/language'
 import styles from './DisplayMap.module.css'
 
 interface DisplayMapProps {
-  page: 'search' | 'org'
   latLongInfo: LocationRecord[]
   setLatLongInfo?: Dispatch<SetStateAction<LocationRecord[]>>
 }
@@ -22,7 +21,7 @@ const MapboxMap = ReactMapboxGL({
   accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
 })
 
-const DisplayMap = ({ page, latLongInfo, setLatLongInfo }: DisplayMapProps) => {
+const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
   const { language } = useLanguage()
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
 
@@ -30,8 +29,7 @@ const DisplayMap = ({ page, latLongInfo, setLatLongInfo }: DisplayMapProps) => {
     <Details
       open
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
-      className={`${styles.DisplayMap} 
-      ${page === 'search' ? styles.SearchPageSize : ''}`}
+      className={styles.DisplayMap}
     >
       {latLongInfo && setLatLongInfo && (
         <CityFilter latLongInfo={latLongInfo} setLatLongInfo={setLatLongInfo} />

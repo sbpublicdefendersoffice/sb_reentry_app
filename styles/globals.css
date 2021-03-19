@@ -45,5 +45,6 @@ a:hover {
   main {
     flex-direction: column;
     justify-content: flex-start;
+    padding-top: 3rem;
   }
 }

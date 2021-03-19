@@ -1,4 +1,4 @@
-import { DisplayMap, Disclaimer, LocationRecordDisplay, LeafLoader } from './'
+import { Disclaimer, LocationRecordDisplay } from './'
 import { Details, Title } from '../ui'
 
 import useLanguage from '../hooks/useLanguage'
@@ -31,8 +31,6 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
-  if (!sortedRecord) return <LeafLoader />
-
   const { locations, name, website, languages_spoken, notes } = sortedRecord
 
   return (
@@ -56,19 +54,16 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
         {notes && <Paragraph size="med-text">{notes}</Paragraph>}
         <Disclaimer />
       </Details>
-      {Boolean(locations.length) && (
-        <>
-          <DisplayMap latLongInfo={locations} page="org" />
-          <Details open summary={activeCopy.location}>
-            {locations.map((locationInfo, i) => (
-              <LocationRecordDisplay
-                key={i}
-                locationInfo={locationInfo}
-                id={String(i)}
-              />
-            ))}
-          </Details>
-        </>
+      {Boolean(locations?.length) && (
+        <Details open summary={activeCopy.location}>
+          {locations.map((locationInfo, i) => (
+            <LocationRecordDisplay
+              key={i}
+              locationInfo={locationInfo}
+              id={String(i)}
+            />
+          ))}
+        </Details>
       )}
     </div>
   )

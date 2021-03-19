@@ -1,32 +1,27 @@
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
-import useLanguage from '../../hooks/useLanguage'
+import useSingleRecord from '../../hooks/useSingleRecord'
+import { siteTitle } from '../../constants/copy'
 
-import { OrgPageContainer, LeafLoader } from '../../components'
-
-import categories from '../../constants/categories'
+import { LeafLoader, OrgRecordDisplay, DisplayMap } from '../../components'
 
 const IdPage = () => {
   const { asPath } = useRouter()
-  const { language } = useLanguage()
+  const { sortedRecord } = useSingleRecord()
 
-  if (asPath.startsWith('/[category]')) return <LeafLoader />
+  if (asPath.startsWith('/[category]') || !sortedRecord) return <LeafLoader />
 
-  const captureBaseRoute: RegExp = /^(.*)\/.*$/
-  const capturedRouteReference: string = '$1'
-  const baseRoute: string = asPath.replace(
-    captureBaseRoute,
-    capturedRouteReference,
-  )
-
-  const displayCategory: string = categories[baseRoute][language].category
-  const routeCategory: string = categories[baseRoute].english.category
+  const { locations } = sortedRecord
 
   return (
-    <OrgPageContainer
-      displayCategory={displayCategory}
-      routeCategory={routeCategory}
-    />
+    <>
+      <Head>
+        <title>{`${siteTitle} | ${sortedRecord?.name}`}</title>
+      </Head>
+      <OrgRecordDisplay sortedRecord={sortedRecord} />
+      {Boolean(locations?.length) && <DisplayMap latLongInfo={locations} />}
+    </>
   )
 }
 

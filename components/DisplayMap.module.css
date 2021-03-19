@@ -2,16 +2,5 @@
   position: relative;
   flex: 1;
   width: 100%;
-}
-
-.DisplayMap[open] {
-  height: 30rem;
-}
-
-.SearchPageSize {
   height: var(--screen-minus-header) !important;
-}
-
-.MapBox {
-  outline: none;
 }

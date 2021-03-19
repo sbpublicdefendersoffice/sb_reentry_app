@@ -1,6 +1,6 @@
 .LiveDataSearch {
   position: absolute;
-  right:0;
+  right: 0;
   background-color: var(--light);
   width: 20rem;
   border: var(--border-width) solid var(--primary);

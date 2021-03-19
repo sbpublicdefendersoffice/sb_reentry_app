@@ -1,12 +1,7 @@
 .OrgRecordDisplay {
   overflow: scroll;
   height: var(--screen-minus-header);
-  flex: 1;
-  padding-top: 3rem;
-}
-
-.listing {
-  cursor: auto;
+  width: 33%;
 }
 
 .listing > :not(summary) {
@@ -16,7 +11,8 @@
 
 @media (max-width: 700px) {
   .OrgRecordDisplay {
-    padding-top: 0;
+    width: 100%;
+    height: auto;
   }
 
   .DisplayTitle {

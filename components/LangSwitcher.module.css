@@ -1,6 +1,6 @@
 .LangSwitcher {
   position: absolute;
-  right:0;
+  right: 0;
   padding: var(--pad-sm) var(--pad-std);
   width: fit-content;
   display: flex;

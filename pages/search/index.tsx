@@ -54,7 +54,6 @@ const GlobalSearchLanding = () => {
         <DisplayMap
           latLongInfo={convertedLocRecords}
           setLatLongInfo={setConvertedLocRecords}
-          page="search"
         />
       )}
     </>
