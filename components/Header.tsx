@@ -5,7 +5,9 @@ import Burger from './Burger'
 import BurgerItems from './BurgerItems'
 import useLanguage from '../hooks/useLanguage'
 import styles from './Header.module.css'
-import { staticPageRoutes, RouteInfo } from '../constants/routes'
+
+import { staticPageRoutes } from '../constants/routes'
+import { RouteInfo } from '../types/routes'
 import { useOnClickOutside } from '../hooks/useOnClickOutside'
 import { FreshStartLogo, Paragraph } from '../ui'
 

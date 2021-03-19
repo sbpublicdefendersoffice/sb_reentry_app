@@ -1,6 +1,7 @@
 import NextLink from 'next/link'
 
-import { resourceRoutes, RouteInfo } from '../constants/routes'
+import { resourceRoutes } from '../constants/routes'
+import { RouteInfo } from '../types/routes'
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 

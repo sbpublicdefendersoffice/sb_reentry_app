@@ -5,13 +5,12 @@ import { useRouter } from 'next/router'
 
 import useLanguage from '../../hooks/useLanguage'
 
-import { siteTitle } from '../../constants/copy'
+import { siteTitle, categories } from '../../constants'
 import useMultipleListRecords from '../../hooks/useMultipleListRecords'
 import { filterOutLocationlessRecords } from '../../helpers/filters'
 
 import { LocationRecord } from '../../types/records'
 import { RecordPane, DisplayMap } from '../../components'
-import categories from '../../constants/categories'
 
 const LandingPage = () => {
   const { asPath } = useRouter()
