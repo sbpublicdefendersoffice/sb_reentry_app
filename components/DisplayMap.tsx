@@ -1,14 +1,13 @@
 import { Fragment, Dispatch, SetStateAction } from 'react'
 import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
 
-import { mapboxStylingURL, mapContainerStyle } from '../constants/maps'
+import { mapboxStylingURL, mapContainerStyle, ENGLISH } from '../constants'
 import useMapInfo from '../hooks/useMapInfo'
 import { MapMarker, CityFilter } from './'
 import { Details } from '../ui'
 import useLanguage from '../hooks/useLanguage'
 
 import { LocationRecord } from '../types/records'
-import { ENGLISH } from '../types/language'
 
 import styles from './DisplayMap.module.css'
 

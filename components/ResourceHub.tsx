@@ -1,9 +1,8 @@
 import NextLink from 'next/link'
 
 import { resourceRoutes } from '../constants/routes'
-import { RouteInfo } from '../types/routes'
+import { RouteInfo, CopyHolder } from '../types'
 import useLanguage from '../hooks/useLanguage'
-import { CopyHolder } from '../types/language'
 
 import { Title, Paragraph } from '../ui'
 import styles from './ResourceHub.module.css'

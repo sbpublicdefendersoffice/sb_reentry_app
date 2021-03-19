@@ -10,8 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import Modal from '@material-ui/core/Modal'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 
-import { ENGLISH } from '../../types/language'
-
+import { ENGLISH } from '../../constants/language'
 import useLanguage from '../../hooks/useLanguage'
 
 const useStyles = makeStyles(() =>

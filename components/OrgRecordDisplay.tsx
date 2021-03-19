@@ -2,8 +2,7 @@ import { Disclaimer, LocationRecordDisplay } from './'
 import { Details, Title } from '../ui'
 
 import useLanguage from '../hooks/useLanguage'
-import { SortedRecord } from '../types/records'
-import { CopyHolder } from '../types/language'
+import { SortedRecord, CopyHolder } from '../types'
 
 import styles from './OrgRecordDisplay.module.css'
 import { Paragraph } from '../ui'

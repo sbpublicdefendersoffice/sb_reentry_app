@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 
-import { LocationRecord } from '../types/records'
 import {
   LocationInfo,
   CenterArr,
   BoundingArr,
   LocationState,
-} from '../types/maps'
+  LocationRecord,
+} from '../types'
 
 const latToMile: number = 69.2
 

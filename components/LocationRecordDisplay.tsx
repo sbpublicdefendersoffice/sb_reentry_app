@@ -1,10 +1,8 @@
 import { Card, Paragraph } from '../ui'
 
 import { ScheduleRecordDisplay, SendText } from './'
-import { LocationRecord } from '../types/records'
-
+import { LocationRecord, CopyHolder } from '../types'
 import useLanguage from '../hooks/useLanguage'
-import { CopyHolder } from '../types/language'
 
 import styles from './LocationRecordDisplay.module.css'
 

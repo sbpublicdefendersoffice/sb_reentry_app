@@ -1,7 +1,6 @@
 import useLanguage from '../hooks/useLanguage'
 
-import { ScheduleRecord } from '../types/records'
-import { CopyHolder, Language } from '../types/language'
+import { CopyHolder, Language, ScheduleRecord } from '../types'
 
 import { Paragraph } from '../ui'
 
