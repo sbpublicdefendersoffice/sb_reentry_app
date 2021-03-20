@@ -100,6 +100,7 @@ const LiveDataSearch = () => {
       {searchQuery && searchResults && isFocused && (
         <ul className={styles.ResultsContainer}>
           {searchResults.records.map((record: OrgRecord, i: number) => (
+
             <li
               className={styles.Result}
               key={i}
