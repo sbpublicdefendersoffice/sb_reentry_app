@@ -1,35 +1,37 @@
 import Head from 'next/head'
 import React from 'react'
-
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
-import Paper from '@material-ui/core/Paper'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { ENGLISH, CopyHolder } from '../../types/language'
-import Grid from '@material-ui/core/Grid'
+import { Accordian } from '../../types/accordian'
 import useLanguage from '../../hooks/useLanguage'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import { probations } from '../../constants/probations'
-import ListItemText from '@material-ui/core/ListItemText'
-import TipsAccordian from '../../components/TipsAccordian'
-import JobsAccordian from '../../components/JobsAccordian'
-import MentalHealthAccordian from '../../components/MentalHealthAccordian'
-import SobrietyAccordian from '../../components/SobrietyAccordian'
-import MedicalNeedsAccordian from '../../components/MedicalNeedsAccordian'
-import FoodAccordian from '../../components/FoodAccordian'
-import ImportantDocumentsAccordian from '../../components/ImportantDocumentsAccordian'
+import MainAccordian from '../../components/MainAccordian'
 import ProbationAccordian from '../../components/ProbationAccordian'
-import { copy } from '../../constants/checklist-data'
+import {
+  checklistData,
+  jobAccordian,
+  mentalHealthAccordian,
+  sobrietyAccordian,
+  medicalAccordian,
+  foodAccordian,
+  importantAccordian,
+} from '../../constants/checklist-data'
 import { useStyles } from '../../constants/materialStyles'
-
+import TipsAccordianMain from '../../components/TipsAccordianMain'
 const Checklist = () => {
   const classes = useStyles()
   const { language } = useLanguage()
-  const activeCopy = copy[language]
+
+  const accordians: Accordian[] = [
+    jobAccordian,
+    mentalHealthAccordian,
+    sobrietyAccordian,
+
+    medicalAccordian,
+    foodAccordian,
+    importantAccordian,
+  ]
+
+  const activeCopy = checklistData[language]
+
   return (
     <div>
       <Head>
@@ -52,16 +54,18 @@ const Checklist = () => {
         {activeCopy.description}
       </Typography>
       <div>
-        <ProbationAccordian activeCopy={activeCopy} />
-        <ImportantDocumentsAccordian activeCopy={activeCopy} />
-        <FoodAccordian activeCopy={activeCopy} />
-        <MedicalNeedsAccordian activeCopy={activeCopy} />
-        <SobrietyAccordian activeCopy={activeCopy} />
-        <MentalHealthAccordian activeCopy={activeCopy} />
-        <JobsAccordian activeCopy={activeCopy} />
-        <TipsAccordian activeCopy={activeCopy} />
+        <ProbationAccordian />
+        {accordians.map((accordian, key) => {
+          const accord = accordian[language]
+          return <MainAccordian accord={accord} key={key} />
+        })}
+        <TipsAccordianMain />
       </div>
     </div>
   )
+}
+Checklist.propTypes = {
+  activeCopy: {},
+  key: {},
 }
 export default Checklist
