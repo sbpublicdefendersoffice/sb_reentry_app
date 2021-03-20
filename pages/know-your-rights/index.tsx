@@ -200,15 +200,23 @@ const KnowYourRights = () => {
                   <HighlightOffIcon className={classes.icons} />
                 </button>
                 {activeItem && (
-                  <img
+                  <a
                     style={{ marginTop: '2rem' }}
-                    id="simple-modal-title"
-                    src={
+                    href={
                       language === ENGLISH
                         ? `${activeItem.flyerPDF}`
                         : `${activeItem.spanishFlyerPDF} `
                     }
-                  />
+                    download="Flyer"
+                  >
+                    <img
+                      src={
+                        language === ENGLISH
+                          ? `${activeItem.flyerPDF}`
+                          : `${activeItem.spanishFlyerPDF} `
+                      }
+                    />
+                  </a>
                 )}
               </div>
             </Modal>
