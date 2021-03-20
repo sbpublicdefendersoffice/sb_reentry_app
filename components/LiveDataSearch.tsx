@@ -76,7 +76,6 @@ const LiveDataSearch = () => {
   return (
     <section
       className={styles.LiveDataSearch}
-      onBlur={() => setIsFocused(false)}
       onFocus={() => setIsFocused(true)}
     >
       <form className={styles.SearchContainer} onSubmit={handleSubmit}>
