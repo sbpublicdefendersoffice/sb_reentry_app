@@ -75,10 +75,7 @@ const LiveDataSearch = () => {
 
   return (
     <section
-      className={`${styles.LiveDataSearch} ${
-        isFocused ? styles.LiveDataSearchFocused : ''
-      }`}
-      onBlur={() => setIsFocused(false)}
+      className={styles.LiveDataSearch}
       onFocus={() => setIsFocused(true)}
     >
       <form className={styles.SearchContainer} onSubmit={handleSubmit}>
@@ -99,10 +96,9 @@ const LiveDataSearch = () => {
         </span>
         <Tooltip>{activeCopy.tooltip}</Tooltip>
       </form>
-      <ul className={styles.ResultsContainer}>
-        {searchQuery &&
-          searchResults &&
-          searchResults.records.map((record: OrgRecord, i: number) => (
+      {searchQuery && searchResults && isFocused && (
+        <ul className={styles.ResultsContainer}>
+          {searchResults.records.map((record: OrgRecord, i: number) => (
             <li
               className={styles.Result}
               key={i}
@@ -116,7 +112,8 @@ const LiveDataSearch = () => {
               </NextLink>
             </li>
           ))}
-      </ul>
+        </ul>
+      )}
     </section>
   )
 }
