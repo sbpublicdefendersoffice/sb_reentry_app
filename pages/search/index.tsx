@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { POST, filterOutLocationlessRecords } from '../../helpers'
+import { POST, convertLocationsForMap } from '../../helpers'
 import { useGlobalSearch, useLanguage } from '../../hooks'
 import { LocationRecord, TranslatedRecordResponse } from '../../types/records'
 import DisplayMap from '../../components/DisplayMap'
@@ -18,7 +18,7 @@ const GlobalSearchLanding = () => {
   useEffect((): void => {
     const filterOrFetch = async () => {
       if (searchResults) {
-        const mappedLocRecords: LocationRecord[] = filterOutLocationlessRecords(
+        const mappedLocRecords: LocationRecord[] = convertLocationsForMap(
           searchResults,
         )
         setConvertedLocRecords(mappedLocRecords)

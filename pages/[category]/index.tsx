@@ -7,7 +7,7 @@ import useLanguage from '../../hooks/useLanguage'
 
 import { siteTitle, categories } from '../../constants'
 import useMultipleListRecords from '../../hooks/useMultipleListRecords'
-import { filterOutLocationlessRecords } from '../../helpers/filters'
+import { convertLocationsForMap } from '../../helpers/converters'
 
 import { LocationRecord } from '../../types/records'
 import { RecordPane, DisplayMap } from '../../components'
@@ -33,7 +33,7 @@ const LandingPage = () => {
 
   useEffect((): void => {
     if (fetchedRecords) {
-      const mappedLocRecords: LocationRecord[] = filterOutLocationlessRecords(
+      const mappedLocRecords: LocationRecord[] = convertLocationsForMap(
         fetchedRecords,
       )
       setConvertedLocRecords(mappedLocRecords)

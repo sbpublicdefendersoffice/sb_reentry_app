@@ -1,4 +1,4 @@
-export { filterOutLocationlessRecords } from './filters'
+export { convertLocationsForMap } from './converters'
 export {
   validateRequest,
   validatePhoneNumber,

@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import { useState, useRef, ReactElement } from 'react'
+import { useState, useRef, ReactElement, Fragment } from 'react'
 
 import Burger from './Burger'
 import BurgerItems from './BurgerItems'
@@ -30,10 +30,10 @@ const Header = () => {
         </NextLink>
       )
 
-      if (i === lastStaticRouteIndex) return link
+      if (i === lastStaticRouteIndex) return <Fragment key={i}>{link}</Fragment>
       else
         return (
-          <>
+          <Fragment key={i}>
             {link}
             <Paragraph
               className={styles.Separators}
@@ -42,7 +42,7 @@ const Header = () => {
             >
               |
             </Paragraph>
-          </>
+          </Fragment>
         )
     },
   )

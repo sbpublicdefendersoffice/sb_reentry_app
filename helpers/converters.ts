@@ -4,10 +4,10 @@ import {
   TranslatedRecordResponse,
 } from '../types/records'
 
-export const filterOutLocationlessRecords = (
-  locRecordsToFilter: TranslatedRecordResponse,
+export const convertLocationsForMap = (
+  locRecordsToConvert: TranslatedRecordResponse,
 ) =>
-  locRecordsToFilter.records.reduce(
+  locRecordsToConvert.records.reduce(
     (arr: LocationRecord[], record: OrgRecord) => {
       const longCheck: number[] = record.fields.location_longitude
 
@@ -17,7 +17,7 @@ export const filterOutLocationlessRecords = (
             multiple_categories: record.fields.org_categories.map(
               (category: string): string => category.replaceAll(' ', ''),
             ),
-            single_category: locRecordsToFilter.category || 'search',
+            single_category: locRecordsToConvert.category || 'search',
             longitude,
             latitude: record.fields.location_latitude[i],
             city: record.fields.locations_city[i].trim(),
