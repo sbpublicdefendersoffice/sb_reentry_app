@@ -1,6 +1,6 @@
 .LiveDataSearch {
   position: absolute;
-  right:0;
+  right: 0;
   background-color: var(--light);
   width: 20rem;
   border: var(--border-width) solid var(--primary);
@@ -10,14 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-height: 2.5rem;
-  max-height: 2.5rem;
   overflow: hidden;
-}
-
-.LiveDataSearch:focus-within {
-  max-height: 40rem;
-  overflow: scroll;
 }
 
 .SearchContainer {
@@ -40,6 +33,8 @@
 .ResultsContainer {
   list-style-type: none;
   width: 100%;
+  max-height: 40rem;
+  overflow: scroll;
 }
 
 .Result {
@@ -51,10 +46,6 @@
 
 .Result:hover > p {
   color: var(--highlight);
-}
-
-.LiveDataSearch:not(:focus-within) * .Result {
-  border-top: none;
 }
 
 .Label {

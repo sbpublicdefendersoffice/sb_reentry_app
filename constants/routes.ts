@@ -1,11 +1,6 @@
-export interface RouteInfo {
-  title_english: string
-  title_spanish: string
-  route: string
-  imgPath: string
-}
+import { RouteInfo } from '../types/routes'
 
-const routes: RouteInfo[] = [
+export const resourceRoutes: RouteInfo[] = [
   {
     title_english: 'Food',
     title_spanish: 'Comida',
@@ -80,4 +75,25 @@ const routes: RouteInfo[] = [
   },
 ]
 
-export default routes
+export const staticPageRoutes: RouteInfo[] = [
+  {
+    title_english: '72 Hour Checklist',
+    title_spanish: 'Lista de verificación de 72 horas',
+    route: '/checklist',
+  },
+  {
+    title_english: 'Success Stories',
+    title_spanish: 'Historias de éxito',
+    route: '/successstories',
+  },
+  {
+    title_english: 'Know Your Rights',
+    title_spanish: 'Conoce tus derechos',
+    route: '/knowyourrights',
+  },
+  {
+    title_english: 'About Us',
+    title_spanish: 'Sobre nosotros',
+    route: '/aboutus',
+  },
+]

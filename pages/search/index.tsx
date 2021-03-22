@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { TranslatedRecordResponse } from '../../types/records'
-
-import { POST } from '../../helpers/validators'
-import { filterOutLocationlessRecords } from '../../helpers/filters'
+import { POST, filterOutLocationlessRecords } from '../../helpers'
 import { useGlobalSearch, useLanguage } from '../../hooks'
-import { LocationRecord } from '../../types/records'
+import { LocationRecord, TranslatedRecordResponse } from '../../types/records'
 import DisplayMap from '../../components/DisplayMap'
 
 const GlobalSearchLanding = () => {
@@ -54,7 +51,6 @@ const GlobalSearchLanding = () => {
         <DisplayMap
           latLongInfo={convertedLocRecords}
           setLatLongInfo={setConvertedLocRecords}
-          page="search"
         />
       )}
     </>

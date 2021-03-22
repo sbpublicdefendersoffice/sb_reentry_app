@@ -1,7 +1,6 @@
 import Head from 'next/head'
-import React from 'react'
-import Typography from '@material-ui/core/Typography'
 import { Accordian } from '../../types/accordian'
+import Typography from '@material-ui/core/Typography'
 import useLanguage from '../../hooks/useLanguage'
 import MainAccordian from '../../components/MainAccordian'
 import ProbationAccordian from '../../components/ProbationAccordian'

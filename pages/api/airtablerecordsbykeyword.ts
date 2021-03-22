@@ -4,7 +4,7 @@ import { validateRequest, POST } from '../../helpers/validators'
 import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
 
 import { TranslatedRecordResponse } from '../../types/records'
-import { SPANISH } from '../../types/language'
+import { SPANISH } from '../../constants/language'
 
 const globalAirtableSearch = async (
   req: NextApiRequest,

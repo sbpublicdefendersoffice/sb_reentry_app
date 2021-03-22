@@ -6,9 +6,8 @@ import {
   SetStateAction,
 } from 'react'
 
-import { citiesByCountyRegion } from '../constants/maps'
-import { CopyHolder, ENGLISH } from '../types/language'
-import { LocationRecord } from '../types/records'
+import { citiesByCountyRegion, ENGLISH } from '../constants'
+import { CopyHolder, LocationRecord } from '../types'
 import useLanguage from '../hooks/useLanguage'
 
 import styles from './CityFilter.module.css'

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, MutableRefObject } from 'react'
 
 import { useLanguage, useGlobalSearch } from '../hooks'
-import { ENGLISH, SPANISH } from '../types/language'
+import { ENGLISH, SPANISH } from '../constants/language'
 
 import styles from './LangSwitcher.module.css'
 

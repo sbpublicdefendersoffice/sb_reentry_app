@@ -7,7 +7,7 @@ import {
   ScheduleRecord,
   LocationRecord,
 } from '../../types/records'
-import { SPANISH } from '../../types/language'
+import { SPANISH } from '../../constants/language'
 
 import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
 
