@@ -22,23 +22,24 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, [])
 
   return (
-    <>
-      <Head>
-        <meta
-          name="description"
-          content={
-            language === ENGLISH
-              ? 'Santa Barbara Reentry Project, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.'
-              : 'Santa Barbara Reentry Project, una aplicación web dinámica para ayudar a las personas afectadas por la justicia a acceder a los recursos para ayudar a una reincorporación exitosa después de una estancia en la cárcel o prisión.'
-          }
-        />
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
-        />
-        <title>{siteTitle}</title>
-      </Head>
-      {language && (
+    language && (
+      <>
+        <Head>
+          <meta
+            name="description"
+            content={
+              language === ENGLISH
+                ? 'Santa Barbara Reentry Project, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.'
+                : 'Santa Barbara Reentry Project, una aplicación web dinámica para ayudar a las personas afectadas por la justicia a acceder a los recursos para ayudar a una reincorporación exitosa después de una estancia en la cárcel o prisión.'
+            }
+          />
+          <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
+          />
+          <title>{siteTitle}</title>
+        </Head>
+
         <LangProvider value={{ language, setLanguage }}>
           <GlobalSearchProvider>
             <LangSwitcher />
@@ -50,8 +51,8 @@ const App = ({ Component, pageProps }: AppProps) => {
             <Footer />
           </GlobalSearchProvider>
         </LangProvider>
-      )}
-    </>
+      </>
+    )
   )
 }
 
