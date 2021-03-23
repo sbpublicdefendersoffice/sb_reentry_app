@@ -22,10 +22,8 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, [])
 
   useEffect(() => {
-    const savedUserCoords: GeolocationCoordinates = JSON.parse(
-      localStorage.getItem(coordsString),
-    )
-    if (savedUserCoords) setCoords(savedUserCoords)
+    const savedUserCoords: string = localStorage.getItem(coordsString)
+    if (savedUserCoords) setCoords(JSON.parse(savedUserCoords))
   }, [])
 
   return (
