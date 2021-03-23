@@ -46,7 +46,7 @@ const MapMarker = ({ locationRecord }: MapMarkerProps) => {
   }, [])
 
   const linkToRecord = (): void => {
-    if (query?.id !== uuid)
+    if (uuid && query?.id !== uuid)
       if (isSearchPage) push('/search/[id]', `/search/${uuid}`)
       else push('/[category]/[id]', `/${single_category}/${uuid}`)
   }

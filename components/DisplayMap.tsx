@@ -2,10 +2,9 @@ import { Fragment, Dispatch, SetStateAction } from 'react'
 import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
 
 import { mapboxStylingURL, mapContainerStyle, ENGLISH } from '../constants'
-import useMapInfo from '../hooks/useMapInfo'
+import { useMapInfo, useLanguage, useLocation } from '../hooks'
 import { MapMarker, CityFilter } from './'
 import { Details } from '../ui'
-import useLanguage from '../hooks/useLanguage'
 
 import { LocationRecord } from '../types/records'
 
@@ -23,6 +22,7 @@ const MapboxMap = ReactMapboxGL({
 const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
   const { language } = useLanguage()
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
+  const { coords } = useLocation()
 
   return (
     <Details
@@ -43,6 +43,18 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
           animationOptions={{ animate: false }}
           zoom={[zoom]}
         >
+          {coords && (
+            <MapMarker
+              locationRecord={{
+                longitude: coords.longitude,
+                latitude: coords.latitude,
+                single_category: 'user',
+                multiple_categories: ['user'],
+                uuid: '',
+                name: language === ENGLISH ? 'Your location' : 'Tu ubicación',
+              }}
+            />
+          )}
           {Boolean(latLongInfo?.length) &&
             latLongInfo.map((locationRecord: LocationRecord, i: number) => (
               <Fragment key={i}>
