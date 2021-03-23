@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
-import { siteTitle, ENGLISH, SPANISH } from '../constants'
+import { siteTitle, ENGLISH, SPANISH, coordsString } from '../constants'
 import { Language } from '../types/language'
 import { GlobalSearchProvider, LangProvider, LocationProvider } from '../hooks'
 import { Footer, Header, LangSwitcher, LiveDataSearch } from '../components'
@@ -22,18 +22,10 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, [])
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position: GeolocationPosition) => setCoords(position.coords),
-        error =>
-          console.error(
-            `Error while getting browser location: ${error.message}`,
-          ),
-      )
-    } else
-      console.error(
-        'Enable location permission to use location-based features.',
-      )
+    const savedUserCoords: GeolocationCoordinates = JSON.parse(
+      localStorage.getItem(coordsString),
+    )
+    if (savedUserCoords) setCoords(savedUserCoords)
   }, [])
 
   return (

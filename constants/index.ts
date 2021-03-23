@@ -6,5 +6,6 @@ export {
   mapboxStylingURL,
   mapContainerStyle,
   citiesByCountyRegion,
+  coordsString,
 } from './maps'
 export { resourceRoutes, staticPageRoutes } from './routes'

@@ -1,5 +1,7 @@
 import { CountyBreakdown } from '../types/maps'
 
+export const coordsString: string = 'coords'
+
 export const mapboxStylingURL: string = 'mapbox://styles/mapbox/streets-v11'
 
 export const mapContainerStyle: { [name: string]: string } = {
