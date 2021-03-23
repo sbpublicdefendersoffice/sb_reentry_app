@@ -1,4 +1,4 @@
-import { CountyBreakdown } from '../types/maps'
+import { CountyBreakdown, BoundingArr } from '../types/maps'
 
 export const coordsString: string = 'coords'
 
@@ -8,6 +8,11 @@ export const mapContainerStyle: { [name: string]: string } = {
   height: '100%',
   width: '100%',
 }
+
+export const fitBoundsArr: BoundingArr = [
+  [-120.5723618, 34.3953777],
+  [-119.5136408, 34.9733403],
+]
 
 export const citiesByCountyRegion: CountyBreakdown = {
   southCounty: [

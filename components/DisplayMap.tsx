@@ -3,6 +3,7 @@ import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
 
 import { mapboxStylingURL, mapContainerStyle, ENGLISH } from '../constants'
 import { useMapInfo, useLanguage, useLocation } from '../hooks'
+import { validateIsInSantaBarbaraCounty } from '../helpers/validators'
 import { MapMarker, CityFilter } from './'
 import { Details } from '../ui'
 
@@ -43,7 +44,7 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
           animationOptions={{ animate: false }}
           zoom={[zoom]}
         >
-          {coords && (
+          {Boolean(coords) && validateIsInSantaBarbaraCounty(coords) && (
             <MapMarker
               locationRecord={{
                 longitude: coords.longitude,

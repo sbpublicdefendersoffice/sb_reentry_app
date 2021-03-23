@@ -7,5 +7,6 @@ export {
   mapContainerStyle,
   citiesByCountyRegion,
   coordsString,
+  fitBoundsArr,
 } from './maps'
 export { resourceRoutes, staticPageRoutes } from './routes'

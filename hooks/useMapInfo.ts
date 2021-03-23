@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { fitBoundsArr } from '../constants/maps'
 
 import {
   LocationInfo,
@@ -11,10 +12,7 @@ import {
 const latToMile: number = 69.2
 
 const defaultLocationState: LocationState = {
-  fitBoundsArr: [
-    [-120.5723618, 34.3953777],
-    [-119.5136408, 34.9733403],
-  ],
+  fitBoundsArr,
   centerArr: [-120.05238901434026, 34.762449495215634],
   zoom: 8.5,
 }
