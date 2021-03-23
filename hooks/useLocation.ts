@@ -1,6 +1,8 @@
 import { createContext, useContext } from 'react'
 
-const UserLocation = createContext<GeolocationCoordinates | null>(null)
+import { UseLocationProps } from '../types/maps'
+
+const UserLocation = createContext<UseLocationProps | null>(null)
 
 export const { Provider } = UserLocation
 

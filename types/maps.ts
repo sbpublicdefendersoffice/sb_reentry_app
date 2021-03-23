@@ -24,3 +24,9 @@ export interface LocationState {
   centerArr: CenterArr
   zoom: number
 }
+
+export interface UseLocationProps {
+  coords: GeolocationCoordinates
+  // eslint-disable-next-line no-unused-vars
+  setCoords: (coords: GeolocationCoordinates) => void
+}

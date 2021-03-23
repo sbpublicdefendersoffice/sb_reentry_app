@@ -7,6 +7,7 @@ export type {
   CenterArr,
   BoundingArr,
   LocationState,
+  UseLocationProps,
 } from './maps'
 export type {
   Holder,

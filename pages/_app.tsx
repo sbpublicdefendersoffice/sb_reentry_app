@@ -5,7 +5,7 @@ import Head from 'next/head'
 
 import { siteTitle, ENGLISH, SPANISH } from '../constants'
 import { Language } from '../types/language'
-import { GlobalSearchProvider, LangProvider } from '../hooks'
+import { GlobalSearchProvider, LangProvider, LocationProvider } from '../hooks'
 import { Footer, Header, LangSwitcher, LiveDataSearch } from '../components'
 
 import '../styles/globals.css'
@@ -13,11 +13,27 @@ import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [language, setLanguage] = useState<Language | null>(null)
+  const [coords, setCoords] = useState<GeolocationCoordinates | null>(null)
 
   useEffect(() => {
     const { language } = window.navigator
     if (language.startsWith('es')) setLanguage(SPANISH)
     else setLanguage(ENGLISH)
+  }, [])
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position: GeolocationPosition) => setCoords(position.coords),
+        error =>
+          console.error(
+            `Error while getting browser location: ${error.message}`,
+          ),
+      )
+    } else
+      console.error(
+        'Enable location permission to use location-based features.',
+      )
   }, [])
 
   return (
@@ -38,17 +54,18 @@ const App = ({ Component, pageProps }: AppProps) => {
           />
           <title>{siteTitle}</title>
         </Head>
-
         <LangProvider value={{ language, setLanguage }}>
-          <GlobalSearchProvider>
-            <LangSwitcher />
-            <Header />
-            <LiveDataSearch />
-            <main>
-              <Component {...pageProps} />
-            </main>
-            <Footer />
-          </GlobalSearchProvider>
+          <LocationProvider value={{ coords, setCoords }}>
+            <GlobalSearchProvider>
+              <LangSwitcher />
+              <Header />
+              <LiveDataSearch />
+              <main>
+                <Component {...pageProps} />
+              </main>
+              <Footer />
+            </GlobalSearchProvider>
+          </LocationProvider>
         </LangProvider>
       </>
     )
