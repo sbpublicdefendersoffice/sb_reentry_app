@@ -5,8 +5,7 @@ import Head from 'next/head'
 
 import { siteTitle, ENGLISH, SPANISH } from '../constants'
 import { Language } from '../types/language'
-import { Provider as LangProvider } from '../hooks/useLanguage'
-import { GlobalSearchProvider } from '../hooks/useGlobalSearch'
+import { GlobalSearchProvider, LangProvider } from '../hooks'
 import { Footer, Header, LangSwitcher, LiveDataSearch } from '../components'
 
 import '../styles/globals.css'
