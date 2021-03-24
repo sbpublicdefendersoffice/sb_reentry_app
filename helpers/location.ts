@@ -1,5 +1,10 @@
 import { Dispatch, SetStateAction } from 'react'
-import { coordsString } from '../constants/maps'
+
+// Including centerArr values for development ONLY
+import {
+  coordsString,
+  // centerArr
+} from '../constants/maps'
 
 export const checkAndSetUserLocation = (
   setCoords: Dispatch<SetStateAction<GeolocationCoordinates>>,
@@ -13,6 +18,10 @@ export const checkAndSetUserLocation = (
         const coordsToSave: GeolocationCoordinates = Object.defineProperties(
           coords,
           {
+            // longitude: { value: centerArr[0], enumerable: true },
+            // latitude: { value: centerArr[1], enumerable: true },
+            longitude: { value: coords.longitude, enumerable: true },
+            latitude: { value: coords.latitude, enumerable: true },
             accuracy: { value: coords.accuracy, enumerable: true },
             altitude: { value: coords.altitude, enumerable: true },
             altitudeAccuracy: {
@@ -20,8 +29,6 @@ export const checkAndSetUserLocation = (
               enumerable: true,
             },
             heading: { value: coords.heading, enumerable: true },
-            latitude: { value: coords.latitude, enumerable: true },
-            longitude: { value: coords.longitude, enumerable: true },
             speed: { value: coords.speed, enumerable: true },
           },
         )

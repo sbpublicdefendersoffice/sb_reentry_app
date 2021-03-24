@@ -25,6 +25,9 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
   const { coords } = useLocation()
 
+  const userLocationReady: boolean =
+    coords && validateIsInSantaBarbaraCounty(coords)
+
   return (
     <Details
       open
@@ -32,7 +35,10 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
       className={styles.DisplayMap}
     >
       {latLongInfo && setLatLongInfo && (
-        <CityFilter latLongInfo={latLongInfo} setLatLongInfo={setLatLongInfo} />
+        <CityFilter
+          latLongInfo={latLongInfo}
+          setLatLongInfo={setLatLongInfo}
+        ></CityFilter>
       )}
       {
         // @ts-ignore
@@ -44,7 +50,7 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
           animationOptions={{ animate: false }}
           zoom={[zoom]}
         >
-          {Boolean(coords) && validateIsInSantaBarbaraCounty(coords) && (
+          {userLocationReady && (
             <MapMarker
               locationRecord={{
                 longitude: coords.longitude,

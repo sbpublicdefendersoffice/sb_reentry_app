@@ -4,6 +4,7 @@ import {
   ChangeEvent,
   Dispatch,
   SetStateAction,
+  ReactNode,
 } from 'react'
 
 import { citiesByCountyRegion, ENGLISH } from '../constants'
@@ -15,6 +16,7 @@ import styles from './CityFilter.module.css'
 interface CityFilterProps {
   latLongInfo: LocationRecord[]
   setLatLongInfo: Dispatch<SetStateAction<LocationRecord[]>>
+  children?: ReactNode
 }
 
 interface CountyVisibilityFilter {
@@ -38,7 +40,11 @@ const copy: CopyHolder = {
   },
 }
 
-const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
+const CityFilter = ({
+  latLongInfo,
+  setLatLongInfo,
+  children,
+}: CityFilterProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
@@ -119,6 +125,7 @@ const CityFilter = ({ latLongInfo, setLatLongInfo }: CityFilterProps) => {
           />
         </div>
       ))}
+      {children}
     </form>
   )
 }

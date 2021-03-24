@@ -1,4 +1,4 @@
-import { CountyBreakdown, BoundingArr } from '../types/maps'
+import { CountyBreakdown, BoundingArr, CenterArr } from '../types/maps'
 
 export const coordsString: string = 'coords'
 
@@ -8,6 +8,8 @@ export const mapContainerStyle: { [name: string]: string } = {
   height: '100%',
   width: '100%',
 }
+
+export const centerArr: CenterArr = [-120.05238901434026, 34.762449495215634]
 
 export const fitBoundsArr: BoundingArr = [
   [-120.5723618, 34.3953777],
