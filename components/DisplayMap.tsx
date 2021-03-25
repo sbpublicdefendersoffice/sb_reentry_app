@@ -1,32 +1,52 @@
-import { Fragment, Dispatch, SetStateAction } from 'react'
+import { useRouter } from 'next/router'
+import { Fragment, useReducer, Reducer } from 'react'
 import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
 
 import { mapboxStylingURL, mapContainerStyle, ENGLISH } from '../constants'
 import { useMapInfo, useLanguage, useLocation } from '../hooks'
-import { validateIsInSantaBarbaraCounty } from '../helpers/validators'
+import {
+  validateIsInSantaBarbaraCounty,
+  manageFilteredMapState,
+} from '../helpers'
 import { MapMarker, CityFilter } from './'
 import { Details } from '../ui'
 
-import { LocationRecord } from '../types/records'
+import { LocationRecord, FilterMapAction, FilteredMapState } from '../types'
 
 import styles from './DisplayMap.module.css'
 
 interface DisplayMapProps {
   latLongInfo: LocationRecord[]
-  setLatLongInfo?: Dispatch<SetStateAction<LocationRecord[]>>
 }
 
 const MapboxMap = ReactMapboxGL({
   accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
 })
 
-const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
+const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
+  const { pathname } = useRouter()
   const { language } = useLanguage()
-  const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
   const { coords } = useLocation()
+
+  const [locRecordsToFilter, setLocRecordsToFilter] = useReducer<
+    Reducer<FilteredMapState, FilterMapAction>
+  >(manageFilteredMapState, {
+    originalRecords: latLongInfo,
+    filteredRecords: latLongInfo,
+    visibility: { southCounty: true, centralCounty: true, northCounty: true },
+    radiusDistance: Infinity,
+  })
+
+  const { fitBoundsArr, centerArr, zoom } = useMapInfo(
+    locRecordsToFilter.filteredRecords,
+  )
 
   const userLocationReady: boolean =
     coords && validateIsInSantaBarbaraCounty(coords)
+  const recordsReady: boolean = Boolean(
+    locRecordsToFilter?.filteredRecords?.length,
+  )
+  const showFilters: boolean = !pathname.endsWith('[id]')
 
   return (
     <Details
@@ -34,11 +54,10 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
       className={styles.DisplayMap}
     >
-      {latLongInfo && setLatLongInfo && (
+      {showFilters && (
         <CityFilter
-          latLongInfo={latLongInfo}
-          setLatLongInfo={setLatLongInfo}
-          userLocationReady={userLocationReady}
+          regionVisibility={locRecordsToFilter.visibility}
+          setLocRecordsToFilter={setLocRecordsToFilter}
         />
       )}
       {
@@ -63,12 +82,14 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
               }}
             />
           )}
-          {Boolean(latLongInfo?.length) &&
-            latLongInfo.map((locationRecord: LocationRecord, i: number) => (
-              <Fragment key={i}>
-                <MapMarker locationRecord={locationRecord} />
-              </Fragment>
-            ))}
+          {recordsReady &&
+            locRecordsToFilter.filteredRecords.map(
+              (locationRecord: LocationRecord, i: number) => (
+                <Fragment key={i}>
+                  <MapMarker locationRecord={locationRecord} />
+                </Fragment>
+              ),
+            )}
           <ScaleControl measurement="mi" position="bottom-right" />
         </MapboxMap>
       }

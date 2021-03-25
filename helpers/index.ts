@@ -1,5 +1,9 @@
 export { convertLocationsForMap } from './converters'
-export { checkAndSetUserLocation, isDistanceInBounds } from './location'
+export {
+  checkAndSetUserLocation,
+  isDistanceInBounds,
+  manageFilteredMapState,
+} from './location'
 export {
   validateRequest,
   validatePhoneNumber,

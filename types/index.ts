@@ -8,6 +8,10 @@ export type {
   BoundingArr,
   LocationState,
   UseLocationProps,
+  FilteredMapState,
+  FilterMapAction,
+  CountyVisibilityFilter,
+  VisibilityAsArray,
 } from './maps'
 export type {
   Holder,

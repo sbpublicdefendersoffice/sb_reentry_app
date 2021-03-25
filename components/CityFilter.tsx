@@ -1,31 +1,15 @@
-import {
-  useState,
-  useEffect,
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-} from 'react'
+import { ChangeEvent, Dispatch } from 'react'
 
-import { citiesByCountyRegion, ENGLISH } from '../constants'
-import { CopyHolder, LocationRecord } from '../types'
+import { ENGLISH } from '../constants'
+import { CopyHolder, FilterMapAction, CountyVisibilityFilter } from '../types'
 import useLanguage from '../hooks/useLanguage'
-// import ProximityFilter from './ProximityFilter'
 
 import styles from './CityFilter.module.css'
 
 interface CityFilterProps {
-  latLongInfo: LocationRecord[]
-  setLatLongInfo: Dispatch<SetStateAction<LocationRecord[]>>
-  userLocationReady: boolean
+  setLocRecordsToFilter: Dispatch<FilterMapAction>
+  regionVisibility: CountyVisibilityFilter
 }
-
-interface CountyVisibilityFilter {
-  southCounty: boolean
-  centralCounty: boolean
-  northCounty: boolean
-}
-
-type VisibilityAsArray = [string, boolean]
 
 const copy: CopyHolder = {
   english: {
@@ -41,107 +25,39 @@ const copy: CopyHolder = {
 }
 
 const CityFilter = ({
-  latLongInfo,
-  setLatLongInfo,
-}: // userLocationReady,
-CityFilterProps) => {
+  setLocRecordsToFilter,
+  regionVisibility,
+}: CityFilterProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
-  const [
-    isRegionVisible,
-    setIsRegionVisible,
-  ] = useState<CountyVisibilityFilter>({
-    southCounty: true,
-    centralCounty: true,
-    northCounty: true,
-  })
-
-  const [originalLocInfo, setOriginalLocInfo] = useState<
-    LocationRecord[] | null
-  >(null)
-
-  // const [locInfoToCalculateDistance, setLocInfoToCalculateDistance] = useState<
-  //   LocationRecord[] | null
-  // >(null)
-
-  useEffect((): void => {
-    if (latLongInfo) {
-      setOriginalLocInfo(latLongInfo)
-      // setLocInfoToCalculateDistance(latLongInfo)
-    }
-  }, [])
-
-  const handleCheck = (e: ChangeEvent<HTMLInputElement>): void => {
-    if (originalLocInfo) {
-      const regionIsVisible = (region: VisibilityAsArray): boolean => {
-        const isRegionVisible: boolean = region[1]
-        return isRegionVisible
-      }
-
-      const newVisibilityState: CountyVisibilityFilter = {
-        ...isRegionVisible,
-        [e.target.id]: !isRegionVisible[e.target.id],
-      }
-
-      const visibilityEntries: VisibilityAsArray[] = Object.entries(
-        newVisibilityState,
-      )
-
-      if (visibilityEntries.some(regionIsVisible)) {
-        setIsRegionVisible(newVisibilityState)
-
-        if (visibilityEntries.every(regionIsVisible))
-          setLatLongInfo(originalLocInfo)
-        else {
-          const citiesToRemove: string[] = visibilityEntries.reduce(
-            (
-              arrOfCities: string[],
-              currentEntry: VisibilityAsArray,
-            ): string[] => {
-              const [region, visible] = currentEntry
-
-              if (!visible)
-                arrOfCities = [...arrOfCities, ...citiesByCountyRegion[region]]
-              return arrOfCities
-            },
-            [],
-          )
-          const filteredCities: LocationRecord[] = originalLocInfo.filter(
-            (record: LocationRecord) => !citiesToRemove.includes(record.city),
-          )
-
-          setLatLongInfo(filteredCities)
-          // setLocInfoToCalculateDistance(filteredCities)
-        }
-      }
-    }
-  }
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>): void =>
+    setLocRecordsToFilter({
+      filterName: 'regionVisibility',
+      value: {
+        ...regionVisibility,
+        [e.target.id]: !regionVisibility[e.target.id],
+      },
+    })
 
   return (
     <form
       className={styles.CityFilter}
       style={{ width: `${language === ENGLISH ? 7.25 : 8.5}rem` }}
     >
-      {Object.keys(isRegionVisible).map((region: string) => (
+      {Object.keys(regionVisibility).map((region: string) => (
         <div key={region} className={styles.CheckboxHolder}>
           <label className={styles.Label} htmlFor={region}>
             {activeCopy[region]}
           </label>
           <input
             type="checkbox"
-            checked={isRegionVisible[region]}
+            checked={regionVisibility[region]}
             onChange={handleCheck}
             id={region}
           />
         </div>
       ))}
-      {/* {userLocationReady && locInfoToCalculateDistance && (
-        <ProximityFilter
-          locInfoToCalculateDistance={locInfoToCalculateDistance}
-          setLatLongInfo={setLatLongInfo}
-        />
-      )} */}
     </form>
   )
 }
