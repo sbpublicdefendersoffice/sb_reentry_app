@@ -4,19 +4,19 @@ import {
   ChangeEvent,
   Dispatch,
   SetStateAction,
-  ReactNode,
 } from 'react'
 
 import { citiesByCountyRegion, ENGLISH } from '../constants'
 import { CopyHolder, LocationRecord } from '../types'
 import useLanguage from '../hooks/useLanguage'
+// import ProximityFilter from './ProximityFilter'
 
 import styles from './CityFilter.module.css'
 
 interface CityFilterProps {
   latLongInfo: LocationRecord[]
   setLatLongInfo: Dispatch<SetStateAction<LocationRecord[]>>
-  children?: ReactNode
+  userLocationReady: boolean
 }
 
 interface CountyVisibilityFilter {
@@ -43,8 +43,8 @@ const copy: CopyHolder = {
 const CityFilter = ({
   latLongInfo,
   setLatLongInfo,
-  children,
-}: CityFilterProps) => {
+}: // userLocationReady,
+CityFilterProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
@@ -61,48 +61,59 @@ const CityFilter = ({
     LocationRecord[] | null
   >(null)
 
+  // const [locInfoToCalculateDistance, setLocInfoToCalculateDistance] = useState<
+  //   LocationRecord[] | null
+  // >(null)
+
   useEffect((): void => {
-    if (latLongInfo) setOriginalLocInfo(latLongInfo)
+    if (latLongInfo) {
+      setOriginalLocInfo(latLongInfo)
+      // setLocInfoToCalculateDistance(latLongInfo)
+    }
   }, [])
 
   const handleCheck = (e: ChangeEvent<HTMLInputElement>): void => {
     if (originalLocInfo) {
-      const newVisibilityState: CountyVisibilityFilter = {
-        ...isRegionVisible,
-        [e.target.id]: !isRegionVisible[e.target.id],
-      }
-
-      setIsRegionVisible(newVisibilityState)
-
-      const visibilityEntries: VisibilityAsArray[] = Object.entries(
-        newVisibilityState,
-      )
       const regionIsVisible = (region: VisibilityAsArray): boolean => {
         const isRegionVisible: boolean = region[1]
         return isRegionVisible
       }
 
-      if (visibilityEntries.every(regionIsVisible))
-        setLatLongInfo(originalLocInfo)
-      else {
-        const citiesToRemove: string[] = visibilityEntries.reduce(
-          (
-            arrOfCities: string[],
-            currentEntry: VisibilityAsArray,
-          ): string[] => {
-            const [region, visible] = currentEntry
+      const newVisibilityState: CountyVisibilityFilter = {
+        ...isRegionVisible,
+        [e.target.id]: !isRegionVisible[e.target.id],
+      }
 
-            if (!visible)
-              arrOfCities = [...arrOfCities, ...citiesByCountyRegion[region]]
-            return arrOfCities
-          },
-          [],
-        )
-        const filteredCities: LocationRecord[] = originalLocInfo.filter(
-          (record: LocationRecord) => !citiesToRemove.includes(record.city),
-        )
+      const visibilityEntries: VisibilityAsArray[] = Object.entries(
+        newVisibilityState,
+      )
 
-        setLatLongInfo(filteredCities)
+      if (visibilityEntries.some(regionIsVisible)) {
+        setIsRegionVisible(newVisibilityState)
+
+        if (visibilityEntries.every(regionIsVisible))
+          setLatLongInfo(originalLocInfo)
+        else {
+          const citiesToRemove: string[] = visibilityEntries.reduce(
+            (
+              arrOfCities: string[],
+              currentEntry: VisibilityAsArray,
+            ): string[] => {
+              const [region, visible] = currentEntry
+
+              if (!visible)
+                arrOfCities = [...arrOfCities, ...citiesByCountyRegion[region]]
+              return arrOfCities
+            },
+            [],
+          )
+          const filteredCities: LocationRecord[] = originalLocInfo.filter(
+            (record: LocationRecord) => !citiesToRemove.includes(record.city),
+          )
+
+          setLatLongInfo(filteredCities)
+          // setLocInfoToCalculateDistance(filteredCities)
+        }
       }
     }
   }
@@ -125,7 +136,12 @@ const CityFilter = ({
           />
         </div>
       ))}
-      {children}
+      {/* {userLocationReady && locInfoToCalculateDistance && (
+        <ProximityFilter
+          locInfoToCalculateDistance={locInfoToCalculateDistance}
+          setLatLongInfo={setLatLongInfo}
+        />
+      )} */}
     </form>
   )
 }

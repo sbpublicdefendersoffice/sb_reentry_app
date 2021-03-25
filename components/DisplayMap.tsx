@@ -38,7 +38,8 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
         <CityFilter
           latLongInfo={latLongInfo}
           setLatLongInfo={setLatLongInfo}
-        ></CityFilter>
+          userLocationReady={userLocationReady}
+        />
       )}
       {
         // @ts-ignore
