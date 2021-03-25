@@ -52,7 +52,7 @@ const LandingPage = () => {
         setRecords={setFetchedRecords}
       />
 
-      {Boolean(convertedLocRecords?.length) && (
+      {convertedLocRecords && (
         <DisplayMap
           latLongInfo={convertedLocRecords}
           setLatLongInfo={setConvertedLocRecords}
