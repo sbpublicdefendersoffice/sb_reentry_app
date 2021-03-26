@@ -7,6 +7,13 @@ export type {
   CenterArr,
   BoundingArr,
   LocationState,
+  UseLocationProps,
+  FilteredMapState,
+  FilterMapAction,
+  CountyVisibilityFilter,
+  VisibilityAsArray,
+  FilterTypes,
+  RadiusFilterInfo,
 } from './maps'
 export type {
   Holder,

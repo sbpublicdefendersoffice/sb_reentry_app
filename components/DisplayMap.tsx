@@ -1,28 +1,67 @@
-import { Fragment, Dispatch, SetStateAction } from 'react'
+import { useRouter } from 'next/router'
+import { Fragment, useEffect } from 'react'
 import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
 
-import { mapboxStylingURL, mapContainerStyle, ENGLISH } from '../constants'
-import useMapInfo from '../hooks/useMapInfo'
-import { MapMarker, CityFilter } from './'
+import {
+  mapboxStylingURL,
+  mapContainerStyle,
+  ENGLISH,
+  NEW_DATA,
+} from '../constants'
+import {
+  useMapInfo,
+  useLanguage,
+  useLocation,
+  useSearchFilters,
+  useGlobalSearch,
+} from '../hooks'
+import { validateIsInSantaBarbaraCounty } from '../helpers'
+import { MapMarker, CityFilter, ProximityFilter } from './'
 import { Details } from '../ui'
-import useLanguage from '../hooks/useLanguage'
 
-import { LocationRecord } from '../types/records'
+import { LocationRecord } from '../types'
 
 import styles from './DisplayMap.module.css'
 
 interface DisplayMapProps {
   latLongInfo: LocationRecord[]
-  setLatLongInfo?: Dispatch<SetStateAction<LocationRecord[]>>
 }
+
+const returnMarker = (locationRecord: LocationRecord, i: number) => (
+  <Fragment key={i}>
+    <MapMarker locationRecord={locationRecord} />
+  </Fragment>
+)
 
 const MapboxMap = ReactMapboxGL({
   accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
 })
 
-const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
+const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
+  const { pathname } = useRouter()
+  const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
-  const { fitBoundsArr, centerArr, zoom } = useMapInfo(latLongInfo)
+  const { coords } = useLocation()
+  const { locRecordsToFilter, setLocRecordsToFilter } = useSearchFilters()
+  const { fitBoundsArr, centerArr, zoom } = useMapInfo(
+    locRecordsToFilter?.filteredRecords || latLongInfo,
+  )
+  // Below effect is to clear map when new data is fetched due to new global data fetch or changing the language
+  useEffect(
+    () =>
+      setLocRecordsToFilter({
+        filterName: NEW_DATA,
+      }),
+    [language, searchResults],
+  )
+
+  const userLocationReady: boolean =
+    coords && validateIsInSantaBarbaraCounty(coords)
+
+  const filteredRecordsReady: boolean = Boolean(
+    locRecordsToFilter?.filteredRecords,
+  )
+  const showFilters: boolean = !pathname.endsWith('[id]')
 
   return (
     <Details
@@ -30,8 +69,21 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
       className={styles.DisplayMap}
     >
-      {latLongInfo && setLatLongInfo && (
-        <CityFilter latLongInfo={latLongInfo} setLatLongInfo={setLatLongInfo} />
+      {showFilters && (
+        <CityFilter
+          locationsToFilter={latLongInfo}
+          regionVisibility={locRecordsToFilter.visibility}
+          setLocRecordsToFilter={setLocRecordsToFilter}
+        >
+          {userLocationReady && (
+            <ProximityFilter
+              coords={coords}
+              locationsToFilter={latLongInfo}
+              setLocRecordsToFilter={setLocRecordsToFilter}
+              radiusDistance={locRecordsToFilter.radiusDistance}
+            />
+          )}
+        </CityFilter>
       )}
       {
         // @ts-ignore
@@ -43,12 +95,22 @@ const DisplayMap = ({ latLongInfo, setLatLongInfo }: DisplayMapProps) => {
           animationOptions={{ animate: false }}
           zoom={[zoom]}
         >
-          {Boolean(latLongInfo?.length) &&
-            latLongInfo.map((locationRecord: LocationRecord, i: number) => (
-              <Fragment key={i}>
-                <MapMarker locationRecord={locationRecord} />
-              </Fragment>
-            ))}
+          {userLocationReady && (
+            <MapMarker
+              customStyle={{ zIndex: 10000 }}
+              locationRecord={{
+                longitude: coords.longitude,
+                latitude: coords.latitude,
+                single_category: 'user',
+                multiple_categories: ['user'],
+                uuid: '',
+                name: language === ENGLISH ? 'Your location' : 'Tu ubicación',
+              }}
+            />
+          )}
+          {filteredRecordsReady
+            ? locRecordsToFilter.filteredRecords.map(returnMarker)
+            : latLongInfo.map(returnMarker)}
           <ScaleControl measurement="mi" position="bottom-right" />
         </MapboxMap>
       }

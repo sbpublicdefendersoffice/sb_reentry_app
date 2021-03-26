@@ -38,8 +38,8 @@ const LiveDataSearch = () => {
   ): void => {
     e.preventDefault()
     if (searchQuery) {
-      push('/search', `/search?query=${searchQuery}`)
       setIsFocused(false)
+      push('/search', `/search?query=${searchQuery}`)
     }
   }
 

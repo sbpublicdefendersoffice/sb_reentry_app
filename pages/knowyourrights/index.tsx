@@ -116,7 +116,6 @@ const KnowYourRights = () => {
   const [activeItem, setActiveItem] = useState<Item | null>(null)
 
   const handleOpen = item => {
-    console.log('item:', item)
     setActiveItem(item)
     setOpen(true)
   }

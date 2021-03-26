@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 
 import { POST, convertLocationsForMap } from '../../helpers'
 import { useGlobalSearch, useLanguage } from '../../hooks'
+
 import { LocationRecord, TranslatedRecordResponse } from '../../types/records'
 import DisplayMap from '../../components/DisplayMap'
 
@@ -47,12 +48,7 @@ const GlobalSearchLanding = () => {
 
   return (
     <>
-      {convertedLocRecords && (
-        <DisplayMap
-          latLongInfo={convertedLocRecords}
-          setLatLongInfo={setConvertedLocRecords}
-        />
-      )}
+      {convertedLocRecords && <DisplayMap latLongInfo={convertedLocRecords} />}
     </>
   )
 }

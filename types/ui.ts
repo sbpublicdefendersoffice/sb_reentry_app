@@ -8,6 +8,7 @@ export type Color =
   | 'light-blue'
   | 'highlight-2'
   | 'deselected'
+  | 'med-grey'
 
 export type TextSize =
   | 'standard-text'

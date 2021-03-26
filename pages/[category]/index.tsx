@@ -7,7 +7,7 @@ import useLanguage from '../../hooks/useLanguage'
 
 import { siteTitle, categories } from '../../constants'
 import useMultipleListRecords from '../../hooks/useMultipleListRecords'
-import { convertLocationsForMap } from '../../helpers/converters'
+import { convertLocationsForMap } from '../../helpers'
 
 import { LocationRecord } from '../../types/records'
 import { RecordPane, DisplayMap } from '../../components'
@@ -52,12 +52,7 @@ const LandingPage = () => {
         setRecords={setFetchedRecords}
       />
 
-      {Boolean(convertedLocRecords?.length) && (
-        <DisplayMap
-          latLongInfo={convertedLocRecords}
-          setLatLongInfo={setConvertedLocRecords}
-        />
-      )}
+      {convertedLocRecords && <DisplayMap latLongInfo={convertedLocRecords} />}
     </>
   )
 }

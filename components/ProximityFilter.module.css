@@ -1,0 +1,20 @@
+.ProximityFilter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.Label {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Select {
+  outline: none;
+}
+
+.Select:active,
+.Select:hover {
+  background-color: var(--med-grey);
+}

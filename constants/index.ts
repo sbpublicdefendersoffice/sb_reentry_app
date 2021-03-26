@@ -6,5 +6,11 @@ export {
   mapboxStylingURL,
   mapContainerStyle,
   citiesByCountyRegion,
+  coordsString,
+  fitBoundsArr,
+  allRegionsVisible,
+  NEW_DATA,
+  REGION_VISIBILITY,
+  RADIUS_DISTANCE,
 } from './maps'
 export { resourceRoutes, staticPageRoutes } from './routes'

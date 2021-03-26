@@ -5,53 +5,57 @@ import Head from 'next/head'
 
 import { siteTitle, ENGLISH, SPANISH } from '../constants'
 import { Language } from '../types/language'
-import { Provider as LangProvider } from '../hooks/useLanguage'
-import { GlobalSearchProvider } from '../hooks/useGlobalSearch'
+import { GlobalSearchProvider, LangProvider, LocationProvider } from '../hooks'
 import { Footer, Header, LangSwitcher, LiveDataSearch } from '../components'
+import { checkAndSetUserLocation } from '../helpers/location'
 
 import '../styles/globals.css'
 import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [language, setLanguage] = useState<Language | null>(null)
+  const [coords, setCoords] = useState<GeolocationCoordinates | null>(null)
 
-  useEffect(() => {
-    const { language } = window.navigator
-    if (language.startsWith('es')) setLanguage(SPANISH)
+  useEffect((): void => {
+    if (navigator.language.startsWith('es')) setLanguage(SPANISH)
     else setLanguage(ENGLISH)
+
+    if (!coords) checkAndSetUserLocation(setCoords)
   }, [])
 
   return (
-    <>
-      <Head>
-        <meta
-          name="description"
-          content={
-            language === ENGLISH
-              ? 'Santa Barbara Reentry Project, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.'
-              : 'Santa Barbara Reentry Project, una aplicación web dinámica para ayudar a las personas afectadas por la justicia a acceder a los recursos para ayudar a una reincorporación exitosa después de una estancia en la cárcel o prisión.'
-          }
-        />
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
-        />
-        <title>{siteTitle}</title>
-      </Head>
-      {language && (
+    language && (
+      <>
+        <Head>
+          <meta
+            name="description"
+            content={
+              language === ENGLISH
+                ? 'Santa Barbara Reentry Project, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.'
+                : 'Santa Barbara Reentry Project, una aplicación web dinámica para ayudar a las personas afectadas por la justicia a acceder a los recursos para ayudar a una reincorporación exitosa después de una estancia en la cárcel o prisión.'
+            }
+          />
+          <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
+          />
+          <title>{siteTitle}</title>
+        </Head>
         <LangProvider value={{ language, setLanguage }}>
-          <GlobalSearchProvider>
-            <LangSwitcher />
-            <Header />
-            <LiveDataSearch />
-            <main>
-              <Component {...pageProps} />
-            </main>
-            <Footer />
-          </GlobalSearchProvider>
+          <LocationProvider value={{ coords, setCoords }}>
+            <GlobalSearchProvider>
+              <LangSwitcher />
+              <Header />
+              <LiveDataSearch />
+              <main>
+                <Component {...pageProps} />
+              </main>
+              <Footer />
+            </GlobalSearchProvider>
+          </LocationProvider>
         </LangProvider>
-      )}
-    </>
+      </>
+    )
   )
 }
 
