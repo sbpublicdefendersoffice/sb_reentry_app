@@ -1,6 +1,6 @@
 export { default as Button } from './Button'
-export { default as Card } from './Card'
 export { default as CallToAction } from './CallToAction'
+export { default as Card } from './Card'
 export { default as Details } from './Details'
 export { default as FreshStartLeaf } from './FreshStartLeaf'
 export { default as FreshStartLogo } from './FreshStartLogo'
