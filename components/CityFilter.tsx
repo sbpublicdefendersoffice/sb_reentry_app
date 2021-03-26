@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch } from 'react'
+import { ChangeEvent, Dispatch, ReactNode } from 'react'
 
 import { ENGLISH, REGION_VISIBILITY } from '../constants'
 import {
@@ -12,9 +12,10 @@ import useLanguage from '../hooks/useLanguage'
 import styles from './CityFilter.module.css'
 
 interface CityFilterProps {
-  latLongInfo: LocationRecord[]
+  locationsToFilter: LocationRecord[]
   setLocRecordsToFilter: Dispatch<FilterMapAction>
   regionVisibility: CountyVisibilityFilter
+  children?: ReactNode
 }
 
 const copy: CopyHolder = {
@@ -31,9 +32,10 @@ const copy: CopyHolder = {
 }
 
 const CityFilter = ({
-  latLongInfo,
+  locationsToFilter,
   setLocRecordsToFilter,
   regionVisibility,
+  children,
 }: CityFilterProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
@@ -47,7 +49,7 @@ const CityFilter = ({
         ...regionVisibility,
         [id]: !regionVisibility[id],
       },
-      locationsToFilter: latLongInfo,
+      locationsToFilter,
     })
   }
 
@@ -69,6 +71,7 @@ const CityFilter = ({
           />
         </div>
       ))}
+      {children}
     </form>
   )
 }

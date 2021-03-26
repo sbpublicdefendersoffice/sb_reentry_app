@@ -1,13 +1,20 @@
 import { useReducer, Reducer } from 'react'
 
-import { citiesByCountyRegion } from '../constants/maps'
-import { isRegionVisible } from '../helpers/location'
+import {
+  citiesByCountyRegion,
+  allRegionsVisible,
+  NEW_DATA,
+  REGION_VISIBILITY,
+  RADIUS_DISTANCE,
+} from '../constants/maps'
+import { isRegionVisible, isDistanceInBounds } from '../helpers/location'
 import {
   FilterMapAction,
   FilteredMapState,
   CountyVisibilityFilter,
   VisibilityAsArray,
   LocationRecord,
+  RadiusFilterInfo,
 } from '../types'
 
 const manageFilteredMapState = (
@@ -18,14 +25,11 @@ const manageFilteredMapState = (
 
   const { filterName, value, locationsToFilter } = action
 
-  if (filterName === 'newData') {
+  if (filterName === NEW_DATA) {
     filteredRecords = null
-    visibility = value as CountyVisibilityFilter
-  }
-
-  //#region regionVisibility logic
-
-  if (filterName === 'regionVisibility') {
+    visibility = allRegionsVisible as CountyVisibilityFilter
+    radiusDistance = 1000
+  } else if (filterName === REGION_VISIBILITY) {
     const visibilityEntries: VisibilityAsArray[] = Object.entries(value)
 
     if (visibilityEntries.some(isRegionVisible)) {
@@ -45,7 +49,24 @@ const manageFilteredMapState = (
       )
       visibility = value as CountyVisibilityFilter
     }
+  } else if (filterName === RADIUS_DISTANCE) {
+    const { newRadiusDistance, coords } = value as RadiusFilterInfo
+
+    const userLocationCoords: number[] = [coords.latitude, coords.longitude]
+
+    filteredRecords = locationsToFilter.filter((record: LocationRecord) => {
+      const locCoords: number[] = [record.latitude, record.longitude]
+
+      return isDistanceInBounds(
+        userLocationCoords,
+        locCoords,
+        newRadiusDistance,
+      )
+    })
+
+    radiusDistance = newRadiusDistance
   }
+
   return { filteredRecords, visibility, radiusDistance }
 }
 
@@ -59,7 +80,7 @@ const useSearchFilters = () => {
       centralCounty: true,
       northCounty: true,
     },
-    radiusDistance: Infinity,
+    radiusDistance: 1000,
   })
 
   return { locRecordsToFilter, setLocRecordsToFilter }

@@ -11,6 +11,7 @@ import styles from './MapMarker.module.css'
 
 interface MapMarkerProps {
   locationRecord: LocationRecord
+  customStyle?: { [cssQuality: string]: string | number }
 }
 
 const copy: CopyHolder = {
@@ -22,7 +23,7 @@ const copy: CopyHolder = {
   },
 }
 
-const MapMarker = ({ locationRecord }: MapMarkerProps) => {
+const MapMarker = ({ locationRecord, customStyle }: MapMarkerProps) => {
   const [imgSrc, setImgSrc] = useState<string>('')
   const { push, pathname, query } = useRouter()
   const { popupLocation, setPopupLocation, clearPopupLocation } = usePopup()
@@ -58,7 +59,11 @@ const MapMarker = ({ locationRecord }: MapMarkerProps) => {
           {name}
         </Popup>
       )}
-      <Marker coordinates={[longitude, latitude]} anchor="bottom">
+      <Marker
+        style={customStyle ? customStyle : {}}
+        coordinates={[longitude, latitude]}
+        anchor="bottom"
+      >
         <img
           src={`/icons/${imgSrc}_marker.svg`}
           alt={activeCopy.altText}

@@ -1,23 +1,18 @@
-import {
-  Fragment,
-  Dispatch,
-  SetStateAction,
-  ChangeEvent,
-  useState,
-  useEffect,
-} from 'react'
+import { Fragment, Dispatch, ChangeEvent } from 'react'
 
-import { CopyHolder, LocationRecord } from '../types'
-import { useLanguage, useLocation } from '../hooks'
-import { isDistanceInBounds } from '../helpers/location'
+import { RADIUS_DISTANCE } from '../constants/maps'
+import { CopyHolder, LocationRecord, FilterMapAction } from '../types'
+import useLanguage from '../hooks/useLanguage'
 import styles from './ProximityFilter.module.css'
 
 interface ProximityFilterProps {
-  locInfoToCalculateDistance: LocationRecord[]
-  setLatLongInfo: Dispatch<SetStateAction<LocationRecord[]>>
+  coords: GeolocationCoordinates
+  locationsToFilter: LocationRecord[]
+  setLocRecordsToFilter: Dispatch<FilterMapAction>
+  radiusDistance: number
 }
 
-const proximityValues: number[] = [1, 2, 5, 10, 20]
+const proximityValues: number[] = [1, 2, 5, 10, 15, 20, 50]
 
 const copy: CopyHolder = {
   english: {
@@ -31,57 +26,46 @@ const copy: CopyHolder = {
 }
 
 const ProximityFilter = ({
-  locInfoToCalculateDistance,
-  setLatLongInfo,
+  coords,
+  locationsToFilter,
+  setLocRecordsToFilter,
+  radiusDistance,
 }: ProximityFilterProps) => {
   const { language } = useLanguage()
-  const { coords } = useLocation()
-
-  const [originalLocInfo, setOriginalLocInfo] = useState<
-    LocationRecord[] | null
-  >(null)
-
-  useEffect((): void => {
-    if (locInfoToCalculateDistance)
-      setOriginalLocInfo(locInfoToCalculateDistance)
-  }, [])
 
   const activeCopy = copy[language]
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>): void => {
-    const { value } = e.target
-    if (value)
-      setLatLongInfo((locRecords: LocationRecord[]) =>
-        locRecords.filter((record: LocationRecord) =>
-          isDistanceInBounds(
-            [coords.latitude, coords.longitude],
-            [record.latitude, record.longitude],
-            parseInt(value),
-          ),
-        ),
-      )
-    else setLatLongInfo(originalLocInfo)
+    const newRadiusDistance: number = Number(e.target.value)
+    setLocRecordsToFilter({
+      filterName: RADIUS_DISTANCE,
+      value: { newRadiusDistance, coords },
+      locationsToFilter,
+    })
   }
 
   return (
-    originalLocInfo && (
-      <div className={styles.ProximityFilter}>
-        <label className={styles.Label} htmlFor="proximity-select">
-          {activeCopy.located}
-        </label>
-        <select id="proximity-select" onChange={handleChange}>
-          <option value={''}>-----</option>
-          {proximityValues.map((proxVal: number) => (
-            <Fragment key={proxVal}>
-              <option value={proxVal}>
-                {proxVal} {activeCopy.mile}
-                {proxVal !== 1 && 's'}
-              </option>
-            </Fragment>
-          ))}
-        </select>
-      </div>
-    )
+    <div className={styles.ProximityFilter}>
+      <label className={styles.Label} htmlFor="proximity-select">
+        {activeCopy.located}
+      </label>
+      <select
+        value={radiusDistance}
+        className={styles.Select}
+        id="proximity-select"
+        onChange={handleChange}
+      >
+        <option value={1000}>-----</option>
+        {proximityValues.map((proxVal: number) => (
+          <Fragment key={proxVal}>
+            <option value={proxVal}>
+              {proxVal} {activeCopy.mile}
+              {proxVal !== 1 && 's'}
+            </option>
+          </Fragment>
+        ))}
+      </select>
+    </div>
   )
 }
 

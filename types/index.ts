@@ -13,6 +13,7 @@ export type {
   CountyVisibilityFilter,
   VisibilityAsArray,
   FilterTypes,
+  RadiusFilterInfo,
 } from './maps'
 export type {
   Holder,

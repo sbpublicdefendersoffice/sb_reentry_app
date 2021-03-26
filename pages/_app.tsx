@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
-import { siteTitle, ENGLISH, SPANISH, coordsString } from '../constants'
+import { siteTitle, ENGLISH, SPANISH } from '../constants'
 import { Language } from '../types/language'
 import { GlobalSearchProvider, LangProvider, LocationProvider } from '../hooks'
 import { Footer, Header, LangSwitcher, LiveDataSearch } from '../components'
+import { checkAndSetUserLocation } from '../helpers/location'
 
 import '../styles/globals.css'
 import '../styles/variables.css'
@@ -15,15 +16,11 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [language, setLanguage] = useState<Language | null>(null)
   const [coords, setCoords] = useState<GeolocationCoordinates | null>(null)
 
-  useEffect(() => {
-    const { language } = window.navigator
-    if (language.startsWith('es')) setLanguage(SPANISH)
+  useEffect((): void => {
+    if (navigator.language.startsWith('es')) setLanguage(SPANISH)
     else setLanguage(ENGLISH)
-  }, [])
 
-  useEffect(() => {
-    const savedUserCoords: string = localStorage.getItem(coordsString)
-    if (savedUserCoords) setCoords(JSON.parse(savedUserCoords))
+    if (!coords) checkAndSetUserLocation(setCoords)
   }, [])
 
   return (

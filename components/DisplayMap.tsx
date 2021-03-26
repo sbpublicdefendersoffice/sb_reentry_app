@@ -6,7 +6,6 @@ import {
   mapboxStylingURL,
   mapContainerStyle,
   ENGLISH,
-  allRegionsVisible,
   NEW_DATA,
 } from '../constants'
 import {
@@ -17,7 +16,7 @@ import {
   useGlobalSearch,
 } from '../hooks'
 import { validateIsInSantaBarbaraCounty } from '../helpers'
-import { MapMarker, CityFilter } from './'
+import { MapMarker, CityFilter, ProximityFilter } from './'
 import { Details } from '../ui'
 
 import { LocationRecord } from '../types'
@@ -47,12 +46,11 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(
     locRecordsToFilter?.filteredRecords || latLongInfo,
   )
-
+  // Below effect is to clear map when new data is fetched due to new global data fetch or changing the language
   useEffect(
     () =>
       setLocRecordsToFilter({
         filterName: NEW_DATA,
-        value: allRegionsVisible,
       }),
     [language, searchResults],
   )
@@ -61,7 +59,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
     coords && validateIsInSantaBarbaraCounty(coords)
 
   const filteredRecordsReady: boolean = Boolean(
-    locRecordsToFilter?.filteredRecords?.length,
+    locRecordsToFilter?.filteredRecords,
   )
   const showFilters: boolean = !pathname.endsWith('[id]')
 
@@ -73,10 +71,19 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
     >
       {showFilters && (
         <CityFilter
-          latLongInfo={latLongInfo}
+          locationsToFilter={latLongInfo}
           regionVisibility={locRecordsToFilter.visibility}
           setLocRecordsToFilter={setLocRecordsToFilter}
-        />
+        >
+          {userLocationReady && (
+            <ProximityFilter
+              coords={coords}
+              locationsToFilter={latLongInfo}
+              setLocRecordsToFilter={setLocRecordsToFilter}
+              radiusDistance={locRecordsToFilter.radiusDistance}
+            />
+          )}
+        </CityFilter>
       )}
       {
         // @ts-ignore
@@ -90,6 +97,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
         >
           {userLocationReady && (
             <MapMarker
+              customStyle={{ zIndex: 10000 }}
               locationRecord={{
                 longitude: coords.longitude,
                 latitude: coords.latitude,
