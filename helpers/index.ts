@@ -2,7 +2,7 @@ export { convertLocationsForMap } from './converters'
 export {
   checkAndSetUserLocation,
   isDistanceInBounds,
-  manageFilteredMapState,
+  isRegionVisible,
 } from './location'
 export {
   validateRequest,

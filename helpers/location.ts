@@ -1,13 +1,6 @@
 import { Dispatch, SetStateAction } from 'react'
 
-import {
-  LocationRecord,
-  VisibilityAsArray,
-  FilteredMapState,
-  FilterMapAction,
-  CountyVisibilityFilter,
-} from '../types'
-import { citiesByCountyRegion } from '../constants'
+import { VisibilityAsArray } from '../types'
 
 // Including centerArr values for development ONLY
 import { coordsString, centerArr } from '../constants/maps'
@@ -75,39 +68,4 @@ export const isDistanceInBounds = (
   return isInBounds
 }
 
-export const manageFilteredMapState = (
-  state: FilteredMapState,
-  action: FilterMapAction,
-) => {
-  let recordsToFilter: LocationRecord[] = state.originalRecords
-
-  let { visibility, radiusDistance } = state
-
-  const { filterName, value } = action
-
-  if (filterName === 'regionVisibility')
-    visibility = value as CountyVisibilityFilter
-
-  //#region regionVisibility logic
-
-  const visibilityEntries: VisibilityAsArray[] = Object.entries(visibility)
-
-  const citiesToRemove: string[] = visibilityEntries.reduce(
-    (arrOfCities: string[], currentEntry: VisibilityAsArray): string[] => {
-      const [region, visible] = currentEntry
-
-      if (!visible)
-        arrOfCities = [...arrOfCities, ...citiesByCountyRegion[region]]
-      return arrOfCities
-    },
-    [],
-  )
-
-  recordsToFilter = state.originalRecords.filter(
-    (record: LocationRecord) => !citiesToRemove.includes(record.city),
-  )
-
-  //#endregion
-
-  return { ...state, visibility, filteredRecords: recordsToFilter }
-}
+export const isRegionVisible = (region: VisibilityAsArray): boolean => region[1]

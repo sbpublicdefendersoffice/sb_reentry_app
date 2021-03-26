@@ -1,4 +1,9 @@
-import { CountyBreakdown, BoundingArr, CenterArr } from '../types/maps'
+import {
+  CountyBreakdown,
+  BoundingArr,
+  CenterArr,
+  CountyVisibilityFilter,
+} from '../types/maps'
 
 export const coordsString: string = 'coords'
 
@@ -15,6 +20,12 @@ export const fitBoundsArr: BoundingArr = [
   [-120.5723618, 34.3953777],
   [-119.5136408, 34.9733403],
 ]
+
+export const allRegionsVisible: CountyVisibilityFilter = {
+  southCounty: true,
+  centralCounty: true,
+  northCounty: true,
+}
 
 export const citiesByCountyRegion: CountyBreakdown = {
   southCounty: [

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 
 import { POST, convertLocationsForMap } from '../../helpers'
 import { useGlobalSearch, useLanguage } from '../../hooks'
+
 import { LocationRecord, TranslatedRecordResponse } from '../../types/records'
 import DisplayMap from '../../components/DisplayMap'
 

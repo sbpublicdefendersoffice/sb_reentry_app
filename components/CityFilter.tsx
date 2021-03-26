@@ -1,12 +1,18 @@
 import { ChangeEvent, Dispatch } from 'react'
 
 import { ENGLISH } from '../constants'
-import { CopyHolder, FilterMapAction, CountyVisibilityFilter } from '../types'
+import {
+  CopyHolder,
+  FilterMapAction,
+  CountyVisibilityFilter,
+  LocationRecord,
+} from '../types'
 import useLanguage from '../hooks/useLanguage'
 
 import styles from './CityFilter.module.css'
 
 interface CityFilterProps {
+  latLongInfo: LocationRecord[]
   setLocRecordsToFilter: Dispatch<FilterMapAction>
   regionVisibility: CountyVisibilityFilter
 }
@@ -25,20 +31,25 @@ const copy: CopyHolder = {
 }
 
 const CityFilter = ({
+  latLongInfo,
   setLocRecordsToFilter,
   regionVisibility,
 }: CityFilterProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
-  const handleCheck = (e: ChangeEvent<HTMLInputElement>): void =>
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>): void => {
+    const { id } = e.target
+
     setLocRecordsToFilter({
       filterName: 'regionVisibility',
       value: {
         ...regionVisibility,
-        [e.target.id]: !regionVisibility[e.target.id],
+        [id]: !regionVisibility[id],
       },
+      locationsToFilter: latLongInfo,
     })
+  }
 
   return (
     <form

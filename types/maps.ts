@@ -40,15 +40,15 @@ export interface CountyVisibilityFilter {
 }
 
 export interface FilteredMapState {
-  originalRecords: LocationRecord[]
-  filteredRecords: LocationRecord[]
+  filteredRecords: LocationRecord[] | null
   visibility: CountyVisibilityFilter
   radiusDistance: number
 }
 
 export interface FilterMapAction {
-  filterName: 'regionVisibility' | 'radiusDistance'
+  filterName: 'regionVisibility' | 'radiusDistance' | 'newData'
   value: CountyVisibilityFilter | number
+  locationsToFilter?: LocationRecord[]
 }
 
 export type VisibilityAsArray = [string, boolean]

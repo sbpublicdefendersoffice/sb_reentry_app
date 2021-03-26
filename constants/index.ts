@@ -8,5 +8,6 @@ export {
   citiesByCountyRegion,
   coordsString,
   fitBoundsArr,
+  allRegionsVisible,
 } from './maps'
 export { resourceRoutes, staticPageRoutes } from './routes'

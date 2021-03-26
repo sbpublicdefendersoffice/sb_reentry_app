@@ -1,17 +1,25 @@
 import { useRouter } from 'next/router'
-import { Fragment, useReducer, Reducer } from 'react'
+import { Fragment, useEffect } from 'react'
 import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
 
-import { mapboxStylingURL, mapContainerStyle, ENGLISH } from '../constants'
-import { useMapInfo, useLanguage, useLocation } from '../hooks'
 import {
-  validateIsInSantaBarbaraCounty,
-  manageFilteredMapState,
-} from '../helpers'
+  mapboxStylingURL,
+  mapContainerStyle,
+  ENGLISH,
+  allRegionsVisible,
+} from '../constants'
+import {
+  useMapInfo,
+  useLanguage,
+  useLocation,
+  useSearchFilters,
+  useGlobalSearch,
+} from '../hooks'
+import { validateIsInSantaBarbaraCounty } from '../helpers'
 import { MapMarker, CityFilter } from './'
 import { Details } from '../ui'
 
-import { LocationRecord, FilterMapAction, FilteredMapState } from '../types'
+import { LocationRecord } from '../types'
 
 import styles from './DisplayMap.module.css'
 
@@ -19,31 +27,39 @@ interface DisplayMapProps {
   latLongInfo: LocationRecord[]
 }
 
+const returnMarker = (locationRecord: LocationRecord, i: number) => (
+  <Fragment key={i}>
+    <MapMarker locationRecord={locationRecord} />
+  </Fragment>
+)
+
 const MapboxMap = ReactMapboxGL({
   accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
 })
 
 const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
   const { pathname } = useRouter()
+  const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
   const { coords } = useLocation()
-
-  const [locRecordsToFilter, setLocRecordsToFilter] = useReducer<
-    Reducer<FilteredMapState, FilterMapAction>
-  >(manageFilteredMapState, {
-    originalRecords: latLongInfo,
-    filteredRecords: latLongInfo,
-    visibility: { southCounty: true, centralCounty: true, northCounty: true },
-    radiusDistance: Infinity,
-  })
-
+  const { locRecordsToFilter, setLocRecordsToFilter } = useSearchFilters()
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(
-    locRecordsToFilter.filteredRecords,
+    locRecordsToFilter?.filteredRecords || latLongInfo,
+  )
+
+  useEffect(
+    () =>
+      setLocRecordsToFilter({
+        filterName: 'newData',
+        value: allRegionsVisible,
+      }),
+    [language, searchResults],
   )
 
   const userLocationReady: boolean =
     coords && validateIsInSantaBarbaraCounty(coords)
-  const recordsReady: boolean = Boolean(
+
+  const filteredRecordsReady: boolean = Boolean(
     locRecordsToFilter?.filteredRecords?.length,
   )
   const showFilters: boolean = !pathname.endsWith('[id]')
@@ -56,6 +72,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
     >
       {showFilters && (
         <CityFilter
+          latLongInfo={latLongInfo}
           regionVisibility={locRecordsToFilter.visibility}
           setLocRecordsToFilter={setLocRecordsToFilter}
         />
@@ -82,14 +99,9 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
               }}
             />
           )}
-          {recordsReady &&
-            locRecordsToFilter.filteredRecords.map(
-              (locationRecord: LocationRecord, i: number) => (
-                <Fragment key={i}>
-                  <MapMarker locationRecord={locationRecord} />
-                </Fragment>
-              ),
-            )}
+          {filteredRecordsReady
+            ? locRecordsToFilter.filteredRecords.map(returnMarker)
+            : latLongInfo.map(returnMarker)}
           <ScaleControl measurement="mi" position="bottom-right" />
         </MapboxMap>
       }
