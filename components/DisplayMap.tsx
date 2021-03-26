@@ -7,6 +7,7 @@ import {
   mapContainerStyle,
   ENGLISH,
   allRegionsVisible,
+  NEW_DATA,
 } from '../constants'
 import {
   useMapInfo,
@@ -50,7 +51,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
   useEffect(
     () =>
       setLocRecordsToFilter({
-        filterName: 'newData',
+        filterName: NEW_DATA,
         value: allRegionsVisible,
       }),
     [language, searchResults],

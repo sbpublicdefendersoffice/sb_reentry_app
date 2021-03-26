@@ -3,7 +3,14 @@ import {
   BoundingArr,
   CenterArr,
   CountyVisibilityFilter,
+  FilterTypes,
 } from '../types/maps'
+
+export const NEW_DATA: FilterTypes = 'newData'
+
+export const RADIUS_DISTANCE: FilterTypes = 'radiusDistance'
+
+export const REGION_VISIBILITY: FilterTypes = 'regionVisibility'
 
 export const coordsString: string = 'coords'
 

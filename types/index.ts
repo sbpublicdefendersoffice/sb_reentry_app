@@ -12,6 +12,7 @@ export type {
   FilterMapAction,
   CountyVisibilityFilter,
   VisibilityAsArray,
+  FilterTypes,
 } from './maps'
 export type {
   Holder,

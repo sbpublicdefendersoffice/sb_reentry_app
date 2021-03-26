@@ -1,6 +1,6 @@
 import { ChangeEvent, Dispatch } from 'react'
 
-import { ENGLISH } from '../constants'
+import { ENGLISH, REGION_VISIBILITY } from '../constants'
 import {
   CopyHolder,
   FilterMapAction,
@@ -42,7 +42,7 @@ const CityFilter = ({
     const { id } = e.target
 
     setLocRecordsToFilter({
-      filterName: 'regionVisibility',
+      filterName: REGION_VISIBILITY,
       value: {
         ...regionVisibility,
         [id]: !regionVisibility[id],

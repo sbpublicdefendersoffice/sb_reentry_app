@@ -21,6 +21,8 @@ export type CenterArr = [number, number]
 
 export type BoundingArr = [CenterArr, CenterArr]
 
+export type FilterTypes = 'regionVisibility' | 'radiusDistance' | 'newData'
+
 export interface LocationState {
   fitBoundsArr: BoundingArr
   centerArr: CenterArr
@@ -46,7 +48,7 @@ export interface FilteredMapState {
 }
 
 export interface FilterMapAction {
-  filterName: 'regionVisibility' | 'radiusDistance' | 'newData'
+  filterName: FilterTypes
   value: CountyVisibilityFilter | number
   locationsToFilter?: LocationRecord[]
 }
