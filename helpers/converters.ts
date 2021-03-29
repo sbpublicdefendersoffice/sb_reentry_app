@@ -14,7 +14,7 @@ export const convertLocationsForMap = (
       if (longCheck) {
         const newLocationRecords = longCheck.map(
           (longitude: number, i: number) => ({
-            multiple_categories: record.fields.org_categories.map(
+            multiple_categories: record.fields.org_categories?.map(
               (category: string): string => category.replaceAll(' ', ''),
             ),
             single_category: locRecordsToConvert.category || 'search',

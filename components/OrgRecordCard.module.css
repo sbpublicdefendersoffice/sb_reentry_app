@@ -1,0 +1,19 @@
+.OrgRecordCard {
+  display: flex;
+  padding: 0.5rem 1rem;
+}
+
+.Image {
+  width: 4rem;
+  height: 4rem;
+  margin-right: var(--margin-std);
+}
+
+.InfoHolder {
+  text-align: start;
+}
+
+.Category {
+  text-transform: capitalize;
+  color: var(--highlight);
+}
