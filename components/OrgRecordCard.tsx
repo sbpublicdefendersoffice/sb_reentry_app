@@ -36,7 +36,7 @@ const OrgRecordCard = ({ record, category, url }: OrgRecordCardProps) => {
         src={`./icons/${category}.svg`}
         alt={`${category}_icon`}
       />
-      <div className={styles.InfoHolder}>
+      <div>
         <Paragraph title={id} size="med-text">
           {org_name}
         </Paragraph>

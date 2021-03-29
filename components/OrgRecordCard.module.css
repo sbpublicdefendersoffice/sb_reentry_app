@@ -9,10 +9,6 @@
   margin-right: var(--margin-std);
 }
 
-.InfoHolder {
-  text-align: start;
-}
-
 .Category {
   text-transform: capitalize;
   color: var(--highlight);
