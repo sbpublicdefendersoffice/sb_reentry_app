@@ -40,6 +40,7 @@ export interface OrgRecord {
     location_notes?: string[]
     location_notes_spanish?: string[]
     location_services?: string
+    location_services_spanish?: string
     location_latitude?: number[]
     location_longitude?: number[]
     services_names?: string[]
