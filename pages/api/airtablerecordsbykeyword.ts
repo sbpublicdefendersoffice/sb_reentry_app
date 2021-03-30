@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { validateRequest, POST } from '../../helpers/validators'
 import { BASE_URL, OPTIONS_OBJECT } from '../../constants/airtable'
 
-import { TranslatedRecordResponse } from '../../types/records'
+import { OrgRecord, TranslatedRecordResponse } from '../../types/records'
 import { SPANISH } from '../../constants/language'
 
 const globalAirtableSearch = async (
@@ -17,10 +17,31 @@ const globalAirtableSearch = async (
 
     const append: string = language === SPANISH ? `_${SPANISH}` : ''
 
-    const fetchString: string = `${BASE_URL}/organization?filterByFormula=SEARCH(%22${searchQuery}%22%2Corg_tags${append})&fields%5B%5D=org_name${append}&fields%5B%5D=org_categories&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&maxRecords=50&sort%5B0%5D%5Bfield%5D=org_name${append}&fields%5B%5D=locations_city`
+    const fetchString: string = `${BASE_URL}/organization?filterByFormula=SEARCH(%22${searchQuery}%22%2Corg_tags${append})&fields%5B%5D=org_name${append}&fields%5B%5D=org_tags${append}&fields%5B%5D=org_categories&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&maxRecords=50&sort%5B0%5D%5Bfield%5D=org_name${append}&fields%5B%5D=locations_city`
 
     const fetchRecords: Response = await fetch(fetchString, OPTIONS_OBJECT)
     const translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
+
+    const containsSearchQuery = (tagToSearch: string): boolean =>
+      tagToSearch.includes(searchQuery)
+
+    translatedRecords.records = translatedRecords.records.map(
+      (record: OrgRecord) => ({
+        ...record,
+        fields:
+          language === SPANISH
+            ? {
+                ...record.fields,
+                org_tags_spanish: record.fields.org_tags_spanish.filter(
+                  containsSearchQuery,
+                ),
+              }
+            : {
+                ...record.fields,
+                org_tags: record.fields.org_tags.filter(containsSearchQuery),
+              },
+      }),
+    )
 
     res.json(translatedRecords)
   } catch (error) {
