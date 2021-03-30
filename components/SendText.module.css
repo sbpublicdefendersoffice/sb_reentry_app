@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   width: fit-content;
-  margin: 0 auto;
+  margin-top: var(--margin-std);
 }
 
 .Label {
@@ -15,4 +15,6 @@
   width: 100%;
   padding: var(--pad-std) 0;
   flex: 1;
+  margin-top: 0;
+  margin-bottom: 0;
 }
