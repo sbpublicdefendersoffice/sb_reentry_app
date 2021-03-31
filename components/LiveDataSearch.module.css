@@ -2,7 +2,7 @@
   position: absolute;
   right: 0;
   background-color: var(--light);
-  width: 20rem;
+  width: max(40%, 20rem);
   border: var(--border-width) solid var(--primary);
   border-radius: var(--radius-small);
   padding: 0 var(--pad-lg);

@@ -2,6 +2,8 @@ import {
   useState,
   useCallback,
   useEffect,
+  useRef,
+  MutableRefObject,
   ChangeEvent,
   FormEvent,
   MouseEvent,
@@ -18,6 +20,7 @@ import { Input, Paragraph } from '../ui'
 import { POST } from '../helpers/validators'
 import { searchCopy } from '../constants/copy'
 import useGlobalSearch from '../hooks/useGlobalSearch'
+import SearchTermsMarquee from './SearchTermsMarquee'
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
 
 import styles from './LiveDataSearch.module.css'
@@ -28,9 +31,13 @@ const LiveDataSearch = () => {
   const { push } = useRouter()
   const { language } = useLanguage()
   const activeCopy = searchCopy[language]
+  const formRef: MutableRefObject<HTMLFormElement> | null = useRef(null)
 
   const [isFocused, setIsFocused] = useState<boolean>(false)
   const [searchQuery, setSearchQuery] = useState<string>('')
+  const [recordNumberToScroll, setRecordNumberToScroll] = useState<
+    number | null
+  >(null)
   const { searchResults, setSearchResults } = useGlobalSearch()
 
   const handleSubmit = (
@@ -73,14 +80,24 @@ const LiveDataSearch = () => {
     return delayedQuery.cancel
   }, [searchQuery, delayedQuery])
 
+  const tagsReady: boolean =
+    searchResults?.records?.some(
+      (record: OrgRecord) =>
+        record.fields.org_tags || record.fields.org_tags_spanish,
+    ) && Boolean(formRef.current)
+
   return (
     <section
       className={styles.LiveDataSearch}
       onFocus={() => setIsFocused(true)}
     >
-      <form className={styles.SearchContainer} onSubmit={handleSubmit}>
+      <form
+        ref={formRef}
+        className={styles.SearchContainer}
+        onSubmit={handleSubmit}
+      >
         <label className={styles.Label} htmlFor="global-search">
-          Global Search
+          Global data search
         </label>
         <Input
           type="search"
@@ -98,20 +115,32 @@ const LiveDataSearch = () => {
       </form>
       {searchQuery && searchResults && isFocused && (
         <ul className={styles.ResultsContainer}>
-          {searchResults.records.map((record: OrgRecord, i: number) => (
-            <li
-              className={styles.Result}
-              key={i}
-              tabIndex={0}
-              onClick={() => setIsFocused(false)}
-            >
-              <NextLink href="/search/[id]" as={`/search/${record.id}`}>
-                <Paragraph size="med-text">
-                  {record.fields.org_name || record.fields.org_name_spanish}
-                </Paragraph>
-              </NextLink>
-            </li>
-          ))}
+          {tagsReady && (
+            <SearchTermsMarquee
+              searchRecords={searchResults.records}
+              language={language}
+              recordNumberToScroll={recordNumberToScroll}
+              formRef={formRef}
+            />
+          )}
+          <div style={{ marginTop: tagsReady ? '3.25rem' : 0 }}>
+            {searchResults.records.map((record: OrgRecord, i: number) => (
+              <li
+                className={styles.Result}
+                key={i}
+                tabIndex={0}
+                onClick={() => setIsFocused(false)}
+                onMouseEnter={() => setRecordNumberToScroll(i)}
+                onMouseLeave={() => setRecordNumberToScroll(null)}
+              >
+                <NextLink href="/search/[id]" as={`/search/${record.id}`}>
+                  <Paragraph size="med-text">
+                    {record.fields.org_name || record.fields.org_name_spanish}
+                  </Paragraph>
+                </NextLink>
+              </li>
+            ))}
+          </div>
         </ul>
       )}
     </section>
