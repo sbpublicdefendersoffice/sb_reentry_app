@@ -26,8 +26,7 @@ const RecordPane = ({
   const { push, route } = useRouter()
   const { language } = useLanguage()
 
-  const lowCategory: string = routeCategory.toLowerCase()
-  const categoryTitle: string = lowCategory.replace(' ', '')
+  const categoryTitle: string = routeCategory.replace(' ', '')
   const url: string = `/${categoryTitle}`
 
   const pushToCategory = () => {

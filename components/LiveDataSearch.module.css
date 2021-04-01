@@ -37,21 +37,6 @@
   overflow: scroll;
 }
 
-.Result {
-  padding: var(--pad-sm) 0;
-  border-top: var(--border-width) solid var(--light-2);
-  outline: none;
-  cursor: pointer;
-}
-.SingleSearchTerm {
-  color: var(--highlight);
-  text-transform: capitalize;
-}
-
-.Result:hover > p {
-  color: var(--highlight);
-}
-
 .Label {
   opacity: 0;
   width: 0;

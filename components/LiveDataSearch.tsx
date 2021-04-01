@@ -7,8 +7,8 @@ import {
   ChangeEvent,
   FormEvent,
   MouseEvent,
+  Fragment,
 } from 'react'
-import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import debounce from 'lodash/debounce'
 
@@ -16,11 +16,11 @@ import useLanguage from '../hooks/useLanguage'
 
 import Tooltip from './Tooltip'
 
-import { Input, Paragraph } from '../ui'
+import Input from '../ui/Input'
 import { POST } from '../helpers/validators'
 import { searchCopy } from '../constants/copy'
 import useGlobalSearch from '../hooks/useGlobalSearch'
-import SearchTermsMarquee from './SearchTermsMarquee'
+import { GlobalSearchResult, SearchTermsMarquee } from './'
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
 
 import styles from './LiveDataSearch.module.css'
@@ -28,8 +28,6 @@ import styles from './LiveDataSearch.module.css'
 const delayTimeInMs: number = 500
 
 const delimiter: string = ', '
-
-const mapRecordSearchTerms = (tags: string[]): string => tags.join(delimiter)
 
 const LiveDataSearch = () => {
   const { push } = useRouter()
@@ -127,25 +125,13 @@ const LiveDataSearch = () => {
           )}
           <div style={{ marginTop: tagsReady ? '3.25rem' : 0 }}>
             {searchResults.records.map((record: OrgRecord, i: number) => (
-              <li
-                className={styles.Result}
-                key={i}
-                tabIndex={0}
-                onClick={() => setIsFocused(false)}
-              >
-                <NextLink href="/search/[id]" as={`/search/${record.id}`}>
-                  <Paragraph size="med-text">
-                    <span>
-                      {record.fields.org_name || record.fields.org_name_spanish}
-                    </span>
-                  </Paragraph>
-                </NextLink>
-                <em className={styles.SingleSearchTerm}>
-                  {mapRecordSearchTerms(
-                    record.fields?.org_tags || record.fields?.org_tags_spanish,
-                  )}
-                </em>
-              </li>
+              <Fragment key={i}>
+                <GlobalSearchResult
+                  record={record}
+                  delimiter={delimiter}
+                  setIsFocused={setIsFocused}
+                />
+              </Fragment>
             ))}
           </div>
         </ul>
