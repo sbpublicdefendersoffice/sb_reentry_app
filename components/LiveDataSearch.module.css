@@ -2,7 +2,7 @@
   position: absolute;
   right: 0;
   background-color: var(--light);
-  width: 20rem;
+  width: max(40%, 20rem);
   border: var(--border-width) solid var(--primary);
   border-radius: var(--radius-small);
   padding: 0 var(--pad-lg);
@@ -35,17 +35,6 @@
   width: 100%;
   max-height: 40rem;
   overflow: scroll;
-}
-
-.Result {
-  padding: var(--pad-sm) 0;
-  border-top: var(--border-width) solid var(--light-2);
-  outline: none;
-  cursor: pointer;
-}
-
-.Result:hover > p {
-  color: var(--highlight);
 }
 
 .Label {

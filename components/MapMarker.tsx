@@ -44,7 +44,7 @@ const MapMarker = ({ locationRecord, customStyle }: MapMarkerProps) => {
   useEffect(() => {
     if (isSearchPage) setImgSrc(multiple_categories[0])
     else setImgSrc(single_category)
-  }, [])
+  }, [locationRecord])
 
   const linkToRecord = (): void => {
     if (uuid && query?.id !== uuid)
