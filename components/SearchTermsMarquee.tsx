@@ -8,34 +8,27 @@ import styles from './SearchTermsMarquee.module.css'
 interface SearchTermsMarqueeProps {
   searchRecords: OrgRecord[]
   language: Language
-  recordNumberToScroll: number | null
   formRef: MutableRefObject<HTMLFormElement> | null
+  delimiter: string
 }
 
 const copy: CopyHolder = {
   english: {
-    allRecords: 'Matches in this search:',
-    singleRecord: 'Matches in this record:',
+    records: 'Matches in this search:',
   },
   spanish: {
-    allRecords: 'Coincidencias en esta búsqueda:',
-    singleRecord: 'Coincidencias en este registro:',
+    records: 'Coincidencias en esta búsqueda:',
   },
 }
-
-const delimiter: string = ', '
 
 const SearchTermsMarquee = ({
   searchRecords,
   language,
-  recordNumberToScroll,
   formRef,
+  delimiter,
 }: SearchTermsMarqueeProps) => {
   const tagsRef: MutableRefObject<HTMLParagraphElement> | null = useRef(null)
   const [isScrolling, setIsScrolling] = useState<boolean>(false)
-  const [singleRecordSearchTerms, setSingleRecordSearchTerms] = useState<
-    string[][] | null
-  >(null)
   const [searchTermsToScroll, setSearchTermsToScroll] = useState<
     string[] | null
   >(null)
@@ -64,51 +57,34 @@ const SearchTermsMarquee = ({
       (record: OrgRecord) =>
         record.fields.org_tags || record.fields.org_tags_spanish,
     )
-
-    setSingleRecordSearchTerms(mappedSearchTerms)
-
     const searchTermsDeDupe: string[] = [...new Set(mappedSearchTerms.flat(1))]
 
     setSearchTermsToScroll(searchTermsDeDupe)
   }, [searchRecords])
 
-  const readyToScrollRecords: boolean =
-    Boolean(searchTermsToScroll?.length) &&
-    Boolean(singleRecordSearchTerms?.length)
+  const readyToScrollRecords: boolean = Boolean(searchTermsToScroll?.length)
 
   useEffect(() => {
-    if (tagsRef.current && formRef.current) {
-      setScrollingEffect()
-    }
-  }, [readyToScrollRecords, formRef, tagsRef])
+    if (tagsRef.current && formRef.current) setScrollingEffect()
+  }, [readyToScrollRecords, formRef, tagsRef, searchRecords])
 
   return (
     readyToScrollRecords && (
       <div className={styles.SearchTermsMarquee}>
         <Paragraph size="med-text">
-          {recordNumberToScroll !== null ? (
+          {
             <>
-              {activeCopy.singleRecord}
-              <Paragraph size="med-text" className={styles.Tags}>
-                {singleRecordSearchTerms[recordNumberToScroll].join(delimiter)}
-              </Paragraph>
-            </>
-          ) : (
-            <>
-              {activeCopy.allRecords}
+              {activeCopy.records}
               <Paragraph
-                size="med-text"
-                className={`${styles.Tags} ${isScrolling ? styles.Scroll : ''}`}
+                className={`${styles.Tags} ${isScrolling && styles.Scroll}`}
               >
-                <span ref={tagsRef}>{searchTermsToScroll.join(delimiter)}</span>
+                <em ref={tagsRef}>{searchTermsToScroll.join(delimiter)}</em>
                 {isScrolling && (
-                  <span className={styles.Tags}>
-                    {`, ${searchTermsToScroll.join(delimiter)}`}
-                  </span>
+                  <em>{`, ${searchTermsToScroll.join(delimiter)}`}</em>
                 )}
               </Paragraph>
             </>
-          )}
+          }
         </Paragraph>
       </div>
     )

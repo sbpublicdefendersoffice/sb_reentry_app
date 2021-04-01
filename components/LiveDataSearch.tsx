@@ -27,18 +27,20 @@ import styles from './LiveDataSearch.module.css'
 
 const delayTimeInMs: number = 500
 
+const delimiter: string = ', '
+
+const mapRecordSearchTerms = (tags: string[]): string => tags.join(delimiter)
+
 const LiveDataSearch = () => {
   const { push } = useRouter()
   const { language } = useLanguage()
-  const activeCopy = searchCopy[language]
-  const formRef: MutableRefObject<HTMLFormElement> | null = useRef(null)
+  const { searchResults, setSearchResults } = useGlobalSearch()
 
+  const formRef: MutableRefObject<HTMLFormElement> | null = useRef(null)
   const [isFocused, setIsFocused] = useState<boolean>(false)
   const [searchQuery, setSearchQuery] = useState<string>('')
-  const [recordNumberToScroll, setRecordNumberToScroll] = useState<
-    number | null
-  >(null)
-  const { searchResults, setSearchResults } = useGlobalSearch()
+
+  const activeCopy = searchCopy[language]
 
   const handleSubmit = (
     e: FormEvent<HTMLFormElement> | MouseEvent<HTMLSpanElement>,
@@ -75,7 +77,7 @@ const LiveDataSearch = () => {
     searchQuery,
   ])
 
-  useEffect((): void => {
+  useEffect((): (() => void) => {
     delayedQuery()
     return delayedQuery.cancel
   }, [searchQuery, delayedQuery])
@@ -119,8 +121,8 @@ const LiveDataSearch = () => {
             <SearchTermsMarquee
               searchRecords={searchResults.records}
               language={language}
-              recordNumberToScroll={recordNumberToScroll}
               formRef={formRef}
+              delimiter={delimiter}
             />
           )}
           <div style={{ marginTop: tagsReady ? '3.25rem' : 0 }}>
@@ -130,14 +132,19 @@ const LiveDataSearch = () => {
                 key={i}
                 tabIndex={0}
                 onClick={() => setIsFocused(false)}
-                onMouseEnter={() => setRecordNumberToScroll(i)}
-                onMouseLeave={() => setRecordNumberToScroll(null)}
               >
                 <NextLink href="/search/[id]" as={`/search/${record.id}`}>
                   <Paragraph size="med-text">
-                    {record.fields.org_name || record.fields.org_name_spanish}
+                    <span>
+                      {record.fields.org_name || record.fields.org_name_spanish}
+                    </span>
                   </Paragraph>
                 </NextLink>
+                <em className={styles.SingleSearchTerm}>
+                  {mapRecordSearchTerms(
+                    record.fields?.org_tags || record.fields?.org_tags_spanish,
+                  )}
+                </em>
               </li>
             ))}
           </div>

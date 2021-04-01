@@ -43,6 +43,10 @@
   outline: none;
   cursor: pointer;
 }
+.SingleSearchTerm {
+  color: var(--highlight);
+  text-transform: capitalize;
+}
 
 .Result:hover > p {
   color: var(--highlight);
