@@ -17,27 +17,43 @@ const GlobalSearchResult = ({
   record,
   delimiter,
 }: GlobalSearchResultProps) => {
+  const { id, fields } = record
+  const {
+    org_categories,
+    org_name,
+    org_name_spanish,
+    org_tags,
+    org_tags_spanish,
+  } = fields
+
+  const imgSrc: string = org_categories[0]
+
   const mapRecordSearchTerms = (tags: string[]): string => tags.join(delimiter)
 
   return (
-    <li
-      className={styles.GlobalSearchResult}
-      tabIndex={0}
-      onClick={() => setIsFocused(false)}
-    >
-      <NextLink href="/search/[id]" as={`/search/${record.id}`}>
-        <Paragraph size="med-text">
-          <span>
-            {record.fields.org_name || record.fields.org_name_spanish}
-          </span>
-        </Paragraph>
-      </NextLink>
-      <em className={styles.SingleSearchTerm}>
-        {mapRecordSearchTerms(
-          record.fields?.org_tags || record.fields?.org_tags_spanish,
-        )}
-      </em>
-    </li>
+    <NextLink href="/search/[id]" as={`/search/${id}`}>
+      <li
+        className={styles.GlobalSearchResult}
+        tabIndex={0}
+        onClick={() => setIsFocused(false)}
+      >
+        <div>
+          <Paragraph size="med-text">
+            <span>{org_name || org_name_spanish}</span>
+          </Paragraph>
+          <em className={styles.SingleSearchTerm}>
+            {mapRecordSearchTerms(org_tags || org_tags_spanish)}
+          </em>
+        </div>
+        <img
+          width="3rem"
+          height="3rem"
+          className={styles.Image}
+          src={`./icons/${imgSrc.replace(' ', '')}.svg`}
+          alt={`${imgSrc}_icon`}
+        />
+      </li>
+    </NextLink>
   )
 }
 
