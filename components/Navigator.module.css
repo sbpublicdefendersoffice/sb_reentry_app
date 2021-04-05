@@ -1,18 +1,24 @@
 .Navigator {
   position: absolute;
-  left: 50%;
-  top: 1rem;
-  transform: translateX(-50%);
+  left: 0.5rem;
+  top: 0.5rem;
 }
 
 .Arrows {
   user-select: none;
   cursor: pointer;
   color: var(--light);
-  font-size: var(--large-text);
+  font-size: var(--heading-text);
   margin: 0 var(--margin-sm);
 }
 
 .Arrows:active {
   color: var(--highlight-2);
+}
+
+@media (max-width: 700px) {
+  .Navigator {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }

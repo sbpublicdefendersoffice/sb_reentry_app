@@ -1,19 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 import styles from './Navigator.module.css'
 
 const Navigator = () => {
-  const [history, setHistory] = useState<null | History>(null)
-
-  useEffect((): void => setHistory(window.history), [])
+  const { back } = useRouter()
 
   return (
     <nav className={styles.Navigator}>
-      <span className={styles.Arrows} onClick={(): void => history.back()}>
+      <span className={styles.Arrows} onClick={(): void => back()}>
         &#5130;
-      </span>
-      <span className={styles.Arrows} onClick={(): void => history.forward()}>
-        &#5125;
       </span>
     </nav>
   )

@@ -6,7 +6,13 @@ import Head from 'next/head'
 import { siteTitle, ENGLISH, SPANISH } from '../constants'
 import { Language } from '../types/language'
 import { GlobalSearchProvider, LangProvider, LocationProvider } from '../hooks'
-import { Footer, Header, LangSwitcher, LiveDataSearch } from '../components'
+import {
+  Footer,
+  Header,
+  LangSwitcher,
+  LiveDataSearch,
+  Navigator,
+} from '../components'
 import { checkAndSetUserLocation } from '../helpers/location'
 
 import '../styles/globals.css'
@@ -45,6 +51,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <LocationProvider value={{ coords, setCoords }}>
             <GlobalSearchProvider>
               <LangSwitcher />
+              <Navigator />
               <Header />
               <LiveDataSearch />
               <main>
