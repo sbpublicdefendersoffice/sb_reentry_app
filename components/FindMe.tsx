@@ -1,6 +1,6 @@
 import Popup from './Popup'
 import Button from '../ui/Button'
-import { useLanguage, useLocation, usePopup } from '../hooks'
+import { useLanguage, useLocation, usePopup, useToast } from '../hooks'
 import { CopyHolder } from '../types/language'
 import { checkAndSetUserLocation } from '../helpers/location'
 
@@ -19,6 +19,7 @@ const FindMe = () => {
   const { setCoords } = useLocation()
   const { popupLocation, setPopupLocation, clearPopupLocation } = usePopup()
   const { language } = useLanguage()
+  const { setToast } = useToast()
 
   const activeCopy = copy[language]
   const { geolocation } = navigator
@@ -39,7 +40,7 @@ const FindMe = () => {
           onMouseEnter={setPopupLocation}
           onMouseMove={setPopupLocation}
           onMouseLeave={clearPopupLocation}
-          onClick={() => checkAndSetUserLocation(setCoords)}
+          onClick={() => checkAndSetUserLocation(setCoords, setToast, language)}
         >
           <svg
             className={styles.Image}

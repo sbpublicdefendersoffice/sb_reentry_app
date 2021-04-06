@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
-import { siteTitle, ENGLISH, SPANISH, inSantaBarbaraCopy } from '../constants'
+import { siteTitle, ENGLISH, SPANISH } from '../constants'
 import { Language, SantaBarbaraCountyCoords } from '../types'
 import {
   GlobalSearchProvider,
@@ -30,20 +30,14 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [toast, setToast] = useState<string | null>(null)
 
   useEffect((): void => {
-    if (navigator.language.startsWith('es')) setLanguage(SPANISH)
-    else setLanguage(ENGLISH)
+    const languageToLoad: Language = navigator.language.startsWith('es')
+      ? SPANISH
+      : ENGLISH
 
-    if (!coords) checkAndSetUserLocation(setCoords)
+    setLanguage(languageToLoad)
+
+    if (!coords) checkAndSetUserLocation(setCoords, setToast, languageToLoad)
   }, [])
-
-  useEffect((): void => {
-    if (coords && language) {
-      const { isInSBCounty } = coords
-      const inCountyCopy = inSantaBarbaraCopy[language]
-      if (isInSBCounty) setToast(inCountyCopy.true)
-      else setToast(inCountyCopy.false)
-    }
-  }, [coords])
 
   return (
     language && (

@@ -1,23 +1,28 @@
 import { Dispatch, SetStateAction } from 'react'
 
-import { VisibilityAsArray, SantaBarbaraCountyCoords } from '../types'
+import { VisibilityAsArray, SantaBarbaraCountyCoords, Language } from '../types'
 import { validateIsInSantaBarbaraCounty } from './validators'
+import { inSantaBarbaraCopy } from '../constants/copy'
 
 export const checkAndSetUserLocation = (
   setCoords: Dispatch<SetStateAction<SantaBarbaraCountyCoords>>,
+  setToast: Dispatch<SetStateAction<string>>,
+  currentLanguage: Language,
 ): void => {
+  const langLocalizedCopy = inSantaBarbaraCopy[currentLanguage]
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position: GeolocationPosition): void => {
         const { coords } = position
 
+        const isInSantaBarbara: boolean = validateIsInSantaBarbaraCounty(coords)
+
         const coordsToSave: SantaBarbaraCountyCoords = Object.defineProperties(
           coords,
           {
             isInSBCounty: {
-              // below value for development ONLY
-              // value: true,
-              value: validateIsInSantaBarbaraCounty(coords),
+              value: isInSantaBarbara,
               enumerable: true,
             },
             longitude: { value: coords.longitude, enumerable: true },
@@ -32,14 +37,13 @@ export const checkAndSetUserLocation = (
             speed: { value: coords.speed, enumerable: true },
           },
         )
-
         setCoords(coordsToSave)
+        if (isInSantaBarbara) setToast(langLocalizedCopy.inCounty)
+        else setToast(langLocalizedCopy.notInCounty)
       },
-      error =>
-        console.error(`Error while getting browser location: ${error.message}`),
+      error => setToast(`${langLocalizedCopy.error} ${error.message}`),
     )
-  } else
-    console.error('Enable location permission to use location-based features.')
+  } else setToast(langLocalizedCopy.permission)
 }
 
 export const isRegionVisible = (region: VisibilityAsArray): boolean => region[1]
