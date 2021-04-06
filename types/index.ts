@@ -14,6 +14,7 @@ export type {
   VisibilityAsArray,
   FilterTypes,
   RadiusFilterInfo,
+  SantaBarbaraCountyCoords,
 } from './maps'
 export type {
   Holder,

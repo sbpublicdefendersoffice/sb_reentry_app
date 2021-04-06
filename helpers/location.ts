@@ -1,21 +1,25 @@
 import { Dispatch, SetStateAction } from 'react'
 
-import { VisibilityAsArray } from '../types'
+import { VisibilityAsArray, SantaBarbaraCountyCoords } from '../types'
+import { validateIsInSantaBarbaraCounty } from './validators'
 
 export const checkAndSetUserLocation = (
-  setCoords: Dispatch<SetStateAction<GeolocationCoordinates>>,
+  setCoords: Dispatch<SetStateAction<SantaBarbaraCountyCoords>>,
 ): void => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position: GeolocationPosition): void => {
         const { coords } = position
 
-        const coordsToSave: GeolocationCoordinates = Object.defineProperties(
+        const coordsToSave: SantaBarbaraCountyCoords = Object.defineProperties(
           coords,
           {
-            // Below values for development ONLY
-            // longitude: { value: -119.69688092013844, enumerable: true },
-            // latitude: { value: 34.40553099684989, enumerable: true },
+            isInSBCounty: {
+              // below value for development ONLY
+              // value: true,
+              value: validateIsInSantaBarbaraCounty(coords),
+              enumerable: true,
+            },
             longitude: { value: coords.longitude, enumerable: true },
             latitude: { value: coords.latitude, enumerable: true },
             accuracy: { value: coords.accuracy, enumerable: true },

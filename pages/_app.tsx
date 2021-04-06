@@ -4,7 +4,7 @@ import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
 import { siteTitle, ENGLISH, SPANISH } from '../constants'
-import { Language } from '../types/language'
+import { Language, SantaBarbaraCountyCoords } from '../types'
 import { GlobalSearchProvider, LangProvider, LocationProvider } from '../hooks'
 import {
   Footer,
@@ -20,7 +20,7 @@ import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [language, setLanguage] = useState<Language | null>(null)
-  const [coords, setCoords] = useState<GeolocationCoordinates | null>(null)
+  const [coords, setCoords] = useState<SantaBarbaraCountyCoords | null>(null)
 
   useEffect((): void => {
     if (navigator.language.startsWith('es')) setLanguage(SPANISH)

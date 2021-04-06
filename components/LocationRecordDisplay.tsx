@@ -3,7 +3,6 @@ import { Card, Paragraph } from '../ui'
 import { ScheduleRecordDisplay, SendText } from './'
 import { LocationRecord, CopyHolder } from '../types'
 import { useLanguage, useLocation } from '../hooks'
-import { validateIsInSantaBarbaraCounty } from '../helpers/validators'
 
 import styles from './LocationRecordDisplay.module.css'
 
@@ -72,10 +71,9 @@ const LocationRecordDisplay = ({
     /\s/g,
     '+',
   )
-  const hrefToGoogleMaps: string =
-    coords && validateIsInSantaBarbaraCounty(coords)
-      ? `/dir/?api=1&origin=${coords.latitude},${coords.longitude}&destination=${addressForUrl}`
-      : `/place/${addressForUrl}`
+  const hrefToGoogleMaps: string = coords?.isInSBCounty
+    ? `/dir/?api=1&origin=${coords.latitude},${coords.longitude}&destination=${addressForUrl}`
+    : `/place/${addressForUrl}`
 
   return (
     <Card className={styles.LocationRecordDisplay}>
