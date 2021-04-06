@@ -1,0 +1,10 @@
+.Toast {
+  background-color: var(--highlight-2);
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  max-width: 40%;
+  padding-left: var(--pad-lg);
+  padding-right: var(--pad-lg);
+  z-index: 200;
+}

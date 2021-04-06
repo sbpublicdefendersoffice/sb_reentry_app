@@ -95,7 +95,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
         >
           {isInSBCounty && (
             <MapMarker
-              customStyle={{ zIndex: 10000 }}
+              customStyle={{ zIndex: 100 }}
               locationRecord={{
                 longitude: coords.longitude,
                 latitude: coords.latitude,

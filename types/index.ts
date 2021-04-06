@@ -25,4 +25,4 @@ export type {
   SortedRecord,
 } from './records'
 export type { RouteInfo } from './routes'
-export type { Color, TextSize } from './ui'
+export type { Color, TextSize, UseToastProps } from './ui'
