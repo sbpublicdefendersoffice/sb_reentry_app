@@ -7,4 +7,16 @@
   padding-left: var(--pad-lg);
   padding-right: var(--pad-lg);
   z-index: 200;
+  animation: fadeIn 0.25s linear;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

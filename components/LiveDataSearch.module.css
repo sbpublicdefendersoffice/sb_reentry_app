@@ -2,7 +2,7 @@
   position: absolute;
   right: 0;
   background-color: var(--light);
-  width: max(40%, 20rem);
+  width: max(40%, 30rem);
   border: var(--border-width) solid var(--primary);
   border-radius: var(--radius-small);
   z-index: 20;
@@ -45,9 +45,6 @@
 
 @media (max-width: 500px) {
   .LiveDataSearch {
-    width: 15rem;
-  }
-  .Input {
-    width: 50%;
+    width: 100%;
   }
 }

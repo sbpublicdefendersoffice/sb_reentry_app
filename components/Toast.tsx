@@ -5,13 +5,13 @@ import useToast from '../hooks/useToast'
 
 import styles from './Toast.module.css'
 
-const delayTimeInMs: number = 7000
+const delayTimeInMs: number = 5000
 
 const Toast = () => {
   const { toast, setToast } = useToast()
 
   useEffect((): void => {
-    if (toast) setTimeout(() => setToast(null), delayTimeInMs)
+    if (toast) setTimeout((): void => setToast(null), delayTimeInMs)
   }, [toast])
 
   return (

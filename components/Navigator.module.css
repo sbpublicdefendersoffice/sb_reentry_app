@@ -19,6 +19,5 @@
 @media (max-width: 700px) {
   .Navigator {
     left: 50%;
-    transform: translateX(-50%);
   }
 }
