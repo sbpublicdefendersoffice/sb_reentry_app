@@ -14,7 +14,7 @@ import debounce from 'lodash/debounce'
 
 import useLanguage from '../hooks/useLanguage'
 
-import Tooltip from './Tooltip'
+import { Tooltip, FindMe } from './'
 
 import Input from '../ui/Input'
 import { POST } from '../helpers/validators'
@@ -91,6 +91,7 @@ const LiveDataSearch = () => {
       className={styles.LiveDataSearch}
       onFocus={() => setIsFocused(true)}
     >
+      <FindMe />
       <form
         ref={formRef}
         className={styles.SearchContainer}

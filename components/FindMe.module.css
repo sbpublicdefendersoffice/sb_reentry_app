@@ -1,0 +1,10 @@
+.Image {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: var(--light);
+}
+
+.Image:active,
+.FindMe:active > span > .Image {
+  fill: var(--highlight);
+}
