@@ -15,7 +15,6 @@ import {
   useSearchFilters,
   useGlobalSearch,
 } from '../hooks'
-import { validateIsInSantaBarbaraCounty } from '../helpers'
 import { MapMarker, CityFilter, ProximityFilter } from './'
 import { Details } from '../ui'
 
@@ -55,8 +54,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
     [language, searchResults],
   )
 
-  const userLocationReady: boolean =
-    coords && validateIsInSantaBarbaraCounty(coords)
+  const isInSBCounty: boolean = coords?.isInSBCounty
 
   const filteredRecordsReady: boolean = Boolean(
     locRecordsToFilter?.filteredRecords,
@@ -75,7 +73,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
           regionVisibility={locRecordsToFilter.visibility}
           setLocRecordsToFilter={setLocRecordsToFilter}
         >
-          {userLocationReady && (
+          {isInSBCounty && (
             <ProximityFilter
               coords={coords}
               locationsToFilter={latLongInfo}
@@ -95,9 +93,9 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
           animationOptions={{ animate: false }}
           zoom={[zoom]}
         >
-          {userLocationReady && (
+          {isInSBCounty && (
             <MapMarker
-              customStyle={{ zIndex: 10000 }}
+              customStyle={{ zIndex: 11 }}
               locationRecord={{
                 longitude: coords.longitude,
                 latitude: coords.latitude,

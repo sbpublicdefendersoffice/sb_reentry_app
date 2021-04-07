@@ -23,9 +23,13 @@ export type BoundingArr = [CenterArr, CenterArr]
 
 export type FilterTypes = 'regionVisibility' | 'radiusDistance' | 'newData'
 
+export interface SantaBarbaraCountyCoords extends GeolocationCoordinates {
+  isInSBCounty: boolean
+}
+
 export interface RadiusFilterInfo {
   newRadiusDistance: number
-  coords: GeolocationCoordinates
+  coords: SantaBarbaraCountyCoords
 }
 
 export interface LocationState {
@@ -35,9 +39,9 @@ export interface LocationState {
 }
 
 export interface UseLocationProps {
-  coords: GeolocationCoordinates
+  coords: SantaBarbaraCountyCoords
   // eslint-disable-next-line no-unused-vars
-  setCoords: (coords: GeolocationCoordinates) => void
+  setCoords: (coords: SantaBarbaraCountyCoords) => void
 }
 
 export interface CountyVisibilityFilter {

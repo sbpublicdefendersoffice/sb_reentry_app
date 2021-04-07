@@ -29,6 +29,8 @@ const copy: CopyHolder = {
   },
 }
 
+const delayTimeInMs: number = 3000
+
 import styles from './SendText.module.css'
 
 const SendText = ({
@@ -62,7 +64,7 @@ const SendText = ({
     } catch (error) {
       if (error.message === INVALID_NUMBER) setInputErrorMsg(activeCopy.error)
       else setInputErrorMsg(error.message)
-      setTimeout(() => setInputErrorMsg(null), 3000)
+      setTimeout(() => setInputErrorMsg(null), delayTimeInMs)
     }
   }
 

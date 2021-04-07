@@ -1,12 +1,17 @@
 import { Fragment, Dispatch, ChangeEvent } from 'react'
 
 import { RADIUS_DISTANCE } from '../constants/maps'
-import { CopyHolder, LocationRecord, FilterMapAction } from '../types'
+import {
+  CopyHolder,
+  LocationRecord,
+  FilterMapAction,
+  SantaBarbaraCountyCoords,
+} from '../types'
 import useLanguage from '../hooks/useLanguage'
 import styles from './ProximityFilter.module.css'
 
 interface ProximityFilterProps {
-  coords: GeolocationCoordinates
+  coords: SantaBarbaraCountyCoords
   locationsToFilter: LocationRecord[]
   setLocRecordsToFilter: Dispatch<FilterMapAction>
   radiusDistance: number

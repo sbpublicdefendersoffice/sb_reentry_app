@@ -14,7 +14,7 @@ import debounce from 'lodash/debounce'
 
 import useLanguage from '../hooks/useLanguage'
 
-import Tooltip from './Tooltip'
+import { Tooltip, FindMe } from './'
 
 import Input from '../ui/Input'
 import { POST } from '../helpers/validators'
@@ -91,28 +91,31 @@ const LiveDataSearch = () => {
       className={styles.LiveDataSearch}
       onFocus={() => setIsFocused(true)}
     >
-      <form
-        ref={formRef}
-        className={styles.SearchContainer}
-        onSubmit={handleSubmit}
-      >
-        <label className={styles.Label} htmlFor="global-search">
-          Global data search
-        </label>
-        <Input
-          type="search"
-          id="global-search"
-          className={styles.Input}
-          value={searchQuery}
-          onChange={handleChange}
-          placeholder={`${activeCopy.search}...`}
-          role="search"
-        />
-        <span className={styles.SearchIcon} onClick={handleSubmit}>
-          &#128269;
-        </span>
-        <Tooltip>{activeCopy.tooltip}</Tooltip>
-      </form>
+      <div className={styles.SearchContainer}>
+        <FindMe />
+        <form
+          ref={formRef}
+          className={styles.SearchForm}
+          onSubmit={handleSubmit}
+        >
+          <label className={styles.Label} htmlFor="global-search">
+            Global data search
+          </label>
+          <Input
+            type="search"
+            id="global-search"
+            className={styles.Input}
+            value={searchQuery}
+            onChange={handleChange}
+            placeholder={`${activeCopy.search}...`}
+            role="search"
+          />
+          <span className={styles.SearchIcon} onClick={handleSubmit}>
+            &#128269;
+          </span>
+          <Tooltip>{activeCopy.tooltip}</Tooltip>
+        </form>
+      </div>
       {searchQuery && searchResults && isFocused && (
         <ul className={styles.ResultsContainer}>
           {tagsReady && (
