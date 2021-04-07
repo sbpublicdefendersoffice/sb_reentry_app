@@ -16,6 +16,8 @@ export const checkAndSetUserLocation = (
       (position: GeolocationPosition): void => {
         const { coords } = position
 
+        // below value for development and presentation only
+        // const isInSantaBarbara: boolean = true
         const isInSantaBarbara: boolean = validateIsInSantaBarbaraCounty(coords)
 
         const coordsToSave: SantaBarbaraCountyCoords = Object.defineProperties(
@@ -25,6 +27,9 @@ export const checkAndSetUserLocation = (
               value: isInSantaBarbara,
               enumerable: true,
             },
+            // below two values for development and presentation only
+            // longitude: { value: -119.69805, enumerable: true },
+            // latitude: { value: 34.406876, enumerable: true },
             longitude: { value: coords.longitude, enumerable: true },
             latitude: { value: coords.latitude, enumerable: true },
             accuracy: { value: coords.accuracy, enumerable: true },
