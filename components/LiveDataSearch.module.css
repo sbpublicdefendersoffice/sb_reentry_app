@@ -7,16 +7,22 @@
   border-radius: var(--radius-small);
   z-index: 20;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   overflow: hidden;
 }
 
 .SearchContainer {
+  display: flex;
   width: 100%;
-  padding: 0 var(--pad-lg);
+}
+
+.SearchForm {
+  width: inherit;
   display: inherit;
   align-items: center;
+  padding-right: var(--pad-lg);
 }
 
 .Input {
@@ -32,6 +38,7 @@
 
 .ResultsContainer {
   list-style-type: none;
+  padding: 0 var(--pad-lg);
   width: 100%;
   max-height: 40rem;
   overflow: scroll;
