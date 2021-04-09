@@ -6,7 +6,12 @@ import { CopyHolder } from '../types/language'
 
 import styles from './AccessLineCta.module.css'
 
-const copy: CopyHolder = {
+export const accessLineInfo = {
+  displayNumber: '(888) 868-1649',
+  href: 'tel:8888681649',
+}
+
+export const copy: CopyHolder = {
   english: {
     agency: 'Behavioral Wellness',
     title: '24 Hour Crisis Response and Service Access Line',
@@ -32,18 +37,21 @@ const AccessLineCta = () => {
 
   return (
     <CallToAction>
-      <Title>{activeCopy.agency}</Title>
-      <Title>{activeCopy.title}</Title>
+      <Title role="heading">{activeCopy.agency}</Title>
+      <Title role="heading">{activeCopy.title}</Title>
       <div className={styles.CopyAndLinks}>
-        <Paragraph className={styles.Instruction}>
+        <Paragraph role="article" className={styles.Instruction}>
           {activeCopy.instruction}
         </Paragraph>
-        <a href={'tel:8888681649'}>
+        <a role="link" href={accessLineInfo.href}>
           {activeCopy.call}
-          <p>(888) 868-1649</p>
+          <p role="link_paragraph">{accessLineInfo.displayNumber}</p>
         </a>
       </div>
-      <Button onClick={() => push('/search/[id]', '/search/recncoC6502aH2qYs')}>
+      <Button
+        role="button"
+        onClick={() => push('/search/[id]', '/search/recncoC6502aH2qYs')}
+      >
         {activeCopy.buttonText}
       </Button>
     </CallToAction>
