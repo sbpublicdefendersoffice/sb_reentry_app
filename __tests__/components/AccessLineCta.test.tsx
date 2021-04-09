@@ -4,7 +4,6 @@ import AccessLineCta, {
   accessLineInfo,
 } from '../../components/AccessLineCta'
 import { SPANISH } from '../../constants/language'
-// import { fireEvent } from '@testing-library/dom'
 
 describe('<AccessLineCta />', () => {
   it('renders access line information', () => {
@@ -55,16 +54,4 @@ describe('<AccessLineCta />', () => {
     expect(buttonNode).toHaveTextContent(buttonText)
     expect(linkNode).toHaveTextContent(call)
   })
-
-  //   it('pushes to record page when button is clicked', async () => {
-  //     const { getByRole } = renderWithAllContext(<AccessLineCta />)
-
-  //     const buttonNode: HTMLElement = getByRole('button')
-
-  //     fireEvent.click(buttonNode)
-
-  //     console.log(window.location.href)
-
-  //     expect(true).toBeTruthy()
-  //   })
 })
