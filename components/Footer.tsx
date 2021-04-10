@@ -10,9 +10,13 @@ import { FreshStartLeaf, Paragraph } from '../ui'
 import styles from './Footer.module.css'
 
 const currentYear: number = new Date().getFullYear()
-const copyright: string = `© Copyright 2021${
+export const copyright: string = `© Copyright 2021${
   currentYear === 2021 ? '' : `-${currentYear}`
 }`
+export const linkInfo = {
+  text: "Santa Barbara County Public Defender's Office",
+  href: 'https://www.countyofsb.org/defender',
+}
 
 const Footer = () => {
   const { language } = useLanguage()
@@ -25,7 +29,9 @@ const Footer = () => {
       return (
         <Fragment key={i}>
           <NextLink href={route} as={route}>
-            <Paragraph className={styles.Link}>{title}</Paragraph>
+            <Paragraph role="link" className={styles.Link}>
+              {title}
+            </Paragraph>
           </NextLink>
         </Fragment>
       )
@@ -33,9 +39,11 @@ const Footer = () => {
   )
 
   return (
-    <footer className={styles.Footer}>
+    <footer role="region" className={styles.Footer}>
       <div className={styles.container}>
-        <nav className={styles.Nav}>{StaticPages}</nav>
+        <nav role="navigation" className={styles.Nav}>
+          {StaticPages}
+        </nav>
         <div className={styles.Logo2}>
           <SBPDLogo />
         </div>
@@ -44,14 +52,17 @@ const Footer = () => {
         </div>
       </div>
       <em>
-        <span className={styles.copyright}>{copyright}</span>{' '}
+        <span role="contentinfo" className={styles.copyright}>
+          {copyright}
+        </span>
         <a
+          role="link"
           className={styles.copyright}
-          href="https://www.countyofsb.org/defender"
+          href={linkInfo.href}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Santa Barbara County Public Defender's Office
+          {linkInfo.text}
         </a>
       </em>
     </footer>
