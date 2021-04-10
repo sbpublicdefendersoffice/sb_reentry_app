@@ -11,14 +11,14 @@ import useLanguage from '../hooks/useLanguage'
 
 import styles from './CityFilter.module.css'
 
-interface CityFilterProps {
+export interface CityFilterProps {
   locationsToFilter: LocationRecord[]
   setLocRecordsToFilter: Dispatch<FilterMapAction>
   regionVisibility: CountyVisibilityFilter
   children?: ReactNode
 }
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     southCounty: 'South County',
     centralCounty: 'Central County',
@@ -55,15 +55,17 @@ const CityFilter = ({
 
   return (
     <form
+      role="form"
       className={styles.CityFilter}
       style={{ width: `${language === ENGLISH ? 7.25 : 8.5}rem` }}
     >
       {Object.keys(regionVisibility).map((region: string) => (
         <div key={region} className={styles.CheckboxHolder}>
-          <label className={styles.Label} htmlFor={region}>
+          <label role="label" className={styles.Label} htmlFor={region}>
             {activeCopy[region]}
           </label>
           <input
+            role="checkbox"
             type="checkbox"
             checked={regionVisibility[region]}
             onChange={handleCheck}

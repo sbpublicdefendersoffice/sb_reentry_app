@@ -1,4 +1,4 @@
-import { renderWithAllContext } from '../../helpers/testHelpers'
+import { renderWithAllContext } from '../__helpers__'
 import AccessLineCta, {
   copy,
   accessLineInfo,

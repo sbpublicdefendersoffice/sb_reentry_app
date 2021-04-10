@@ -1,4 +1,4 @@
-import { renderWithLanguage } from '../../helpers/testHelpers'
+import { renderWithLanguage } from '../__helpers__'
 import Footer from '../../components/Footer'
 
 describe('<Footer />', () => {

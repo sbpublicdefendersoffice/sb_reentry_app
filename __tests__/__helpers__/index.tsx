@@ -2,9 +2,9 @@ import { ReactElement } from 'react'
 import { RouterContext } from 'next/dist/next-server/lib/router-context'
 import { render, RenderResult } from '@testing-library/react'
 
-import { Language } from '../types/language'
-import { Provider as LangProvider } from '../hooks/useLanguage'
-import { ENGLISH } from '../constants/language'
+import { Language } from '../../types/language'
+import { Provider as LangProvider } from '../../hooks/useLanguage'
+import { ENGLISH } from '../../constants/language'
 
 const blankRouter = {
   asPath: '/',
