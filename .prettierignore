@@ -3,3 +3,6 @@ yarn.lock
 
 # pwa files
 /public/*.js
+
+# testing
+/coverage
