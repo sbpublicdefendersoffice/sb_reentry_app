@@ -38,7 +38,7 @@ describe('<AccessLineCta />', () => {
   it('renders correctly in spanish', () => {
     const { getAllByRole, getByRole } = renderWithAllContext(
       <AccessLineCta />,
-      SPANISH,
+      { language: SPANISH },
     )
 
     const { agency, title, instruction, buttonText, call } = copy.spanish
