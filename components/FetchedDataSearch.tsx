@@ -14,7 +14,7 @@ import { searchCopy } from '../constants/copy'
 
 import useLanguage from '../hooks/useLanguage'
 
-interface FetchedDataSearchProps {
+export interface FetchedDataSearchProps {
   displayCategory: string
   originalRecords: OrgRecord[]
   setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
@@ -57,9 +57,9 @@ const FetchedDataSearch = ({
   }
 
   return (
-    <div className={styles.FetchedDataSearch}>
+    <div role="searchbox" className={styles.FetchedDataSearch}>
       <label className={styles.Label} htmlFor="category-search">
-        Send Text
+        Search Fetched Data
       </label>
       <Input
         type="search"

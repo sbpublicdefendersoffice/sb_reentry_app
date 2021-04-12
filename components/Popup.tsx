@@ -22,6 +22,7 @@ const Popup = ({ children, clientX, clientY }: PopupProps) => {
 
   return (
     <aside
+      role="note"
       ref={ref}
       style={{ left: `${calcXvalue + 10}px`, top: `${clientY + 10}px` }}
       className={styles.Popup}
