@@ -136,7 +136,6 @@ export const renderWithAllContext = (
           >
             {component}
           </ToastProvider>
-          ,
         </LocationProvider>
       </LangProvider>
     </RouterContext.Provider>,
