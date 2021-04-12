@@ -6,7 +6,6 @@ import MainAccordian from '../../components/MainAccordian'
 import ProbationAccordian from '../../components/ProbationAccordian'
 import {
   checklistData,
-  jobAccordian,
   mentalHealthAccordian,
   sobrietyAccordian,
   medicalAccordian,
