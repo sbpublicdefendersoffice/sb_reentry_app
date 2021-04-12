@@ -5,7 +5,6 @@ export interface AppLanguageProps {
   // eslint-disable-next-line no-unused-vars
   setLanguage: (language: Language) => void
 }
-
 export interface CopyHolder {
   english: { [key: string]: string }
   spanish: { [key: string]: string }
