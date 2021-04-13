@@ -32,7 +32,7 @@ describe('<LangSwitcher />', () => {
     expect(checkboxNode).toHaveAttribute('checked')
   })
 
-  it('turns check attribute on and off when clicked', async () => {
+  it('turns check attribute on and off when clicked', () => {
     const { getByRole } = renderWithAllContext(<LangSwitcher />)
 
     const checkboxNode: HTMLElement = getByRole('checkbox')
