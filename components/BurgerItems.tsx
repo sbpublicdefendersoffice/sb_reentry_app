@@ -12,7 +12,7 @@ const BurgerItems = ({ open, setOpen }) => {
     <StyledBurgerItems open={open} onClick={() => setOpen(!open)}>
       <NextLink href="/checklist" as="/success-stories">
         <a>
-          <h2>
+          <h2 role="term">
             {language === ENGLISH
               ? '72 Hour Checklist'
               : 'Lista de verificación de 72 horas'}
@@ -21,7 +21,7 @@ const BurgerItems = ({ open, setOpen }) => {
       </NextLink>
       <NextLink href="/success-stories" as="/success-stories">
         <a>
-          <h2>
+          <h2 role="term">
             {' '}
             {language === ENGLISH ? 'Success Stories' : 'Historias de éxito'}
           </h2>
@@ -29,14 +29,17 @@ const BurgerItems = ({ open, setOpen }) => {
       </NextLink>
       <NextLink href="/know-your-rights" as="/know-your-rights">
         <a>
-          <h2>
+          <h2 role="term">
             {language === ENGLISH ? 'Know Your Rights' : 'Conoce tus derechos'}
           </h2>
         </a>
       </NextLink>
       <NextLink href="/about-us" as="/about-us">
         <a>
-          <h2> {language === ENGLISH ? 'About Us' : 'Sobre nosotros'}</h2>
+          <h2 role="term">
+            {' '}
+            {language === ENGLISH ? 'About Us' : 'Sobre nosotros'}
+          </h2>
         </a>
       </NextLink>
     </StyledBurgerItems>
