@@ -3,7 +3,12 @@ import { RouterContext } from 'next/dist/next-server/lib/router-context'
 import { render, RenderResult } from '@testing-library/react'
 
 import { Language, SantaBarbaraCountyCoords } from '../../types'
-import { LangProvider, LocationProvider, ToastProvider } from '../../hooks/'
+import {
+  LangProvider,
+  LocationProvider,
+  ToastProvider,
+  GlobalSearchProvider,
+} from '../../hooks/'
 import { ENGLISH } from '../../constants/language'
 
 const blankRouter = {
@@ -97,6 +102,9 @@ export const renderWithToast = (
     </ToastProvider>,
   )
 
+export const renderWithGlobalSearch = (component: ReactElement): RenderResult =>
+  render(<GlobalSearchProvider>{component}</GlobalSearchProvider>)
+
 export const renderWithAllContext = (
   component: ReactElement,
   contextOptions?: {
@@ -134,7 +142,7 @@ export const renderWithAllContext = (
               setToast: blankFn,
             }}
           >
-            {component}
+            <GlobalSearchProvider>{component}</GlobalSearchProvider>
           </ToastProvider>
         </LocationProvider>
       </LangProvider>

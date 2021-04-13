@@ -1,4 +1,4 @@
-export const resizeWindow = (width: number, height?: number) => {
+export const resizeWindow = (width: number, height?: number): void => {
   // @ts-ignore
   window.innerWidth = width
   if (height)

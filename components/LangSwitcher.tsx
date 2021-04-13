@@ -5,7 +5,7 @@ import { ENGLISH, SPANISH } from '../constants/language'
 
 import styles from './LangSwitcher.module.css'
 
-const disabledTimeInMs: number = 400
+export const disabledTimeInMs: number = 400
 
 const LangSwitcher = () => {
   const { language, setLanguage } = useLanguage()
@@ -31,7 +31,7 @@ const LangSwitcher = () => {
   }, [isChecked])
 
   return (
-    <label className={styles.LangSwitcher} htmlFor="lang-input">
+    <label role="option" className={styles.LangSwitcher} htmlFor="lang-input">
       <span
         className={styles.label}
         style={{
@@ -44,6 +44,7 @@ const LangSwitcher = () => {
       <input
         className={styles.input}
         type="checkbox"
+        role="checkbox"
         id="lang-input"
         onChange={() => setIsChecked(!isChecked)}
         checked={isChecked}

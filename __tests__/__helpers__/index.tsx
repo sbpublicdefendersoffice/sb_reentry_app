@@ -1,8 +1,9 @@
 export {
-  renderWithLanguage,
   renderWithRouter,
+  renderWithLanguage,
   renderWithLocation,
   renderWithToast,
+  renderWithGlobalSearch,
   renderWithAllContext,
 } from './contexts'
 
