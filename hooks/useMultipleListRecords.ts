@@ -21,7 +21,7 @@ const useMultipleListRecords = (category: string) => {
           body: JSON.stringify({ category, language }),
         })
 
-        const apiResponse = await apiRequest.json()
+        const apiResponse: TranslatedRecordResponse = await apiRequest.json()
 
         setFetchedRecords(apiResponse)
       }

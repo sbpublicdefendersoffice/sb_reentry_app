@@ -11,7 +11,7 @@ export const resourceRoutes: RouteInfo[] = [
     title_english: 'Medical Support',
     title_spanish: 'Atención Médica',
     route: '/medicalsupport',
-    imgPath: './icons/medical.svg',
+    imgPath: './icons/medicalsupport.svg',
   },
   {
     title_english: 'Transportation',
@@ -41,19 +41,19 @@ export const resourceRoutes: RouteInfo[] = [
     title_english: 'Resource Directory',
     title_spanish: 'Directorio de Recursos',
     route: '/resourcedirectory',
-    imgPath: './icons/directory.svg',
+    imgPath: './icons/resourcedirectory.svg',
   },
   {
     title_english: 'Legal Services',
     title_spanish: 'Servicios Jurídicos',
     route: '/legalservices',
-    imgPath: './icons/legal.svg',
+    imgPath: './icons/legalservices.svg',
   },
   {
     title_english: 'Community Support',
     title_spanish: 'Soporte Comunitario',
     route: '/communitysupport',
-    imgPath: './icons/community.svg',
+    imgPath: './icons/communitysupport.svg',
   },
   {
     title_english: 'Employment',

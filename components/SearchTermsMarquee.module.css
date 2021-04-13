@@ -1,0 +1,30 @@
+.SearchTermsMarquee {
+  width: 100%;
+  position: absolute;
+  background-color: var(--light);
+  box-shadow: -0.75rem 0.3rem 0.4rem var(--light);
+}
+
+.Tags {
+  white-space: nowrap;
+  text-transform: capitalize;
+  color: var(--highlight);
+}
+
+.Scroll {
+  animation: marquee 10s linear infinite;
+  animation-direction: alternate;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

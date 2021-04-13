@@ -4,9 +4,21 @@ import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
 import { siteTitle, ENGLISH, SPANISH } from '../constants'
-import { Language } from '../types/language'
-import { GlobalSearchProvider, LangProvider, LocationProvider } from '../hooks'
-import { Footer, Header, LangSwitcher, LiveDataSearch } from '../components'
+import { Language, SantaBarbaraCountyCoords } from '../types'
+import {
+  GlobalSearchProvider,
+  LangProvider,
+  LocationProvider,
+  ToastProvider,
+} from '../hooks'
+import {
+  Footer,
+  Header,
+  LangSwitcher,
+  LiveDataSearch,
+  Navigator,
+  Toast,
+} from '../components'
 import { checkAndSetUserLocation } from '../helpers/location'
 
 import '../styles/globals.css'
@@ -14,13 +26,17 @@ import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [language, setLanguage] = useState<Language | null>(null)
-  const [coords, setCoords] = useState<GeolocationCoordinates | null>(null)
+  const [coords, setCoords] = useState<SantaBarbaraCountyCoords | null>(null)
+  const [toast, setToast] = useState<string | null>(null)
 
   useEffect((): void => {
-    if (navigator.language.startsWith('es')) setLanguage(SPANISH)
-    else setLanguage(ENGLISH)
+    const languageToLoad: Language = navigator.language.startsWith('es')
+      ? SPANISH
+      : ENGLISH
 
-    if (!coords) checkAndSetUserLocation(setCoords)
+    setLanguage(languageToLoad)
+
+    if (!coords) checkAndSetUserLocation(setCoords, setToast, languageToLoad)
   }, [])
 
   return (
@@ -43,15 +59,19 @@ const App = ({ Component, pageProps }: AppProps) => {
         </Head>
         <LangProvider value={{ language, setLanguage }}>
           <LocationProvider value={{ coords, setCoords }}>
-            <GlobalSearchProvider>
-              <LangSwitcher />
-              <Header />
-              <LiveDataSearch />
-              <main>
-                <Component {...pageProps} />
-              </main>
-              <Footer />
-            </GlobalSearchProvider>
+            <ToastProvider value={{ toast, setToast }}>
+              <GlobalSearchProvider>
+                <LangSwitcher />
+                <Navigator />
+                <Header />
+                <LiveDataSearch />
+                <main>
+                  <Component {...pageProps} />
+                </main>
+                <Footer />
+                <Toast />
+              </GlobalSearchProvider>
+            </ToastProvider>
           </LocationProvider>
         </LangProvider>
       </>

@@ -15,3 +15,9 @@ export type TextSize =
   | 'med-text'
   | 'heading-text'
   | 'large-text'
+
+export interface UseToastProps {
+  toast: string
+  // eslint-disable-next-line no-unused-vars
+  setToast: (toast: any) => void
+}

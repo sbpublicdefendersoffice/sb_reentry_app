@@ -1,0 +1,22 @@
+.GlobalSearchResult {
+  padding: var(--pad-sm) var(--pad-lg) var(--pad-sm) 0;
+  border-top: var(--border-width) solid var(--light-2);
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.GlobalSearchResult:hover > div > p {
+  color: var(--highlight);
+}
+
+.SingleSearchTerm {
+  color: var(--highlight);
+  text-transform: capitalize;
+}
+
+.Image {
+  width: 3rem;
+  height: 3rem;
+}

@@ -92,17 +92,17 @@ const ScheduleRecordDisplay = ({
 
   return (
     <section className={styles.ScheduleRecordDisplay}>
+      {day && (
+        <Paragraph size="med-text">
+          <strong>{daysOpen}</strong>: {day}
+        </Paragraph>
+      )}
       {open_time && close_time && (
         <Paragraph size="med-text">
           <strong>{activeCopy.timeOpen}: </strong>
           {timeParser(open_time)}
           {activeCopy.to}
           {timeParser(close_time)}
-        </Paragraph>
-      )}
-      {day && (
-        <Paragraph size="med-text">
-          <strong>{daysOpen}</strong>: {day}
         </Paragraph>
       )}
       {ordinal_open && (

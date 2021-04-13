@@ -2,36 +2,43 @@ import {
   useState,
   useCallback,
   useEffect,
+  useRef,
+  MutableRefObject,
   ChangeEvent,
   FormEvent,
   MouseEvent,
+  Fragment,
 } from 'react'
-import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import debounce from 'lodash/debounce'
 
 import useLanguage from '../hooks/useLanguage'
 
-import Tooltip from './Tooltip'
+import { Tooltip, FindMe } from './'
 
-import { Input, Paragraph } from '../ui'
+import Input from '../ui/Input'
 import { POST } from '../helpers/validators'
 import { searchCopy } from '../constants/copy'
 import useGlobalSearch from '../hooks/useGlobalSearch'
+import { GlobalSearchResult, SearchTermsMarquee } from './'
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
 
 import styles from './LiveDataSearch.module.css'
 
 const delayTimeInMs: number = 500
 
+const delimiter: string = ', '
+
 const LiveDataSearch = () => {
   const { push } = useRouter()
   const { language } = useLanguage()
-  const activeCopy = searchCopy[language]
+  const { searchResults, setSearchResults } = useGlobalSearch()
 
+  const formRef: MutableRefObject<HTMLFormElement> | null = useRef(null)
   const [isFocused, setIsFocused] = useState<boolean>(false)
   const [searchQuery, setSearchQuery] = useState<string>('')
-  const { searchResults, setSearchResults } = useGlobalSearch()
+
+  const activeCopy = searchCopy[language]
 
   const handleSubmit = (
     e: FormEvent<HTMLFormElement> | MouseEvent<HTMLSpanElement>,
@@ -68,50 +75,68 @@ const LiveDataSearch = () => {
     searchQuery,
   ])
 
-  useEffect((): void => {
+  useEffect((): (() => void) => {
     delayedQuery()
     return delayedQuery.cancel
   }, [searchQuery, delayedQuery])
+
+  const tagsReady: boolean =
+    searchResults?.records?.some(
+      (record: OrgRecord) =>
+        record.fields.org_tags || record.fields.org_tags_spanish,
+    ) && Boolean(formRef.current)
 
   return (
     <section
       className={styles.LiveDataSearch}
       onFocus={() => setIsFocused(true)}
     >
-      <form className={styles.SearchContainer} onSubmit={handleSubmit}>
-        <label className={styles.Label} htmlFor="global-search">
-          Global Search
-        </label>
-        <Input
-          type="search"
-          id="global-search"
-          className={styles.Input}
-          value={searchQuery}
-          onChange={handleChange}
-          placeholder={`${activeCopy.search}...`}
-          role="search"
-        />
-        <span className={styles.SearchIcon} onClick={handleSubmit}>
-          &#128269;
-        </span>
-        <Tooltip>{activeCopy.tooltip}</Tooltip>
-      </form>
+      <div className={styles.SearchContainer}>
+        <FindMe />
+        <form
+          ref={formRef}
+          className={styles.SearchForm}
+          onSubmit={handleSubmit}
+        >
+          <label className={styles.Label} htmlFor="global-search">
+            Global data search
+          </label>
+          <Input
+            type="search"
+            id="global-search"
+            className={styles.Input}
+            value={searchQuery}
+            onChange={handleChange}
+            placeholder={`${activeCopy.search}...`}
+            role="search"
+          />
+          <span className={styles.SearchIcon} onClick={handleSubmit}>
+            &#128269;
+          </span>
+          <Tooltip>{activeCopy.tooltip}</Tooltip>
+        </form>
+      </div>
       {searchQuery && searchResults && isFocused && (
         <ul className={styles.ResultsContainer}>
-          {searchResults.records.map((record: OrgRecord, i: number) => (
-            <li
-              className={styles.Result}
-              key={i}
-              tabIndex={0}
-              onClick={() => setIsFocused(false)}
-            >
-              <NextLink href="/search/[id]" as={`/search/${record.id}`}>
-                <Paragraph size="med-text">
-                  {record.fields.org_name || record.fields.org_name_spanish}
-                </Paragraph>
-              </NextLink>
-            </li>
-          ))}
+          {tagsReady && (
+            <SearchTermsMarquee
+              searchRecords={searchResults.records}
+              language={language}
+              formRef={formRef}
+              delimiter={delimiter}
+            />
+          )}
+          <div style={{ marginTop: tagsReady ? '3.25rem' : 0 }}>
+            {searchResults.records.map((record: OrgRecord, i: number) => (
+              <Fragment key={i}>
+                <GlobalSearchResult
+                  record={record}
+                  delimiter={delimiter}
+                  setIsFocused={setIsFocused}
+                />
+              </Fragment>
+            ))}
+          </div>
         </ul>
       )}
     </section>

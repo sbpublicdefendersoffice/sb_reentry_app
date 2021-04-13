@@ -2,7 +2,7 @@ import { Card, Paragraph } from '../ui'
 
 import { ScheduleRecordDisplay, SendText } from './'
 import { LocationRecord, CopyHolder } from '../types'
-import useLanguage from '../hooks/useLanguage'
+import { useLanguage, useLocation } from '../hooks'
 
 import styles from './LocationRecordDisplay.module.css'
 
@@ -14,7 +14,7 @@ interface LocationRecordDisplayProps {
 const copy: CopyHolder = {
   english: {
     address: 'Address',
-    find: 'Find on Google Maps',
+    find: 'Get Directions On Google Maps',
     phone: 'Phone #',
     call: 'Click to call',
     locationSite: 'Location Website',
@@ -24,7 +24,7 @@ const copy: CopyHolder = {
   },
   spanish: {
     address: 'Dirección',
-    find: 'Buscar en Google Maps',
+    find: 'Obtener direcciones en Google Maps',
     phone: 'Teléfono #',
     call: 'Haz clic para llamar',
     locationSite: 'Ubicación Página Web',
@@ -54,6 +54,8 @@ const LocationRecordDisplay = ({
     org_name,
   } = locationInfo
 
+  const { coords } = useLocation()
+
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
@@ -64,10 +66,14 @@ const LocationRecordDisplay = ({
     `${city || state ? ', ' : ''}${zip}` || ''
   }`
 
-  // const addressForUrl: string = `${fullAddress}+${cityStateZip}`.replace(
-  //   /\s/g,
-  //   '+',
-  // )
+  const baseUrl: string = 'https://www.google.com/maps'
+  const addressForUrl: string = `${fullAddress}+${cityStateZip}`.replace(
+    /\s/g,
+    '+',
+  )
+  const hrefToGoogleMaps: string = coords?.isInSBCounty
+    ? `/dir/?api=1&origin=${coords.latitude},${coords.longitude}&destination=${addressForUrl}`
+    : `/place/${addressForUrl}`
 
   return (
     <Card className={styles.LocationRecordDisplay}>
@@ -76,49 +82,51 @@ const LocationRecordDisplay = ({
           {name}
         </Paragraph>
       )}
-      {notes && <Paragraph size="med-text">{notes}</Paragraph>}
+      {notes && (
+        <Paragraph className={styles.Notes} size="med-text">
+          {notes}
+        </Paragraph>
+      )}
       {address && (
         <>
-          <Paragraph size="med-text" className={styles.subHeading}>
-            {activeCopy.address}:
-          </Paragraph>
-          <address>
-            <Paragraph size="med-text">{fullAddress}</Paragraph>
-            <Paragraph size="med-text">{cityStateZip}</Paragraph>
-            {/* <a
-                href={`https://www.google.com/maps/place/${addressForUrl}`}
+          <Paragraph size="med-text">
+            <strong>{activeCopy.address}: </strong>
+            {fullAddress}, {cityStateZip}
+            <SendText
+              id={id}
+              org_name={org_name}
+              fullAddress={fullAddress}
+              cityStateZip={cityStateZip}
+            />
+            <Paragraph size="med-text" className={styles.Link}>
+              <a
+                href={`${baseUrl}${hrefToGoogleMaps}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {activeCopy.find}
-              </a> */}
-          </address>
-          <SendText
-            id={id}
-            org_name={org_name}
-            fullAddress={fullAddress}
-            cityStateZip={cityStateZip}
-          />
+              </a>
+            </Paragraph>
+          </Paragraph>
         </>
       )}
       {phone && (
         <>
-          <Paragraph size="med-text" className={styles.subHeading}>
-            {activeCopy.phone}:
-          </Paragraph>
           <Paragraph size="med-text">
+            <strong>{activeCopy.phone}: </strong>
             {phone}
-            <br />
-            <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
-              {activeCopy.call}
-            </a>
+            <Paragraph size="med-text" className={styles.Link}>
+              <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
+                {activeCopy.call}
+              </a>
+            </Paragraph>
           </Paragraph>
         </>
       )}
       {website && (
         <>
-          <Paragraph size="med-text" className={styles.subHeading}>
-            {activeCopy.locationSite}:
+          <Paragraph size="med-text">
+            <strong>{activeCopy.locationSite}: </strong>
             <a href={website} target="_blank" rel="noopener noreferrer">
               {website}
             </a>
@@ -127,32 +135,24 @@ const LocationRecordDisplay = ({
       )}
       {services && (
         <>
-          <Paragraph size="med-text" className={styles.subHeading}>
-            {activeCopy.services}:
+          <Paragraph size="med-text">
+            <strong>{activeCopy.services}: </strong>
+            {services}
           </Paragraph>
-          <Paragraph size="med-text">{services}</Paragraph>
         </>
       )}
       {email && (
-        <>
-          <Paragraph size="med-text" className={styles.subHeading}>
-            {activeCopy.email}:
-          </Paragraph>
-          <Paragraph size="med-text">
-            <a
-              href={`mailto:${email}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {email}
-            </a>
-          </Paragraph>
-        </>
+        <Paragraph size="med-text">
+          <strong>{activeCopy.email}: </strong>
+          <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
+            {email}
+          </a>
+        </Paragraph>
       )}
       {Boolean(schedule.length) && (
         <>
-          <Paragraph size="med-text" className={styles.subHeading}>
-            {activeCopy.schedule}:
+          <Paragraph size="med-text">
+            <strong>{activeCopy.schedule}: </strong>
           </Paragraph>
           {schedule.map((scheduleInfo, i) => (
             <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />

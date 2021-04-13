@@ -12,8 +12,12 @@
   font-weight: 100;
 }
 
-.subHeading {
-  margin: var(--margin-sm) 0;
-  font-weight: bold;
-  text-align: start;
+.heading,
+.Link,
+.Notes {
+  text-align: center;
+}
+
+.Link {
+  margin-top: var(--margin-sm);
 }
