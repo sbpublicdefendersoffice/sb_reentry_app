@@ -16,6 +16,7 @@ jest.mock('next/router', () => ({
 }))
 
 const push = jest.fn()
+
 // @ts-ignore
 useRouter.mockImplementation(() => ({ push }))
 

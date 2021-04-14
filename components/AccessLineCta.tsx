@@ -21,7 +21,7 @@ export const copy: CopyHolder = {
     instruction:
       'Behavioral Wellness is the hub for mental health services in Santa Barbara County',
     buttonText: 'Learn more about Behavioral Wellness',
-    call: 'Call Behavioral Wellness Acess Line',
+    call: 'Call Behavioral Wellness Access Line',
   },
   spanish: {
     agency: 'Bienestar conductual',

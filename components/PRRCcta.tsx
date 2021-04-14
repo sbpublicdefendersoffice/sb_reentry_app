@@ -4,25 +4,39 @@ import { Button, Title, Paragraph, CallToAction } from '../ui'
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     title: 'Probation Report and Resource Center (PRRC)',
     instruction:
       'The PRRC is an excellent source for information on probation requirements, reporting and many other topics',
-    buttonText: 'More information on Santa Barbara probation',
     callSb: 'Call Santa Barbara PRRC',
     callSm: 'Call Santa Maria PRRC',
+    buttonText: 'More information on Santa Barbara probation',
   },
   spanish: {
     title: 'Centro de recursos e informes de libertad condicional (PRRC)',
     instruction:
       'El PRRC es una excelente fuente de información sobre los requisitos de libertad condicional, informes y muchos otros temas',
-    buttonText:
-      'Más información sobre la libertad condicional en Santa Bárbara',
     callSb: 'Llame al PRRC de Santa Bárbara',
     callSm: 'Llame al PRRC de Santa Maria',
+    buttonText:
+      'Más información sobre la libertad condicional en Santa Bárbara',
   },
 }
+
+export const accessLineInfo = {
+  santaBarbara: {
+    displayNumber: '(805) 692-4890',
+    href: 'tel:8056924890',
+  },
+  santaMaria: {
+    displayNumber: '(805) 346-7620',
+    href: 'tel:8053467620',
+  },
+}
+
+export const url: string = '/search/[id]'
+export const as: string = '/search/rec5sVCDDkpXlclv0'
 
 import styles from './PRRCcta.module.css'
 
@@ -31,23 +45,25 @@ const PRRCcta = () => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
+  const { santaBarbara, santaMaria } = accessLineInfo
+
   return (
     <CallToAction blueBg>
       <Title>{activeCopy.title}</Title>
       <div className={styles.CopyAndLinkHolder}>
         <Paragraph>{activeCopy.instruction}</Paragraph>
         <nav className={styles.Links}>
-          <a className={styles.Link} href={'tel:8056924890'}>
-            {activeCopy.callSb}
-            <p>(805) 692-4890</p>
+          <a className={styles.Link} href={santaBarbara.href}>
+            <span>{activeCopy.callSb}</span>
+            <p role="link_paragraph">{santaBarbara.displayNumber}</p>
           </a>
-          <a className={styles.Link} href={'tel:8053467620'}>
-            {activeCopy.callSm}
-            <p>(805) 346-7620</p>
+          <a className={styles.Link} href={santaMaria.href}>
+            <span>{activeCopy.callSm}</span>
+            <p role="link_paragraph">{santaMaria.displayNumber}</p>
           </a>
         </nav>
       </div>
-      <Button onClick={() => push('/search/[id]', '/search/rec5sVCDDkpXlclv0')}>
+      <Button role="button" onClick={() => push(url, as)}>
         {activeCopy.buttonText}
       </Button>
     </CallToAction>
