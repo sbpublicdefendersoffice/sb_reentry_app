@@ -1,6 +1,6 @@
 import { fireEvent } from '@testing-library/react'
 
-import { renderWithAllContext } from '../__helpers__/contexts'
+import { renderWithAllContext } from '../../__helpers__/contexts'
 import { SPANISH } from '../../constants/language'
 
 import LangSwitcher, { disabledTimeInMs } from '../../components/LangSwitcher'

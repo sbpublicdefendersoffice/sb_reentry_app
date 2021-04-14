@@ -1,5 +1,5 @@
 import { act } from '@testing-library/react'
-import { renderWithLanguage, resizeWindow } from '../__helpers__'
+import { renderWithLanguage, resizeWindow } from '../../__helpers__'
 
 import { SPANISH, staticPageRoutes } from '../../constants'
 

@@ -1,6 +1,6 @@
 import { fireEvent, waitFor } from '@testing-library/dom'
 
-import { renderWithLanguage } from '../__helpers__'
+import { renderWithLanguage } from '../../__helpers__'
 
 import { searchCopy, SPANISH } from '../../constants'
 import FetchedDataSearch, {

@@ -1,4 +1,4 @@
-import { renderWithLanguage } from '../__helpers__'
+import { renderWithLanguage } from '../../__helpers__'
 import { SPANISH } from '../../constants/language'
 
 import Disclaimer, { copy } from '../../components/Disclaimer'

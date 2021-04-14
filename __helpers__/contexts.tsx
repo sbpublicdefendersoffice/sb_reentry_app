@@ -2,14 +2,14 @@ import { ReactElement } from 'react'
 import { RouterContext } from 'next/dist/next-server/lib/router-context'
 import { render, RenderResult } from '@testing-library/react'
 
-import { Language, SantaBarbaraCountyCoords } from '../../types'
+import { Language, SantaBarbaraCountyCoords } from '../types'
 import {
   LangProvider,
   LocationProvider,
   ToastProvider,
   GlobalSearchProvider,
-} from '../../hooks/'
-import { ENGLISH } from '../../constants/language'
+} from '../hooks'
+import { ENGLISH } from '../constants/language'
 
 const blankRouter = {
   asPath: '/',

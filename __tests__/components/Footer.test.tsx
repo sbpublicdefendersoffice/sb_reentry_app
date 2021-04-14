@@ -1,4 +1,4 @@
-import { renderWithLanguage } from '../__helpers__'
+import { renderWithLanguage } from '../../__helpers__'
 
 import { staticPageRoutes, SPANISH } from '../../constants'
 import Footer, { copyright, linkInfo } from '../../components/Footer'

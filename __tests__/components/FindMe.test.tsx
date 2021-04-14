@@ -1,5 +1,5 @@
 import { fireEvent, waitFor } from '@testing-library/react'
-import { renderWithAllContext } from '../__helpers__'
+import { renderWithAllContext } from '../../__helpers__'
 
 import FindMe, { copy } from '../../components/FindMe'
 import { SPANISH } from '../../constants/language'

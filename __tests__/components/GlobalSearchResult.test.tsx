@@ -3,7 +3,7 @@ import { render } from '@testing-library/react'
 import {
   englishDummyOrgData,
   spanishDummyOrgData,
-} from '../__helpers__/dummyData'
+} from '../../__helpers__/dummyData'
 import GlobalSearchResult, {
   GlobalSearchResultProps,
 } from '../../components/GlobalSearchResult'

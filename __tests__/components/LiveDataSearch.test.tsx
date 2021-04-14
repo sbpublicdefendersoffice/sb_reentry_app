@@ -1,4 +1,4 @@
-import { renderWithAllContext } from '../__helpers__/contexts'
+import { renderWithAllContext } from '../../__helpers__/contexts'
 
 import { searchCopy, SPANISH } from '../../constants/'
 import LiveDataSearch from '../../components/LiveDataSearch'

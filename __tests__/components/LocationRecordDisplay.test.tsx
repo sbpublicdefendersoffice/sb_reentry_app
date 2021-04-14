@@ -3,7 +3,7 @@ import {
   dummyScheduleRecord,
   blankLocationRecord,
   dummyLocationRecord,
-} from '../__helpers__'
+} from '../../__helpers__'
 
 import LocationRecordDisplay, {
   copy,

@@ -1,4 +1,4 @@
-import { OrgRecord, LocationRecord, ScheduleRecord } from '../../types/records'
+import { OrgRecord, LocationRecord, ScheduleRecord } from '../types/records'
 
 const dummyBaseOrgData: OrgRecord = {
   createdTime: '01/01/1900',

@@ -1,6 +1,6 @@
 import { fireEvent } from '@testing-library/dom'
 
-import { renderWithLanguage } from '../__helpers__'
+import { renderWithLanguage } from '../../__helpers__'
 import { allRegionsVisible, SPANISH } from '../../constants'
 
 import CityFilter, { CityFilterProps, copy } from '../../components/CityFilter'
