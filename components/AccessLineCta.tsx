@@ -6,6 +6,9 @@ import { CopyHolder } from '../types/language'
 
 import styles from './AccessLineCta.module.css'
 
+export const url: string = '/search/[id]'
+export const as: string = '/search/recncoC6502aH2qYs'
+
 export const accessLineInfo = {
   displayNumber: '(888) 868-1649',
   href: 'tel:8888681649',
@@ -48,10 +51,7 @@ const AccessLineCta = () => {
           <p role="link_paragraph">{accessLineInfo.displayNumber}</p>
         </a>
       </div>
-      <Button
-        role="button"
-        onClick={() => push('/search/[id]', '/search/recncoC6502aH2qYs')}
-      >
+      <Button role="button" onClick={() => push(url, as)}>
         {activeCopy.buttonText}
       </Button>
     </CallToAction>

@@ -1,9 +1,23 @@
+import { fireEvent } from '@testing-library/react'
+import { useRouter } from 'next/router'
+
 import { renderWithAllContext } from '../../__helpers__'
+
 import AccessLineCta, {
+  url,
+  as,
   copy,
   accessLineInfo,
 } from '../../components/AccessLineCta'
 import { SPANISH } from '../../constants/language'
+
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(),
+}))
+
+const push = jest.fn()
+// @ts-ignore
+useRouter.mockImplementation(() => ({ push }))
 
 describe('<AccessLineCta />', () => {
   it('renders access line information', () => {
@@ -53,5 +67,15 @@ describe('<AccessLineCta />', () => {
     expect(instructionNode).toHaveTextContent(instruction)
     expect(buttonNode).toHaveTextContent(buttonText)
     expect(linkNode).toHaveTextContent(call)
+  })
+
+  it('calls push method correctly', () => {
+    const { getByRole } = renderWithAllContext(<AccessLineCta />)
+
+    const buttonNode: HTMLElement = getByRole('button')
+
+    fireEvent.click(buttonNode)
+
+    expect(push).toHaveBeenCalledWith(url, as)
   })
 })
