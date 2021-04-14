@@ -79,7 +79,7 @@ export const renderWithLanguage = (
 
 export const renderWithLocation = (
   component: ReactElement,
-  sbCoords?: SantaBarbaraCountyCoords,
+  sbCoords?: Partial<SantaBarbaraCountyCoords>,
 ): RenderResult =>
   render(
     <LocationProvider
