@@ -13,7 +13,7 @@ const Popup = ({ children, clientX, clientY }: PopupProps) => {
 
   useEffect(() => {
     if (ref.current && clientX) {
-      const { width } = ref.current.getClientRects()[0]
+      const width = ref?.current?.getClientRects()[0]?.width
       const widerThenWindow: boolean = clientX + width > innerWidth
       if (widerThenWindow) setCalcXvalue(clientX - width)
       else setCalcXvalue(clientX)
