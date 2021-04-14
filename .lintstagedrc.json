@@ -1,6 +1,6 @@
 {
-  "./**/*.{js,jsx,ts,tsx}": ["yarn run test", "yarn run lint-es"],
-  "./**/*.{ts,tsx}": "yarn run type-check",
-  "./**/*.css": "yarn run lint-css",
-  "./**/*": "yarn run format"
+  "./**/*.{js,jsx,ts,tsx}": ["yarn test", "yarn lint-es"],
+  "./**/*.{ts,tsx}": "yarn type-check",
+  "./**/*.css": "yarn lint-css",
+  "./**/*": "yarn format"
 }

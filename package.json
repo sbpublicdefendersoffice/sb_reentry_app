@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "code-check": "yarn run test && yarn run lint-es && yarn run type-check && yarn run lint-css && yarn run format",
+    "code-check": "yarn test && yarn lint-es && yarn type-check && yarn lint-css && yarn format",
     "dev": "next dev",
     "format": "prettier * --check --ignore-unknown",
     "lint-css": "stylelint './**/*.css' --fix --cache && echo 'All stylelint checks passed!'",
