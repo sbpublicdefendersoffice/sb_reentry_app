@@ -7,6 +7,13 @@ export {
   renderWithAllContext,
 } from './contexts'
 
-export { englishDummyOrgData, spanishDummyOrgData } from './dummyData'
+export {
+  blankScheduleRecord,
+  dummyScheduleRecord,
+  blankLocationRecord,
+  dummyLocationRecord,
+  englishDummyOrgData,
+  spanishDummyOrgData,
+} from './dummyData'
 
 export { resizeWindow } from './window'

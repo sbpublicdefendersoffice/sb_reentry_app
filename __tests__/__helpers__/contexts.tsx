@@ -110,7 +110,7 @@ export const renderWithAllContext = (
   contextOptions?: {
     routerOptions?: any
     language?: Language
-    sbCoords?: SantaBarbaraCountyCoords
+    sbCoords?: Partial<SantaBarbaraCountyCoords>
     toastText?: string
   },
 ): RenderResult =>

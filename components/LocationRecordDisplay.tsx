@@ -11,7 +11,7 @@ interface LocationRecordDisplayProps {
   id: string
 }
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     address: 'Address',
     find: 'Get Directions On Google Maps',
@@ -76,21 +76,25 @@ const LocationRecordDisplay = ({
     : `/place/${addressForUrl}`
 
   return (
-    <Card className={styles.LocationRecordDisplay}>
+    <Card role="list" className={styles.LocationRecordDisplay}>
       {name && (
-        <Paragraph size="heading-text" className={styles.heading}>
+        <Paragraph
+          role="listitem"
+          size="heading-text"
+          className={styles.heading}
+        >
           {name}
         </Paragraph>
       )}
       {notes && (
-        <Paragraph className={styles.Notes} size="med-text">
+        <Paragraph role="listitem" className={styles.Notes} size="med-text">
           {notes}
         </Paragraph>
       )}
       {address && (
         <>
-          <Paragraph size="med-text">
-            <strong>{activeCopy.address}: </strong>
+          <Paragraph role="listitem" size="med-text">
+            <strong role="note">{activeCopy.address}: </strong>
             {fullAddress}, {cityStateZip}
             <SendText
               id={id}
@@ -100,6 +104,7 @@ const LocationRecordDisplay = ({
             />
             <Paragraph size="med-text" className={styles.Link}>
               <a
+                role="note"
                 href={`${baseUrl}${hrefToGoogleMaps}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -112,11 +117,11 @@ const LocationRecordDisplay = ({
       )}
       {phone && (
         <>
-          <Paragraph size="med-text">
-            <strong>{activeCopy.phone}: </strong>
+          <Paragraph role="listitem" size="med-text">
+            <strong role="note">{activeCopy.phone}: </strong>
             {phone}
             <Paragraph size="med-text" className={styles.Link}>
-              <a href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
+              <a role="note" href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
                 {activeCopy.call}
               </a>
             </Paragraph>
@@ -125,8 +130,8 @@ const LocationRecordDisplay = ({
       )}
       {website && (
         <>
-          <Paragraph size="med-text">
-            <strong>{activeCopy.locationSite}: </strong>
+          <Paragraph role="listitem" size="med-text">
+            <strong role="note">{activeCopy.locationSite}: </strong>
             <a href={website} target="_blank" rel="noopener noreferrer">
               {website}
             </a>
@@ -135,24 +140,24 @@ const LocationRecordDisplay = ({
       )}
       {services && (
         <>
-          <Paragraph size="med-text">
-            <strong>{activeCopy.services}: </strong>
+          <Paragraph role="listitem" size="med-text">
+            <strong role="note">{activeCopy.services}: </strong>
             {services}
           </Paragraph>
         </>
       )}
       {email && (
-        <Paragraph size="med-text">
-          <strong>{activeCopy.email}: </strong>
+        <Paragraph role="listitem" size="med-text">
+          <strong role="note">{activeCopy.email}: </strong>
           <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
             {email}
           </a>
         </Paragraph>
       )}
-      {Boolean(schedule.length) && (
+      {Boolean(schedule?.length) && (
         <>
-          <Paragraph size="med-text">
-            <strong>{activeCopy.schedule}: </strong>
+          <Paragraph role="listitem" size="med-text">
+            <strong role="note">{activeCopy.schedule}: </strong>
           </Paragraph>
           {schedule.map((scheduleInfo, i) => (
             <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
