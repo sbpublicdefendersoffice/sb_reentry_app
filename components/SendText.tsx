@@ -9,14 +9,14 @@ import {
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 
-interface SendTextProps {
+export interface SendTextProps {
   org_name: string
   fullAddress: string
   cityStateZip: string
   id: string
 }
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     error: 'Phone Number is 10 digits, numbers only',
     placeholder: 'Phone Number',
@@ -29,7 +29,7 @@ const copy: CopyHolder = {
   },
 }
 
-const delayTimeInMs: number = 3000
+export const delayTimeInMs: number = 3000
 
 import styles from './SendText.module.css'
 
@@ -71,17 +71,21 @@ const SendText = ({
   const textId: string = `${org_name}${id}`
 
   return (
-    <form className={styles.SendText} onSubmit={postText}>
+    <form role="form" className={styles.SendText} onSubmit={postText}>
       <label className={styles.Label} htmlFor={textId}>
         Send Text
       </label>
       <Input
+        role="textbox"
+        value={numberToSendTo}
         className={styles.Input}
         id={textId}
         onChange={e => setNumberToSendTo(e.target.value)}
         placeholder={activeCopy.placeholder}
       />
-      <Button type="submit">{inputErrorMsg || activeCopy.location}</Button>
+      <Button role="button" type="submit">
+        {inputErrorMsg || activeCopy.location}
+      </Button>
     </form>
   )
 }
