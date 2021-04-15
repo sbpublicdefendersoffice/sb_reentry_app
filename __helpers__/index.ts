@@ -16,4 +16,4 @@ export {
   spanishDummyOrgData,
 } from './dummyData'
 
-export { resizeWindow } from './window'
+export { dispatchPwaEvent, resizeWindow } from './window'

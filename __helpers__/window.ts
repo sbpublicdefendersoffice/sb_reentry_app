@@ -6,3 +6,6 @@ export const resizeWindow = (width: number, height?: number): void => {
     window.innerHeight = height
   window.dispatchEvent(new Event('resize'))
 }
+
+export const dispatchPwaEvent = (): boolean =>
+  window.dispatchEvent(new Event('beforeinstallprompt'))
