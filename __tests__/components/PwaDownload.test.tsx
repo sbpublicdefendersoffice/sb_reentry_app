@@ -1,3 +1,5 @@
+import { act } from '@testing-library/react'
+
 import { renderWithLanguage, dispatchPwaEvent } from '../../__helpers__'
 
 import { SPANISH } from '../../constants/language'
@@ -10,7 +12,7 @@ describe('<PwaDownload />', () => {
   it('renders correctly in english', () => {
     const { getByRole } = renderWithLanguage(<PwaDownload />)
 
-    dispatchPwaEvent()
+    act(() => dispatchPwaEvent())
 
     const copyText: string[] = Object.values(copy.english)
 
@@ -24,7 +26,7 @@ describe('<PwaDownload />', () => {
   it('renders correctly in spanish', () => {
     const { getByRole } = renderWithLanguage(<PwaDownload />, SPANISH)
 
-    dispatchPwaEvent()
+    act(() => dispatchPwaEvent())
 
     const copyText: string[] = Object.values(copy.spanish)
 
