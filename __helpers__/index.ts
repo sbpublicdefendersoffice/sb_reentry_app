@@ -1,4 +1,5 @@
 export {
+  blankSBCoords,
   renderWithRouter,
   renderWithLanguage,
   renderWithLocation,

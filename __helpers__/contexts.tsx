@@ -36,7 +36,7 @@ const blankRouter = {
   route: '/',
 }
 
-const blankSBCoords: SantaBarbaraCountyCoords = {
+export const blankSBCoords: SantaBarbaraCountyCoords = {
   accuracy: 0,
   altitude: null,
   altitudeAccuracy: null,

@@ -10,16 +10,16 @@ import {
 import useLanguage from '../hooks/useLanguage'
 import styles from './ProximityFilter.module.css'
 
-interface ProximityFilterProps {
+export interface ProximityFilterProps {
   coords: SantaBarbaraCountyCoords
   locationsToFilter: LocationRecord[]
   setLocRecordsToFilter: Dispatch<FilterMapAction>
   radiusDistance: number
 }
 
-const proximityValues: number[] = [1, 2, 5, 10, 15, 20, 50]
+export const proximityValues: number[] = [1, 2, 5, 10, 15, 20, 50]
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     located: 'Located within',
     mile: 'mile',
@@ -50,20 +50,23 @@ const ProximityFilter = ({
   }
 
   return (
-    <div className={styles.ProximityFilter}>
-      <label className={styles.Label} htmlFor="proximity-select">
+    <div role="menu" className={styles.ProximityFilter}>
+      <label role="note" className={styles.Label} htmlFor="proximity-select">
         {activeCopy.located}
       </label>
       <select
+        role="group"
         value={radiusDistance}
         className={styles.Select}
         id="proximity-select"
         onChange={handleChange}
       >
-        <option value={1000}>-----</option>
+        <option role="option" value={1000}>
+          -----
+        </option>
         {proximityValues.map((proxVal: number) => (
           <Fragment key={proxVal}>
-            <option value={proxVal}>
+            <option role="option" value={proxVal}>
               {proxVal} {activeCopy.mile}
               {proxVal !== 1 && 's'}
             </option>
