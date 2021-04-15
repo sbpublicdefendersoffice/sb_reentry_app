@@ -66,7 +66,7 @@ const Header = () => {
       <div className={styles.HeaderContainer}>
         <NextLink href="/" as="/">
           <a className="not-text-link">
-            <ThriveLogo role="img" className={styles.FreshStart} />
+            <ThriveLogo role="img" className={styles.ThriveLogo} />
           </a>
         </NextLink>
         <nav role="navigation" className={styles.Nav}>
