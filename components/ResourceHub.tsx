@@ -8,7 +8,7 @@ import useLanguage from '../hooks/useLanguage'
 import { Title, Paragraph } from '../ui'
 import styles from './ResourceHub.module.css'
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     hub: 'Resource Hub',
     direction: 'Click on an image to seek support',
@@ -33,13 +33,16 @@ const ResourceHub = () => {
           <NextLink href={route}>
             <a className={`${styles.link} not-text-link`}>
               <img
+                role="img"
                 width="15rem"
                 height="15rem"
                 className={styles.image}
                 src={imgPath}
                 alt={`${title}_icon`}
               />
-              <Paragraph size="med-text">{title}</Paragraph>
+              <Paragraph role="note" size="med-text">
+                {title}
+              </Paragraph>
             </a>
           </NextLink>
         </div>
@@ -49,8 +52,10 @@ const ResourceHub = () => {
 
   return (
     <section className={styles.ResourceHub}>
-      <Title>{activeCopy.hub}</Title>
-      <Paragraph className={styles.text}>{activeCopy.direction}</Paragraph>
+      <Title role="heading">{activeCopy.hub}</Title>
+      <Paragraph role="article" className={styles.text}>
+        {activeCopy.direction}
+      </Paragraph>
       <div className={styles.tileContainer}>{PageTiles}</div>
     </section>
   )

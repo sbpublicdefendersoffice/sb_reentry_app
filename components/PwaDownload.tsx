@@ -15,7 +15,7 @@ interface BeforeInstallPromptEvent extends Event {
 
 import styles from './PwaDownload.module.css'
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     title: 'Take Fresh Start with you!',
     instructions: 'Download the app to access our resources, wherever you are',
@@ -52,11 +52,14 @@ const PwaDownload = () => {
     <>
       {downloadEvent && (
         <CallToAction blueBg className={styles.PwaDownload}>
-          <Title>{activeCopy.title}</Title>
-          <Paragraph className={styles.Text}>
+          <Title role="heading">{activeCopy.title}</Title>
+          <Paragraph role="note" className={styles.Text}>
             {activeCopy.instructions}
           </Paragraph>
-          <Button onClick={(): Promise<void> => downloadEvent.prompt()}>
+          <Button
+            role="button"
+            onClick={(): Promise<void> => downloadEvent.prompt()}
+          >
             {activeCopy.download}
           </Button>
         </CallToAction>

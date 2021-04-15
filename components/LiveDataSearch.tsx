@@ -12,14 +12,13 @@ import {
 import { useRouter } from 'next/router'
 import debounce from 'lodash/debounce'
 
-import useLanguage from '../hooks/useLanguage'
+import { useLanguage, useGlobalSearch } from '../hooks/'
 
 import { Tooltip, FindMe } from './'
 
 import Input from '../ui/Input'
 import { POST } from '../helpers/validators'
 import { searchCopy } from '../constants/copy'
-import useGlobalSearch from '../hooks/useGlobalSearch'
 import { GlobalSearchResult, SearchTermsMarquee } from './'
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
 
@@ -88,6 +87,7 @@ const LiveDataSearch = () => {
 
   return (
     <section
+      role="searchbox"
       className={styles.LiveDataSearch}
       onFocus={() => setIsFocused(true)}
     >
@@ -102,13 +102,13 @@ const LiveDataSearch = () => {
             Global data search
           </label>
           <Input
+            role="search"
             type="search"
             id="global-search"
             className={styles.Input}
             value={searchQuery}
             onChange={handleChange}
             placeholder={`${activeCopy.search}...`}
-            role="search"
           />
           <span className={styles.SearchIcon} onClick={handleSubmit}>
             &#128269;

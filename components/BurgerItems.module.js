@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-export const StyledBurgerItems = styled.nav`
+export const StyledBurgerItems = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

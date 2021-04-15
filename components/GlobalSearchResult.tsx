@@ -6,7 +6,7 @@ import { OrgRecord } from '../types/records'
 
 import styles from './GlobalSearchResult.module.css'
 
-interface GlobalSearchResultProps {
+export interface GlobalSearchResultProps {
   record: OrgRecord
   delimiter: string
   setIsFocused: Dispatch<SetStateAction<boolean>>
@@ -33,19 +33,21 @@ const GlobalSearchResult = ({
   return (
     <NextLink href="/search/[id]" as={`/search/${id}`}>
       <li
+        role="listitem"
         className={styles.GlobalSearchResult}
         tabIndex={0}
         onClick={() => setIsFocused(false)}
       >
         <div>
           <Paragraph size="med-text">
-            <span>{org_name || org_name_spanish}</span>
+            <span role="heading">{org_name || org_name_spanish}</span>
           </Paragraph>
-          <em className={styles.SingleSearchTerm}>
+          <em role="term" className={styles.SingleSearchTerm}>
             {mapRecordSearchTerms(org_tags || org_tags_spanish)}
           </em>
         </div>
         <img
+          role="img"
           width="3rem"
           height="3rem"
           className={styles.Image}

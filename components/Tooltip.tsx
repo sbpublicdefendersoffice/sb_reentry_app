@@ -21,6 +21,7 @@ const Tooltip = ({ children }: TooltipProps) => {
         </Popup>
       )}
       <Paragraph
+        role="tooltip"
         size="heading-text"
         className={styles.Tooltip}
         // @ts-ignore

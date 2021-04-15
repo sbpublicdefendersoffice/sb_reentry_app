@@ -1,5 +1,5 @@
 import NextLink from 'next/link'
-import { useState, useRef, ReactElement, Fragment } from 'react'
+import { useState, useRef, useEffect, ReactElement, Fragment } from 'react'
 
 import Burger from './Burger'
 import BurgerItems from './BurgerItems'
@@ -15,9 +15,21 @@ const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 
 const Header = () => {
   const { language } = useLanguage()
-  const [open, setOpen] = useState(false)
+  const [isBurgerVisible, setIsBurgerVisible] = useState<boolean>(
+    innerWidth <= 700,
+  )
+  const [open, setOpen] = useState<boolean>(false)
   const node = useRef()
   useOnClickOutside(node, () => setOpen(false))
+  useEffect(() => {
+    const burgerVisibility = () => {
+      if (innerWidth <= 700) setIsBurgerVisible(true)
+      else setIsBurgerVisible(false)
+    }
+
+    addEventListener('resize', burgerVisibility)
+    return () => removeEventListener('resize', burgerVisibility)
+  }, [])
 
   const StaticPages: ReactElement[] = staticPageRoutes.map(
     (routeData: RouteInfo, i: number) => {
@@ -26,7 +38,9 @@ const Header = () => {
 
       const link: ReactElement = (
         <NextLink href={route} as={route}>
-          <h2 className={styles.Title}>{title}</h2>
+          <h2 role="term" className={styles.Title}>
+            {title}
+          </h2>
         </NextLink>
       )
 
@@ -52,16 +66,25 @@ const Header = () => {
       <div className={styles.HeaderContainer}>
         <NextLink href="/" as="/">
           <a className="not-text-link">
-            <FreshStartLogo className={styles.FreshStart} color="light" />
+            <FreshStartLogo
+              role="img"
+              className={styles.FreshStart}
+              color="light"
+            />
           </a>
         </NextLink>
-        <nav className={styles.Nav}>
+        <nav role="navigation" className={styles.Nav}>
           <div className={styles.NavContainer}>{StaticPages}</div>
         </nav>
       </div>
-      <div ref={node}>
-        <Burger open={open} setOpen={setOpen} />
-        <BurgerItems open={open} setOpen={setOpen} />
+
+      <div role="menu" ref={node}>
+        {isBurgerVisible && (
+          <>
+            <Burger open={open} setOpen={setOpen} />
+            <BurgerItems open={open} setOpen={setOpen} />
+          </>
+        )}
       </div>
     </header>
   )

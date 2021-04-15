@@ -6,8 +6,8 @@ const Navigator = () => {
   const { back } = useRouter()
 
   return (
-    <nav className={styles.Navigator}>
-      <span className={styles.Arrows} onClick={(): void => back()}>
+    <nav role="navigation" className={styles.Navigator}>
+      <span role="link" className={styles.Arrows} onClick={(): void => back()}>
         &#5130;
       </span>
     </nav>
