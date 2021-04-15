@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { Button, Title, Paragraph, CallToAction } from '../ui'
 import useLanguage from '../hooks/useLanguage'
+import { siteTitle } from '../constants/copy'
 import { CopyHolder } from '../types/language'
 
 interface BeforeInstallPromptEvent extends Event {
@@ -17,15 +18,15 @@ import styles from './PwaDownload.module.css'
 
 export const copy: CopyHolder = {
   english: {
-    title: 'Take Fresh Start with you!',
+    title: `Take ${siteTitle} with you!`,
     instructions: 'Download the app to access our resources, wherever you are',
-    download: 'Download Fresh Start',
+    download: `Download ${siteTitle}`,
   },
   spanish: {
-    title: '¡Lleve Fresh Start con usted!',
+    title: `¡Lleve ${siteTitle} con usted!`,
     instructions:
       'Descarga la aplicación para acceder a nuestros recursos, estés donde estés',
-    download: 'Descargar Nuevo Comienzo',
+    download: `Descargar ${siteTitle}`,
   },
 }
 

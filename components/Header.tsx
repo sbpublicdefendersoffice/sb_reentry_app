@@ -9,7 +9,7 @@ import styles from './Header.module.css'
 import { staticPageRoutes } from '../constants/routes'
 import { RouteInfo } from '../types/routes'
 import { useOnClickOutside } from '../hooks/useOnClickOutside'
-import { FreshStartLogo, Paragraph } from '../ui'
+import { ThriveLogo, Paragraph } from '../ui'
 
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 
@@ -66,11 +66,7 @@ const Header = () => {
       <div className={styles.HeaderContainer}>
         <NextLink href="/" as="/">
           <a className="not-text-link">
-            <FreshStartLogo
-              role="img"
-              className={styles.FreshStart}
-              color="light"
-            />
+            <ThriveLogo role="img" className={styles.ThriveLogo} />
           </a>
         </NextLink>
         <nav role="navigation" className={styles.Nav}>

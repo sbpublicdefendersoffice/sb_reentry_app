@@ -1,6 +1,6 @@
 import { CopyHolder } from '../types/language'
 
-export const siteTitle: string = 'Fresh Start Santa Barbara'
+export const siteTitle: string = 'Thrive SBC'
 
 export const searchCopy: CopyHolder = {
   english: {
