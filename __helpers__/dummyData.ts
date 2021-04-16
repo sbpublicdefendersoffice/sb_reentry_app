@@ -32,8 +32,8 @@ export const dummyScheduleRecord: ScheduleRecord = {
   open_time: '12:00',
   close_time: '15:00',
   day: 'Sun, Mon, Tue',
-  ordinal_open: '',
-  notes: 'Horses are rad!',
+  ordinal_open: '1, 2, 3',
+  notes: 'Tests are rad!',
 }
 
 export const blankLocationRecord: LocationRecord = {}
