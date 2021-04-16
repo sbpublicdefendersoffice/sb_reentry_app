@@ -9,6 +9,7 @@ export {
 } from './contexts'
 
 export {
+  dummySortedRecord,
   blankTranslateRecordResponse,
   dummyTranslateRecordResponse,
   blankScheduleRecord,

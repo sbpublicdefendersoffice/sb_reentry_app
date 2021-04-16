@@ -3,6 +3,7 @@ import {
   LocationRecord,
   ScheduleRecord,
   TranslatedRecordResponse,
+  SortedRecord,
 } from '../types/records'
 
 const dummyBaseOrgData: OrgRecord = {
@@ -73,4 +74,12 @@ export const dummyLocationRecord: LocationRecord = {
   latitude: 34.41503,
   longitude: -119.71157,
   uuid: '0987654321',
+}
+
+export const dummySortedRecord: SortedRecord = {
+  name: "Tim's Old-Time Southern BBQ!",
+  website: 'https://www.timsbbq.food/',
+  languages_spoken: 'English, Spanish, Esperanto',
+  notes: 'Horses eat free every 3 Tuesday!',
+  locations: [dummyLocationRecord],
 }

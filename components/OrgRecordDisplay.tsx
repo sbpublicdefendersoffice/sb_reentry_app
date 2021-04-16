@@ -11,22 +11,22 @@ interface OrgRecordDisplayProps {
   sortedRecord: SortedRecord
 }
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     orgInfo: 'Organization Information',
-    description: 'Description',
-    thingsToKnow: 'Some Things To Know',
-    website: 'Site: ',
-    lang: 'Languages Spoken: ',
-    location: 'Locations',
+    description: 'Description:',
+    thingsToKnow: 'Some Things To Know:',
+    website: 'Site:',
+    lang: 'Languages Spoken:',
+    location: 'Locations:',
   },
   spanish: {
     orgInfo: 'Información de la organización',
-    description: 'Descripción',
-    thingsToKnow: 'Algunas cosas para saber',
-    website: 'Sitio: ',
-    lang: 'Idiomas Hablados: ',
-    location: 'Ubicaciones',
+    description: 'Descripción:',
+    thingsToKnow: 'Algunas cosas para saber:',
+    website: 'Sitio:',
+    lang: 'Idiomas Hablados:',
+    location: 'Ubicaciones:',
   },
 }
 
@@ -34,26 +34,30 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
-  const { locations, name, website, languages_spoken, notes } = sortedRecord
+  const { name, website, languages_spoken, notes, locations } = sortedRecord
 
   return (
-    <div className={styles.OrgRecordDisplay} role="list">
+    <div role="menu" className={styles.OrgRecordDisplay}>
       <Details open summary={activeCopy.orgInfo} className={styles.listing}>
-        <Title className={styles.DisplayTitle}>{name}</Title>
+        <Title role="heading" className={styles.DisplayTitle}>
+          {name}
+        </Title>
         {notes && (
           <>
-            <Paragraph size="heading-text">{activeCopy.description}:</Paragraph>
+            <Paragraph role="term" size="heading-text">
+              {activeCopy.description}
+            </Paragraph>
             <Paragraph size="med-text">{notes}</Paragraph>
           </>
         )}
         {website || languages_spoken ? (
           <>
-            <Paragraph size="heading-text">
-              {activeCopy.thingsToKnow}:
+            <Paragraph role="term" size="heading-text">
+              {activeCopy.thingsToKnow}
             </Paragraph>
             {website && (
               <Paragraph size="med-text">
-                <strong>{activeCopy.website}</strong>
+                <strong role="term">{activeCopy.website} </strong>
                 <a href={website} target="_blank" rel="noopener noreferrer">
                   {website}
                 </a>
@@ -61,8 +65,8 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
             )}
             {languages_spoken && (
               <Paragraph size="med-text">
-                <strong>{activeCopy.lang}</strong>
-                {languages_spoken}
+                <strong role="term">{activeCopy.lang} </strong>
+                <span>{languages_spoken}</span>
               </Paragraph>
             )}
           </>
@@ -71,8 +75,12 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
       </Details>
       {Boolean(locations?.length) && (
         <Details open summary={activeCopy.location}>
-          <Paragraph className={styles.LocationHeading} size="heading-text">
-            {activeCopy.location}:
+          <Paragraph
+            role="term"
+            className={styles.LocationHeading}
+            size="heading-text"
+          >
+            {activeCopy.location}
           </Paragraph>
           {locations.map((locationInfo, i) => (
             <LocationRecordDisplay
