@@ -1,4 +1,9 @@
-import { OrgRecord, LocationRecord, ScheduleRecord } from '../types/records'
+import {
+  OrgRecord,
+  LocationRecord,
+  ScheduleRecord,
+  TranslatedRecordResponse,
+} from '../types/records'
 
 const dummyBaseOrgData: OrgRecord = {
   createdTime: '01/01/1900',
@@ -22,6 +27,16 @@ export const spanishDummyOrgData: OrgRecord = {
     org_name_spanish: 'Emporio de salud mental del Dr. Feelgood',
     org_tags_spanish: ['salud mental', 'doctora', 'feelgood'],
   },
+}
+
+export const blankTranslateRecordResponse: TranslatedRecordResponse = {
+  category: 'Transportation',
+  records: [],
+}
+
+export const dummyTranslateRecordResponse: TranslatedRecordResponse = {
+  category: 'Transportation',
+  records: [englishDummyOrgData],
 }
 
 export const blankScheduleRecord: ScheduleRecord = {}

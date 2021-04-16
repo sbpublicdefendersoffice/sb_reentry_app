@@ -34,7 +34,9 @@ const Details = forwardRef<HTMLDetailsElement, DetailsProps>(
         className={`${styles.Details} ${className} details-element`}
         {...other}
       >
-        <summary className={styles.summary}>{summary}</summary>
+        <summary role="definition" className={styles.summary}>
+          {summary}
+        </summary>
         {children}
       </details>
     )
