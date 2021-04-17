@@ -4,11 +4,13 @@ import { useRouter } from 'next/router'
 import { OrgRecord } from '../types/records'
 import { Card, Paragraph } from '../ui'
 
-interface OrgRecordCardProps {
+export interface OrgRecordCardProps {
   record: OrgRecord
   category: string
   url: string
 }
+
+export const urlSlug: string = '/[category]/[id]'
 
 import styles from './OrgRecordCard.module.css'
 
@@ -19,16 +21,18 @@ const OrgRecordCard = ({ record, category, url }: OrgRecordCardProps) => {
   const { org_categories, org_name } = fields
 
   const pushToRecord = (e): Promise<boolean> =>
-    push('/[category]/[id]', `${url}/${e.target.title}`)
+    push(urlSlug, `${url}/${e.target.title}`)
 
   return (
     <Card
+      role="region"
       title={id}
       className={styles.OrgRecordCard}
       interactive
       onClick={pushToRecord}
     >
       <img
+        role="img"
         title={id}
         className={styles.Image}
         width="4rem"
@@ -37,14 +41,14 @@ const OrgRecordCard = ({ record, category, url }: OrgRecordCardProps) => {
         alt={`${category}_icon`}
       />
       <div>
-        <Paragraph title={id} size="med-text">
+        <Paragraph role="heading" title={id} size="med-text">
           {org_name}
         </Paragraph>
         <Paragraph title={id}>
           {org_categories?.map(
             (category: string, i: number): ReactElement => (
               <Fragment key={i}>
-                <em title={id} className={styles.Category}>
+                <em role="term" title={id} className={styles.Category}>
                   {i !== 0 && ', '}
                   {category}
                 </em>

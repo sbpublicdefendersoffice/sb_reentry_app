@@ -6,7 +6,7 @@ import { Paragraph } from '../ui'
 
 import styles from './ScheduleRecordDisplay.module.css'
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     timeOpen: 'Time Open',
     to: ' to ',
@@ -39,7 +39,7 @@ const copy: CopyHolder = {
   },
 }
 
-const ordinalParser = (
+export const ordinalParser = (
   days: string,
   langOption: { language: Language },
 ): string => {
@@ -65,7 +65,7 @@ const ordinalParser = (
         .replace('5', fifth)} ${week}${days.length > 1 && 's'} ${ofMonth}.`
 }
 
-const timeParser = (timeStr: string): string => {
+export const timeParser = (timeStr: string): string => {
   const splitTime: Array<string | number> = timeStr.split(':')
   splitTime[0] = +splitTime[0]
   const amOrPm: string = splitTime[0] > 11 && splitTime[0] < 24 ? 'PM' : 'AM'
@@ -73,6 +73,12 @@ const timeParser = (timeStr: string): string => {
   else if (splitTime[0] > 12) splitTime[0] = String(splitTime[0] - 12)
   return `${splitTime[0]}:${splitTime[1]} ${amOrPm}`
 }
+
+export const daysOpenParser = (
+  wordForDay: string,
+  specificDay: string,
+  wordForOpen: string,
+): string => `${wordForDay}${specificDay?.length > 3 ? 's' : ''} ${wordForOpen}`
 
 interface ScheduleRecordDisplayProps {
   scheduleInfo: ScheduleRecord
@@ -86,19 +92,18 @@ const ScheduleRecordDisplay = ({
 
   const { open_time, close_time, day, ordinal_open, notes } = scheduleInfo
 
-  const daysOpen: string = `${activeCopy.day}${day?.length > 3 ? 's' : ''} ${
-    activeCopy.open
-  }`
-
   return (
-    <section className={styles.ScheduleRecordDisplay}>
+    <section role="region" className={styles.ScheduleRecordDisplay}>
       {day && (
-        <Paragraph size="med-text">
-          <strong>{daysOpen}</strong>: {day}
+        <Paragraph role="article" size="med-text">
+          <strong>
+            {daysOpenParser(activeCopy.day, day, activeCopy.open)}
+          </strong>
+          : {day}
         </Paragraph>
       )}
       {open_time && close_time && (
-        <Paragraph size="med-text">
+        <Paragraph role="article" size="med-text">
           <strong>{activeCopy.timeOpen}: </strong>
           {timeParser(open_time)}
           {activeCopy.to}
@@ -106,12 +111,12 @@ const ScheduleRecordDisplay = ({
         </Paragraph>
       )}
       {ordinal_open && (
-        <Paragraph size="med-text">
+        <Paragraph role="article" size="med-text">
           {ordinalParser(ordinal_open, { language })}
         </Paragraph>
       )}
       {notes && (
-        <Paragraph size="med-text">
+        <Paragraph role="article" size="med-text">
           <strong>{activeCopy.notes}:</strong> {notes}
         </Paragraph>
       )}

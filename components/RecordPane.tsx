@@ -10,7 +10,7 @@ import { ENGLISH } from '../constants/language'
 
 import styles from './RecordPane.module.css'
 
-interface RecordPaneProps {
+export interface RecordPaneProps {
   displayCategory: string
   routeCategory: string
   orgInfo: TranslatedRecordResponse
@@ -38,8 +38,9 @@ const RecordPane = ({
   const recordsReady: boolean = Boolean(orgInfo?.records?.length)
 
   return (
-    <div className={styles.RecordPane} role="list">
+    <div className={styles.RecordPane} role="menu">
       <Paragraph
+        role="heading"
         size="heading-text"
         className={styles.title}
         onClick={pushToCategory}
@@ -54,6 +55,7 @@ const RecordPane = ({
         />
       )}
       <Details
+        role="list"
         open
         className={styles.details}
         summary={`${displayCategory} ${

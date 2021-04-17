@@ -24,6 +24,7 @@ import styles from './DisplayMap.module.css'
 
 interface DisplayMapProps {
   latLongInfo: LocationRecord[]
+  testWorkaround?: boolean
 }
 
 const returnMarker = (locationRecord: LocationRecord, i: number) => (
@@ -36,7 +37,7 @@ const MapboxMap = ReactMapboxGL({
   accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
 })
 
-const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
+const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const { pathname } = useRouter()
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
@@ -63,6 +64,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
 
   return (
     <Details
+      role="main"
       open
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
       className={styles.DisplayMap}
@@ -83,7 +85,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
           )}
         </CityFilter>
       )}
-      {
+      {!testWorkaround && (
         // @ts-ignore
         <MapboxMap
           style={mapboxStylingURL}
@@ -111,7 +113,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
             : latLongInfo.map(returnMarker)}
           <ScaleControl measurement="mi" position="bottom-right" />
         </MapboxMap>
-      }
+      )}
     </Details>
   )
 }

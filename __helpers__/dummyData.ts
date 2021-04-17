@@ -1,4 +1,10 @@
-import { OrgRecord, LocationRecord, ScheduleRecord } from '../types/records'
+import {
+  OrgRecord,
+  LocationRecord,
+  ScheduleRecord,
+  TranslatedRecordResponse,
+  SortedRecord,
+} from '../types/records'
 
 const dummyBaseOrgData: OrgRecord = {
   createdTime: '01/01/1900',
@@ -24,6 +30,16 @@ export const spanishDummyOrgData: OrgRecord = {
   },
 }
 
+export const blankTranslateRecordResponse: TranslatedRecordResponse = {
+  category: 'Transportation',
+  records: [],
+}
+
+export const dummyTranslateRecordResponse: TranslatedRecordResponse = {
+  category: 'Transportation',
+  records: [englishDummyOrgData],
+}
+
 export const blankScheduleRecord: ScheduleRecord = {}
 
 export const dummyScheduleRecord: ScheduleRecord = {
@@ -32,8 +48,8 @@ export const dummyScheduleRecord: ScheduleRecord = {
   open_time: '12:00',
   close_time: '15:00',
   day: 'Sun, Mon, Tue',
-  ordinal_open: '',
-  notes: 'Horses are rad!',
+  ordinal_open: '1, 2, 3',
+  notes: 'Tests are rad!',
 }
 
 export const blankLocationRecord: LocationRecord = {}
@@ -58,4 +74,12 @@ export const dummyLocationRecord: LocationRecord = {
   latitude: 34.41503,
   longitude: -119.71157,
   uuid: '0987654321',
+}
+
+export const dummySortedRecord: SortedRecord = {
+  name: "Tim's Old-Time Southern BBQ!",
+  website: 'https://www.timsbbq.food/',
+  languages_spoken: 'English, Spanish, Esperanto',
+  notes: 'Horses eat free every 3 Tuesday!',
+  locations: [dummyLocationRecord],
 }
