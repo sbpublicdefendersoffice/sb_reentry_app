@@ -20,7 +20,6 @@
   flex-direction: column;
   align-items: center;
   margin: 1rem 0;
-  font-size: var(--med-text);
   border-radius: var(--radius-medium);
   padding: var(--pad-std) 0;
   text-align: center;
@@ -52,15 +51,22 @@
   margin: var(--margin-lg) 0;
 }
 
+.categoryTitle {
+  font-size: var(--med-text);
+}
+
 @media (max-width: 500px) {
   .singleTileHolder {
     width: 30%;
     margin: 0.25rem 0 0 0;
-    font-size: var(--standard-text);
   }
 
   .image {
     width: 8rem;
     height: 8rem;
+  }
+
+  .categoryTitle {
+    font-size: var(--standard-text);
   }
 }

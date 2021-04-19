@@ -40,7 +40,7 @@ const ResourceHub = () => {
                 src={imgPath}
                 alt={`${title}_icon`}
               />
-              <Paragraph role="note" size="med-text">
+              <Paragraph className={styles.categoryTitle} role="note">
                 {title}
               </Paragraph>
             </a>
