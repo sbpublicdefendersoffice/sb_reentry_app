@@ -42,7 +42,7 @@ export const LisaSuccessStory: SuccessStory = {
   },
   spanish: {
     name: 'Lisandra Barrera-Rising',
-    profilePic: '/images/lisa-rising.jpg',
+    profilePic: '/images/lisarising.jpg',
     role:
       'Embajador de Underground Scholars en Santa Bárbara spanishOrg: Colegio de la ciudad de Santa Bárbara',
     organization: 'Colegio de la ciudad de Santa Bárbara',

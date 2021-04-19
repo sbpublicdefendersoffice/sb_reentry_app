@@ -36,13 +36,7 @@ const SuccessStories = () => {
         {successStories.map((successStory, key) => {
           const story = successStory[language]
           return (
-            <Grid
-              item
-              xs={12}
-              sm={3}
-              key={key}
-              style={{ marginRight: '24rem' }}
-            >
+            <Grid item key={key}>
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.media}
@@ -63,7 +57,11 @@ const SuccessStories = () => {
                     variant="body2"
                     color="textSecondary"
                     component="h3"
-                    style={{ fontSize: '1.6rem', marginTop: '3rem' }}
+                    style={{
+                      fontSize: '1.6rem',
+                      marginTop: '3rem',
+                      padding: 'var(--pad-lg)',
+                    }}
                   >
                     {story.bio}
                   </Typography>
