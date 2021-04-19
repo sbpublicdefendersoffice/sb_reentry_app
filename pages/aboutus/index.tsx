@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter'
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser'
 import ForumIcon from '@material-ui/icons/Forum'
-import { ENGLISH } from '../../constants/language'
+import { ENGLISH, siteTitle } from '../../constants'
 
 import useLanguage from '../../hooks/useLanguage'
 const useStyles = makeStyles((theme: Theme) =>
@@ -26,8 +26,9 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
       textAlign: 'center',
       width: '30rem',
-
+      minWidth: '11rem',
       color: theme.palette.text.secondary,
+      overflow: 'hidden',
     },
     icons: {
       color: '#13395e',
@@ -58,8 +59,8 @@ const AboutUs = () => {
       <Head>
         <title>
           {language === ENGLISH
-            ? 'Santa Barbara Reentry | About Us'
-            : 'Santa Barbara Reentry | Sobre nosotros'}
+            ? `${siteTitle} | About Us`
+            : `${siteTitle} | Sobre nosotros`}
         </title>
       </Head>
       <Typography
@@ -105,7 +106,7 @@ const AboutUs = () => {
             </h1>
           </Paper>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item>
           <Paper className={classes.paper}>
             <div>
               <h1>
