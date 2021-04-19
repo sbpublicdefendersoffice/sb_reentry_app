@@ -1,4 +1,4 @@
-# Santa Barbara Reentry
+# Thrive SBC
 
 A joint project between [Code for America](https://www.codeforamerica.org/) and [The County of Santa Barbara Public Defender's Office](https://www.countyofsb.org/defender)
 

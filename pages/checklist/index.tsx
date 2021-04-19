@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
@@ -9,11 +10,12 @@ import Paper from '@material-ui/core/Paper'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { ENGLISH } from '../../constants/language'
 import Grid from '@material-ui/core/Grid'
-import useLanguage from '../../hooks/useLanguage'
+import { useLanguage, useGlobalSearch } from '../../hooks'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 
 import ListItemText from '@material-ui/core/ListItemText'
+import { siteTitle } from '../../constants/copy'
 
 const probations = [
   {
@@ -94,16 +96,28 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.secondary,
       minHeight: '22rem',
     },
+    link: { cursor: 'pointer' },
   }),
 )
+
 const Checklist = () => {
   const classes = useStyles()
+  const { push } = useRouter()
   const { language } = useLanguage()
+  const { setSearchResults } = useGlobalSearch()
+
+  const pushToSearch = e => {
+    const { title } = e.target
+    if (title) {
+      setSearchResults(null)
+      push('/search', `search?query=${title}`)
+    }
+  }
 
   return (
     <div>
       <Head>
-        <title>{`Santa Barbara Reentry | ${
+        <title>{`${siteTitle} | ${
           language === ENGLISH
             ? '72 hour checklist'
             : 'Lista de verificación de 72 horas'
@@ -179,7 +193,14 @@ const Checklist = () => {
                         {' '}
                         {language === ENGLISH ? 'Website:' : 'Sitio web:'}{' '}
                       </p>
-                      <a href="www.sbprobation.org/"> www.sbprobation.org/</a>
+                      <a
+                        href="https://www.sbprobation.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {' '}
+                        https://www.sbprobation.org/
+                      </a>
                     </div>
                   </Typography>
                 </Paper>
@@ -256,7 +277,11 @@ const Checklist = () => {
                         </div>
                         <div>
                           {'Website: '}
-                          <a href="https://www.cdcr.ca.gov/parole/northern-region-directory/">
+                          <a
+                            href="https://www.cdcr.ca.gov/parole/northern-region-directory/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             {language === ENGLISH
                               ? 'Northern County Directory'
                               : 'Directorio del norte del condado'}
@@ -303,6 +328,8 @@ const Checklist = () => {
                     <a
                       style={{ display: 'block' }}
                       href="https://countyofsb.org/care/recorder/vital-records/births.sbc"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {language === ENGLISH
                         ? 'Birth Certificate (Santa Barbara County)'
@@ -311,6 +338,8 @@ const Checklist = () => {
                     <a
                       style={{ display: 'block' }}
                       href="https://www.cdc.gov/nchs/w2w/index.htm"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {language === ENGLISH
                         ? 'Birth Certificate (Outside of Santa Barbara County)'
@@ -319,6 +348,8 @@ const Checklist = () => {
                     <a
                       style={{ display: 'block' }}
                       href="https://www.ssa.gov/ssnumber/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {language === ENGLISH
                         ? 'Social Security Card'
@@ -327,6 +358,8 @@ const Checklist = () => {
                     <a
                       style={{ display: 'block' }}
                       href="https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/renew-your-driver-license-dl-or-identification-card-id/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {language === ENGLISH
                         ? `Identification Card or Driver's License (California)`
@@ -375,17 +408,35 @@ const Checklist = () => {
                 </Typography>
                 <Typography>
                   <div>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      title="pantry"
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={pushToSearch}
+                    >
                       {language === ENGLISH
                         ? 'Food Pantries'
                         : 'Despensas de alimentos'}
                     </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      title="meals"
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={pushToSearch}
+                    >
                       {language === ENGLISH
                         ? 'Food Meals'
                         : 'Comidas alimenticias'}
                     </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      title="cal fresh"
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={pushToSearch}
+                    >
                       Cal-Fresh ({' '}
                       {language === ENGLISH
                         ? 'Food Stamps'
@@ -427,18 +478,33 @@ const Checklist = () => {
                 </Typography>
                 <Typography>
                   <div>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      title="medical"
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={pushToSearch}
+                    >
                       Medi-Cal
                     </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      title="enrollment"
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={pushToSearch}
+                    >
                       {language === ENGLISH
                         ? 'Health Insurance Information & Enrollment Assistance'
                         : 'Información sobre seguros médicos y asistencia para la inscripción'}
                     </a>
-                    <a style={{ display: 'block' }} href="">
-                      Medicare
-                    </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      title="clinic"
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={pushToSearch}
+                    >
                       {language === ENGLISH
                         ? 'Medical Clinics'
                         : 'Clínicas Médicas'}
@@ -479,20 +545,33 @@ const Checklist = () => {
                 </Typography>
                 <Typography>
                   <div>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      title="sober living"
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={pushToSearch}
+                    >
                       {language === ENGLISH
                         ? 'Sober Living Homes'
                         : 'Viviendas sobrias'}
                     </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      title="alcoholics anonymous"
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={pushToSearch}
+                    >
                       AA
                     </a>
-                    <a style={{ display: 'block' }} href="">
-                      {language === ENGLISH
-                        ? 'Health Insurance Information & Enrollment Assistance'
-                        : 'Información sobre seguros médicos y asistencia para la inscripción'}
-                    </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      title="narcotics anonymous"
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={pushToSearch}
+                    >
                       NA
                     </a>
                   </div>
@@ -530,17 +609,30 @@ const Checklist = () => {
                 </Typography>
                 <Typography>
                   <div>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      title="mental health"
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={pushToSearch}
+                    >
                       {language === ENGLISH
                         ? 'Mental Wellness Information and Education'
                         : 'Evaluación de bienestar mental'}
                     </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      tabIndex={0}
+                      className={classes.link}
+                      style={{ display: 'block' }}
+                      onClick={() =>
+                        push('/search/[id]', '/search/recncoC6502aH2qYs')
+                      }
+                    >
                       {language === ENGLISH
-                        ? 'Mental Wellness Evaluation'
-                        : 'Evaluación de bienestar mental'}
+                        ? 'Behavioral Wellness'
+                        : 'Bienestar conductual'}
                     </a>
-                    <a style={{ display: 'block' }} href="">
+                    {/* <a style={{ display: 'block' }} href="">
                       {language === ENGLISH
                         ? 'Suicide Prevention Hotlines'
                         : 'Líneas directas para la prevención del suicidio'}
@@ -555,7 +647,7 @@ const Checklist = () => {
                       {language === ENGLISH
                         ? 'Psychiatric Response Hotline'
                         : 'Línea directa de respuesta psiquiátrica'}
-                    </a>
+                    </a> */}
                   </div>
                 </Typography>
               </Grid>
@@ -591,16 +683,28 @@ const Checklist = () => {
                 </Typography>
                 <Typography>
                   <div>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      style={{ display: 'block' }}
+                      href="https://www.70millionjobs.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       70 Million Jobs
                     </a>
-                    <a style={{ display: 'block' }} href="">
-                      {'Health Insurance Information & Enrollment Assistance'}
-                    </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      style={{ display: 'block' }}
+                      href="https://www.linkedin.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       LinkedIn
                     </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      style={{ display: 'block' }}
+                      href="https://www.indeed.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       Indeed
                     </a>
                   </div>
