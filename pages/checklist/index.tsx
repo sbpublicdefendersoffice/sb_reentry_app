@@ -179,7 +179,14 @@ const Checklist = () => {
                         {' '}
                         {language === ENGLISH ? 'Website:' : 'Sitio web:'}{' '}
                       </p>
-                      <a href="www.sbprobation.org/"> www.sbprobation.org/</a>
+                      <a
+                        href="https://www.sbprobation.org/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {' '}
+                        https://www.sbprobation.org/
+                      </a>
                     </div>
                   </Typography>
                 </Paper>
@@ -256,7 +263,11 @@ const Checklist = () => {
                         </div>
                         <div>
                           {'Website: '}
-                          <a href="https://www.cdcr.ca.gov/parole/northern-region-directory/">
+                          <a
+                            href="https://www.cdcr.ca.gov/parole/northern-region-directory/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             {language === ENGLISH
                               ? 'Northern County Directory'
                               : 'Directorio del norte del condado'}
@@ -303,6 +314,8 @@ const Checklist = () => {
                     <a
                       style={{ display: 'block' }}
                       href="https://countyofsb.org/care/recorder/vital-records/births.sbc"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {language === ENGLISH
                         ? 'Birth Certificate (Santa Barbara County)'
@@ -311,6 +324,8 @@ const Checklist = () => {
                     <a
                       style={{ display: 'block' }}
                       href="https://www.cdc.gov/nchs/w2w/index.htm"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {language === ENGLISH
                         ? 'Birth Certificate (Outside of Santa Barbara County)'
@@ -319,6 +334,8 @@ const Checklist = () => {
                     <a
                       style={{ display: 'block' }}
                       href="https://www.ssa.gov/ssnumber/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {language === ENGLISH
                         ? 'Social Security Card'
@@ -327,6 +344,8 @@ const Checklist = () => {
                     <a
                       style={{ display: 'block' }}
                       href="https://www.dmv.ca.gov/portal/driver-licenses-identification-cards/renew-your-driver-license-dl-or-identification-card-id/"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {language === ENGLISH
                         ? `Identification Card or Driver's License (California)`
@@ -591,16 +610,28 @@ const Checklist = () => {
                 </Typography>
                 <Typography>
                   <div>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      style={{ display: 'block' }}
+                      href="https://www.70millionjobs.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       70 Million Jobs
                     </a>
-                    <a style={{ display: 'block' }} href="">
-                      {'Health Insurance Information & Enrollment Assistance'}
-                    </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      style={{ display: 'block' }}
+                      href="https://www.linkedin.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       LinkedIn
                     </a>
-                    <a style={{ display: 'block' }} href="">
+                    <a
+                      style={{ display: 'block' }}
+                      href="https://www.indeed.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       Indeed
                     </a>
                   </div>
