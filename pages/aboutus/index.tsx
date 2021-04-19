@@ -26,8 +26,9 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(2),
       textAlign: 'center',
       width: '30rem',
-
+      minWidth: '11rem',
       color: theme.palette.text.secondary,
+      overflow: 'hidden',
     },
     icons: {
       color: '#13395e',
@@ -105,7 +106,7 @@ const AboutUs = () => {
             </h1>
           </Paper>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item>
           <Paper className={classes.paper}>
             <div>
               <h1>
