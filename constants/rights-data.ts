@@ -88,7 +88,7 @@ export const TrainsBusesPDF: FlyerPDF = {
 export const TrainsBusesImmigrationPDF: FlyerPDF = {
   english: {
     name:
-      'Know your rights on trains and buses when it comes to immagration agents ',
+      'Know your rights on trains and buses when it comes to immigration agents ',
     organization: 'ACLU',
     flyerPDF: '/images/trainsandbusesimmigrationenglish.jpg',
     thumb: '/images/trainsandbusesimmigrationenglish-thumb.jpg',

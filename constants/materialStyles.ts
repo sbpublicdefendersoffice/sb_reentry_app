@@ -129,7 +129,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     flyerPaper: {
       backgroundColor: 'white',
       width: '50%',
-      marginLeft: '15rem',
       height: '100%',
       position: 'fixed',
       top: '50%',

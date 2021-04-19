@@ -217,7 +217,9 @@ const KnowYourRights = () => {
             )
           })}
           <Grid item xs={12} sm={12}>
-            <h1 className={classes.cardContent}>Here are more links below</h1>
+            <h1 className={classes.cardContent}>
+              {language === 'english' ? 'More Links' : 'Más Enlaces'}:
+            </h1>
             {links.map((link, key) => {
               return (
                 <Typography
@@ -243,6 +245,7 @@ const KnowYourRights = () => {
               onClose={handleClose}
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
+              style={{ display: 'flex', justifyContent: 'center' }}
             >
               <div className={classes.flyerPaper}>
                 <button onClick={handleClose}>
