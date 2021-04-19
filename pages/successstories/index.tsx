@@ -9,6 +9,7 @@ import {
   ArturoSuccessStory,
   LisaSuccessStory,
 } from '../../constants/successStory-data'
+import { siteTitle } from '../../constants/copy'
 
 import Grid from '@material-ui/core/Grid'
 import useLanguage from '../../hooks/useLanguage'
@@ -21,7 +22,7 @@ const SuccessStories = () => {
   return (
     <>
       <Head>
-        <title>{`Santa Barbara Reentry | ${activeCopy.title}`}</title>
+        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
       </Head>
       <Typography
         style={{ marginTop: '2rem' }}

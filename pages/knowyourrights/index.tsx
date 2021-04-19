@@ -38,6 +38,8 @@ import { FlyerPDF, Item, RightsLinks } from '../../types/flyerPDF'
 import { useStyles } from '../../constants/materialStyles'
 import GetAppIcon from '@material-ui/icons/GetApp'
 import PageviewIcon from '@material-ui/icons/Pageview'
+import { siteTitle } from '../../constants/copy'
+
 const KnowYourRights = () => {
   const classes = useStyles()
   const { language } = useLanguage()
@@ -77,7 +79,7 @@ const KnowYourRights = () => {
   return (
     <>
       <Head>
-        <title>{`Santa Barbara Reentry | ${activeCopy.title}`}</title>
+        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
       </Head>
       <div>
         <Typography

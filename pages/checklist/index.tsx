@@ -15,6 +15,7 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 
 import ListItemText from '@material-ui/core/ListItemText'
+import { siteTitle } from '../../constants/copy'
 
 const probations = [
   {
@@ -116,7 +117,7 @@ const Checklist = () => {
   return (
     <div>
       <Head>
-        <title>{`Santa Barbara Reentry | ${
+        <title>{`${siteTitle} | ${
           language === ENGLISH
             ? '72 hour checklist'
             : 'Lista de verificación de 72 horas'

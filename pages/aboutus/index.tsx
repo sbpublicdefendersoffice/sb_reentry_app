@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter'
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser'
 import ForumIcon from '@material-ui/icons/Forum'
-import { ENGLISH } from '../../constants/language'
+import { ENGLISH, siteTitle } from '../../constants'
 
 import useLanguage from '../../hooks/useLanguage'
 const useStyles = makeStyles((theme: Theme) =>
@@ -59,8 +59,8 @@ const AboutUs = () => {
       <Head>
         <title>
           {language === ENGLISH
-            ? 'Santa Barbara Reentry | About Us'
-            : 'Santa Barbara Reentry | Sobre nosotros'}
+            ? `${siteTitle} | About Us`
+            : `${siteTitle} | Sobre nosotros`}
         </title>
       </Head>
       <Typography
