@@ -1,5 +1,10 @@
 import { getPage } from 'next-page-tester'
-// import { waitFor, screen } from '@testing-library/react'
+import { waitFor, screen } from '@testing-library/react'
+
+import { englishDummyOrgData, customFetch } from '../../__helpers__/dummyData'
+
+// @ts-ignore
+window.fetch = customFetch(englishDummyOrgData)
 
 describe('category page', () => {
   it('renders category page', async () => {
@@ -11,10 +16,10 @@ describe('category page', () => {
 
     render()
 
-    // const doc: HTMLElement = await waitFor(() =>
-    //   screen.getByTestId('end_of_doc'),
-    // )
+    const doc: HTMLElement = await waitFor(() =>
+      screen.getByTestId('end_of_doc'),
+    )
 
-    // expect(doc).toBeInTheDocument()
+    expect(doc).toBeInTheDocument()
   })
 })

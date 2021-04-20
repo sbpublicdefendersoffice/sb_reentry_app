@@ -9,6 +9,7 @@ export {
 } from './contexts'
 
 export {
+  customFetch,
   dummySortedRecord,
   blankTranslateRecordResponse,
   dummyTranslateRecordResponse,

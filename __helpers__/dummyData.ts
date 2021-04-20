@@ -6,6 +6,20 @@ import {
   SortedRecord,
 } from '../types/records'
 
+export const customFetch = (
+  mockData:
+    | OrgRecord
+    | LocationRecord
+    | ScheduleRecord
+    | TranslatedRecordResponse
+    | SortedRecord,
+) =>
+  jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(mockData),
+    }),
+  )
+
 const dummyBaseOrgData: OrgRecord = {
   createdTime: '01/01/1900',
   fields: { org_categories: ['mentalhealth'] },
