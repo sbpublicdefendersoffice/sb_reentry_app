@@ -1,13 +1,20 @@
 import { getPage } from 'next-page-tester'
+import { waitFor, screen } from '@testing-library/react'
 
-describe('category', () => {
-  it('renders a category page', async () => {
+describe('about us page', () => {
+  it('renders about us page', async () => {
     const { render } = await getPage({
-      route: '/food',
+      route: '/aboutus',
       useApp: true,
       useDocument: true,
     })
 
     render()
+
+    const doc: HTMLElement = await waitFor(() =>
+      screen.getByTestId('end_of_doc'),
+    )
+
+    expect(doc).toBeInTheDocument()
   })
 })
