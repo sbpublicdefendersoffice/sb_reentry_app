@@ -13,6 +13,7 @@ export {
   dummySortedRecord,
   blankTranslateRecordResponse,
   dummyTranslateRecordResponse,
+  locationlessDummySortedRecord,
   blankScheduleRecord,
   dummyScheduleRecord,
   blankLocationRecord,

@@ -97,3 +97,8 @@ export const dummySortedRecord: SortedRecord = {
   notes: 'Horses eat free every 3 Tuesday!',
   locations: [dummyLocationRecord],
 }
+
+export const locationlessDummySortedRecord: SortedRecord = {
+  ...dummySortedRecord,
+  locations: [],
+}
