@@ -11,10 +11,8 @@ const push = jest.fn()
 // @ts-ignore
 useRouter.mockImplementation(() => ({ push }))
 
-const expanded: RegExp = /expanded/
-
 describe('checklist page', () => {
-  it('renders checklist page', async () => {
+  it('renders checklist page properly, and calls push', async () => {
     const { render } = await getPage({
       route: '/checklist',
       useApp: true,
@@ -35,7 +33,7 @@ describe('checklist page', () => {
 
     expect(doc).toBeInTheDocument()
     accordions.forEach((node: HTMLElement) =>
-      expect(node).toHaveAttribute('class', expect.stringMatching(expanded)),
+      expect(node).toHaveAttribute('class', expect.stringMatching(/expanded/)),
     )
 
     const link: HTMLElement = await waitFor(() =>

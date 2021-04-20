@@ -109,6 +109,7 @@ const KnowYourRights = () => {
                         style={{ width: '100% !important', display: 'flex' }}
                       >
                         <button
+                          data-testid="flyer-button"
                           type="button"
                           onClick={() => handleOpen(activeFlyer)}
                           style={{ height: '100%' }}
@@ -250,7 +251,7 @@ const KnowYourRights = () => {
               style={{ display: 'flex', justifyContent: 'center' }}
             >
               <div className={classes.flyerPaper}>
-                <button onClick={handleClose}>
+                <button data-testid="modal" onClick={handleClose}>
                   <HighlightOffIcon className={classes.flyerIcons} />
                 </button>
                 {activeItem && (
