@@ -62,6 +62,7 @@ const FetchedDataSearch = ({
         Search Fetched Data
       </label>
       <Input
+        data-testid="FetchedDataSearch"
         type="search"
         id="category-search"
         className={styles.Input}

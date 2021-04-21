@@ -1,5 +1,5 @@
 import { getPage } from 'next-page-tester'
-import { waitFor, screen } from '@testing-library/react'
+import { waitFor, screen, fireEvent } from '@testing-library/react'
 
 import { englishDummyOrgData, customFetch } from '../../__helpers__/dummyData'
 
@@ -19,6 +19,13 @@ describe('category page', () => {
     const doc: HTMLElement = await waitFor(() =>
       screen.getByTestId('end_of_doc'),
     )
+
+    const search: HTMLElement = await waitFor(() =>
+      screen.getByTestId('FetchedDataSearch'),
+    )
+
+    fireEvent.change(search, { target: { value: 'feelgood' } })
+    fireEvent.change(search, { target: { value: '' } })
 
     expect(doc).toBeInTheDocument()
   })

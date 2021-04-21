@@ -1,4 +1,4 @@
-import { act } from '@testing-library/react'
+import { act, fireEvent } from '@testing-library/react'
 import { renderWithLanguage, resizeWindow } from '../../__helpers__'
 
 import { SPANISH, staticPageRoutes } from '../../constants'
@@ -54,13 +54,18 @@ describe('<Header />', () => {
   })
 
   it('does render burger at or below 700px screen width', () => {
-    const { getByRole } = renderWithLanguage(<Header />)
+    const { getByRole, getAllByRole } = renderWithLanguage(<Header />)
 
     act(() => resizeWindow(700))
 
     const burgerButtonNode: HTMLElement = getByRole('button')
 
+    fireEvent.click(burgerButtonNode)
+
+    const routeNode: HTMLElement = getAllByRole('term')[0]
+
     expect(burgerButtonNode).toBeInTheDocument()
+    expect(routeNode).toBeVisible()
   })
 
   it('renders 8 static page links at or below 700px screen width', () => {
