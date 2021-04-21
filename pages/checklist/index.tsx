@@ -151,6 +151,7 @@ const Checklist = () => {
       <div>
         <Accordion>
           <AccordionSummary
+            data-testid="accordion"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
@@ -297,6 +298,7 @@ const Checklist = () => {
         </Accordion>
         <Accordion>
           <AccordionSummary
+            data-testid="accordion"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3a-content"
             id="panel3a-header"
@@ -378,6 +380,7 @@ const Checklist = () => {
         </Accordion>
         <Accordion>
           <AccordionSummary
+            data-testid="accordion"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
             id="panel2a-header"
@@ -409,6 +412,7 @@ const Checklist = () => {
                 <Typography>
                   <div>
                     <a
+                      data-testid="test-link"
                       title="pantry"
                       tabIndex={0}
                       className={classes.link}
@@ -451,6 +455,7 @@ const Checklist = () => {
         </Accordion>
         <Accordion>
           <AccordionSummary
+            data-testid="accordion"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3a-content"
             id="panel3a-header"
@@ -518,6 +523,7 @@ const Checklist = () => {
 
         <Accordion>
           <AccordionSummary
+            data-testid="accordion"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3a-content"
             id="panel3a-header"
@@ -582,6 +588,7 @@ const Checklist = () => {
         </Accordion>
         <Accordion>
           <AccordionSummary
+            data-testid="accordion"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3a-content"
             id="panel3a-header"
@@ -656,6 +663,7 @@ const Checklist = () => {
         </Accordion>
         <Accordion>
           <AccordionSummary
+            data-testid="accordion"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3a-content"
             id="panel3a-header"
@@ -715,6 +723,7 @@ const Checklist = () => {
         </Accordion>
         <Accordion>
           <AccordionSummary
+            data-testid="accordion"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3a-content"
             id="panel3a-header"

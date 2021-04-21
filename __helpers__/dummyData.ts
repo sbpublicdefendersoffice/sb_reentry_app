@@ -6,6 +6,21 @@ import {
   SortedRecord,
 } from '../types/records'
 
+export const customFetch = (
+  mockData:
+    | OrgRecord
+    | LocationRecord
+    | ScheduleRecord
+    | TranslatedRecordResponse
+    | SortedRecord
+    | null,
+) =>
+  jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(mockData),
+    }),
+  )
+
 const dummyBaseOrgData: OrgRecord = {
   createdTime: '01/01/1900',
   fields: { org_categories: ['mentalhealth'] },
@@ -21,12 +36,32 @@ export const englishDummyOrgData: OrgRecord = {
   },
 }
 
+export const secondEnglishDummyOrgData: OrgRecord = {
+  ...dummyBaseOrgData,
+  fields: {
+    ...dummyBaseOrgData.fields,
+    org_name: "Tim's Mental Heath Clearing House and Pasta Palace!",
+    org_tags: ['mental health', 'pasta', 'tim'],
+  },
+}
+
 export const spanishDummyOrgData: OrgRecord = {
   ...dummyBaseOrgData,
   fields: {
     ...dummyBaseOrgData.fields,
     org_name_spanish: 'Emporio de salud mental del Dr. Feelgood',
     org_tags_spanish: ['salud mental', 'doctora', 'feelgood'],
+  },
+}
+
+export const dummyOrgDataWithLocation: OrgRecord = {
+  ...dummyBaseOrgData,
+  fields: {
+    ...dummyBaseOrgData.fields,
+    org_name: 'Some org',
+    location_latitude: [3, 5],
+    location_longitude: [-13, -5],
+    locations_city: ['Santa Barbara', 'Goleta'],
   },
 }
 
@@ -37,7 +72,16 @@ export const blankTranslateRecordResponse: TranslatedRecordResponse = {
 
 export const dummyTranslateRecordResponse: TranslatedRecordResponse = {
   category: 'Transportation',
-  records: [englishDummyOrgData],
+  records: [englishDummyOrgData, secondEnglishDummyOrgData],
+}
+
+export const dummyTranslatedRecordWithLocation: TranslatedRecordResponse = {
+  category: 'Mental Health',
+  records: [
+    englishDummyOrgData,
+    secondEnglishDummyOrgData,
+    dummyOrgDataWithLocation,
+  ],
 }
 
 export const blankScheduleRecord: ScheduleRecord = {}
@@ -82,4 +126,9 @@ export const dummySortedRecord: SortedRecord = {
   languages_spoken: 'English, Spanish, Esperanto',
   notes: 'Horses eat free every 3 Tuesday!',
   locations: [dummyLocationRecord],
+}
+
+export const locationlessDummySortedRecord: SortedRecord = {
+  ...dummySortedRecord,
+  locations: [],
 }

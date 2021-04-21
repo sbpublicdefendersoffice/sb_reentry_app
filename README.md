@@ -108,7 +108,19 @@ yarn format
 
 `Each command will show a message printed on the console if it was executed sucessfully.`
 
-To run ALL code linting and formatting, run:
+## Testing
+
+We make use of [Jest](https://jestjs.io/), [Testing_Library](https://testing-library.com/) and [Next_Page_Tester](https://github.com/toomuchdesign/next-page-tester) to ensure reliability of our components, pages and APIs.
+
+To start the test suites, run:
+
+```
+yarn test
+```
+
+### _Code Check_
+
+To run ALL code testing, linting and formatting, run:
 
 ```
 yarn code-check
@@ -118,15 +130,15 @@ yarn code-check
 
 We are using `husky` and `lint-staged` to code check staged files in `git`.
 
+These hooks include _all_ testing, linting and formatting procedures.
+
+Please note, `Next Page Tester` can take a bit to run full page rendering tests. Be patient! It'll get there.
+
 The check will run automatically when you add a local commit, and there is no need to configure them.
 
 If there are errors in your staged code, please fix or comment them out and then run the checks again.
 
-If there is something that you feel you _must_ commit that is not passing the code formatting standards, you can commit using a `--no-verify` flag. Please keep this to a minimum and only use it when absolutely necessary. Linting and formatting tools can be annoying, but in the end they are helping us write a better application!
-
-## Testing
-
-Coming Soon!
+If there is something that you feel you _must_ commit that is not passing the code formatting standards, you can commit using a `--no-verify` flag. Please keep this to a minimum and only use it when absolutely necessary. Linting, testing and formatting tools can be annoying, but in the end they are helping us write a better application.
 
 ## Case and Naming Conventions
 

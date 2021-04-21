@@ -1,5 +1,9 @@
 import { fireEvent } from '@testing-library/react'
-import { renderWithLanguage, dummyLocationRecord } from '../../__helpers__'
+import {
+  renderWithLanguage,
+  dummyLocationRecord,
+  customFetch,
+} from '../../__helpers__'
 
 import SendText, {
   SendTextProps,
@@ -9,6 +13,9 @@ import SendText, {
 import { SPANISH } from '../../constants/language'
 
 const { org_name, address, city, state, zip, id } = dummyLocationRecord
+
+// @ts-ignore
+window.fetch = customFetch(null)
 
 const textDummyData: SendTextProps = {
   org_name,
@@ -88,5 +95,16 @@ describe('<SendText />', () => {
     fireEvent.change(inputNode, { target: { value: dummyPhoneNumber } })
 
     expect(inputNode).toHaveValue(dummyPhoneNumber)
+  })
+
+  it('sends text to api', () => {
+    const { getByRole } = renderWithLanguage(<SendText {...textDummyData} />)
+
+    const [inputNode, buttonNode] = [getByRole(roles[1]), getByRole(roles[2])]
+
+    fireEvent.change(inputNode, { target: { value: dummyPhoneNumber } })
+    fireEvent.click(buttonNode)
+
+    expect(window.fetch).toHaveBeenCalled()
   })
 })

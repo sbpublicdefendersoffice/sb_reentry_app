@@ -1,4 +1,5 @@
 export {
+  blankGeoCoords,
   blankSBCoords,
   renderWithRouter,
   renderWithLanguage,
@@ -9,9 +10,14 @@ export {
 } from './contexts'
 
 export {
+  customFetch,
+  dummyOrgDataWithLocation,
+  dummyTranslatedRecordWithLocation,
+  secondEnglishDummyOrgData,
   dummySortedRecord,
   blankTranslateRecordResponse,
   dummyTranslateRecordResponse,
+  locationlessDummySortedRecord,
   blankScheduleRecord,
   dummyScheduleRecord,
   blankLocationRecord,

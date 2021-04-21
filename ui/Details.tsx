@@ -30,6 +30,7 @@ const Details = forwardRef<HTMLDetailsElement, DetailsProps>(
 
     return (
       <details
+        role="aria-details"
         ref={ref}
         className={`${styles.Details} ${className} details-element`}
         {...other}

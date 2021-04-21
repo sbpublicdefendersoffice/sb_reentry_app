@@ -1,10 +1,18 @@
 import { getPage } from 'next-page-tester'
 import { waitFor, screen } from '@testing-library/react'
 
-describe('about us page', () => {
-  it('renders about us page', async () => {
+import {
+  locationlessDummySortedRecord,
+  customFetch,
+} from '../../__helpers__/dummyData'
+
+// @ts-ignore
+window.fetch = customFetch(locationlessDummySortedRecord)
+
+describe('category page', () => {
+  it('renders category page', async () => {
     const { render } = await getPage({
-      route: '/aboutus',
+      route: '/food/123456',
       useApp: true,
       useDocument: true,
     })
