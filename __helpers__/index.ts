@@ -11,6 +11,8 @@ export {
 
 export {
   customFetch,
+  dummyOrgDataWithLocation,
+  dummyTranslatedRecordWithLocation,
   secondEnglishDummyOrgData,
   dummySortedRecord,
   blankTranslateRecordResponse,

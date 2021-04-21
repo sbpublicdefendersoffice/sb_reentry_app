@@ -54,6 +54,17 @@ export const spanishDummyOrgData: OrgRecord = {
   },
 }
 
+export const dummyOrgDataWithLocation: OrgRecord = {
+  ...dummyBaseOrgData,
+  fields: {
+    ...dummyBaseOrgData.fields,
+    org_name: 'Some org',
+    location_latitude: [3, 5],
+    location_longitude: [-13, -5],
+    locations_city: ['Santa Barbara', 'Goleta'],
+  },
+}
+
 export const blankTranslateRecordResponse: TranslatedRecordResponse = {
   category: 'Transportation',
   records: [],
@@ -62,6 +73,15 @@ export const blankTranslateRecordResponse: TranslatedRecordResponse = {
 export const dummyTranslateRecordResponse: TranslatedRecordResponse = {
   category: 'Transportation',
   records: [englishDummyOrgData, secondEnglishDummyOrgData],
+}
+
+export const dummyTranslatedRecordWithLocation: TranslatedRecordResponse = {
+  category: 'Mental Health',
+  records: [
+    englishDummyOrgData,
+    secondEnglishDummyOrgData,
+    dummyOrgDataWithLocation,
+  ],
 }
 
 export const blankScheduleRecord: ScheduleRecord = {}

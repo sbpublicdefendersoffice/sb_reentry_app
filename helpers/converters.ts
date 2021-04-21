@@ -7,7 +7,10 @@ import {
 export const convertLocationsForMap = (
   locRecordsToConvert: TranslatedRecordResponse,
 ): LocationRecord[] | null => {
-  const keyArr: string[] = Object.keys(locRecordsToConvert)
+  const keyArr: string[] = locRecordsToConvert.records
+    .map((orgRecord: OrgRecord) => Object.keys(orgRecord.fields))
+    .flat(1)
+
   if (keyArr.some((key: string) => key.startsWith('location')))
     return locRecordsToConvert.records.reduce(
       (arr: LocationRecord[], record: OrgRecord) => {
@@ -17,7 +20,7 @@ export const convertLocationsForMap = (
           const newLocationRecords = longCheck.map(
             (longitude: number, i: number) => ({
               multiple_categories: record.fields.org_categories?.map(
-                (category: string): string => category.replaceAll(' ', ''),
+                (category: string): string => category.replace(/\s/g, ''),
               ),
               single_category: locRecordsToConvert.category || 'search',
               longitude,

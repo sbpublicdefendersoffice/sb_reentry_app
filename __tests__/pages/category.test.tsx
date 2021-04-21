@@ -1,5 +1,5 @@
 import { getPage } from 'next-page-tester'
-import { waitFor, screen, fireEvent, wait } from '@testing-library/react'
+import { waitFor, screen, fireEvent } from '@testing-library/react'
 
 import {
   dummyTranslateRecordResponse,
