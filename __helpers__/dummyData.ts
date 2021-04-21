@@ -36,6 +36,15 @@ export const englishDummyOrgData: OrgRecord = {
   },
 }
 
+export const secondEnglishDummyOrgData: OrgRecord = {
+  ...dummyBaseOrgData,
+  fields: {
+    ...dummyBaseOrgData.fields,
+    org_name: "Tim's Mental Heath Clearing House and Pasta Palace!",
+    org_tags: ['mental health', 'pasta', 'tim'],
+  },
+}
+
 export const spanishDummyOrgData: OrgRecord = {
   ...dummyBaseOrgData,
   fields: {
@@ -52,7 +61,7 @@ export const blankTranslateRecordResponse: TranslatedRecordResponse = {
 
 export const dummyTranslateRecordResponse: TranslatedRecordResponse = {
   category: 'Transportation',
-  records: [englishDummyOrgData],
+  records: [englishDummyOrgData, secondEnglishDummyOrgData],
 }
 
 export const blankScheduleRecord: ScheduleRecord = {}

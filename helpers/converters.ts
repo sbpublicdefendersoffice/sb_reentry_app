@@ -7,7 +7,8 @@ import {
 export const convertLocationsForMap = (
   locRecordsToConvert: TranslatedRecordResponse,
 ): LocationRecord[] | null => {
-  if (locRecordsToConvert.records)
+  const keyArr: string[] = Object.keys(locRecordsToConvert)
+  if (keyArr.some((key: string) => key.startsWith('location')))
     return locRecordsToConvert.records.reduce(
       (arr: LocationRecord[], record: OrgRecord) => {
         const longCheck: number[] = record.fields.location_longitude

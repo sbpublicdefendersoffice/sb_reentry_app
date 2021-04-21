@@ -46,15 +46,13 @@ describe('<RecordPane />', () => {
       'menu',
       'list',
       'searchbox',
-      'region',
     ].map((role: string) => getByRole(role))
-
+    const orgRecordNodes: HTMLElement[] = getAllByRole('region')
     const titleNode: HTMLElement = getAllByRole('heading')[0]
 
     paneNodes.forEach((node: HTMLElement) => expect(node).toBeInTheDocument())
-
     expect(titleNode).toHaveTextContent(dummyProps.displayCategory)
-
+    expect(orgRecordNodes).toHaveLength(2)
     expect(() => getByRole('none')).toThrowError()
   })
 

@@ -25,6 +25,7 @@ const OrgRecordCard = ({ record, category, url }: OrgRecordCardProps) => {
 
   return (
     <Card
+      data-testid="OrgRecordCard"
       role="region"
       title={id}
       className={styles.OrgRecordCard}

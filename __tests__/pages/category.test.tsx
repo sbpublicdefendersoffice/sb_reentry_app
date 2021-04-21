@@ -1,13 +1,18 @@
 import { getPage } from 'next-page-tester'
-import { waitFor, screen, fireEvent } from '@testing-library/react'
+import { waitFor, screen, fireEvent, wait } from '@testing-library/react'
 
-import { englishDummyOrgData, customFetch } from '../../__helpers__/dummyData'
+import {
+  dummyTranslateRecordResponse,
+  customFetch,
+} from '../../__helpers__/dummyData'
 
 // @ts-ignore
-window.fetch = customFetch(englishDummyOrgData)
+window.fetch = customFetch(dummyTranslateRecordResponse)
 
 describe('category page', () => {
-  it('renders category page', async () => {
+  it('renders category page and performs search', async () => {
+    let orgCardsNode
+
     const { render } = await getPage({
       route: '/food',
       useApp: true,
@@ -16,17 +21,25 @@ describe('category page', () => {
 
     render()
 
-    const doc: HTMLElement = await waitFor(() =>
-      screen.getByTestId('end_of_doc'),
-    )
+    const { getByTestId, getAllByTestId } = screen
 
-    const search: HTMLElement = await waitFor(() =>
-      screen.getByTestId('FetchedDataSearch'),
-    )
+    const [docNode, searchNode] = [
+      await waitFor(() => getByTestId('end_of_doc')),
+      await waitFor(() => getByTestId('FetchedDataSearch')),
+    ]
+    orgCardsNode = await waitFor(() => getAllByTestId('OrgRecordCard'))
 
-    fireEvent.change(search, { target: { value: 'feelgood' } })
-    fireEvent.change(search, { target: { value: '' } })
+    expect(orgCardsNode).toHaveLength(2)
 
-    expect(doc).toBeInTheDocument()
+    fireEvent.change(searchNode, { target: { value: 'pasta' } })
+    expect(searchNode).toHaveValue('pasta')
+
+    orgCardsNode = await waitFor(() => getAllByTestId('OrgRecordCard'))
+    expect(orgCardsNode).toHaveLength(1)
+
+    fireEvent.change(searchNode, { target: { value: '' } })
+    expect(searchNode).toHaveValue('')
+
+    expect(docNode).toBeInTheDocument()
   })
 })

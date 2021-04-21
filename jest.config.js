@@ -3,6 +3,10 @@ const jestConfig = {
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
   coveragePathIgnorePatterns: [
     '<rootDir>/__helpers__/',
+    // '<rootDir>/components/LiveDataSearch',
+    '<rootDir>/components/MapMarker',
+    // '<rootDir>/components/SearchTermsMarquee',
+    // '<rootDir>/helpers',
     '<rootDir>/ui/FreshStartLogo',
   ],
   moduleNameMapper: {
