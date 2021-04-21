@@ -4,7 +4,7 @@ const jestConfig = {
   coveragePathIgnorePatterns: [
     '<rootDir>/__helpers__/',
     // '<rootDir>/components/LiveDataSearch',
-    '<rootDir>/components/MapMarker',
+    // '<rootDir>/components/MapMarker',
     // '<rootDir>/components/SearchTermsMarquee',
     // '<rootDir>/helpers',
     '<rootDir>/ui/FreshStartLogo',
