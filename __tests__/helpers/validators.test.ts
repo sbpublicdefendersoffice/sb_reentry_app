@@ -1,5 +1,6 @@
 import { NextApiRequest } from 'next'
 
+import { blankGeoCoords } from '../../__helpers__/contexts'
 import {
   INVALID_NUMBER,
   POST,
@@ -17,16 +18,6 @@ const validDummyApiRequest = {
 const invalidDummyApiRequest = {
   method: 'PATCH',
   headers: { host: 'someotherhost.com' },
-}
-
-const dummyCoords: GeolocationCoordinates = {
-  accuracy: 0,
-  altitude: null,
-  altitudeAccuracy: null,
-  heading: null,
-  latitude: 0,
-  longitude: 0,
-  speed: null,
 }
 
 describe('validator helper constants and functions', () => {
@@ -73,7 +64,7 @@ describe('validator helper constants and functions', () => {
 
   it('validates a set of coords in santa barbara county', () => {
     const validateCoords: boolean = validateIsInSantaBarbaraCounty({
-      ...dummyCoords,
+      ...blankGeoCoords,
       latitude: 34.615504683742714,
       longitude: -120.19000441804961,
     })
@@ -82,7 +73,9 @@ describe('validator helper constants and functions', () => {
   })
 
   it('does not validate a set of coords not in santa barbara county', () => {
-    const validateCoords: boolean = validateIsInSantaBarbaraCounty(dummyCoords)
+    const validateCoords: boolean = validateIsInSantaBarbaraCounty(
+      blankGeoCoords,
+    )
 
     expect(validateCoords).toEqual(false)
   })
