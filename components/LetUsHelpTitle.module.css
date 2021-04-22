@@ -1,0 +1,15 @@
+.LetUsHelpTitle {
+  height: fit-content;
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.Title {
+  margin-bottom: var(--margin-std);
+}
+
+@media (max-width: 700px) {
+  .LetUsHelpTitle {
+    padding: var(--pad-lg) 0;
+  }
+}
