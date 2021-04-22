@@ -1,7 +1,6 @@
 .LetUsHelpTitle {
-  height: fit-content;
   text-align: center;
-  padding: 4rem 0;
+  margin-bottom: var(--margin-lg);
 }
 
 .Title {

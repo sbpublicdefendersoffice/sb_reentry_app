@@ -1,0 +1,15 @@
+.LetUsHelpContainer {
+  width: 90%;
+  height: var(--screen-minus-header);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 4rem;
+}
+
+@media (max-width: 700px) {
+  .LetUsHelpContainer {
+    padding-top: var(--pad-lg);
+  }
+}
