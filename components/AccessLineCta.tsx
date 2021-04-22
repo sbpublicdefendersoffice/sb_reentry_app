@@ -39,7 +39,7 @@ const AccessLineCta = () => {
   const activeCopy = copy[language]
 
   return (
-    <CallToAction>
+    <CallToAction blueBg>
       <Title role="heading">{activeCopy.agency}</Title>
       <Title role="heading">{activeCopy.title}</Title>
       <div className={styles.CopyAndLinks}>

@@ -1,0 +1,7 @@
+.Copy {
+  margin: var(--margin-lg) 0;
+}
+
+.Explanation {
+  margin-bottom: var(--margin-std);
+}

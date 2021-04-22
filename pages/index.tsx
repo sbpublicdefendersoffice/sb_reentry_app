@@ -1,8 +1,15 @@
-import { AccessLineCta, PwaDownload, ResourceHub, PRRCcta } from '../components'
+import {
+  AccessLineCta,
+  PwaDownload,
+  ResourceHub,
+  PRRCcta,
+  LetUsHelpCta,
+} from '../components'
 
 const Home = () => (
   <>
     <ResourceHub />
+    <LetUsHelpCta />
     <PRRCcta />
     <AccessLineCta />
     <PwaDownload />

@@ -48,7 +48,7 @@ const PRRCcta = () => {
   const { santaBarbara, santaMaria } = accessLineInfo
 
   return (
-    <CallToAction blueBg>
+    <CallToAction>
       <Title>{activeCopy.title}</Title>
       <div className={styles.CopyAndLinkHolder}>
         <Paragraph>{activeCopy.instruction}</Paragraph>
