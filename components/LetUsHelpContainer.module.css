@@ -1,11 +1,12 @@
 .LetUsHelpContainer {
   margin: 0 auto;
   width: 70%;
-  display: flex;
+  padding-top: 4rem;
+
+  /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  padding-top: 4rem;
+  align-items: center; */
 }
 
 @media (max-width: 700px) {

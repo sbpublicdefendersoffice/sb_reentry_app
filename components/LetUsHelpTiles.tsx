@@ -8,7 +8,7 @@ import { Paragraph } from '../ui'
 
 import styles from './LetUsHelpTiles.module.css'
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     publicDefender: 'Public Defender Resources',
     court: 'Prepare for Court',
@@ -31,10 +31,12 @@ const LetUsHelpTiles = () => {
       const { imgPath, route } = link
 
       return (
-        <NextLink href={route} key={i}>
-          <div className={styles.Tile}>
-            <img className={styles.Image} src={imgPath} />
-            <Paragraph size="med-text">{title}</Paragraph>
+        <NextLink href={`/letushelp${route}`} key={i}>
+          <div role="listitem" className={styles.Tile}>
+            <img role="img" className={styles.Image} src={imgPath} />
+            <Paragraph role="term" size="med-text">
+              {title}
+            </Paragraph>
           </div>
         </NextLink>
       )
@@ -42,12 +44,18 @@ const LetUsHelpTiles = () => {
   )
 
   return (
-    <div className={styles.LetUsHelpTiles}>
-      <Paragraph size="heading-text">{activeCopy.publicDefender}</Paragraph>
+    <div role="list" className={styles.LetUsHelpTiles}>
+      <Paragraph role="heading" color="highlight" size="heading-text">
+        {activeCopy.publicDefender}
+      </Paragraph>
       <div className={styles.TileRow}>{tiles.slice(0, 3)}</div>
-      <Paragraph size="heading-text">{activeCopy.court}</Paragraph>
+      <Paragraph role="heading" color="highlight" size="heading-text">
+        {activeCopy.court}
+      </Paragraph>
       <div className={styles.TileRow}>{tiles.slice(3, 6)}</div>
-      <Paragraph size="heading-text">{activeCopy.reentry}</Paragraph>
+      <Paragraph role="heading" color="highlight" size="heading-text">
+        {activeCopy.reentry}
+      </Paragraph>
       <div className={styles.TileRow}>{tiles.slice(6)}</div>
     </div>
   )

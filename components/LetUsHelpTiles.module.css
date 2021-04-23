@@ -1,12 +1,10 @@
 .LetUsHelpTiles {
   width: 100%;
-  height: fit-content;
   text-align: center;
 }
 
 .TileRow {
-  width: 100%;
-  height: fit-content;
+  width: inherit;
   padding: var(--pad-lg) 0;
   display: flex;
   justify-content: space-evenly;
@@ -15,7 +13,6 @@
 .Tile {
   text-align: center;
   width: 30%;
-  height: fit-content;
   border-radius: var(--radius-medium);
   background-color: var(--light);
   padding-bottom: var(--pad-lg);
@@ -27,13 +24,13 @@
   background-color: var(--highlight);
 }
 
-.Tile:hover *,
-.Tile:active * {
+.Tile:hover p,
+.Tile:active p {
   color: var(--light);
 }
 
 .Image {
   width: 100%;
-  max-width: 175px;
+  max-width: 15rem;
   height: auto;
 }
