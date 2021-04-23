@@ -97,3 +97,60 @@ export const staticPageRoutes: RouteInfo[] = [
     route: '/aboutus',
   },
 ]
+
+export const letUsHelpRoutes: RouteInfo[] = [
+  {
+    title_english: 'Treatment Court',
+    title_spanish: 'Tribunal de tratamiento',
+    route: '/letushelp/treatmentcourt',
+    imgPath: './icons/treatmentcourt.svg',
+  },
+  {
+    title_english: 'Do I qualify for diversion?',
+    title_spanish: '¿Califico para el desvío?',
+    route: '/letushelp/diversion',
+    imgPath: './icons/diversion.svg',
+  },
+  {
+    title_english: 'Clear my record',
+    title_spanish: 'Limpiar mi registro',
+    route: '/letushelp/clearmyrecord',
+    imgPath: './icons/clearmyrecord.svg',
+  },
+  {
+    title_english: 'Documents you may need',
+    title_spanish: 'Documentos que puede necesitar',
+    route: '/letushelp/documents',
+    imgPath: './icons/treatmentcourt.svg',
+  },
+  {
+    title_english: 'Pre-arraignment preparation',
+    title_spanish: 'Preparación previa a la lectura de cargos',
+    route: '/letushelp/prearraignment',
+    imgPath: './icons/diversion.svg',
+  },
+  {
+    title_english: 'Common Legal Terms',
+    title_spanish: 'Términos legales comunes',
+    route: '/letushelp/legalterms',
+    imgPath: './icons/clearmyrecord.svg',
+  },
+  {
+    title_english: 'Recommended Resources',
+    title_spanish: 'Recursos recomendados',
+    route: '/letushelp/recommendedresources',
+    imgPath: './icons/clearmyrecord.svg',
+  },
+  {
+    title_english: 'Family Resources',
+    title_spanish: 'Recursos familiares',
+    route: '/letushelp/familyresources',
+    imgPath: './icons/treatmentcourt.svg',
+  },
+  {
+    title_english: 'Resources for Women',
+    title_spanish: 'Recursos para mujeres',
+    route: '/letushelp/resourcesforwomen',
+    imgPath: './icons/diversion.svg',
+  },
+]

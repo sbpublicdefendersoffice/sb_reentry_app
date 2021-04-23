@@ -13,4 +13,4 @@ export {
   REGION_VISIBILITY,
   RADIUS_DISTANCE,
 } from './maps'
-export { resourceRoutes, staticPageRoutes } from './routes'
+export { resourceRoutes, staticPageRoutes, letUsHelpRoutes } from './routes'
