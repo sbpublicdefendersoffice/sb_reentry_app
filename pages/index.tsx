@@ -4,10 +4,12 @@ import {
   ResourceHub,
   PRRCcta,
   LetUsHelpCta,
+  MostUsedResourcesCta,
 } from '../components'
 
 const Home = () => (
   <>
+    <MostUsedResourcesCta />
     <ResourceHub />
     <LetUsHelpCta />
     <PRRCcta />
