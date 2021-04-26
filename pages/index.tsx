@@ -1,5 +1,6 @@
 import {
   AccessLineCta,
+  AddYourOrg,
   PwaDownload,
   ResourceHub,
   PRRCcta,
@@ -14,6 +15,7 @@ const Home = () => (
     <LetUsHelpCta />
     <PRRCcta />
     <AccessLineCta />
+    <AddYourOrg />
     <PwaDownload />
   </>
 )
