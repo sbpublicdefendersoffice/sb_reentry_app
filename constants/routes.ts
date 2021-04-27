@@ -1,4 +1,4 @@
-import { RouteInfo } from '../types/routes'
+import { RouteInfo, InfoWithDescription } from '../types/routes'
 
 export const resourceRoutes: RouteInfo[] = [
   {
@@ -95,5 +95,96 @@ export const staticPageRoutes: RouteInfo[] = [
     title_english: 'About Us',
     title_spanish: 'Sobre nosotros',
     route: '/aboutus',
+  },
+]
+
+export const letUsHelpRoutes: RouteInfo[] = [
+  {
+    title_english: 'Treatment Court',
+    title_spanish: 'Tribunal de tratamiento',
+    route: '/treatmentcourt',
+    imgPath: './icons/treatmentcourt.svg',
+  },
+  {
+    title_english: 'Do I qualify for diversion?',
+    title_spanish: '¿Califico para el desvío?',
+    route: '/diversion',
+    imgPath: './icons/diversion.svg',
+  },
+  {
+    title_english: 'Clear my record',
+    title_spanish: 'Limpiar mi registro',
+    route: '/clearmyrecord',
+    imgPath: './icons/clearmyrecord.svg',
+  },
+  {
+    title_english: 'Documents you may need',
+    title_spanish: 'Documentos que puede necesitar',
+    route: '/documents',
+    imgPath: './icons/documents.svg',
+  },
+  {
+    title_english: 'Pre-arraignment preparation',
+    title_spanish: 'Preparación previa a la lectura de cargos',
+    route: '/prearraignment',
+    imgPath: './icons/prearraignment.svg',
+  },
+  {
+    title_english: 'Common Legal Terms',
+    title_spanish: 'Términos legales comunes',
+    route: '/legalterms',
+    imgPath: './icons/legalterms.svg',
+  },
+  {
+    title_english: 'Recommended Resources',
+    title_spanish: 'Recursos recomendados',
+    route: '/recommendedresources',
+    imgPath: './icons/recommendedresources.svg',
+  },
+  {
+    title_english: 'Family Resources',
+    title_spanish: 'Recursos familiares',
+    route: '/familyresources',
+    imgPath: './icons/familyresources.svg',
+  },
+  {
+    title_english: 'Resources for Women',
+    title_spanish: 'Recursos para mujeres',
+    route: '/resourcesforwomen',
+    imgPath: './icons/resourcesforwomen.svg',
+  },
+]
+
+export const topThreeRoutes: InfoWithDescription[] = [
+  {
+    title_english: 'Behavioral Wellness',
+    title_spanish: 'Bienestar conductual',
+    text_english:
+      'Behavioral Wellness is the hub for mental health services in Santa Barbara County',
+    text_spanish:
+      'Línea de Acceso para Servicios y Crisis, Gratuito y Disponible las 24 Horas del Día',
+    route: '/search/recncoC6502aH2qYs',
+    imgPath: './icons/phone.svg',
+  },
+  {
+    title_english: "Santa Barbara Public Defender's Office",
+    title_spanish: 'Oficina del Defensor Público de Santa Bárbara',
+    text_english:
+      'The Office of the Public Defender exists to provide legal services to those persons who qualify for assistance, including the indigent and unhoused.',
+    text_spanish:
+      'La Oficina del Defensor Público existe para brindar servicios legales a aquellas personas que califican para recibir asistencia, incluidos los indigentes y los que no tienen vivienda.',
+    route: '/search/recD8lFn9X48GfcaS',
+    imgPath: './icons/prearraignment.svg',
+  },
+  {
+    title_english: 'Probation Report and Resource Center (PRRC)',
+    title_spanish:
+      'Centro de recursos e informes de libertad condicional (PRRC)',
+    text_english:
+      'The PRRC is an excellent source for information on probation requirements, reporting and many other topics',
+    text_spanish:
+      'El PRRC es una excelente fuente de información sobre los requisitos de libertad condicional, informes y muchos otros temas',
+    route: '/search/rec5sVCDDkpXlclv0',
+    imgPath: './icons/clearmyrecord.svg',
   },
 ]

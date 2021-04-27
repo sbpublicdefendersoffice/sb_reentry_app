@@ -24,5 +24,5 @@ export type {
   ScheduleRecord,
   SortedRecord,
 } from './records'
-export type { RouteInfo } from './routes'
+export type { RouteInfo, InfoWithDescription } from './routes'
 export type { Color, TextSize, UseToastProps } from './ui'

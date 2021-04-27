@@ -12,6 +12,7 @@ export const POST: AllowedMethod = 'POST'
 export const GET: AllowedMethod = 'GET'
 
 const LOCAL: AllowedURL = 'localhost:3000'
+const PRODUCTION: AllowedURL = 'thrivesbc.com'
 const DEPLOYED: AllowedURL = 'santabarbarareentry.netlify.app'
 
 export const validateRequest = (
@@ -21,7 +22,8 @@ export const validateRequest = (
   const { headers, method } = req
   const { host } = headers
 
-  const isAllowedURL: boolean = host === LOCAL || host.endsWith(DEPLOYED)
+  const isAllowedURL: boolean =
+    host === LOCAL || host === PRODUCTION || host.endsWith(DEPLOYED)
   const isAllowedMethod: boolean = methodToAllow === method
 
   if (isAllowedURL && isAllowedMethod) return true

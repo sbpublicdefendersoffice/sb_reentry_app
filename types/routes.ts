@@ -4,3 +4,8 @@ export interface RouteInfo {
   route: string
   imgPath?: string
 }
+
+export interface InfoWithDescription extends RouteInfo {
+  text_english: string
+  text_spanish: string
+}

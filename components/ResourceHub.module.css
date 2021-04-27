@@ -55,6 +55,16 @@
   font-size: var(--med-text);
 }
 
+@media (min-width: 1180px) {
+  .tileContainer {
+    flex-wrap: none;
+  }
+
+  .singleTileHolder {
+    width: 16.666666%;
+  }
+}
+
 @media (max-width: 500px) {
   .singleTileHolder {
     width: 30%;
