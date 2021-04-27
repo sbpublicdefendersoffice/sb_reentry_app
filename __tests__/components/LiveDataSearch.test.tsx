@@ -1,8 +1,16 @@
-import { renderWithAllContext } from '../../__helpers__/contexts'
+import { fireEvent, waitFor } from '@testing-library/react'
+
+import {
+  renderWithAllContext,
+  customFetch,
+  dummyTranslatedRecordWithLocation,
+} from '../../__helpers__/'
 
 import { searchCopy, SPANISH } from '../../constants/'
 import LiveDataSearch from '../../components/LiveDataSearch'
-import { fireEvent, waitFor } from '@testing-library/dom'
+
+// @ts-ignore
+window.fetch = customFetch(dummyTranslatedRecordWithLocation)
 
 describe('<LiveDataSearch />', () => {
   it('renders correctly', () => {
@@ -43,5 +51,22 @@ describe('<LiveDataSearch />', () => {
 
     expect(inputNode).toHaveAttribute('placeholder', `${search}...`)
     expect(popUpNode).toHaveTextContent(tooltip)
+  })
+
+  it('preforms search as expected', async () => {
+    const { getByRole, getAllByRole } = renderWithAllContext(
+      <LiveDataSearch testWorkaround />,
+    )
+
+    const inputNode: HTMLElement = getByRole('search')
+
+    fireEvent.focus(inputNode)
+    fireEvent.change(inputNode, { target: { value: 'mental health' } })
+
+    const marqueeNodes: HTMLElement[] = await waitFor(() =>
+      getAllByRole('listitem'),
+    )
+
+    expect(marqueeNodes).toHaveLength(3)
   })
 })

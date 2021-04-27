@@ -59,6 +59,7 @@ export const dummyOrgDataWithLocation: OrgRecord = {
   fields: {
     ...dummyBaseOrgData.fields,
     org_name: 'Some org',
+    org_tags: ['mental health', 'some', 'tim'],
     location_latitude: [3, 5],
     location_longitude: [-13, -5],
     locations_city: ['Santa Barbara', 'Goleta'],

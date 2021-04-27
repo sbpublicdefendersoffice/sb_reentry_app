@@ -28,7 +28,11 @@ const delayTimeInMs: number = 500
 
 const delimiter: string = ', '
 
-const LiveDataSearch = () => {
+interface LiveDataSearchProps {
+  testWorkaround?: boolean
+}
+
+const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
   const { push } = useRouter()
   const { language } = useLanguage()
   const { searchResults, setSearchResults } = useGlobalSearch()
@@ -118,7 +122,7 @@ const LiveDataSearch = () => {
       </div>
       {searchQuery && searchResults && isFocused && (
         <ul className={styles.ResultsContainer}>
-          {tagsReady && (
+          {tagsReady && !testWorkaround && (
             <SearchTermsMarquee
               searchRecords={searchResults.records}
               language={language}
