@@ -170,9 +170,9 @@ export const topThreeRoutes: InfoWithDescription[] = [
     title_english: "Santa Barbara Public Defender's Office",
     title_spanish: 'Oficina del Defensor Público de Santa Bárbara',
     text_english:
-      'The PRRC is an excellent source for information on probation requirements, reporting and many other topics',
+      'The Office of the Public Defender exists to provide legal services to those persons who qualify for assistance, including the indigent and unhoused.',
     text_spanish:
-      'El PRRC es una excelente fuente de información sobre los requisitos de libertad condicional, informes y muchos otros temas',
+      'La Oficina del Defensor Público existe para brindar servicios legales a aquellas personas que califican para recibir asistencia, incluidos los indigentes y los que no tienen vivienda.',
     route: '/search/recD8lFn9X48GfcaS',
     imgPath: './icons/prearraignment.svg',
   },
