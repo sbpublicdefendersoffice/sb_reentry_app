@@ -1,4 +1,4 @@
-import { RouteInfo } from '../types/routes'
+import { RouteInfo, InfoWithDescription } from '../types/routes'
 
 export const resourceRoutes: RouteInfo[] = [
   {
@@ -152,5 +152,39 @@ export const letUsHelpRoutes: RouteInfo[] = [
     title_spanish: 'Recursos para mujeres',
     route: '/resourcesforwomen',
     imgPath: './icons/resourcesforwomen.svg',
+  },
+]
+
+export const topThreeRoutes: InfoWithDescription[] = [
+  {
+    title_english: 'Behavioral Wellness',
+    title_spanish: 'Bienestar conductual',
+    text_english:
+      'Behavioral Wellness is the hub for mental health services in Santa Barbara County',
+    text_spanish:
+      'Línea de Acceso para Servicios y Crisis, Gratuito y Disponible las 24 Horas del Día',
+    route: '/search/recncoC6502aH2qYs',
+    imgPath: './icons/phone.svg',
+  },
+  {
+    title_english: "Santa Barbara Public Defender's Office",
+    title_spanish: 'Oficina del Defensor Público de Santa Bárbara',
+    text_english:
+      'The PRRC is an excellent source for information on probation requirements, reporting and many other topics',
+    text_spanish:
+      'El PRRC es una excelente fuente de información sobre los requisitos de libertad condicional, informes y muchos otros temas',
+    route: '/search/recD8lFn9X48GfcaS',
+    imgPath: './icons/prearraignment.svg',
+  },
+  {
+    title_english: 'Probation Report and Resource Center (PRRC)',
+    title_spanish:
+      'Centro de recursos e informes de libertad condicional (PRRC)',
+    text_english:
+      'The PRRC is an excellent source for information on probation requirements, reporting and many other topics',
+    text_spanish:
+      'El PRRC es una excelente fuente de información sobre los requisitos de libertad condicional, informes y muchos otros temas',
+    route: '/search/rec5sVCDDkpXlclv0',
+    imgPath: './icons/clearmyrecord.svg',
   },
 ]

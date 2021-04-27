@@ -6,6 +6,7 @@ import {
   PRRCcta,
   LetUsHelpCta,
   MostUsedResourcesCta,
+  TopThreeCta,
 } from '../components'
 
 const Home = () => (
@@ -16,6 +17,7 @@ const Home = () => (
     <PRRCcta />
     <AccessLineCta />
     <AddYourOrg />
+    <TopThreeCta />
     <PwaDownload />
   </>
 )

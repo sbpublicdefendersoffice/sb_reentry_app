@@ -1,0 +1,25 @@
+.ComponentTitle {
+  margin-bottom: var(--margin-std);
+}
+
+.TileHolder {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Tile {
+  text-align: center;
+  width: 30%;
+  padding-bottom: var(--pad-lg);
+  cursor: pointer;
+}
+
+.TileTitle {
+  margin-bottom: var(--margin-std);
+}
+
+.Image {
+  width: 100%;
+  max-width: 15rem;
+  height: auto;
+}
