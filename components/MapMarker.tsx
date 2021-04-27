@@ -12,6 +12,7 @@ import styles from './MapMarker.module.css'
 interface MapMarkerProps {
   locationRecord: LocationRecord
   customStyle?: { [cssQuality: string]: string | number }
+  testWorkaround?: boolean
 }
 
 const copy: CopyHolder = {
@@ -23,7 +24,11 @@ const copy: CopyHolder = {
   },
 }
 
-const MapMarker = ({ locationRecord, customStyle }: MapMarkerProps) => {
+const MapMarker = ({
+  locationRecord,
+  customStyle,
+  testWorkaround,
+}: MapMarkerProps) => {
   const [imgSrc, setImgSrc] = useState<string>('')
   const { push, pathname, query } = useRouter()
   const { popupLocation, setPopupLocation, clearPopupLocation } = usePopup()
@@ -59,21 +64,24 @@ const MapMarker = ({ locationRecord, customStyle }: MapMarkerProps) => {
           {name}
         </Popup>
       )}
-      <Marker
-        style={customStyle ? customStyle : {}}
-        coordinates={[longitude, latitude]}
-        anchor="bottom"
-      >
-        <img
-          src={`/icons/${imgSrc}_marker.svg`}
-          alt={activeCopy.altText}
-          className={styles.MapMarker}
-          onMouseEnter={setPopupLocation}
-          onMouseMove={setPopupLocation}
-          onMouseLeave={clearPopupLocation}
-          onClick={linkToRecord}
-        />
-      </Marker>
+
+      {!testWorkaround && (
+        <Marker
+          style={customStyle ? customStyle : {}}
+          coordinates={[longitude, latitude]}
+          anchor="bottom"
+        >
+          <img
+            src={`/icons/${imgSrc}_marker.svg`}
+            alt={activeCopy.altText}
+            className={styles.MapMarker}
+            onMouseEnter={setPopupLocation}
+            onMouseMove={setPopupLocation}
+            onMouseLeave={clearPopupLocation}
+            onClick={linkToRecord}
+          />
+        </Marker>
+      )}
     </>
   )
 }
