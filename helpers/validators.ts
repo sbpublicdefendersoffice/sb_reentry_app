@@ -23,7 +23,7 @@ export const validateRequest = (
   const { host } = headers
 
   const isAllowedURL: boolean =
-    host === LOCAL || host === PRODUCTION || host.endsWith(DEPLOYED)
+    host === LOCAL || host.endsWith(PRODUCTION) || host.endsWith(DEPLOYED)
   const isAllowedMethod: boolean = methodToAllow === method
 
   if (isAllowedURL && isAllowedMethod) return true
