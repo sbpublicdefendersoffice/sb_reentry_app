@@ -18,6 +18,7 @@ import {
   LiveDataSearch,
   Navigator,
   Toast,
+  IsThisUsefulTag,
 } from '../components'
 import { checkAndSetUserLocation } from '../helpers/location'
 
@@ -68,6 +69,7 @@ const App = ({ Component, pageProps }: AppProps) => {
                 <main>
                   <Component {...pageProps} />
                 </main>
+                <IsThisUsefulTag />
                 <Footer />
                 <Toast />
               </GlobalSearchProvider>
