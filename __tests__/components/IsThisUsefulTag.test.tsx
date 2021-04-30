@@ -1,3 +1,5 @@
+import { fireEvent, waitFor } from '@testing-library/dom'
+
 import { renderWithAllContext } from '../../__helpers__/contexts'
 
 import { SPANISH } from '../../constants/language'
@@ -40,5 +42,34 @@ describe('<IsThisUsefulTag />', () => {
     expect(termNode).toHaveTextContent(useful)
     expect(yesNode).toHaveTextContent(yes)
     expect(noNode).toHaveTextContent(no)
+  })
+
+  it('displays child form component', async () => {
+    const { getAllByRole, getByRole } = renderWithAllContext(
+      <IsThisUsefulTag />,
+    )
+
+    const yesNode: HTMLElement = getAllByRole('link')[0]
+
+    fireEvent.click(yesNode)
+
+    const formNode: HTMLElement = await waitFor(() => getByRole('form'))
+
+    expect(formNode).toBeInTheDocument()
+  })
+
+  it('does not display child form component if router prop asPath is falsy', () => {
+    const { getAllByRole, getByRole } = renderWithAllContext(
+      <IsThisUsefulTag />,
+      {
+        routerOptions: { asPath: '' },
+      },
+    )
+
+    const yesNode: HTMLElement = getAllByRole('link')[0]
+
+    fireEvent.click(yesNode)
+
+    expect(() => getByRole('form')).toThrowError()
   })
 })

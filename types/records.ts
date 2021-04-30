@@ -1,3 +1,5 @@
+import { Language } from './language'
+
 export type Holder = { [title: string]: Array<string | number> }
 
 export interface TranslatedRecordResponse {
@@ -106,4 +108,11 @@ export interface SortedRecord {
   locations?: LocationRecord[]
   latitude?: number
   longitude?: number
+}
+
+export interface Feedback {
+  isUseful: boolean
+  route: string
+  language: Language
+  comment: string
 }
