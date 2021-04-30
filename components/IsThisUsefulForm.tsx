@@ -13,7 +13,7 @@ import useLanguage from '../hooks/useLanguage'
 import { Paragraph, Button } from '../ui'
 import { Feedback, CopyHolder } from '../types'
 
-interface IsThisUsefulFormProps {
+export interface IsThisUsefulFormProps {
   feedbackInfo: Feedback
   setFeedbackInfo: Dispatch<SetStateAction<Feedback | null>>
   activeParentCopy: { [key: string]: string }
@@ -87,14 +87,15 @@ const IsThisUsefulForm = ({
         <span>X</span>
       </div>
       <div className={styles.Holder}>
-        <Paragraph className={styles.Heading} size="med-text">
+        <Paragraph role="article" className={styles.Heading} size="med-text">
           {useful}
         </Paragraph>
         <div className={styles.RadioSection}>
-          <label htmlFor="useful" className={styles.Label}>
+          <label role="aria-label" htmlFor="useful" className={styles.Label}>
             {yes}
           </label>
           <input
+            role="radio"
             className={styles.Radio}
             checked={isUseful}
             type="radio"
@@ -104,10 +105,15 @@ const IsThisUsefulForm = ({
             onClick={setIsUseful}
             onChange={setIsUseful}
           />
-          <label htmlFor="not-useful" className={styles.Label}>
+          <label
+            role="aria-label"
+            htmlFor="not-useful"
+            className={styles.Label}
+          >
             {no}
           </label>
           <input
+            role="radio"
             className={styles.Radio}
             checked={!isUseful}
             type="radio"
@@ -118,17 +124,20 @@ const IsThisUsefulForm = ({
             onChange={setIsUseful}
           />
         </div>
-        <Paragraph className={styles.Heading} size="med-text">
+        <Paragraph role="article" className={styles.Heading} size="med-text">
           {isUseful ? usefulHeading : notUsefulHeading}
         </Paragraph>
         <textarea
+          role="textbox"
           className={styles.Textbox}
           value={comment}
           onChange={setComment}
           spellCheck
         />
         <div className={styles.Button}>
-          <Button type="submit">{buttonCopy}</Button>
+          <Button role="button" type="submit">
+            {buttonCopy}
+          </Button>
         </div>
       </div>
     </form>
