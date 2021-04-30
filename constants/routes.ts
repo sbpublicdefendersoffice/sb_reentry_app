@@ -108,7 +108,7 @@ export const letUsHelpRoutes: RouteInfo[] = [
   {
     title_english: 'Do I qualify for diversion?',
     title_spanish: '¿Califico para el desvío?',
-    route: '/diversion',
+    route: '/diversion/areyouaclient',
     imgPath: './icons/diversion.svg',
   },
   {
