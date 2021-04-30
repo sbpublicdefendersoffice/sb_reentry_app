@@ -4,6 +4,7 @@ import { renderWithAllContext } from '../../__helpers__/contexts'
 
 import { SPANISH } from '../../constants/language'
 
+import { copy as childCopy } from '../../components/IsThisUsefulForm'
 import IsThisUsefulTag, { copy } from '../../components/IsThisUsefulTag'
 
 describe('<IsThisUsefulTag />', () => {
@@ -69,6 +70,44 @@ describe('<IsThisUsefulTag />', () => {
     const yesNode: HTMLElement = getAllByRole('link')[0]
 
     fireEvent.click(yesNode)
+
+    expect(() => getByRole('form')).toThrowError()
+  })
+
+  it('switches text when radio buttons are clicked', async () => {
+    const { getAllByRole } = renderWithAllContext(<IsThisUsefulTag />)
+
+    const { usefulHeading, notUsefulHeading } = childCopy.english
+
+    const yesNode: HTMLElement = getAllByRole('link')[0]
+
+    fireEvent.click(yesNode)
+
+    const headingNode: HTMLElement = await waitFor(() =>
+      getAllByRole('article').pop(),
+    )
+
+    expect(headingNode).toHaveTextContent(usefulHeading)
+
+    const noRadio: HTMLElement = getAllByRole('radio').pop()
+
+    fireEvent.click(noRadio)
+
+    expect(headingNode).toHaveTextContent(notUsefulHeading)
+  })
+
+  it('closes child form component when X switch is clicked', async () => {
+    const { getAllByRole, getByRole } = renderWithAllContext(
+      <IsThisUsefulTag />,
+    )
+
+    const yesNode: HTMLElement = getAllByRole('link')[0]
+
+    fireEvent.click(yesNode)
+
+    const switchNode: HTMLElement = await waitFor(() => getByRole('switch'))
+
+    fireEvent.click(switchNode)
 
     expect(() => getByRole('form')).toThrowError()
   })

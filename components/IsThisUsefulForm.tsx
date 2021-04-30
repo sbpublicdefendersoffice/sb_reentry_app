@@ -83,7 +83,11 @@ const IsThisUsefulForm = ({
       className={styles.IsThisUsefulForm}
       onSubmit={handleSubmit}
     >
-      <div className={styles.Close} onClick={() => setFeedbackInfo(null)}>
+      <div
+        role="switch"
+        className={styles.Close}
+        onClick={() => setFeedbackInfo(null)}
+      >
         <span>X</span>
       </div>
       <div className={styles.Holder}>
