@@ -8,6 +8,11 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     heading: {
       fontSize: '2rem',
+      fontFamily: 'Roboto',
+    },
+    accordDescription: {
+      fontSize: '1.2rem',
+      fontFamily: 'Roboto',
     },
     paper: {
       padding: theme.spacing(2),
@@ -91,6 +96,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: '40rem',
       height: '100%',
       display: 'block',
+      '@media (max-width: 700px)': {
+        width: '100%',
+      },
     },
 
     cardContent: {
@@ -98,6 +106,24 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginTop: '3rem',
       overflow: 'auto',
       pointerEvents: 'auto',
+    },
+    checklistRoot: {
+      width: '100%',
+    },
+    checklistHeading: {
+      fontSize: '1.5rem',
+    },
+    checklistPaper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      minHeight: '10rem',
+    },
+    checklistPaperCard: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      minHeight: '22rem',
     },
     flyerRoot: {
       maxWidth: '90%',
