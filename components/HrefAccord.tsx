@@ -24,6 +24,7 @@ const HrefAccordian = () => {
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3a-content"
+              data-testid="accordion"
               id="panel3a-header"
             >
               <Typography className={classes.heading}>
@@ -34,37 +35,75 @@ const HrefAccordian = () => {
             <AccordionDetails>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  <Typography>{activeCopy.description}</Typography>
+                  <Typography className={classes.accordDescription}>
+                    {activeCopy.description}
+                  </Typography>
                   <Typography>
-                    <h4 style={{ marginBottom: '2rem' }}>
+                    <h4
+                      style={{ marginBottom: '2rem' }}
+                      className={classes.accordDescription}
+                    >
                       {activeCopy.action}
                     </h4>
                   </Typography>
                   <Typography>
                     <div>
-                      <a style={{ display: 'block' }} href={activeCopy.href1}>
+                      <a
+                        style={{ display: 'block' }}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={classes.heading}
+                        href={activeCopy.href1}
+                      >
                         {activeCopy.item1}
                       </a>
-                      <a style={{ display: 'block' }} href={activeCopy.href2}>
+                      <a
+                        style={{ display: 'block' }}
+                        target="_blank"
+                        className={classes.heading}
+                        rel="noopener noreferrer"
+                        href={activeCopy.href2}
+                      >
                         {activeCopy.item2}
                       </a>
                       {activeCopy.item3 && (
-                        <a style={{ display: 'block' }} href={activeCopy.href3}>
+                        <a
+                          style={{ display: 'block' }}
+                          target="_blank"
+                          className={classes.heading}
+                          rel="noopener noreferrer"
+                          href={activeCopy.href3}
+                        >
                           {activeCopy.item3}
                         </a>
                       )}
                       {activeCopy.item4 && (
-                        <a style={{ display: 'block' }} href={activeCopy.href4}>
+                        <a
+                          style={{ display: 'block' }}
+                          className={classes.heading}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={activeCopy.href4}
+                        >
                           {activeCopy.item4}
                         </a>
                       )}
                       {activeCopy.item5 && (
-                        <a style={{ display: 'block' }} href={activeCopy.href5}>
+                        <a
+                          style={{ display: 'block' }}
+                          className={classes.heading}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          href={activeCopy.href5}
+                        >
                           {activeCopy.item5}
                         </a>
                       )}
                       {activeCopy.disclaimer && (
-                        <p style={{ marginTop: '2rem' }}>
+                        <p
+                          style={{ marginTop: '2rem' }}
+                          className={classes.accordDescription}
+                        >
                           {activeCopy.disclaimer}
                         </p>
                       )}
