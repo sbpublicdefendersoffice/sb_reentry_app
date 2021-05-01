@@ -10,7 +10,7 @@ const BurgerItems = ({ open, setOpen }) => {
   const { language } = useLanguage()
   return (
     <StyledBurgerItems open={open} onClick={() => setOpen(!open)}>
-      <NextLink href="/checklist" as="/success-stories">
+      <NextLink href="/checklist" as="/checklist">
         <a>
           <h2 role="term">
             {language === ENGLISH
@@ -19,7 +19,7 @@ const BurgerItems = ({ open, setOpen }) => {
           </h2>
         </a>
       </NextLink>
-      <NextLink href="/success-stories" as="/success-stories">
+      <NextLink href="/successstories" as="/successstories">
         <a>
           <h2 role="term">
             {' '}
@@ -27,14 +27,14 @@ const BurgerItems = ({ open, setOpen }) => {
           </h2>
         </a>
       </NextLink>
-      <NextLink href="/know-your-rights" as="/know-your-rights">
+      <NextLink href="/knowyourrights" as="/knowyourrights">
         <a>
           <h2 role="term">
             {language === ENGLISH ? 'Know Your Rights' : 'Conoce tus derechos'}
           </h2>
         </a>
       </NextLink>
-      <NextLink href="/about-us" as="/about-us">
+      <NextLink href="/aboutus" as="/aboutus">
         <a>
           <h2 role="term">
             {' '}
