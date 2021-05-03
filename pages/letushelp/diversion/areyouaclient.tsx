@@ -37,13 +37,18 @@ const AreYouAClient = () => {
       <Title>{currentClient}</Title>
       <div>
         <Button
+          data-testid="NoButton"
           light
           name="/letushelp/diversion/apply"
           onClick={pushToDecision}
         >
           {no}
         </Button>
-        <Button name="/letushelp/diversion" onClick={pushToDecision}>
+        <Button
+          data-testid="YesButton"
+          name="/letushelp/diversion"
+          onClick={pushToDecision}
+        >
           {yes}
         </Button>
       </div>
