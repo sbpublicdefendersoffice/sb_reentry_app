@@ -1,2 +1,8 @@
-const DiversionLanding = () => <span>this is the diverson page</span>
+import { DiversionTitle } from '../../../components'
+
+const DiversionLanding = () => (
+  <>
+    <DiversionTitle />
+  </>
+)
 export default DiversionLanding
