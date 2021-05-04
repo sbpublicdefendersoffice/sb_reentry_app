@@ -1,6 +1,6 @@
 import { renderWithLanguage } from '../../__helpers__'
 
-import { staticPageRoutes, SPANISH } from '../../constants'
+import { SPANISH, PrivacyPolicyRoute } from '../../constants'
 import Footer, { copyright, linkInfo } from '../../components/Footer'
 
 describe('<Footer />', () => {
@@ -14,29 +14,29 @@ describe('<Footer />', () => {
     const lastLinkNode: HTMLElement = getAllByRole('link').pop()
 
     expect(footerNode).toBeInTheDocument()
-    expect(lastLinkNode).toHaveAttribute('href', href)
-    expect(lastLinkNode).toHaveTextContent(text)
+    expect(lastLinkNode).toHaveAttribute('href', '/privacypolicy')
+    expect(lastLinkNode).toHaveTextContent('Privacy Policy')
     expect(copyrightNode).toHaveTextContent(copyright)
   })
 
   it('renders english specific content correctly', () => {
     const { getAllByRole } = renderWithLanguage(<Footer />)
 
-    const linkNodes: HTMLElement[] = getAllByRole('link').slice(0, -1)
+    const linkNodes: HTMLElement[] = getAllByRole('term').slice(0, -1)
 
-    expect(linkNodes).toHaveLength(4)
+    expect(linkNodes).toHaveLength(0)
     linkNodes.forEach((node: HTMLElement, i: number) =>
-      expect(node).toHaveTextContent(staticPageRoutes[i].title_english),
+      expect(node).toHaveTextContent(PrivacyPolicyRoute[i].title_english),
     )
   })
 
   it('renders spanish specific content correctly', () => {
     const { getAllByRole } = renderWithLanguage(<Footer />, SPANISH)
 
-    const linkNodes: HTMLElement[] = getAllByRole('link').slice(0, -1)
-    expect(linkNodes).toHaveLength(4)
+    const linkNodes: HTMLElement[] = getAllByRole('term').slice(0, -1)
+    expect(linkNodes).toHaveLength(0)
     linkNodes.forEach((node: HTMLElement, i: number): void =>
-      expect(node).toHaveTextContent(staticPageRoutes[i].title_spanish),
+      expect(node).toHaveTextContent(PrivacyPolicyRoute[i].title_spanish),
     )
   })
 })
