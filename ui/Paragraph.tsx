@@ -11,13 +11,14 @@ interface ParagraphProps extends HTMLAttributes<HTMLParagraphElement> {
 
 const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
   function ParagraphFunc(props: ParagraphProps, ref) {
-    const { color, size, children, className, ...other } = props
+    const { color, size, children, className, style, ...other } = props
 
     return (
       <p
         ref={ref}
         className={`${styles.Paragraph} ${className && `${className}`}`}
         style={{
+          ...style,
           color: color ? `var(--${color})` : 'auto',
           fontSize: size ? `var(--${size})` : 'auto',
         }}
