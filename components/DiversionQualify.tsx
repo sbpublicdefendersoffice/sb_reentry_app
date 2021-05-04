@@ -39,22 +39,23 @@ const DiversionQualify = () => {
   const processStrings: string[] = Object.values(activeCopy).slice(2)
 
   return (
-    <CallToAction>
+    <CallToAction role="region">
       <Paragraph
+        role="heading"
         className={styles.Margin}
         size="heading-text"
         color="highlight"
       >
         {activeCopy.qualify}
       </Paragraph>
-      <Paragraph className={styles.Margin} size="med-text">
+      <Paragraph role="heading" className={styles.Margin} size="med-text">
         {activeCopy.youMust}
       </Paragraph>
       <div className={styles.Process}>
         {iconsList.map((src: string, i: number) => (
           <div className={styles.Tile} key={i}>
-            <img className={styles.Image} src={src} />
-            <Paragraph>{processStrings[i]}</Paragraph>
+            <img role="img" className={styles.Image} src={src} />
+            <Paragraph role="article">{processStrings[i]}</Paragraph>
           </div>
         ))}
       </div>
