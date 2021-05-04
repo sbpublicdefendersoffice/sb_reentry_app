@@ -15,7 +15,7 @@ describe('<IsThisUsefulTag />', () => {
 
     const { useful, yes, no } = copy.english
 
-    const [menuNode, termNode] = [getByRole('menubar'), getByRole('term')]
+    const [menuNode, termNode] = [getByRole('region'), getByRole('term')]
 
     const [yesNode, noNode] = getAllByRole('link')
 
@@ -35,7 +35,7 @@ describe('<IsThisUsefulTag />', () => {
 
     const { useful, yes, no } = copy.spanish
 
-    const [menuNode, termNode] = [getByRole('menubar'), getByRole('term')]
+    const [menuNode, termNode] = [getByRole('region'), getByRole('term')]
 
     const [yesNode, noNode] = getAllByRole('link')
 

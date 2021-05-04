@@ -31,7 +31,7 @@ const LangSwitcher = () => {
   }, [isChecked])
 
   return (
-    <label role="option" className={styles.LangSwitcher} htmlFor="lang-input">
+    <label role="region" className={styles.LangSwitcher} htmlFor="lang-input">
       <span
         className={styles.label}
         style={{
