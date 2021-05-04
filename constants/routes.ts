@@ -154,7 +154,13 @@ export const letUsHelpRoutes: RouteInfo[] = [
     imgPath: './icons/resourcesforwomen.svg',
   },
 ]
-
+export const PrivacyPolicyRoute: RouteInfo[] = [
+  {
+    title_english: 'Privacy Policy',
+    title_spanish: 'política de privacidad',
+    route: '/privacypolicy',
+  },
+]
 export const topThreeRoutes: InfoWithDescription[] = [
   {
     title_english: 'Behavioral Wellness',
