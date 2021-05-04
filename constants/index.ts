@@ -17,5 +17,6 @@ export {
   resourceRoutes,
   staticPageRoutes,
   letUsHelpRoutes,
+  PrivacyPolicyRoute,
   topThreeRoutes,
 } from './routes'
