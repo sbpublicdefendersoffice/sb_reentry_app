@@ -56,6 +56,7 @@ const Footer = () => {
         <span role="contentinfo" className={styles.copyright}>
           {copyright}
         </span>
+
         <a
           role="link"
           className={styles.copyright}
@@ -65,18 +66,15 @@ const Footer = () => {
         >
           {linkInfo.text}
         </a>
-
-        <NextLink href="/privacypolicy" as="/privacypolicy">
-          <a>
-            <p role="term">
-              {' '}
-              {language === ENGLISH
-                ? 'Privacy Policy'
-                : 'política de privacidad'}
-            </p>
-          </a>
-        </NextLink>
       </em>
+      <NextLink href="/privacypolicy" as="/privacypolicy">
+        <a style={{ borderBottom: 'none' }}>
+          <p role="term">
+            {' '}
+            {language === ENGLISH ? 'Privacy Policy' : 'política de privacidad'}
+          </p>
+        </a>
+      </NextLink>
       <div style={{ display: 'flex', width: '95%', marginTop: '1.5rem' }}>
         <em>
           {language === ENGLISH
