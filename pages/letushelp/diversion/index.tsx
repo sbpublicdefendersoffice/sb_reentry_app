@@ -3,7 +3,7 @@ import { CSSProperties } from 'react'
 import { CallToAction, Paragraph } from '../../../ui'
 import { CopyHolder } from '../../../types/language'
 import useLanguage from '../../../hooks/useLanguage'
-import { DiversionTitle } from '../../../components'
+import { DiversionTitle, DiversionQualify } from '../../../components'
 
 const copy: CopyHolder = {
   english: {
@@ -50,6 +50,7 @@ const DiversionLanding = () => {
   return (
     <>
       <DiversionTitle />
+      <DiversionQualify />
       <CallToAction blueBg>
         <Paragraph style={margin} size="heading-text" color="highlight">
           {howWill}

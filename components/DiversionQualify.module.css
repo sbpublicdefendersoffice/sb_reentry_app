@@ -1,0 +1,19 @@
+.Margin {
+  margin-bottom: var(--margin-lg);
+}
+
+.Process {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Tile {
+  width: 20%;
+}
+
+.Image {
+  width: 100%;
+  max-width: 10rem;
+  height: auto;
+}
