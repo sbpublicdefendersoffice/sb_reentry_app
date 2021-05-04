@@ -1,0 +1,23 @@
+.FullPageDecision {
+  width: 100%;
+  height: var(--screen-minus-header);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--light);
+  text-align: center;
+}
+
+.FullPageDecision * {
+  margin-bottom: var(--margin-lg);
+}
+
+.FullPageDecision * button {
+  min-width: 10rem;
+  margin-right: var(--margin-lg);
+}
+
+.FullPageDecision > p {
+  margin-bottom: var(--margin-sm);
+}

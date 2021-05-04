@@ -52,7 +52,7 @@ const IsThisUsefulTag = () => {
           activeParentCopy={activeCopy}
         />
       )}
-      <aside role="menubar" className={styles.IsThisUsefulTag}>
+      <aside role="region" className={styles.IsThisUsefulTag}>
         <span role="term" className={styles.Text}>
           {useful}
         </span>
