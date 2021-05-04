@@ -40,10 +40,16 @@ export const useStyles = makeStyles((theme: Theme) =>
     ulist: {
       listStyle: 'square',
       fontSize: '1.6rem',
+      fontFamily: 'Roboto',
+      marginTop: '2rem',
     },
     h4Style: {
+      marginTop: '2rem',
       marginBottom: '2rem',
       fontSize: '2rem',
+      width: '100%',
+      textAlign: 'center',
+      fontFamily: 'Roboto',
     },
     listItem: {
       marginBottom: '2rem',
@@ -57,7 +63,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     centerFlex: {
       fontSize: '1.6rem',
       textAlign: 'center',
+      display: 'block',
       justifyContent: 'center',
+      fontFamily: 'Roboto',
     },
     centerCard: {
       marginBottom: '2rem',
@@ -80,7 +88,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       margin: '1rem 1rem 1rem 1rem',
       fontSize: '1.8rem',
       minWidth: '40%',
-      textDecoration: 'none !important',
+      borderBottom: 'none',
     },
     paperCard: {
       padding: theme.spacing(2),
