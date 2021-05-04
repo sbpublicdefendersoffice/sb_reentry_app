@@ -4,6 +4,9 @@ require('webpack')
 const withPWA = require('next-pwa')
 
 const nextConfigOptions = {
+  future: {
+    webpack5: true,
+  },
   target: 'serverless',
   pwa: {
     dest: 'public',
