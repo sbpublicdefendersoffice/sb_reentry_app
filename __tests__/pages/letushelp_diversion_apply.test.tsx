@@ -17,4 +17,20 @@ describe('diversion apply page', () => {
 
     expect(doc).toBeInTheDocument()
   })
+
+  it('renders error page when given an invalid route', async () => {
+    const { render } = await getPage({
+      route: '/letushelp/causeanerror/apply',
+      useApp: true,
+      useDocument: true,
+    })
+
+    render()
+
+    const error: HTMLElement = await waitFor(() =>
+      screen.getByText('This page could not be found.'),
+    )
+
+    expect(error).toBeInTheDocument()
+  })
 })

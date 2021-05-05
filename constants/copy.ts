@@ -32,3 +32,31 @@ export const inSantaBarbaraCopy: CopyHolder = {
       'Habilite el permiso de ubicación para utilizar funciones basadas en la ubicación.',
   },
 }
+
+export const applicationPageData: { [pageTitle: string]: CopyHolder } = {
+  specialtycourts: {
+    english: {
+      apply:
+        "Got it! The first step toward qualifying for Specialty Courts is to apply with the Public Defender's office.",
+      learn: 'Want to learn more about Specialty Courts?',
+    },
+    spanish: {
+      apply:
+        '¡Entendido! El primer paso para calificar para los Tribunales de Especialidades es presentar una solicitud en la oficina del Defensor Público.',
+      learn:
+        '¿Quiere obtener más información sobre los tribunales especializados?',
+    },
+  },
+  diversion: {
+    english: {
+      apply:
+        "Got it! Before you can be eligible for diversion services, you need to apply with the Public Defender's office",
+      learn: 'To learn more about diversion services:',
+    },
+    spanish: {
+      apply:
+        '¡Entiendo! Antes de que pueda ser elegible para los servicios de desvío, debe presentar una solicitud en la oficina del Defensor Público',
+      learn: 'Para obtener más información sobre los servicios de desvío:',
+    },
+  },
+}
