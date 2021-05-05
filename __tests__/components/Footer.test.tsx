@@ -1,12 +1,10 @@
 import { renderWithLanguage } from '../../__helpers__'
 
 import { SPANISH, PrivacyPolicyRoute } from '../../constants'
-import Footer, { copyright, linkInfo } from '../../components/Footer'
+import Footer, { copyright } from '../../components/Footer'
 
 describe('<Footer />', () => {
   it('renders language agnostic content correctly', () => {
-    const { text, href } = linkInfo
-
     const { getByRole, getAllByRole } = renderWithLanguage(<Footer />)
 
     const footerNode: HTMLElement = getByRole('region')
