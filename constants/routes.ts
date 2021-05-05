@@ -102,7 +102,7 @@ export const letUsHelpRoutes: RouteInfo[] = [
   {
     title_english: 'Specialty Courts',
     title_spanish: 'Tribunales de especialidades',
-    route: '/specialtycourts',
+    route: '/specialtycourts/areyouaclient',
     imgPath: './icons/specialtycourts.svg',
   },
   {
