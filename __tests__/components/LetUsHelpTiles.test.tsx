@@ -17,8 +17,8 @@ describe('<LetUsHelpTiles />', () => {
 
     expect(tileHolderNode).toBeInTheDocument()
     expect(headingNodes).toHaveLength(3)
-    expect(singleTileNodes).toHaveLength(9)
-    expect(imgNodes).toHaveLength(9)
+    expect(singleTileNodes).toHaveLength(10)
+    expect(imgNodes).toHaveLength(10)
 
     imgNodes.forEach((node: HTMLElement, i: number) =>
       expect(node).toHaveAttribute('src', letUsHelpRoutes[i].imgPath),
