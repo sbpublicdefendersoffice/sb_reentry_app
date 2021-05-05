@@ -12,12 +12,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function ButtonFunc(
   props: ButtonProps,
   ref,
 ) {
-  const { className, children, block, light, ...other } = props
+  const { className, children, block, light, style, ...other } = props
 
   return (
     <button
       ref={ref}
-      style={{ display: block ? 'block' : 'initial' }}
+      style={{ ...style, display: block ? 'block' : 'initial' }}
       className={`${styles.Button} ${className} ${light ? styles.Light : ''}`}
       role="button"
       {...other}
