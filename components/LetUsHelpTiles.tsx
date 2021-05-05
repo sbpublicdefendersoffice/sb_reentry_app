@@ -30,8 +30,10 @@ const LetUsHelpTiles = () => {
       const title = link[`title_${language}`]
       const { imgPath, route } = link
 
+      console.log(route.endsWith('/areyouaclient'))
+
       return (
-        <NextLink href={`/letushelp${route}`} key={i}>
+        <NextLink href={`/letushelp${route}`} as={`/letushelp${route}`} key={i}>
           <div role="listitem" className={styles.Tile}>
             <img role="img" className={styles.Image} src={imgPath} />
             <Paragraph role="term" size="med-text">
