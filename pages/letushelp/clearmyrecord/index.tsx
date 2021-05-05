@@ -38,7 +38,12 @@ const ClearMyRecordLanding = () => {
         <Button data-testid="BackButton" light onClick={() => back()}>
           {no}
         </Button>
-        <a className="not-text-link" target="_blank" rel="noopener noreferrer">
+        <a
+          className="not-text-link"
+          href="https://www.clearmyrecord.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Button>{yes}</Button>
         </a>
       </div>
