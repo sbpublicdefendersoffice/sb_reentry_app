@@ -12,13 +12,13 @@ const Title = forwardRef<HTMLHeadingElement, TitleProps>(function TitleFunc(
   props: TitleProps,
   ref,
 ) {
-  const { color, children, className, ...other } = props
+  const { color, children, className, style, ...other } = props
 
   return (
     <h1
       ref={ref}
       className={`${styles.Title} ${className && `${className}`}`}
-      style={{ color: color ? `var(--${color})` : 'auto' }}
+      style={{ ...style, color: color ? `var(--${color})` : 'auto' }}
       {...other}
     >
       {children}

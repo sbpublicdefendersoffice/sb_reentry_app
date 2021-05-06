@@ -1,10 +1,10 @@
 import { getPage } from 'next-page-tester'
 import { waitFor, screen } from '@testing-library/react'
 
-describe('diversion are you a client page', () => {
-  it('renders diversion are you a client page', async () => {
+describe('specialty courts page', () => {
+  it('renders specialty courts page', async () => {
     const { render } = await getPage({
-      route: '/letushelp/diversion/areyouaclient',
+      route: '/letushelp/specialtycourts',
       useApp: true,
       useDocument: true,
     })

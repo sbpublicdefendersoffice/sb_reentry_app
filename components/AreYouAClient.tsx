@@ -1,10 +1,10 @@
 import { MouseEvent } from 'react'
 import { useRouter } from 'next/router'
 
-import { Button, Title } from '../../../ui'
-import { FullPageDecision } from '../../../components'
-import { CopyHolder } from '../../../types/language'
-import useLanguage from '../../../hooks/useLanguage'
+import { Button, Title } from '../ui'
+import { FullPageDecision } from '../components'
+import { CopyHolder } from '../types/language'
+import useLanguage from '../hooks/useLanguage'
 
 export const copy: CopyHolder = {
   english: {
@@ -19,7 +19,11 @@ export const copy: CopyHolder = {
   },
 }
 
-const AreYouAClient = () => {
+interface AreYouAClientProps {
+  route: string
+}
+
+const AreYouAClient = ({ route }: AreYouAClientProps) => {
   const { push } = useRouter()
   const { language } = useLanguage()
 
@@ -34,19 +38,19 @@ const AreYouAClient = () => {
 
   return (
     <FullPageDecision>
-      <Title>{currentClient}</Title>
+      <Title role="heading">{currentClient}</Title>
       <div>
         <Button
-          data-testid="NoButton"
+          role="button"
           light
-          name="/letushelp/diversion/apply"
+          name={`/letushelp/${route}/apply`}
           onClick={pushToDecision}
         >
           {no}
         </Button>
         <Button
-          data-testid="YesButton"
-          name="/letushelp/diversion"
+          role="button"
+          name={`/letushelp/${route}`}
           onClick={pushToDecision}
         >
           {yes}

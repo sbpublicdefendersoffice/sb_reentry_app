@@ -100,10 +100,10 @@ export const staticPageRoutes: RouteInfo[] = [
 
 export const letUsHelpRoutes: RouteInfo[] = [
   {
-    title_english: 'Treatment Court',
-    title_spanish: 'Tribunal de tratamiento',
-    route: '/treatmentcourt',
-    imgPath: './icons/treatmentcourt.svg',
+    title_english: 'Specialty Courts',
+    title_spanish: 'Tribunales de especialidades',
+    route: '/specialtycourts/areyouaclient',
+    imgPath: './icons/specialtycourts.svg',
   },
   {
     title_english: 'Do I qualify for diversion?',
