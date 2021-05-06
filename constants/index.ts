@@ -6,6 +6,7 @@ export {
   inSantaBarbaraCopy,
   applicationPageData,
 } from './copy'
+export { specialCourtReqsPDF } from './documents'
 export { ENGLISH, SPANISH } from './language'
 export {
   mapboxStylingURL,

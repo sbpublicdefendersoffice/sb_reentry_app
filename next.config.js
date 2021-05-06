@@ -13,6 +13,14 @@ const nextConfigOptions = {
     disable: process.env.NODE_ENV === 'development',
     sw: 'service-worker.js',
   },
+  webpack: config => {
+    config.module.rules.push({
+      test: /\.pdf/,
+      type: 'asset/inline',
+    })
+
+    return config
+  },
 }
 
 module.exports = withPWA(nextConfigOptions)
