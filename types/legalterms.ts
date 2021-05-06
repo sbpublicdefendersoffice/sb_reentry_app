@@ -1,7 +1,7 @@
 import { CopyHolder } from '../types/language'
 export const legaltermsCopy: CopyHolder = {
   english: {
-    title: 'Legal terms you might here',
+    title: 'Legal terms you might hear',
     description:
       'Click on a term below to better understand some of the frequenlty used legal terms',
   },

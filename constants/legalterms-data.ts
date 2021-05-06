@@ -37,7 +37,7 @@ export const CapitalOffense: LegalTerms = {
 }
 export const Discovery: LegalTerms = {
   english: {
-    title: 'Discovery: ',
+    title: 'Discovery',
     description:
       'Generally refers to the information made available by each side of the case to the other. The prosecutor has a Constitutional obligation to disclose to the defense any evidence which is exculpatory (that is, things that would tend to show that the accused person might not be guilty or which would reduce or mitigate the guilt). Common discovery items are copies of the police reports and laboratory investigation results as well as tapes of witness interviews and photographs of scenes. The defense has a duty to produce the names of witnesses and to disclose physical evidence it intends to use at the trial. This process is controlled by statute and court rule as well as the Constitution of the state and United States. The defense never has to disclose statements made by the defendant nor whether or not the defendant intends to testify at trial. ',
   },
