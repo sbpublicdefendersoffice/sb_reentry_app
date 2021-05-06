@@ -8,6 +8,11 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     heading: {
       fontSize: '2rem',
+      fontFamily: 'Roboto',
+    },
+    accordDescription: {
+      fontSize: '1.2rem',
+      fontFamily: 'Roboto',
     },
     paper: {
       padding: theme.spacing(2),
@@ -35,10 +40,16 @@ export const useStyles = makeStyles((theme: Theme) =>
     ulist: {
       listStyle: 'square',
       fontSize: '1.6rem',
+      fontFamily: 'Roboto',
+      marginTop: '2rem',
     },
     h4Style: {
+      marginTop: '2rem',
       marginBottom: '2rem',
       fontSize: '2rem',
+      width: '100%',
+      textAlign: 'center',
+      fontFamily: 'Roboto',
     },
     listItem: {
       marginBottom: '2rem',
@@ -52,7 +63,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     centerFlex: {
       fontSize: '1.6rem',
       textAlign: 'center',
+      display: 'block',
       justifyContent: 'center',
+      fontFamily: 'Roboto',
     },
     centerCard: {
       marginBottom: '2rem',
@@ -75,7 +88,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       margin: '1rem 1rem 1rem 1rem',
       fontSize: '1.8rem',
       minWidth: '40%',
-      textDecoration: 'none !important',
+      borderBottom: 'none',
     },
     paperCard: {
       padding: theme.spacing(2),
@@ -91,6 +104,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: '40rem',
       height: '100%',
       display: 'block',
+      '@media (max-width: 700px)': {
+        width: '100%',
+      },
     },
 
     cardContent: {
@@ -98,6 +114,24 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginTop: '3rem',
       overflow: 'auto',
       pointerEvents: 'auto',
+    },
+    checklistRoot: {
+      width: '100%',
+    },
+    checklistHeading: {
+      fontSize: '1.5rem',
+    },
+    checklistPaper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      minHeight: '10rem',
+    },
+    checklistPaperCard: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      minHeight: '22rem',
     },
     flyerRoot: {
       maxWidth: '90%',

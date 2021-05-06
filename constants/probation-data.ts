@@ -1,0 +1,58 @@
+export const probations = [
+  {
+    name: 'Santa Maria PRRC',
+    spanishName: 'Santa Maria PRRC',
+    phone: '(805) 346-7620',
+    address: '124 W Carmen Lane, Suite K',
+    cityStateZip: 'Santa Maria, CA 93458',
+  },
+  {
+    name: 'Santa Barbara PRRC',
+    spanishName: 'Santa Barbara PRRC',
+    phone: '(805) 692-4890',
+    address: '4500 Hollister Avenue',
+    cityStateZip: 'Santa Barbara, CA 93110',
+  },
+  {
+    name: 'Santa Maria PRRC',
+    spanishName: 'Santa Maria PRRC',
+    phone: '(805) 346-7620',
+    address: '124 W Carmen Lane, Suite K',
+    cityStateZip: 'Santa Maria, CA 93458',
+  },
+  {
+    name: 'Santa Barbara Adult Services',
+    spanishName: 'Servicios para adultos de Santa Bárbara',
+    phone: '(805) 882-3700',
+    address: '117 East Carrillo Street',
+    cityStateZip: 'Santa Barbara, CA 93101',
+  },
+  {
+    name: 'Lompoc Adult & Juvenile Services',
+    spanishName: 'Servicios para adultos y menores de Lompoc',
+    phone: '(805) 737-7800',
+    address: '415 East Cypress Avenue',
+    cityStateZip: 'Lompoc, CA 93436',
+  },
+  {
+    name: 'Santa Maria Adult & Juvenile Services',
+    spanishName: 'Servicios para adultos y menores de Santa María',
+    phone: '(805) 803-8500',
+    address: '2121 South Centerpointe Parkway',
+    cityStateZip: 'Santa Maria, CA 93455',
+  },
+  {
+    name: 'Ventura County Regional Office',
+    spanishName: 'Oficina Regional del Condado de Ventura',
+    phone: '(805) 382-8151',
+    address: '1555 West 5th Street, Suite #102',
+    cityStateZip: 'Oxnard, CA 93030',
+  },
+  {
+    name: 'San Luis Obispo Store Front',
+    spanishName: 'Frente de la tienda de San Luis Obispo',
+    phone: '(805) 347-0058',
+    address: '1775 South McClellan Street',
+    cityStateZip: 'Santa Maria, CA 93454',
+  },
+]

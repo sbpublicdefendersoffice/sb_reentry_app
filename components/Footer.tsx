@@ -4,6 +4,7 @@ import { ReactElement, Fragment } from 'react'
 import { staticPageRoutes } from '../constants/routes'
 import { RouteInfo } from '../types/routes'
 import useLanguage from '../hooks/useLanguage'
+import { ENGLISH } from '../constants/language'
 import SBPDLogo from './SBPDLogo'
 import { FreshStartLeaf, Paragraph } from '../ui'
 
@@ -55,6 +56,7 @@ const Footer = () => {
         <span role="contentinfo" className={styles.copyright}>
           {copyright}
         </span>
+
         <a
           role="link"
           className={styles.copyright}
@@ -65,6 +67,19 @@ const Footer = () => {
           {linkInfo.text}
         </a>
       </em>
+      <NextLink href="/privacypolicy" as="/privacypolicy">
+        <a style={{ borderBottom: 'none' }}>
+          <p role="term">
+            {' '}
+            {language === ENGLISH ? 'Privacy Policy' : 'política de privacidad'}
+          </p>
+        </a>
+      </NextLink>
+      <Paragraph className={styles.Disclaimer}>
+        {language === ENGLISH
+          ? `Thrive is a free, nonprofit resource directory developed by Code for America and Santa Barbara County Public Defender's office for people who have been system impacted in Santa Barbara County. We are not a law firm and the information on this site is not legal advice.`
+          : `Thrive es un directorio de recursos gratuito y sin fines de lucro desarrollado por Code para Oficina del Defensor Público del Condado de Santa Bárbara y Estados Unidos para personas que se han visto afectados por el sistema en el condado de Santa Bárbara. No somos un bufete de abogados y la información en este sitio no es un consejo legal. `}
+      </Paragraph>
     </footer>
   )
 }

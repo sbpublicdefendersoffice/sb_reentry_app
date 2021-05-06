@@ -136,6 +136,13 @@ export const letUsHelpRoutes: RouteInfo[] = [
     imgPath: './icons/legalterms.svg',
   },
   {
+    title_english: 'Legal Terms you may hear',
+    title_spanish: 'Términos legales que puede escuchar',
+    route: '/letushelp/legalterms',
+    imgPath: './icons/legalterms.svg',
+  },
+
+  {
     title_english: 'Recommended Resources',
     title_spanish: 'Recursos recomendados',
     route: '/recommendedresources',
@@ -154,7 +161,13 @@ export const letUsHelpRoutes: RouteInfo[] = [
     imgPath: './icons/resourcesforwomen.svg',
   },
 ]
-
+export const PrivacyPolicyRoute: RouteInfo[] = [
+  {
+    title_english: 'Privacy Policy',
+    title_spanish: 'política de privacidad',
+    route: '/privacypolicy',
+  },
+]
 export const topThreeRoutes: InfoWithDescription[] = [
   {
     title_english: 'Behavioral Wellness',
