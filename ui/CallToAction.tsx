@@ -9,10 +9,11 @@ import styles from './CallToAction.module.css'
 
 const CallToAction = forwardRef<HTMLDivElement, CallToActionProps>(
   function CTAFunc(props: CallToActionProps, ref) {
-    const { blueBg, children, className, ...other } = props
+    const { blueBg, children, className, style, ...other } = props
     return (
       <div
         style={{
+          ...style,
           backgroundColor: blueBg ? 'var(--light-blue)' : 'var(--light)',
         }}
         ref={ref}

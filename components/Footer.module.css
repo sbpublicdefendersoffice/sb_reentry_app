@@ -5,7 +5,6 @@
   flex-direction: column;
   text-align: center;
   padding: var(--pad-std);
-  margin-top: var(--margin-std);
 }
 
 .container {

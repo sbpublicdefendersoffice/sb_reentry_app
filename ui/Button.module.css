@@ -13,6 +13,14 @@
   color: var(--light);
 }
 
+.Light {
+  background-color: var(--light);
+}
+
+.Light .ButtonText {
+  color: var(--highlight);
+}
+
 .Button:active {
   background-color: var(--light);
   border-color: var(--highlight);

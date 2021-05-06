@@ -42,9 +42,14 @@
   color: var(--light);
   font-size: var(--med-text);
   font-weight: 100;
-  cursor: pointer;
   margin: 0 var(--margin-std);
 }
+
+.Title,
+.ThriveLogo {
+  cursor: pointer;
+}
+
 @media (max-width: 700px) {
   .ThriveLogo {
     width: 15rem;

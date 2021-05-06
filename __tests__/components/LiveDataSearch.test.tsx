@@ -16,7 +16,7 @@ describe('<LiveDataSearch />', () => {
   it('renders correctly', () => {
     const { getByRole } = renderWithAllContext(<LiveDataSearch />)
 
-    const dataSearchNode: HTMLElement = getByRole('searchbox')
+    const dataSearchNode: HTMLElement = getByRole('search')
 
     expect(dataSearchNode).toBeInTheDocument()
   })
@@ -26,7 +26,10 @@ describe('<LiveDataSearch />', () => {
 
     const { search, tooltip } = searchCopy.english
 
-    const [inputNode, tooltipNode] = [getByRole('search'), getByRole('tooltip')]
+    const [inputNode, tooltipNode] = [
+      getByRole('searchbox'),
+      getByRole('tooltip'),
+    ]
 
     fireEvent.mouseOver(tooltipNode)
 
@@ -43,7 +46,10 @@ describe('<LiveDataSearch />', () => {
 
     const { search, tooltip } = searchCopy.spanish
 
-    const [inputNode, tooltipNode] = [getByRole('search'), getByRole('tooltip')]
+    const [inputNode, tooltipNode] = [
+      getByRole('searchbox'),
+      getByRole('tooltip'),
+    ]
 
     fireEvent.mouseOver(tooltipNode)
 
@@ -58,7 +64,7 @@ describe('<LiveDataSearch />', () => {
       <LiveDataSearch testWorkaround />,
     )
 
-    const inputNode: HTMLElement = getByRole('search')
+    const inputNode: HTMLElement = getByRole('searchbox')
 
     fireEvent.focus(inputNode)
     fireEvent.change(inputNode, { target: { value: 'mental health' } })
