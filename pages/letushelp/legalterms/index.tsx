@@ -31,6 +31,7 @@ import {
 import { siteTitle } from '../../../constants/copy'
 import Grid from '@material-ui/core/Grid'
 import useLanguage from '../../../hooks/useLanguage'
+import { Title, Paragraph } from '../../../ui'
 import { useStyles } from '../../../constants/materialStyles'
 const LegalTermsPage = () => {
   const { language } = useLanguage()
@@ -64,24 +65,10 @@ const LegalTermsPage = () => {
       <Head>
         <title>{`${siteTitle} | ${activeCopy.title}`}</title>
       </Head>
-      <Typography
-        style={{ marginTop: '4rem' }}
-        align="center"
-        gutterBottom
-        variant="h1"
-        component="h1"
-      >
-        {activeCopy.title}{' '}
-      </Typography>
-      <Typography
-        style={{ marginTop: '2rem', marginBottom: '2rem' }}
-        align="center"
-        gutterBottom
-        variant="h4"
-        component="h4"
-      >
-        {activeCopy.description}
-      </Typography>
+      <div style={{ margin: '4rem 0 2rem 0', textAlign: 'center' }}>
+        <Title style={{ marginBottom: '2rem' }}>{activeCopy.title} </Title>
+        <Paragraph size="med-text">{activeCopy.description}</Paragraph>
+      </div>
       <Grid container style={{ justifyContent: 'center' }} spacing={3}>
         {terms.map((term, key) => {
           const activeTerm = term[language]
