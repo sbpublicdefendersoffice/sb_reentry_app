@@ -1,9 +1,8 @@
-import { CSSProperties } from 'react'
-
 import { CallToAction, Paragraph } from '../../../ui'
 import { CopyHolder } from '../../../types/language'
 import useLanguage from '../../../hooks/useLanguage'
 import { DiversionTitle, DiversionQualify } from '../../../components'
+import { margin } from '../../../constants/styling'
 
 const copy: CopyHolder = {
   english: {
@@ -28,10 +27,6 @@ const copy: CopyHolder = {
     holistic: 'Defensor de la defensa holística',
     defender: 'Oficina del Defensor Público de Santa Bárbara',
   },
-}
-
-const margin: CSSProperties = {
-  marginBottom: 'var(--margin-lg)',
 }
 
 const DiversionLanding = () => {
