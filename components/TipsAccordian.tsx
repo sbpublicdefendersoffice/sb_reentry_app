@@ -43,17 +43,17 @@ const TipsAccordian = () => {
                     </h4>
                   </Typography>
                   <Typography>
-                    <ul className={classes.heading}>
-                      <li style={{ display: 'block' }}>{activeCopy.item1}</li>
-                      <li style={{ display: 'block' }}>{activeCopy.item2}</li>
+                    <ul className={classes.ulist}>
+                      <li className={classes.listItem}>{activeCopy.item1}</li>
+                      <li className={classes.listItem}>{activeCopy.item2}</li>
                       {activeCopy.item3 && (
-                        <li style={{ display: 'block' }}>{activeCopy.item3}</li>
+                        <li className={classes.listItem}>{activeCopy.item3}</li>
                       )}
                       {activeCopy.item4 && (
-                        <li style={{ display: 'block' }}>{activeCopy.item4}</li>
+                        <li className={classes.listItem}>{activeCopy.item4}</li>
                       )}
                       {activeCopy.item5 && (
-                        <li style={{ display: 'block' }}>{activeCopy.item5}</li>
+                        <li className={classes.listItem}>{activeCopy.item5}</li>
                       )}
                     </ul>
                   </Typography>

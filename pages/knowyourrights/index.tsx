@@ -81,7 +81,7 @@ const KnowYourRights = () => {
       <Head>
         <title>{`${siteTitle} | ${activeCopy.title}`}</title>
       </Head>
-      <div>
+      <div className={classes.root}>
         <Typography
           style={{ marginTop: '3rem' }}
           align="center"
@@ -90,6 +90,16 @@ const KnowYourRights = () => {
           component="h3"
         >
           {activeCopy.title}
+        </Typography>
+
+        <Typography
+          style={{ marginTop: '3rem', marginBottom: '2rem' }}
+          align="center"
+          gutterBottom
+          variant="h4"
+          component="h4"
+        >
+          {activeCopy.description}
         </Typography>
         <Grid
           container
@@ -101,7 +111,7 @@ const KnowYourRights = () => {
           {flyers.map((flyer, key) => {
             const activeFlyer = flyer[language]
             return (
-              <Grid item xs={12} sm={4} key={key}>
+              <Grid item xs={11} sm={4} key={key}>
                 <Card className={classes.root}>
                   <CardActionArea>
                     <CardContent className={classes.flyerCardContent}>
@@ -219,7 +229,7 @@ const KnowYourRights = () => {
               </Grid>
             )
           })}
-          <Grid item xs={12} sm={12}>
+          <Grid item xs={11} sm={11}>
             <h1 className={classes.cardContent}>
               {language === 'english' ? 'More Links' : 'Más Enlaces'}:
             </h1>
@@ -234,7 +244,7 @@ const KnowYourRights = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="MuiLink-underlineNone"
+                    style={{ borderBottom: 'none' }}
                   >
                     {link.name}
                   </Link>

@@ -55,11 +55,9 @@ const DiversionLanding = () => {
     defender,
   } = copy[language]
 
-  const titleProps = { src, title, whatIs, explain }
-
   return (
     <>
-      <LetUsHelpIndexTitle {...titleProps} />
+      <LetUsHelpIndexTitle {...{ src, title, whatIs, explain }} />
       <DiversionQualify />
       <CallToAction blueBg>
         <Paragraph style={margin} size="heading-text" color="highlight">
