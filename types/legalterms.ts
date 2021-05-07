@@ -1,13 +1,14 @@
 import { CopyHolder } from '../types/language'
 export const legaltermsCopy: CopyHolder = {
   english: {
-    title: 'Legal terms you might hear',
-    description: 'Click below to better understand frequently used legal terms',
+    title: 'Terms You May Hear',
+    description:
+      'You might hear these terms while in court. You can always ask your Public Defender, Social Worker or anyone else for further clarification. Here is a great place to start',
   },
   spanish: {
-    title: 'Términos legales que puede encontrar aquí',
+    title: 'Términos que puede escuchar',
     description:
-      'Haga clic en un término a continuación para comprender mejor algunos de los términos legales que se utilizan con frecuencia.',
+      'Es posible que escuche estos términos en la corte. Siempre puede pedirle más aclaraciones a su defensor público, trabajador social o cualquier otra persona. Este es un gran lugar para comenzar.',
   },
 }
 export interface LegalTerms {
