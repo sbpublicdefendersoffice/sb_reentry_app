@@ -34,6 +34,30 @@ export const useStyles = makeStyles((theme: Theme) =>
         marginLeft: '0rem',
       },
     },
+    aboutPaper: {
+      textAlign: 'center',
+      width: '100%',
+      display: 'flex',
+      color: 'black',
+    },
+    paperIconCards: {
+      width: '100%',
+    },
+    aboutPaperIconCards: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      width: '30rem',
+      minWidth: '11rem',
+      color: 'black',
+      overflow: 'hidden',
+    },
+    aboutP: {
+      width: '80%',
+      fontSize: '1.6rem',
+      margin: 'auto',
+      marginTop: '2rem',
+      marginBottom: '2rem',
+    },
     fontSize: {
       fontSize: '1.6rem',
     },
@@ -108,7 +132,15 @@ export const useStyles = makeStyles((theme: Theme) =>
         width: '100%',
       },
     },
+    icons: {
+      color: '#13395e',
+      margin: 'auto',
+      fontSize: '8rem',
 
+      '@media (max-width: 500px)': {
+        flexGrow: 3,
+      },
+    },
     cardContent: {
       textAlign: 'center',
       marginTop: '3rem',
