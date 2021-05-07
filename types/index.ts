@@ -26,4 +26,4 @@ export type {
   Feedback,
 } from './records'
 export type { RouteInfo, InfoWithDescription } from './routes'
-export type { Color, TextSize, UseToastProps } from './ui'
+export type { Color, TextSize, UseToastProps, WindowSize } from './ui'

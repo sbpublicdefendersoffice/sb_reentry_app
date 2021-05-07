@@ -1,10 +1,16 @@
 import { renderWithLanguage } from '../../__helpers__/contexts'
 import { SPANISH } from '../../constants/language'
-import DiversionTitle, { copy, src } from '../../components/DiversionTitle'
+import LetUsHelpIndexTitle from '../../components/LetUsHelpIndexTitle'
+import { copy, src } from '../../pages/letushelp/diversion'
 
-describe('<DiversionTitle />', () => {
-  it('rendersproperly', () => {
-    const { getByRole } = renderWithLanguage(<DiversionTitle />)
+describe('<LetUsHelpIndexTitle />', () => {
+  it('renders properly', () => {
+    const { title, whatIs, explain } = copy.english
+    const englishProps = { src, title, whatIs, explain }
+
+    const { getByRole } = renderWithLanguage(
+      <LetUsHelpIndexTitle {...englishProps} />,
+    )
 
     const [regionNode, imageNode] = [getByRole('region'), getByRole('img')]
 
@@ -13,9 +19,13 @@ describe('<DiversionTitle />', () => {
   })
 
   it('renders english specific content properly', () => {
-    const { getByRole, getAllByRole } = renderWithLanguage(<DiversionTitle />)
-
     const { title, whatIs, explain } = copy.english
+    const englishProps = { src, title, whatIs, explain }
+
+    const { getByRole, getAllByRole } = renderWithLanguage(
+      <LetUsHelpIndexTitle {...englishProps} />,
+    )
+
     const articleStrings: string[] = [whatIs, explain]
 
     const headingNode: HTMLElement = getByRole('heading')
@@ -28,12 +38,14 @@ describe('<DiversionTitle />', () => {
   })
 
   it('renders spanish specific content properly', () => {
+    const { title, whatIs, explain } = copy.spanish
+    const spanishProps = { src, title, whatIs, explain }
+
     const { getByRole, getAllByRole } = renderWithLanguage(
-      <DiversionTitle />,
+      <LetUsHelpIndexTitle {...spanishProps} />,
       SPANISH,
     )
 
-    const { title, whatIs, explain } = copy.spanish
     const articleStrings: string[] = [whatIs, explain]
 
     const headingNode: HTMLElement = getByRole('heading')

@@ -1,12 +1,15 @@
-import { CSSProperties } from 'react'
-
 import { CallToAction, Paragraph } from '../../../ui'
 import { CopyHolder } from '../../../types/language'
 import useLanguage from '../../../hooks/useLanguage'
-import { DiversionTitle, DiversionQualify } from '../../../components'
+import { DiversionQualify, LetUsHelpIndexTitle } from '../../../components'
+import { margin } from '../../../constants/styling'
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
+    title: 'Diversion',
+    whatIs: 'What is Diversion?',
+    explain:
+      'CREDO-47 is a diversion program that links individuals with substance use and mental health problems to treatment and provides assistance with housing, jobs, education and other resources. If you are accepted in the program and participate in treatment, you are able to get your criminal case dismissed.',
     howWill: 'How will I know if I am eligible?',
     caseByCase:
       'Diversion eligibility is determined by the District Attorney’s Office on a case by case basis.',
@@ -18,6 +21,10 @@ const copy: CopyHolder = {
     defender: 'Office of the Public Defender of Santa Barbara',
   },
   spanish: {
+    title: 'Desviación',
+    whatIs: '¿Qué es el desvío?',
+    explain:
+      'CREDO-47 es un programa alternativo que vincula a las personas con problemas de salud mental y uso de sustancias con el tratamiento y brinda asistencia con vivienda, trabajo, educación y otros recursos. Si es aceptado en el programa y participa en el tratamiento, puede hacer que se desestime su caso penal.',
     howWill: '¿Cómo sabré si soy elegible?',
     caseByCase:
       'La elegibilidad para la desviación la determina la Oficina del Fiscal de Distrito caso por caso.',
@@ -30,14 +37,15 @@ const copy: CopyHolder = {
   },
 }
 
-const margin: CSSProperties = {
-  marginBottom: 'var(--margin-lg)',
-}
+export const src: string = '/icons/diversion.svg'
 
 const DiversionLanding = () => {
   const { language } = useLanguage()
 
   const {
+    title,
+    whatIs,
+    explain,
     howWill,
     caseByCase,
     qualify,
@@ -47,9 +55,11 @@ const DiversionLanding = () => {
     defender,
   } = copy[language]
 
+  const titleProps = { src, title, whatIs, explain }
+
   return (
     <>
-      <DiversionTitle />
+      <LetUsHelpIndexTitle {...titleProps} />
       <DiversionQualify />
       <CallToAction blueBg>
         <Paragraph style={margin} size="heading-text" color="highlight">

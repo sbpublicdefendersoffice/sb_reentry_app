@@ -6,7 +6,7 @@
     "build": "next build",
     "code-check": "yarn test && yarn lint-es && yarn type-check && yarn lint-css && yarn format",
     "dev": "next dev",
-    "format": "prettier * --check --ignore-unknown",
+    "format": "prettier './**/*.{js,jsx,ts,tsx,json,css}' --check --ignore-unknown",
     "lint-css": "stylelint './**/*.css' --fix --cache && echo 'All stylelint checks passed!'",
     "lint-es": "eslint './**/*.{js,jsx,ts,tsx}' --fix --cache && echo 'All ESLint checks passed!'",
     "start": "next start",

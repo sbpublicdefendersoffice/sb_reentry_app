@@ -1,9 +1,9 @@
 import NextLink from 'next/link'
-import { useState, useRef, useEffect, ReactElement, Fragment } from 'react'
+import { useState, useRef, ReactElement, Fragment } from 'react'
 
 import Burger from './Burger'
 import BurgerItems from './BurgerItems'
-import useLanguage from '../hooks/useLanguage'
+import { useLanguage, useResizeEvent } from '../hooks'
 import styles from './Header.module.css'
 
 import { staticPageRoutes } from '../constants/routes'
@@ -20,16 +20,15 @@ const Header = () => {
   )
   const [open, setOpen] = useState<boolean>(false)
   const node = useRef()
-  useOnClickOutside(node, () => setOpen(false))
-  useEffect(() => {
-    const burgerVisibility = () => {
-      if (innerWidth <= 700) setIsBurgerVisible(true)
-      else setIsBurgerVisible(false)
-    }
 
-    addEventListener('resize', burgerVisibility)
-    return () => removeEventListener('resize', burgerVisibility)
-  }, [])
+  useOnClickOutside(node, () => setOpen(false))
+
+  const burgerVisibility = () => {
+    if (innerWidth <= 700) setIsBurgerVisible(true)
+    else setIsBurgerVisible(false)
+  }
+
+  useResizeEvent(burgerVisibility)
 
   const StaticPages: ReactElement[] = staticPageRoutes.map(
     (routeData: RouteInfo, i: number) => {
