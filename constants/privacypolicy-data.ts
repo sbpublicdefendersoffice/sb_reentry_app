@@ -1,14 +1,6 @@
 import { CopyHolder } from '../types/language'
 import { PrivacyPolicy } from '../types/privacypolicy'
-export const copy: CopyHolder = {
-  english: {
-    title: 'Success Stories',
-  },
 
-  spanish: {
-    title: 'Historias de éxito',
-  },
-}
 export const PrivacyPolicyData: PrivacyPolicy = {
   english: {
     intro: `Thrive is a non-profit website run by Code for America, ("Code for America", "we", "us", "our"). This Privacy Policy describes how the Thrive website (the "Site") collects, uses, and protects your personal information. By submitting your personal information on the Site, you agree to the terms in this Privacy Policy. If you do not agree with these terms, please do not use the Site. You can go to`,

@@ -4,11 +4,16 @@ export const copy: CopyHolder = {
   english: {
     title: 'Know Your Rights',
     download: 'Download',
+    description:
+      'The County of  Santa Barbara Public Defender’s Office has put together the flyers below in order to inform you and your family of their rights. Click an image below to read more. ',
+
     view: 'view',
   },
 
   spanish: {
     title: 'Conoce tus derechos',
+    description:
+      'La Oficina del Defensor Público del Condado de Santa Bárbara ha reunido los folletos a continuación para informarle a usted y a su familia sobre sus derechos. Haga clic en una imagen a continuación para leer más.',
     download: 'descargar',
     view: 'vista',
   },

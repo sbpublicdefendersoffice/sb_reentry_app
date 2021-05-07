@@ -70,7 +70,7 @@ const MainAccordian = () => {
                         tabIndex={0}
                         style={{ display: 'block' }}
                         onClick={pushToSearch}
-                        className={classes.heading}
+                        className={classes.linkHeading}
                       >
                         {activeCopy.item1}
                       </a>
@@ -78,7 +78,7 @@ const MainAccordian = () => {
                         title={activeCopy.href2}
                         tabIndex={0}
                         style={{ display: 'block' }}
-                        className={classes.heading}
+                        className={classes.linkHeading}
                         onClick={pushToSearch}
                       >
                         {activeCopy.item2}
@@ -88,7 +88,7 @@ const MainAccordian = () => {
                           title={activeCopy.href3}
                           tabIndex={0}
                           style={{ display: 'block' }}
-                          className={classes.heading}
+                          className={classes.linkHeading}
                           onClick={pushToSearch}
                         >
                           {activeCopy.item3}
@@ -99,7 +99,7 @@ const MainAccordian = () => {
                           tabIndex={0}
                           title={activeCopy.href4}
                           style={{ display: 'block' }}
-                          className={classes.heading}
+                          className={classes.linkHeading}
                           onClick={pushToSearch}
                         >
                           {activeCopy.item4}
@@ -110,7 +110,7 @@ const MainAccordian = () => {
                           tabIndex={0}
                           title={activeCopy.href5}
                           style={{ display: 'block' }}
-                          className={classes.heading}
+                          className={classes.linkHeading}
                           onClick={pushToSearch}
                         >
                           {activeCopy.item5}
@@ -122,10 +122,10 @@ const MainAccordian = () => {
                           data-testid="test-link"
                           title={activeCopy.pantry}
                           style={{ display: 'block' }}
-                          className={classes.heading}
+                          className={classes.linkHeading}
                           onClick={pushToSearch}
                         >
-                          {activeCopy.pantry}
+                          {activeCopy.pantryItem}
                         </a>
                       )}
                     </div>
