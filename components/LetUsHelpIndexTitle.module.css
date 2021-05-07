@@ -1,0 +1,24 @@
+.LetUsHelpIndexTitle {
+  flex-direction: row;
+}
+
+.Image {
+  width: 100%;
+  max-width: 10rem;
+  height: auto;
+}
+
+.Text {
+  text-align: start;
+  width: 50%;
+}
+
+@media (max-width: 500px) {
+  .Image {
+    max-width: 5rem;
+  }
+
+  .Text {
+    width: 65%;
+  }
+}

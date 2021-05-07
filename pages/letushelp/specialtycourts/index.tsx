@@ -1,12 +1,17 @@
 import NextLink from 'next/link'
 
 import { CallToAction, Paragraph } from '../../../ui'
+import { LetUsHelpIndexTitle } from '../../../components'
 import { CopyHolder } from '../../../types/language'
 import useLanguage from '../../../hooks/useLanguage'
 import { margin, width } from '../../../constants/styling'
 
 const copy: CopyHolder = {
   english: {
+    title: 'Speciality Courts',
+    whatIs: 'What  are speciality courts?',
+    explain:
+      "Santa Barbara County courts offer a number of specialty courts which include both Review and Treatment Courts. Specialty Courts focus on the rehabilitation of the justice involved community by connecting them to supportive services. They then monitor the community member's progress as they engage in diversion programming, re-enter the community, complete their terms of probation or engage in other court approved services",
     types: 'Types of Speciality Courts',
     list:
       'These include but are not limited to: Drug Court, Restorative Court, Veterans Treatment Court, Mental Health Treatment Court and Domestic Violence Review Court as well as Diversion Reviews',
@@ -18,6 +23,10 @@ const copy: CopyHolder = {
     attorney: 'An attorney will be able to guide you through this document',
   },
   spanish: {
+    title: 'Tribunales de especialidades',
+    whatIs: '¿Qué son los tribunales de especialidades?',
+    explain:
+      'Los tribunales del condado de Santa Bárbara ofrecen varios tribunales especializados que incluyen tribunales de revisión y de tratamiento. Los Tribunales de Especialidades se enfocan en la rehabilitación de la comunidad involucrada en la justicia al conectarlos con servicios de apoyo. Luego monitorean el progreso del miembro de la comunidad a medida que participan en programas de desvío, vuelven a ingresar a la comunidad, completan sus términos de libertad condicional o participan en otros servicios aprobados por la corte',
     types: 'Tipos de tribunales especializados',
     list:
       'Estos incluyen pero no se limitan a: Tribunal de Drogas, Tribunal Restaurativo, Tribunal de Tratamiento de Veteranos, Tribunal de Tratamiento de Salud Mental y Tribunal de Revisión de Violencia Doméstica, así como revisiones de desvíos',
@@ -30,14 +39,28 @@ const copy: CopyHolder = {
   },
 }
 
+export const src: string = '/icons/specialtycourts.svg'
+
 const SpecialtyCourtsLanding = () => {
   const { language } = useLanguage()
-  const { types, list, eligible, qualify, click, criteria, attorney } = copy[
-    language
-  ]
+  const {
+    title,
+    whatIs,
+    explain,
+    types,
+    list,
+    eligible,
+    qualify,
+    click,
+    criteria,
+    attorney,
+  } = copy[language]
+
+  const titleProps = { src, title, whatIs, explain }
 
   return (
     <>
+      <LetUsHelpIndexTitle {...titleProps} />
       <CallToAction>
         <Paragraph style={margin} size="heading-text" color="highlight">
           {types}
