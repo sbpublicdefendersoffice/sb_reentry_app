@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 
+import useResizeEvent from '../hooks/useResizeEvent'
 import { WindowSize } from '../types/ui'
 
 interface PDFViewerProps {
@@ -9,28 +10,28 @@ interface PDFViewerProps {
 import styles from './PDFViewer.module.css'
 
 const PDFViewer = ({ src }: PDFViewerProps) => {
+  const [pdfReady, setPdfReady] = useState<string | null>(null)
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: innerWidth,
     height: innerHeight,
   })
 
-  useEffect((): (() => void) => {
-    const resizePDF = (): void =>
-      setWindowSize({
-        width: innerWidth,
-        height: innerHeight,
-      })
+  useResizeEvent(() =>
+    setWindowSize({
+      width: innerWidth,
+      height: innerHeight,
+    }),
+  )
 
-    addEventListener('resize', resizePDF)
-
-    return () => removeEventListener('resize', resizePDF)
+  useEffect((): void => {
+    import(`../documents/${src}`).then(pdf => setPdfReady(pdf.default))
   }, [])
 
   return (
     <embed
       className={styles.PDFViewer}
       type="application/pdf"
-      src={require(`../documents/${src}`)}
+      src={pdfReady}
       width={windowSize.width}
       height={windowSize.height}
     />
