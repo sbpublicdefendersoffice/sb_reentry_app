@@ -1,0 +1,25 @@
+.IsThisUsefulTag {
+  text-align: center;
+  padding: var(--pad-std) 0;
+}
+
+.Link {
+  cursor: pointer;
+  margin-left: var(--margin-std);
+}
+
+.Text,
+.Link {
+  font-size: var(--med-text);
+}
+
+@media (max-width: 500px) {
+  .Text,
+  .Link {
+    font-size: var(--standard-text);
+  }
+
+  .Link {
+    margin-left: var(--margin-sm);
+  }
+}

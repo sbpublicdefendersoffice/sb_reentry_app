@@ -32,6 +32,7 @@ const FindMe = () => {
       )}
       <Button
         role="button"
+        aria-label="FindMe"
         className={styles.FindMe}
         onMouseEnter={setPopupLocation}
         onMouseMove={setPopupLocation}

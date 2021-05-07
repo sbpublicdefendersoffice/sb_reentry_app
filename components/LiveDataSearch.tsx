@@ -91,7 +91,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
 
   return (
     <section
-      role="searchbox"
+      role="search"
       className={styles.LiveDataSearch}
       onFocus={() => setIsFocused(true)}
     >
@@ -106,7 +106,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
             Global data search
           </label>
           <Input
-            role="search"
+            role="searchbox"
             type="search"
             id="global-search"
             className={styles.Input}

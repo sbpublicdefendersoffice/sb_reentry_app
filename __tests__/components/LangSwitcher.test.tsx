@@ -9,7 +9,7 @@ describe('<LangSwitcher />', () => {
   it('initally renders switch correcly', () => {
     const { getByRole } = renderWithAllContext(<LangSwitcher />)
 
-    const labelNode: HTMLElement = getByRole('option')
+    const labelNode: HTMLElement = getByRole('region')
 
     expect(labelNode).toBeInTheDocument()
   })

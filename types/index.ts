@@ -23,6 +23,7 @@ export type {
   LocationRecord,
   ScheduleRecord,
   SortedRecord,
+  Feedback,
 } from './records'
 export type { RouteInfo, InfoWithDescription } from './routes'
 export type { Color, TextSize, UseToastProps } from './ui'
