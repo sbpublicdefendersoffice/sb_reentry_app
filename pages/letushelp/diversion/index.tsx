@@ -4,7 +4,7 @@ import useLanguage from '../../../hooks/useLanguage'
 import { DiversionQualify, LetUsHelpIndexTitle } from '../../../components'
 import { margin } from '../../../constants/styling'
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     title: 'Diversion',
     whatIs: 'What is Diversion?',

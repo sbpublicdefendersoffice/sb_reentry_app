@@ -38,8 +38,7 @@ const copy: CopyHolder = {
     attorney: 'Un abogado podrá guiarlo a través de este documento',
   },
 }
-
-export const src: string = '/icons/specialtycourts.svg'
+const src: string = '/icons/specialtycourts.svg'
 
 const SpecialtyCourtsLanding = () => {
   const { language } = useLanguage()
