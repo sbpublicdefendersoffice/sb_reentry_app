@@ -55,11 +55,9 @@ const SpecialtyCourtsLanding = () => {
     attorney,
   } = copy[language]
 
-  const titleProps = { src, title, whatIs, explain }
-
   return (
     <>
-      <LetUsHelpIndexTitle {...titleProps} />
+      <LetUsHelpIndexTitle {...{ src, title, whatIs, explain }} />
       <CallToAction>
         <Paragraph style={margin} size="heading-text" color="highlight">
           {types}
