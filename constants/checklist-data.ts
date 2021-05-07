@@ -1,10 +1,23 @@
 import { Checklist } from '../types/checklist'
+import { CopyHolder } from '../types/language'
+export const copy: CopyHolder = {
+  english: {
+    title: '72 hour checklist',
+    description:
+      'Welcome back. We are wishing you a successful transition back into Santa Barbara County. The first 72 hours can be an important part of your transitions. This guide will help you have a better understanding on some of the resources that you might need in those first days being out. We hope that these resources can help you in your transition needs and quality of life.',
+  },
 
+  spanish: {
+    title: 'Lista de verificación de 72 horas',
+    description:
+      'Bienvenido de nuevo. Le deseamos una exitosa transición de regreso al condado de Santa Bárbara. Las primeras 72 horas pueden ser una parte importante de sus transiciones. Esta guía lo ayudará a comprender mejor algunos de los recursos que podría necesitar durante los primeros días de publicación. Esperamos que estos recursos puedan ayudarlo en sus necesidades de transición y calidad de vida.',
+  },
+}
 export const ImportantDocumentsAccord: Checklist = {
   english: {
     listItem: 'Important documents',
     description:
-      'It is important that you have obtain these documents as soon as you can. They may be required to benefit from some of the resources provided of this application',
+      'It is important that you obtain these documents as soon as you can. These documents may be required to gain access to some of the resources you may need.',
     action: 'Here are some of the most important documents to obtain',
     href1: 'https://countyofsb.org/care/recorder/vital-records/births.sbc',
     item1: 'Birth Certificate (Santa Barbara County)',
@@ -21,7 +34,7 @@ export const ImportantDocumentsAccord: Checklist = {
   spanish: {
     listItem: 'Documentos importantes',
     description:
-      'Es importante que obtenga estos documentos lo antes posible. Es posible que deban beneficiarse de algunos de los recursos proporcionados en esta aplicación.',
+      'Es importante que obtenga estos documentos lo antes posible. Estos documentos pueden ser necesarios para acceder a algunos de los recursos que pueda necesitar.',
     action: 'Estos son algunos de los documentos más importantes para obtener',
     href1: 'https://countyofsb.org/care/recorder/vital-records/births.sbc',
     item1: 'Certificado de nacimiento (condado de Santa Bárbara)',
@@ -48,7 +61,7 @@ export const FoodAccord: Checklist = {
     href2: 'cal fresh',
     item2: 'Cal-Fresh(Food Stamps)',
     pantry: 'pantry',
-    pantryItem: 'Food Pantries',
+    pantryItem: 'Food Pantry',
   },
   spanish: {
     listItem: 'Averiguar los recursos alimentarios que necesitará',
@@ -176,8 +189,7 @@ export const JobAccord: Checklist = {
 export const TipsAccord: Checklist = {
   english: {
     listItem: 'Tips for a successful re-entry',
-    description:
-      'We are wishing you a successful transition into society. As you so there are many organinzations that are in Santa Barbara County that are willing to support. Dont be afraid to ask for help when you need. Your community believes in you!',
+    description: `We wish you a successful transition into society. As you know there are many organizations that are in Santa Barbara County that are willing to support. Don't be afraid to ask for help! Your community believes in you!`,
     action: 'Tips that can help',
     href1: '',
     item1:
@@ -188,12 +200,12 @@ export const TipsAccord: Checklist = {
     item3:
       'Not being ashamed of your past. Recognizing that we all make mistakes and the community is welcoming you back into society with lots of resources that can help in your transition',
     item4:
-      'Watching your circle. Incareration often times is a test to see who is truly there for you. Choose the people you have around you wisely. This could be a big investment or a huge expense. Choose wisely',
+      'Watching your circle. Incarceration often times is a test to see who is truly there for you. Choose the people you have around you wisely. This could be a big investment or a huge expense.',
   },
   spanish: {
     listItem: 'Consejos para un reingreso exitoso',
     description:
-      'Le deseamos una transición exitosa a la sociedad. Al igual que usted, hay muchas organizaciones en el condado de Santa Bárbara que están dispuestas a apoyar. No tema pedir ayuda cuando la necesite. ¡Tu comunidad cree en ti!',
+      'Le deseamos una exitosa transición a la sociedad. Como saben, hay muchas organizaciones en el condado de Santa Bárbara que están dispuestas a apoyar. ¡No temas pedir ayuda! ¡Tu comunidad cree en ti!',
     action: 'Consejos que pueden ayudar',
     href1: '',
     item1:
@@ -205,6 +217,6 @@ export const TipsAccord: Checklist = {
     item3:
       'No avergonzarse de su pasado. Reconocer que todos cometemos errores y que la comunidad le da la bienvenida a la sociedad con muchos recursos que pueden ayudarlo en su transición.',
     item4:
-      'Observando tu círculo. La atención a menudo es una prueba para ver quién está realmente ahí para usted. Elija sabiamente a las personas que tiene a su alrededor. Esto podría ser una gran inversión o un gasto enorme. Elegir sabiamente',
+      'Observando tu círculo. El encarcelamiento a menudo es una prueba para ver quién está realmente ahí para usted. Elija sabiamente a las personas que tiene a su alrededor. Esto podría ser una gran inversión o un gasto enorme.',
   },
 }
