@@ -49,10 +49,9 @@ const HrefAccordian = () => {
                   <Typography>
                     <div>
                       <a
-                        style={{ display: 'block' }}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={classes.heading}
+                        className={classes.linkHeading}
                         href={activeCopy.href1}
                       >
                         {activeCopy.item1}
@@ -60,7 +59,7 @@ const HrefAccordian = () => {
                       <a
                         style={{ display: 'block' }}
                         target="_blank"
-                        className={classes.heading}
+                        className={classes.linkHeading}
                         rel="noopener noreferrer"
                         href={activeCopy.href2}
                       >
@@ -70,7 +69,7 @@ const HrefAccordian = () => {
                         <a
                           style={{ display: 'block' }}
                           target="_blank"
-                          className={classes.heading}
+                          className={classes.linkHeading}
                           rel="noopener noreferrer"
                           href={activeCopy.href3}
                         >
@@ -80,7 +79,7 @@ const HrefAccordian = () => {
                       {activeCopy.item4 && (
                         <a
                           style={{ display: 'block' }}
-                          className={classes.heading}
+                          className={classes.linkHeading}
                           target="_blank"
                           rel="noopener noreferrer"
                           href={activeCopy.href4}
@@ -91,7 +90,7 @@ const HrefAccordian = () => {
                       {activeCopy.item5 && (
                         <a
                           style={{ display: 'block' }}
-                          className={classes.heading}
+                          className={classes.linkHeading}
                           target="_blank"
                           rel="noopener noreferrer"
                           href={activeCopy.href5}
