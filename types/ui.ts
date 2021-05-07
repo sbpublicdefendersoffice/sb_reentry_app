@@ -21,3 +21,8 @@ export interface UseToastProps {
   // eslint-disable-next-line no-unused-vars
   setToast: (toast: any) => void
 }
+
+export interface WindowSize {
+  width: number
+  height: number
+}

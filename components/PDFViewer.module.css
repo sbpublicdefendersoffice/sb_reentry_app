@@ -1,0 +1,9 @@
+.PDFViewer {
+  border-top: 2rem solid #323639;
+}
+
+@media (max-width: 700px) {
+  .PDFViewer {
+    border-top: none;
+  }
+}

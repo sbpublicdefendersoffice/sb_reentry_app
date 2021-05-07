@@ -1,3 +1,4 @@
+
 # files
 yarn.lock
 
@@ -6,3 +7,10 @@ yarn.lock
 
 # testing
 /coverage
+
+# documents
+/documents
+
+# hidden
+/.next
+/.vscode
