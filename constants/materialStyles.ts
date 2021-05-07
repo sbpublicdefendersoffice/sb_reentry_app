@@ -3,15 +3,28 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
+      width: '90%',
       height: '100%',
+      fontFamily: 'Roboto',
     },
     heading: {
       fontSize: '2rem',
       fontFamily: 'Roboto',
     },
+    linkHeading: {
+      fontSize: '2rem',
+      fontFamily: 'Roboto',
+      display: 'block',
+      cursor: 'pointer',
+      borderBottom: 'none !important',
+      color: 'black !important',
+      '&:hover': {
+        backgroundColor: 'grey !important',
+      },
+    },
+
     accordDescription: {
-      fontSize: '1.2rem',
+      fontSize: '1.5rem',
       fontFamily: 'Roboto',
     },
     paper: {
