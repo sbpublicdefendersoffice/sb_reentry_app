@@ -16,10 +16,8 @@ export const ACLUDisability: RightsLinks = {
   href: 'https://www.aclu.org/issues/disability-rights',
 }
 export const NILC: RightsLinks = {
-  name:
-    'www.nilc.org/get-involved/community-education-resources/know-your-rights/',
-  href:
-    'https://www.nilc.org/get-involved/community-education-resources/know-your-rights/',
+  name: 'www.nilc.org/get-involved/community-education-resources/know-your-rights/',
+  href: 'https://www.nilc.org/get-involved/community-education-resources/know-your-rights/',
 }
 export const NationalImmigration: RightsLinks = {
   name: 'www.nationalimmigrationproject.org/iceWatch.html',
@@ -35,6 +33,5 @@ export const ImmigrationProject: RightsLinks = {
 }
 export const LACooperativa: RightsLinks = {
   name: 'www.lacooperativa.org/farm-workersknow-rights-immigration-raids/',
-  href:
-    'http://www.lacooperativa.org/farm-workersknow-rights-immigration-raids/',
+  href: 'http://www.lacooperativa.org/farm-workersknow-rights-immigration-raids/',
 }

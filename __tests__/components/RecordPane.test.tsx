@@ -42,11 +42,9 @@ describe('<RecordPane />', () => {
       <RecordPane {...dummyProps} />,
     )
 
-    const paneNodes: HTMLElement[] = [
-      'menu',
-      'list',
-      'searchbox',
-    ].map((role: string) => getByRole(role))
+    const paneNodes: HTMLElement[] = ['menu', 'list', 'searchbox'].map(
+      (role: string) => getByRole(role),
+    )
     const orgRecordNodes: HTMLElement[] = getAllByRole('region')
     const titleNode: HTMLElement = getAllByRole('heading')[0]
 

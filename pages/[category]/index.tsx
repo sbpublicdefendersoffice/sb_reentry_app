@@ -23,19 +23,16 @@ const LandingPage = () => {
   const displayCategory: string = validCategory[language].category
   const routeCategory: string = validCategory.english.category.toLowerCase()
 
-  const { fetchedRecords, setFetchedRecords } = useMultipleListRecords(
-    routeCategory,
-  )
+  const { fetchedRecords, setFetchedRecords } =
+    useMultipleListRecords(routeCategory)
 
-  const [convertedLocRecords, setConvertedLocRecords] = useState<
-    LocationRecord[] | null
-  >(null)
+  const [convertedLocRecords, setConvertedLocRecords] =
+    useState<LocationRecord[] | null>(null)
 
   useEffect((): void => {
     if (fetchedRecords) {
-      const mappedLocRecords: LocationRecord[] = convertLocationsForMap(
-        fetchedRecords,
-      )
+      const mappedLocRecords: LocationRecord[] =
+        convertLocationsForMap(fetchedRecords)
       setConvertedLocRecords(mappedLocRecords)
     }
   }, [fetchedRecords])

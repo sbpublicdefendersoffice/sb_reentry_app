@@ -14,9 +14,8 @@ const Details = forwardRef<HTMLDetailsElement, DetailsProps>(
 
     const openDetailsOnLargeScreen = (): void => {
       // @ts-ignore
-      const detailsDomElements: NodeList = document.querySelectorAll(
-        '.details-element',
-      )
+      const detailsDomElements: NodeList =
+        document.querySelectorAll('.details-element')
       if (innerWidth >= 700)
         detailsDomElements.forEach((ele: HTMLDetailsElement): void => {
           if (!ele.open) ele.open = true

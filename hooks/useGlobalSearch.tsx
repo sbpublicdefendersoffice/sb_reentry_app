@@ -23,10 +23,8 @@ const { Provider } = GlobalSearch
 export const GlobalSearchProvider = ({
   children,
 }: GlobalSearchProviderProps) => {
-  const [
-    searchResults,
-    setSearchResults,
-  ] = useState<TranslatedRecordResponse | null>(null)
+  const [searchResults, setSearchResults] =
+    useState<TranslatedRecordResponse | null>(null)
 
   return (
     <Provider value={{ searchResults, setSearchResults }}>{children}</Provider>
