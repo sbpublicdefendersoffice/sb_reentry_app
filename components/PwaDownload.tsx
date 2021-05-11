@@ -34,10 +34,8 @@ const PwaDownload = () => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
-  const [
-    downloadEvent,
-    setDownloadEvent,
-  ] = useState<BeforeInstallPromptEvent | null>(null)
+  const [downloadEvent, setDownloadEvent] =
+    useState<BeforeInstallPromptEvent | null>(null)
 
   useEffect(() => {
     const handleDownloadEvent = e => {

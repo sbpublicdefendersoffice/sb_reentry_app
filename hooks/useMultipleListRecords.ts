@@ -8,10 +8,8 @@ import { TranslatedRecordResponse } from '../types/records'
 const useMultipleListRecords = (category: string) => {
   const { language } = useLanguage()
 
-  const [
-    fetchedRecords,
-    setFetchedRecords,
-  ] = useState<TranslatedRecordResponse | null>(null)
+  const [fetchedRecords, setFetchedRecords] =
+    useState<TranslatedRecordResponse | null>(null)
 
   useEffect(() => {
     const airtableApiRouteFetch = async () => {

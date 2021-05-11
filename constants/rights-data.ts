@@ -34,15 +34,13 @@ export const PoliceInteractionBlackAndBrownPDF: FlyerPDF = {
 }
 export const QuestionedByPolicePDF: FlyerPDF = {
   english: {
-    name:
-      'What to do if questioned by Police, FBI, Custom Agents or Immigration Officers',
+    name: 'What to do if questioned by Police, FBI, Custom Agents or Immigration Officers',
     organization: 'ACLU',
     flyerPDF: '/images/questionedenglish.jpg',
     thumb: '/images/questionedenglish-thumb.jpg',
   },
   spanish: {
-    name:
-      'Qué hacer si es interrogado por la policía, el FBI, agentes de aduanas o oficiales de inmigración',
+    name: 'Qué hacer si es interrogado por la policía, el FBI, agentes de aduanas o oficiales de inmigración',
     organization: 'ACLU',
     flyerPDF: '/images/questionedspanish.jpg',
     thumb: '/images/questionedspanish-thumb.jpg',
@@ -92,15 +90,13 @@ export const TrainsBusesPDF: FlyerPDF = {
 }
 export const TrainsBusesImmigrationPDF: FlyerPDF = {
   english: {
-    name:
-      'Know your rights on trains and buses when it comes to immigration agents ',
+    name: 'Know your rights on trains and buses when it comes to immigration agents ',
     organization: 'ACLU',
     flyerPDF: '/images/trainsandbusesimmigrationenglish.jpg',
     thumb: '/images/trainsandbusesimmigrationenglish-thumb.jpg',
   },
   spanish: {
-    name:
-      'Conozca sus derechos en trenes y autobuses cuando se trata de agentes de inmigración',
+    name: 'Conozca sus derechos en trenes y autobuses cuando se trata de agentes de inmigración',
     organization: 'ACLU',
     flyerPDF: '/images/trainsandbusesimmigrationspanish.jpg',
     thumb: '/images/trainsandbusesimmigrationspanish-thumb.jpg',
