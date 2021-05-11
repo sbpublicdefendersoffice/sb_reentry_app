@@ -1,4 +1,3 @@
-import { CopyHolder } from '../types/language'
 import { PrivacyPolicy } from '../types/privacypolicy'
 
 export const PrivacyPolicyData: PrivacyPolicy = {
