@@ -45,16 +45,8 @@ export const ordinalParser = (
 ): string => {
   const { language } = langOption
   const activeCopy = copy[language]
-  const {
-    everyWeek,
-    first,
-    second,
-    third,
-    fourth,
-    fifth,
-    week,
-    ofMonth,
-  } = activeCopy
+  const { everyWeek, first, second, third, fourth, fifth, week, ofMonth } =
+    activeCopy
   return days === '1, 2, 3, 4, 5'
     ? everyWeek
     : `Open ${days

@@ -30,9 +30,8 @@ const FetchedDataSearch = ({
   const { language } = useLanguage()
   const activeCopy = searchCopy[language]
 
-  const [savedOriginalRecords, setSavedOriginalRecords] = useState<
-    OrgRecord[] | null
-  >(null)
+  const [savedOriginalRecords, setSavedOriginalRecords] =
+    useState<OrgRecord[] | null>(null)
 
   useEffect(() => {
     if (originalRecords) setSavedOriginalRecords(originalRecords)

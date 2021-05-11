@@ -73,9 +73,8 @@ describe('validator helper constants and functions', () => {
   })
 
   it('does not validate a set of coords not in santa barbara county', () => {
-    const validateCoords: boolean = validateIsInSantaBarbaraCounty(
-      blankGeoCoords,
-    )
+    const validateCoords: boolean =
+      validateIsInSantaBarbaraCounty(blankGeoCoords)
 
     expect(validateCoords).toEqual(false)
   })
