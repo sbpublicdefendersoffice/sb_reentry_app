@@ -190,6 +190,30 @@ export const useStyles = makeStyles((theme: Theme) =>
         marginTop: '2rem',
       },
     },
+    arraignIcons: {
+      float: 'right',
+      '@media (max-width: 700px)': {
+        float: 'none',
+        textAlign: 'center',
+        marginLeft: '8rem',
+      },
+    },
+    arraignP: {
+      width: '90%',
+      marginTop: '1.5rem',
+      marginBottom: '2rem',
+      '@media (max-width: 700px)': {
+        textAlign: 'center',
+        width: '95%',
+        marginLeft: '2rem',
+        marginRight: '4rem',
+      },
+    },
+    arraignTextCenter: {
+      '@media (max-width: 700px)': {
+        textAlign: 'center',
+      },
+    },
 
     flyerCardContent: {
       textAlign: 'center',

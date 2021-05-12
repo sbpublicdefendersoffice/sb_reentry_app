@@ -16,24 +16,19 @@ const PreArraignmentPage = () => {
       </Head>
       <div style={{ margin: '6rem 0 2rem 0' }}>
         <Grid container spacing={3}>
-          <Grid item xs={2}>
+          <Grid item xs={11} sm={2}>
             <img
-              style={{ float: 'right' }}
+              className={classes.arraignIcons}
               src={'/icons/prearraignment.svg'}
               alt="Pre-arraignment icon"
             />
           </Grid>
-          <Grid item xs={10}>
-            <Title>{activeCopy.title} </Title>
-            <h2>{activeCopy.subtitle}</h2>
-            <Paragraph
-              style={{
-                width: '90%',
-                marginTop: '1.5rem',
-                marginBottom: '2rem',
-              }}
-              size="med-text"
-            >
+          <Grid item xs={11} sm={10}>
+            <Title className={classes.arraignTextCenter}>
+              {activeCopy.title}{' '}
+            </Title>
+            <h2 className={classes.arraignTextCenter}>{activeCopy.subtitle}</h2>
+            <Paragraph className={classes.arraignP} size="med-text">
               {activeCopy.description}
             </Paragraph>
           </Grid>
@@ -47,29 +42,28 @@ const PreArraignmentPage = () => {
               height: '2px',
             }}
           />
-          <Grid item xs={3}>
+          <Grid item xs={11} sm={3}>
             <img
-              style={{ float: 'right' }}
+              className={classes.arraignIcons}
               src={'/icons/phone.svg'}
               alt="Phone icon"
             />
           </Grid>
-          <Grid item xs={8}>
-            <Paragraph style={{ marginTop: '5rem' }} size="med-text">
-              {' '}
+          <Grid item xs={11} sm={8}>
+            <Paragraph className={classes.arraignP} size="med-text">
               <b>{activeCopy.gatherPersonalTitle}</b>
               {activeCopy.gatherPersonal}
             </Paragraph>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={11} sm={3}>
             <img
-              style={{ float: 'right' }}
+              className={classes.arraignIcons}
               src={'/icons/documents.svg'}
               alt="Document Icon"
             />
           </Grid>
-          <Grid item xs={8}>
-            <Paragraph style={{ marginTop: '5rem' }} size="med-text">
+          <Grid item xs={11} sm={8}>
+            <Paragraph className={classes.arraignP} size="med-text">
               <b>{activeCopy.gatherWitnessTitle}</b>
               {activeCopy.gatherWitness}
             </Paragraph>
