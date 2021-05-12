@@ -12,8 +12,10 @@ import { SPANISH } from '../../constants/language'
 
 const id: string = '1234567890'
 
-const generalGoogleMapsLink: RegExp = /^https:\/\/www\.google\.com\/maps\/place\/.*$/
-const directionGoogleMapsLink: RegExp = /^https:\/\/www\.google\.com\/maps\/dir\/.*$/
+const generalGoogleMapsLink: RegExp =
+  /^https:\/\/www\.google\.com\/maps\/place\/.*$/
+const directionGoogleMapsLink: RegExp =
+  /^https:\/\/www\.google\.com\/maps\/dir\/.*$/
 
 describe('<LocationRecordDisplay />', () => {
   it('renders correctly', () => {
