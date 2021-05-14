@@ -1,5 +1,4 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
-
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -22,7 +21,6 @@ export const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: 'grey !important',
       },
     },
-
     accordDescription: {
       fontSize: '1.5rem',
       fontFamily: 'Roboto',
@@ -133,7 +131,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.secondary,
       minHeight: '22rem',
     },
-
     media: {
       height: '30rem',
     },
@@ -149,7 +146,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       color: '#13395e',
       margin: 'auto',
       fontSize: '8rem',
-
       '@media (max-width: 500px)': {
         flexGrow: 3,
       },
@@ -190,11 +186,75 @@ export const useStyles = makeStyles((theme: Theme) =>
         marginTop: '2rem',
       },
     },
-
+    arraignIconsM: {
+      display: 'flex',
+      marginLeft: '5.5rem',
+      '@media (max-width: 700px)': {
+        textAlign: 'center',
+        marginLeft: '14rem',
+      },
+      '@media (max-width: 500px)': {
+        textAlign: 'center',
+        marginLeft: '8.5rem',
+      },
+    },
+    arraignIcons: {
+      display: 'flex',
+      textAlign: 'center',
+      marginLeft: '14rem',
+      '@media (max-width: 700px)': {
+        textAlign: 'center',
+        marginLeft: '15rem',
+      },
+      '@media (max-width: 500px)': {
+        textAlign: 'center',
+        marginLeft: '8rem',
+      },
+    },
+    arraignPP: {
+      width: '95%',
+      display: 'flex',
+      marginTop: '1.5rem',
+      marginBottom: '2rem',
+      '@media (max-width: 700px)': {
+        textAlign: 'center',
+        width: '90%',
+        display: 'flex',
+        marginLeft: '1.5rem',
+      },
+      '@media (max-width: 500px)': {
+        textAlign: 'center',
+        width: '85%',
+        display: 'flex',
+        marginLeft: '1.5rem',
+      },
+    },
+    arraignP: {
+      width: '90%',
+      display: 'flex',
+      marginTop: '1.5rem',
+      marginBottom: '2rem',
+      '@media (max-width: 700px)': {
+        textAlign: 'center',
+        width: '100%',
+        display: 'flex',
+        padding: '2rem',
+      },
+      '@media (max-width: 500px)': {
+        textAlign: 'center',
+        width: '95%',
+        display: 'flex',
+      },
+    },
+    arraignTextCenter: {
+      marginTop: '1rem',
+      '@media (max-width: 700px)': {
+        textAlign: 'center',
+      },
+    },
     flyerCardContent: {
       textAlign: 'center',
       width: '100%',
-
       height: '18rem !important',
       justifyContent: 'center',
       backgroundColor: '#13395E',
@@ -221,7 +281,6 @@ export const useStyles = makeStyles((theme: Theme) =>
         marginLeft: '0rem',
       },
     },
-
     flyerIcons: {
       position: 'fixed',
       color: '#13395e',
@@ -232,7 +291,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       position: 'fixed',
       width: ' 50%',
       marginLeft: '30rem',
-
       fontSize: '3rem',
       '@media (max-width: 500px)': {
         marginTop: '10rem',

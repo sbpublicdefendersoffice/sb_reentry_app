@@ -135,12 +135,6 @@ export const letUsHelpRoutes: RouteInfo[] = [
     route: '/legalterms',
     imgPath: './icons/legalterms.svg',
   },
-  {
-    title_english: 'Legal Terms you may hear',
-    title_spanish: 'Términos legales que puede escuchar',
-    route: '/letushelp/legalterms',
-    imgPath: './icons/legalterms.svg',
-  },
 
   {
     title_english: 'Recommended Resources',
