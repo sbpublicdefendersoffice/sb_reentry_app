@@ -2,13 +2,13 @@ import { Checklist } from '../types/checklist'
 import { CopyHolder } from '../types/language'
 export const copy: CopyHolder = {
   english: {
-    title: '72 hour checklist',
+    title: 'Resource Checklist',
     description:
       'Welcome back. We are wishing you a successful transition back into Santa Barbara County. The first 72 hours can be an important part of your transitions. This guide will help you have a better understanding on some of the resources that you might need in those first days being out. We hope that these resources can help you in your transition needs and quality of life.',
   },
 
   spanish: {
-    title: 'Lista de verificación de 72 horas',
+    title: 'Lista de recursos',
     description:
       'Bienvenido de nuevo. Le deseamos una exitosa transición de regreso al condado de Santa Bárbara. Las primeras 72 horas pueden ser una parte importante de sus transiciones. Esta guía lo ayudará a comprender mejor algunos de los recursos que podría necesitar durante los primeros días de publicación. Esperamos que estos recursos puedan ayudarlo en sus necesidades de transición y calidad de vida.',
   },
