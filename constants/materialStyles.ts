@@ -213,7 +213,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     arraignPP: {
       width: '95%',
-      padding: '2rem',
       display: 'flex',
       marginTop: '1.5rem',
       marginBottom: '2rem',
@@ -248,7 +247,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     arraignTextCenter: {
-      marginTop: '3rem',
+      marginTop: '1rem',
       '@media (max-width: 700px)': {
         textAlign: 'center',
       },
