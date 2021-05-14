@@ -6,7 +6,7 @@ import { RouteInfo } from '../types/routes'
 import useLanguage from '../hooks/useLanguage'
 import { ENGLISH } from '../constants/language'
 import SBPDLogo from './SBPDLogo'
-import { FreshStartLeaf, Paragraph } from '../ui'
+import { Paragraph } from '../ui'
 
 import styles from './Footer.module.css'
 
@@ -49,7 +49,7 @@ const Footer = () => {
           <SBPDLogo />
         </div>
         <div className={styles.Logo1}>
-          <FreshStartLeaf className={styles.leaf} />
+          <img src="./icons/thriveleaf.svg" className={styles.leaf} />
         </div>
       </div>
       <em>

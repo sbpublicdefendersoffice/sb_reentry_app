@@ -15,8 +15,6 @@ import {
   Footer,
   Header,
   LangSwitcher,
-  LiveDataSearch,
-  Navigator,
   Toast,
   IsThisUsefulTag,
 } from '../components'
@@ -62,10 +60,8 @@ const App = ({ Component, pageProps }: AppProps) => {
           <LocationProvider value={{ coords, setCoords }}>
             <ToastProvider value={{ toast, setToast }}>
               <GlobalSearchProvider>
-                <LangSwitcher />
-                <Navigator />
                 <Header />
-                <LiveDataSearch />
+                <LangSwitcher />
                 <main>
                   <Component {...pageProps} />
                 </main>

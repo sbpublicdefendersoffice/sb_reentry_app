@@ -10,6 +10,7 @@
   --highlight-2: #cd7f32;
   --deselected: #7e7e7e;
   --med-grey: #b0b0b0;
+  --green: #00a968;
 
   /* Spacing Variables */
   --radius-small: 0.25rem;
@@ -22,7 +23,7 @@
   --pad-sm: 0.25rem;
   --pad-std: 0.5rem;
   --pad-lg: 1rem;
-  --header-size: 10rem;
+  --header-size: 12rem;
   --screen-minus-header: calc(100vh - var(--header-size));
 
   /* Text Variables */

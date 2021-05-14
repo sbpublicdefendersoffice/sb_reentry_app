@@ -43,11 +43,16 @@
   font-size: var(--med-text);
   font-weight: 100;
   margin: 0 var(--margin-std);
+  border-bottom: 0.25rem solid transparent;
 }
 
 .Title,
 .ThriveLogo {
   cursor: pointer;
+}
+
+.Title:hover {
+  border-bottom: 0.25rem solid var(--green);
 }
 
 @media (max-width: 700px) {

@@ -55,7 +55,11 @@ export default class MyDocument extends Document {
           <link rel="apple-touch-icon" href="./images/logo192.png" />
           <meta name="theme-color" content="#2f4cb8" />
           {/*  */}
-          <link rel="icon" href="./images/leaf.svg" type="image/svg+xml" />
+          <link
+            rel="icon"
+            href="./images/thriveleaffavicon.svg"
+            type="image/svg+xml"
+          />
         </Head>
         <body>
           <Main />

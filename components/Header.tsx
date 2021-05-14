@@ -10,6 +10,7 @@ import { staticPageRoutes } from '../constants/routes'
 import { RouteInfo } from '../types/routes'
 import { useOnClickOutside } from '../hooks/useOnClickOutside'
 import { ThriveLogo, Paragraph } from '../ui'
+import LiveDataSearch from './LiveDataSearch'
 
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 
@@ -79,6 +80,7 @@ const Header = () => {
           </>
         )}
       </div>
+      <LiveDataSearch />
     </header>
   )
 }
