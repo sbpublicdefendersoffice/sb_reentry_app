@@ -82,9 +82,9 @@ export const staticPageRoutes: RouteInfo[] = [
     route: '/checklist',
   },
   {
-    title_english: 'Success Stories',
+    title_english: 'Thrive Stories',
     title_spanish: 'Historias de éxito',
-    route: '/successstories',
+    route: '/thrivestories',
   },
   {
     title_english: 'Know Your Rights',
