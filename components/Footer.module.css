@@ -52,8 +52,8 @@
 }
 
 .leaf {
-  width: 3.5rem;
-  transform: translateY(-0.5rem);
+  width: 3.25rem;
+  transform: translate(0.2rem, 0.6rem);
 }
 
 .Logo2 {
