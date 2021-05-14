@@ -14,7 +14,7 @@ import { siteTitle } from '../../constants/copy'
 import Grid from '@material-ui/core/Grid'
 import useLanguage from '../../hooks/useLanguage'
 import { useStyles } from '../../constants/materialStyles'
-const SuccessStories = () => {
+const ThriveStories = () => {
   const { language } = useLanguage()
   const classes = useStyles()
   const successStories: SuccessStory[] = [ArturoSuccessStory, LisaSuccessStory]
@@ -79,4 +79,4 @@ const SuccessStories = () => {
     </>
   )
 }
-export default SuccessStories
+export default ThriveStories

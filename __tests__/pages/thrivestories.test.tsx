@@ -1,10 +1,10 @@
 import { getPage } from 'next-page-tester'
 import { waitFor, screen } from '@testing-library/react'
 
-describe('success stories page', () => {
-  it('renders success stories page', async () => {
+describe('thrive stories page', () => {
+  it('renders thrive stories page', async () => {
     const { render } = await getPage({
-      route: '/successstories',
+      route: '/thrivestories',
       useApp: true,
       useDocument: true,
     })

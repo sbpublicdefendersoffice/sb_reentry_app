@@ -13,17 +13,15 @@ const BurgerItems = ({ open, setOpen }) => {
       <NextLink href="/checklist" as="/checklist">
         <a>
           <h2 role="term">
-            {language === ENGLISH
-              ? '72 Hour Checklist'
-              : 'Lista de verificación de 72 horas'}
+            {language === ENGLISH ? 'Resource Checklist' : 'Lista de recursos'}
           </h2>
         </a>
       </NextLink>
-      <NextLink href="/successstories" as="/successstories">
+      <NextLink href="/thrivestories" as="/thrivestories">
         <a>
           <h2 role="term">
             {' '}
-            {language === ENGLISH ? 'Success Stories' : 'Historias de éxito'}
+            {language === ENGLISH ? 'Thrive Stories' : 'Historias de éxito'}
           </h2>
         </a>
       </NextLink>

@@ -2,7 +2,7 @@ import { CopyHolder } from '../types/language'
 import { SuccessStory } from '../types/successStory'
 export const copy: CopyHolder = {
   english: {
-    title: 'Success Stories',
+    title: 'Thrive Stories',
   },
 
   spanish: {

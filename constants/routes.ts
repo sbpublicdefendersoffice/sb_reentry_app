@@ -77,14 +77,14 @@ export const resourceRoutes: RouteInfo[] = [
 
 export const staticPageRoutes: RouteInfo[] = [
   {
-    title_english: '72 Hour Checklist',
-    title_spanish: 'Lista de verificación de 72 horas',
+    title_english: 'Resource Checklist',
+    title_spanish: 'Lista de recursos',
     route: '/checklist',
   },
   {
-    title_english: 'Success Stories',
+    title_english: 'Thrive Stories',
     title_spanish: 'Historias de éxito',
-    route: '/successstories',
+    route: '/thrivestories',
   },
   {
     title_english: 'Know Your Rights',
