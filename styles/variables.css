@@ -23,7 +23,7 @@
   --pad-sm: 0.25rem;
   --pad-std: 0.5rem;
   --pad-lg: 1rem;
-  --header-size: 10rem;
+  --header-size: 12rem;
   --screen-minus-header: calc(100vh - var(--header-size));
 
   /* Text Variables */
