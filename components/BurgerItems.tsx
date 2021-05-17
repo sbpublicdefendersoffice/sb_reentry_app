@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 import { bool, func } from 'prop-types'
 
-import { StyledBurgerItems } from './BurgerItems.module.js'
+import { StyledBurgerItems } from './BurgerItems.module'
 import { ENGLISH } from '../constants/language'
 
 import useLanguage from '../hooks/useLanguage'

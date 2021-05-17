@@ -1,6 +1,6 @@
 import { bool, func } from 'prop-types'
 
-import { StyledBurger } from './Burger.module.js'
+import { StyledBurger } from './Burger.module'
 
 const Burger = ({ open, setOpen }) => {
   return (
