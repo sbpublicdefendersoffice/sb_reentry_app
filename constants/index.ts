@@ -1,3 +1,5 @@
+import { fromPairs } from 'lodash'
+
 export { BASE_URL, OPTIONS_OBJECT } from './airtable'
 export { default as categories } from './categories'
 export {
@@ -7,7 +9,7 @@ export {
   applicationPageData,
 } from './copy'
 export {
-  copy,
+  checkCopy,
   ImportantDocumentsAccord,
   FoodAccord,
   MedicalAccord,
@@ -30,7 +32,15 @@ export {
   REGION_VISIBILITY,
   RADIUS_DISTANCE,
 } from './maps'
+export {
+  successCopy,
+  ArturoSuccessStory,
+  LisaSuccessStory,
+} from './successStory-data'
+export { aboutCopy } from './aboutus-data'
+
 export { useStyles } from './materialStyles'
+
 export {
   resourceRoutes,
   staticPageRoutes,
