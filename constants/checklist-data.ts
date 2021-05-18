@@ -186,6 +186,32 @@ export const JobAccord: Checklist = {
     item3: 'Indeed',
   },
 }
+export const ProbationAccord: Checklist = {
+  english: {
+    listItem: 'Report to your probation or parole officer',
+    description:
+      'When first releasing it is recommended to check in with your probation officer withing 24 hours, or as ordered by the Court, or as instructed by an officer. Please reach out to Probation or Parole in the resource below for any additional questions that you may have',
+    action: 'Santa Barbara Probation Agency',
+    href1: 'https://www.sbprobation.org/',
+    item1: 'Website: ',
+    href2: '',
+    item2: 'Division of Adult Parole Operations',
+    href3: 'https://www.cdcr.ca.gov/parole/northern-region-directory/',
+    item3: 'Northern County Directory',
+  },
+  spanish: {
+    listItem: 'Informe a su oficial de libertad condicional o bajo palabra',
+    description:
+      'Al ser liberado por primera vez, se recomienda que se registre con su oficial de libertad condicional dentro de las 24 horas, o según lo ordene el Tribunal, o según las instrucciones de un oficial. Comuníquese con Libertad condicional o Libertad bajo palabra en el recurso a continuación para cualquier pregunta adicional que pueda tener.',
+    action: 'Agencia de Libertad Condicional de Santa Bárbara',
+    href1: 'https://www.sbprobation.org/',
+    item1: 'Sitio web: ',
+    href2: '',
+    item2: 'División de Operaciones de Libertad Condicional para Adultos:',
+    href3: 'https://www.cdcr.ca.gov/parole/northern-region-directory/',
+    item3: 'Directorio del norte del condado',
+  },
+}
 export const TipsAccord: Checklist = {
   english: {
     listItem: 'Tips for a successful re-entry',

@@ -11,45 +11,44 @@ import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { useStyles } from '../constants/materialStyles'
 import ListItemText from '@material-ui/core/ListItemText'
-import { ENGLISH } from '../constants/language'
+import { ProbationAccord } from '../constants/checklist-data'
 const ProbationAccordian = () => {
   const { language } = useLanguage()
   const classes = useStyles()
+  const activeCopy = ProbationAccord[language]
   return (
     <>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
+          aria-controls="panel3a-content"
+          id="panel3a-header"
         >
           <Typography className={classes.heading}>
-            {language === ENGLISH
-              ? 'Report To Your Probation or Parole Officer'
-              : 'Informe a su oficial de libertad condicional o bajo palabra'}
+            {activeCopy.listItem}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
+              <Paper>
                 {' '}
-                <Typography>
-                  {language === ENGLISH
-                    ? 'When first releasing it is recommended to check in with your probation officer withing 24 hours, or as ordered by the Court, or as instructed by an officer. Please reach out to Probation or Parole in the resource below for any additional questions that you may have'
-                    : 'Al ser liberado por primera vez, se recomienda que se registre con su oficial de libertad condicional dentro de las 24 horas, o según lo ordene el Tribunal, o según las instrucciones de un oficial. Comuníquese con Libertad condicional o Libertad bajo palabra en el recurso a continuación para cualquier pregunta adicional que pueda tener.'}
+                <Typography
+                  style={{ padding: '2rem' }}
+                  className={classes.accordDescription}
+                >
+                  {activeCopy.description}
                 </Typography>
               </Paper>
             </Grid>
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
+              <Paper>
                 {' '}
-                <Typography className={classes.heading}>
-                  <h5>
-                    {language === ENGLISH
-                      ? 'Santa Barbara Probation Agency'
-                      : 'Agencia de Libertad Condicional de Santa Bárbara'}
-                  </h5>
+                <Typography
+                  style={{ padding: '2rem' }}
+                  className={classes.centerFlex}
+                >
+                  <h5>{activeCopy.action}</h5>
                   <div
                     style={{
                       display: 'flex',
@@ -57,8 +56,15 @@ const ProbationAccordian = () => {
                       justifyContent: 'center',
                     }}
                   >
-                    <p> {language === ENGLISH ? 'Website:' : 'Sitio web:'} </p>
-                    <a href="www.sbprobation.org/"> www.sbprobation.org/</a>
+                    <p className={classes.centerFlex}> {activeCopy.item1} </p>
+                    <a
+                      href={activeCopy.href1}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {' '}
+                      www.sbprobation.org
+                    </a>
                   </div>
                 </Typography>
               </Paper>
@@ -69,6 +75,7 @@ const ProbationAccordian = () => {
                 marginTop: '2rem',
                 width: '100%',
                 textAlign: 'center',
+                fontSize: '1.6rem',
                 justifyContent: 'center',
               }}
             >
@@ -78,38 +85,32 @@ const ProbationAccordian = () => {
             {probations.map((probation, key) => {
               return (
                 <Grid item xs={6} key={key} sm={4}>
-                  <Paper className={classes.paperCard}>
-                    <List>
-                      <ListItem
-                        style={{ fontWeight: 'bold', fontSize: '1.5rem' }}
-                      >
-                        <ListItemText
-                          style={{
-                            textAlign: 'center',
-                            justifyContent: 'center',
-                          }}
-                        >
-                          {probation.name}
+                  <Paper>
+                    <List className={classes.centerFlex}>
+                      <ListItem>
+                        <ListItemText>
+                          <div className={classes.centerFlex}>
+                            {probation.name}
+                          </div>
                         </ListItemText>
                       </ListItem>
                       <ListItem>
-                        <ListItemText
-                          style={{
-                            textAlign: 'center',
-                            justifyContent: 'center',
-                          }}
-                          primary={probation.phone}
-                        />
+                        <ListItemText>
+                          {' '}
+                          <div className={classes.centerFlex}>
+                            {' '}
+                            {probation.phone}
+                          </div>
+                        </ListItemText>
                       </ListItem>
                       <ListItem>
-                        <ListItemText
-                          style={{
-                            textAlign: 'center',
-                            justifyContent: 'center',
-                          }}
-                        >
-                          <div>{probation.address}</div>
-                          <div>{probation.cityStateZip}</div>
+                        <ListItemText>
+                          <div className={classes.centerFlex}>
+                            {probation.address}
+                          </div>
+                          <div className={classes.centerFlex}>
+                            {probation.cityStateZip}
+                          </div>
                         </ListItemText>
                       </ListItem>
                     </List>
@@ -119,26 +120,23 @@ const ProbationAccordian = () => {
             })}
 
             <Grid item xs={12}>
-              <Paper className={classes.paper}>
+              <Paper>
                 <List>
                   <ListItem>
-                    <ListItemText
-                      style={{
-                        textAlign: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <div>
-                        {language === ENGLISH
-                          ? 'Division of Adult Parole Operations'
-                          : 'División de Operaciones de Libertad Condicional para Adultos:'}{' '}
+                    <ListItemText style={{ padding: '2rem' }}>
+                      <div className={classes.centerFlex}>
+                        {activeCopy.item2}{' '}
                       </div>
-                      <div>
-                        {'Website: '}
-                        <a href="https://www.cdcr.ca.gov/parole/northern-region-directory/">
-                          {language === ENGLISH
-                            ? 'Northern County Directory'
-                            : 'Directorio del norte del condado'}
+                      <div className={classes.centerFlex}>
+                        {activeCopy.item1}
+                        <a
+                          className={classes.centerFlex}
+                          href={activeCopy.href3}
+                          style={{ borderBottom: 'none' }}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {activeCopy.item3}
                         </a>
                       </div>
                     </ListItemText>
