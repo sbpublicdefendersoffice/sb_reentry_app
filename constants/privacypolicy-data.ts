@@ -21,7 +21,7 @@ export const PrivacyPolicyData: PrivacyPolicy = {
     weCollectLineFive:
       'Pages you visited Address of the website that connected you to the Site (such as google.com or bing.com)',
     weCollectClosing:
-      'We use this information to understand how the Site is used, improve the Site, and monitor usage for security purposes. This data is stored separately from the personal information you may submit while navigating the Thrive platform. We will not collect personal information from you without your knowledge and consent, except in a few limited circumstances as described in this policy. We currently retain all data indefinitely unless you specifically request that we delete it. You can make this request by emailing us at thrivesbc@publicdefendersb.org.',
+      'We use this information to understand how the Site is used, improve the Site, and monitor usage for security purposes. This data is stored separately from the personal information you may submit while navigating the Thrive platform. We will not collect personal information from you without your knowledge and consent, except in a few limited circumstances as described in this policy. We currently retain all data indefinitely unless you specifically request that we delete it. You can make this request by emailing us at ThriveSBC@publicdefendersb.org.',
     weUse: 'How we use your information',
     weUseDescription:
       'We only use your personal information to help you recieve information about a specific location on the Thrive platform. For example: We will send you a text message to your phone number that you provide if requested by the individual inquirying information about a specific location. . We will send location information directly to the phone number provided. We will not email you unless you consent to email communication in the application or you email us first, and every automated email will include a link to unsubscribe. We will not send you a text message unless you make this request on the Thrive platform. If you email us we will use the email you provided to reply directly. You may opt out of these messages and/or email at any time.',
@@ -44,7 +44,7 @@ export const PrivacyPolicyData: PrivacyPolicy = {
     questions: 'Questions',
     questionsDescription:
       'If you have any questions, comments, concerns, or complaints with the Site, please contact us.',
-    contactEmail: 'Email: thrivesbc@publicdefendersb.org',
+    contactEmail: 'Email: ThriveSBC@publicdefendersb.org',
     doOurBest: 'We will do our best to resolve the issue.',
   },
   spanish: {
@@ -69,7 +69,7 @@ export const PrivacyPolicyData: PrivacyPolicy = {
     weCollectLineFive:
       'Páginas que visitó Dirección del sitio web que lo conectó con elSitio (como google.com o bing.com)',
     weCollectClosing:
-      'Usamos esta información para comprender cómo se usa el Sitio, mejorar la Sitio y supervisar el uso por motivos de seguridad. Estos datos se almacenan por separado de la información personal que puede enviar mientras navega la plataforma Thrive. No recopilaremos información personal suya sin su conocimiento y consentimiento, excepto en algunos casos limitados circunstancias como se describe en esta política. Actualmente conservamos todos los datos indefinidamente a menos que solicite específicamente que lo eliminemos. Usted puede haga esta solicitud enviándonos un correo electrónico a thrivesbc@publicdefendersb.org. ',
+      'Usamos esta información para comprender cómo se usa el Sitio, mejorar la Sitio y supervisar el uso por motivos de seguridad. Estos datos se almacenan por separado de la información personal que puede enviar mientras navega la plataforma Thrive. No recopilaremos información personal suya sin su conocimiento y consentimiento, excepto en algunos casos limitados circunstancias como se describe en esta política. Actualmente conservamos todos los datos indefinidamente a menos que solicite específicamente que lo eliminemos. Usted puede haga esta solicitud enviándonos un correo electrónico a ThriveSBC@publicdefendersb.org. ',
     weUse: 'Cómo usamos su información',
     weUseDescription:
       'Solo usamos su información personal para ayudarlo a recibir información. sobre una ubicación específica en la plataforma Thrive. Por ejemplo: lo haremos enviarle un mensaje de texto a su número de teléfono que proporcione si solicitado por el individuo que solicita información sobre un localización. . Enviaremos información de ubicación directamente al teléfono. número proporcionado. No le enviaremos correos electrónicos a menos que dé su consentimiento. comunicación en la aplicación o envíenos un correo electrónico primero, y cada El correo electrónico automatizado incluirá un enlace para cancelar la suscripción. No te enviaremos un mensaje de texto a menos que realice esta solicitud en la plataforma Thrive. Si Envíenos un correo electrónico, utilizaremos el correo electrónico que proporcionó para responder directamente. Tú puede optar por no recibir estos mensajes y / o correoelectrónico en cualquier momento.',
@@ -92,7 +92,7 @@ export const PrivacyPolicyData: PrivacyPolicy = {
     questions: 'Preguntas',
     questionsDescription:
       'If you have any questions, comments, concerns, or complaints with the Site, please contact us.',
-    contactEmail: 'Correo electrónico: thrivesbc@publicdefendersb.org',
+    contactEmail: 'Correo electrónico: ThriveSBC@publicdefendersb.org',
     doOurBest: 'Haremos nuestro mejor esfuerzo para resolver el problema.',
   },
 }
