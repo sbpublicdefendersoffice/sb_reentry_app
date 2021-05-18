@@ -7,6 +7,7 @@ import HrefAccordian from '../../components/HrefAccord'
 import MainAccordian from '../../components/MainAccordian'
 import TipsAccordian from '../../components/TipsAccordian'
 import { useStyles } from '../../constants/materialStyles'
+import ProbationAccordian from '../../components/ProbationAccordian'
 const Checklist = () => {
   const { language } = useLanguage()
   const classes = useStyles()
@@ -38,6 +39,7 @@ const Checklist = () => {
         {activeCopy.description}
       </Typography>
       <div>
+        <ProbationAccordian />
         <HrefAccordian data-testid="accordion" />
         <MainAccordian data-testid="accordion" />
         <TipsAccordian data-testid="accordion" />
