@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import Typography from '@material-ui/core/Typography'
-import { siteTitle } from '../../constants/copy'
+import { siteTitle, copy, useStyles } from '../../constants/'
+import {
+  HrefAccordian,
+  MainAccordian,
+  TipsAccordian,
+  ProbationAccordian,
+} from '../../components/'
 import useLanguage from '../../hooks/useLanguage'
-import { copy } from '../../constants/checklist-data'
-import HrefAccordian from '../../components/HrefAccord'
-import MainAccordian from '../../components/MainAccordian'
-import TipsAccordian from '../../components/TipsAccordian'
-import { useStyles } from '../../constants/materialStyles'
-import ProbationAccordian from '../../components/ProbationAccordian'
+
 const Checklist = () => {
   const { language } = useLanguage()
   const classes = useStyles()
