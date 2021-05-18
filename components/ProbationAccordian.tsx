@@ -1,16 +1,18 @@
 import { probations } from '../constants/probation-data'
-import Paper from '@material-ui/core/Paper'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
-import Grid from '@material-ui/core/Grid'
+import {
+  Paper,
+  List,
+  ListItem,
+  Accordion,
+  ListItemText,
+  AccordionSummary,
+  AccordionDetails,
+  Grid,
+  Typography,
+} from '@material-ui/core/'
 import useLanguage from '../hooks/useLanguage'
-import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { useStyles } from '../constants/materialStyles'
-import ListItemText from '@material-ui/core/ListItemText'
 import { ProbationAccord } from '../constants/checklist-data'
 const ProbationAccordian = () => {
   const { language } = useLanguage()
@@ -99,18 +101,33 @@ const ProbationAccordian = () => {
                           {' '}
                           <div className={classes.centerFlex}>
                             {' '}
-                            {probation.phone}
+                            <a role="link" href={probation.phoneRef}>
+                              <p role="link_paragraph"> {probation.phone}</p>
+                            </a>
                           </div>
                         </ListItemText>
                       </ListItem>
                       <ListItem>
                         <ListItemText>
-                          <div className={classes.centerFlex}>
-                            {probation.address}
-                          </div>
-                          <div className={classes.centerFlex}>
-                            {probation.cityStateZip}
-                          </div>
+                          <a
+                            role="link"
+                            href={probation.gMapLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <p
+                              role="link_paragraph"
+                              className={classes.centerFlex}
+                            >
+                              {probation.address}
+                            </p>
+                            <p
+                              role="link_paragraph"
+                              className={classes.centerFlex}
+                            >
+                              {probation.cityStateZip}
+                            </p>
+                          </a>
                         </ListItemText>
                       </ListItem>
                     </List>

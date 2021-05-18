@@ -1,5 +1,5 @@
 import { CopyHolder } from '../types/language'
-export const copy: CopyHolder = {
+export const aboutCopy: CopyHolder = {
   english: {
     title: 'About Us',
     provide: 'Provide Accurate Information',

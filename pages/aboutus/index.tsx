@@ -1,20 +1,16 @@
 import Head from 'next/head'
 import React from 'react'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
+import { Paper, Typography, Grid } from '@material-ui/core/'
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter'
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser'
 import ForumIcon from '@material-ui/icons/Forum'
-import { siteTitle } from '../../constants'
-import { copy } from '../../constants/aboutus-data'
 import useLanguage from '../../hooks/useLanguage'
-import { useStyles } from '../../constants/materialStyles'
+import { useStyles, siteTitle, aboutCopy } from '../../constants/'
 
 const AboutUs = () => {
   const classes = useStyles()
   const { language } = useLanguage()
-  let activeCopy = copy[language]
+  let activeCopy = aboutCopy[language]
   return (
     <>
       <Head>
