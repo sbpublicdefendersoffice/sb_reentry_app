@@ -1,8 +1,8 @@
 import { Checklist } from '../types/checklist'
 import { CopyHolder } from '../types/language'
-export const copy: CopyHolder = {
+export const checkCopy: CopyHolder = {
   english: {
-    title: 'Resource Checklist',
+    title: 'Checklist',
     description:
       'Welcome back. We are wishing you a successful transition back into Santa Barbara County. The first 72 hours can be an important part of your transitions. This guide will help you have a better understanding on some of the resources that you might need in those first days being out. We hope that these resources can help you in your transition needs and quality of life.',
   },
@@ -195,7 +195,7 @@ export const ProbationAccord: Checklist = {
     href1: 'https://www.sbprobation.org/',
     item1: 'Website: ',
     href2: '',
-    item2: 'Division of Adult Parole Operations',
+    item2: 'Divisionsial of Adult Parole Operations',
     href3: 'https://www.cdcr.ca.gov/parole/northern-region-directory/',
     item3: 'Northern County Directory',
   },
