@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontFamily: 'Roboto',
     },
     heading: {
-      fontSize: '2rem',
+      fontSize: '2rem !important',
       fontFamily: 'Roboto',
     },
     linkHeading: {
@@ -22,8 +22,8 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     accordDescription: {
-      fontSize: '1.5rem',
-      fontFamily: 'Roboto',
+      fontSize: '1.5rem !important',
+      fontFamily: 'Roboto !important',
     },
     paper: {
       padding: theme.spacing(2),
