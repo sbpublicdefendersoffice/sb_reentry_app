@@ -1,18 +1,17 @@
 import Head from 'next/head'
 import Typography from '@material-ui/core/Typography'
-import { siteTitle, copy, useStyles } from '../../constants/'
+import useLanguage from '../../hooks/useLanguage'
+import { checkCopy, useStyles, siteTitle } from '../../constants/'
 import {
   HrefAccordian,
   MainAccordian,
   TipsAccordian,
   ProbationAccordian,
 } from '../../components/'
-import useLanguage from '../../hooks/useLanguage'
-
 const Checklist = () => {
   const { language } = useLanguage()
   const classes = useStyles()
-  const activeCopy = copy[language]
+  const activeCopy = checkCopy[language]
   return (
     <div className={classes.root}>
       <Head>
