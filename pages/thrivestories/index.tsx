@@ -1,24 +1,25 @@
 import Head from 'next/head'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import Typography from '@material-ui/core/Typography'
-import { SuccessStory } from '../../types/successStory'
 import {
-  copy,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Grid,
+} from '@material-ui/core/'
+import { SuccessStory } from '../../types/successStory'
+import useLanguage from '../../hooks/useLanguage'
+import {
+  useStyles,
+  siteTitle,
+  successCopy,
   ArturoSuccessStory,
   LisaSuccessStory,
-} from '../../constants/successStory-data'
-import { siteTitle } from '../../constants/copy'
-
-import Grid from '@material-ui/core/Grid'
-import useLanguage from '../../hooks/useLanguage'
-import { useStyles } from '../../constants/materialStyles'
+} from '../../constants/'
 const ThriveStories = () => {
   const { language } = useLanguage()
   const classes = useStyles()
   const successStories: SuccessStory[] = [ArturoSuccessStory, LisaSuccessStory]
-  const activeCopy = copy[language]
+  const activeCopy = successCopy[language]
   return (
     <>
       <Head>

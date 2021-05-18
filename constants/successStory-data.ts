@@ -1,6 +1,6 @@
 import { CopyHolder } from '../types/language'
 import { SuccessStory } from '../types/successStory'
-export const copy: CopyHolder = {
+export const successCopy: CopyHolder = {
   english: {
     title: 'Thrive Stories',
   },
