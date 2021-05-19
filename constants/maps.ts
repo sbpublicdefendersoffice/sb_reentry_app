@@ -17,8 +17,8 @@ export const coordsString: string = 'coords'
 export const mapboxStylingURL: string = 'mapbox://styles/mapbox/streets-v11'
 
 export const mapContainerStyle: { [name: string]: string } = {
-  height: '100%',
   width: '100%',
+  height: 'var(--screen-minus-header)',
 }
 
 export const centerArr: CenterArr = [-120.05238901434026, 34.762449495215634]
