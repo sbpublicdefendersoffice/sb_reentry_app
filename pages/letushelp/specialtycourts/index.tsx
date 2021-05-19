@@ -4,7 +4,7 @@ import { CallToAction, Paragraph } from '../../../ui'
 import { LetUsHelpIndexTitle } from '../../../components'
 import { CopyHolder } from '../../../types/language'
 import useLanguage from '../../../hooks/useLanguage'
-import { margin, width } from '../../../constants/styling'
+import { margin, maxWidth } from '../../../constants/styling'
 
 const copy: CopyHolder = {
   english: {
@@ -60,13 +60,13 @@ const SpecialtyCourtsLanding = () => {
         <Paragraph style={margin} size="heading-text" color="highlight">
           {types}
         </Paragraph>
-        <Paragraph style={width}>{list}</Paragraph>
+        <Paragraph style={maxWidth}>{list}</Paragraph>
       </CallToAction>
       <CallToAction blueBg>
         <Paragraph style={margin} size="heading-text" color="highlight">
           {eligible}
         </Paragraph>
-        <Paragraph style={{ ...width, ...margin }}>{qualify}</Paragraph>
+        <Paragraph style={{ ...maxWidth, ...margin }}>{qualify}</Paragraph>
         <div style={margin}>
           <NextLink href="/documents/specialtycourtsrequirements">
             <a>{click}</a>

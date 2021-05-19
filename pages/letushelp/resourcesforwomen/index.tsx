@@ -1,7 +1,24 @@
+import useLanguage from '../../../hooks/useLanguage'
+import { PictureWithOval } from '../../../components'
+import { CopyHolder } from '../../../types/language'
+
+const copy: CopyHolder = {
+  english: {},
+  spanish: {},
+}
+
 const ResourcesForWomenLanding = () => {
-  return <span>resources...for the ladies</span>
+  return (
+    <>
+      <div style={{ width: '100%', display: 'flex' }}>
+        <PictureWithOval
+          color="var(--peri)"
+          pic="resourcesforwomen_placeholder.png"
+        />
+        <div>howdy</div>
+      </div>
+    </>
+  )
 }
 
 export default ResourcesForWomenLanding
-
-// resourcesforwomen_placeholder.png
