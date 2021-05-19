@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import { POST, convertLocationsForMap } from '../../helpers'
 import { useGlobalSearch, useLanguage } from '../../hooks'
 import { LocationRecord, TranslatedRecordResponse } from '../../types/records'
-import TagPane from '../../components/TagPane'
-import DisplayMap from '../../components/DisplayMap'
+import { TagPane, DisplayMap } from '../../components/'
+
 const GlobalSearchLanding = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
@@ -39,11 +39,14 @@ const GlobalSearchLanding = () => {
     }
     filterOrFetch()
   }, [searchResults])
+
   return (
-    <>
-      {convertedLocRecords && <TagPane orgInfo={searchResults} />}
-      {convertedLocRecords && <DisplayMap latLongInfo={convertedLocRecords} />}
-    </>
+    convertedLocRecords && (
+      <>
+        <TagPane orgInfo={searchResults} />
+        <DisplayMap latLongInfo={convertedLocRecords} />
+      </>
+    )
   )
 }
 export default GlobalSearchLanding
