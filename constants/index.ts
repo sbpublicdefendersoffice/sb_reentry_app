@@ -48,4 +48,10 @@ export {
   PrivacyPolicyRoute,
   topThreeRoutes,
 } from './routes'
-export { margin, width } from './styling'
+export { margin, maxWidth } from './styling'
+export {
+  womensResources,
+  recommendedResources,
+  recommendedResourcesCopy,
+  url,
+} from './cards'
