@@ -12,7 +12,7 @@ describe('converter helper function(s)', () => {
       dummyTranslateRecordResponse,
     )
 
-    expect(returnResponse).toEqual(null)
+    expect(returnResponse).toEqual([])
   })
 
   it('returns truthy when there are location records present in input', () => {
