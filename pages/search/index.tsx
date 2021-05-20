@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { POST, convertLocationsForMap } from '../../helpers'
+import { POST, convertLocationsForMap, searchByKeyword } from '../../helpers'
 import { useGlobalSearch, useLanguage } from '../../hooks'
 import { LocationRecord, TranslatedRecordResponse } from '../../types/records'
 import { TagPane, DisplayMap } from '../../components/'
@@ -26,15 +26,11 @@ const GlobalSearchLanding = () => {
           captureQuery,
           capturedQueryReference,
         )
-        const call: Response = await fetch('/api/airtablerecordsbykeyword', {
-          method: POST,
-          body: JSON.stringify({
-            searchQuery: query.toLowerCase(),
-            language,
-          }),
-        })
-        const response: TranslatedRecordResponse = await call.json()
-        setSearchResults(response)
+        const call: TranslatedRecordResponse = await searchByKeyword(
+          query,
+          language,
+        )
+        setSearchResults(call)
       }
     }
 
