@@ -116,6 +116,7 @@ export interface Feedback {
   language: Language
   comment: string
 }
+
 export interface CardInfo {
   title_english: string
   title_spanish: string
@@ -123,6 +124,5 @@ export interface CardInfo {
   copy_spanish: string
   category_english?: string
   category_spanish?: string
-
   id: string
 }

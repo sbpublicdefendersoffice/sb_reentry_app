@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import { useRouter } from 'next/router'
 
-import useLanguage from '../../hooks/useLanguage'
-
+import {
+  useMultipleListRecords,
+  useConvertedLocationRecords,
+  useLanguage,
+} from '../../hooks/'
 import { siteTitle, categories } from '../../constants'
-import useMultipleListRecords from '../../hooks/useMultipleListRecords'
-import { convertLocationsForMap } from '../../helpers'
-
-import { LocationRecord } from '../../types/records'
 import { RecordPane, DisplayMap } from '../../components'
 
 const LandingPage = () => {
@@ -25,16 +24,11 @@ const LandingPage = () => {
 
   const { fetchedRecords, setFetchedRecords } =
     useMultipleListRecords(routeCategory)
-
-  const [convertedLocRecords, setConvertedLocRecords] =
-    useState<LocationRecord[] | null>(null)
+  const { convertedLocRecords, setLocationRecords } =
+    useConvertedLocationRecords()
 
   useEffect((): void => {
-    if (fetchedRecords) {
-      const mappedLocRecords: LocationRecord[] =
-        convertLocationsForMap(fetchedRecords)
-      setConvertedLocRecords(mappedLocRecords)
-    }
+    if (fetchedRecords) setLocationRecords(fetchedRecords)
   }, [fetchedRecords])
 
   return (

@@ -4,6 +4,7 @@ export {
   isDistanceInBounds,
   isRegionVisible,
 } from './location'
+export { searchByKeyword } from './search'
 export {
   validateRequest,
   validatePhoneNumber,

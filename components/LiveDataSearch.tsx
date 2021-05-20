@@ -17,7 +17,7 @@ import { useLanguage, useGlobalSearch } from '../hooks/'
 import { Tooltip, FindMe } from './'
 
 import Input from '../ui/Input'
-import { POST } from '../helpers/validators'
+import { searchByKeyword } from '../helpers/search'
 import { searchCopy } from '../constants/copy'
 import { GlobalSearchResult, SearchTermsMarquee } from './'
 import { OrgRecord, TranslatedRecordResponse } from '../types/records'
@@ -55,17 +55,11 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
 
   const sendQuery = async (): Promise<void> => {
     if (searchQuery) {
-      const call: Response = await fetch('/api/airtablerecordsbykeyword', {
-        method: POST,
-        body: JSON.stringify({
-          searchQuery: searchQuery.toLowerCase(),
-          language,
-        }),
-      })
-
-      const response: TranslatedRecordResponse = await call.json()
-
-      setSearchResults(response)
+      const call: TranslatedRecordResponse = await searchByKeyword(
+        searchQuery,
+        language,
+      )
+      setSearchResults(call)
     }
   }
 

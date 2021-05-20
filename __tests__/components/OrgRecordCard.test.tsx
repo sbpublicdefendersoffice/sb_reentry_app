@@ -19,8 +19,6 @@ useRouter.mockImplementation(() => ({ push }))
 
 const dummyProps: OrgRecordCardProps = {
   record: englishDummyOrgData,
-  category: 'transportation',
-  url: '/transportation',
 }
 
 describe('<OrgRecordCard />', () => {
@@ -29,9 +27,11 @@ describe('<OrgRecordCard />', () => {
       <OrgRecordCard {...dummyProps} />,
     )
 
-    const { record, category } = dummyProps
+    const { record } = dummyProps
     const { id, fields } = record
     const { org_categories, org_name } = fields
+
+    const category: string = org_categories[0]
 
     const [cardNode, imgNode, titleNode, categoryNodes] = [
       getByRole('region'),
@@ -56,7 +56,11 @@ describe('<OrgRecordCard />', () => {
 
     const cardNode: HTMLElement = getByRole('region')
 
-    const pushUrl: string = `${dummyProps.url}/${dummyProps.record.id}`
+    const { record } = dummyProps
+    const { id, fields } = record
+    const { org_categories } = fields
+
+    const pushUrl: string = `${org_categories[0]}/${id}`
 
     fireEvent.click(cardNode)
 

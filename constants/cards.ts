@@ -15,6 +15,7 @@ export const recommendedResourcesCopy: CopyHolder = {
     heading: 'Recursos destacados',
   },
 }
+
 export const womensResources: CardInfo[] = [
   {
     title_english: 'CalVet Women and Minority Division',
@@ -44,6 +45,7 @@ export const womensResources: CardInfo[] = [
     id: 'recSiVAakYS8kDWTI',
   },
 ]
+
 export const recommendedResources: CardInfo[] = [
   {
     title_english: 'Cal Fresh',
@@ -118,4 +120,5 @@ export const recommendedResources: CardInfo[] = [
     id: 'reca3rBMch8WzNc5O',
   },
 ]
+
 export const url: string = '/search/[id]'

@@ -37,5 +37,5 @@ export const convertLocationsForMap = (
       },
       [],
     )
-  else return null
+  else return []
 }
