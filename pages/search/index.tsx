@@ -1,25 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { convertLocationsForMap, searchByKeyword } from '../../helpers'
-import { useGlobalSearch, useLanguage } from '../../hooks'
-import { LocationRecord, TranslatedRecordResponse } from '../../types/records'
+import { searchByKeyword } from '../../helpers'
+import {
+  useGlobalSearch,
+  useLanguage,
+  useConvertedLocationRecords,
+} from '../../hooks'
+import { TranslatedRecordResponse } from '../../types/records'
 import { TagPane, DisplayMap } from '../../components/'
 
 const GlobalSearchLanding = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
   const { searchResults, setSearchResults } = useGlobalSearch()
-
-  const [convertedLocRecords, setConvertedLocRecords] =
-    useState<LocationRecord[] | null>(null)
+  const { convertedLocRecords, setLocationRecords } =
+    useConvertedLocationRecords()
 
   useEffect((): void => {
     const filterOrFetch = async () => {
-      if (searchResults) {
-        const mappedLocRecords: LocationRecord[] =
-          convertLocationsForMap(searchResults)
-        setConvertedLocRecords(mappedLocRecords)
-      } else {
+      if (searchResults) setLocationRecords(searchResults)
+      else {
         const captureQuery: RegExp = /^.*=(.*)$/
         const capturedQueryReference: string = '$1'
         const query: string = asPath.replace(
