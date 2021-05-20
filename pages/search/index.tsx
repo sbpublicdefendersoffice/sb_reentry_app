@@ -9,15 +9,15 @@ const GlobalSearchLanding = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
   const { searchResults, setSearchResults } = useGlobalSearch()
-  const [convertedLocRecords, setConvertedLocRecords] = useState<
-    LocationRecord[] | null
-  >(null)
+
+  const [convertedLocRecords, setConvertedLocRecords] =
+    useState<LocationRecord[] | null>(null)
+
   useEffect((): void => {
     const filterOrFetch = async () => {
       if (searchResults) {
-        const mappedLocRecords: LocationRecord[] = convertLocationsForMap(
-          searchResults,
-        )
+        const mappedLocRecords: LocationRecord[] =
+          convertLocationsForMap(searchResults)
         setConvertedLocRecords(mappedLocRecords)
       } else {
         const captureQuery: RegExp = /^.*=(.*)$/
@@ -37,6 +37,7 @@ const GlobalSearchLanding = () => {
         setSearchResults(response)
       }
     }
+
     filterOrFetch()
   }, [searchResults])
 
@@ -49,4 +50,5 @@ const GlobalSearchLanding = () => {
     )
   )
 }
+
 export default GlobalSearchLanding
