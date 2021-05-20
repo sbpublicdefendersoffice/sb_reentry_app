@@ -1,28 +1,19 @@
 import { Fragment, ReactElement } from 'react'
 import { useRouter } from 'next/router'
-
 import { OrgRecord } from '../types/records'
 import { Card, Paragraph } from '../ui'
-
 export interface OrgRecordCardProps {
   record: OrgRecord
-  category: string
-  url: string
 }
-
 export const urlSlug: string = '/[category]/[id]'
-
 import styles from './OrgRecordCard.module.css'
-
-const OrgRecordCard = ({ record, category, url }: OrgRecordCardProps) => {
+const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
   const { push } = useRouter()
-
   const { id, fields } = record
   const { org_categories, org_name } = fields
-
+  const categoryTitle: string = org_categories[0].replace(' ', '')
   const pushToRecord = (e): Promise<boolean> =>
-    push(urlSlug, `${url}/${e.target.title}`)
-
+    push(urlSlug, `${categoryTitle}/${e.target.title}`)
   return (
     <Card
       data-testid="OrgRecordCard"
@@ -38,8 +29,8 @@ const OrgRecordCard = ({ record, category, url }: OrgRecordCardProps) => {
         className={styles.Image}
         width="4rem"
         height="4rem"
-        src={`./icons/${category}.svg`}
-        alt={`${category}_icon`}
+        src={`./icons/${categoryTitle}.svg`}
+        alt={`${categoryTitle}_icon`}
       />
       <div>
         <Paragraph role="heading" title={id} size="med-text">
@@ -61,5 +52,4 @@ const OrgRecordCard = ({ record, category, url }: OrgRecordCardProps) => {
     </Card>
   )
 }
-
 export default OrgRecordCard

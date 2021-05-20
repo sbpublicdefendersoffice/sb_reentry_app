@@ -1,25 +1,23 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-
 import { POST, convertLocationsForMap } from '../../helpers'
 import { useGlobalSearch, useLanguage } from '../../hooks'
-
 import { LocationRecord, TranslatedRecordResponse } from '../../types/records'
-import DisplayMap from '../../components/DisplayMap'
+import { TagPane, DisplayMap } from '../../components/'
 
 const GlobalSearchLanding = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
-
   const { searchResults, setSearchResults } = useGlobalSearch()
-  const [convertedLocRecords, setConvertedLocRecords] =
-    useState<LocationRecord[] | null>(null)
-
+  const [convertedLocRecords, setConvertedLocRecords] = useState<
+    LocationRecord[] | null
+  >(null)
   useEffect((): void => {
     const filterOrFetch = async () => {
       if (searchResults) {
-        const mappedLocRecords: LocationRecord[] =
-          convertLocationsForMap(searchResults)
+        const mappedLocRecords: LocationRecord[] = convertLocationsForMap(
+          searchResults,
+        )
         setConvertedLocRecords(mappedLocRecords)
       } else {
         const captureQuery: RegExp = /^.*=(.*)$/
@@ -28,7 +26,6 @@ const GlobalSearchLanding = () => {
           captureQuery,
           capturedQueryReference,
         )
-
         const call: Response = await fetch('/api/airtablerecordsbykeyword', {
           method: POST,
           body: JSON.stringify({
@@ -36,7 +33,6 @@ const GlobalSearchLanding = () => {
             language,
           }),
         })
-
         const response: TranslatedRecordResponse = await call.json()
         setSearchResults(response)
       }
@@ -45,10 +41,12 @@ const GlobalSearchLanding = () => {
   }, [searchResults])
 
   return (
-    <>
-      {convertedLocRecords && <DisplayMap latLongInfo={convertedLocRecords} />}
-    </>
+    convertedLocRecords && (
+      <>
+        <TagPane orgInfo={searchResults} />
+        <DisplayMap latLongInfo={convertedLocRecords} />
+      </>
+    )
   )
 }
-
 export default GlobalSearchLanding
