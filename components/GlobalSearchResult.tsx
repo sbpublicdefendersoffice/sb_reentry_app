@@ -51,7 +51,7 @@ const GlobalSearchResult = ({
           width="3rem"
           height="3rem"
           className={styles.Image}
-          src={`./icons/${imgSrc.replace(' ', '')}.svg`}
+          src={`/icons/${imgSrc.replace(' ', '')}.svg`}
           alt={`${imgSrc}_icon`}
         />
       </li>

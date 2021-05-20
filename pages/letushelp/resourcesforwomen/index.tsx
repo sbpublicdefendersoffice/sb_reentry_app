@@ -1,21 +1,32 @@
+import { useEffect } from 'react'
+
 import {
   PictureWithOval,
   LetUsHelpHeading,
   LetUsHelpCardLayout,
+  TagPane,
+  DisplayMap,
 } from '../../../components'
-import useLanguage from '../../../hooks/useLanguage'
+import {
+  useGlobalSearch,
+  useLanguage,
+  useConvertedLocationRecords,
+} from '../../../hooks/'
+import { searchByKeyword } from '../../../helpers'
 import { CopyHolder } from '../../../types/language'
 import { womensResources } from '../../../constants/cards'
 import { Title, Paragraph } from '../../../ui'
 
 const copy: CopyHolder = {
   english: {
+    searchTerm: 'women',
     title: 'Resources for Cis/Trans Women',
     explainer:
       'Justice involved cisgender women, trans women and gender nonconforming individuals are often overlooked. This can greatly impact their ability to reenter successfully. Below you can find a list of resources that can provide support.',
     heading: 'Featured Resources',
   },
   spanish: {
+    searchTerm: 'mujeres',
     title: 'Recursos para mujeres Cis/Trans',
     explainer:
       'La justicia involucra a mujeres cisgénero, mujeres trans e individuos no conformes con el género a menudo se pasa por alto. Esto puede afectar en gran medida su capacidad para reingresar con éxito. A continuación, puede encontrar una lista de recursos que pueden brindar apoyo.',
@@ -24,8 +35,27 @@ const copy: CopyHolder = {
 }
 
 const ResourcesForWomenLanding = () => {
+  const { searchResults, setSearchResults } = useGlobalSearch()
+  const { convertedLocRecords, setLocationRecords } =
+    useConvertedLocationRecords()
   const { language } = useLanguage()
-  const { title, explainer, heading } = copy[language]
+  const { searchTerm, title, explainer, heading } = copy[language]
+
+  useEffect((): void => {
+    const fetchWomensRecords = async () => {
+      if (language) {
+        const womensRecords = await searchByKeyword(searchTerm, language)
+
+        setSearchResults(womensRecords)
+      }
+    }
+
+    fetchWomensRecords()
+  }, [language])
+
+  useEffect(() => {
+    if (searchResults) setLocationRecords(searchResults)
+  }, [searchResults])
 
   return (
     <>
@@ -40,6 +70,8 @@ const ResourcesForWomenLanding = () => {
         </LetUsHelpHeading>
       </div>
       <LetUsHelpCardLayout heading={heading} cards={womensResources} />
+      {searchResults && <TagPane orgInfo={searchResults} />}
+      {convertedLocRecords && <DisplayMap latLongInfo={convertedLocRecords} />}
     </>
   )
 }

@@ -44,7 +44,8 @@ const MapMarker = ({
     uuid,
     multiple_categories,
   } = locationRecord
-  const isSearchPage: boolean = pathname.startsWith('/search')
+  const isSearchPage: boolean =
+    pathname.startsWith('/search') || pathname.startsWith('/letushelp')
 
   useEffect(() => {
     if (isSearchPage) setImgSrc(multiple_categories[0])

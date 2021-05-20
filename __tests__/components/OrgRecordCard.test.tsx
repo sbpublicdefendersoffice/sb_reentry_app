@@ -43,7 +43,7 @@ describe('<OrgRecordCard />', () => {
     expect(cardNode).toBeInTheDocument()
 
     expect(imgNode).toHaveAttribute('title', id)
-    expect(imgNode).toHaveAttribute('src', `./icons/${category}.svg`)
+    expect(imgNode).toHaveAttribute('src', `/icons/${category}.svg`)
     expect(imgNode).toHaveAttribute('alt', `${category}_icon`)
 
     expect(titleNode).toHaveTextContent(org_name)
