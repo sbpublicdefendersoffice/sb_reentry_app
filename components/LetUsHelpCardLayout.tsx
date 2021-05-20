@@ -32,15 +32,22 @@ const LetUsHelpCardLayout = ({ heading, cards }: LetUsHelpCardLayoutProps) => {
       {heading && <Title>{heading}</Title>}
       <div className={styles.LetUsHelpCardContainer}>
         {cards.map((card: CardInfo, i: number) => {
-          const [title, copy] = [
+          const [title, copy, category] = [
             card[`title_${language}`],
             card[`copy_${language}`],
+            card[`category_${language}`],
           ]
+          
           const { id } = card
 
           return (
             <Fragment key={i}>
               <Card className={styles.Card} border={false}>
+                {category && (
+                  <Paragraph className={styles.Category} size="med-text">
+                    {category}
+                  </Paragraph>
+                )}
                 <Paragraph className={styles.Heading} size="heading-text">
                   {title}
                 </Paragraph>

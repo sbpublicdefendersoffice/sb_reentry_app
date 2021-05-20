@@ -13,12 +13,18 @@
   padding: var(--margin-lg);
 }
 
+.Category {
+  overflow: scroll;
+  height: 3rem !important;
+}
+
 .Explainer {
   height: 17rem;
 }
 
 .Heading {
-  height: 5rem;
+  height: 7rem;
+  overflow: auto;
 }
 
 .Heading,

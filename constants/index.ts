@@ -49,4 +49,10 @@ export {
   topThreeRoutes,
 } from './routes'
 export { margin, maxWidth } from './styling'
-export { womensResources, url } from './cards'
+export {
+  womensResources,
+  recommendedResources,
+  recommendedResourcesCopy,
+  url,
+} from './cards'
+
