@@ -1,5 +1,3 @@
-import { fromPairs } from 'lodash'
-
 export { BASE_URL, OPTIONS_OBJECT } from './airtable'
 export { default as categories } from './categories'
 export {
@@ -55,4 +53,3 @@ export {
   recommendedResourcesCopy,
   url,
 } from './cards'
-

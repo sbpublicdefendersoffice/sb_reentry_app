@@ -37,7 +37,7 @@ const LetUsHelpCardLayout = ({ heading, cards }: LetUsHelpCardLayoutProps) => {
             card[`copy_${language}`],
             card[`category_${language}`],
           ]
-          
+
           const { id } = card
 
           return (

@@ -19,8 +19,8 @@ const RecommendedResourcesLanding = () => {
     <>
       <div style={{ width: '100%', display: 'flex' }}>
         <PictureWithOval
-          color="var(--peri)"
-          pic="resourcesforwomen_placeholder.png"
+          color="var(--highlight)"
+          pic="recresources_placeholder.png"
         />
         <LetUsHelpHeading>
           <Title>{title}</Title>
