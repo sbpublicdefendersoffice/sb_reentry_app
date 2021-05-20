@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { POST, convertLocationsForMap, searchByKeyword } from '../../helpers'
+import { convertLocationsForMap, searchByKeyword } from '../../helpers'
 import { useGlobalSearch, useLanguage } from '../../hooks'
 import { LocationRecord, TranslatedRecordResponse } from '../../types/records'
 import { TagPane, DisplayMap } from '../../components/'
