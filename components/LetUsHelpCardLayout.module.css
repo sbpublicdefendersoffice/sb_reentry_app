@@ -1,0 +1,52 @@
+.LetUsHelpCardContainer {
+  margin-top: var(--margin-lg);
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.Card {
+  background-color: var(--light);
+  width: 30%;
+  text-align: center;
+  padding: var(--margin-lg);
+}
+
+.Category {
+  overflow: scroll;
+  height: 3rem !important;
+}
+
+.Explainer {
+  height: 17rem;
+}
+
+.Heading {
+  height: 7rem;
+  overflow: auto;
+}
+
+.Heading,
+.Explainer {
+  margin-bottom: var(--margin-lg);
+  overflow: scroll;
+}
+
+.Link {
+  color: var(--secondary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .Card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 500px) {
+  .Card {
+    width: 90%;
+  }
+}

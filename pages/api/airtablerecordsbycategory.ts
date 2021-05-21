@@ -19,7 +19,7 @@ const fetchRecordsByCategory = async (
 
     const append: string = language === SPANISH ? `_${SPANISH}` : ''
 
-    const fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&fields%5B%5D=locations_city&fields%5B%5D=org_categories${append}&fields%5B%5D=org_name${append}&fields%5B%5D=org_tags${append}&fields%5B%5D=location_services${append}&sort%5B0%5D%5Bfield%5D=org_name${append}`
+    const fetchString: string = `${BASE_URL}/organization?filterByFormula=FIND(%22${category}%22%2Corg_categories)&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&fields%5B%5D=locations_city&fields%5B%5D=org_categories&fields%5B%5D=org_categories_spanish&fields%5B%5D=org_name${append}&fields%5B%5D=org_tags${append}&fields%5B%5D=location_services${append}&sort%5B0%5D%5Bfield%5D=org_name${append}`
 
     const fetchRecords: Response = await fetch(fetchString, OPTIONS_OBJECT)
     let translatedRecords: TranslatedRecordResponse = await fetchRecords.json()
@@ -52,7 +52,7 @@ const fetchRecordsByCategory = async (
       translatedRecords.records.map((record: OrgRecord) => {
         record.fields.org_name = record.fields.org_name_spanish
         record.fields.org_tags = record.fields.org_tags_spanish
-        record.fields.org_categories = record.fields.org_categories_spanish
+        // record.fields.org_categories = record.fields.org_categories_spanish
 
         return record
       })

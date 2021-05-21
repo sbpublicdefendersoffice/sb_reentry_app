@@ -1,0 +1,34 @@
+.PictureWithOval {
+  position: relative;
+  width: 50%;
+}
+
+.Image {
+  position: absolute;
+  border-radius: var(--radius-small);
+  right: 0;
+  top: 8%;
+  z-index: 1;
+  width: 80%;
+  overflow: hidden;
+  height: auto;
+}
+
+.Ellipse {
+  border-radius: 50%;
+  transform: scale(0.7) skew(15deg) translateY(-15%);
+}
+
+.Ellipse::after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+
+@media (max-width: 700px) {
+  .Image {
+    top: 12%;
+    right: 10%;
+    width: 70%;
+  }
+}

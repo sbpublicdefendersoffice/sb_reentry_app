@@ -28,7 +28,7 @@ describe('<GlobalSearchResult />', () => {
     expect(liNode).toBeInTheDocument()
     expect(imgNode).toHaveAttribute(
       'src',
-      `./icons/${imgSrc.replace(' ', '')}.svg`,
+      `/icons/${imgSrc.replace(' ', '')}.svg`,
     )
     expect(imgNode).toHaveAttribute('alt', `${imgSrc}_icon`)
   })

@@ -1,0 +1,23 @@
+.LetUsHelpHeading {
+  width: 50%;
+  padding: 3rem 2rem;
+}
+
+.LetUsHelpHeading > h1 {
+  margin-bottom: var(--margin-std);
+}
+
+.LetUsHelpHeading > p {
+  width: 75%;
+}
+
+@media (max-width: 700px) {
+  .LetUsHelpHeading {
+    padding: 5% 0 0 0;
+  }
+
+  .LetUsHelpHeading > p {
+    display: none;
+    width: 100%;
+  }
+}
