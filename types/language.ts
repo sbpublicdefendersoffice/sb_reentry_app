@@ -7,6 +7,6 @@ export interface AppLanguageProps {
 }
 
 export interface CopyHolder {
-  english: { [key: string]: string }
-  spanish: { [key: string]: string }
+  english: { [key: string]: any }
+  spanish: { [key: string]: any }
 }
