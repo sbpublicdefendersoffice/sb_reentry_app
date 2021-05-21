@@ -4,9 +4,10 @@ import styles from './LetUsHelpIndexTitle.module.css'
 
 interface LetUsHelpIndexTitleProps {
   src: string
-  title: string
+  title?: string
   whatIs: string
-  explain: string
+  explain?: string
+  multExplain?: string[]
 }
 
 const LetUsHelpIndexTitle = ({
@@ -14,15 +15,20 @@ const LetUsHelpIndexTitle = ({
   title,
   whatIs,
   explain,
+  multExplain,
 }: LetUsHelpIndexTitleProps) => (
   <CallToAction role="region" blueBg className={styles.LetUsHelpIndexTitle}>
     <img role="img" className={styles.Image} src={src} />
     <div className={styles.Text}>
-      <Title role="heading">{title}</Title>
+      {title && <Title role="heading">{title}</Title>}
       <Paragraph role="article" size="med-text" color="highlight">
         {whatIs}
       </Paragraph>
-      <Paragraph role="article">{explain}</Paragraph>
+      {explain && <Paragraph role="article">{explain}</Paragraph>}
+      {multExplain &&
+        multExplain.map((term: string, i: number) => (
+          <Paragraph key={i}>{term}</Paragraph>
+        ))}
     </div>
   </CallToAction>
 )
