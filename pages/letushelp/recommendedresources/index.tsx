@@ -9,7 +9,8 @@ import {
 import {
   recommendedResources,
   recommendedResourcesCopy,
-} from '../../../constants/cards'
+  flexFullWidth,
+} from '../../../constants/'
 
 const RecommendedResourcesLanding = () => {
   const { language } = useLanguage()
@@ -17,7 +18,7 @@ const RecommendedResourcesLanding = () => {
 
   return (
     <>
-      <div style={{ width: '100%', display: 'flex' }}>
+      <div style={flexFullWidth}>
         <PictureWithOval
           color="var(--highlight)"
           pic="recresources_placeholder.png"

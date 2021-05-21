@@ -5,3 +5,5 @@ export const margin: CSSProperties = {
 }
 
 export const maxWidth: CSSProperties = { maxWidth: '80%' }
+
+export const flexFullWidth: CSSProperties = { width: '100%', display: 'flex' }

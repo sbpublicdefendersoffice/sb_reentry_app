@@ -46,7 +46,7 @@ export {
   PrivacyPolicyRoute,
   topThreeRoutes,
 } from './routes'
-export { margin, maxWidth } from './styling'
+export { margin, maxWidth, flexFullWidth } from './styling'
 export {
   womensResources,
   recommendedResources,
