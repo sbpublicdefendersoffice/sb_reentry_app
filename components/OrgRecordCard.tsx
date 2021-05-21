@@ -23,7 +23,7 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
   const isCategoryPage: boolean = pathname === '/[category]'
 
   const pushToRecord = (e): Promise<boolean> =>
-    push(urlSlug, `${categoryTitle}/${e.target.title}`)
+    push(urlSlug, `/${categoryTitle}/${e.target.title}`)
 
   return (
     <Card
