@@ -9,6 +9,8 @@ export type Color =
   | 'highlight-2'
   | 'deselected'
   | 'med-grey'
+  | 'green'
+  | 'peri'
 
 export type TextSize =
   | 'standard-text'
