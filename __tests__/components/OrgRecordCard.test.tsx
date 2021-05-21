@@ -62,7 +62,7 @@ describe('<OrgRecordCard />', () => {
     const { id, fields } = record
     const { org_categories } = fields
 
-    const pushUrl: string = `${org_categories[0]}/${id}`
+    const pushUrl: string = `/${org_categories[0]}/${id}`
 
     fireEvent.click(cardNode)
 

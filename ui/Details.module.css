@@ -1,11 +1,11 @@
 .Details {
-  user-select: none;
   overflow: hidden;
   text-align: start;
   padding: var(--pad-sm);
 }
 
 .summary {
+  user-select: none;
   padding: var(--pad-std);
   font-size: var(--med-text);
   outline: none;

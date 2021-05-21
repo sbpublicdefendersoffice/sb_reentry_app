@@ -13,26 +13,26 @@ import {
   useConvertedLocationRecords,
 } from '../../../hooks/'
 import { CopyHolder } from '../../../types/language'
-import { womensResources, flexFullWidth } from '../../../constants/'
+import { familyResources, flexFullWidth } from '../../../constants/'
 import { AdaptiveFlexContainer, Title, Paragraph } from '../../../ui'
 
 const copy: CopyHolder = {
   english: {
-    title: 'Resources for Cis/Trans Women',
+    title: 'Resources for Family and Friends',
     explainer:
-      'Justice involved cisgender women, trans women and gender nonconforming individuals are often overlooked. This can greatly impact their ability to reenter successfully. Below you can find a list of resources that can provide support.',
+      'Having a family member or a friend that is justice involved can be tough. Here you can find resources that can help you and your loved one.',
     heading: 'Featured Resources',
   },
   spanish: {
-    title: 'Recursos para mujeres Cis/Trans',
+    title: 'Recursos para familiares y amigos',
     explainer:
-      'La justicia involucra a mujeres cisgénero, mujeres trans e individuos no conformes con el género a menudo se pasa por alto. Esto puede afectar en gran medida su capacidad para reingresar con éxito. A continuación, puede encontrar una lista de recursos que pueden brindar apoyo.',
+      'Tener un familiar o un amigo involucrado en la justicia puede ser difícil. Aquí puede encontrar recursos que pueden ayudarlo a usted y a su ser querido.',
     heading: 'Recursos destacados',
   },
 }
 
-const ResourcesForWomenLanding = () => {
-  const { fetchedRecords } = useMultipleListRecords('women')
+const ResourcesForFamilyAndFriendsLanding = () => {
+  const { fetchedRecords } = useMultipleListRecords('family')
   const { convertedLocRecords, setLocationRecords } =
     useConvertedLocationRecords()
   const { language } = useLanguage()
@@ -45,13 +45,13 @@ const ResourcesForWomenLanding = () => {
   return (
     <>
       <div style={flexFullWidth}>
-        <PictureWithOval color="peri" pic="resourcesforwomen_placeholder.png" />
+        <PictureWithOval color="peri" pic="familyresources_placeholder.png" />
         <LetUsHelpHeading>
           <Title>{title}</Title>
           <Paragraph size="med-text">{explainer}</Paragraph>
         </LetUsHelpHeading>
       </div>
-      <LetUsHelpCardLayout heading={heading} cards={womensResources} />
+      <LetUsHelpCardLayout heading={heading} cards={familyResources} />
       <Paragraph size="heading-text" style={{ margin: 'var(--margin-std) 0' }}>
         {title}
       </Paragraph>
@@ -65,4 +65,4 @@ const ResourcesForWomenLanding = () => {
   )
 }
 
-export default ResourcesForWomenLanding
+export default ResourcesForFamilyAndFriendsLanding
