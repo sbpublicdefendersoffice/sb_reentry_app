@@ -13,7 +13,7 @@ import {
   useConvertedLocationRecords,
 } from '../../../hooks/'
 import { CopyHolder } from '../../../types/language'
-import { womensResources, flexFullWidth } from '../../../constants/'
+import { familyResources, flexFullWidth } from '../../../constants/'
 import { Title, Paragraph } from '../../../ui'
 
 const copy: CopyHolder = {
@@ -51,7 +51,7 @@ const ResourcesForFamilyAndFriendsLanding = () => {
           <Paragraph size="med-text">{explainer}</Paragraph>
         </LetUsHelpHeading>
       </div>
-      <LetUsHelpCardLayout heading={heading} cards={womensResources} />
+      <LetUsHelpCardLayout heading={heading} cards={familyResources} />
       <Paragraph size="heading-text" style={{ margin: 'var(--margin-std) 0' }}>
         {title}
       </Paragraph>
