@@ -1,7 +1,7 @@
 import { fireEvent } from '@testing-library/react'
 import { useRouter } from 'next/router'
 
-import { renderWithRouter, englishDummyOrgData } from '../../__helpers__'
+import { renderWithAllContext, englishDummyOrgData } from '../../__helpers__'
 
 import OrgRecordCard, {
   OrgRecordCardProps,
@@ -23,7 +23,7 @@ const dummyProps: OrgRecordCardProps = {
 
 describe('<OrgRecordCard />', () => {
   it('renders correctly', () => {
-    const { getByRole, getAllByRole } = renderWithRouter(
+    const { getByRole, getAllByRole } = renderWithAllContext(
       <OrgRecordCard {...dummyProps} />,
     )
 
@@ -52,7 +52,9 @@ describe('<OrgRecordCard />', () => {
   })
 
   it('pushes to correct record', () => {
-    const { getByRole } = renderWithRouter(<OrgRecordCard {...dummyProps} />)
+    const { getByRole } = renderWithAllContext(
+      <OrgRecordCard {...dummyProps} />,
+    )
 
     const cardNode: HTMLElement = getByRole('region')
 

@@ -22,7 +22,6 @@ const useMultipleListRecords = (category: string) => {
         const apiResponse: TranslatedRecordResponse = await apiRequest.json()
 
         setFetchedRecords(apiResponse)
-        console.log(apiResponse)
       }
     }
     airtableApiRouteFetch()
