@@ -14,7 +14,7 @@ import {
 } from '../../../hooks/'
 import { CopyHolder } from '../../../types/language'
 import { womensResources, flexFullWidth } from '../../../constants/'
-import { Title, Paragraph } from '../../../ui'
+import { AdaptiveFlexContainer, Title, Paragraph } from '../../../ui'
 
 const copy: CopyHolder = {
   english: {
@@ -55,12 +55,12 @@ const ResourcesForWomenLanding = () => {
       <Paragraph size="heading-text" style={{ margin: 'var(--margin-std) 0' }}>
         {title}
       </Paragraph>
-      <div style={flexFullWidth}>
+      <AdaptiveFlexContainer>
         {fetchedRecords && <TagPane orgInfo={fetchedRecords} />}
         {convertedLocRecords && (
           <DisplayMap latLongInfo={convertedLocRecords} />
         )}
-      </div>
+      </AdaptiveFlexContainer>
     </>
   )
 }
