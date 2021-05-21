@@ -38,7 +38,11 @@ const LetUsHelpCta = () => {
           {activeCopy.explanation}
         </Paragraph>
       </div>
-      <Button role="button" onClick={() => push(url, url)}>
+      <Button
+        style={{ minWidth: '9rem' }}
+        role="button"
+        onClick={() => push(url, url)}
+      >
         {activeCopy.buttonText}
       </Button>
     </CallToAction>

@@ -46,6 +46,36 @@ export const womensResources: CardInfo[] = [
   },
 ]
 
+export const familyResources: CardInfo[] = [
+  {
+    title_english: 'Family Therapy Institute of Santa Barbara',
+    title_spanish: 'Instituto de Terapia Familiar de Santa Bárbara',
+    copy_english:
+      'Family counseling and counseling for children with emotional and behavioral problems provided.',
+    copy_spanish:
+      'Se proporciona asesoramiento y asesoramiento familiar para niños con problemas emocionales y de conducta.',
+    id: 'recco93qd8Gp1LlAi',
+  },
+  {
+    title_english: 'County of Santa Barbara Health Care Centers',
+    title_spanish: 'Centros de atención médica del condado de Santa Bárbara',
+    copy_english:
+      'We provide health care services for our neighbors in Santa Barbara County. You will never be turned away for care at Santa Barbara County Health Centers for your inability to pay.',
+    copy_spanish:
+      'Brindamos servicios de atención médica a nuestros vecinos del condado de Santa Bárbara. Nunca será rechazado para recibir atención en los Centros de Salud del Condado de Santa Bárbara por no poder pagar.',
+    id: 'rec5BtB15XlZwtSRy',
+  },
+  {
+    title_english: 'St. George Family and Youth Center',
+    title_spanish: 'Centro juvenil y familiar de St. George',
+    copy_english:
+      'Nurturing the potential of every child and teen. All kids deserve the opportunity to discover who they are and what they can achieve. That’s why, through the Y, thousands of youth in Santa Barbara and Ventura counties are cultivating the values, skills, and relationships that lead to positive behaviors, better health, and lifelong achievement.',
+    copy_spanish:
+      'Fomentar el potencial de cada niño y adolescente. Todos los niños merecen la oportunidad de descubrir quiénes son y qué pueden lograr. Es por eso que, a través de la Y, miles de jóvenes en los condados de Santa Bárbara y Ventura están cultivando valores, habilidades y relaciones que conducen a comportamientos positivos, mejor salud y logros de por vida.',
+    id: 'rec9T52CKz8JIip2k',
+  },
+]
+
 export const recommendedResources: CardInfo[] = [
   {
     title_english: 'Cal Fresh',

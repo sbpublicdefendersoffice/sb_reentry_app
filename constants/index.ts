@@ -52,4 +52,5 @@ export {
   recommendedResources,
   recommendedResourcesCopy,
   url,
+  familyResources,
 } from './cards'

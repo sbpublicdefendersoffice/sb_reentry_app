@@ -1,3 +1,4 @@
+export { default as AdaptiveFlexContainer } from './AdaptiveFlexContainer'
 export { default as Button } from './Button'
 export { default as CallToAction } from './CallToAction'
 export { default as Card } from './Card'
