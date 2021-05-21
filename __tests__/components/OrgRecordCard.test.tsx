@@ -1,7 +1,7 @@
 import { fireEvent } from '@testing-library/react'
 import { useRouter } from 'next/router'
 
-import { renderWithRouter, englishDummyOrgData } from '../../__helpers__'
+import { renderWithAllContext, englishDummyOrgData } from '../../__helpers__'
 
 import OrgRecordCard, {
   OrgRecordCardProps,
@@ -19,19 +19,19 @@ useRouter.mockImplementation(() => ({ push }))
 
 const dummyProps: OrgRecordCardProps = {
   record: englishDummyOrgData,
-  category: 'transportation',
-  url: '/transportation',
 }
 
 describe('<OrgRecordCard />', () => {
   it('renders correctly', () => {
-    const { getByRole, getAllByRole } = renderWithRouter(
+    const { getByRole, getAllByRole } = renderWithAllContext(
       <OrgRecordCard {...dummyProps} />,
     )
 
-    const { record, category } = dummyProps
+    const { record } = dummyProps
     const { id, fields } = record
     const { org_categories, org_name } = fields
+
+    const category: string = org_categories[0]
 
     const [cardNode, imgNode, titleNode, categoryNodes] = [
       getByRole('region'),
@@ -43,7 +43,7 @@ describe('<OrgRecordCard />', () => {
     expect(cardNode).toBeInTheDocument()
 
     expect(imgNode).toHaveAttribute('title', id)
-    expect(imgNode).toHaveAttribute('src', `./icons/${category}.svg`)
+    expect(imgNode).toHaveAttribute('src', `/icons/${category}.svg`)
     expect(imgNode).toHaveAttribute('alt', `${category}_icon`)
 
     expect(titleNode).toHaveTextContent(org_name)
@@ -52,11 +52,17 @@ describe('<OrgRecordCard />', () => {
   })
 
   it('pushes to correct record', () => {
-    const { getByRole } = renderWithRouter(<OrgRecordCard {...dummyProps} />)
+    const { getByRole } = renderWithAllContext(
+      <OrgRecordCard {...dummyProps} />,
+    )
 
     const cardNode: HTMLElement = getByRole('region')
 
-    const pushUrl: string = `${dummyProps.url}/${dummyProps.record.id}`
+    const { record } = dummyProps
+    const { id, fields } = record
+    const { org_categories } = fields
+
+    const pushUrl: string = `${org_categories[0]}/${id}`
 
     fireEvent.click(cardNode)
 

@@ -1,3 +1,4 @@
+export { default as useConvertedLocationRecords } from './useConvertedLocationRecords'
 export {
   GlobalSearchProvider,
   default as useGlobalSearch,

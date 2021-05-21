@@ -17,7 +17,7 @@ const globalAirtableSearch = async (
 
     const append: string = language === SPANISH ? `_${SPANISH}` : ''
 
-    const fetchString: string = `${BASE_URL}/organization?filterByFormula=SEARCH(%22${searchQuery}%22%2Corg_tags${append})&fields%5B%5D=org_name${append}&fields%5B%5D=org_tags${append}&fields%5B%5D=org_categories&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&maxRecords=50&sort%5B0%5D%5Bfield%5D=org_name${append}&fields%5B%5D=locations_city`
+    const fetchString: string = `${BASE_URL}/organization?filterByFormula=SEARCH(%22${searchQuery}%22%2Corg_tags${append})&fields%5B%5D=org_name${append}&fields%5B%5D=org_tags${append}&fields%5B%5D=org_categories&&fields%5B%5D=org_categories_spanish&fields%5B%5D=location_latitude&fields%5B%5D=location_longitude&maxRecords=50&sort%5B0%5D%5Bfield%5D=org_name${append}&fields%5B%5D=locations_city`
 
     const fetchRecords: Response = await fetch(fetchString, OPTIONS_OBJECT)
     const translatedRecords: TranslatedRecordResponse =
