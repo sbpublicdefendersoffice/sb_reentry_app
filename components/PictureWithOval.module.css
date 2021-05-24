@@ -25,6 +25,10 @@
   padding-bottom: 100%;
 }
 
+.EllipseFlipped {
+  transform: scale(0.7) skew(-15deg) translate(10%, -15%);
+}
+
 @media (max-width: 700px) {
   .Image {
     top: 12%;
