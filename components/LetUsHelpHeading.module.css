@@ -7,10 +7,6 @@
   margin-bottom: var(--margin-std);
 }
 
-.LetUsHelpHeading > p {
-  width: 75%;
-}
-
 @media (max-width: 700px) {
   .LetUsHelpHeading {
     padding: 5% 0 0 0;
