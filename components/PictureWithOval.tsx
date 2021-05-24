@@ -3,15 +3,20 @@ import { Color } from '../types/ui'
 interface PictureWithOvalProps {
   color: Color
   pic: string
+  shiftRight?: boolean
 }
 
 import styles from './PictureWithOval.module.css'
 
-const PictureWithOval = ({ color, pic }: PictureWithOvalProps) => (
+const PictureWithOval = ({ color, pic, shiftRight }: PictureWithOvalProps) => (
   <div className={styles.PictureWithOval}>
-    <img className={styles.Image} src={`/images/${pic}`} />
+    <img
+      style={shiftRight && { left: '3rem' }}
+      className={styles.Image}
+      src={`/images/${pic}`}
+    />
     <div
-      className={styles.Ellipse}
+      className={`${styles.Ellipse} ${shiftRight && styles.EllipseFlipped}`}
       style={{ backgroundColor: `var(--${color})` }}
     />
   </div>
