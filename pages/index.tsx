@@ -75,7 +75,11 @@ const Home = () => {
           </Paragraph>
           <Button onClick={() => push(url2, url2)}>{buttonText2}</Button>
         </LetUsHelpHeading>
-        <PictureWithOval color="green" pic="wheretostart_placeholder.png" />
+        <PictureWithOval
+          color="green"
+          pic="wheretostart_placeholder.png"
+          shiftRight
+        />
       </div>
       <PwaDownload />
       {/* <LetUsHelpCta /> */}
