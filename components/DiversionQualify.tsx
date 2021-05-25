@@ -54,7 +54,7 @@ const DiversionQualify = () => {
       <div className={styles.Process}>
         {iconsList.map((src: string, i: number) => (
           <div className={styles.Tile} key={i}>
-            <img role="img" className={styles.Image} src={src} />
+            <img role="img" className={styles.Image} src={src} alt={src} />
             <Paragraph role="article">{processStrings[i]}</Paragraph>
           </div>
         ))}

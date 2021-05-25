@@ -33,7 +33,12 @@ const LetUsHelpTiles = () => {
       return (
         <NextLink href={`/letushelp${route}`} key={i}>
           <div role="listitem" className={styles.Tile}>
-            <img role="img" className={styles.Image} src={imgPath} />
+            <img
+              role="img"
+              className={styles.Image}
+              src={imgPath}
+              alt={`${title} image`}
+            />
             <Paragraph role="term" size="med-text">
               {title}
             </Paragraph>
