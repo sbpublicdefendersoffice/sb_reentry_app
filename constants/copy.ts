@@ -1,6 +1,7 @@
 import { CopyHolder } from '../types/language'
 
 export const siteTitle: string = 'Thrive SBC'
+export const siteUrl: string = 'https://www.thrivesbc.com/'
 
 export const searchCopy: CopyHolder = {
   english: {

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
-import { siteTitle, ENGLISH, SPANISH } from '../constants'
+import { siteTitle, siteUrl, ENGLISH, SPANISH } from '../constants'
 import { Language, SantaBarbaraCountyCoords } from '../types'
 import {
   GlobalSearchProvider,
@@ -43,16 +43,20 @@ const App = ({ Component, pageProps }: AppProps) => {
       <>
         <Head>
           <meta
-            name="description"
-            content={
-              language === ENGLISH
-                ? `${siteTitle}, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.`
-                : `${siteTitle}, una aplicación web dinámica para ayudar a las personas afectadas por la justicia a acceder a los recursos para ayudar a una reincorporación exitosa después de una estancia en la cárcel o prisión.`
-            }
-          />
-          <meta
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
+          />
+          <meta
+            name="description"
+            content={`${siteTitle}, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.`}
+          />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content={siteTitle} />
+          <meta property="og:url" content={siteUrl} />
+          <meta property="og:image" content="./images/thrive_og_image.png" />
+          <meta
+            property="og:description"
+            content={`${siteTitle}, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.`}
           />
           <title>{siteTitle}</title>
         </Head>

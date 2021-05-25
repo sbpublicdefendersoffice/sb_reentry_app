@@ -2,6 +2,7 @@ export { BASE_URL, OPTIONS_OBJECT } from './airtable'
 export { default as categories } from './categories'
 export {
   siteTitle,
+  siteUrl,
   searchCopy,
   inSantaBarbaraCopy,
   applicationPageData,
