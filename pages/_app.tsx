@@ -53,7 +53,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <meta property="og:type" content="website" />
           <meta property="og:title" content={siteTitle} />
           <meta property="og:url" content={siteUrl} />
-          <meta property="og:image" content="./images/thrive_og_image.png" />
+          <meta property="og:image" content="/images/thrive_og_image.png" />
           <meta
             property="og:description"
             content={`${siteTitle}, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.`}
