@@ -50,7 +50,8 @@ export default class MyDocument extends Document {
           </noscript>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="og:image " content="./images/thrive_og_image.png" />
+          <meta name="og:image" content="./images/thrive_og_image.png" />
+          <meta name="twitter:image" content="./images/thrive_og_image.png" />
           {/* PWA Tags */}
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="./images/logo192.png" />
