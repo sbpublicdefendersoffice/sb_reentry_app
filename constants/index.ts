@@ -36,6 +36,18 @@ export {
   LisaSuccessStory,
 } from './successStory-data'
 export { aboutCopy } from './aboutus-data'
+export {
+  faqCopy,
+  whereToStart,
+  probation,
+  transferProbation,
+  volunteer,
+  treatment,
+  refill,
+  covid,
+  documents,
+} from './faq-data'
+export { probationsCopy } from './probation-data'
 
 export { useStyles } from './materialStyles'
 
