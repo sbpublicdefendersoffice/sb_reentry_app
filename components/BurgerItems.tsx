@@ -40,6 +40,11 @@ const BurgerItems = ({ open, setOpen }) => {
           </h2>
         </a>
       </NextLink>
+      <NextLink href="/faq" as="/faq">
+        <a>
+          <h2 role="term"> {language === ENGLISH ? 'FAQ' : 'FAQ'}</h2>
+        </a>
+      </NextLink>
     </StyledBurgerItems>
   )
 }
