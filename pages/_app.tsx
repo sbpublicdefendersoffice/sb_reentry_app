@@ -27,6 +27,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [language, setLanguage] = useState<Language | null>(null)
   const [coords, setCoords] = useState<SantaBarbaraCountyCoords | null>(null)
   const [toast, setToast] = useState<string | null>(null)
+  const [ogPic, setOgPic] = useState<string | null>(null)
 
   useEffect((): void => {
     const languageToLoad: Language = navigator.language.startsWith('es')
@@ -36,10 +37,20 @@ const App = ({ Component, pageProps }: AppProps) => {
     setLanguage(languageToLoad)
 
     if (!coords) checkAndSetUserLocation(setCoords, setToast, languageToLoad)
+
+    const fetchPic = async (): Promise<void> => {
+      const picResponse: Response = await fetch('/images/thrive_og_image.png')
+
+      // const pic: File = await picResponse.json()
+
+      setOgPic('/images/thrive_og_image.png')
+    }
+    fetchPic()
   }, [])
 
   return (
-    language && (
+    language &&
+    ogPic && (
       <>
         <Head>
           <meta
@@ -54,7 +65,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <meta name="og:type" content="website" key="ogtype" />
           <meta name="og:title" content={siteTitle} key="ogtitle" />
           <meta name="og:url" content={siteUrl} key="ogurl" />
-          {/* <meta name="og:image " content="./images/thrive_og_image.png" /> */}
+          <meta name="og:image " content={ogPic} />
           <meta
             name="og:description"
             content={`${siteTitle}, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.`}

@@ -51,13 +51,9 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta
-            name="og:image"
+            name="og:image:secure"
             content="https://deploy-preview-95--santabarbarareentry.netlify.app/images/thrive_og_image.png"
           />
-          {/* <meta
-            name="twitter:image"
-            content="https://deploy-preview-95--santabarbarareentry.netlify.app/images/thrive_og_image.png"
-          /> */}
           {/* PWA Tags */}
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="./images/logo192.png" />
