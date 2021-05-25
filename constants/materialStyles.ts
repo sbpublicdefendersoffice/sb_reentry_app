@@ -18,12 +18,26 @@ export const useStyles = makeStyles((theme: Theme) =>
       borderBottom: 'none !important',
       color: 'black !important',
       '&:hover': {
-        backgroundColor: 'grey !important',
+        borderBottom: '.25rem solid #00a968',
       },
     },
     accordDescription: {
       fontSize: '1.5rem !important',
       fontFamily: 'Roboto !important',
+      width: '100%',
+      wordBreak: 'break-word',
+    },
+    accordDescriptionLink: {
+      fontSize: '1.5rem',
+      fontFamily: 'Roboto',
+      textAlign: 'justify',
+      cursor: 'pointer',
+      overflow: 'auto !important',
+      borderBottom: 'none !important',
+      color: 'black !important',
+      '&:hover': {
+        borderBottom: '.25rem solid green !important',
+      },
     },
     paper: {
       padding: theme.spacing(2),
@@ -145,7 +159,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     icons: {
       color: '#13395e',
       margin: 'auto',
-      fontSize: '8rem',
+      fontSize: '8rem !important',
       '@media (max-width: 500px)': {
         flexGrow: 3,
       },
