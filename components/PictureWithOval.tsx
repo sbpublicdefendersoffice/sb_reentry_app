@@ -14,6 +14,7 @@ const PictureWithOval = ({ color, pic, shiftRight }: PictureWithOvalProps) => (
       style={shiftRight && { left: '3rem' }}
       className={styles.Image}
       src={`/images/${pic}`}
+      alt={pic}
     />
     <div
       className={`${styles.Ellipse} ${shiftRight && styles.EllipseFlipped}`}

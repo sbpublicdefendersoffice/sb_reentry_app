@@ -49,7 +49,11 @@ const Footer = () => {
           <SBPDLogo />
         </div>
         <div className={styles.Logo1}>
-          <img src="/icons/thriveleaf.svg" className={styles.leaf} />
+          <img
+            src="/icons/thriveleaf.svg"
+            className={styles.leaf}
+            alt="Thrive Logo Leaf"
+          />
         </div>
       </div>
       <em>
