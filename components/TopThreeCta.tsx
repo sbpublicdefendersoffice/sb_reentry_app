@@ -33,7 +33,12 @@ const TopThreeCta = () => {
       return (
         <NextLink href={route} key={i}>
           <div role="listitem" className={styles.Tile}>
-            <img role="img" className={styles.Image} src={imgPath} />
+            <img
+              role="img"
+              className={styles.Image}
+              src={imgPath}
+              alt={imgPath}
+            />
             <Paragraph
               className={styles.TileTitle}
               role="article"

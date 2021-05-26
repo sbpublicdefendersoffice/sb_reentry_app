@@ -18,7 +18,12 @@ const LetUsHelpIndexTitle = ({
   multExplain,
 }: LetUsHelpIndexTitleProps) => (
   <CallToAction role="region" blueBg className={styles.LetUsHelpIndexTitle}>
-    <img role="img" className={styles.Image} src={src} />
+    <img
+      role="img"
+      className={styles.Image}
+      src={src}
+      alt="Let us Help Image"
+    />
     <div className={styles.Text}>
       {title && <Title role="heading">{title}</Title>}
       <Paragraph role="article" size="med-text" color="highlight">
