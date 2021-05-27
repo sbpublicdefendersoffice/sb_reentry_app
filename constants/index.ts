@@ -46,6 +46,8 @@ export {
   refill,
   covid,
   documents,
+  edits,
+  feedback,
 } from './faq-data'
 export { probationsCopy } from './probation-data'
 
