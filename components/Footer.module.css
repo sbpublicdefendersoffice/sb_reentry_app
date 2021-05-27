@@ -1,10 +1,14 @@
 .Footer {
   width: 100%;
-  background-color: var(--light-2);
+  background-color: var(--primary);
   display: flex;
   flex-direction: column;
   text-align: center;
   padding: var(--pad-std);
+}
+
+.Footer * {
+  color: var(--light-grey);
 }
 
 .container {
