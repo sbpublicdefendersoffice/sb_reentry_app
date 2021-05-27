@@ -22,6 +22,8 @@ import {
   useStyles,
   siteTitle,
   volunteer,
+  edits,
+  feedback,
 } from '../../constants/'
 const FaqPage = () => {
   const { language } = useLanguage()
@@ -35,6 +37,8 @@ const FaqPage = () => {
     refill,
     covid,
     documents,
+    edits,
+    feedback,
   ]
   const activeCopyFAQ = faqCopy[language]
   return (
@@ -92,7 +96,6 @@ const FaqPage = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             href={activeCopy.href1}
-                            className={classes.accordDescriptionLink}
                           >
                             {activeCopyFAQ.clickHere}
                           </a>
