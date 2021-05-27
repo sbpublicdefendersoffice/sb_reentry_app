@@ -34,7 +34,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       cursor: 'pointer',
       overflow: 'auto !important',
       borderBottom: 'none !important',
-      color: 'black !important',
+      color: '#12385e !important',
       '&:hover': {
         borderBottom: '.25rem solid green !important',
       },
