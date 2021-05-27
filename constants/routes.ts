@@ -96,6 +96,11 @@ export const staticPageRoutes: RouteInfo[] = [
     title_spanish: 'Sobre nosotros',
     route: '/aboutus',
   },
+  {
+    title_english: 'FAQ',
+    title_spanish: 'FAQ',
+    route: '/faq',
+  },
 ]
 
 export const letUsHelpRoutes: RouteInfo[] = [

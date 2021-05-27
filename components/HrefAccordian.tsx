@@ -1,26 +1,25 @@
-import Typography from '@material-ui/core/Typography'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
-import Grid from '@material-ui/core/Grid'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { Checklist } from '../types/checklist'
 import {
-  ImportantDocumentsAccord,
-  JobAccord,
-} from '../constants/checklist-data'
-import useLanguage from '../hooks/useLanguage'
-import { useStyles } from '../constants/materialStyles'
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Grid,
+} from '@material-ui/core/'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { CopyHolder } from '../types/'
+import { ImportantDocumentsAccord, JobAccord, useStyles } from '../constants/'
+import { useLanguage } from '../hooks/'
+
 const HrefAccordian = () => {
   const { language } = useLanguage()
   const classes = useStyles()
-  const checklist: Checklist[] = [ImportantDocumentsAccord, JobAccord]
+  const checklist: CopyHolder[] = [ImportantDocumentsAccord, JobAccord]
   return (
     <>
       {checklist.map((item, key) => {
         const activeCopy = item[language]
         return (
-          <Accordion key={key}>
+          <Accordion key={key} style={{ margin: '1rem' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3a-content"
@@ -51,7 +50,7 @@ const HrefAccordian = () => {
                       <a
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={classes.linkHeading}
+                        className={classes.accordDescriptionLink}
                         href={activeCopy.href1}
                       >
                         {activeCopy.item1}
@@ -59,7 +58,7 @@ const HrefAccordian = () => {
                       <a
                         style={{ display: 'block' }}
                         target="_blank"
-                        className={classes.linkHeading}
+                        className={classes.accordDescriptionLink}
                         rel="noopener noreferrer"
                         href={activeCopy.href2}
                       >
@@ -69,7 +68,7 @@ const HrefAccordian = () => {
                         <a
                           style={{ display: 'block' }}
                           target="_blank"
-                          className={classes.linkHeading}
+                          className={classes.accordDescriptionLink}
                           rel="noopener noreferrer"
                           href={activeCopy.href3}
                         >
@@ -79,7 +78,7 @@ const HrefAccordian = () => {
                       {activeCopy.item4 && (
                         <a
                           style={{ display: 'block' }}
-                          className={classes.linkHeading}
+                          className={classes.accordDescriptionLink}
                           target="_blank"
                           rel="noopener noreferrer"
                           href={activeCopy.href4}
@@ -90,7 +89,7 @@ const HrefAccordian = () => {
                       {activeCopy.item5 && (
                         <a
                           style={{ display: 'block' }}
-                          className={classes.linkHeading}
+                          className={classes.accordDescriptionLink}
                           target="_blank"
                           rel="noopener noreferrer"
                           href={activeCopy.href5}

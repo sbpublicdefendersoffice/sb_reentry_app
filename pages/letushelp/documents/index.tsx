@@ -47,7 +47,7 @@ const DocumentsLanding = () => {
   return (
     <>
       <div style={flexFullWidth}>
-        <PictureWithOval color="green" pic="documents_placeholder.png" />
+        <PictureWithOval color="green" pic="documentsPic.jpeg" />
         <LetUsHelpHeading>
           <Title>{documents}</Title>
           <Paragraph size="med-text">{access}</Paragraph>

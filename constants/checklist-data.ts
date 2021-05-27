@@ -1,4 +1,3 @@
-import { Checklist } from '../types/checklist'
 import { CopyHolder } from '../types/language'
 export const checkCopy: CopyHolder = {
   english: {
@@ -13,7 +12,7 @@ export const checkCopy: CopyHolder = {
       'Bienvenido de nuevo. Le deseamos una exitosa transición de regreso al condado de Santa Bárbara. Las primeras 72 horas pueden ser una parte importante de sus transiciones. Esta guía lo ayudará a comprender mejor algunos de los recursos que podría necesitar durante los primeros días de publicación. Esperamos que estos recursos puedan ayudarlo en sus necesidades de transición y calidad de vida.',
   },
 }
-export const ImportantDocumentsAccord: Checklist = {
+export const ImportantDocumentsAccord: CopyHolder = {
   english: {
     listItem: 'Important documents',
     description:
@@ -50,7 +49,7 @@ export const ImportantDocumentsAccord: Checklist = {
   },
 }
 
-export const FoodAccord: Checklist = {
+export const FoodAccord: CopyHolder = {
   english: {
     listItem: 'Figuring out food resources you will need',
     description:
@@ -77,7 +76,7 @@ export const FoodAccord: Checklist = {
     item3: 'Cal-Fresh(Cupones de alimentos)',
   },
 }
-export const MedicalAccord: Checklist = {
+export const MedicalAccord: CopyHolder = {
   english: {
     listItem: 'Address your medical needs',
     description:
@@ -107,7 +106,7 @@ export const MedicalAccord: Checklist = {
     item3: 'Clínicas Médicas',
   },
 }
-export const SobrietyAccord: Checklist = {
+export const SobrietyAccord: CopyHolder = {
   english: {
     listItem: 'Resources and support for those in sobriety',
     description:
@@ -135,7 +134,7 @@ export const SobrietyAccord: Checklist = {
     item3: 'NA',
   },
 }
-export const MentalAccord: Checklist = {
+export const MentalAccord: CopyHolder = {
   english: {
     listItem: 'Look into getting support for your mental health needs',
     description:
@@ -159,7 +158,7 @@ export const MentalAccord: Checklist = {
     item2: 'Behavioral Wellness',
   },
 }
-export const JobAccord: Checklist = {
+export const JobAccord: CopyHolder = {
   english: {
     listItem: 'Start your job search',
     description:
@@ -186,7 +185,7 @@ export const JobAccord: Checklist = {
     item3: 'Indeed',
   },
 }
-export const ProbationAccord: Checklist = {
+export const ProbationAccord: CopyHolder = {
   english: {
     listItem: 'Report to your probation or parole officer',
     description:
@@ -212,7 +211,7 @@ export const ProbationAccord: Checklist = {
     item3: 'Directorio del norte del condado',
   },
 }
-export const TipsAccord: Checklist = {
+export const TipsAccord: CopyHolder = {
   english: {
     listItem: 'Tips for a successful re-entry',
     description: `We wish you a successful transition into society. As you know there are many organizations that are in Santa Barbara County that are willing to support. Don't be afraid to ask for help! Your community believes in you!`,

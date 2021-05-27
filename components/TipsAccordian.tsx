@@ -1,23 +1,25 @@
-import Typography from '@material-ui/core/Typography'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
-import Grid from '@material-ui/core/Grid'
+import {
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Grid,
+} from '@material-ui/core/'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { Checklist } from '../types/checklist'
+import { CopyHolder } from '../types/'
 import { TipsAccord } from '../constants/checklist-data'
 import useLanguage from '../hooks/useLanguage'
 import { useStyles } from '../constants/materialStyles'
 const TipsAccordian = () => {
   const { language } = useLanguage()
   const classes = useStyles()
-  const checklist: Checklist[] = [TipsAccord]
+  const checklist: CopyHolder[] = [TipsAccord]
   return (
     <>
       {checklist.map((item, key) => {
         const activeCopy = item[language]
         return (
-          <Accordion key={key}>
+          <Accordion key={key} style={{ margin: '1rem' }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3a-content"
