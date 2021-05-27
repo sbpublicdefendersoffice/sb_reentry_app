@@ -12,6 +12,7 @@
   width: 30%;
   padding-bottom: var(--pad-lg);
   cursor: pointer;
+  border-radius: var(--radius-medium);
 }
 
 .TileTitle {
@@ -22,4 +23,10 @@
   width: 100%;
   max-width: 15rem;
   height: auto;
+}
+
+.Tile:hover,
+.Tile:hover > p {
+  background-color: var(--highlight);
+  color: var(--light);
 }

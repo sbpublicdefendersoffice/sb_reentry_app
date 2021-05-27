@@ -269,6 +269,7 @@ const KnowYourRights = () => {
                     style={{ marginTop: '2rem', width: '100%' }}
                     src={activeItem.flyerPDF}
                     id="simple-modal-title"
+                    alt="know your rights flyer"
                   />
                 )}
               </div>
