@@ -34,6 +34,12 @@ const MainAccordian = () => {
       push('/search', `search?query=${title}`)
     }
   }
+  const anchorProps = {
+    tabIndex: 0,
+    style: { display: 'block' },
+    className: classes.accordDescriptionLink,
+    onClick: pushToSearch,
+  }
   return (
     <>
       {checklist.map((item, key) => {
@@ -67,65 +73,32 @@ const MainAccordian = () => {
                   </Typography>
                   <Typography>
                     <div>
-                      <a
-                        title={activeCopy.href1}
-                        tabIndex={0}
-                        style={{ display: 'block' }}
-                        onClick={pushToSearch}
-                        className={classes.accordDescriptionLink}
-                      >
+                      <a title={activeCopy.href1} {...anchorProps}>
                         {activeCopy.item1}
                       </a>
-                      <a
-                        title={activeCopy.href2}
-                        tabIndex={0}
-                        style={{ display: 'block' }}
-                        className={classes.accordDescriptionLink}
-                        onClick={pushToSearch}
-                      >
+                      <a title={activeCopy.href2} {...anchorProps}>
                         {activeCopy.item2}
                       </a>
                       {activeCopy.item3 && (
-                        <a
-                          title={activeCopy.href3}
-                          tabIndex={0}
-                          style={{ display: 'block' }}
-                          className={classes.accordDescriptionLink}
-                          onClick={pushToSearch}
-                        >
+                        <a title={activeCopy.href3} {...anchorProps}>
                           {activeCopy.item3}
                         </a>
                       )}
                       {activeCopy.item4 && (
-                        <a
-                          tabIndex={0}
-                          title={activeCopy.href4}
-                          style={{ display: 'block' }}
-                          className={classes.accordDescriptionLink}
-                          onClick={pushToSearch}
-                        >
+                        <a tabIndex={0} {...anchorProps}>
                           {activeCopy.item4}
                         </a>
                       )}
                       {activeCopy.item5 && (
-                        <a
-                          tabIndex={0}
-                          title={activeCopy.href5}
-                          style={{ display: 'block' }}
-                          className={classes.accordDescriptionLink}
-                          onClick={pushToSearch}
-                        >
+                        <a title={activeCopy.href5} {...anchorProps}>
                           {activeCopy.item5}
                         </a>
                       )}
                       {activeCopy.pantry && (
                         <a
-                          tabIndex={0}
                           data-testid="test-link"
                           title={activeCopy.pantry}
-                          style={{ display: 'block' }}
-                          className={classes.accordDescriptionLink}
-                          onClick={pushToSearch}
+                          {...anchorProps}
                         >
                           {activeCopy.pantryItem}
                         </a>
