@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import NextLink from 'next/link'
 import {
   Typography,
   Accordion,
@@ -35,11 +36,11 @@ const FaqPage = () => {
     covid,
     documents,
   ]
-  const activeCopy = faqCopy[language]
+  const activeCopyFAQ = faqCopy[language]
   return (
     <div className={classes.root}>
       <Head>
-        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
+        <title>{`${siteTitle} | ${activeCopyFAQ.title}`}</title>
       </Head>
       <Typography
         style={{ marginTop: '3rem' }}
@@ -47,7 +48,7 @@ const FaqPage = () => {
         variant="h2"
         component="h2"
       >
-        {activeCopy.title}
+        {activeCopyFAQ.title}
       </Typography>
       <Typography
         style={{
@@ -60,7 +61,7 @@ const FaqPage = () => {
         variant="h4"
         component="h4"
       >
-        {activeCopy.description}
+        {activeCopyFAQ.description}
       </Typography>
       <div>
         {' '}
@@ -84,40 +85,55 @@ const FaqPage = () => {
                   <Grid item xs={12}>
                     <Typography>
                       {activeCopy && activeCopy.href1 && (
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={activeCopy.href1}
-                          className={classes.accordDescriptionLink}
-                        >
-                          <p className={classes.accordDescription}>
-                            {' '}
-                            {activeCopy.description}
-                          </p>
-                        </a>
-                      )}
-                      {activeCopy && activeCopy.href2 && (
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={activeCopy.href2}
-                          className={classes.accordDescriptionLink}
-                        >
-                          <p
-                            className={classes.accordDescription}
-                            style={{ marginTop: '1.5rem' }}
-                          >
-                            {' '}
-                            {activeCopy.description2}
-                          </p>
-                        </a>
-                      )}
-
-                      {activeCopy && !activeCopy.href1 && !activeCopy.href2 && (
                         <p className={classes.accordDescription}>
+                          {' '}
                           {activeCopy.description}
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={activeCopy.href1}
+                            className={classes.accordDescriptionLink}
+                          >
+                            {activeCopyFAQ.clickHere}
+                          </a>
                         </p>
                       )}
+                      {activeCopy && activeCopy.nextLink && (
+                        <p
+                          className={classes.accordDescription}
+                          style={{
+                            marginTop: '1.5rem',
+                            display: 'inline-block',
+                          }}
+                        >
+                          {' '}
+                          {activeCopy.description}
+                          <NextLink href={activeCopy.nextLink}>
+                            {activeCopyFAQ.clickHere}
+                          </NextLink>
+                        </p>
+                      )}
+                      {activeCopy && activeCopy.nextLinkTwo && (
+                        <p
+                          className={classes.accordDescription}
+                          style={{
+                            display: 'inline-block',
+                          }}
+                        >
+                          {activeCopy.description2}
+                          <NextLink href={activeCopy.nextLinkTwo}>
+                            {activeCopyFAQ.clickHere}
+                          </NextLink>
+                        </p>
+                      )}
+                      {activeCopy &&
+                        !activeCopy.href1 &&
+                        !activeCopy.nextLink &&
+                        !activeCopy.nextLinkTwo && (
+                          <p className={classes.accordDescription}>
+                            {activeCopy.description}
+                          </p>
+                        )}
                     </Typography>
                   </Grid>
                 </Grid>
