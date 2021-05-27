@@ -1,25 +1,27 @@
-import Typography from '@material-ui/core/Typography'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
-import Grid from '@material-ui/core/Grid'
+import {
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Grid,
+} from '@material-ui/core/'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { Checklist } from '../types/checklist'
+import { CopyHolder } from '../types/'
 import { useRouter } from 'next/router'
 import {
   FoodAccord,
   MedicalAccord,
   SobrietyAccord,
   MentalAccord,
-} from '../constants/checklist-data'
+  useStyles,
+} from '../constants/'
 import { useLanguage, useGlobalSearch } from '../hooks/'
-import { useStyles } from '../constants/materialStyles'
 const MainAccordian = () => {
   const { language } = useLanguage()
   const classes = useStyles()
   const { push } = useRouter()
   const { setSearchResults } = useGlobalSearch()
-  const checklist: Checklist[] = [
+  const checklist: CopyHolder[] = [
     FoodAccord,
     MedicalAccord,
     SobrietyAccord,
@@ -32,12 +34,18 @@ const MainAccordian = () => {
       push('/search', `search?query=${title}`)
     }
   }
+  const anchorProps = {
+    tabIndex: 0,
+    style: { display: 'block' },
+    className: classes.accordDescriptionLink,
+    onClick: pushToSearch,
+  }
   return (
     <>
       {checklist.map((item, key) => {
         const activeCopy = item[language]
         return (
-          <Accordion key={key}>
+          <Accordion key={key} style={{ margin: '1rem' }}>
             <AccordionSummary
               data-testid="accordion"
               expandIcon={<ExpandMoreIcon />}
@@ -65,65 +73,32 @@ const MainAccordian = () => {
                   </Typography>
                   <Typography>
                     <div>
-                      <a
-                        title={activeCopy.href1}
-                        tabIndex={0}
-                        style={{ display: 'block' }}
-                        onClick={pushToSearch}
-                        className={classes.linkHeading}
-                      >
+                      <a title={activeCopy.href1} {...anchorProps}>
                         {activeCopy.item1}
                       </a>
-                      <a
-                        title={activeCopy.href2}
-                        tabIndex={0}
-                        style={{ display: 'block' }}
-                        className={classes.linkHeading}
-                        onClick={pushToSearch}
-                      >
+                      <a title={activeCopy.href2} {...anchorProps}>
                         {activeCopy.item2}
                       </a>
                       {activeCopy.item3 && (
-                        <a
-                          title={activeCopy.href3}
-                          tabIndex={0}
-                          style={{ display: 'block' }}
-                          className={classes.linkHeading}
-                          onClick={pushToSearch}
-                        >
+                        <a title={activeCopy.href3} {...anchorProps}>
                           {activeCopy.item3}
                         </a>
                       )}
                       {activeCopy.item4 && (
-                        <a
-                          tabIndex={0}
-                          title={activeCopy.href4}
-                          style={{ display: 'block' }}
-                          className={classes.linkHeading}
-                          onClick={pushToSearch}
-                        >
+                        <a tabIndex={0} {...anchorProps}>
                           {activeCopy.item4}
                         </a>
                       )}
                       {activeCopy.item5 && (
-                        <a
-                          tabIndex={0}
-                          title={activeCopy.href5}
-                          style={{ display: 'block' }}
-                          className={classes.linkHeading}
-                          onClick={pushToSearch}
-                        >
+                        <a title={activeCopy.href5} {...anchorProps}>
                           {activeCopy.item5}
                         </a>
                       )}
                       {activeCopy.pantry && (
                         <a
-                          tabIndex={0}
                           data-testid="test-link"
                           title={activeCopy.pantry}
-                          style={{ display: 'block' }}
-                          className={classes.linkHeading}
-                          onClick={pushToSearch}
+                          {...anchorProps}
                         >
                           {activeCopy.pantryItem}
                         </a>

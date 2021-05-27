@@ -90,8 +90,8 @@ export const recommendedResources: CardInfo[] = [
     id: 'recJrN2F4itTVubdk',
   },
   {
-    title_english: 'Cal Fresh',
-    title_spanish: 'Cal Fresh',
+    title_english: 'Allan Hancock College',
+    title_spanish: 'Universidad Allan Hancock',
     category_english: 'Education',
     category_spanish: 'Educación',
     copy_english:
@@ -126,8 +126,8 @@ export const recommendedResources: CardInfo[] = [
     id: 'recKx4aMOQI7XJwAI',
   },
   {
-    title_english: 'Santa Barbara Rescue Mission',
-    title_spanish: 'Misión de rescate de Santa Bárbara',
+    title_english: 'CalWorks',
+    title_spanish: 'CalWorks',
     category_english: 'Employment',
     category_spanish: 'Empleo',
     copy_english:
