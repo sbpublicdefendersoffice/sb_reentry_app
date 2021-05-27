@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import NextLink from 'next/link'
 import {
   Typography,
@@ -7,6 +6,8 @@ import {
   AccordionDetails,
   Grid,
 } from '@material-ui/core/'
+import { PictureWithOval, LetUsHelpHeading } from '../../components'
+import { Title, Paragraph } from '../../ui'
 import { CopyHolder } from '../../types/language'
 import useLanguage from '../../hooks/useLanguage'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
@@ -20,10 +21,10 @@ import {
   covid,
   documents,
   useStyles,
-  siteTitle,
   volunteer,
   edits,
   feedback,
+  flexFullWidth,
 } from '../../constants/'
 const FaqPage = () => {
   const { language } = useLanguage()
@@ -43,30 +44,13 @@ const FaqPage = () => {
   const activeCopyFAQ = faqCopy[language]
   return (
     <div className={classes.root}>
-      <Head>
-        <title>{`${siteTitle} | ${activeCopyFAQ.title}`}</title>
-      </Head>
-      <Typography
-        style={{ marginTop: '3rem' }}
-        align="center"
-        variant="h2"
-        component="h2"
-      >
-        {activeCopyFAQ.title}
-      </Typography>
-      <Typography
-        style={{
-          marginTop: '2rem',
-          marginBottom: '2rem',
-          padding: '2rem',
-          textAlign: 'justify',
-        }}
-        align="center"
-        variant="h4"
-        component="h4"
-      >
-        {activeCopyFAQ.description}
-      </Typography>
+      <div style={flexFullWidth}>
+        <PictureWithOval color="highlight" pic="faqPic.jpeg" />
+        <LetUsHelpHeading>
+          <Title>{activeCopyFAQ.title}</Title>
+          <Paragraph size="med-text">{activeCopyFAQ.description}</Paragraph>
+        </LetUsHelpHeading>
+      </div>
       <div>
         {' '}
         {faqs.map((item, key) => {
