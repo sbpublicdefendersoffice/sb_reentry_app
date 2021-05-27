@@ -1,4 +1,3 @@
-import { probations } from '../constants/probation-data'
 import {
   Paper,
   List,
@@ -12,15 +11,15 @@ import {
 } from '@material-ui/core/'
 import useLanguage from '../hooks/useLanguage'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { useStyles } from '../constants/materialStyles'
-import { ProbationAccord } from '../constants/checklist-data'
+import { useStyles, probationsCopy, ProbationAccord } from '../constants/'
+
 const ProbationAccordian = () => {
   const { language } = useLanguage()
   const classes = useStyles()
   const activeCopy = ProbationAccord[language]
   return (
     <>
-      <Accordion>
+      <Accordion style={{ margin: '1rem' }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3a-content"
@@ -50,7 +49,7 @@ const ProbationAccordian = () => {
                   style={{ padding: '2rem' }}
                   className={classes.centerFlex}
                 >
-                  <h5>{activeCopy.action}</h5>
+                  <h5 style={{ fontSize: '1.6rem' }}>{activeCopy.action}</h5>
                   <div
                     style={{
                       display: 'flex',
@@ -61,11 +60,12 @@ const ProbationAccordian = () => {
                     <p className={classes.centerFlex}> {activeCopy.item1} </p>
                     <a
                       href={activeCopy.href1}
+                      className={classes.accordDescriptionLink}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       {' '}
-                      www.sbprobation.org
+                      <p className={classes.centerFlex}>www.sbprobation.org</p>
                     </a>
                   </div>
                 </Typography>
@@ -84,10 +84,10 @@ const ProbationAccordian = () => {
               {' Probation Report & Resource Center (PRRC)'}
             </h2>
 
-            {probations.map((probation, key) => {
+            {probationsCopy.map((probation, key) => {
               return (
                 <Grid item xs={6} key={key} sm={4}>
-                  <Paper>
+                  <Paper style={{ minHeight: '18rem' }}>
                     <List className={classes.centerFlex}>
                       <ListItem>
                         <ListItemText>
@@ -101,8 +101,18 @@ const ProbationAccordian = () => {
                           {' '}
                           <div className={classes.centerFlex}>
                             {' '}
-                            <a role="link" href={probation.phoneRef}>
-                              <p role="link_paragraph"> {probation.phone}</p>
+                            <a
+                              className={classes.accordDescriptionLink}
+                              role="link"
+                              href={probation.phoneRef}
+                            >
+                              <p
+                                className={classes.centerFlex}
+                                role="link_paragraph"
+                              >
+                                {' '}
+                                {probation.phone}
+                              </p>
                             </a>
                           </div>
                         </ListItemText>
@@ -111,6 +121,7 @@ const ProbationAccordian = () => {
                         <ListItemText>
                           <a
                             role="link"
+                            className={classes.accordDescriptionLink}
                             href={probation.gMapLink}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -147,7 +158,7 @@ const ProbationAccordian = () => {
                       <div className={classes.centerFlex}>
                         {activeCopy.item1}
                         <a
-                          className={classes.centerFlex}
+                          className={classes.accordDescriptionLink}
                           href={activeCopy.href3}
                           style={{ borderBottom: 'none' }}
                           target="_blank"

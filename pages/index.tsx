@@ -54,7 +54,7 @@ const Home = () => {
   return (
     <>
       <div style={flexFullWidth}>
-        <PictureWithOval color="peri" pic="homepage_placeholder.png" />
+        <PictureWithOval color="peri" pic="homepageResourcesPic.jpeg" />
         <LetUsHelpHeading>
           <Title>{title}</Title>
           <Paragraph style={{ marginBottom: 'var(--margin-lg)' }}>
@@ -75,11 +75,7 @@ const Home = () => {
           </Paragraph>
           <Button onClick={() => push(url2, url2)}>{buttonText2}</Button>
         </LetUsHelpHeading>
-        <PictureWithOval
-          color="green"
-          pic="wheretostart_placeholder.png"
-          shiftRight
-        />
+        <PictureWithOval color="green" pic="whereToStartPic.jpeg" shiftRight />
       </div>
       <PwaDownload />
       {/* <LetUsHelpCta /> */}

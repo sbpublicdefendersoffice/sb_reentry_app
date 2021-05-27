@@ -81,13 +81,13 @@ const KnowYourRights = () => {
       <Head>
         <title>{`${siteTitle} | ${activeCopy.title}`}</title>
       </Head>
-      <div className={classes.root}>
+      <div>
         <Typography
           style={{ marginTop: '3rem' }}
           align="center"
           gutterBottom
-          variant="h2"
-          component="h3"
+          variant="h1"
+          component="h1"
         >
           {activeCopy.title}
         </Typography>

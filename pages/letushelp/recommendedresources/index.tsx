@@ -19,7 +19,7 @@ const RecommendedResourcesLanding = () => {
   return (
     <>
       <div style={flexFullWidth}>
-        <PictureWithOval color="highlight" pic="recresources_placeholder.png" />
+        <PictureWithOval color="highlight" pic="recResourcesPic.jpeg" />
         <LetUsHelpHeading>
           <Title>{title}</Title>
           <Paragraph size="med-text">{explainer}</Paragraph>
