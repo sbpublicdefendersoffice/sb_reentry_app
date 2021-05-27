@@ -136,3 +136,31 @@ export const documents: CopyHolder = {
     nextLink: '/checklist',
   },
 }
+export const edits: CopyHolder = {
+  english: {
+    listItem: `I am a part of an organization and I want to add to my services to Thrive SBC and / or I want to make edits, how would I do this?`,
+    description:
+      'Contact us! We are happy to help. Please send an email to thrivesbc@publicdefendersb.org by ',
+    href1: 'mailto:thrivesbc@publicdefendersb.org',
+  },
+  spanish: {
+    listItem:
+      'Soy parte de una organización y quiero agregar mis servicios a Thrive SBC y / o quiero hacer ediciones, ¿cómo lo haría?',
+    description:
+      '¡Contáctenos! Estamos encantados de ayudarle. Envíe un correo electrónico a thrivesbc@publicdefendersb.org por ',
+    href1: 'mailto:thrivesbc@publicdefendersb.org',
+  },
+}
+export const feedback: CopyHolder = {
+  english: {
+    listItem: `Is it possible to leave feedback for inaccurate data that I found?`,
+    description:
+      'At the bottom of every page there is a “Is this page useful?” that can be used to specify inaccurate information. Click “yes” or “no” to complete a feedback form.',
+  },
+  spanish: {
+    listItem:
+      '¿Es posible dejar comentarios sobre datos inexactos que encontré?',
+    description:
+      'En la parte inferior de cada página hay un "¿Es útil esta página?" que se puede utilizar para especificar información inexacta. Haga clic en "sí" o "no" para completar un formulario de comentarios.',
+  },
+}
