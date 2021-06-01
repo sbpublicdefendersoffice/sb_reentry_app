@@ -67,6 +67,7 @@
     "**/**/elliptic": "6.5.4",
     "**/**/ssri": "^8.0.1",
     "**/**/postcss": "^8.2.10",
+    "**/**/ws": "^7.4.6",
     "twilio/axios": "^0.21.1"
   },
   "description": "A joint project between [Code for America](https://www.codeforamerica.org/) and [The County of Santa Barbara Public Defender's Office](https://www.countyofsb.org/defender)",
