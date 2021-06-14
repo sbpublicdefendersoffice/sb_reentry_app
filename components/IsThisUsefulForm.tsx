@@ -9,7 +9,7 @@ import {
 import { useRouter } from 'next/router'
 
 import { siteTitle } from '../constants/copy'
-import useLanguage from '../hooks/useLanguage'
+import { useLanguage, useToast } from '../hooks'
 import { Paragraph, Button } from '../ui'
 import { Feedback, CopyHolder } from '../types'
 import { POST } from '../helpers/validators'
@@ -28,12 +28,16 @@ export const copy: CopyHolder = {
     notUsefulHeading:
       "We're sorry this page isn't useful. What could we do better?",
     buttonCopy: 'Send us feedback',
+    success: 'Your feedback has been submitted, thank you!',
+    error: 'There was an error sending feedback:',
   },
   spanish: {
     usefulHeading: `¡Estupendo! ¿Qué le gusta de ${siteTitle}?`,
     notUsefulHeading:
       'Lamentamos que esta página no sea útil. ¿Que podriamos hacer mejor?',
     buttonCopy: 'Enviar comentarios',
+    success: 'Sus comentarios han sido enviados, ¡gracias!',
+    error: 'Hubo un error al enviar comentarios:',
   },
 }
 
@@ -44,6 +48,7 @@ const IsThisUsefulForm = ({
 }: IsThisUsefulFormProps) => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
+  const { setToast } = useToast()
 
   useEffect(
     (): void => setFeedbackInfo(prevState => ({ ...prevState, language })),
@@ -57,7 +62,8 @@ const IsThisUsefulForm = ({
 
   const { is_useful, comment } = feedbackInfo
   const { useful, yes, no } = activeParentCopy
-  const { usefulHeading, notUsefulHeading, buttonCopy } = copy[language]
+  const { usefulHeading, notUsefulHeading, buttonCopy, success, error } =
+    copy[language]
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
@@ -70,10 +76,13 @@ const IsThisUsefulForm = ({
         },
       )
 
-      const apiResponse: string = await postCommentToAirtable.json()
+      const apiResponse = await postCommentToAirtable.json()
 
-      // popup toast with success or failure message
-      console.log(apiResponse)
+      if (apiResponse.error) setToast(`${error}${apiResponse.error.type}`)
+      else {
+        setToast(success)
+        setFeedbackInfo(null)
+      }
     }
   }
 
