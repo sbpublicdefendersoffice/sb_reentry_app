@@ -71,6 +71,8 @@ const IsThisUsefulForm = ({
       )
 
       const apiResponse: string = await postCommentToAirtable.json()
+
+      // popup toast with success or failure message
       console.log(apiResponse)
     }
   }
