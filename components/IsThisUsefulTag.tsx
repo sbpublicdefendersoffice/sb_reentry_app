@@ -36,7 +36,7 @@ const IsThisUsefulTag = () => {
     | MouseEvent<HTMLAnchorElement>): void => {
     if (asPath)
       setFeedbackInfo({
-        isUseful: Boolean(+currentTarget.title),
+        is_useful: +currentTarget.title,
         route: asPath,
         language,
         comment: '',

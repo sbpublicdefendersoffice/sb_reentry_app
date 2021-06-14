@@ -12,6 +12,7 @@ import { siteTitle } from '../constants/copy'
 import useLanguage from '../hooks/useLanguage'
 import { Paragraph, Button } from '../ui'
 import { Feedback, CopyHolder } from '../types'
+import { POST } from '../helpers/validators'
 
 export interface IsThisUsefulFormProps {
   feedbackInfo: Feedback
@@ -54,13 +55,24 @@ const IsThisUsefulForm = ({
     [asPath],
   )
 
-  const { isUseful, comment } = feedbackInfo
+  const { is_useful, comment } = feedbackInfo
   const { useful, yes, no } = activeParentCopy
   const { usefulHeading, notUsefulHeading, buttonCopy } = copy[language]
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
-    console.log(feedbackInfo)
+    if (feedbackInfo) {
+      const postCommentToAirtable: Response = await fetch(
+        '/api/airtablecomment',
+        {
+          method: POST,
+          body: JSON.stringify(feedbackInfo),
+        },
+      )
+
+      const apiResponse: string = await postCommentToAirtable.json()
+      console.log(apiResponse)
+    }
   }
 
   const setIsUseful = ({
@@ -68,7 +80,7 @@ const IsThisUsefulForm = ({
   }: MouseEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>): void =>
     setFeedbackInfo(prevState => ({
       ...prevState,
-      isUseful: Boolean(+currentTarget.value),
+      is_useful: +currentTarget.value,
     }))
 
   const setComment = ({ target }: ChangeEvent<HTMLTextAreaElement>): void =>
@@ -101,7 +113,7 @@ const IsThisUsefulForm = ({
           <input
             role="radio"
             className={styles.Radio}
-            checked={isUseful}
+            checked={!!is_useful}
             type="radio"
             id="useful"
             name="useful"
@@ -119,7 +131,7 @@ const IsThisUsefulForm = ({
           <input
             role="radio"
             className={styles.Radio}
-            checked={!isUseful}
+            checked={!is_useful}
             type="radio"
             id="not-useful"
             name="useful"
@@ -129,7 +141,7 @@ const IsThisUsefulForm = ({
           />
         </div>
         <Paragraph role="article" className={styles.Heading} size="med-text">
-          {isUseful ? usefulHeading : notUsefulHeading}
+          {is_useful ? usefulHeading : notUsefulHeading}
         </Paragraph>
         <textarea
           role="textbox"
