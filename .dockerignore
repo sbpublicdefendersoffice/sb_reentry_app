@@ -1,0 +1,9 @@
+/__helpers__
+/__mocks__
+/__tests__
+/.next
+/.vscode
+/coverage
+/node_modules
+.env.local
+.env*
