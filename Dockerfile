@@ -3,6 +3,7 @@ FROM node:12.18.4
 
 # Create and set app directory
 RUN mkdir -p /usr/src/app
+ADD . /usr/src/app
 WORKDIR /usr/src/app
 
 # Install dependencies
