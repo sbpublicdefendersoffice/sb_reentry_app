@@ -14,8 +14,7 @@ RUN yarn
 COPY . .
 
 # NextJs public variables are weird...
-ARG NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
-ENV NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=$NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
+RUN set -a && . /usr/src/app/.aptible.env && bundle exec rake assets:precompile
 
 # Build
 RUN yarn build
