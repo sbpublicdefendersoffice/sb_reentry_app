@@ -15,7 +15,7 @@ RUN yarn
 COPY . .
 
 # NextJs public variables are weird...
-RUN echo /usr/src/app/.aptible.env
+RUN cat /usr/src/app/.aptible.env
 
 # Build
 RUN yarn build
