@@ -15,7 +15,7 @@ RUN yarn
 COPY . .
 
 # NextJs public variables are weird...
-RUN set -a && . /usr/src/app/.aptible.env && bundle exec rake assets:precompile
+RUN echo /usr/src/app/.aptible.env
 
 # Build
 RUN yarn build
