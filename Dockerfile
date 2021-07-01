@@ -1,29 +1,43 @@
 # Base image
 FROM node:12.18.4
 
-ARG dir=/usr/src/app
-
 # Create and set app directory
+ARG dir=/usr/src/app
 RUN mkdir -p $dir
-ADD . $dir
 WORKDIR $dir
 
-# Install dependencies
-COPY package.json .
-COPY yarn.lock .
-RUN yarn
+# Add injected .env file
+ADD .aptible.env .
 
 # Copy source files
-COPY . .
+COPY /components .
+COPY /constants .
+COPY /documents .
+COPY /helpers .
+COPY /hooks .
+COPY /pages .
+COPY /public .
+COPY /styles .
+COPY /types .
+COPY /ui .
+COPY .babelrc .
+COPY next-env.d.ts .
+COPY next.config.js .
+COPY package.json .
+COPY tsconfig.json .
+COPY yarn.lock .
+
+# Install dependencies
+RUN yarn
 
 # NextJs public variables are weird...
 RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
 
 # Build
 RUN yarn build
+
+# Expost
 EXPOSE 3000
 
-# Running the app
+# Start app
 CMD ["yarn", "start"]
-
-# Set ENV variables separately
