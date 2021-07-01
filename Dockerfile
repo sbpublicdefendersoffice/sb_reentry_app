@@ -9,6 +9,9 @@ WORKDIR $dir
 # Add injected .env file
 ADD .aptible.env .
 
+# Install dependencies
+RUN yarn
+
 # Copy source files
 COPY components .
 COPY constants .
@@ -27,8 +30,6 @@ COPY package.json .
 COPY tsconfig.json .
 COPY yarn.lock .
 
-# Install dependencies
-RUN yarn
 
 # NextJs public variables are weird...
 RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
