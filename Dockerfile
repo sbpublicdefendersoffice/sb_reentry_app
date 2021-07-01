@@ -10,16 +10,16 @@ WORKDIR $dir
 ADD .aptible.env .
 
 # Copy source files
-COPY /components .
-COPY /constants .
-COPY /documents .
-COPY /helpers .
-COPY /hooks .
-COPY /pages .
-COPY /public .
-COPY /styles .
-COPY /types .
-COPY /ui .
+COPY components .
+COPY constants .
+COPY documents .
+COPY helpers .
+COPY hooks .
+COPY pages .
+COPY public .
+COPY styles .
+COPY types .
+COPY ui .
 COPY .babelrc .
 COPY next-env.d.ts .
 COPY next.config.js .
@@ -36,7 +36,7 @@ RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
 # Build
 RUN yarn build
 
-# Expost
+# Expose
 EXPOSE 3000
 
 # Start app
