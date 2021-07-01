@@ -1,35 +1,17 @@
 # Base image
 FROM node:12.18.4
 
+
 # Create and set app directory
 ARG dir=/usr/src/app
 RUN mkdir -p $dir
 WORKDIR $dir
 
-# Add injected .env file
-ADD .aptible.env .
+# Copy source files
+COPY . $dir
 
 # Install dependencies
-COPY package.json .
-COPY yarn.lock .
 RUN yarn
-
-# Copy source files
-COPY components .
-COPY constants .
-COPY documents .
-COPY helpers .
-COPY hooks .
-COPY pages .
-COPY public .
-COPY styles .
-COPY types .
-COPY ui .
-COPY .babelrc .
-COPY next-env.d.ts .
-COPY next.config.js .
-COPY tsconfig.json .
-
 
 # NextJs public variables are weird...
 RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
@@ -37,7 +19,7 @@ RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
 # Build
 RUN yarn build
 
-# Expose
+# Expost
 EXPOSE 3000
 
 # Start app
