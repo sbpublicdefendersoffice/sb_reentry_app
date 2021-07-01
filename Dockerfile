@@ -10,6 +10,8 @@ WORKDIR $dir
 ADD .aptible.env .
 
 # Install dependencies
+COPY package.json .
+COPY yarn.lock .
 RUN yarn
 
 # Copy source files
@@ -26,9 +28,7 @@ COPY ui .
 COPY .babelrc .
 COPY next-env.d.ts .
 COPY next.config.js .
-COPY package.json .
 COPY tsconfig.json .
-COPY yarn.lock .
 
 
 # NextJs public variables are weird...
