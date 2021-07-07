@@ -14,7 +14,7 @@ COPY . $dir
 RUN yarn
 
 # NextJs public variables are weird...
-RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
+# RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
 
 # Build
 RUN yarn build
