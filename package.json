@@ -11,7 +11,8 @@
     "lint-es": "eslint './**/*.{js,jsx,ts,tsx}' --fix --cache && echo 'All ESLint checks passed!'",
     "start": "next start",
     "test": "jest --cache --coverage && echo 'All Jest tests passed!'",
-    "type-check": "tsc && echo 'All TypeScript compiler checks passed!'"
+    "type-check": "tsc && echo 'All TypeScript compiler checks passed!'",
+    "aptible-deploy": "git push aptible HEAD:master"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
