@@ -1,6 +1,6 @@
 {
   "name": "sb_reentry_app",
-  "version": "1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -17,7 +17,6 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
-    "@netlify/plugin-nextjs": "^3.6.2",
     "lodash": "^4.17.21",
     "mapbox-gl": "^2.1.0",
     "next": "^10.2.0",
