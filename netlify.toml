@@ -1,3 +1,0 @@
-[[plugins]]
-    package = "@netlify/plugin-nextjs"
-    version = "@3.6.2"
