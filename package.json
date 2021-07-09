@@ -1,6 +1,6 @@
 {
   "name": "sb_reentry_app",
-  "version": "0.1.0",
+  "version": "1.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -76,13 +76,13 @@
   "description": "A joint project between [Code for America](https://www.codeforamerica.org/) and [The County of Santa Barbara Public Defender's Office](https://www.countyofsb.org/defender)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codeforamerica/sb_reentry_app.git"
+    "url": "git+https://github.com/sbpublicdefendersoffice/sb_reentry_app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/codeforamerica/sb_reentry_app/issues"
+    "url": "https://github.com/sbpublicdefendersoffice/sb_reentry_app/issues"
   },
-  "homepage": "https://github.com/codeforamerica/sb_reentry_app#readme"
+  "homepage": "https://github.com/sbpublicdefendersoffice/sb_reentry_app#readme"
 }
