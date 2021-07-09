@@ -1,5 +1,5 @@
 [[plugins]]
-  package = "plugin-nextjs@3.4.2"
+  package = "@netlify/plugin-nextjs"
 
 [[plugins]]
-  package = "netlify-plugin-cache-nextjs@1.4.0"
+  package = "netlify-plugin-cache-nextjs"
