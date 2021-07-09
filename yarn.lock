@@ -1996,7 +1996,7 @@
   dependencies:
     is-promise "^4.0.0"
 
-"@netlify/plugin-nextjs@^3.6.3":
+"@netlify/plugin-nextjs@^3.6.2":
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/@netlify/plugin-nextjs/-/plugin-nextjs-3.6.3.tgz#961c6c60d78aaeb0b4ed8b78db08c09b8dc8ba4b"
   integrity sha512-Cy2s01ybIfXKsrFLvkVBtXI9h0vIyRW1b4YQ88qahsblWxWEy8cplvy7Ke518NPlXljXXM0WA0we1kVrtrheGw==
