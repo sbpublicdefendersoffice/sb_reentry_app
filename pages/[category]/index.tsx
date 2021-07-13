@@ -82,7 +82,7 @@ const LandingPage = (props: WithWidth) => {
         ),
       )
       setFilteredResults(newResults)
-      console.log('newResults', newResults)
+
       setLocationRecords(newResults)
     } else if (fetchedRecords && keywordQuery.length === 0) {
       setFilteredResults(fetchedRecords)
