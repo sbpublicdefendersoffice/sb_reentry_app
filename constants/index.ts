@@ -37,6 +37,28 @@ export {
 } from './successStory-data'
 export { aboutCopy } from './aboutus-data'
 export {
+  categoryServiceFilter,
+  categoryCopy,
+  getMatchingRecords,
+} from './filter'
+export {
+  cityCopy,
+  foodServiceCopy,
+  medicalsupportServiceCopy,
+  transportationServiceCopy,
+  mentalhealthServiceCopy,
+  socialservicesServiceCopy,
+  clothingServiceCopy,
+  resourcedirectoryServiceCopy,
+  legalservicesServiceCopy,
+  communitysupportServiceCopy,
+  employmentServiceCopy,
+  housingServiceCopy,
+  substanceuseServiceCopy,
+  genderCopy,
+  languageCopy,
+} from './service-filter-data'
+export {
   faqCopy,
   whereToStart,
   probation,
