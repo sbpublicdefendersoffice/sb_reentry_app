@@ -6,7 +6,7 @@ export interface Filter {
   handleSelected: any
 
   MenuProps: any
-  newServiceFilter: any
+  routeCategory: string
   setOpen?: any
   modalStyle?: any
   activeCopy?: any

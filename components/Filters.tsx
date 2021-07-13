@@ -9,10 +9,12 @@ import { useTheme, Theme } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import { useLanguage } from '../hooks/'
 import { Chip } from '@material-ui/core'
+
 import {
   cityCopy,
   genderCopy,
   languageCopy,
+  categoryServiceFilter,
   ENGLISH,
   useStyles,
 } from '../constants/'
@@ -32,11 +34,15 @@ const CategoryFilters = ({
   languageSelected,
   handleSelected,
   MenuProps,
-  newServiceFilter,
+  routeCategory,
 }: Filter) => {
   const classes = useStyles()
   const theme = useTheme()
   const { language } = useLanguage()
+  let newServiceFilter =
+    categoryServiceFilter[routeCategory][
+      `${routeCategory.replace(' ', '')}ServiceCopy`
+    ]
   return (
     <>
       <Grid item xs={12} sm={12} md={3}>

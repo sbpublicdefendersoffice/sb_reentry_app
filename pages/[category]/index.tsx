@@ -42,7 +42,6 @@ function getModalStyle() {
   }
 }
 const LandingPage = (props: WithWidth) => {
-  const { width } = props
   const { asPath } = useRouter()
   const { language } = useLanguage()
   const classes = useStyles()
@@ -61,16 +60,19 @@ const LandingPage = (props: WithWidth) => {
     setLanguageSelected,
     setCitySelected,
   }
+
   const validCategory = categories[asPath]
+  console.log(
+    '🚀 ~ file: index.tsx ~ line 64 ~ LandingPage ~ asPath',
+    asPath,
+    categories,
+  )
   if (!validCategory) return <Error statusCode={404} />
   const displayCategory: string = validCategory[language].category
   const displayDescription: string = validCategory[language].description
   const routeCategory: string = validCategory.english.category.toLowerCase()
   const urlCategory: string = displayCategory.toLowerCase().replace(' ', '')
-  let newServiceFilter =
-    categoryServiceFilter[routeCategory][
-      `${routeCategory.replace(' ', '')}ServiceCopy`
-    ]
+
   const { fetchedRecords, setFetchedRecords } =
     useMultipleListRecords(routeCategory)
   const { convertedLocRecords, setLocationRecords } =
@@ -92,6 +94,7 @@ const LandingPage = (props: WithWidth) => {
         ),
       )
       setFilteredResults(newResults)
+      console.log('newResults', newResults)
       setLocationRecords(newResults)
     } else if (fetchedRecords && keywordQuery.length === 0) {
       setFilteredResults(fetchedRecords)
@@ -108,7 +111,7 @@ const LandingPage = (props: WithWidth) => {
     let value = e.target.value
     setFunctions[e.target.name](value)
   }
-  console.log('width', width)
+
   return (
     <>
       <Head>
@@ -156,7 +159,7 @@ const LandingPage = (props: WithWidth) => {
               languageSelected={languageSelected}
               handleSelected={handleSelected}
               MenuProps={MenuProps}
-              newServiceFilter={newServiceFilter}
+              routeCategory={routeCategory}
             />{' '}
           </Hidden>
           <Hidden smUp>
@@ -194,7 +197,7 @@ const LandingPage = (props: WithWidth) => {
               languageSelected={languageSelected}
               handleSelected={handleSelected}
               MenuProps={MenuProps}
-              newServiceFilter={newServiceFilter}
+              routeCategory={routeCategory}
               modalStyle={modalStyle}
               setOpen={setOpen}
               activeCopy={activeCopy}
