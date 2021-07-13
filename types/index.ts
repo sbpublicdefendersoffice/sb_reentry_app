@@ -1,4 +1,5 @@
 export type { AllowedMethod, AllowedURL } from './CORS'
+export type { DatabaseEnvs } from './database'
 export type { Language, AppLanguageProps, CopyHolder } from './language'
 export type {
   CountyBreakdown,

@@ -17,6 +17,7 @@ export {
   ProbationAccord,
   TipsAccord,
 } from './checklist-data'
+export { postgresEnvs } from './database-creds'
 export { specialCourtReqsPDF } from './documents'
 export { ENGLISH, SPANISH } from './language'
 export {
