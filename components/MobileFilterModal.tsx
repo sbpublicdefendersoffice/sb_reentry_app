@@ -12,7 +12,7 @@ const MobileFilterModal = ({
   languageSelected,
   handleSelected,
   MenuProps,
-  newServiceFilter,
+  routeCategory,
   modalStyle,
   setOpen,
   activeCopy,
@@ -38,7 +38,7 @@ const MobileFilterModal = ({
           languageSelected={languageSelected}
           handleSelected={handleSelected}
           MenuProps={MenuProps}
-          newServiceFilter={newServiceFilter}
+          routeCategory={routeCategory}
         />
         <Grid
           item

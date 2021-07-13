@@ -17,11 +17,7 @@ import {
 } from '../../hooks/'
 import { siteTitle, categories, useStyles } from '../../constants'
 import { RecordPane, DisplayMap, CategoryFilters } from '../../components'
-import {
-  categoryServiceFilter,
-  categoryCopy,
-  getMatchingRecords,
-} from '../../constants/'
+import { categoryCopy, getMatchingRecords } from '../../constants/'
 import { Title, Paragraph } from '../../ui'
 import MobileFilterModal from '../../components/MobileFilterModal'
 const ITEM_HEIGHT = 48
@@ -60,30 +56,22 @@ const LandingPage = (props: WithWidth) => {
     setLanguageSelected,
     setCitySelected,
   }
-
   const validCategory = categories[asPath]
-  console.log(
-    '🚀 ~ file: index.tsx ~ line 64 ~ LandingPage ~ asPath',
-    asPath,
-    categories,
-  )
-  if (!validCategory) return <Error statusCode={404} />
-  const displayCategory: string = validCategory[language].category
-  const displayDescription: string = validCategory[language].description
-  const routeCategory: string = validCategory.english.category.toLowerCase()
-  const urlCategory: string = displayCategory.toLowerCase().replace(' ', '')
-
+  const routeCategory: string = validCategory?.english.category.toLowerCase()
+  const displayCategory: string = validCategory?.[language].category
+  const displayDescription: string = validCategory?.[language].description
   const { fetchedRecords, setFetchedRecords } =
     useMultipleListRecords(routeCategory)
   const { convertedLocRecords, setLocationRecords } =
     useConvertedLocationRecords()
+
   useEffect((): void => {
     let keywordQuery = serviceSelected.concat(
       citySelected,
       genderSelected,
       languageSelected,
     )
-    if (keywordQuery.length > 0) {
+    if (fetchedRecords && keywordQuery.length > 0) {
       let newResults = getMatchingRecords(
         fetchedRecords,
         serviceSelected.concat(
@@ -106,7 +94,10 @@ const LandingPage = (props: WithWidth) => {
     citySelected,
     genderSelected,
     languageSelected,
+    validCategory,
   ])
+  if (!validCategory) return <Error statusCode={404} />
+
   const handleSelected = e => {
     let value = e.target.value
     setFunctions[e.target.name](value)
