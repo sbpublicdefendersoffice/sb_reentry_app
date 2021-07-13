@@ -1,5 +1,4 @@
 export { convertLocationsForMap } from './converters'
-export { initDB, killDB } from './database'
 export {
   checkAndSetUserLocation,
   isDistanceInBounds,

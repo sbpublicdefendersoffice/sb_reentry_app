@@ -1,12 +1,9 @@
-import { Options } from 'sequelize'
-import { DatabaseEnvs } from '../types/database'
-
-const baseOptions: Options = {
+const baseOptions = {
   dialect: 'postgres',
   port: 5432,
 }
 
-export const postgresEnvs: DatabaseEnvs = {
+const postgresEnvs = {
   development: {
     ...baseOptions,
     host: 'localhost',
@@ -16,3 +13,5 @@ export const postgresEnvs: DatabaseEnvs = {
   },
   production: {},
 }
+
+module.exports = postgresEnvs
