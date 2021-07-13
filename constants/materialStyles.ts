@@ -5,6 +5,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: '90%',
       height: '100%',
       fontFamily: 'Roboto',
+      textAlign: 'center',
     },
     heading: {
       fontSize: '2rem !important',
@@ -39,6 +40,23 @@ export const useStyles = makeStyles((theme: Theme) =>
         borderBottom: '.25rem solid green !important',
       },
     },
+    formControl: {
+      margin: '3rem !important',
+      width: '18.75rem',
+      fontSize: '2rem',
+      '@media (max-width: 500px)': {
+        margin: '0rem !important',
+      },
+    },
+    filters: {
+      margin: '3rem !important',
+      width: '18.75rem',
+      fontSize: '2rem',
+      '@media (max-width: 500px)': {
+        margin: '0rem !important',
+      },
+    },
+
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
@@ -51,12 +69,28 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginTop: '2rem',
       margin: 'auto',
       width: '80%',
-      color: theme.palette.text.secondary,
+      color: 'theme.palette.text.secondary',
       height: '40rem',
       overflow: 'scroll',
       '@media (max-width: 500px)': {
         width: '100%',
         marginLeft: '0rem',
+      },
+    },
+    filterModal: {
+      top: '45%',
+      left: '50%',
+      transform: `translate(-50%, -50%)`,
+    },
+
+    landingPageDescription: {
+      marginTop: '5rem',
+      marginRight: '24rem',
+      fontSize: '2rem',
+      marginLeft: '-6rem',
+      '@media (max-width: 500px)': {
+        width: '100%',
+        marginLeft: '1rem',
       },
     },
     aboutPaper: {
@@ -103,6 +137,14 @@ export const useStyles = makeStyles((theme: Theme) =>
     listItem: {
       marginBottom: '2rem',
       marginLeft: '2rem',
+    },
+    paperFilter: {
+      position: 'absolute',
+      width: 400,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
     },
     listItemText: {
       fontSize: '1.6rem',
@@ -300,6 +342,13 @@ export const useStyles = makeStyles((theme: Theme) =>
       color: '#13395e',
       margin: 'auto',
       fontSize: '3rem',
+    },
+    chips: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    chip: {
+      margin: 2,
     },
     flyerImage: {
       position: 'fixed',
