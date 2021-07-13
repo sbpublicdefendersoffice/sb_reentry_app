@@ -27,3 +27,10 @@
     height: max-content;
   }
 }
+@media (max-width: 500px) {
+  .RecordPane {
+    width: 100%;
+    height: max-content;
+    margin-left: 1.5rem;
+  }
+}
