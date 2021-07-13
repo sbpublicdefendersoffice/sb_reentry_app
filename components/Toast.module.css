@@ -6,7 +6,7 @@
   max-width: 40%;
   padding-left: var(--pad-lg);
   padding-right: var(--pad-lg);
-  z-index: 200;
+  z-index: 25;
   animation: fadeIn 0.25s linear;
 }
 

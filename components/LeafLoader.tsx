@@ -1,10 +1,8 @@
-import FreshStartLeaf from '../ui/FreshStartLeaf'
-
 import styles from './LeafLoader.module.css'
 
 const LeafLoader = () => (
   <div role="none" className={styles.LeafLoader}>
-    <FreshStartLeaf role="img" className={styles.leaf} />
+    <img role="img" src="/images/leaf.svg" className={styles.leaf} />
   </div>
 )
 

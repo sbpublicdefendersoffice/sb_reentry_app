@@ -45,7 +45,7 @@ const ResourcesForWomenLanding = () => {
   return (
     <>
       <div style={flexFullWidth}>
-        <PictureWithOval color="peri" pic="resourcesforwomen_placeholder.png" />
+        <PictureWithOval color="peri" pic="resourcesWomenPic.jpeg" />
         <LetUsHelpHeading>
           <Title>{title}</Title>
           <Paragraph size="med-text">{explainer}</Paragraph>

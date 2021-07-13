@@ -14,6 +14,7 @@ export const GET: AllowedMethod = 'GET'
 const LOCAL: AllowedURL = 'localhost:3000'
 const PRODUCTION: AllowedURL = 'thrivesbc.com'
 const DEPLOYED: AllowedURL = 'santabarbarareentry.netlify.app'
+const APTIBLE: AllowedURL = 'on-aptible.com'
 
 export const validateRequest = (
   req: NextApiRequest,
@@ -23,7 +24,10 @@ export const validateRequest = (
   const { host } = headers
 
   const isAllowedURL: boolean =
-    host === LOCAL || host.endsWith(PRODUCTION) || host.endsWith(DEPLOYED)
+    host === LOCAL ||
+    host.endsWith(PRODUCTION) ||
+    host.endsWith(DEPLOYED) ||
+    host.endsWith(APTIBLE)
   const isAllowedMethod: boolean = methodToAllow === method
 
   if (isAllowedURL && isAllowedMethod) return true

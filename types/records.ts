@@ -111,7 +111,7 @@ export interface SortedRecord {
 }
 
 export interface Feedback {
-  isUseful: boolean
+  is_useful: number
   route: string
   language: Language
   comment: string

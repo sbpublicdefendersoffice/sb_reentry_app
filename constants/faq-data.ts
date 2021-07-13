@@ -16,13 +16,12 @@ export const faqCopy: CopyHolder = {
 }
 export const whereToStart: CopyHolder = {
   english: {
-    listItem:
-      'I am releasing and would like to know where is a good place to start?',
+    listItem: 'I have been released recently, where is a good place to start?',
     description:
       'A good place to start is our "Resource Checklist" which you can access by ',
 
     description2:
-      'You can also navigate to the “Not sure where to start?” to help support you with key information by ',
+      'You can also navigate to “Not sure where to start?” to help support you with key information by ',
     nextLink: '/checklist',
     nextLinkTwo: '/letushelp',
   },
@@ -70,7 +69,7 @@ export const volunteer: CopyHolder = {
   english: {
     listItem: `Once released and stable, how can I volunteer or give back to the community?`,
     description:
-      "Many of Thrive's organizations regularly seek volunteers. Follow up with organizations that have a special connection to you. People with lived experiences can make a big impact in Santa Barbara County",
+      "Many of Thrive's organizations regularly seek volunteers. Follow up with organizations that have a special connection to you. People with lived experiences can make a big impact in Santa Barbara County.",
   },
   spanish: {
     listItem:
@@ -83,7 +82,7 @@ export const treatment: CopyHolder = {
   english: {
     listItem: ` I was Court-Ordered to enter into a treatment program, what should I do?`,
     description:
-      '"Court-ordered" treatment includes DUI or DUI programs, drug diversion programs or PC 1000, Proposition 36 or the Crime and Substance Abuse Prevention Act (SACPA), and the Criminal Court. Drugs Those directed by the Court to obtain treatment for any of these violations or programs should contact their parole or probation officer or assigned attorney to discuss which program they may be required to attend. If you have questions about DUI, PC1000 (Drug Diversion), Drug Courts, or SACPA (Prop 36), you can contact the Behavioral Wellness 24-Hour Toll Free Access Line (888) 868-1649 or .',
+      '"Court-ordered" treatment includes DUI or DUI programs, drug diversion programs or PC 1000, Proposition 36 or the Crime and Substance Abuse Prevention Act (SACPA), and the Criminal Court. Drugs Those directed by the Court to obtain treatment for any of these violations or programs should contact their parole or probation officer or assigned attorney to discuss which program they may be required to attend. If you have questions about DUI, PC1000 (Drug Diversion), Drug Courts, or SACPA (Prop 36), you can contact the Behavioral Wellness 24-Hour Toll Free Access Line (888) 868-1649 or by ',
     href1: 'tel:8888681649',
   },
   spanish: {
@@ -97,7 +96,7 @@ export const treatment: CopyHolder = {
 export const refill: CopyHolder = {
   english: {
     listItem: `Where can I go to have my prescription refilled?`,
-    description: `To obtain an initial prescription, you must be seen by a physician.For a screening or referral contact the 24-hour, toll-free Access Line at (888) 868-1649 begin by `,
+    description: `To obtain an initial prescription, you must be seen by a physician. For a screening or referral you can contact the 24-hour, toll-free Access Line at (888) 868-1649 or by `,
     href1: 'tel:8888681649',
   },
   spanish: {

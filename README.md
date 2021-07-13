@@ -19,7 +19,7 @@ This is a [React](https://reactjs.org/) and [Next.js](https://nextjs.org/) proje
 To install, open your cli and run:
 
 ```
-git clone https://github.com/codeforamerica/sb_reentry_app.git
+git clone https://github.com/sbpublicdefendersoffice/sb_reentry_app.git
 ```
 
 Naviagate to your created directory and install the needed dependencies by running:

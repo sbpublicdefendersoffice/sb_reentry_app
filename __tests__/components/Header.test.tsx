@@ -48,12 +48,12 @@ describe('<Header />', () => {
   //   expect(() => getByRole('button')).toThrowError()
   // })
 
-  it('renders 4 static page links above 700px screen width', () => {
+  it('renders 5 static page links above 700px screen width', () => {
     const { getAllByRole } = renderWithAllContext(<Header />)
 
     const routeNodes: HTMLElement[] = getAllByRole('term')
 
-    expect(routeNodes).toHaveLength(4)
+    expect(routeNodes).toHaveLength(5)
   })
 
   it('does render burger at or below 700px screen width', () => {
@@ -71,11 +71,11 @@ describe('<Header />', () => {
     expect(routeNode).toBeVisible()
   })
 
-  it('renders 8 static page links at or below 700px screen width', () => {
+  it('renders 10 static page links at or below 700px screen width', () => {
     const { getAllByRole } = renderWithAllContext(<Header />)
 
     const routeNodes: HTMLElement[] = getAllByRole('term')
 
-    expect(routeNodes).toHaveLength(8)
+    expect(routeNodes).toHaveLength(10)
   })
 })
