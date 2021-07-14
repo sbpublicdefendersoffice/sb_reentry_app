@@ -100,3 +100,20 @@ const categories: { [route: string]: CopyHolder } = {
 }
 
 export default categories
+
+export const backendCategories: Set<string> = new Set<string>([
+  'family',
+  'women',
+  'food',
+  'medicalsupport',
+  'transportation',
+  'mentalhealth',
+  'socialservices',
+  'clothing',
+  'resourcedirectory',
+  'legalservices',
+  'communitysupport',
+  'employment',
+  'housing',
+  'substanceuse',
+])
