@@ -3,16 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "aptible-deploy": "git push aptible HEAD:master",
     "build": "next build",
+    "build_data": "docker compose -f ./docker_postgres.yml up -d",
     "code-check": "yarn test && yarn lint-es && yarn type-check && yarn lint-css && yarn format",
     "dev": "next dev",
     "format": "prettier './**/*.{js,jsx,ts,tsx,json,css}' --check --ignore-unknown",
     "lint-css": "stylelint './**/*.css' --fix --cache && echo 'All stylelint checks passed!'",
     "lint-es": "eslint './**/*.{js,jsx,ts,tsx}' --fix --cache && echo 'All ESLint checks passed!'",
     "start": "next start",
+    "start_data": "docker start sb_reentry_app_postgres_1",
     "test": "jest --cache --coverage && echo 'All Jest tests passed!'",
-    "type-check": "tsc && echo 'All TypeScript compiler checks passed!'",
-    "aptible-deploy": "git push aptible HEAD:master"
+    "type-check": "tsc && echo 'All TypeScript compiler checks passed!'"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",

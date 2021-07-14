@@ -1,0 +1,637 @@
+﻿relation_id,open_time,close_time,days,notes
+1,10:00,15:00,"Mon, Tue",
+2,12:00,2:00,"Wed, Mon, Sun",
+3,15:15,16:50,Thu,
+5,8:00,16:00 ,"Mon, Tue, Wed, Thu, Fri",
+6,7:30,17:30 ,"Mon, Tue, Wed, Thu, Fri",
+7,8:00,17:00 ,"Mon, Tue, Wed, Thu, Fri",
+13,0:00,17:00,"Mon, Tue, Wed, Thu, Fri ",
+14,5:30,18:00 ,"Mon, Tue, Wed, Thu, Fri ",
+15,7:00,11:00 ,Sat,
+16,8:00,17:00 ,"Mon, Tue, Wed, Thu, Fri",
+17,7:30,17:30,"Mon, Tue, Wed, Thu, Fri",
+19,8:00,17:00 ,"Mon, Tue, Wed, Thu, Fri",
+21,10:00,11:00,Sun,
+22,12:30,14:00,Sun,
+23,19:00,20:30,Sun,
+24,6:45,7:45,Tue,
+25,12:00,13:00,Tue,
+26,18:30,19:30,Tue,
+27,19:00,20:00,Tue,
+28,19:30,20:30,Tue,
+29,18:45,19:45,Thu,
+30,12:00,13:00,Thu,
+31,6:30,7:30,Thu,
+32,20:00,21:00,Thu,
+33,10:00,11:15,Sat,
+34,32:10,21:00,Sat,
+35,6:45,7:45,Mon,
+36,12:00,13:00,Mon,
+37,20:00,1:00,Mon,
+38,6:45,7:45,Wed,
+39,12:00,13:00,Wed,
+40,19:30,20:30,Wed,
+41,19:30,21:00,Wed,
+42,6:45,7:45,Fri,
+43,12:00,13:00,Fri,
+44,19:00,20:00,Fri,
+45,19:30,20:30,Fri,
+46,21:00,22:00,Fri,
+47,6:45,7:45,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+48,18:30,19:30,Mon,
+49,11:00,12:00,Sun,LGBTQ
+50,12:15,13:15,Sun,
+51,17:30,18:30,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+52,20:00,21:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+53,12:00,13:00,"Tue, Wed, Thu, Fri, Sat",
+54,18:00,19:00,Mon,
+55,22:00,23:00,Fri,Women
+56,19:00,20:00,"Sun, Mon, Tue, Wed, Thur, Fri",
+60,12:00,13:00,Mon,
+61,19:00,20:00,"Mon, Tue, Wed, Thu, Fri",
+65,7:30,8:30,"Sun, Mon, Tues, Wed, Thu, Fri, Sat",
+66,12:00,13:00,"Mon, Tue, Wed, Thu, Fri",
+67,20:00,21:00,"Wed, Thu",
+68,11:00,12:00,Sun,
+69,20:00,21:00,"Sun, Fri, Sat",
+70,14:00,15:00,Sat,
+71,19:00,20:00,"Sun, Mon, Tue, Wed, Thu, Fri",
+72,17:00,18:00,Sun,
+73,17:30,18:30,Mon,Hospitals & Institutions
+74,19:00,20:00,Tue,Men
+75,18:00,19:00,Thu,
+76,17:30,18:30,Mon,
+77,19:30,20:30,Tue,
+78,6:45,7:45,"Mon, Tue, Wed, Thu, Fri, Sat",
+79,20:00,21:00,"Mon, Wed",
+80,11:00,12:00,"Tue, Thu",
+81,20:00,21:00,Wed,
+82,7:30,8:30,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",8387
+83,19:00,20:00,Sun,San Ysidro Group
+84,10:00,11:00,Mon,Monday at a Time
+85,17:30 ,18:30,Mon,Happy Destiny
+86,20:00,21:00,Thur,Key Group
+87,18:30,19:30,Sat,11th Step
+88,18:00,19:00,Thu,
+89,19:30,20:30,Thu,
+90,17:30,18:30,"Mon, Fri",
+91,10:00,11:00,Tue,Women
+92,12:10,13:10,Wed,Women
+95,18:30,19:30,Wed,
+96,20:00,21:00,Wed,
+97,12:00,13:00,Sat,
+98,20:30,21:30,Mon,
+99,18:15,19:15,Wed,
+100,15:00,16:00,Sun,
+101,11:00,12:00,Sun,
+102,20:00,21:00,Mon,
+103,18:30,19:30,Tue,
+104,18:30,19:30,Tue,
+105,20:00,21:00,Fri,
+106,20:00,21:00,Sat,
+107,20:00,21:00,Tue,Key Group Step Study
+108,19:00,20:00,Thur,Summerland in Montecito
+109,20:00,21:00,Thur,IV Sobriety
+110,19:00,20:00,Sat,Mustard Seed
+111,8:30,9:30,Sun,Squirrel Crossing
+112,20:00,21:00,Sun,Alano Club
+113,12:10,13:10,Mon,Sound off Women
+114,12:10,13:10,Mon,Step Study
+115,12:10,13:10,Tue,Gratitude
+116,12:10,13:10,Wed,As Bill Sees It
+117,12:10,13:10,Wed,Step Study: AA 101
+118,17:30,18:30,Wed,KCB Step Study
+119,19:30,20:30,Wed,Big Book Workshop
+120,12:10,13:10,Thur,Briefly Big Book
+121,12:10,13:10,Fri,Munch Brunch
+122,12:10,13:10,Fri,Sisters in Solution Women
+123,12:10,13:10,Sat,Keep it Simple
+124,19:30,20:30,Mon,Cambridge Group
+125,18:30,19:30,Thur,Ladies Night (Women)
+126,19:00,20:00,Sat,As Bill Sees It
+127,17:30,18:30,Mon,Onward & Upward
+128,17:30,18:30,Tue,Women's Big Book
+129,19:00,20:00,Wed,
+130,17:30,18:30,Thu,Women
+131,19:00,20:00,Thu,New Pair of Glasses
+132,19:30,20:30,Fri,Carpinteria Canalino
+133,18:30,19:30,Sun,12 Step
+134,20:00,21:00,"Mon, Thu",
+135,20:00,21:00,Sat,Care to Believe
+136,20:00,21:00,Mon,
+137,20:00,21:00,"Wed, Thu, Fri, Sat",
+138,07:00,20:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+139,08:30,09:30,Sat,Sandi Solutions
+140,10:00,11:00,Wed,Do it Sober
+141,10:00,11:00,Fri,Almost Saints
+142,10:00,11:00,Sat,As Bill Sees It
+143,18:00,19:00,Thur,11 Step
+144,19:30,20:30,Thur,KCB
+145,19:00,20:00,Tue,Women
+146,12:00,13:00,Mon,Beginners
+147,12:00,13:00,Fri,Women
+148,20:00,21:00,Tue,Young People
+149,20:00,21:00,"Sun, Mon, Tue, Wed, Thu",Q&A
+150,17:30,18:30,Fri,Women
+151,10:00,11:00,Sun,
+152,18:00,19:00,Mon,
+153,18:30,19:30,Mon,
+154,19:30,20:30,Mon,
+155,19:30,20:30,Tue,
+156,19:30,20:30,"Tue, Fri",
+157,00:00,01:00,Wed,
+158,07:00,08:00,Wed,
+159,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+160,19:00,20:00,Wed,
+161,19:30,20:30,Wed,
+162,20:00,21:00,Wed,
+163,12:15,13:15,Thu,
+164,20:00,21:00,Thu,
+165,20:00,21:00,Thu,
+166,20:00,21:00,Thu,
+167,19:00,20:00,Fri,
+168,20:00,21:00,Fri,
+169,20:00,21:00,Fri,
+170,08:00,09:00,Sat,
+171,20:00,21:00,Sat,
+172,18:00,19:00,Wed,
+173,13:00,14:00,Sat,Retired
+174,17:30,19:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+175,09:00,10:00,Sun,
+176,13:00,14:00,Sun,
+177,19:00,20:00,Sun,
+178,19:00,20:00,"Sun, Tue, Thu",
+179,12:00,13:00,"Mon, Tue, Wed, Thur, Fri, Sat",
+180,18:00,19:00,"Mon, Wed, Fri, Sat",
+181,20:00,21:00,"Mon, Wed, Fri",
+182,16:00,17:00,Sat,
+183,07:00,08:00,"Sun, Mon",
+184,12:00,13:00,"Sun, Mon",
+185,17:30,18:30,"Sun, Mon",
+186,15:30,16:30,Sun,
+187,09:00,10:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+188,20:00,21:00,Sat,
+189,07:00,08:00,"Tue, Wed, Thur, Fri, Sat",
+190,19:00,20:00,Wed,
+191,10:00,11:00,Sat,
+192,22:00,23:00,Sat,
+193,10:30,11:30,Sun,
+194,16:00,17:00,Sun,
+195,16:00,17:00,Sat,10th Step
+196,19:00,20:00,"Sun, Mon, Fri",
+197,12:00,13:00,"Mon, Tue, Wed",
+198,12:00,13:00,Thu,Big Book
+199,10:30,11:30,Fri,Women
+200,17:30,18:30,"Tue, Thu",
+201,20:00,21:00,"Sun, Mon, Wed, Fri, Sat",
+202,06:00,07:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+203,19:30,20:30,Thu,
+204,20:00,21:00,Thu,
+205,09:00,10:00,Sun,
+206,12:00,13:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+207,17:30,18:30,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+208,19:00,20:00,Sun,
+209,20:00,21:00,"Wed, Sat",
+210,19:30,20:30,Thu,Women
+211,10:00,11:00,Fri,Women
+212,18:00,19:00,Mon,
+213,19:00,20:00,Mon,
+214,19:30,20:30,Mon,
+215,17:30,18:30,"Tue, Thu",
+216,16:30,18:00,Tue,
+217,07:00,23:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+218,08:30,09:30,Sun,
+219,13:30,14:30,Sun,
+220,20:00,21:00,"Sun, Sat",
+221,12:00,13:00,"Mon, Tue, Wed, Thur, Fri",
+222,18:00,19:00,Mon,Q&A
+223,18:30,19:30,Tue,
+224,18:00,19:00,Wed,
+225,18:30,19:30,Thu,
+226,19:45,20:45,Fri,Discussion
+227,09:30,10:30,Sat,
+228,12:00,13:00,"Sun, Mon, Tue, Wed, Fri, Sat",
+229,20:00,21:00,"Sun, Mon, Tue, Wed, Fri, Sat",
+230,18:30,18:07,"Tue, Wed, Thu, Fri",
+231,09:00,10:00,Thu,Spanish
+232,12:00,13:00,Thu,Spanish
+233,18:30,19:30,Thu,Spanish
+234,12:00,13:00,Fri,Q&A
+235,09:00,10:00,Sat,
+236,08:30,09:30,Sun,
+237,11:00,12:00,Sun,
+238,19:00,20:00,Sun,
+239,08:00,09:00,"Mon, Wed, Fri",
+240,12:00,13:00,"Mon, Wed, Thur, Fri, Sat",
+241,12:00,13:00,Tue,Women
+242,17:30,18:30,"Mon, Tue, Wed, Thu, Fri",
+243,20:00,21:00,"Tue, Thu, Fri",
+244,17:00,18:00,Sat,
+245,12:30,13:30,Sun,
+246,12:00,13:00,"Mon, Tue, Wed, Thu, Sat",
+247,18:45,19:45,Mon,
+248,08:00,09:00,"Tue, Thu, Sat",
+249,18:00,19:00,Wed,
+250,19:00,20:00,Sat,
+251,19:00,20:00,Fri,Be a Blessing
+252,,,,
+253,19:00,20:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+254,20:00,21:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+255,08:00,09:00,Sun,
+256,20:00,21:00,"Sun, Fri",
+257,19:00,20:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+258,10:00,11:00,Tue,
+259,10:00,11:00,Thu,
+260,19:00,20:00,Thu,
+261,09:45,10:35,Fri,
+262,23:00,00:00,Fri,
+263,10:00,11:00,Mon,
+264,10:00,11:00,Mon,
+265,18:30,19:30,Tue,
+266,20:00,21:00,Tue,
+267,18:30,19:30,Wed,
+268,18:30,19:30,Thu,
+269,19:00,20:00,Thu,
+270,11:00,12:00,Sat,
+271,19:00,20:00,Sat,
+272,17:30,18:30,Mon,
+273,16:00,17:00,Wed,
+274,09:30,10:30,Thu,
+275,17:30,18:30,"Tue, Thur",
+276,10:00,11:00,Sat,
+277,16:00,18:00,Wed,
+278,10:30,11:00,Mon,
+279,08:30,09:30,Sun,
+280,20:00,21:00,Sun,
+281,12:00,13:00,Mon,Women
+282,12:10,13:10,"Mon, Tue, Wed, Thu, Sat",
+283,12:10,13:10,Fri,Women
+284,17:30,18:30,Wed,
+285,19:30,20:30,Wed,
+286,18:30,19:30,Thu,
+287,12:00,13:00,Mon,
+288,19:00,20:00,"Mon, Tue, Wed, Thu, Fri",
+289,19:00,20:00,"Sun, Mon, Tue, Wed, Thu, Fri",
+290,09:00,17:00,"Tue, Wed, Thu, Fri, Sat",
+291,07:30,08:30,"Sun, Mon, Tue, Wed, Thu, Fri",
+292,12:00,13:00,"Mon, Tue, Wed, Thu",
+293,20:00,21:00,"Wed, Thu",
+294,19:30,20:30,Sat,
+295,06:45,07:45,"Mon, Tue, Wed, Thu, Fri, Sat",
+296,19:00,20:00,Wed,Women
+297,20:00,21:00,"Mon, Wed",
+298,08:00,21:00,Sun,
+299,20:00,21:00,"Sun, Fri",
+300,09:00,10:00,Sun,
+301,13:00,14:00,Sun,
+302,19:00,20:00,Sun,
+303,12:00,13:00,"Mon, Tue, Wed, Thur, Fri, Sat",
+304,18:00,19:00,"Mon, Wed, Fri, Sat",
+305,20:00,21:00,"Mon, Wed, Fri",
+306,16:00,17:00,Sat,
+307,09:00,10:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+308,20:00,21:00,Sat,
+309,10:30,11:30,"Sun, Fri",
+310,16:00,17:00,"Sun, Sat",
+311,19:00,20:00,"Sun, Mon, Fri",
+312,14:00,15:00,Mon,
+313,12:00,13:00,"Tue, Thu, Fri",
+314,17:30,18:30,"Tue, Thu",
+315,20:00,21:00,"Sun, Mon, Wed, Fri, Sat",
+316,16:00,19:00,Fri,
+317,08:30,05:00,Sat,
+318,08:30,17:00,Sun,
+319,16:00,19:00,Fri,
+320,08:30,17:00,Sat,
+321,08:30,16:00,Sun,
+322,08:30,16:30,"Mon, Tue, Wed, Thu, Fri",
+323,08:00,16:00,"Mon, Wed, Thu, Fri",
+324,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+325,12:00,13:00,"Mon, Tue, Wed, Thu, Fri",
+326,12:00,13:00,Fri,
+327,13:00,15:00,Sat,
+328,17:00,17:45,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+329,17:00,17:45,Mon,
+330,17:00,18:00,Mon,
+331,17:00,17:45,Fri,
+332,17:00,17:45,Sat,
+333,17:00,18:00,Sun,
+335,10:00,12:00,Thu,
+336,10:00,12:00,"Mon, Tue, Wed, Thu, Fri",
+337,12:30,15:00,"Mon, Tue, Wed, Thu, Fri",
+338,13:00,15:00,Thu,
+339,10:00,11:00,Thu,
+340,12:00,13:00,Thu,
+341,15:00,16:00,Mon,
+342,10:00,11:00,Wed,
+343,12:00,13:00,Tue,
+344,15:00,16:00,Wed,
+345,12:00,13:00,Wed,
+346,08:00,16:00,"Mon, Tue, Wed, Thu, Fri",
+347,07:00,09:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+348,07:45,11:30,"Mon, Tue, Wed, Thu, Fri",
+349,09:00,14:00,"Mon, Tue, Wed, Thu, Fri","Office Hours
+"
+350,08:00,14:00,"Mon, Tue, Wed, Thu, Fri",Counseling Hours
+351,08:00,14:00,Sat,Counseling Hours
+352,09:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+353,09:00,19:00,"Mon, Tue, Wed, Thu, Fri",
+357,09:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+358,09:00,09:00,Sun,Breakfast
+359,09:00,09:00,"Mon, Tue, Wed, Thu",Breakfast
+360,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+361,08:30,09:30,"Mon, Wed, Fri",Breakfast
+362,12:00,12:30,"Mon, Tue, Wed, Thu, Fri",Lunch
+363,11:00,12:30,"Mon, Tue, Wed, Thu, Fri",Lunch
+364,12:30,12:30,"Mon, Tue, Wed, Thu, Fri",Lunch
+365,11:00,12:00,"Sun, Sat",Sack Lunch
+366,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+367,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+368,09:00,12:00,"Mon, Tue, Wed, Thu, Fri",
+369,13:30,16:00,"Mon, Tue, Wed, Thu, Fri",
+370,09:30,12:00,"Mon, Tue, Wed, Thu",
+371,13:30,16:00,"Mon, Tue, Wed, Thu",
+372,07:30,17:30,"Mon, Tue, Wed, Thu, Fri",
+373,08:00,12:00,"Mon, Tue, Wed, Thu, Fri",
+374,13:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+375,08:00,12:00,"Mon, Tue, Wed, Thu, Fri",
+376,13:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+377,08:00,12:00,"Mon, Tue, Wed, Thu, Fri",
+378,13:00,16:30,"Mon, Tue, Wed, Thu, Fri",
+379,07:40,12:00,"Mon, Tue, Wed, Thu, Fri",
+380,12:40,17:00,"Mon, Tue, Wed, Thu, Fri",
+381,08:00,12:00,"Mon, Tue, Wed, Thu, Fri",
+382,13:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+383,08:00,17:00,"Mon, Tue, Wed, Thu",
+384,08:00,12:00,Fri,
+385,11:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+386,08:00,16:00,"Mon, Tue, Wed, Thu, Fri",
+387,08:00,17:30,"Mon, Tue, Wed, Thu",
+388,08:00,17:00,"Tue, Thu, Fri",
+389,09:00,17:00,Wed,
+390,08:00,17:00,"Tue, Thu, Fri",
+391,09:00,17:00,Wed,
+392,08:00,17:00,"Tue, Thu, Fri",
+393,09:00,17:00,Wed,
+395,12:00,17:00,"Mon, Tue, Wed, Thu, Fri",Client Services
+396,10:00,17:30,"Mon, Tue, Wed, Thu, Fri",In-Kind Donations
+397,10:00,18:00,"Mon, Tue, Wed, Thu, Fri",Gift Shoppe Weekday Hours
+398,11:00,18:00,Sat,Gift Shoppe Saturday Hours
+399,15:00,18:00,Wed,Bulk Food available every third Wednesday
+400,08:00,16:00,"Mon, Tue, Wed, Thu, Fri",
+401,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+403,10:00,16:00,"Mon, Tue, Wed, Thu, Fri, Sat",
+404,09:00,16:30,"Mon, Tue, Wed, Thu, Fri, Sat",
+405,11:00,18:00,"Wed, Thu, Fri",
+406,11:00,13:30,Tue,
+407,12:00,17:00,Sat,
+408,11:00,15:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+409,13:00,16:00,Mon,
+410,10:00,16:00,"Tue, Wed, Thu, Fri, Sat",
+411,12:00,15:00,Sun,
+412,10:00,16:00,"Sun, Tue, Wed, Thu, Fri, Sat",
+413,10:00,17:00,"Mon, Tue, Wed, Thu, Fri, Sat",
+414,10:00,16:00,Sun,
+415,08:00,17:00,"Mon, Tue, Wed, Thu",
+416,08:00,18:00,Fri,
+417,05:30,18:00,"Mon, Tue, Wed, Thu, Fri",
+418,07:00,11:00,Sat,
+419,06:00,18:00,"Mon, Tue, Wed, Thu, Fri",
+420,16:00,17:30,Thu,Bulk food offered last Thursday of the month
+421,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+422,09:00,09:00,Sat,"Bulk groceries offered on the first Saturday of the month, 9 AM"
+423,09:00,11:00,Sat,Bulk food offered third Saturday of the month
+424,16:00,18:00,Mon,Bulk food every first and third Monday of the month
+425,08:30,17:00,Thu,
+426,08:30,17:00,Wed,Closed 12:30 - 1:00 for Lunch
+427,08:00,17:30,"Mon, Tue",
+428,08:00,17:30,Wed,
+429,08:00,17:30,Thu,
+430,08:00,16:30,Fri,
+431,09:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+432,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+433,08:30,16:30,"Mon, Tue, Wed, Thu, Fri",
+434,13:00,13:00,Tue,"Mobile Food Pantry, First Tuesday of each month at 1:00pm"
+435,08:00,12:00,"Mon, Tue, Wed, Thu, Fri",
+436,13:00,13:00,Mon,"Mobile Farmers Market, Mondays at 1:00pm"
+437,13:00,13:00,Tue,"Mobile Farmers Market, Second Tuesday or each month at 1:00pm"
+438,13:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+439,13:30,13:30,Tue,Mobile Food Pantry 3rd Tuesday of the month at 1:30  p.m. 
+440,13:00,13:00,Thu,"Mobile Farmers Market, Thursdays at 1:00 p.m."
+441,08:00,16:30,"Mon, Tue, Wed, Thu, Fri",
+442,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+443,15:00,15:00,Tue,Mobile Food Pantry—4th Tuesday of the month at 3:00  p.m. 
+444,15:00,15:00,Tue,Mobile Farmer’s Market—2nd Tuesday of the month at  3:00 p.m. 
+445,15:00,15:00,Mon,Mobile Food Pantry—3rd Monday of the month at 3:00  p.m.
+446,15:00,15:00,Tue,Mobile Food Pantry—4th Tuesday of the month at 3:00  p.m. 
+447,13:00,13:00,Wed,Mobile Food Pantry—1st Wednesday of the month at  1:00 p.m.
+448,13:30,13:30,Wed,Mobile Farmer’s Market—3rd Wednesday of the month  at 1:30 p.m. 
+449,16:30,17:30,Wed,Mobile Food Pantry—last Wednesday of the month at  4:30-5:30 p.m.
+450,15:30,15:30,"Mon, Tue, Wed, Thu, Fri, Sat",Women's Showers—Monday-Saturday 3:30 p.m.
+451,15:00,15:00,Sun,Women's Showers—Sunday 3pm
+452,18:15,18:15,"Mon, Tue, Wed, Thu, Fri, Sat",Men's Showers—Monday-Saturday 6:15 p.m
+453,17:15,17:15,Sun,Men's Showers -- Sunday 5:15 p.m.
+454,13:00,16:00,Mon,Showers: 1:00pm – 4:00pm Lunch provided
+455,11:00,14:00,Fri,Showers: 11:00am – 2:00pm Lunch provided
+456,10:00,13:00,Tue,Showers: 10:00am – 1:00pm Lunch provided
+457,09:00,12:00,Thu,Showers: 9:00am – 12:00pm Lunch provided
+458,14:00,17:00,Thu,Showers: 2:00pm – 5:00pm Meals served
+459,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+460,08:30,10:00,"Mon, Tue, Wed, Thu, Fri","Showers
+
+Must have Casa ID—attend a 10:00 a.m. orientation  during the week to receive "
+461,10:00,11:00,"Sun, Sat","Showers
+
+Must have Casa ID—attend a 10:00 a.m. orientation  during the week to receive "
+462,13:00,14:00,Tue,"Last Tuesday of the month 1:00 p.m., last load  at 2:00 p.m."
+463,11:00,12:00,Tue,"Last Tuesday of the month 11:00 a.m., last load  at 12:00 p.m."
+464,13:00,15:00,Sun,"3rd Sunday of the month 1:00-3:00 p.m., last load by  2:00 p.m. 
+
+Free wash, dry, and laundry soap. Two load limit. "
+465,17:00,19:00,Tue,"Last Tuesday of the month 5:00-7:00 p.m., last load by  6:00 p.m.  Free wash, dry, and laundry soap. Two load limit. "
+466,08:00,12:00,Mon,"Monday mornings, socks and clothes are available "
+467,09:00,17:30,"Mon, Tue, Wed, Thu, Fri, Sat",Vouchers available once every 2 months 
+468,10:00,12:00,Fri,
+469,10:00,16:00,"Mon, Tue, Wed, Thu, Fri",
+470,09:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+471,16:00,18:00,Tue,Project Outreach Legal Assistance
+472,04:00,18:00,Wed,Project Outreach Legal Assistance
+473,16:00,18:00,Thu,Project Outreach Legal Assistance
+474,07:00,17:00,"Mon, Tue, Wed, Thu",
+475,09:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+476,11:30,12:30,"Mon, Tue, Wed, Thu",
+477,10:00,11:00,Fri,
+478,17:00,18:30,Mon,
+479,17:00,18:00,Mon,
+480,16:00,17:00,Tue,
+481,17:00,18:30,Fri,
+482,11:00,12:00,Wed,
+483,08:00,10:00,Mon,
+484,09:00,16:00,"Mon, Tue, Wed, Thu, Fri", call first 805-922-2059
+485,08:30,10:00,Thu,
+486,09:15,10:00,Sun,
+487,08:00,10:00,Tue,Tuesday Medical Van Rounds
+488,11:00,13:00,Tue,"DWW Van Rounds at Mental Wellness Center, first and third Tuesday of the month"
+489,10:00,12:00,Tue,"DWW Van Rounds, second and fourth Tuesday of each month"
+490,08:00,10:00,Wed,DWW Wednesday Van Rounds
+491,09:00,11:00,Thu,DWW Thursday Van Rounds
+492,17:30,18:30,Thu,DWW Thursday Pop Up Clinic. The DWW Street Medicine Outreach Team will be at Alameda Park located at the corner of Micheltorena and Anacapa Streets.  This team will stay out as weather and light permit but no longer than 2 hours.
+493,11:00,13:00,Fri,"DWW Van Rounds, first and third Fridays of each month."
+494,08:15,19:00,"Mon, Tue, Fri",Temporary Hours during COVID-19 Pandemic/Horario Temporal durante la Pandemia de COVID-19
+495,08:15,18:00,"Wed, Thu",Temporary Hours during COVID-19 Pandemic/Horario Temporal durante la Pandemia de COVID-19
+496,08:30,12:00,Sat,Temporary Hours during COVID-19 Pandemic/Horario Temporal durante la Pandemia de COVID-19
+497,07:40,12:00,"Mon, Tue, Wed, Thu, Fri",Franklin Health Care Center
+498,12:40,17:00,"Mon, Tue, Wed, Thu, Fri",Franklin Health Care Center
+499,,,,
+500,08:00,11:30,"Mon, Wed, Fri",Franklin Health Care Center @ PATH
+501,08:00,10:00,"Tue, Thu",Franklin Health Care Center @ Santa Barbara Rescue Mission
+502,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",Santa Barbara Health Care Center Hours of Operation
+503,07:40,12:00,"Mon, Tue, Wed, Thu, Fri",Carpinteria Health Care Center Hours of Operation
+504,12:40,17:00,"Mon, Tue, Wed, Thu, Fri",Carpinteria Health Care Center Hours of Operation
+505,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",Lompoc Health Care Center Hours of Operation
+506,13:00,17:00,"Mon, Tue, Wed, Thu, Fri",Lompoc Health Care Center Hours of Operation
+507,08:00,12:00,Sat,"Lompoc Health Care Center, Adult and Pediatric Urgent Care most Saturdays"
+508,08:00,11:30,"Mon, Tue, Wed, Thu",Santa Maria Health Care Center @ Good Samaritan Hours of Operation
+509,16:30,18:30,"Tue, Thu",Santa Maria Health Care Center @ Good Samaritan Hours of Operation
+510,07:30,12:00,"Mon, Tue, Wed",Santa Maria Health Care Center Hours of Operation
+511,13:00,19:00,"Mon, Tue, Wed",Santa Maria Health Care Center Hours of Operation
+512,07:30,12:00,"Thu, Fri",Santa Maria Health Care Center Hours of Operation
+513,13:00,17:00,"Thu, Fri",Santa Maria Health Care Center Hours of Operation
+514,10:00,19:00,"Mon, Tue",
+515,08:30,17:30,Wed,
+516,07:30,16:30,Thu,
+517,08:00,17:00,"Fri, Sat",
+518,11:00,12:00,Sun,
+519,13:00,15:00,Tue,
+520,08:15,18:00,"Mon, Tue, Wed, Thu, Fri",
+521,08:30,12:00,Sat,
+522,07:45,17:00,"Mon, Tue, Wed, Thu, Fri","During the CoVid-19/Coronavirus outbreak, the Santa Barbara Neighborhood Clinics (SBNC) asks that our patients please refer to the home page on our clinic procedures.  Times and services may have changed."
+523,07:45,17:00,"Mon, Tue, Wed, Thu, Fri","Closed for lunch 12:30 - 1:30 pm. During the CoVid-19/Coronavirus outbreak, the Santa Barbara Neighborhood Clinics (SBNC) asks that our patients please refer to the home page on our clinic procedures.  Times and services may have changed."
+524,10:00,11:00,Tue,
+525,17:00,18:00,Thu,
+526,07:30,17:30,"Mon, Tue, Wed, Thu",
+527,08:00,17:00,Fri,"Open alternate Fridays, call first to see if office is open"
+528,09:00,10:00,Sat,
+529,09:00,16:00,"Mon, Tue, Wed, Thu, Fri","We have closed our administrative office to the general public as a precautionary measure during the COVID-19 pandemic. Clients may come to the office with pre-approved appointments only from 9 am to 4 pm, Monday thru Friday."
+530,11:30,12:45,Tue,
+531,12:00,13:00,Fri,
+532,09:30,11:30,Thu,
+533,09:00,11:00,Wed,
+534,11:00,12:00,Tue,
+535,12:00,13:00,Thu,
+536,15:30,16:30,Tue,
+537,08:00,17:30,"Mon, Tue, Wed, Thu",
+538,08:00,16:00,Fri,
+539,08:00,17:30,"Mon, Tue, Wed, Thu",
+540,08:00,16:30,Fri,
+541,08:30,12:15,Wed,
+542,12:45,16:30,Wed,
+543,08:00,12:00,Mon,
+544,08:00,12:00,Mon,
+545,16:00,17:30,Tue,
+546,08:00,12:00,Tue,last load 11:45 
+547,08:00,16:00,"Mon, Tue, Wed, Thu",
+548,12:00,13:00,Fri,
+549,09:00,16:00,"Mon, Tue, Thu, Fri",
+550,09:00,12:00,Wed,
+551,06:30,13:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+552,14:00,19:00,"Mon, Tue, Wed, Thu, Fri",
+553,08:00,13:00,Sat,
+554,02:00,19:00,Sat,
+555,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+556,10:00,18:00,"Mon, Tue, Wed, Thu, Fri, Sat",
+557,05:45,21:45,"Mon, Tue, Wed, Thu, Fri",
+558,12:00,17:00,Sun,
+559,07:15,18:45,"Sun, Sat",
+560,10:00,17:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+561,10:00,17:45,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+562,09:00,18:00,"Mon, Tue, Sat",
+563,09:00,20:00,"Wed, Fri",
+564,09:00,19:00,Thu,
+565,10:00,17:00,Sun,
+566,09:00,20:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+567,09:00,14:00,"Tue, Wed, Sat",
+568,10:00,18:00,"Sun, Mon, Tue, Wed, Thu",
+569,10:00,19:00,"Fri, Sat",
+570,11:00,16:00,"Tue, Wed, Thu, Fri, Sat",
+571,10:00,17:45,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+572,08:45,18:35,"Mon, Tue, Wed, Thu, Fri, Sat",
+573,09:30,12:00,"Mon, Tue, Wed, Thu",Friday: By Appointment only
+574,13:30,16:00,"Mon, Tue, Wed, Thu",
+575,07:00,17:00,"Mon, Tue, Wed, Thu",
+576,08:00,17:00,"Mon, Wed, Fri",
+577,11:00,20:00,Tue,
+578,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+579,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+580,08:00,19:00,"Mon, Tue, Wed, Thu",General Hours
+581,08:00,16:00,Fri,General Hours
+582,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+583,09:00,16:00,"Mon, Tue, Thu, Fri",
+584,09:00,12:00,Wed,
+585,06:00,06:30,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",Daily Breakfast
+586,12:15,12:15,Sun,Sunday Lunch
+587,12:00,14:00,Wed,Wednesday lunch. Veterans and At-Risk Women only.
+588,18:15,18:15,"Mon, Tue, Wed, Thu, Fri, Sat","Dinner, Monday through Saturday"
+589,17:15,17:15,Sun,Sunday Dinner
+590,16:30,16:30,Mon,"Dinner, Winter Schedule"
+591,17:00,17:00,Sun,"Dinner, Spring/Summer Schedule"
+592,17:30,17:30,Wed,Wednesday Dinner
+593,17:30,17:30,Wed,Wednesday Dinner
+594,18:00,18:00,Thu,Thursday Dinner
+595,18:00,18:40,Sun,Sunday Dinner
+596,09:00,18:00,"Mon, Tue, Wed, Thu, Fri, Sat",
+597,09:00,18:00,"Mon, Tue, Wed, Thu, Fri",
+598,10:00,18:00,Sat,
+599,10:00,12:00,"Mon, Tue, Wed, Thu, Fri",
+600,10:00,16:00,"Tue, Thu, Fri",
+601,10:00,15:00,Wed,
+602,09:00,20:00,"Mon, Tue, Wed, Thu, Fri, Sat",
+603,10:00,18:00,Sun,
+604,09:00,20:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+605,09:15,17:30,"Mon, Tue, Wed, Thu, Fri",
+606,10:00,16:30,Sat,
+607,10:00,15:30,Sun,
+608,10:00,17:45,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+609,05:30,19:00,"Mon, Wed",
+610,07:00,19:00,"Tue, Thu, Fri",
+611,08:00,12:00,Sat,
+612,08:00,16:00,"Mon, Tue, Wed, Thu, Fri",
+613,13:00,17:00,Fri,
+614,15:00,20:00,"Mon, Tue, Wed, Thu",
+615,00:00,00:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat","Bulk Food available Daily, please call first 805-349-2421"
+616,08:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+617,09:00,20:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+618,10:00,13:30,Tue,
+619,14:30,18:00,Thu,
+620,09:00,18:00,"Mon, Tue, Wed, Thu, Fri, Sat",
+621,10:00,17:00,Sun,
+622,10:00,15:00,"Mon, Wed",
+623,10:00,13:00,Sun,
+624,09:00,20:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+625,04:00,17:30,Tue,"Showers, Dinner and Haircuts offered"
+626,09:00,16:30,Thu,WIC Available 3rd Thursday of the month from 9:00-4:30 p.m.
+627,09:00,15:00,"Mon, Tue, Wed, Thu, Fri",Drop in Center
+628,10:00,18:00,"Mon, Tue, Wed, Thu, Fri",
+629,11:00,18:00,Sat,
+630,17:00,18:30,Mon,Monday Dinner
+631,12:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+632,12:00,16:00,Fri,
+633,08:00,16:30,"Mon, Tue, Wed, Thu",Veteran's Services
+634,08:00,12:00,Fri,Veteran's Services
+635,09:00,16:15,"Mon, Tue, Wed, Thu",
+636,09:00,13:00,Fri,
+637,08:30,08:30,Fri,Open every other Friday. Call (805) 451-0430 for more details and to see if court is open.
+638,13:30,13:30,Fri,
+639,13:30,13:30,Fri,
+640,09:00,17:00,"Mon, Tue, Wed, Thu, Fri",
+641,00:00,00:00,Sat,By Appointment
+642,07:00,19:00,"Sun, Mon, Tue, Wed, Thu, Fri, Sat",
+643,09:00,14:00,"Mon, Tue, Wed, Thu, Fri",
+644,08:00,18:00,"Mon, Tue, Wed, Thu, Fri",
+645,Vivienda,,,
+646,Hogares para vivir sobrios,,,
+647,Servicios para adicciones,,,
+648,Consejería sobre drogas y alcohol,,,
+649,Consejería para pacientes ambulatorios,,,
+651,08:00,18:00,"Mon, Tue, Wed, Thu, Fri",123
+652,08:00,18:00,"Mon, Tue, Wed, Thu, Fri",123
