@@ -1,0 +1,200 @@
+﻿relation_id,name_english,name_spanish
+1,Food Bank,Banco de comida
+2,Employment,Empleo
+3,Sober Living Homes,Viviendas sobrias
+5,Detox Centers,Centros de desintoxicación
+6,Residential Treatment Centers,Centros de tratamiento residencial
+8,Outpatient Counseling,Consejería para pacientes ambulatorios
+11,Narcotics Anonymous,Narcóticos Anónimos
+31,Child Transportation,Transporte infantil
+32,Childcare ,Cuidado de niños
+33,Education ,Educación
+34,Alcoholics Anonymous,alcoholicos anonimos
+36,Syringe Exchange,Intercambio de jeringas
+37,DUI,DUI
+38,Crystal Meth Anonymous,Crystal Meth Anónimo
+39,Anger Management,Control de la ira
+40,Youth Service,Servicio Juvenil
+41,Shelter,Refugio
+42,Transitional Shelter,Refugio de transición
+43,Affordable Housing,Vivienda asequible
+44,Dual Diagnosis Program,Programa de diagnóstico dual
+45,Outpatient Counseling,Consejería para pacientes ambulatorios
+46,Lunch,Almuerzo
+47,Dinner,Cena
+48,Bulk Food,Alimentos a granel
+49,Mobile Food Pantry,Despensa de alimentos móvil
+50,State Sponsored Services,Servicios patrocinados por el estado
+51,Warming Center,Centro de calentamiento
+52,Domestic Violence Shelter,Refugio de violencia doméstica
+53,Mental Illness,Enfermedad mental
+54,Crisis Stabilization,Estabilización de crisis
+55,Pregnancy Services,Servicios de embarazo
+56,HIV,VIH
+57,AIDS,SIDA
+58,End of life care,Cuidado al final de la vida
+59,Housing for Farmworkers,Vivienda para trabajadores agrícolas
+60,Single Room Occupants,Ocupantes de la habitación individual
+61,Housing for Seniors,Vivienda para personas mayores
+62,Housing for People with Disabilities,Vivienda para personas con discapacidad
+63,Housing for People with Developmental Disabilities,Vivienda para personas con discapacidades del desarrollo
+64,Safe Parking,Estacionamiento seguro
+65,Counseling,Asesoramiento
+66,Case Management,Gestión de casos
+67,Career Development,Desarrollo de carrera
+68,Behavioral Therapy,Terapia de comportamiento
+69,Family Therapy,Terapia familiar
+70,Psychological Testing,Pruebas psicológicas
+71,Emergency Services,Servicios de emergencia
+72,Breakfast,Desayuno
+73,Substance Abuse Treatment,Tratamiento por abuso de sustancias
+74,Veteran's Services,Servicios para veteranos
+75,Parenting Education,Educación para padres
+76,Group Therapy,Terapia de grupo
+77,Harm Reduction,Reducción de daños
+78,Vocational Rehabilitation,Rehabilitacion vocacional
+79,Shuttle,Lanzadera
+80,Clothing,Ropa
+81,Youth Mental Health,Salud mental juvenil
+82,Support Groups,Grupos de apoyo
+83,Housing for People With Mental Health Issues,Vivienda para personas con problemas de salud mental
+84,Couples Therapy,Terapia de pareja
+85,Mentorship,Tutoría
+86,Rehab,Rehabilitación
+87,EBT,EBT
+88,Drug and Alcohol Counseling,Asesoramiento sobre drogas y alcohol
+89,Housing,Alojamiento
+90,Bus,Autobús
+91,Public Defender,Defensor público
+92,Legal Resource Center,Centro de recursos legales
+93,Rental Financial Assistance,Asistencia financiera de alquiler
+94,Utility Financial Assistance,Asistencia financiera para servicios públicos
+95,Thrift Store Vouchers,Vales de tienda de segunda mano
+96,Medical Treatment Grants and Referrals,Subvenciones y remisiones para tratamientos médicos
+97,Emergency Shelter Assistance,Asistencia de refugio de emergencia
+98,Older Adult Services,Servicios para adultos mayores
+99,Legal Assistance,Asistencia legal
+100,Probation,Libertad condicional
+101,Family Law,Ley familiar
+102,Clinical Laboratory,Laboratorio clínico
+103,Health Care Center,Centro de salud
+104,Child Health & Disabilities,Salud infantil y discapacidades
+105,Evironmental Health Services,Servicios de salud ambiental
+106,Pharmacy,Farmacia
+107,Vision,Visión
+108,Dental Care,Cuidado dental
+109,Medical Assistance,Asistencia medica
+110,Financial Assistance,Asistencia financiera
+111,Housing Assistance,Asistencia para la vivienda
+112,Birth Certificate,Certificado de nacimiento
+113,Documents,Documentos
+114,In-Kind Donations,Donaciones en especie
+115,Social Services,Servicios sociales
+116,Animal Services,Servicios para animales
+117,Thrift Store,Tienda de segunda mano
+118,Temp Agency,Agencia de trabajo temporal
+119,Grocery Vouchers,Vales de comestibles
+120,Mobile Farmers Market,Mercado de agricultores móviles
+121,Showers,Duchas
+122,Lockers,Casilleros
+123,Laundry,Ropa sucia
+124,Hygiene Products,Productos de higiene
+125,Bankruptcy Clinic,Clínica de quiebras
+126,Legal Referrals,Referencias legales
+127,Medical Van Rounds,Rondas de furgonetas médicas
+128,Pop up Clinic,Clínica emergente
+129,Internal Medicine,Medicina Interna
+130,Family Medicine,Medicina Familiar
+131,Pediatrics,Pediatría
+132,Reproductive Health,Salud reproductiva
+133,Family Planning,Planificación familiar
+134,Pregnancy Prevention,Prevención del embarazo
+135,Psychiatry,Psiquiatría
+136,Chronic Care Management,Gestión de cuidados crónicos
+137,Medi Cal Application Assistance,Asistencia con la solicitud de Medi Cal
+138,Covered California Application Assistance,Asistencia con la solicitud de Covered California
+139,Cal Fresh Application Assistance,Asistencia con la solicitud de Cal Fresh
+140,Immunization Services (Shots),Servicios de inmunización (vacunas)
+141,Nutrition Services,Servicios de nutrición
+142,OBGYN Services,Servicios OBGYN
+143,STD/STI Services,Servicios de ETS / ITS
+144,Tuberculosis Skin Testing (TB),Prueba cutánea de tuberculosis (TB)
+145,Walk-In Services,Servicios sin cita previa
+146,Children's Medicine,Medicina infantil
+147,Women's Health Services,Servicios de salud para mujeres
+149,Clinical Laboratory,Laboratorio clínico
+150,Pregnancy Services,Servicios de embarazo
+151,Specialty Clinics,Clínicas especializadas
+152,Laboratory Draw Station,Estación de extracción de laboratorio
+153,Pediatrics,Pediatría
+154,Breast Exam Services,Servicios de examen de mamas
+155,Primary Care,Atención primaria
+156,Pap Services,Servicios de Papanicolaou
+157,Referrals,Referencias
+158,Birth Control,Control de la natalidad
+159,Abortion,Aborto
+160,HIV Services,Servicios de VIH
+161,LGBTQ Services,Servicios LGBTQ
+162,Men's Health Care,Cuidado de la salud de los hombres
+163,Morning-After Pill (Emergency Contraception),Píldora del día después (anticoncepción de emergencia)
+164,Public Health Nurse Outreach,Alcance de enfermería de salud pública
+165,Oral Education and Prevention,Educación y prevención oral
+166,Cosmetic Dentistry,Odontología cosmetica
+167,Implant Dentistry,Odontología de implantes
+168,Pediatric Dentistry,Odontología Pediatrica
+169,"Fillings, Bridges and Crowns","Empastes, puentes y coronas"
+170,Root Canal Therapy,Terapia de conducto radicular
+171,Partial and Complete Dentures,Dentaduras postizas parciales y completas
+173,Zero Interest Loans,Préstamos sin interés
+174,Emergency Motel Vouchers,Vales de emergencia para moteles
+175,Low Cost Internet Access,Acceso a Internet de bajo costo
+176,Short Term Loans,Prestamos a corto plazo
+177,Administration & Enrollment,Administración e inscripción
+178,"Minor Home Repair, Upgrades & Weatherization","Reparaciones, mejoras y climatización menores en el hogar"
+179,Youth Health & Prevention,Salud y prevención juvenil
+180,Youth Safety,Seguridad Juvenil
+181,Financial Literacy,Educación financiera
+182,Head Start,Inicio
+183,Early Head Start,Early Head Start
+184,Senior Meal Site,Sitio de comidas para personas mayores
+185,Behavioral Wellness,Bienestar conductual
+186,Academic Assistance,Asistencia académica
+187,Financial Aid Services,Servicios de ayuda financiera
+188,College Advisment Services,Servicios de asesoramiento universitario
+189,Tutoring,Tutoría
+190,Lifeline Phones / Phone Services,Teléfonos Lifeline / Servicios telefónicos
+191,CA Alternate Rates for Energy,Tarifas alternativas de CA para energía
+192,Energy Savings Assistance Program,Programa de asistencia de ahorro de energía
+193,Social Security,Seguridad Social
+194,Alternative Payment Program,Programa de pago alternativo
+195,Child Care Assistance,Asistencia de cuidado infantil
+196,Provider Services,Servicios para proveedores
+197,Sports,Deportes
+198,Swim,Nadar
+199,Camp,Acampar
+200,Low-Cost Veterinary Services,Servicios veterinarios de bajo costo
+201,Mobile Animal Clinic,Clínica móvil de animales
+202,Airport Transportation,Transporte al aeropuerto
+203,Fitness,Aptitud física
+204,Immigration Law,Ley de inmigración
+205,Mobile Health Services,Servicios de salud móviles
+209,Haircuts,Cortes de pelo
+210,WIC,WIC
+211,General Support,Apoyo general
+212,Veteran's Legal Assistance,Asistencia legal para veteranos
+213,Addiction Services,Servicios de adicción
+214,VA Burial Claims,Reclamos de entierro de VA
+215,Veterans Compensation Assistance,Asistencia de compensación para veteranos
+216,Veterans Insurance and Loans,Seguros y préstamos para veteranos
+217,Veteran's Financial Assistance,Asistencia financiera para veteranos
+218,Veteran's Claims Assistance,Asistencia para reclamos de veteranos
+219,Emergency Funds for Veterans,Fondos de emergencia para veteranos
+220,Prescription Assistance,Asistencia con recetas
+221,Outpatient Medical Care,Atención médica ambulatoria
+222,Veteran's Housing,Vivienda de veterano
+223,Short-term Case Management,Gestión de casos a corto plazo
+224,Peer Support,Apoyo de los compañeros
+225,Advocacy Services,Servicios de defensa
+226,Remote Learning,Aprendizaje remoto
+227,Technology,"Tecnología
+"

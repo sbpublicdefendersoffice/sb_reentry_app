@@ -16,6 +16,12 @@
     "removeComments": true,
     "downlevelIteration": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "constants/database-creds.js",
+    "helpers/sequelize.js"
+  ],
   "exclude": ["node_modules"]
 }
