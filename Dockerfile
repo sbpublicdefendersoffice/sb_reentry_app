@@ -22,7 +22,5 @@ RUN yarn build
 # Expost
 EXPOSE 3000
 
-RUN node ./helpers/sequelize.js&
-
 # Start app
 CMD ["yarn", "start"]
