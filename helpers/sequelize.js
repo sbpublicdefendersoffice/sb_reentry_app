@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize')
-const postgresEnvs = require('../constants/database-creds')
+const postgresEnv = require('../constants/database-creds')
 
 const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY } = DataTypes
 const opt = { timestamps: false }
@@ -8,7 +8,7 @@ let sql, orgObj, locObj, servObj, schObj, useObj
 
 const initDb = () => {
   try {
-    sql = new Sequelize(postgresEnvs[process.env.NODE_ENV])
+    sql = new Sequelize(postgresEnv)
 
     sql
       .authenticate()

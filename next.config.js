@@ -22,7 +22,7 @@ const nextConfigOptions = {
 
     config.plugins.push({
       apply: compiler => {
-        compiler.hooks.done.tap('StartSequelize', () =>
+        compiler.hooks.afterEmit.tap('StartSequelize', () =>
           exec('node ./helpers/sequelize.js&'),
         )
       },

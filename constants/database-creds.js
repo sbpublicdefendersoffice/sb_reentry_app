@@ -12,6 +12,7 @@ const postgresEnvs = {
     password: 'sbc',
   },
   production: {
+    ...baseOptions,
     host: process.env.POSTGRES_HOST,
     database: process.env.POSTGRES_DATA,
     username: process.env.POSTGRES_USER,
@@ -23,4 +24,4 @@ const postgresEnvs = {
   },
 }
 
-module.exports = postgresEnvs
+module.exports = postgresEnvs[process.env.NODE_ENV]
