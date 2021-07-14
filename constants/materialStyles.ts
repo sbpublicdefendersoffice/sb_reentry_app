@@ -41,12 +41,17 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     formControl: {
-      margin: '3rem !important',
+      margin: '1rem !important',
       width: '18.75rem',
       fontSize: '2rem',
+      display: 'flex',
       '@media (max-width: 500px)': {
         margin: '0rem !important',
       },
+    },
+    menuItem: {
+      display: 'flex',
+      fontSize: '1.6rem',
     },
     filters: {
       margin: '3rem !important',

@@ -1,15 +1,17 @@
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
-import Checkbox from '@material-ui/core/Checkbox'
-import ListItemText from '@material-ui/core/ListItemText'
-import Select from '@material-ui/core/Select'
-import Input from '@material-ui/core/Input'
 import { useTheme, Theme } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
 import { useLanguage } from '../hooks/'
-import { Chip } from '@material-ui/core'
-
+import {
+  Chip,
+  Typography,
+  Checkbox,
+  FormControl,
+  MenuItem,
+  Grid,
+  InputLabel,
+  Input,
+  Select,
+  ListItemText,
+} from '@material-ui/core'
 import {
   cityCopy,
   genderCopy,
@@ -45,153 +47,200 @@ const CategoryFilters = ({
     ]
   return (
     <>
-      <Grid item xs={12} sm={12} md={3}>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">
-            {language === ENGLISH ? 'City' : 'Ciudad'}
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            name="setCitySelected"
-            value={citySelected}
-            multiple
-            onChange={handleSelected}
-            input={<Input />}
-            renderValue={selected => (
-              <div className={classes.chips}>
-                {(selected as string[]).map(value => (
-                  <Chip key={value} label={value} className={classes.chip} />
-                ))}
-              </div>
-            )}
-            MenuProps={MenuProps}
-          >
-            {cityCopy.map(name => {
-              return (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, citySelected, theme)}
-                >
-                  <Checkbox checked={citySelected.indexOf(name) > -1} />
-                  <ListItemText primary={name} />
-                </MenuItem>
-              )
-            })}
-          </Select>
-        </FormControl>
-      </Grid>
-      <Grid item xs={12} sm={12} md={3}>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">
-            {language === ENGLISH ? 'Service' : 'Servicio'}
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            name="setServiceSelected"
-            value={serviceSelected}
-            multiple
-            onChange={handleSelected}
-            input={<Input />}
-            renderValue={selected => (
-              <div className={classes.chips}>
-                {(selected as string[]).map(value => (
-                  <Chip key={value} label={value} className={classes.chip} />
-                ))}
-              </div>
-            )}
-            MenuProps={MenuProps}
-          >
-            {newServiceFilter[language].map(name => {
-              return (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, serviceSelected, theme)}
-                >
-                  <Checkbox checked={serviceSelected.indexOf(name) > -1} />
-                  <ListItemText primary={name} />
-                </MenuItem>
-              )
-            })}
-          </Select>
-        </FormControl>
-      </Grid>
-      <Grid item xs={12} sm={12} md={3}>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">
-            {language === ENGLISH ? 'Language' : 'Idioma'}
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            name="setLanguageSelected"
-            value={languageSelected}
-            multiple
-            onChange={handleSelected}
-            input={<Input />}
-            renderValue={selected => (
-              <div className={classes.chips}>
-                {(selected as string[]).map(value => (
-                  <Chip key={value} label={value} className={classes.chip} />
-                ))}
-              </div>
-            )}
-            MenuProps={MenuProps}
-          >
-            {languageCopy[language].map(name => {
-              return (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, languageSelected, theme)}
-                >
-                  <Checkbox checked={languageSelected.indexOf(name) > -1} />
-                  <ListItemText primary={name} />
-                </MenuItem>
-              )
-            })}
-          </Select>
-        </FormControl>
-      </Grid>
-      <Grid item xs={12} sm={12} md={3}>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">
-            {language === ENGLISH ? 'Gender' : 'Género'}
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            name="setGenderSelected"
-            value={genderSelected}
-            multiple
-            onChange={handleSelected}
-            input={<Input />}
-            renderValue={selected => (
-              <div className={classes.chips}>
-                {(selected as string[]).map(value => (
-                  <Chip key={value} label={value} className={classes.chip} />
-                ))}
-              </div>
-            )}
-            MenuProps={MenuProps}
-          >
-            {genderCopy[language].map(name => {
-              return (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, genderSelected, theme)}
-                >
-                  <Checkbox checked={genderSelected.indexOf(name) > -1} />
-                  <ListItemText primary={name} />
-                </MenuItem>
-              )
-            })}
-          </Select>
-        </FormControl>
+      <Grid container>
+        <Grid item md={3}>
+          <FormControl className={classes.formControl}>
+            <InputLabel
+              className={classes.menuItem}
+              id="demo-simple-select-label"
+            >
+              {language === ENGLISH ? 'City' : 'Ciudad'}
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              name="setCitySelected"
+              value={citySelected}
+              className={classes.menuItem}
+              multiple
+              onChange={handleSelected}
+              input={<Input />}
+              renderValue={selected => (
+                <div className={classes.chips}>
+                  {(selected as string[]).map(value => (
+                    <Chip key={value} label={value} className={classes.chip} />
+                  ))}
+                </div>
+              )}
+              MenuProps={MenuProps}
+            >
+              {cityCopy.map(name => {
+                return (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    className={classes.menuItem}
+                    style={{ fontSize: '4rem !important' }}
+                  >
+                    <Checkbox checked={citySelected.indexOf(name) > -1} />
+                    <ListItemText
+                      disableTypography
+                      primary={
+                        <Typography className={classes.menuItem}>
+                          {name}
+                        </Typography>
+                      }
+                    />
+                  </MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item md={3}>
+          <FormControl className={classes.formControl}>
+            <InputLabel
+              id="demo-simple-select-label"
+              className={classes.menuItem}
+            >
+              {language === ENGLISH ? 'Service' : 'Servicio'}
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              name="setServiceSelected"
+              className={classes.menuItem}
+              value={serviceSelected}
+              multiple
+              onChange={handleSelected}
+              input={<Input />}
+              renderValue={selected => (
+                <div className={classes.chips}>
+                  {(selected as string[]).map(value => (
+                    <Chip key={value} label={value} className={classes.chip} />
+                  ))}
+                </div>
+              )}
+              MenuProps={MenuProps}
+            >
+              {newServiceFilter[language].map(name => {
+                return (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={getStyles(name, serviceSelected, theme)}
+                  >
+                    <Checkbox checked={serviceSelected.indexOf(name) > -1} />
+                    <ListItemText
+                      disableTypography
+                      primary={
+                        <Typography className={classes.menuItem}>
+                          {name}
+                        </Typography>
+                      }
+                    />
+                  </MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item md={3}>
+          <FormControl className={classes.formControl}>
+            <InputLabel
+              id="demo-simple-select-label"
+              className={classes.menuItem}
+            >
+              {language === ENGLISH ? 'Language' : 'Idioma'}
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              name="setLanguageSelected"
+              value={languageSelected}
+              className={classes.menuItem}
+              multiple
+              onChange={handleSelected}
+              input={<Input />}
+              renderValue={selected => (
+                <div className={classes.chips}>
+                  {(selected as string[]).map(value => (
+                    <Chip key={value} label={value} className={classes.chip} />
+                  ))}
+                </div>
+              )}
+              MenuProps={MenuProps}
+            >
+              {languageCopy[language].map(name => {
+                return (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={getStyles(name, languageSelected, theme)}
+                  >
+                    <Checkbox checked={languageSelected.indexOf(name) > -1} />
+                    <ListItemText
+                      disableTypography
+                      primary={
+                        <Typography className={classes.menuItem}>
+                          {name}
+                        </Typography>
+                      }
+                    />
+                  </MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item md={3}>
+          <FormControl className={classes.formControl}>
+            <InputLabel
+              id="demo-simple-select-label"
+              className={classes.menuItem}
+            >
+              {language === ENGLISH ? 'Gender' : 'Género'}
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              name="setGenderSelected"
+              value={genderSelected}
+              multiple
+              className={classes.menuItem}
+              onChange={handleSelected}
+              input={<Input />}
+              renderValue={selected => (
+                <div className={classes.chips}>
+                  {(selected as string[]).map(value => (
+                    <Chip key={value} label={value} className={classes.chip} />
+                  ))}
+                </div>
+              )}
+              MenuProps={MenuProps}
+            >
+              {genderCopy[language].map(name => {
+                return (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={getStyles(name, genderSelected, theme)}
+                  >
+                    <Checkbox checked={genderSelected.indexOf(name) > -1} />
+                    <ListItemText
+                      disableTypography
+                      primary={
+                        <Typography className={classes.menuItem}>
+                          {name}
+                        </Typography>
+                      }
+                    />
+                  </MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+        </Grid>
       </Grid>
     </>
   )

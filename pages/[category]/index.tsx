@@ -2,24 +2,28 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import { useRouter } from 'next/router'
-import Fab from '@material-ui/core/Fab'
-import Modal from '@material-ui/core/Modal'
-import FilterListIcon from '@material-ui/icons/FilterList'
-import ListIcon from '@material-ui/icons/List'
-import MapIcon from '@material-ui/icons/Room'
-import Hidden from '@material-ui/core/Hidden'
+import { Fab, Modal, Hidden, Paper, Grid } from '@material-ui/core/'
+import { FilterList, List, Room } from '@material-ui/icons/'
 import withWidth, { WithWidth } from '@material-ui/core/withWidth'
-import Grid from '@material-ui/core/Grid'
 import {
   useMultipleListRecords,
   useConvertedLocationRecords,
   useLanguage,
 } from '../../hooks/'
-import { siteTitle, categories, useStyles } from '../../constants'
-import { RecordPane, DisplayMap, CategoryFilters } from '../../components'
-import { categoryCopy, getMatchingRecords } from '../../constants/'
+import {
+  RecordPane,
+  DisplayMap,
+  CategoryFilters,
+  MobileFilterModal,
+} from '../../components'
+import {
+  categoryCopy,
+  getMatchingRecords,
+  siteTitle,
+  categories,
+  useStyles,
+} from '../../constants/'
 import { Title, Paragraph } from '../../ui'
-import MobileFilterModal from '../../components/MobileFilterModal'
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
 const MenuProps = {
@@ -64,7 +68,6 @@ const LandingPage = (props: WithWidth) => {
     useMultipleListRecords(routeCategory)
   const { convertedLocRecords, setLocationRecords } =
     useConvertedLocationRecords()
-
   useEffect((): void => {
     let keywordQuery = serviceSelected.concat(
       citySelected,
@@ -82,7 +85,6 @@ const LandingPage = (props: WithWidth) => {
         ),
       )
       setFilteredResults(newResults)
-
       setLocationRecords(newResults)
     } else if (fetchedRecords && keywordQuery.length === 0) {
       setFilteredResults(fetchedRecords)
@@ -97,12 +99,10 @@ const LandingPage = (props: WithWidth) => {
     validCategory,
   ])
   if (!validCategory) return <Error statusCode={404} />
-
   const handleSelected = e => {
     let value = e.target.value
     setFunctions[e.target.name](value)
   }
-
   return (
     <>
       <Head>
@@ -143,33 +143,51 @@ const LandingPage = (props: WithWidth) => {
             </Grid>
           </Hidden>
           <Hidden smDown>
-            <CategoryFilters
-              citySelected={citySelected}
-              serviceSelected={serviceSelected}
-              genderSelected={genderSelected}
-              languageSelected={languageSelected}
-              handleSelected={handleSelected}
-              MenuProps={MenuProps}
-              routeCategory={routeCategory}
-            />{' '}
+            <Paper
+              elevation={3}
+              style={{
+                marginLeft: '3rem',
+                marginBottom: '5rem',
+                padding: '3rem',
+              }}
+            >
+              <p
+                style={{
+                  fontSize: '1.5rem',
+                  marginTop: '1rem',
+                  marginBottom: '2rem',
+                }}
+              >
+                {activeCopy.chooseFilters}
+              </p>
+              <CategoryFilters
+                citySelected={citySelected}
+                serviceSelected={serviceSelected}
+                genderSelected={genderSelected}
+                languageSelected={languageSelected}
+                handleSelected={handleSelected}
+                MenuProps={MenuProps}
+                routeCategory={routeCategory}
+              />
+            </Paper>
           </Hidden>
           <Hidden smUp>
             <Grid container spacing={2} justify="center">
               <Grid item xs={3}>
                 <Fab variant="extended" onClick={() => setCurrentView('list')}>
-                  <ListIcon />
+                  <List />
                   {activeCopy.list}
                 </Fab>
               </Grid>
               <Grid item xs={3} spacing={3}>
                 <Fab variant="extended" onClick={() => setCurrentView('map')}>
-                  <MapIcon />
+                  <Room />
                   {activeCopy.map}
                 </Fab>
               </Grid>
               <Grid item xs={3}>
                 <Fab variant="extended" onClick={() => setOpen(true)}>
-                  <FilterListIcon />
+                  <FilterList />
                   {activeCopy.filter}
                 </Fab>
               </Grid>

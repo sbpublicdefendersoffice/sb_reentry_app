@@ -1,7 +1,4 @@
-import Fab from '@material-ui/core/Fab'
-import Grid from '@material-ui/core/Grid'
-import { Paragraph } from '../ui'
-import { useLanguage } from '../hooks/'
+import { Fab, Grid } from '@material-ui/core/'
 import { useStyles } from '../constants'
 import { CategoryFilters } from '../components'
 import { Filter } from '../types/filter'
@@ -26,20 +23,22 @@ const MobileFilterModal = ({
         style={modalStyle}
         className={classes.paperFilter}
       >
-        <Grid item xs={12} sm={12} md={3}>
-          <Paragraph style={{ textAlign: 'center' }}>
+        <Grid item xs={12} sm={12} md={3} style={{ marginLeft: '2rem' }}>
+          <p style={{ textAlign: 'center', fontSize: '2rem' }}>
             {activeCopy.chooseFilters}
-          </Paragraph>
+          </p>
         </Grid>
-        <CategoryFilters
-          citySelected={citySelected}
-          serviceSelected={serviceSelected}
-          genderSelected={genderSelected}
-          languageSelected={languageSelected}
-          handleSelected={handleSelected}
-          MenuProps={MenuProps}
-          routeCategory={routeCategory}
-        />
+        <Grid item xs={12} style={{ marginLeft: '2rem' }}>
+          <CategoryFilters
+            citySelected={citySelected}
+            serviceSelected={serviceSelected}
+            genderSelected={genderSelected}
+            languageSelected={languageSelected}
+            handleSelected={handleSelected}
+            MenuProps={MenuProps}
+            routeCategory={routeCategory}
+          />
+        </Grid>
         <Grid
           item
           xs={12}
@@ -48,7 +47,12 @@ const MobileFilterModal = ({
           style={{ textAlign: 'center', margin: 'auto' }}
         >
           <Fab
-            style={{ textAlign: 'center', margin: 'auto' }}
+            style={{
+              textAlign: 'center',
+              margin: 'auto',
+              fontSize: '1.2rem',
+              marginTop: '2rem',
+            }}
             onClick={() => setOpen(false)}
             variant="extended"
           >
