@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getDb } from '../../helpers/sequelize'
 
-const addFeedback = async (
+const postFeedback = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
@@ -26,4 +26,4 @@ const addFeedback = async (
   }
 }
 
-export default addFeedback
+export default postFeedback
