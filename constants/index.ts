@@ -36,11 +36,7 @@ export {
   LisaSuccessStory,
 } from './successStory-data'
 export { aboutCopy } from './aboutus-data'
-export {
-  categoryServiceFilter,
-  categoryCopy,
-  getMatchingRecords,
-} from './filter'
+export { categoryServiceFilter, categoryCopy } from './filter'
 export {
   cityCopy,
   foodServiceCopy,
