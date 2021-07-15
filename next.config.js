@@ -19,6 +19,16 @@ const nextConfigOptions = {
       type: 'asset/inline',
     })
 
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      dns: false,
+      fs: false,
+      net: false,
+      'pg-hstore': false,
+      'pg-native': false,
+      tls: false,
+    }
+
     return config
   },
 }
