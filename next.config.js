@@ -2,6 +2,7 @@
 // make sure to see if this is still necessary the next time packages are upgraded
 // require('webpack')
 const withPWA = require('next-pwa')
+const { exec } = require('child_process')
 
 const nextConfigOptions = {
   future: {
@@ -17,6 +18,14 @@ const nextConfigOptions = {
     config.module.rules.push({
       test: /\.pdf/,
       type: 'asset/inline',
+    })
+
+    config.plugins.push({
+      apply: compiler => {
+        compiler.hooks.afterEmit.tap('StartSequelize', () =>
+          exec('node ./helpers/sequelize.js&'),
+        )
+      },
     })
 
     return config

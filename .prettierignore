@@ -1,6 +1,6 @@
-
 # files
 yarn.lock
+./remote_init.sql
 
 # pwa files
 /public/*.js
