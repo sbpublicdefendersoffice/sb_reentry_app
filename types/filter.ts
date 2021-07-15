@@ -1,11 +1,6 @@
 export interface Filter {
-  citySelected: string[]
-  serviceSelected: string[]
-  genderSelected: string[]
-  languageSelected: string[]
-  handleSelected: any
-
-  MenuProps: any
+  fields: any
+  handleFieldsSelected: any
   routeCategory: string
   setOpen?: any
   modalStyle?: any
