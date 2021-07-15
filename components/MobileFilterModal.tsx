@@ -3,14 +3,9 @@ import { useStyles } from '../constants'
 import { CategoryFilters } from '../components'
 import { Filter } from '../types/filter'
 const MobileFilterModal = ({
-  citySelected,
-  serviceSelected,
-  genderSelected,
-  languageSelected,
-  handleSelected,
-  MenuProps,
+  fields,
+  handleFieldsSelected,
   routeCategory,
-  modalStyle,
   setOpen,
   activeCopy,
 }: Filter) => {
@@ -20,7 +15,7 @@ const MobileFilterModal = ({
       <Grid
         container
         spacing={3}
-        style={modalStyle}
+        style={{ top: '45%', left: '50%', transform: `translate(-50%, -50%)` }}
         className={classes.paperFilter}
       >
         <Grid item xs={12} sm={12} md={3} style={{ marginLeft: '2rem' }}>
@@ -30,12 +25,8 @@ const MobileFilterModal = ({
         </Grid>
         <Grid item xs={12} style={{ marginLeft: '2rem' }}>
           <CategoryFilters
-            citySelected={citySelected}
-            serviceSelected={serviceSelected}
-            genderSelected={genderSelected}
-            languageSelected={languageSelected}
-            handleSelected={handleSelected}
-            MenuProps={MenuProps}
+            fields={fields}
+            handleFieldsSelected={handleFieldsSelected}
             routeCategory={routeCategory}
           />
         </Grid>
