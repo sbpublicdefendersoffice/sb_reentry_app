@@ -111,18 +111,27 @@ const LandingPage = () => {
               activeCopy={activeCopy}
             />
           </Modal>
-          {currentView == 'list' && (
+          <Hidden smUp>
+            {currentView == 'list' && (
+              <RecordPane
+                orgInfo={filteredResults}
+                displayCategory={displayCategory}
+                routeCategory={routeCategory}
+                setRecords={setFetchedRecords}
+              />
+            )}
+
+            {currentView == 'map' && convertedLocRecords && (
+              <DisplayMap latLongInfo={convertedLocRecords} />
+            )}
+          </Hidden>
+          <Hidden smDown>
             <RecordPane
               orgInfo={filteredResults}
               displayCategory={displayCategory}
               routeCategory={routeCategory}
               setRecords={setFetchedRecords}
             />
-          )}
-          {currentView == 'map' && convertedLocRecords && (
-            <DisplayMap latLongInfo={convertedLocRecords} />
-          )}
-          <Hidden smDown>
             {convertedLocRecords && (
               <DisplayMap latLongInfo={convertedLocRecords} />
             )}
