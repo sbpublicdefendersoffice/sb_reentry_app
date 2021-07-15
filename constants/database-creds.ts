@@ -1,6 +1,8 @@
+import { Options } from 'sequelize'
+
 const dialect = 'postgres'
 
-const postgresEnvs = {
+const postgresEnvs: { [env: string]: Options } = {
   development: {
     dialect,
     username: 'thrive',
@@ -14,7 +16,7 @@ const postgresEnvs = {
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASS,
     host: process.env.POSTGRES_HOST,
-    port: process.env.POSTGRES_PORT,
+    port: +process.env.POSTGRES_PORT,
     database: process.env.POSTGRES_DATA,
     // ssl: true,
     // dialectOptions: {
@@ -23,4 +25,4 @@ const postgresEnvs = {
   },
 }
 
-module.exports = postgresEnvs[process.env.NODE_ENV]
+export default postgresEnvs[process.env.NODE_ENV]
