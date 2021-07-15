@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { Op } from 'sequelize'
 
 import { ENGLISH, SPANISH } from '../../constants/language'
-import { getDb } from '../../helpers/sequelize'
+import initDb from '../../helpers/sequelize'
 
 const searchByKeyword = async (
   req: NextApiRequest,
@@ -12,7 +12,7 @@ const searchByKeyword = async (
     const { query, language } = req.query
 
     if (language === ENGLISH || language || SPANISH) {
-      const { orgObj, locObj } = getDb()
+      const { orgObj, locObj } = initDb()
       const finalQuery = String(query).trim().toLowerCase()
 
       const returnedOrgs = await orgObj.findAll({
