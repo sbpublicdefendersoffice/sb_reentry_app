@@ -52,6 +52,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     menuItem: {
       display: 'flex',
       fontSize: '1.6rem',
+      marginRight: '5.5rem',
     },
     filters: {
       margin: '3rem !important',
