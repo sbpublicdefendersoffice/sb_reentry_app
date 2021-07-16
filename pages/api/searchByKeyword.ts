@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { Op } from 'sequelize'
+import { Op, fn, where, col } from 'sequelize'
 
 import { ENGLISH, SPANISH } from '../../constants/language'
 import initDb from '../../helpers/sequelize'
@@ -11,14 +11,14 @@ const searchByKeyword = async (
   try {
     const { query, language } = req.query
 
-    if (language === ENGLISH || language || SPANISH) {
+    if (language === ENGLISH || language === SPANISH) {
       const { orgObj, locObj } = initDb()
       const finalQuery = String(query).trim().toLowerCase()
 
       const returnedOrgs = await orgObj.findAll({
-        where: {
-          [`tags_${language}`]: { [Op.contains]: [finalQuery] },
-        },
+        where: where(fn('ARRAY_TO_STRING', col(`tags_${language}`), ''), {
+          [Op.substring]: finalQuery,
+        }),
         attributes: [
           'id',
           `categories_${language}`,
