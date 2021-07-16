@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getDb } from '../../helpers/sequelize'
+import initDb from '../../helpers/sequelize'
 
 const postFeedback = async (
   req: NextApiRequest,
@@ -8,7 +8,7 @@ const postFeedback = async (
   try {
     const { is_useful, route, language, comment } = req.body
     if (is_useful && route && language) {
-      const { useObj } = getDb()
+      const { useObj } = initDb()
 
       const addFeedback = await useObj.create({
         created_at: new Date(Date.now()),

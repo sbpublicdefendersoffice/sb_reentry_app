@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { Op } from 'sequelize'
 
 import { backendCategories, ENGLISH, SPANISH } from '../../constants/'
-import { getDb } from '../../helpers/sequelize'
+import initDb from '../../helpers/sequelize'
 
 const getByCategory = async (
   req: NextApiRequest,
@@ -16,7 +16,7 @@ const getByCategory = async (
       backendCategories.has(category as string) &&
       (language === ENGLISH || language === SPANISH)
     ) {
-      const { orgObj, locObj, servObj } = getDb()
+      const { orgObj, locObj, servObj } = initDb()
 
       const returnedOrgs = await orgObj.findAll({
         where: {

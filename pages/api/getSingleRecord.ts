@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 import { ENGLISH, SPANISH } from '../../constants/language'
-import { getDb } from '../../helpers/sequelize'
+import initDb from '../../helpers/sequelize'
 
 const getSingleRecord = async (
   req: NextApiRequest,
@@ -11,7 +11,7 @@ const getSingleRecord = async (
     const { id, language } = req.query
 
     if (language === ENGLISH || language || SPANISH) {
-      const { orgObj, locObj, servObj, schObj } = getDb()
+      const { orgObj, locObj, servObj, schObj } = initDb()
 
       const returnedOrg = await orgObj.findOne({
         where: { id },

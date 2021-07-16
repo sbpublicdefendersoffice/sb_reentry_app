@@ -27,4 +27,27 @@ export type {
   CardInfo,
 } from './records'
 export type { RouteInfo, InfoWithDescription } from './routes'
+export type {
+  OrganizationModel,
+  LocationsModel,
+  ServiceModel,
+  SchedulesModel,
+  LocationsOrganizationsModel,
+  SchedulesLocationsModel,
+  SchedulesOrganizationsModel,
+  ServicesLocationsModel,
+  ServicesOrganizationsModel,
+  IsThisUsefulModel,
+  Organization,
+  Location,
+  Service,
+  Schedule,
+  LocationOrganization,
+  ScheduleLocation,
+  ScheduleOrganization,
+  ServiceLocation,
+  ServiceOrganization,
+  IsThisUseful,
+  AllModels,
+} from './sequelize'
 export type { Color, TextSize, UseToastProps, WindowSize } from './ui'

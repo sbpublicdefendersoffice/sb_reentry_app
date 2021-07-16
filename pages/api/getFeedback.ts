@@ -1,9 +1,9 @@
 import { NextApiResponse } from 'next'
-import { getDb } from '../../helpers/sequelize'
+import initDb from '../../helpers/sequelize'
 
 const getFeedback = async (_, res: NextApiResponse): Promise<void> => {
   try {
-    const { useObj } = getDb()
+    const { useObj } = initDb()
 
     const returnedFeedback = await useObj.findAll()
 
