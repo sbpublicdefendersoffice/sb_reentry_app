@@ -90,7 +90,7 @@ const LandingPage = () => {
               activeCopy={activeCopy}
             />
           </Hidden>
-          <Hidden smUp>
+          <Hidden mdUp>
             <MobileButtonsLandingPage
               setCurrentView={setCurrentView}
               activeCopy={activeCopy}
@@ -111,7 +111,7 @@ const LandingPage = () => {
               activeCopy={activeCopy}
             />
           </Modal>
-          <Hidden smUp>
+          <Hidden mdUp>
             {currentView == 'list' && (
               <RecordPane
                 orgInfo={filteredResults}
