@@ -19,12 +19,9 @@ const FilterCity = ({ fields, handleFieldsSelected }) => {
   return (
     <>
       {' '}
-      <Grid item md={3}>
+      <Grid item md={3} className={classes.desktopFilterContainer}>
         <FormControl className={classes.formControl}>
-          <InputLabel
-            className={classes.menuItem}
-            id="demo-simple-select-label"
-          >
+          <InputLabel id="demo-simple-select-label" style={{ width: '3rem' }}>
             {language === ENGLISH ? 'City' : 'Ciudad'}
           </InputLabel>
           <Select
@@ -32,7 +29,7 @@ const FilterCity = ({ fields, handleFieldsSelected }) => {
             id="demo-simple-select"
             name="citySelected"
             value={fields.citySelected}
-            className={classes.menuItem}
+            className={classes.menuItemContainer}
             multiple
             onChange={handleFieldsSelected}
             input={<Input />}

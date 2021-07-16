@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper } from '@material-ui/core/'
+import { Grid, Paper } from '@material-ui/core/'
 import { CategoryFilters } from '../components/'
 const DesktopFilterView = ({
   activeCopy,
@@ -9,29 +9,37 @@ const DesktopFilterView = ({
 }) => {
   return (
     <>
-      <Paper
-        elevation={3}
-        style={{
-          marginLeft: '3rem',
-          marginBottom: '5rem',
-          padding: '3rem',
-        }}
-      >
-        <p
+      <Grid item md={12}>
+        <Paper
+          elevation={3}
           style={{
-            fontSize: '1.5rem',
-            marginTop: '1rem',
-            marginBottom: '2rem',
+            margin: 'auto',
+            marginBottom: '5rem',
+            display: 'flex',
+            padding: '3rem',
+            width: '80%',
           }}
         >
-          {activeCopy.chooseFilters}
-        </p>
-        <CategoryFilters
-          fields={fields}
-          handleFieldsSelected={handleFieldsSelected}
-          routeCategory={routeCategory}
-        />
-      </Paper>
+          <Grid container>
+            <Grid item md={12}>
+              <p
+                style={{
+                  fontSize: '1.5rem',
+                  marginTop: '1rem',
+                  marginBottom: '2rem',
+                }}
+              >
+                {activeCopy.chooseFilters}
+              </p>
+            </Grid>
+            <CategoryFilters
+              fields={fields}
+              handleFieldsSelected={handleFieldsSelected}
+              routeCategory={routeCategory}
+            />
+          </Grid>
+        </Paper>
+      </Grid>
     </>
   )
 }

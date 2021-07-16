@@ -41,26 +41,32 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     formControl: {
-      margin: '1rem !important',
-      width: '18.75rem',
+      // margin: '1rem !important',
+      width: '13.75rem',
       fontSize: '2rem',
+
       display: 'flex',
       '@media (max-width: 500px)': {
         margin: '0rem !important',
       },
+    },
+    desktopFilterContainer: {
+      flexBasis: '0rem',
+      display: 'flex',
+      margin: '.8rem',
+      justifyContent: 'center',
+    },
+    menuItemContainer: {
+      display: 'flex',
+      fontSize: '1.6rem',
+      padding: '1rem',
+      marginLeft: '2rem',
+      width: '13rem',
     },
     menuItem: {
       display: 'flex',
       fontSize: '1.6rem',
-      marginRight: '5.5rem',
-    },
-    filters: {
-      margin: '3rem !important',
-      width: '18.75rem',
-      fontSize: '2rem',
-      '@media (max-width: 500px)': {
-        margin: '0rem !important',
-      },
+      marginLeft: '2rem',
     },
 
     paper: {
@@ -354,7 +360,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
     },
     chip: {
-      margin: 2,
+      margin: 4,
     },
     flyerImage: {
       position: 'fixed',

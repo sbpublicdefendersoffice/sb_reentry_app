@@ -23,7 +23,7 @@ const FilterService = ({ fields, handleFieldsSelected, routeCategory }) => {
   return (
     <>
       {' '}
-      <Grid item md={3}>
+      <Grid item md={3} className={classes.desktopFilterContainer}>
         <FormControl className={classes.formControl}>
           <InputLabel
             id="demo-simple-select-label"
@@ -35,7 +35,7 @@ const FilterService = ({ fields, handleFieldsSelected, routeCategory }) => {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             name="serviceSelected"
-            className={classes.menuItem}
+            className={classes.menuItemContainer}
             value={fields.serviceSelected}
             multiple
             onChange={handleFieldsSelected}

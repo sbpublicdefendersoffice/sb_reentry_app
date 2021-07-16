@@ -18,7 +18,7 @@ const FilterGender = ({ fields, handleFieldsSelected }) => {
   const { language } = useLanguage()
   return (
     <>
-      <Grid item md={3}>
+      <Grid item md={3} className={classes.desktopFilterContainer}>
         <FormControl className={classes.formControl}>
           <InputLabel
             id="demo-simple-select-label"
@@ -32,7 +32,7 @@ const FilterGender = ({ fields, handleFieldsSelected }) => {
             name="genderSelected"
             value={fields.genderSelected}
             multiple
-            className={classes.menuItem}
+            className={classes.menuItemContainer}
             onChange={handleFieldsSelected}
             input={<Input />}
             renderValue={selected => (
