@@ -20,7 +20,7 @@ import Input from '../ui/Input'
 import { searchByKeyword } from '../helpers/search'
 import { searchCopy } from '../constants/copy'
 import { GlobalSearchResult, SearchTermsMarquee } from './'
-import { OrgRecord, PGSearchResponse } from '../types'
+import { PGSearchResponse } from '../types'
 
 import styles from './LiveDataSearch.module.css'
 
@@ -118,21 +118,23 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
           {tagsReady && !testWorkaround && (
             <SearchTermsMarquee
               searchRecords={searchResults}
+              searchQuery={searchQuery}
               language={language}
               formRef={formRef}
               delimiter={delimiter}
             />
           )}
           <div style={{ marginTop: tagsReady ? '3.25rem' : 0 }}>
-            {/* {searchResults.records.map((record: OrgRecord, i: number) => (
+            {searchResults.map((record: PGSearchResponse, i: number) => (
               <Fragment key={i}>
                 <GlobalSearchResult
                   record={record}
                   delimiter={delimiter}
                   setIsFocused={setIsFocused}
+                  searchQuery={searchQuery}
                 />
               </Fragment>
-            ))} */}
+            ))}
           </div>
         </ul>
       )}

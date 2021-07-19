@@ -7,6 +7,7 @@ import styles from './SearchTermsMarquee.module.css'
 
 interface SearchTermsMarqueeProps {
   searchRecords: PGSearchResponse[]
+  searchQuery: string
   language: Language
   formRef: MutableRefObject<HTMLFormElement> | null
   delimiter: string
@@ -23,6 +24,7 @@ const copy: CopyHolder = {
 
 const SearchTermsMarquee = ({
   searchRecords,
+  searchQuery,
   language,
   formRef,
   delimiter,
@@ -55,9 +57,11 @@ const SearchTermsMarquee = ({
     const mappedSearchTerms: string[][] = searchRecords.map(
       (record: PGSearchResponse) => record.tags_english || record.tags_english,
     )
-    const searchTermsDeDupe: string[] = [...new Set(mappedSearchTerms.flat(1))]
+    const searchTermsDeDupeAndFiltered: string[] = [
+      ...new Set(mappedSearchTerms.flat(1)),
+    ].filter(tag => tag.includes(searchQuery))
 
-    setSearchTermsToScroll(searchTermsDeDupe)
+    setSearchTermsToScroll(searchTermsDeDupeAndFiltered)
   }, [searchRecords])
 
   const readyToScrollRecords: boolean = Boolean(searchTermsToScroll?.length)
