@@ -20,7 +20,7 @@ import Input from '../ui/Input'
 import { searchByKeyword } from '../helpers/search'
 import { searchCopy } from '../constants/copy'
 import { GlobalSearchResult, SearchTermsMarquee } from './'
-import { OrgRecord, TranslatedRecordResponse } from '../types/records'
+import { OrgRecord, PGSearchResponse } from '../types'
 
 import styles from './LiveDataSearch.module.css'
 
@@ -55,7 +55,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
 
   const sendQuery = async (): Promise<void> => {
     if (searchQuery) {
-      const call: TranslatedRecordResponse = await searchByKeyword(
+      const call: PGSearchResponse[] = await searchByKeyword(
         searchQuery,
         language,
       )
@@ -78,9 +78,8 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
   }, [searchQuery, delayedQuery])
 
   const tagsReady: boolean =
-    searchResults?.records?.some(
-      (record: OrgRecord) =>
-        record.fields.org_tags || record.fields.org_tags_spanish,
+    searchResults?.some(
+      (record: PGSearchResponse) => record.tags_english || record.tags_spanish,
     ) && Boolean(formRef.current)
 
   return (
@@ -118,14 +117,14 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
         <ul className={styles.ResultsContainer}>
           {tagsReady && !testWorkaround && (
             <SearchTermsMarquee
-              searchRecords={searchResults.records}
+              searchRecords={searchResults}
               language={language}
               formRef={formRef}
               delimiter={delimiter}
             />
           )}
           <div style={{ marginTop: tagsReady ? '3.25rem' : 0 }}>
-            {searchResults.records.map((record: OrgRecord, i: number) => (
+            {/* {searchResults.records.map((record: OrgRecord, i: number) => (
               <Fragment key={i}>
                 <GlobalSearchResult
                   record={record}
@@ -133,7 +132,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
                   setIsFocused={setIsFocused}
                 />
               </Fragment>
-            ))}
+            ))} */}
           </div>
         </ul>
       )}
