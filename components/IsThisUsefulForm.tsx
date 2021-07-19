@@ -68,17 +68,14 @@ const IsThisUsefulForm = ({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     if (feedbackInfo) {
-      const postCommentToAirtable: Response = await fetch(
-        '/api/airtablecomment',
-        {
-          method: POST,
-          body: JSON.stringify(feedbackInfo),
-        },
-      )
+      const postCommentToAirtable: Response = await fetch('/api/postFeedback', {
+        method: POST,
+        body: JSON.stringify(feedbackInfo),
+      })
 
       const apiResponse = await postCommentToAirtable.json()
 
-      if (apiResponse.error) setToast(`${error}${apiResponse.error.type}`)
+      if (apiResponse.error) setToast(`${error}${apiResponse.error}`)
       else {
         setToast(success)
         setFeedbackInfo(null)
