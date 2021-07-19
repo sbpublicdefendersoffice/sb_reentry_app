@@ -1,21 +1,22 @@
 import { useState } from 'react'
-import { convertLocationsForMap } from '../helpers/converters'
-import { LocationRecord, TranslatedRecordResponse } from '../types/records'
+import { PGSearchResponse } from '../types/postgresRecords'
 
-type LocationRecordsState = LocationRecord[] | null
+type LocationRecordsState = PGSearchResponse[] | null
 
 interface UseConvertedLocationRecordsReturn {
   convertedLocRecords: LocationRecordsState
   // eslint-disable-next-line no-unused-vars
-  setLocationRecords: (searchResults: TranslatedRecordResponse) => void
+  setLocationRecords: (searchResults: PGSearchResponse[]) => void
 }
 
 const useConvertedLocationRecords = (): UseConvertedLocationRecordsReturn => {
   const [convertedLocRecords, setConvertedLocRecords] =
     useState<LocationRecordsState>(null)
 
-  const setLocationRecords = (searchResults: TranslatedRecordResponse): void =>
-    setConvertedLocRecords(() => convertLocationsForMap(searchResults))
+  const setLocationRecords = (searchResults: PGSearchResponse[]): void =>
+    setConvertedLocRecords(() =>
+      searchResults.filter(res => res?.locations[0]?.longitude),
+    )
 
   return { convertedLocRecords, setLocationRecords }
 }
