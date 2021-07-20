@@ -96,19 +96,21 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
           animationOptions={{ animate: false }}
           zoom={[zoom]}
         >
-          {/* {isInSBCounty && (
+          {isInSBCounty && (
             <MapMarker
               customStyle={{ zIndex: 8 }}
               locationRecord={{
+                city: '',
                 longitude: coords.longitude,
                 latitude: coords.latitude,
                 single_category: 'user',
                 multiple_categories: ['user'],
-                uuid: '',
-                name: language === ENGLISH ? 'Your location' : 'Tu ubicación',
+                id: 0,
+                name_english: 'Your location',
+                name_spanish: 'Tu ubicación',
               }}
             />
-          )} */}
+          )}
           {/* {filteredRecordsReady
             ? locRecordsToFilter.filteredRecords.map(returnMarker)
             : latLongInfo.map(returnMarker)} */}
