@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { Op } from 'sequelize'
 
 import { backendCategories, ENGLISH, SPANISH } from '../../constants/'
+import { PGOrganizationResponse } from '../../types'
 import initDb from '../../helpers/sequelize'
 
 const getByCategory = async (
@@ -9,7 +10,7 @@ const getByCategory = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { category, language } = req.query
+    const { category, language } = JSON.parse(req.body)
     const finalCategory = String(category).trim().toLowerCase()
 
     if (
@@ -27,6 +28,7 @@ const getByCategory = async (
           `categories_${language}`,
           `name_${language}`,
           `tags_${language}`,
+          ['categories_english', 'multiple_categories'],
         ],
         include: [
           {

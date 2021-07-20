@@ -18,16 +18,16 @@ import {
 import { MapMarker, CityFilter, ProximityFilter } from './'
 import { Details } from '../ui'
 
-import { PGLocationPlusSearch } from '../types'
+import { PGOrgPlusLocation } from '../types'
 
 import styles from './DisplayMap.module.css'
 
 interface DisplayMapProps {
-  latLongInfo: PGLocationPlusSearch[]
+  latLongInfo: PGOrgPlusLocation[]
   testWorkaround?: boolean
 }
 
-const returnMarker = (locationRecord: PGLocationPlusSearch, i: number) => (
+const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
   <Fragment key={i}>
     <MapMarker locationRecord={locationRecord} />
   </Fragment>
@@ -44,7 +44,8 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const { coords } = useLocation()
   const { locRecordsToFilter, setLocRecordsToFilter } = useSearchFilters()
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(
-    locRecordsToFilter?.filteredRecords || latLongInfo,
+    // locRecordsToFilter?.filteredRecords ||
+    latLongInfo,
   )
   // Below effect is to clear map when new data is fetched due to new global data fetch or changing the language
   useEffect(
@@ -69,7 +70,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
       className={styles.DisplayMap}
     >
-      {showFilters && (
+      {/* {showFilters && (
         <CityFilter
           locationsToFilter={latLongInfo}
           regionVisibility={locRecordsToFilter.visibility}
@@ -84,7 +85,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
             />
           )}
         </CityFilter>
-      )}
+      )} */}
       {!testWorkaround && (
         // @ts-ignore
         <MapboxMap
@@ -110,9 +111,10 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
               }}
             />
           )}
-          {filteredRecordsReady
+          {/* {filteredRecordsReady
             ? locRecordsToFilter.filteredRecords.map(returnMarker)
-            : latLongInfo.map(returnMarker)}
+            : latLongInfo.map(returnMarker)} */}
+          {latLongInfo.map(returnMarker)}
           <ScaleControl measurement="mi" position="bottom-right" />
         </MapboxMap>
       )}

@@ -18,9 +18,9 @@ export type {
 } from './maps'
 export type {
   PGLocationRecord,
-  PGSearchResponse,
-  PGLocationPlusSearch,
-  PGRecordsByCategory,
+  PGOrganizationResponse,
+  PGOrgPlusLocation,
+  PGServiceRecord,
 } from './postgresRecords'
 export type {
   Holder,

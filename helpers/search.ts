@@ -1,10 +1,10 @@
 import { POST } from './validators'
-import { Language, PGSearchResponse } from '../types/'
+import { Language, PGOrganizationResponse } from '../types/'
 
 export const searchByKeyword = async (
   searchQuery: string,
   language: Language,
-): Promise<PGSearchResponse[]> => {
+): Promise<PGOrganizationResponse[]> => {
   const call: Response = await fetch('/api/searchByKeyword', {
     method: POST,
     body: JSON.stringify({
@@ -13,7 +13,7 @@ export const searchByKeyword = async (
     }),
   })
 
-  const translatedCall: PGSearchResponse[] = await call.json()
+  const translatedCall: PGOrganizationResponse[] = await call.json()
 
   return translatedCall
 }
