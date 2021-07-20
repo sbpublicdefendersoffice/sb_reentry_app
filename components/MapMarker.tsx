@@ -49,7 +49,8 @@ const MapMarker = ({
     pathname.startsWith('/search') || pathname.startsWith('/letushelp')
 
   useEffect(() => {
-    if (isSearchPage) setImgSrc(multiple_categories[0])
+    if (isSearchPage)
+      setImgSrc(multiple_categories ? multiple_categories[0] : 'socialservices')
     else setImgSrc(single_category)
   }, [locationRecord])
 

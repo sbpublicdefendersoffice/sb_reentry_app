@@ -21,22 +21,14 @@ const GlobalSearchResult = ({
 }: GlobalSearchResultProps) => {
   const {
     id,
-    categories_english,
-    categories_spanish,
     name_english,
     name_spanish,
     tags_english,
     tags_spanish,
+    multiple_categories,
   } = record
 
-  let imgSrc: string = 'socialservices'
-
-  if (
-    (categories_english && categories_english[0] !== null) ||
-    (categories_spanish && categories_spanish[0] !== null)
-  ) {
-    imgSrc = categories_english[0] || categories_spanish[0]
-  }
+  const imgSrc = multiple_categories ? multiple_categories[0] : 'socialservices'
 
   const mapRecordSearchTerms = (tags: string[]): string =>
     tags.filter(tag => tag.includes(searchQuery)).join(delimiter)

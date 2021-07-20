@@ -24,7 +24,9 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
 
   const activeCategories: string[] =
     language === ENGLISH ? categories_english : categories_spanish
-  const categoryTitle: string = multiple_categories[0].replace(' ', '')
+  const categoryTitle: string = multiple_categories
+    ? multiple_categories[0].replace(' ', '')
+    : 'socialservices'
   const isCategoryPage: boolean = pathname === '/[category]'
 
   const pushToRecord = (e): Promise<boolean> =>

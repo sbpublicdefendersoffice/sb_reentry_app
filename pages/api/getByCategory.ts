@@ -2,7 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { Op } from 'sequelize'
 
 import { backendCategories, ENGLISH, SPANISH } from '../../constants/'
-import { PGOrganizationResponse } from '../../types'
 import initDb from '../../helpers/sequelize'
 
 const getByCategory = async (

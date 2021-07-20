@@ -56,7 +56,7 @@ const SearchTermsMarquee = ({
   useEffect(() => {
     const mappedSearchTerms: string[][] = searchRecords.map(
       (record: PGOrganizationResponse) =>
-        record.tags_english || record.tags_english,
+        record.tags_english || record.tags_spanish,
     )
     const searchTermsDeDupeAndFiltered: string[] = [
       ...new Set(mappedSearchTerms.flat(1)),
