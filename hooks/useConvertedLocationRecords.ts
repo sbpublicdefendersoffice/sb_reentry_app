@@ -1,19 +1,23 @@
 import { useState } from 'react'
-import { PGResponse, PGLocationRecord } from '../types/postgresRecords'
+import {
+  PGSearchResponse,
+  PGLocationPlusSearch,
+  PGLocationRecord,
+} from '../types/postgresRecords'
 
-type LocationRecordsState = PGLocationRecord[] | null
+type LocationRecordsState = PGLocationPlusSearch[] | null
 
 interface UseConvertedLocationRecordsReturn {
   convertedLocRecords: LocationRecordsState
   // eslint-disable-next-line no-unused-vars
-  setLocationRecords: (searchResults: PGResponse[]) => void
+  setLocationRecords: (searchResults: PGSearchResponse[]) => void
 }
 
 const useConvertedLocationRecords = (): UseConvertedLocationRecordsReturn => {
   const [convertedLocRecords, setConvertedLocRecords] =
     useState<LocationRecordsState>(null)
 
-  const setLocationRecords = (searchResults: PGResponse[]): void =>
+  const setLocationRecords = (searchResults: PGSearchResponse[]): void =>
     setConvertedLocRecords(() =>
       searchResults
         .map(res => {
@@ -26,7 +30,7 @@ const useConvertedLocationRecords = (): UseConvertedLocationRecordsReturn => {
             name_spanish,
           } = res
 
-          const newLocationInfo: PGLocationRecord[] = res.locations.map(
+          const newLocationInfo: PGLocationPlusSearch[] = res.locations.map(
             (loc: PGLocationRecord) => ({
               ...loc,
               categories_english,
@@ -43,8 +47,7 @@ const useConvertedLocationRecords = (): UseConvertedLocationRecordsReturn => {
         .flat(1)
         .filter(loc => loc.longitude),
     )
-  //need to figure out how to get more info into each loc record
-  //need lat,long, single cat, multiple cat,id and name
+
   return { convertedLocRecords, setLocationRecords }
 }
 

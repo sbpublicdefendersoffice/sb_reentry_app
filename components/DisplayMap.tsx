@@ -18,16 +18,16 @@ import {
 import { MapMarker, CityFilter, ProximityFilter } from './'
 import { Details } from '../ui'
 
-import { PGLocationRecord } from '../types'
+import { PGLocationPlusSearch } from '../types'
 
 import styles from './DisplayMap.module.css'
 
 interface DisplayMapProps {
-  latLongInfo: PGLocationRecord[]
+  latLongInfo: PGLocationPlusSearch[]
   testWorkaround?: boolean
 }
 
-const returnMarker = (locationRecord: PGLocationRecord, i: number) => (
+const returnMarker = (locationRecord: PGLocationPlusSearch, i: number) => (
   <Fragment key={i}>
     <MapMarker locationRecord={locationRecord} />
   </Fragment>

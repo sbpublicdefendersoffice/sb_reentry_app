@@ -16,7 +16,12 @@ export type {
   RadiusFilterInfo,
   SantaBarbaraCountyCoords,
 } from './maps'
-export type { PGLocationRecord, PGResponse } from './postgresRecords'
+export type {
+  PGLocationRecord,
+  PGSearchResponse,
+  PGLocationPlusSearch,
+  PGRecordsByCategory,
+} from './postgresRecords'
 export type {
   Holder,
   TranslatedRecordResponse,

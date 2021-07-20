@@ -4,13 +4,13 @@ import { Marker } from 'react-mapbox-gl'
 
 import Popup from './Popup'
 import { usePopup, useLanguage } from '../hooks'
-import { CopyHolder, PGLocationRecord } from '../types'
+import { CopyHolder, PGLocationPlusSearch } from '../types'
 import { ENGLISH } from '../constants/language'
 
 import styles from './MapMarker.module.css'
 
 interface MapMarkerProps {
-  locationRecord: PGLocationRecord
+  locationRecord: PGLocationPlusSearch
   customStyle?: { [cssQuality: string]: string | number }
   testWorkaround?: boolean
 }

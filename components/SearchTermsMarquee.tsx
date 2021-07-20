@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef, MutableRefObject } from 'react'
 
-import { Language, CopyHolder, PGResponse } from '../types'
+import { Language, CopyHolder, PGSearchResponse } from '../types'
 import { Paragraph } from '../ui'
 
 import styles from './SearchTermsMarquee.module.css'
 
 interface SearchTermsMarqueeProps {
-  searchRecords: PGResponse[]
+  searchRecords: PGSearchResponse[]
   searchQuery: string
   language: Language
   formRef: MutableRefObject<HTMLFormElement> | null
@@ -55,7 +55,7 @@ const SearchTermsMarquee = ({
 
   useEffect(() => {
     const mappedSearchTerms: string[][] = searchRecords.map(
-      (record: PGResponse) => record.tags_english || record.tags_english,
+      (record: PGSearchResponse) => record.tags_english || record.tags_english,
     )
     const searchTermsDeDupeAndFiltered: string[] = [
       ...new Set(mappedSearchTerms.flat(1)),

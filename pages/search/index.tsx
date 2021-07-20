@@ -6,7 +6,7 @@ import {
   useLanguage,
   useConvertedLocationRecords,
 } from '../../hooks'
-import { PGResponse } from '../../types'
+import { PGSearchResponse } from '../../types'
 import { TagPane, DisplayMap } from '../../components/'
 
 const GlobalSearchLanding = () => {
@@ -26,7 +26,7 @@ const GlobalSearchLanding = () => {
           captureQuery,
           capturedQueryReference,
         )
-        const call: PGResponse[] = await searchByKeyword(query, language)
+        const call: PGSearchResponse[] = await searchByKeyword(query, language)
         setSearchResults(call)
       }
     }

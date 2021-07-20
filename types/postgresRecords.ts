@@ -1,7 +1,7 @@
-export interface PGResponse {
+export interface PGSearchResponse {
+  id: number
   categories_english?: string[]
   categories_spanish?: string[]
-  id: number
   locations?: PGLocationRecord[]
   multiple_categories?: string[]
   name_english?: string
@@ -11,8 +11,14 @@ export interface PGResponse {
   tags_spanish?: string[]
 }
 
-export interface PGLocationRecord extends PGResponse {
+export interface PGLocationRecord {
   city: string
   latitude: number
   longitude: number
+}
+
+export type PGLocationPlusSearch = PGSearchResponse & PGLocationRecord
+
+export interface PGRecordsByCategory {
+  id: number
 }

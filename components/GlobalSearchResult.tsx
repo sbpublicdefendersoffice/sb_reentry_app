@@ -2,12 +2,12 @@ import { Dispatch, SetStateAction } from 'react'
 import NextLink from 'next/link'
 
 import Paragraph from '../ui/Paragraph'
-import { PGResponse } from '../types/postgresRecords'
+import { PGSearchResponse } from '../types/postgresRecords'
 
 import styles from './GlobalSearchResult.module.css'
 
 export interface GlobalSearchResultProps {
-  record: PGResponse
+  record: PGSearchResponse
   searchQuery: string
   delimiter: string
   setIsFocused: Dispatch<SetStateAction<boolean>>

@@ -2,11 +2,11 @@ import { Fragment, ReactElement } from 'react'
 import { useRouter } from 'next/router'
 
 import useLanguage from '../hooks/useLanguage'
-import { PGResponse } from '../types/'
+import { PGSearchResponse } from '../types/'
 import { ENGLISH } from '../constants/language'
 import { Card, Paragraph } from '../ui'
 export interface OrgRecordCardProps {
-  record: PGResponse
+  record: PGSearchResponse
 }
 export const urlSlug: string = '/[category]/[id]'
 import styles from './OrgRecordCard.module.css'
