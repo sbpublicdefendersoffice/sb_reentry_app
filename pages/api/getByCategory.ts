@@ -20,7 +20,7 @@ const getByCategory = async (
 
       const returnedOrgs = await orgObj.findAll({
         where: {
-          [`categories_${language}`]: { [Op.contains]: [finalCategory] },
+          categories_english: { [Op.contains]: [finalCategory] },
         },
         attributes: [
           'id',
