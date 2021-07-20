@@ -3,11 +3,7 @@ import { useRouter } from 'next/router'
 import { FetchedDataSearch, LeafLoader, OrgRecordCard } from './'
 import { Details, Paragraph } from '../ui'
 import useLanguage from '../hooks/useLanguage'
-import {
-  TranslatedRecordResponse,
-  OrgRecord,
-  PGOrganizationResponse,
-} from '../types/'
+import { PGOrganizationResponse } from '../types/'
 import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
 export interface RecordPaneProps {
@@ -41,13 +37,13 @@ const RecordPane = ({
       >
         {displayCategory}
       </Paragraph>
-      {/* {orgInfo && (
+      {orgInfo && (
         <FetchedDataSearch
           displayCategory={displayCategory}
           originalRecords={orgInfo}
           setRecords={setRecords}
         />
-      )} */}
+      )}
       <Details
         role="list"
         open
