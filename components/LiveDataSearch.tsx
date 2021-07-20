@@ -20,7 +20,7 @@ import Input from '../ui/Input'
 import { searchByKeyword } from '../helpers/search'
 import { searchCopy } from '../constants/copy'
 import { GlobalSearchResult, SearchTermsMarquee } from './'
-import { PGSearchResponse } from '../types'
+import { PGResponse } from '../types'
 
 import styles from './LiveDataSearch.module.css'
 
@@ -55,10 +55,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
 
   const sendQuery = async (): Promise<void> => {
     if (searchQuery) {
-      const call: PGSearchResponse[] = await searchByKeyword(
-        searchQuery,
-        language,
-      )
+      const call: PGResponse[] = await searchByKeyword(searchQuery, language)
       setSearchResults(call)
     }
   }
@@ -79,7 +76,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
 
   const tagsReady: boolean =
     searchResults?.some(
-      (record: PGSearchResponse) => record.tags_english || record.tags_spanish,
+      (record: PGResponse) => record.tags_english || record.tags_spanish,
     ) && Boolean(formRef.current)
 
   return (
@@ -125,7 +122,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
             />
           )}
           <div style={{ marginTop: tagsReady ? '3.25rem' : 0 }}>
-            {searchResults.map((record: PGSearchResponse, i: number) => (
+            {searchResults.map((record: PGResponse, i: number) => (
               <Fragment key={i}>
                 <GlobalSearchResult
                   record={record}

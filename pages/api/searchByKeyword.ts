@@ -24,6 +24,7 @@ const searchByKeyword = async (
           `categories_${language}`,
           `name_${language}`,
           `tags_${language}`,
+          ['categories_english', 'multiple_categories'],
         ],
         include: [
           {

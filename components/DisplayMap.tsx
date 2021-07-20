@@ -18,7 +18,7 @@ import {
 import { MapMarker, CityFilter, ProximityFilter } from './'
 import { Details } from '../ui'
 
-import { LocationRecord, PGSearchResponse, PGLocationRecord } from '../types'
+import { LocationRecord, PGResponse, PGLocationRecord } from '../types'
 
 import styles from './DisplayMap.module.css'
 
@@ -27,7 +27,7 @@ interface DisplayMapProps {
   testWorkaround?: boolean
 }
 
-const returnMarker = (locationRecord: PGSearchResponse, i: number) => (
+const returnMarker = (locationRecord: PGLocationRecord, i: number) => (
   <Fragment key={i}>
     <MapMarker locationRecord={locationRecord} />
   </Fragment>
@@ -112,6 +112,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
           {/* {filteredRecordsReady
             ? locRecordsToFilter.filteredRecords.map(returnMarker)
             : latLongInfo.map(returnMarker)} */}
+          {latLongInfo.map(returnMarker)}
           <ScaleControl measurement="mi" position="bottom-right" />
         </MapboxMap>
       )}

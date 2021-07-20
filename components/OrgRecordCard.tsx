@@ -2,11 +2,11 @@ import { Fragment, ReactElement } from 'react'
 import { useRouter } from 'next/router'
 
 import useLanguage from '../hooks/useLanguage'
-import { PGSearchResponse } from '../types/'
+import { PGResponse } from '../types/'
 import { ENGLISH } from '../constants/language'
 import { Card, Paragraph } from '../ui'
 export interface OrgRecordCardProps {
-  record: PGSearchResponse
+  record: PGResponse
 }
 export const urlSlug: string = '/[category]/[id]'
 import styles from './OrgRecordCard.module.css'
@@ -17,13 +17,14 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
     id,
     categories_english,
     categories_spanish,
+    multiple_categories,
     name_english,
     name_spanish,
   } = record
 
   const activeCategories: string[] =
     language === ENGLISH ? categories_english : categories_spanish
-  const categoryTitle: string = categories_english[0].replace(' ', '')
+  const categoryTitle: string = multiple_categories[0].replace(' ', '')
   const isCategoryPage: boolean = pathname === '/[category]'
 
   const pushToRecord = (e): Promise<boolean> =>

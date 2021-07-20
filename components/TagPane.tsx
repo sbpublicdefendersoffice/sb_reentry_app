@@ -1,12 +1,12 @@
 import { Fragment } from 'react'
 import { LeafLoader, OrgRecordCard } from './'
 import { Details } from '../ui'
-import { PGSearchResponse } from '../types/postgresRecords'
+import { PGResponse } from '../types/postgresRecords'
 import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
 import useLanguage from '../hooks/useLanguage'
 export interface TagPaneProps {
-  orgInfo: PGSearchResponse[]
+  orgInfo: PGResponse[]
 }
 const TagPane = ({ orgInfo }: TagPaneProps) => {
   const { language } = useLanguage()
@@ -21,7 +21,7 @@ const TagPane = ({ orgInfo }: TagPaneProps) => {
         summary={` ${language === ENGLISH ? 'Records' : 'Registros'}`}
       >
         {recordsReady &&
-          orgInfo.map((record: PGSearchResponse, i: number) => (
+          orgInfo.map((record: PGResponse, i: number) => (
             <Fragment key={i}>
               <OrgRecordCard record={record} />
             </Fragment>
