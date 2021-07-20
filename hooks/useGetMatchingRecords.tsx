@@ -1,6 +1,15 @@
 function getAllIndexes(arr, val) {
+  console.log(
+    '🚀 ~ file: useGetMatchingRecords.tsx ~ line 61 ~ getAllIndexes ~ val',
+    val,
+  )
+  console.log('arr:', arr)
   var indexes = [],
     i = -1
+  if (arr == undefined) {
+    return indexes
+  }
+
   while ((i = arr.indexOf(val, i + 1)) != -1) {
     indexes.push(i)
   }
@@ -15,6 +24,11 @@ const getMatchingRecords = (allRecords, keywords) => {
       )
       let locations_city_prep = record.fields.locations_city?.map(item =>
         item.toLowerCase(),
+      )
+      console.log(
+        '🚀 ~ file: useGetMatchingRecords.tsx ~ line 83 ~ getMatchingRecords ~ locations_city_prep',
+        locations_city_prep,
+        keyword.toLowerCase(),
       )
       let location_latitude_prep = record.fields.location_latitude?.map(
         item => item,
@@ -31,14 +45,14 @@ const getMatchingRecords = (allRecords, keywords) => {
         record.fields.location_latitude = location_latitude
         record.fields.location_longitude = location_longitude
       }
-
+      console.log('indexs', indexs)
       return (
         location_services?.includes(keyword.toLowerCase()) ||
         locations_city_prep?.includes(keyword.toLowerCase())
       )
     }),
   )
-
+  console.log('filterdRecords', filteredRecords)
   return { records: filteredRecords, category: allRecords.category }
 }
 export default getMatchingRecords
