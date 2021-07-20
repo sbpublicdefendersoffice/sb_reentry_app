@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { PGSearchResponse } from '../types/postgresRecords'
+import { PGSearchResponse, PGLocationRecord } from '../types/postgresRecords'
 
-type LocationRecordsState = PGSearchResponse[] | null
+type LocationRecordsState = PGLocationRecord[] | null
 
 interface UseConvertedLocationRecordsReturn {
   convertedLocRecords: LocationRecordsState
@@ -15,9 +15,12 @@ const useConvertedLocationRecords = (): UseConvertedLocationRecordsReturn => {
 
   const setLocationRecords = (searchResults: PGSearchResponse[]): void =>
     setConvertedLocRecords(() =>
-      searchResults.filter(res => res?.locations[0]?.longitude),
+      searchResults
+        .map(res => res.locations)
+        .flat(1)
+        .filter(loc => loc.longitude),
     )
-
+  //need to figure out how to get more info into each loc record
   return { convertedLocRecords, setLocationRecords }
 }
 
