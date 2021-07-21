@@ -1,19 +1,15 @@
 import NextLink from 'next/link'
 import { useState, useRef, ReactElement, Fragment } from 'react'
-
 import Burger from './Burger'
 import BurgerItems from './BurgerItems'
-import { useLanguage, useResizeEvent } from '../hooks'
+import { useLanguage, useResizeEvent, useOnClickOutside } from '../hooks'
 import styles from './Header.module.css'
-
 import { staticPageRoutes } from '../constants/routes'
 import { RouteInfo } from '../types/routes'
-import { useOnClickOutside } from '../hooks/useOnClickOutside'
 import { ThriveLogo, Paragraph } from '../ui'
 import LiveDataSearch from './LiveDataSearch'
-
+import { Hidden } from '@material-ui/core'
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
-
 const Header = () => {
   const { language } = useLanguage()
   const [isBurgerVisible, setIsBurgerVisible] = useState<boolean>(
@@ -21,21 +17,16 @@ const Header = () => {
   )
   const [open, setOpen] = useState<boolean>(false)
   const node = useRef()
-
   useOnClickOutside(node, () => setOpen(false))
-
   const burgerVisibility = () => {
     if (innerWidth <= 700) setIsBurgerVisible(true)
     else setIsBurgerVisible(false)
   }
-
   useResizeEvent(burgerVisibility)
-
   const StaticPages: ReactElement[] = staticPageRoutes.map(
     (routeData: RouteInfo, i: number) => {
       const title = routeData[`title_${language}`]
       const { route } = routeData
-
       const link: ReactElement = (
         <NextLink href={route} as={route}>
           <h2 role="term" className={styles.Title}>
@@ -43,7 +34,6 @@ const Header = () => {
           </h2>
         </NextLink>
       )
-
       if (i === lastStaticRouteIndex) return <Fragment key={i}>{link}</Fragment>
       else
         return (
@@ -60,7 +50,6 @@ const Header = () => {
         )
     },
   )
-
   return (
     <header role="banner" className={styles.Header}>
       <div className={styles.HeaderContainer}>
@@ -71,7 +60,6 @@ const Header = () => {
           <div className={styles.NavContainer}>{StaticPages}</div>
         </nav>
       </div>
-
       <div role="menu" ref={node}>
         {isBurgerVisible && (
           <>
@@ -80,7 +68,9 @@ const Header = () => {
           </>
         )}
       </div>
-      <LiveDataSearch />
+      <Hidden smDown>
+        <LiveDataSearch />
+      </Hidden>
     </header>
   )
 }
