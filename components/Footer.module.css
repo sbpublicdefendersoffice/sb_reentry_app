@@ -71,7 +71,11 @@
 .Disclaimer {
   padding: 0 10%;
 }
-
+@media (max-width: 900px) {
+  .Footer {
+    margin-bottom: 4rem;
+  }
+}
 @media (max-width: 500px) {
   .container {
     grid-template-columns: auto auto min-content min-content;
