@@ -103,13 +103,15 @@ const LandingPage = () => {
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
           >
-            <MobileFilterModal
-              fields={fields}
-              handleFieldsSelected={handleFieldsSelected}
-              routeCategory={routeCategory}
-              setOpen={setOpen}
-              activeCopy={activeCopy}
-            />
+            <>
+              <MobileFilterModal
+                fields={fields}
+                handleFieldsSelected={handleFieldsSelected}
+                routeCategory={routeCategory}
+                setOpen={setOpen}
+                activeCopy={activeCopy}
+              />
+            </>
           </Modal>
           <Hidden mdUp>
             {currentView == 'list' && (
