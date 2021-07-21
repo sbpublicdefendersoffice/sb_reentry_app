@@ -17,7 +17,7 @@ import {
   LangSwitcher,
   Toast,
   IsThisUsefulTag,
-  MobileFooter,
+  MobileAppBar,
 } from '../components'
 import { checkAndSetUserLocation } from '../helpers/location'
 
@@ -64,7 +64,7 @@ const App = ({ Component, pageProps }: AppProps) => {
                 </main>
                 <IsThisUsefulTag />
                 <Footer />
-                <MobileFooter />
+                <MobileAppBar />
                 <Toast />
               </GlobalSearchProvider>
             </ToastProvider>
