@@ -9,18 +9,45 @@ export interface PGOrganizationResponse {
   single_category?: string
   tags_english?: string[]
   tags_spanish?: string[]
+  website?: string
+  notes_english?: string
+  notes_spanish?: string
+  languages_spoken_english?: string
+  languages_spoken_spanish?: string
+  customers_served_english?: string
+  customers_served_spanish?: string
 }
 
 export interface PGLocationRecord {
+  id?: number
   city: string
   latitude: number
   longitude: number
+  name?: string
+  address?: string
+  address_2?: string
+  zip?: number
+  state?: string
+  phone?: string
+  email?: string
+  notes?: string
+  website?: string
   services?: PGServiceRecord[]
+  schedules?: PGScheduleRecord[]
 }
 
 export interface PGServiceRecord {
+  id?: number
   name_english?: string
   name_spanish?: string
+}
+
+export interface PGScheduleRecord {
+  id?: number
+  open_time?: string
+  close_time?: string
+  days?: string
+  notes?: string
 }
 
 export type PGOrgPlusLocation = PGOrganizationResponse & PGLocationRecord

@@ -21,6 +21,7 @@ export type {
   PGOrganizationResponse,
   PGOrgPlusLocation,
   PGServiceRecord,
+  PGScheduleRecord,
 } from './postgresRecords'
 export type {
   Holder,

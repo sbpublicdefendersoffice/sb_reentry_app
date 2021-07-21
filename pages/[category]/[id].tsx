@@ -1,26 +1,37 @@
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import Head from 'next/head'
 
-import useSingleRecord from '../../hooks/useSingleRecord'
+import {
+  useSingleRecord,
+  useLanguage,
+  useConvertedLocationRecords,
+} from '../../hooks'
+import { LeafLoader, DisplayMap } from '../../components'
 import { siteTitle } from '../../constants/copy'
-
-import { LeafLoader, OrgRecordDisplay, DisplayMap } from '../../components'
 
 const IdPage = () => {
   const { asPath } = useRouter()
+  const { language } = useLanguage()
   const { sortedRecord } = useSingleRecord()
+  const { convertedLocRecords, setLocationRecords } =
+    useConvertedLocationRecords()
+
+  useEffect(() => {
+    if (sortedRecord) setLocationRecords([sortedRecord])
+  }, [sortedRecord])
 
   if (asPath.startsWith('/[category]') || !sortedRecord) return <LeafLoader />
-
-  const { locations } = sortedRecord
 
   return (
     <>
       <Head>
-        <title>{`${siteTitle} | ${sortedRecord?.name}`}</title>
+        <title>{`${siteTitle} | ${sortedRecord?.[`name_${language}`]}`}</title>
       </Head>
-      <OrgRecordDisplay sortedRecord={sortedRecord} />
-      {Boolean(locations?.length) && <DisplayMap latLongInfo={locations} />}
+      {/* <OrgRecordDisplay sortedRecord={sortedRecord} /> */}
+      {Boolean(convertedLocRecords?.length) && (
+        <DisplayMap latLongInfo={convertedLocRecords} />
+      )}
     </>
   )
 }
