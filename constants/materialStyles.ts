@@ -50,6 +50,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         margin: '0rem !important',
       },
     },
+
     desktopFilterContainer: {
       flexBasis: '0rem',
       display: 'flex',
@@ -121,6 +122,19 @@ export const useStyles = makeStyles((theme: Theme) =>
       minWidth: '11rem',
       color: 'black',
       overflow: 'hidden',
+    },
+    appBar: {
+      top: 'auto !important',
+      bottom: 0,
+      backgroundColor: '#12385E !important',
+      display: 'none !important',
+      justifyContent: 'space-between',
+      '@media (max-width: 900px)': {
+        display: 'flex !important',
+      },
+    },
+    footerIcons: {
+      flexGrow: 1,
     },
     aboutP: {
       width: '80%',
