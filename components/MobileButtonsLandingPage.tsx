@@ -12,7 +12,7 @@ const MobileButtonsLandingPage = ({ activeCopy, setCurrentView, setOpen }) => {
             {activeCopy.list}
           </Fab>
         </Grid>
-        <Grid item xs={3} spacing={3}>
+        <Grid item xs={3}>
           <Fab variant="extended" onClick={() => setCurrentView('map')}>
             <Room />
             {activeCopy.map}
