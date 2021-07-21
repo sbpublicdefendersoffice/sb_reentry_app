@@ -7,7 +7,7 @@ import {
   useLanguage,
   useConvertedLocationRecords,
 } from '../../hooks'
-import { LeafLoader, DisplayMap } from '../../components'
+import { LeafLoader, DisplayMap, OrgRecordDisplay } from '../../components'
 import { siteTitle } from '../../constants/copy'
 
 const IdPage = () => {
@@ -28,7 +28,7 @@ const IdPage = () => {
       <Head>
         <title>{`${siteTitle} | ${sortedRecord?.[`name_${language}`]}`}</title>
       </Head>
-      {/* <OrgRecordDisplay sortedRecord={sortedRecord} /> */}
+      <OrgRecordDisplay sortedRecord={sortedRecord} />
       {Boolean(convertedLocRecords?.length) && (
         <DisplayMap latLongInfo={convertedLocRecords} />
       )}

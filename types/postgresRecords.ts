@@ -46,8 +46,9 @@ export interface PGScheduleRecord {
   id?: number
   open_time?: string
   close_time?: string
-  days?: string
+  day?: string
   notes?: string
+  ordinal_open?: string
 }
 
 export type PGOrgPlusLocation = PGOrganizationResponse & PGLocationRecord
