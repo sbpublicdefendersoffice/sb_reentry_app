@@ -1,8 +1,4 @@
-import {
-  renderWithLanguage,
-  dummyLocationRecord,
-  blankSBCoords as coords,
-} from '../../__helpers__'
+import { renderWithLanguage, blankSBCoords as coords } from '../../__helpers__'
 
 import { SPANISH } from '../../constants/language'
 
@@ -14,7 +10,7 @@ import ProximityFilter, {
 
 const dummyProps: ProximityFilterProps = {
   coords,
-  locationsToFilter: [dummyLocationRecord],
+  locationsToFilter: [],
   setLocRecordsToFilter: () => {},
   radiusDistance: 1,
 }
