@@ -7,7 +7,7 @@ const postFeedback = async (
 ): Promise<void> => {
   try {
     const { is_useful, route, language, comment } = JSON.parse(req.body)
-    if (is_useful && route && language) {
+    if ((is_useful === 0 || is_useful === 1) && route && language) {
       const { useObj } = initDb()
 
       const addFeedback = await useObj.create({
