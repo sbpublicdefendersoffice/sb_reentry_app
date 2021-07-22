@@ -1,15 +1,13 @@
 import { render } from '@testing-library/react'
 
-import {
-  englishDummyOrgData,
-  spanishDummyOrgData,
-} from '../../__helpers__/dummyData'
+import { dummyPGOrgRecord } from '../../__helpers__/dummyData'
 import GlobalSearchResult, {
   GlobalSearchResultProps,
 } from '../../components/GlobalSearchResult'
 
 const globalSearchResultTestProps: GlobalSearchResultProps = {
-  record: englishDummyOrgData,
+  record: dummyPGOrgRecord,
+  searchQuery: '',
   delimiter: ', ',
   setIsFocused: () => {},
 }
@@ -21,11 +19,12 @@ describe('<GlobalSearchResult />', () => {
     )
 
     const imgSrc: string =
-      globalSearchResultTestProps.record.fields.org_categories[0]
+      globalSearchResultTestProps.record.multiple_categories[0]
 
     const [liNode, imgNode] = [getByRole('listitem'), getByRole('img')]
 
     expect(liNode).toBeInTheDocument()
+
     expect(imgNode).toHaveAttribute(
       'src',
       `/icons/${imgSrc.replace(' ', '')}.svg`,
@@ -38,29 +37,80 @@ describe('<GlobalSearchResult />', () => {
       <GlobalSearchResult {...globalSearchResultTestProps} />,
     )
     const { record, delimiter } = globalSearchResultTestProps
-    const { fields } = record
-    const { org_name, org_tags } = fields
+    const { name_english, tags_english } = record
 
     const [nameNode, termsNode] = [getByRole('heading'), getByRole('term')]
 
-    expect(nameNode).toHaveTextContent(org_name)
-    expect(termsNode).toHaveTextContent(org_tags.join(delimiter))
+    expect(nameNode).toHaveTextContent(name_english)
+    expect(termsNode).toHaveTextContent(tags_english.join(delimiter))
   })
 
   it('renders spanish specific content correctly', () => {
     const { getByRole } = render(
       <GlobalSearchResult
         {...globalSearchResultTestProps}
-        record={spanishDummyOrgData}
+        record={{ ...dummyPGOrgRecord, name_english: '', tags_english: null }}
       />,
     )
-    const { delimiter } = globalSearchResultTestProps
-    const { fields } = spanishDummyOrgData
-    const { org_name_spanish, org_tags_spanish } = fields
+    const { record, delimiter } = globalSearchResultTestProps
+    const { name_spanish, tags_spanish } = record
 
     const [nameNode, termsNode] = [getByRole('heading'), getByRole('term')]
 
-    expect(nameNode).toHaveTextContent(org_name_spanish)
-    expect(termsNode).toHaveTextContent(org_tags_spanish.join(delimiter))
+    expect(nameNode).toHaveTextContent(name_spanish)
+    expect(termsNode).toHaveTextContent(tags_spanish.join(delimiter))
   })
 })
+
+//#region
+// describe('<GlobalSearchResult />', () => {
+//   it('renders language agnostic content correctly', () => {
+//     const { getByRole } = render(
+//       <GlobalSearchResult {...globalSearchResultTestProps} />,
+//     )
+
+//     const imgSrc: string =
+//       globalSearchResultTestProps.record.fields.org_categories[0]
+
+//     const [liNode, imgNode] = [getByRole('listitem'), getByRole('img')]
+
+//     expect(liNode).toBeInTheDocument()
+//     expect(imgNode).toHaveAttribute(
+//       'src',
+//       `/icons/${imgSrc.replace(' ', '')}.svg`,
+//     )
+//     expect(imgNode).toHaveAttribute('alt', `${imgSrc}_icon`)
+//   })
+
+//   it('renders english specific content correctly', () => {
+//     const { getByRole } = render(
+//       <GlobalSearchResult {...globalSearchResultTestProps} />,
+//     )
+//     const { record, delimiter } = globalSearchResultTestProps
+//     const { fields } = record
+//     const { org_name, org_tags } = fields
+
+//     const [nameNode, termsNode] = [getByRole('heading'), getByRole('term')]
+
+//     expect(nameNode).toHaveTextContent(org_name)
+//     expect(termsNode).toHaveTextContent(org_tags.join(delimiter))
+//   })
+
+//   it('renders spanish specific content correctly', () => {
+//     const { getByRole } = render(
+//       <GlobalSearchResult
+//         {...globalSearchResultTestProps}
+//         record={spanishDummyOrgData}
+//       />,
+//     )
+//     const { delimiter } = globalSearchResultTestProps
+//     const { fields } = spanishDummyOrgData
+//     const { org_name_spanish, org_tags_spanish } = fields
+
+//     const [nameNode, termsNode] = [getByRole('heading'), getByRole('term')]
+
+//     expect(nameNode).toHaveTextContent(org_name_spanish)
+//     expect(termsNode).toHaveTextContent(org_tags_spanish.join(delimiter))
+//   })
+// })
+//#endregion

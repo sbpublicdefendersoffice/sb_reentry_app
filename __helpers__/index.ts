@@ -24,6 +24,7 @@ export {
   dummyLocationRecord,
   englishDummyOrgData,
   spanishDummyOrgData,
+  dummyPGOrgRecord,
 } from './dummyData'
 
 export { dispatchPwaEvent, resizeWindow } from './window'
