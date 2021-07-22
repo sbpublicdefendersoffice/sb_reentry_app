@@ -77,14 +77,14 @@ export const dummyTranslateRecordResponse: TranslatedRecordResponse = {
   records: [englishDummyOrgData, secondEnglishDummyOrgData],
 }
 
-export const dummyTranslatedRecordWithLocation: TranslatedRecordResponse = {
-  category: 'Mental Health',
-  records: [
-    englishDummyOrgData,
-    secondEnglishDummyOrgData,
-    dummyOrgDataWithLocation,
-  ],
-}
+// export const dummyTranslatedRecordWithLocation: TranslatedRecordResponse = {
+//   category: 'Mental Health',
+//   records: [
+//     englishDummyOrgData,
+//     secondEnglishDummyOrgData,
+//     dummyOrgDataWithLocation,
+//   ],
+// }
 
 export const blankScheduleRecord: ScheduleRecord = {}
 
@@ -154,3 +154,7 @@ export const dummyPGOrgRecord: PGOrganizationResponse = {
   customers_served_spanish: 'los hambrientos',
   locations: [],
 }
+
+export const dummyTranslatedRecordWithLocation: PGOrganizationResponse[] = [
+  dummyPGOrgRecord,
+]
