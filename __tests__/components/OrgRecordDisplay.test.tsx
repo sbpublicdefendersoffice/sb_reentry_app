@@ -2,6 +2,7 @@ import {
   renderWithLanguage,
   renderWithAllContext,
   dummySortedRecord,
+  dummyPGOrgRecord,
 } from '../../__helpers__'
 
 import { SPANISH } from '../../constants/language'
@@ -11,6 +12,7 @@ import OrgRecordDisplay, { copy } from '../../components/OrgRecordDisplay'
 describe('<OrgRecordDisplay />', () => {
   it('renders correctly with no data passed down', () => {
     const { getByRole } = renderWithLanguage(
+      //@ts-ignore
       <OrgRecordDisplay sortedRecord={{}} />,
     )
 
@@ -29,11 +31,11 @@ describe('<OrgRecordDisplay />', () => {
 
   it('renders correctly when data IS passed down', () => {
     const { getByText } = renderWithAllContext(
-      <OrgRecordDisplay sortedRecord={dummySortedRecord} />,
+      <OrgRecordDisplay sortedRecord={dummyPGOrgRecord} />,
     )
     const passedDownTextValues: string[] = Object.values(
-      dummySortedRecord,
-    ).slice(0, -1)
+      dummyPGOrgRecord,
+    ).slice(0, 4)
 
     passedDownTextValues.forEach((text: string) =>
       expect(getByText(text)).toBeInTheDocument(),
@@ -42,7 +44,7 @@ describe('<OrgRecordDisplay />', () => {
 
   it('renders english specific content correctly', () => {
     const { getAllByRole } = renderWithAllContext(
-      <OrgRecordDisplay sortedRecord={dummySortedRecord} />,
+      <OrgRecordDisplay sortedRecord={dummyPGOrgRecord} />,
     )
 
     const textValues: string[] = Object.values(copy.english).slice(1)
@@ -54,7 +56,7 @@ describe('<OrgRecordDisplay />', () => {
 
   it('renders spanish specific content correctly', () => {
     const { getAllByRole } = renderWithAllContext(
-      <OrgRecordDisplay sortedRecord={dummySortedRecord} />,
+      <OrgRecordDisplay sortedRecord={dummyPGOrgRecord} />,
       { language: SPANISH },
     )
 

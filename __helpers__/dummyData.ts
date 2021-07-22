@@ -5,6 +5,7 @@ import {
   TranslatedRecordResponse,
   SortedRecord,
   PGOrganizationResponse,
+  PGLocationRecord,
 } from '../types/'
 
 export const customFetch = (
@@ -135,24 +136,30 @@ export const locationlessDummySortedRecord: SortedRecord = {
   locations: [],
 }
 
+export const dummyPGLocationRecord: PGLocationRecord = {
+  latitude: 4,
+  longitude: 5,
+  city: 'of angels',
+}
+
 export const dummyPGOrgRecord: PGOrganizationResponse = {
+  name_english: "Tim's Big Ol' Cafeteria",
+  website: 'https://www.timsbigandold.food',
+  languages_spoken_english: 'English',
+  notes_english: 'Maybe not the best, but definitely the most',
   id: 1,
   categories_english: ['food'],
   categories_spanish: ['comida'],
-  name_english: "Tim's Big Ol' Cafeteria",
   name_spanish: 'Cafetería antigua grande de Tim',
   multiple_categories: ['food'],
   single_category: 'food',
   tags_english: ['tim', 'big', 'cafeteria'],
   tags_spanish: ['tim', 'grande', 'cafetería'],
-  website: 'https://www.timsbigandold.food',
-  notes_english: 'Maybe not the best, but definitely the most',
   notes_spanish: 'Tal vez no el mejor, pero definitivamente el más',
-  languages_spoken_english: 'English',
   languages_spoken_spanish: 'inglés',
   customers_served_english: 'the hungry',
   customers_served_spanish: 'los hambrientos',
-  locations: [],
+  locations: [dummyPGLocationRecord],
 }
 
 export const dummyTranslatedRecordWithLocation: PGOrganizationResponse[] = [
