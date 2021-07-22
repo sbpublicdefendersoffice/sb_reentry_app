@@ -23,6 +23,7 @@ const getSingleRecord = async (
           `customers_served_${language}`,
           `notes_${language}`,
           `tags_${language}`,
+          ['categories_english', 'multiple_categories'],
         ],
         include: [
           {
