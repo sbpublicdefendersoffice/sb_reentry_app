@@ -9,6 +9,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     landingPageContainer: {
       width: '100%',
+      textAlign: 'center',
     },
     heading: {
       fontSize: '2rem !important',
