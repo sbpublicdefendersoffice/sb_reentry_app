@@ -1,24 +1,14 @@
-import { renderWithAllContext, dummyPGOrgRecord } from '../../__helpers__'
+import { renderWithAllContext, dummyPGOrgPlusLoc } from '../../__helpers__'
 
 import { SPANISH } from '../../constants/language'
 
 import DisplayMap from '../../components/DisplayMap'
 
+const mapProps = { latLongInfo: [dummyPGOrgPlusLoc], testWorkaround: true }
+
 describe('<DisplayMap />', () => {
   it('renders correctly in english', () => {
-    const { getByRole } = renderWithAllContext(
-      <DisplayMap
-        latLongInfo={[
-          {
-            ...dummyPGOrgRecord,
-            city: 'Los Angeles',
-            latitude: 5,
-            longitude: 5,
-          },
-        ]}
-        testWorkaround
-      />,
-    )
+    const { getByRole } = renderWithAllContext(<DisplayMap {...mapProps} />)
 
     const [mapNode, summaryNode] = [getByRole('main'), getByRole('definition')]
 
@@ -27,20 +17,9 @@ describe('<DisplayMap />', () => {
   })
 
   it('renders correctly in spanish', () => {
-    const { getByRole } = renderWithAllContext(
-      <DisplayMap
-        latLongInfo={[
-          {
-            ...dummyPGOrgRecord,
-            city: 'Los Angeles',
-            latitude: 5,
-            longitude: 5,
-          },
-        ]}
-        testWorkaround
-      />,
-      { language: SPANISH },
-    )
+    const { getByRole } = renderWithAllContext(<DisplayMap {...mapProps} />, {
+      language: SPANISH,
+    })
 
     const [mapNode, summaryNode] = [getByRole('main'), getByRole('definition')]
 

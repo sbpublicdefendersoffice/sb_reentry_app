@@ -8,19 +8,19 @@ import styles from './LocationRecordDisplay.module.css'
 
 interface LocationRecordDisplayProps {
   id: string
-  org_name: string
-  services: PGServiceRecord[]
-  schedules: PGScheduleRecord[]
-  name: string
-  address: string
-  address_2: string
-  city: string
-  state: string
-  zip: number
-  phone: string
-  website: string
-  email: string
-  notes: string
+  org_name?: string
+  services?: PGServiceRecord[]
+  schedules?: PGScheduleRecord[]
+  name?: string
+  address?: string
+  address_2?: string
+  city?: string
+  state?: string
+  zip?: number
+  phone?: string
+  website?: string
+  email?: string
+  notes?: string
 }
 
 export const copy: CopyHolder = {
@@ -30,8 +30,8 @@ export const copy: CopyHolder = {
     phone: 'Phone #',
     call: 'Click to call',
     locationSite: 'Location Website',
-    services: 'Services Offered',
     email: 'Email',
+    services: 'Services Offered',
     schedule: 'Schedule',
   },
   spanish: {
@@ -40,8 +40,8 @@ export const copy: CopyHolder = {
     phone: 'Teléfono #',
     call: 'Haz clic para llamar',
     locationSite: 'Ubicación Página Web',
-    services: 'Servicios Ofrecidos',
     email: 'Correo',
+    services: 'Servicios Ofrecidos',
     schedule: 'Calendario',
   },
 }

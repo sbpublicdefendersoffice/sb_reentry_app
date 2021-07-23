@@ -1,14 +1,12 @@
 import { fireEvent } from '@testing-library/dom'
 
-import { renderWithLanguage, dummyPGOrgRecord } from '../../__helpers__'
+import { renderWithLanguage, dummyPGOrgPlusLoc } from '../../__helpers__'
 import { allRegionsVisible, SPANISH } from '../../constants'
 
 import CityFilter, { CityFilterProps, copy } from '../../components/CityFilter'
 
 const cityFilterProps: CityFilterProps = {
-  locationsToFilter: [
-    { ...dummyPGOrgRecord, city: 'Los Angeles', latitude: 5, longitude: 5 },
-  ],
+  locationsToFilter: [dummyPGOrgPlusLoc],
   setLocRecordsToFilter: () => {},
   regionVisibility: allRegionsVisible,
 }

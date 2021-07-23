@@ -6,6 +6,7 @@ import {
   SortedRecord,
   PGOrganizationResponse,
   PGLocationRecord,
+  PGOrgPlusLocation,
 } from '../types/'
 
 export const customFetch = (
@@ -140,6 +141,17 @@ export const dummyPGLocationRecord: PGLocationRecord = {
   latitude: 4,
   longitude: 5,
   city: 'of angels',
+  name: 'location one',
+  address: '123 St',
+  address_2: 'Apt #1',
+  state: 'CA',
+  zip: 12345,
+  phone: '(123) 456-7890',
+  website: 'https://www.blah.com',
+  email: 'tim@blah.blah',
+  notes: 'fake location',
+  schedules: [],
+  services: [],
 }
 
 export const dummyPGOrgRecord: PGOrganizationResponse = {
@@ -165,3 +177,8 @@ export const dummyPGOrgRecord: PGOrganizationResponse = {
 export const dummyTranslatedRecordWithLocation: PGOrganizationResponse[] = [
   dummyPGOrgRecord,
 ]
+
+export const dummyPGOrgPlusLoc: PGOrgPlusLocation = {
+  ...dummyPGOrgRecord,
+  ...dummyPGLocationRecord,
+}
