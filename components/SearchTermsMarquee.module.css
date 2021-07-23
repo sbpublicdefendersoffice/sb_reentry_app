@@ -3,6 +3,7 @@
   position: absolute;
   background-color: var(--light);
   box-shadow: -0.75rem 0.3rem 0.4rem var(--light);
+  z-index: 5;
 }
 
 .Tags {
@@ -26,5 +27,22 @@
   }
   100% {
     transform: translateX(0);
+  }
+}
+@media (max-width: 900px) {
+  .SearchTermsMarquee {
+    top: -0.7%;
+    bottom: auto;
+    background-color: #12385e;
+    position: sticky;
+    height: 4.2rem;
+    margin-left: -1rem;
+    margin-bottom: 1rem;
+    width: 109%;
+    z-index: 5;
+  }
+  .Tags {
+    color: white;
+    margin-left: 0.4rem;
   }
 }
