@@ -70,7 +70,7 @@ const SearchTermsMarquee = ({
   return (
     readyToScrollRecords && (
       <div className={styles.SearchTermsMarquee}>
-        <Paragraph size="med-text">
+        <Paragraph size="med-text" className={styles.Tags}>
           {
             <>
               {activeCopy.records}
