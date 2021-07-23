@@ -3,7 +3,7 @@ import {
   FilterCity,
   FilterService,
   FilterLanguage,
-  FilterGender,
+  FilterPeopleServed,
 } from '../components/'
 import { Filter } from '../types/filter'
 const CategoryFilters = ({
@@ -27,7 +27,7 @@ const CategoryFilters = ({
           fields={fields}
           handleFieldsSelected={handleFieldsSelected}
         />
-        <FilterGender
+        <FilterPeopleServed
           fields={fields}
           handleFieldsSelected={handleFieldsSelected}
         />
