@@ -34,7 +34,7 @@ const LandingPage = () => {
   const [fields, handleFieldsSelected] = useFormFields({
     citySelected: [],
     serviceSelected: [],
-    genderSelected: [],
+    peopleServedSelected: [],
     languageSelected: [],
   })
   const [open, setOpen] = useState(false)
@@ -51,7 +51,7 @@ const LandingPage = () => {
   useEffect((): void => {
     let keywordQuery = fields.serviceSelected.concat(
       fields.citySelected,
-      fields.genderSelected,
+      fields.peopleServedSelected,
       fields.languageSelected,
     )
     if (fetchedRecords && keywordQuery.length > 0) {
@@ -70,8 +70,8 @@ const LandingPage = () => {
       <Head>
         <title>{`${siteTitle} | ${displayCategory}`}</title>
       </Head>
-      <div className={classes.root}>
-        <Grid container spacing={3}>
+      <div className={classes.landingPageContainer}>
+        <Grid container>
           <DisplayCategoryImage
             displayCategory={displayCategory}
             routeCategory={routeCategory}
