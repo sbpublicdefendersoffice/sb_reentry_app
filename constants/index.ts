@@ -51,7 +51,7 @@ export {
   employmentServiceCopy,
   housingServiceCopy,
   substanceuseServiceCopy,
-  genderCopy,
+  peopleServedCopy,
   languageCopy,
 } from './service-filter-data'
 export {
