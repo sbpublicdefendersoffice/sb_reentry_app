@@ -11,9 +11,9 @@ import {
   ListItemText,
   Typography,
 } from '@material-ui/core/'
-import { useStyles, ENGLISH, genderCopy } from '../constants/'
-import { useLanguage } from '../hooks/'
-const FilterGender = ({ fields, handleFieldsSelected }) => {
+import { useStyles, ENGLISH, peopleServedCopy } from '../constants'
+import { useLanguage } from '../hooks'
+const FilterPeopleServed = ({ fields, handleFieldsSelected }) => {
   const classes = useStyles()
   const { language } = useLanguage()
   return (
@@ -24,13 +24,13 @@ const FilterGender = ({ fields, handleFieldsSelected }) => {
             id="demo-simple-select-label"
             className={classes.menuItem}
           >
-            {language === ENGLISH ? 'Gender' : 'Género'}
+            {language === ENGLISH ? 'People Served' : 'Personas atendidas'}
           </InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            name="genderSelected"
-            value={fields.genderSelected}
+            name="peopleServedSelected"
+            value={fields.peopleServedSelected}
             multiple
             className={classes.menuItemContainer}
             onChange={handleFieldsSelected}
@@ -43,11 +43,11 @@ const FilterGender = ({ fields, handleFieldsSelected }) => {
               </div>
             )}
           >
-            {genderCopy[language].map(name => {
+            {peopleServedCopy[language].map(name => {
               return (
                 <MenuItem key={name} value={name}>
                   <Checkbox
-                    checked={fields.genderSelected.indexOf(name) > -1}
+                    checked={fields.peopleServedSelected.indexOf(name) > -1}
                   />
                   <ListItemText
                     disableTypography
@@ -67,4 +67,4 @@ const FilterGender = ({ fields, handleFieldsSelected }) => {
   )
 }
 
-export default FilterGender
+export default FilterPeopleServed
