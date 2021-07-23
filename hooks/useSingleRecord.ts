@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { POST } from '../helpers/validators'
-import { SortedRecord } from '../types/records'
+import { PGOrganizationResponse } from '../types'
 import useLanguage from '../hooks/useLanguage'
 
 const useSingleRecord = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
 
-  const [sortedRecord, setSortedRecord] = useState<SortedRecord | null>(null)
+  const [sortedRecord, setSortedRecord] =
+    useState<PGOrganizationResponse | null>(null)
 
   const requestParams: string[] = asPath.slice(1).split('/')
   const isRequestReady: boolean = Boolean(requestParams.length)
@@ -19,12 +20,13 @@ const useSingleRecord = () => {
   useEffect(() => {
     const airtableApiRouteFetch = async () => {
       if (isRequestReady && id !== '[id]' && language) {
-        const apiRequest = await fetch('/api/singleairtablerecord', {
+        const apiRequest = await fetch('/api/getSingleRecord', {
           method: POST,
-          body: JSON.stringify({ id, category, language }),
+          body: JSON.stringify({ id, language }),
         })
 
-        const apiResponse = await apiRequest.json()
+        const apiResponse: PGOrganizationResponse = await apiRequest.json()
+        apiResponse.single_category = category
 
         setSortedRecord(apiResponse)
       }

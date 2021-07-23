@@ -5,14 +5,14 @@ import {
   CopyHolder,
   FilterMapAction,
   CountyVisibilityFilter,
-  LocationRecord,
+  PGOrgPlusLocation,
 } from '../types'
 import useLanguage from '../hooks/useLanguage'
 
 import styles from './CityFilter.module.css'
 
 export interface CityFilterProps {
-  locationsToFilter: LocationRecord[]
+  locationsToFilter: PGOrgPlusLocation[]
   setLocRecordsToFilter: Dispatch<FilterMapAction>
   regionVisibility: CountyVisibilityFilter
   children?: ReactNode

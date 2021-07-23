@@ -9,11 +9,11 @@ const searchByKeyword = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { query, language } = req.query
+    const { searchQuery, language } = JSON.parse(req.body)
 
     if (language === ENGLISH || language === SPANISH) {
       const { orgObj, locObj } = initDb()
-      const finalQuery = String(query).trim().toLowerCase()
+      const finalQuery = String(searchQuery).trim().toLowerCase()
 
       const returnedOrgs = await orgObj.findAll({
         where: where(fn('ARRAY_TO_STRING', col(`tags_${language}`), ''), {
@@ -24,6 +24,7 @@ const searchByKeyword = async (
           `categories_${language}`,
           `name_${language}`,
           `tags_${language}`,
+          ['categories_english', 'multiple_categories'],
         ],
         include: [
           {
@@ -39,9 +40,10 @@ const searchByKeyword = async (
     } else {
       throw new Error('language parameter is not valid')
     }
-  } catch (error) {
-    console.error(error.message)
-    res.json(error)
+  } catch (err) {
+    const error: string = err.message
+    console.error(error)
+    res.json({ error })
   }
 }
 

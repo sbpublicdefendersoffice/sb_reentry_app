@@ -7,6 +7,7 @@ import {
   BoundingArr,
   LocationState,
   LocationRecord,
+  PGOrgPlusLocation,
 } from '../types'
 
 const latToMile: number = 69.2
@@ -17,13 +18,13 @@ const defaultLocationState: LocationState = {
   zoom: 8.5,
 }
 
-const useMapInfo = (latLongInfo: LocationRecord[]) => {
+const useMapInfo = (latLongInfo: PGOrgPlusLocation[]) => {
   const [mapInfo, setMapInfo] = useState<LocationState>(defaultLocationState)
 
   useEffect(() => {
     if (latLongInfo?.length) {
       const summedLatAndLong: LocationInfo = latLongInfo.reduce(
-        (total: LocationInfo, currentValue: LocationInfo) => {
+        (total: LocationInfo, currentValue: PGOrgPlusLocation) => {
           total.latArr.push(currentValue.latitude)
           total.longArr.push(currentValue.longitude)
           return {

@@ -1,12 +1,13 @@
 import { useEffect, useState, useRef, MutableRefObject } from 'react'
 
-import { Language, OrgRecord, CopyHolder } from '../types'
+import { Language, CopyHolder, PGOrganizationResponse } from '../types'
 import { Paragraph } from '../ui'
 
 import styles from './SearchTermsMarquee.module.css'
 
 interface SearchTermsMarqueeProps {
-  searchRecords: OrgRecord[]
+  searchRecords: PGOrganizationResponse[]
+  searchQuery: string
   language: Language
   formRef: MutableRefObject<HTMLFormElement> | null
   delimiter: string
@@ -23,6 +24,7 @@ const copy: CopyHolder = {
 
 const SearchTermsMarquee = ({
   searchRecords,
+  searchQuery,
   language,
   formRef,
   delimiter,
@@ -53,12 +55,14 @@ const SearchTermsMarquee = ({
 
   useEffect(() => {
     const mappedSearchTerms: string[][] = searchRecords.map(
-      (record: OrgRecord) =>
-        record.fields.org_tags || record.fields.org_tags_spanish,
+      (record: PGOrganizationResponse) =>
+        record.tags_english || record.tags_spanish,
     )
-    const searchTermsDeDupe: string[] = [...new Set(mappedSearchTerms.flat(1))]
+    const searchTermsDeDupeAndFiltered: string[] = [
+      ...new Set(mappedSearchTerms.flat(1)),
+    ].filter(tag => tag.includes(searchQuery))
 
-    setSearchTermsToScroll(searchTermsDeDupe)
+    setSearchTermsToScroll(searchTermsDeDupeAndFiltered)
   }, [searchRecords])
 
   const readyToScrollRecords: boolean = Boolean(searchTermsToScroll?.length)

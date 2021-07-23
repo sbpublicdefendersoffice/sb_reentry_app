@@ -2,33 +2,36 @@ import { Dispatch, SetStateAction } from 'react'
 import NextLink from 'next/link'
 
 import Paragraph from '../ui/Paragraph'
-import { OrgRecord } from '../types/records'
+import { PGOrganizationResponse } from '../types/postgresRecords'
 
 import styles from './GlobalSearchResult.module.css'
 
 export interface GlobalSearchResultProps {
-  record: OrgRecord
+  record: PGOrganizationResponse
+  searchQuery: string
   delimiter: string
   setIsFocused: Dispatch<SetStateAction<boolean>>
 }
 
 const GlobalSearchResult = ({
   setIsFocused,
+  searchQuery,
   record,
   delimiter,
 }: GlobalSearchResultProps) => {
-  const { id, fields } = record
   const {
-    org_categories,
-    org_name,
-    org_name_spanish,
-    org_tags,
-    org_tags_spanish,
-  } = fields
+    id,
+    name_english,
+    name_spanish,
+    tags_english,
+    tags_spanish,
+    multiple_categories,
+  } = record
 
-  const imgSrc: string = org_categories[0]
+  const imgSrc = multiple_categories ? multiple_categories[0] : 'socialservices'
 
-  const mapRecordSearchTerms = (tags: string[]): string => tags.join(delimiter)
+  const mapRecordSearchTerms = (tags: string[]): string =>
+    tags.filter(tag => tag.includes(searchQuery)).join(delimiter)
 
   return (
     <NextLink href="/search/[id]" as={`/search/${id}`}>
@@ -40,10 +43,10 @@ const GlobalSearchResult = ({
       >
         <div>
           <Paragraph size="med-text">
-            <span role="heading">{org_name || org_name_spanish}</span>
+            <span role="heading">{name_english || name_spanish}</span>
           </Paragraph>
           <em role="term" className={styles.SingleSearchTerm}>
-            {mapRecordSearchTerms(org_tags || org_tags_spanish)}
+            {mapRecordSearchTerms(tags_english || tags_spanish)}
           </em>
         </div>
         <img

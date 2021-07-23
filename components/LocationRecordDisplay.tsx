@@ -1,14 +1,26 @@
 import { Card, Paragraph } from '../ui'
 
 import { ScheduleRecordDisplay, SendText } from './'
-import { LocationRecord, CopyHolder } from '../types'
+import { CopyHolder, PGScheduleRecord, PGServiceRecord } from '../types'
 import { useLanguage, useLocation } from '../hooks'
 
 import styles from './LocationRecordDisplay.module.css'
 
 interface LocationRecordDisplayProps {
-  locationInfo: LocationRecord
   id: string
+  org_name?: string
+  services?: PGServiceRecord[]
+  schedules?: PGScheduleRecord[]
+  name?: string
+  address?: string
+  address_2?: string
+  city?: string
+  state?: string
+  zip?: number
+  phone?: string
+  website?: string
+  email?: string
+  notes?: string
 }
 
 export const copy: CopyHolder = {
@@ -18,8 +30,8 @@ export const copy: CopyHolder = {
     phone: 'Phone #',
     call: 'Click to call',
     locationSite: 'Location Website',
-    services: 'Services Offered',
     email: 'Email',
+    services: 'Services Offered',
     schedule: 'Schedule',
   },
   spanish: {
@@ -28,34 +40,29 @@ export const copy: CopyHolder = {
     phone: 'Teléfono #',
     call: 'Haz clic para llamar',
     locationSite: 'Ubicación Página Web',
-    services: 'Servicios Ofrecidos',
     email: 'Correo',
+    services: 'Servicios Ofrecidos',
     schedule: 'Calendario',
   },
 }
 
 const LocationRecordDisplay = ({
-  locationInfo,
+  schedules,
+  services,
+  name,
+  address,
+  address_2,
+  city,
+  state,
+  zip,
+  phone,
+  website,
+  email,
+  notes,
   id,
+  org_name,
 }: LocationRecordDisplayProps) => {
-  const {
-    schedule,
-    name,
-    address,
-    address_2,
-    city,
-    state,
-    zip,
-    services,
-    phone,
-    website,
-    email,
-    notes,
-    org_name,
-  } = locationInfo
-
   const { coords } = useLocation()
-
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
@@ -138,11 +145,17 @@ const LocationRecordDisplay = ({
           </Paragraph>
         </>
       )}
-      {services && (
+      {Boolean(services?.length) && (
         <>
           <Paragraph role="listitem" size="med-text">
             <strong role="note">{activeCopy.services}: </strong>
-            {services}
+            {services.reduce(
+              (str, record, i) =>
+                (str += `${record[`name_${language}`]}${
+                  i !== services.length - 1 ? ', ' : ''
+                }`),
+              '',
+            )}
           </Paragraph>
         </>
       )}
@@ -154,13 +167,13 @@ const LocationRecordDisplay = ({
           </a>
         </Paragraph>
       )}
-      {Boolean(schedule?.length) && (
+      {Boolean(schedules?.length) && (
         <>
           <Paragraph role="listitem" size="med-text">
             <strong role="note">{activeCopy.schedule}: </strong>
           </Paragraph>
-          {schedule.map((scheduleInfo, i) => (
-            <ScheduleRecordDisplay key={i} scheduleInfo={scheduleInfo} />
+          {schedules.map((scheduleInfo, i) => (
+            <ScheduleRecordDisplay key={i} {...scheduleInfo} />
           ))}
         </>
       )}

@@ -16,7 +16,7 @@ import ScheduleRecordDisplay, {
 describe('<ScheduleRecordDisplay />', () => {
   it('renders correctly with no data', () => {
     const { getByRole, getAllByRole } = renderWithLanguage(
-      <ScheduleRecordDisplay scheduleInfo={blankScheduleRecord} />,
+      <ScheduleRecordDisplay {...blankScheduleRecord} />,
     )
 
     const displayNode: HTMLElement = getByRole('region')
@@ -28,7 +28,7 @@ describe('<ScheduleRecordDisplay />', () => {
 
   it('renders correctly with schedule data', () => {
     const { getAllByRole } = renderWithLanguage(
-      <ScheduleRecordDisplay scheduleInfo={dummyScheduleRecord} />,
+      <ScheduleRecordDisplay {...dummyScheduleRecord} />,
     )
 
     const textNodes: HTMLElement[] = getAllByRole('article')
@@ -38,7 +38,7 @@ describe('<ScheduleRecordDisplay />', () => {
 
   it('renders correctly in english', () => {
     const { getAllByRole } = renderWithLanguage(
-      <ScheduleRecordDisplay scheduleInfo={dummyScheduleRecord} />,
+      <ScheduleRecordDisplay {...dummyScheduleRecord} />,
       ENGLISH,
     )
 
@@ -71,7 +71,7 @@ describe('<ScheduleRecordDisplay />', () => {
 
   it('renders correctly in spanish', () => {
     const { getAllByRole } = renderWithLanguage(
-      <ScheduleRecordDisplay scheduleInfo={dummyScheduleRecord} />,
+      <ScheduleRecordDisplay {...dummyScheduleRecord} />,
       SPANISH,
     )
 

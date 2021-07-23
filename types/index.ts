@@ -17,6 +17,13 @@ export type {
   SantaBarbaraCountyCoords,
 } from './maps'
 export type {
+  PGLocationRecord,
+  PGOrganizationResponse,
+  PGOrgPlusLocation,
+  PGServiceRecord,
+  PGScheduleRecord,
+} from './postgresRecords'
+export type {
   Holder,
   TranslatedRecordResponse,
   OrgRecord,

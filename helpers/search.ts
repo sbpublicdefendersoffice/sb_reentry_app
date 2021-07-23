@@ -1,11 +1,11 @@
 import { POST } from './validators'
-import { Language, TranslatedRecordResponse } from '../types/'
+import { Language, PGOrganizationResponse } from '../types/'
 
 export const searchByKeyword = async (
   searchQuery: string,
   language: Language,
-): Promise<TranslatedRecordResponse> => {
-  const call: Response = await fetch('/api/airtablerecordsbykeyword', {
+): Promise<PGOrganizationResponse[]> => {
+  const call: Response = await fetch('/api/searchByKeyword', {
     method: POST,
     body: JSON.stringify({
       searchQuery: searchQuery.toLowerCase(),
@@ -13,7 +13,7 @@ export const searchByKeyword = async (
     }),
   })
 
-  const translatedCall: TranslatedRecordResponse = await call.json()
+  const translatedCall: PGOrganizationResponse[] = await call.json()
 
   return translatedCall
 }

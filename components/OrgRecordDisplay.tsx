@@ -2,13 +2,13 @@ import { Disclaimer, LocationRecordDisplay } from './'
 import { Details, Title } from '../ui'
 
 import useLanguage from '../hooks/useLanguage'
-import { SortedRecord, CopyHolder } from '../types'
+import { CopyHolder, PGOrganizationResponse } from '../types'
 
 import styles from './OrgRecordDisplay.module.css'
 import { Paragraph } from '../ui'
 
 interface OrgRecordDisplayProps {
-  sortedRecord: SortedRecord
+  sortedRecord: PGOrganizationResponse
 }
 
 export const copy: CopyHolder = {
@@ -34,13 +34,19 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
 
-  const { name, website, languages_spoken, notes, locations } = sortedRecord
+  const [org_name, languages_spoken, notes]: string[] = [
+    sortedRecord[`name_${language}`],
+    sortedRecord[`languages_spoken_${language}`],
+    sortedRecord[`notes_${language}`],
+  ]
+
+  const { website, locations } = sortedRecord
 
   return (
     <div role="menu" className={styles.OrgRecordDisplay}>
       <Details open summary={activeCopy.orgInfo} className={styles.listing}>
         <Title role="heading" className={styles.DisplayTitle}>
-          {name}
+          {org_name}
         </Title>
         {notes && (
           <>
@@ -82,13 +88,17 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
           >
             {activeCopy.location}
           </Paragraph>
-          {locations.map((locationInfo, i) => (
-            <LocationRecordDisplay
-              key={i}
-              locationInfo={locationInfo}
-              id={String(i)}
-            />
-          ))}
+          {locations.map((locationInfo, i) => {
+            return (
+              <LocationRecordDisplay
+                // @ts-ignore
+                id={String(i)}
+                key={i}
+                org_name={org_name}
+                {...locationInfo}
+              />
+            )
+          })}
         </Details>
       )}
     </div>

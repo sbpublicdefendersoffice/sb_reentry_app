@@ -1,6 +1,6 @@
 import { fireEvent, waitFor } from '@testing-library/dom'
 
-import { renderWithLanguage } from '../../__helpers__'
+import { renderWithLanguage, dummyPGOrgRecord } from '../../__helpers__'
 
 import { searchCopy, SPANISH } from '../../constants'
 import FetchedDataSearch, {
@@ -9,7 +9,7 @@ import FetchedDataSearch, {
 
 const FetchedDataSearchTestProps: FetchedDataSearchProps = {
   displayCategory: 'Food',
-  originalRecords: [{ createdTime: String(Date.now()), fields: {}, id: '' }],
+  originalRecords: [dummyPGOrgRecord],
   setRecords: () => {},
 }
 

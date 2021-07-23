@@ -3,14 +3,14 @@ import { useRouter } from 'next/router'
 import { Marker } from 'react-mapbox-gl'
 
 import Popup from './Popup'
-import { usePopup } from '../hooks'
-import { LocationRecord, CopyHolder } from '../types'
-import useLanguage from '../hooks/useLanguage'
+import { usePopup, useLanguage } from '../hooks'
+import { CopyHolder, PGOrgPlusLocation } from '../types'
+import { ENGLISH } from '../constants/language'
 
 import styles from './MapMarker.module.css'
 
 interface MapMarkerProps {
-  locationRecord: LocationRecord
+  locationRecord: PGOrgPlusLocation
   customStyle?: { [cssQuality: string]: string | number }
   testWorkaround?: boolean
 }
@@ -39,24 +39,28 @@ const MapMarker = ({
   const {
     longitude,
     latitude,
-    single_category,
-    name,
-    uuid,
+    name_english,
+    name_spanish,
+    id,
     multiple_categories,
+    single_category,
   } = locationRecord
   const isSearchPage: boolean =
     pathname.startsWith('/search') || pathname.startsWith('/letushelp')
 
   useEffect(() => {
-    if (isSearchPage) setImgSrc(multiple_categories[0])
+    if (isSearchPage)
+      setImgSrc(multiple_categories ? multiple_categories[0] : 'socialservices')
     else setImgSrc(single_category)
   }, [locationRecord])
 
   const linkToRecord = (): void => {
-    if (uuid && query?.id !== uuid)
-      if (isSearchPage) push('/search/[id]', `/search/${uuid}`)
-      else push('/[category]/[id]', `/${single_category}/${uuid}`)
+    if (id && query?.id !== String(id))
+      if (isSearchPage) push('/search/[id]', `/search/${id}`)
+      else push('/[category]/[id]', `/${single_category}/${id}`)
   }
+
+  const name: string = language === ENGLISH ? name_english : name_spanish
 
   return (
     <>
@@ -73,7 +77,7 @@ const MapMarker = ({
           anchor="bottom"
         >
           <img
-            src={`/icons/${imgSrc}_marker.svg`}
+            src={`/icons/${imgSrc.replace(' ', '')}_marker.svg`}
             alt={activeCopy.altText}
             className={styles.MapMarker}
             onMouseEnter={setPopupLocation}
