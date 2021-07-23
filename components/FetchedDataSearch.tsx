@@ -9,15 +9,15 @@ import {
 import { Input } from '../ui'
 import Tooltip from './Tooltip'
 
-import { OrgRecord, TranslatedRecordResponse } from '../types/records'
+import { PGOrganizationResponse } from '../types/'
 import { searchCopy } from '../constants/copy'
 
 import useLanguage from '../hooks/useLanguage'
 
 export interface FetchedDataSearchProps {
   displayCategory: string
-  originalRecords: OrgRecord[]
-  setRecords: Dispatch<SetStateAction<TranslatedRecordResponse>>
+  originalRecords: PGOrganizationResponse[]
+  setRecords: Dispatch<SetStateAction<PGOrganizationResponse[]>>
 }
 
 import styles from './FetchedDataSearch.module.css'
@@ -31,7 +31,7 @@ const FetchedDataSearch = ({
   const activeCopy = searchCopy[language]
 
   const [savedOriginalRecords, setSavedOriginalRecords] =
-    useState<OrgRecord[] | null>(null)
+    useState<PGOrganizationResponse[] | null>(null)
 
   useEffect(() => {
     if (originalRecords) setSavedOriginalRecords(originalRecords)
@@ -41,17 +41,12 @@ const FetchedDataSearch = ({
     const { value } = target
     if (savedOriginalRecords) {
       if (value) {
-        setRecords(previousState => ({
-          ...previousState,
-          records: savedOriginalRecords.filter(record =>
-            record.fields?.org_tags?.join('').includes(value.toLowerCase()),
+        setRecords(
+          savedOriginalRecords.filter(record =>
+            record[`tags_${language}`]?.join('').includes(value.toLowerCase()),
           ),
-        }))
-      } else
-        setRecords(previousState => ({
-          ...previousState,
-          records: savedOriginalRecords,
-        }))
+        )
+      } else setRecords(savedOriginalRecords)
     }
   }
 

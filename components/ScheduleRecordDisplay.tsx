@@ -1,6 +1,6 @@
 import useLanguage from '../hooks/useLanguage'
 
-import { CopyHolder, Language, ScheduleRecord } from '../types'
+import { CopyHolder, Language } from '../types'
 
 import { Paragraph } from '../ui'
 
@@ -73,16 +73,22 @@ export const daysOpenParser = (
 ): string => `${wordForDay}${specificDay?.length > 3 ? 's' : ''} ${wordForOpen}`
 
 interface ScheduleRecordDisplayProps {
-  scheduleInfo: ScheduleRecord
+  open_time?: string
+  close_time?: string
+  day?: string
+  notes?: string
+  ordinal_open?: string
 }
 
 const ScheduleRecordDisplay = ({
-  scheduleInfo,
+  open_time,
+  close_time,
+  day,
+  ordinal_open,
+  notes,
 }: ScheduleRecordDisplayProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
-
-  const { open_time, close_time, day, ordinal_open, notes } = scheduleInfo
 
   return (
     <section role="region" className={styles.ScheduleRecordDisplay}>

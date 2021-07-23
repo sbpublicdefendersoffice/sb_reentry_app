@@ -1,4 +1,4 @@
-import { LocationRecord } from './records'
+import { PGOrgPlusLocation } from './postgresRecords'
 
 export interface CountyBreakdown {
   southCounty: string[]
@@ -51,7 +51,7 @@ export interface CountyVisibilityFilter {
 }
 
 export interface FilteredMapState {
-  filteredRecords: LocationRecord[] | null
+  filteredRecords: PGOrgPlusLocation[] | null
   visibility: CountyVisibilityFilter
   radiusDistance: number
 }
@@ -59,7 +59,7 @@ export interface FilteredMapState {
 export interface FilterMapAction {
   filterName: FilterTypes
   value?: CountyVisibilityFilter | RadiusFilterInfo
-  locationsToFilter?: LocationRecord[]
+  locationsToFilter?: PGOrgPlusLocation[]
 }
 
 export type VisibilityAsArray = [string, boolean]

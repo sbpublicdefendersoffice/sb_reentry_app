@@ -18,16 +18,16 @@ import {
 import { MapMarker, CityFilter, ProximityFilter } from './'
 import { Details } from '../ui'
 
-import { LocationRecord } from '../types'
+import { PGOrgPlusLocation } from '../types'
 
 import styles from './DisplayMap.module.css'
 
 interface DisplayMapProps {
-  latLongInfo: LocationRecord[]
+  latLongInfo: PGOrgPlusLocation[]
   testWorkaround?: boolean
 }
 
-const returnMarker = (locationRecord: LocationRecord, i: number) => (
+const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
   <Fragment key={i}>
     <MapMarker locationRecord={locationRecord} />
   </Fragment>
@@ -99,12 +99,14 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
             <MapMarker
               customStyle={{ zIndex: 8 }}
               locationRecord={{
+                city: '',
                 longitude: coords.longitude,
                 latitude: coords.latitude,
                 single_category: 'user',
                 multiple_categories: ['user'],
-                uuid: '',
-                name: language === ENGLISH ? 'Your location' : 'Tu ubicación',
+                id: 0,
+                name_english: 'Your location',
+                name_spanish: 'Tu ubicación',
               }}
             />
           )}

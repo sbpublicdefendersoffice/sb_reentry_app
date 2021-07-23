@@ -9,7 +9,7 @@ const getByCategory = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { category, language } = req.query
+    const { category, language } = JSON.parse(req.body)
     const finalCategory = String(category).trim().toLowerCase()
 
     if (
@@ -20,13 +20,14 @@ const getByCategory = async (
 
       const returnedOrgs = await orgObj.findAll({
         where: {
-          [`categories_${language}`]: { [Op.contains]: [finalCategory] },
+          categories_english: { [Op.contains]: [finalCategory] },
         },
         attributes: [
           'id',
           `categories_${language}`,
           `name_${language}`,
           `tags_${language}`,
+          ['categories_english', 'multiple_categories'],
         ],
         include: [
           {

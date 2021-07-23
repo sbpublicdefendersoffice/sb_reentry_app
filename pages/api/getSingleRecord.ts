@@ -8,7 +8,7 @@ const getSingleRecord = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { id, language } = req.query
+    const { id, language } = JSON.parse(req.body)
 
     if (language === ENGLISH || language || SPANISH) {
       const { orgObj, locObj, servObj, schObj } = initDb()
@@ -23,6 +23,7 @@ const getSingleRecord = async (
           `customers_served_${language}`,
           `notes_${language}`,
           `tags_${language}`,
+          ['categories_english', 'multiple_categories'],
         ],
         include: [
           {

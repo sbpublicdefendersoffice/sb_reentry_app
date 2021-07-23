@@ -4,7 +4,10 @@ import {
   ScheduleRecord,
   TranslatedRecordResponse,
   SortedRecord,
-} from '../types/records'
+  PGOrganizationResponse,
+  PGLocationRecord,
+  PGOrgPlusLocation,
+} from '../types/'
 
 export const customFetch = (
   mockData:
@@ -76,14 +79,14 @@ export const dummyTranslateRecordResponse: TranslatedRecordResponse = {
   records: [englishDummyOrgData, secondEnglishDummyOrgData],
 }
 
-export const dummyTranslatedRecordWithLocation: TranslatedRecordResponse = {
-  category: 'Mental Health',
-  records: [
-    englishDummyOrgData,
-    secondEnglishDummyOrgData,
-    dummyOrgDataWithLocation,
-  ],
-}
+// export const dummyTranslatedRecordWithLocation: TranslatedRecordResponse = {
+//   category: 'Mental Health',
+//   records: [
+//     englishDummyOrgData,
+//     secondEnglishDummyOrgData,
+//     dummyOrgDataWithLocation,
+//   ],
+// }
 
 export const blankScheduleRecord: ScheduleRecord = {}
 
@@ -132,4 +135,50 @@ export const dummySortedRecord: SortedRecord = {
 export const locationlessDummySortedRecord: SortedRecord = {
   ...dummySortedRecord,
   locations: [],
+}
+
+export const dummyPGLocationRecord: PGLocationRecord = {
+  latitude: 4,
+  longitude: 5,
+  city: 'of angels',
+  name: 'location one',
+  address: '123 St',
+  address_2: 'Apt #1',
+  state: 'CA',
+  zip: 12345,
+  phone: '(123) 456-7890',
+  website: 'https://www.blah.com',
+  email: 'tim@blah.blah',
+  notes: 'fake location',
+  schedules: [],
+  services: [],
+}
+
+export const dummyPGOrgRecord: PGOrganizationResponse = {
+  name_english: "Tim's Big Ol' Cafeteria",
+  website: 'https://www.timsbigandold.food',
+  languages_spoken_english: 'English',
+  notes_english: 'Maybe not the best, but definitely the most',
+  id: 1,
+  categories_english: ['food'],
+  categories_spanish: ['comida'],
+  name_spanish: 'Cafetería antigua grande de Tim',
+  multiple_categories: ['food'],
+  single_category: 'food',
+  tags_english: ['tim', 'big', 'cafeteria'],
+  tags_spanish: ['tim', 'grande', 'cafetería'],
+  notes_spanish: 'Tal vez no el mejor, pero definitivamente el más',
+  languages_spoken_spanish: 'inglés',
+  customers_served_english: 'the hungry',
+  customers_served_spanish: 'los hambrientos',
+  locations: [dummyPGLocationRecord],
+}
+
+export const dummyTranslatedRecordWithLocation: PGOrganizationResponse[] = [
+  dummyPGOrgRecord,
+]
+
+export const dummyPGOrgPlusLoc: PGOrgPlusLocation = {
+  ...dummyPGOrgRecord,
+  ...dummyPGLocationRecord,
 }

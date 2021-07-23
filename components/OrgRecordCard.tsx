@@ -2,24 +2,31 @@ import { Fragment, ReactElement } from 'react'
 import { useRouter } from 'next/router'
 
 import useLanguage from '../hooks/useLanguage'
-import { OrgRecord } from '../types/records'
+import { PGOrganizationResponse } from '../types/'
 import { ENGLISH } from '../constants/language'
 import { Card, Paragraph } from '../ui'
 export interface OrgRecordCardProps {
-  record: OrgRecord
+  record: PGOrganizationResponse
 }
 export const urlSlug: string = '/[category]/[id]'
 import styles from './OrgRecordCard.module.css'
 const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
   const { language } = useLanguage()
   const { push, pathname, query } = useRouter()
-  const { id, fields } = record
-  const { org_categories, org_name, org_categories_spanish, org_name_spanish } =
-    fields
+  const {
+    id,
+    categories_english,
+    categories_spanish,
+    multiple_categories,
+    name_english,
+    name_spanish,
+  } = record
 
   const activeCategories: string[] =
-    language === ENGLISH ? org_categories : org_categories_spanish
-  const categoryTitle: string = org_categories[0].replace(' ', '')
+    language === ENGLISH ? categories_english : categories_spanish
+  const categoryTitle: string = multiple_categories
+    ? multiple_categories[0].replace(' ', '')
+    : 'socialservices'
   const isCategoryPage: boolean = pathname === '/[category]'
 
   const pushToRecord = (e): Promise<boolean> =>
@@ -29,14 +36,14 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
     <Card
       data-testid="OrgRecordCard"
       role="region"
-      title={id}
+      title={String(id)}
       className={styles.OrgRecordCard}
       interactive
       onClick={pushToRecord}
     >
       <img
         role="img"
-        title={id}
+        title={String(id)}
         className={styles.Image}
         width="4rem"
         height="4rem"
@@ -44,14 +51,14 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
         alt={`${categoryTitle}_icon`}
       />
       <div>
-        <Paragraph role="heading" title={id} size="med-text">
-          {org_name || org_name_spanish}
+        <Paragraph role="heading" title={String(id)} size="med-text">
+          {name_english || name_spanish}
         </Paragraph>
-        <Paragraph title={id}>
+        <Paragraph title={String(id)}>
           {activeCategories?.map(
             (category: string, i: number): ReactElement => (
               <Fragment key={i}>
-                <em role="term" title={id} className={styles.Category}>
+                <em role="term" title={String(id)} className={styles.Category}>
                   {i !== 0 && ', '}
                   {category}
                 </em>

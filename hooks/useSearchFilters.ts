@@ -13,8 +13,8 @@ import {
   FilteredMapState,
   CountyVisibilityFilter,
   VisibilityAsArray,
-  LocationRecord,
   RadiusFilterInfo,
+  PGOrgPlusLocation,
 } from '../types'
 
 const manageFilteredMapState = (
@@ -45,7 +45,7 @@ const manageFilteredMapState = (
       )
 
       filteredRecords = locationsToFilter.filter(
-        (record: LocationRecord) => !citiesToRemove.includes(record.city),
+        (record: PGOrgPlusLocation) => !citiesToRemove.includes(record.city),
       )
       visibility = value as CountyVisibilityFilter
     }
@@ -54,7 +54,7 @@ const manageFilteredMapState = (
 
     const userLocationCoords: number[] = [coords.latitude, coords.longitude]
 
-    filteredRecords = locationsToFilter.filter((record: LocationRecord) => {
+    filteredRecords = locationsToFilter.filter((record: PGOrgPlusLocation) => {
       const locCoords: number[] = [record.latitude, record.longitude]
 
       return isDistanceInBounds(

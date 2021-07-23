@@ -1,11 +1,11 @@
 import { createContext, useContext, useState, ReactNode } from 'react'
 
-import { TranslatedRecordResponse } from '../types/records'
+import { PGOrganizationResponse } from '../types/postgresRecords'
 
 interface GlobalSearchProps {
-  searchResults: TranslatedRecordResponse
+  searchResults: PGOrganizationResponse[]
   // eslint-disable-next-line no-unused-vars
-  setSearchResults: (searchResults: TranslatedRecordResponse) => void
+  setSearchResults: (searchResults: PGOrganizationResponse[]) => void
 }
 
 const GlobalSearch = createContext<GlobalSearchProps | null>(null)
@@ -24,7 +24,7 @@ export const GlobalSearchProvider = ({
   children,
 }: GlobalSearchProviderProps) => {
   const [searchResults, setSearchResults] =
-    useState<TranslatedRecordResponse | null>(null)
+    useState<PGOrganizationResponse[] | null>(null)
 
   return (
     <Provider value={{ searchResults, setSearchResults }}>{children}</Provider>

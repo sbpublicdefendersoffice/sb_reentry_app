@@ -16,6 +16,7 @@ export interface OrganizationModel extends Model {
   tags_english: string
   tags_spanish: string
   locations?: LocationsModel[]
+  single_category?: string
 }
 
 export interface LocationsModel extends Model {

@@ -175,7 +175,7 @@ export const topThreeRoutes: InfoWithDescription[] = [
       'Behavioral Wellness is the hub for mental health services in Santa Barbara County',
     text_spanish:
       'Línea de Acceso para Servicios y Crisis, Gratuito y Disponible las 24 Horas del Día',
-    route: '/search/recncoC6502aH2qYs',
+    route: '/search/1142',
     imgPath: './icons/phone.svg',
   },
   {
@@ -185,7 +185,7 @@ export const topThreeRoutes: InfoWithDescription[] = [
       'The Office of the Public Defender exists to provide legal services to those persons who qualify for assistance, including the indigent and unhoused.',
     text_spanish:
       'La Oficina del Defensor Público existe para brindar servicios legales a aquellas personas que califican para recibir asistencia, incluidos los indigentes y los que no tienen vivienda.',
-    route: '/search/recD8lFn9X48GfcaS',
+    route: '/search/1069',
     imgPath: './icons/prearraignment.svg',
   },
   {
@@ -196,7 +196,7 @@ export const topThreeRoutes: InfoWithDescription[] = [
       'The PRRC is an excellent source for information on probation requirements, reporting and many other topics',
     text_spanish:
       'El PRRC es una excelente fuente de información sobre los requisitos de libertad condicional, informes y muchos otros temas',
-    route: '/search/rec5sVCDDkpXlclv0',
+    route: '/search/1072',
     imgPath: './icons/clearmyrecord.svg',
   },
 ]
