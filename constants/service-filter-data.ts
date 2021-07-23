@@ -1,6 +1,6 @@
-export const genderCopy = {
-  english: ['Men', 'Women'],
-  spanish: ['Hombres', 'Mujeres'],
+export const peopleServedCopy = {
+  english: ['Men', 'Women', 'Veterans', 'LGBTQ', 'Youth'],
+  spanish: ['Pero', 'Mujeres', 'Veteranos', 'LGBTQ', 'Juventud'],
 }
 export const languageCopy = {
   english: ['English', 'Spanish'],
