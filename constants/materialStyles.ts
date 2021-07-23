@@ -7,6 +7,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontFamily: 'Roboto',
       textAlign: 'center',
     },
+    landingPageContainer: {
+      width: '100%',
+    },
     heading: {
       fontSize: '2rem !important',
       fontFamily: 'Roboto',
@@ -111,9 +114,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
       display: 'flex',
       color: 'black',
-    },
-    paperIconCards: {
-      width: '100%',
     },
     aboutPaperIconCards: {
       padding: theme.spacing(2),
