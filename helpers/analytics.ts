@@ -9,3 +9,9 @@ export const googleSearch = (query: string): void => {
     search_terms: query,
   })
 }
+
+export const googleViewSearchResults = (query: string): void => {
+  window.gtag('event', 'view_search_results', {
+    search_term: query,
+  })
+}

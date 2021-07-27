@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
-import { siteTitle, ENGLISH, SPANISH } from '../constants'
+import { siteTitle, ENGLISH, SPANISH, isProd } from '../constants'
 import { Language, SantaBarbaraCountyCoords } from '../types'
 import {
   GlobalSearchProvider,
@@ -42,7 +42,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, [])
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
+    if (isProd) {
       // Log pageviews on Google Analytics while _app is mounted
       events.on('routeChangeComplete', googlePageviews)
       return () => events.off('routeChangeComplete', googlePageviews)

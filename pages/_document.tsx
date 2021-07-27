@@ -1,11 +1,12 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document'
+import { isProd } from '../constants/env'
 
 export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
         <Head>
-          {process.env.NODE_ENV === 'production' && (
+          {isProd && (
             <>
               <script
                 async
