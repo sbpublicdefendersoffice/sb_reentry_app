@@ -9,7 +9,7 @@ export const languageCopy = {
 export const foodServiceCopy = {
   english: [
     'Breakfast',
-    'Bulk Foods',
+    'Bulk Food',
     'Cal Fresh Application Assistance',
     'Dinner',
     'EBT',
