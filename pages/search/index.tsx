@@ -26,7 +26,7 @@ const GlobalSearchLanding = () => {
     const filterOrFetch = async () => {
       if (searchResults) {
         setLocationRecords(searchResults)
-        if (isProd) googleViewSearchResults(query, language)
+        if (isProd) googleViewSearchResults(query)
       } else {
         const call: PGOrganizationResponse[] = await searchByKeyword(
           query,
