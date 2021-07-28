@@ -60,7 +60,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
         language,
       )
       setSearchResults(call)
-      if (isProd) googleSearch(searchQuery)
+      if (isProd) googleSearch(searchQuery, language)
     }
   }
 
