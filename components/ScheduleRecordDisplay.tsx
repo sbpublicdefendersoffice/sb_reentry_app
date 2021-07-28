@@ -25,7 +25,7 @@ export const copy: CopyHolder = {
   spanish: {
     timeOpen: 'Tiempo Abierto',
     to: ' a ',
-    day: 'Day',
+    day: 'Days',
     open: 'Abierto',
     notes: 'Notas',
     everyWeek: 'Abierto Todas Las Semanas',
@@ -75,7 +75,7 @@ export const daysOpenParser = (
 interface ScheduleRecordDisplayProps {
   open_time?: string
   close_time?: string
-  day?: string
+  days?: string
   notes?: string
   ordinal_open?: string
 }
@@ -83,7 +83,7 @@ interface ScheduleRecordDisplayProps {
 const ScheduleRecordDisplay = ({
   open_time,
   close_time,
-  day,
+  days,
   ordinal_open,
   notes,
 }: ScheduleRecordDisplayProps) => {
@@ -92,12 +92,12 @@ const ScheduleRecordDisplay = ({
 
   return (
     <section role="region" className={styles.ScheduleRecordDisplay}>
-      {day && (
+      {days && (
         <Paragraph role="article" size="med-text">
           <strong>
-            {daysOpenParser(activeCopy.day, day, activeCopy.open)}
+            {daysOpenParser(activeCopy.day, days, activeCopy.open)}
           </strong>
-          : {day}
+          : {days}
         </Paragraph>
       )}
       {open_time && close_time && (
