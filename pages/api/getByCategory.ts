@@ -27,6 +27,8 @@ const getByCategory = async (
           `categories_${language}`,
           `name_${language}`,
           `tags_${language}`,
+          `customers_served_${language}`,
+          `languages_spoken_${language}`,
           ['categories_english', 'multiple_categories'],
         ],
         include: [
