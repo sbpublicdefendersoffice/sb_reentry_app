@@ -1,3 +1,8 @@
+export {
+  googlePageviews,
+  googleSearch,
+  googleViewSearchResults,
+} from './analytics'
 export { convertLocationsForMap } from './converters'
 export {
   checkAndSetUserLocation,

@@ -10,7 +10,7 @@ import ScheduleRecordDisplay, {
   copy,
   ordinalParser,
   timeParser,
-  daysOpenParser,
+  // daysOpenParser,
 } from '../../components/ScheduleRecordDisplay'
 
 describe('<ScheduleRecordDisplay />', () => {
@@ -33,7 +33,7 @@ describe('<ScheduleRecordDisplay />', () => {
 
     const textNodes: HTMLElement[] = getAllByRole('article')
 
-    expect(textNodes).toHaveLength(4)
+    expect(textNodes).toHaveLength(3)
   })
 
   it('renders correctly in english', () => {
@@ -42,15 +42,20 @@ describe('<ScheduleRecordDisplay />', () => {
       ENGLISH,
     )
 
-    const { timeOpen, to, day, open, notes } = copy.english
+    const {
+      timeOpen,
+      to,
+      // day, open,
+      notes,
+    } = copy.english
 
     const textNodes: HTMLElement[] = getAllByRole('article')
 
-    const dayOpenValue: string = `${daysOpenParser(
-      day,
-      dummyScheduleRecord.day,
-      open,
-    )}: ${dummyScheduleRecord.day}`
+    // const dayOpenValue: string = `${daysOpenParser(
+    //   day,
+    //   dummyScheduleRecord.day,
+    //   open,
+    // )}: ${dummyScheduleRecord.day}`
 
     const timesOpenvalue: string = `${timeOpen}: ${timeParser(
       dummyScheduleRecord.open_time,
@@ -63,10 +68,10 @@ describe('<ScheduleRecordDisplay />', () => {
 
     const notesValue: string = `${notes}: ${dummyScheduleRecord.notes}`
 
-    expect(textNodes[0]).toHaveTextContent(dayOpenValue)
-    expect(textNodes[1]).toHaveTextContent(timesOpenvalue)
-    expect(textNodes[2]).toHaveTextContent(ordinalValue)
-    expect(textNodes[3]).toHaveTextContent(notesValue)
+    // expect(textNodes[0]).toHaveTextContent(dayOpenValue)
+    expect(textNodes[0]).toHaveTextContent(timesOpenvalue)
+    expect(textNodes[1]).toHaveTextContent(ordinalValue)
+    expect(textNodes[2]).toHaveTextContent(notesValue)
   })
 
   it('renders correctly in spanish', () => {
@@ -75,15 +80,20 @@ describe('<ScheduleRecordDisplay />', () => {
       SPANISH,
     )
 
-    const { timeOpen, to, day, open, notes } = copy.spanish
+    const {
+      timeOpen,
+      to,
+      // day, open,
+      notes,
+    } = copy.spanish
 
     const textNodes: HTMLElement[] = getAllByRole('article')
 
-    const dayOpenValue: string = `${daysOpenParser(
-      day,
-      dummyScheduleRecord.day,
-      open,
-    )}: ${dummyScheduleRecord.day}`
+    // const dayOpenValue: string = `${daysOpenParser(
+    //   day,
+    //   dummyScheduleRecord.day,
+    //   open,
+    // )}: ${dummyScheduleRecord.day}`
 
     const timesOpenvalue: string = `${timeOpen}: ${timeParser(
       dummyScheduleRecord.open_time,
@@ -96,9 +106,9 @@ describe('<ScheduleRecordDisplay />', () => {
 
     const notesValue: string = `${notes}: ${dummyScheduleRecord.notes}`
 
-    expect(textNodes[0]).toHaveTextContent(dayOpenValue)
-    expect(textNodes[1]).toHaveTextContent(timesOpenvalue)
-    expect(textNodes[2]).toHaveTextContent(ordinalValue)
-    expect(textNodes[3]).toHaveTextContent(notesValue)
+    // expect(textNodes[0]).toHaveTextContent(dayOpenValue)
+    expect(textNodes[0]).toHaveTextContent(timesOpenvalue)
+    expect(textNodes[1]).toHaveTextContent(ordinalValue)
+    expect(textNodes[2]).toHaveTextContent(notesValue)
   })
 })
