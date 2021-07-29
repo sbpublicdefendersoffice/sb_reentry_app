@@ -22,7 +22,10 @@
   border-radius: var(--radius-small);
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
+  .Details {
+    margin-top: 3rem;
+  }
   .summary {
     display: block;
   }
