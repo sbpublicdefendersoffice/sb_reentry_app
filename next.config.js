@@ -13,7 +13,7 @@ const nextConfigOptions = {
     disable: process.env.NODE_ENV === 'development',
     sw: 'service-worker.js',
   },
-  webpack: config => {
+  webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.pdf/,
       type: 'asset/inline',
@@ -28,6 +28,19 @@ const nextConfigOptions = {
       'pg-native': false,
       tls: false,
     }
+
+    if (!isServer)
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        dns: false,
+        fs: false,
+        net: false,
+        pg: false,
+        'pg-hstore': false,
+        'pg-native': false,
+        sequelize: false,
+        tls: false,
+      }
 
     return config
   },
