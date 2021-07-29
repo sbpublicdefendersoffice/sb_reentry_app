@@ -8,12 +8,6 @@ import {
   TopThreeCta,
   PictureWithOval,
   LetUsHelpHeading,
-  // AAMeetingsCta,
-  // AccessLineCta,
-  // AddYourOrg,
-  // PRRCcta,
-  // LetUsHelpCta,
-  // MostUsedResourcesCta,
 } from '../components'
 import { Title, Paragraph, Button } from '../ui'
 import { flexFullWidth } from '../constants/'
@@ -78,12 +72,6 @@ const Home = () => {
         <PictureWithOval color="green" pic="whereToStartPic.jpeg" shiftRight />
       </div>
       <PwaDownload />
-      {/* <LetUsHelpCta /> */}
-      {/* <MostUsedResourcesCta /> */}
-      {/* <PRRCcta /> */}
-      {/* <AccessLineCta /> */}
-      {/* <AddYourOrg /> */}
-      {/* <AAMeetingsCta /> */}
     </>
   )
 }

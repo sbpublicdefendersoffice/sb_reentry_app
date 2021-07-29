@@ -78,7 +78,7 @@ export default class MyDocument extends Document {
           {/*  */}
           <link
             rel="icon"
-            href="./images/thriveleaffavicon.svg"
+            href="./icons/thriveleaffavicon.svg"
             type="image/svg+xml"
           />
         </Head>
