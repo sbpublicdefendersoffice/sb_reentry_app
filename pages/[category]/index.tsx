@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import { useRouter } from 'next/router'
@@ -26,6 +26,7 @@ import {
   categories,
   useStyles,
 } from '../../constants/'
+import ViewContext from '../../hooks/useView'
 const LandingPage = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
@@ -38,9 +39,10 @@ const LandingPage = () => {
     languageSelected: [],
   })
   const [open, setOpen] = useState(false)
-  const [currentView, setCurrentView] = useState('list')
   const activeCopy = categoryCopy[language]
   const validCategory = categories[asPath]
+  const { state } = useContext(ViewContext)
+  const { isListView, isMapView } = state
   const routeCategory: string = validCategory?.english.category.toLowerCase()
   const displayCategory: string = validCategory?.[language].category
   const displayDescription: string = validCategory?.[language].description
@@ -64,7 +66,6 @@ const LandingPage = () => {
     }
   }, [fetchedRecords, fields, validCategory])
   if (!validCategory) return <Error statusCode={404} />
-
   return (
     <>
       <Head>
@@ -92,7 +93,6 @@ const LandingPage = () => {
           </Hidden>
           <Hidden mdUp>
             <MobileButtonsLandingPage
-              setCurrentView={setCurrentView}
               activeCopy={activeCopy}
               setOpen={setOpen}
             />
@@ -114,17 +114,26 @@ const LandingPage = () => {
             </>
           </Modal>
           <Hidden mdUp>
-            {currentView == 'list' && (
+            <div
+              style={{
+                display: isListView && !isMapView ? 'contents' : 'none',
+              }}
+            >
               <RecordPane
                 orgInfo={filteredResults}
                 displayCategory={displayCategory}
                 routeCategory={routeCategory}
                 setRecords={setFetchedRecords}
               />
-            )}
-
-            {currentView == 'map' && convertedLocRecords && (
-              <DisplayMap latLongInfo={convertedLocRecords} />
+            </div>
+            {convertedLocRecords && (
+              <div
+                style={{
+                  display: isMapView && !isListView ? 'contents' : 'none',
+                }}
+              >
+                <DisplayMap latLongInfo={convertedLocRecords} />
+              </div>
             )}
           </Hidden>
           <Hidden smDown>
