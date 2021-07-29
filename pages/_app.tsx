@@ -1,9 +1,10 @@
 // import App from "next/app";
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
-import { siteTitle, ENGLISH, SPANISH } from '../constants'
+import { siteTitle, ENGLISH, SPANISH, isProd } from '../constants'
 import { Language, SantaBarbaraCountyCoords } from '../types'
 import {
   GlobalSearchProvider,
@@ -19,12 +20,14 @@ import {
   IsThisUsefulTag,
   MobileAppBar,
 } from '../components'
-import { checkAndSetUserLocation } from '../helpers/location'
+import { checkAndSetUserLocation, googlePageviews } from '../helpers/'
 
 import '../styles/globals.css'
 import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const { events } = useRouter()
+
   const [language, setLanguage] = useState<Language | null>(null)
   const [coords, setCoords] = useState<SantaBarbaraCountyCoords | null>(null)
   const [toast, setToast] = useState<string | null>(null)
@@ -38,6 +41,14 @@ const App = ({ Component, pageProps }: AppProps) => {
 
     if (!coords) checkAndSetUserLocation(setCoords, setToast, languageToLoad)
   }, [])
+
+  useEffect(() => {
+    if (isProd) {
+      // Log pageviews on Google Analytics while _app is mounted
+      events.on('routeChangeComplete', googlePageviews)
+      return () => events.off('routeChangeComplete', googlePageviews)
+    }
+  }, [events])
 
   return (
     language && (

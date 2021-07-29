@@ -17,8 +17,8 @@ import { useLanguage, useGlobalSearch } from '../hooks/'
 import { Tooltip, FindMe } from './'
 
 import Input from '../ui/Input'
-import { searchByKeyword } from '../helpers/search'
-import { searchCopy } from '../constants/copy'
+import { searchByKeyword, googleSearch } from '../helpers/'
+import { searchCopy, isProd } from '../constants/'
 import { GlobalSearchResult, SearchTermsMarquee } from './'
 import { PGOrganizationResponse } from '../types'
 
@@ -60,6 +60,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
         language,
       )
       setSearchResults(call)
+      if (isProd) googleSearch(searchQuery, language)
     }
   }
 

@@ -18,6 +18,7 @@ export {
   TipsAccord,
 } from './checklist-data'
 export { specialCourtReqsPDF } from './documents'
+export { isProd } from './env'
 export { ENGLISH, SPANISH } from './language'
 export {
   mapboxStylingURL,

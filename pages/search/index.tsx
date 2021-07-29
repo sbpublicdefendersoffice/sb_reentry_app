@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { searchByKeyword } from '../../helpers'
+import { searchByKeyword, googleViewSearchResults } from '../../helpers'
 import {
   useGlobalSearch,
   useLanguage,
   useConvertedLocationRecords,
 } from '../../hooks'
+import { isProd } from '../../constants/env'
+
 import { PGOrganizationResponse } from '../../types'
 import { TagPane, DisplayMap } from '../../components/'
 
@@ -17,15 +19,15 @@ const GlobalSearchLanding = () => {
     useConvertedLocationRecords()
 
   useEffect((): void => {
+    const captureQuery: RegExp = /^.*=(.*)$/
+    const capturedQueryReference: string = '$1'
+    const query: string = asPath.replace(captureQuery, capturedQueryReference)
+
     const filterOrFetch = async () => {
-      if (searchResults) setLocationRecords(searchResults)
-      else {
-        const captureQuery: RegExp = /^.*=(.*)$/
-        const capturedQueryReference: string = '$1'
-        const query: string = asPath.replace(
-          captureQuery,
-          capturedQueryReference,
-        )
+      if (searchResults) {
+        setLocationRecords(searchResults)
+        if (isProd) googleViewSearchResults(query, language)
+      } else {
         const call: PGOrganizationResponse[] = await searchByKeyword(
           query,
           language,
