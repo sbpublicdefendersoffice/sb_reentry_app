@@ -69,7 +69,12 @@ const Home = () => {
           </Paragraph>
           <Button onClick={() => push(url2, url2)}>{buttonText2}</Button>
         </LetUsHelpHeading>
-        <PictureWithOval color="green" pic="whereToStartPic.jpeg" shiftRight />
+        <PictureWithOval
+          color="green"
+          pic="whereToStartPic.jpg"
+          shiftRight
+          lazy
+        />
       </div>
       <PwaDownload />
     </>
