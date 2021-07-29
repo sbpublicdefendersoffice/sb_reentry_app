@@ -48,7 +48,7 @@ const useMapInfo = (latLongInfo: PGOrgPlusLocation[]) => {
 
       const spread: number = Math.round(maxLat * latToMile - minLat * latToMile)
       const zoom: number =
-        spread === 0 ? 15 : spread >= 1 && spread <= 5 ? 10.5 : 8.5
+        spread === 0 ? 15 : spread >= 1 && spread <= 5 ? 10.5 : 8
 
       const fitBoundsArr: BoundingArr = [
         [Math.min(...summedLatAndLong.longArr), minLat],
