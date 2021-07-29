@@ -39,6 +39,7 @@ const MostUsedResourcesCta = () => {
       <div className={styles.MostUsedResourcesCta}>
         <div className={styles.PicHolder}>
           <img
+            loading="lazy"
             role="img"
             className={styles.Image}
             src={imgSrc}
