@@ -48,7 +48,7 @@ const Home = () => {
   return (
     <>
       <div style={flexFullWidth}>
-        <PictureWithOval color="peri" pic="homepageResourcesPic.jpeg" />
+        <PictureWithOval color="peri" pic="homepageResourcesPic.jpg" />
         <LetUsHelpHeading>
           <Title>{title}</Title>
           <Paragraph style={{ marginBottom: 'var(--margin-lg)' }}>
