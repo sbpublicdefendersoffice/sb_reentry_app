@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 import {
-  PwaDownload,
   ResourceHub,
   TopThreeCta,
   PictureWithOval,
@@ -76,7 +75,6 @@ const Home = () => {
           lazy
         />
       </div>
-      <PwaDownload />
     </>
   )
 }
