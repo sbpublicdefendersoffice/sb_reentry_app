@@ -43,7 +43,6 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   useEffect(() => {
     if (isProd) {
-      // Log pageviews on Google Analytics while _app is mounted
       events.on('routeChangeComplete', googlePageviews)
       return () => events.off('routeChangeComplete', googlePageviews)
     }

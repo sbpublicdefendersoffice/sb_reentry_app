@@ -10,7 +10,6 @@ export {
   isRegionVisible,
 } from './location'
 export { searchByKeyword } from './search'
-export { default as initDb } from './sequelize'
 export {
   validateRequest,
   validatePhoneNumber,

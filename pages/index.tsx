@@ -3,17 +3,10 @@ import { useRouter } from 'next/router'
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 import {
-  PwaDownload,
   ResourceHub,
   TopThreeCta,
   PictureWithOval,
   LetUsHelpHeading,
-  // AAMeetingsCta,
-  // AccessLineCta,
-  // AddYourOrg,
-  // PRRCcta,
-  // LetUsHelpCta,
-  // MostUsedResourcesCta,
 } from '../components'
 import { Title, Paragraph, Button } from '../ui'
 import { flexFullWidth } from '../constants/'
@@ -54,7 +47,7 @@ const Home = () => {
   return (
     <>
       <div style={flexFullWidth}>
-        <PictureWithOval color="peri" pic="homepageResourcesPic.jpeg" />
+        <PictureWithOval color="peri" pic="homepageResourcesPic.jpg" />
         <LetUsHelpHeading>
           <Title>{title}</Title>
           <Paragraph style={{ marginBottom: 'var(--margin-lg)' }}>
@@ -75,15 +68,13 @@ const Home = () => {
           </Paragraph>
           <Button onClick={() => push(url2, url2)}>{buttonText2}</Button>
         </LetUsHelpHeading>
-        <PictureWithOval color="green" pic="whereToStartPic.jpeg" shiftRight />
+        <PictureWithOval
+          color="green"
+          pic="whereToStartPic.jpg"
+          shiftRight
+          lazy
+        />
       </div>
-      <PwaDownload />
-      {/* <LetUsHelpCta /> */}
-      {/* <MostUsedResourcesCta /> */}
-      {/* <PRRCcta /> */}
-      {/* <AccessLineCta /> */}
-      {/* <AddYourOrg /> */}
-      {/* <AAMeetingsCta /> */}
     </>
   )
 }

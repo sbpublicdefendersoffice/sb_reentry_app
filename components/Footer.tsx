@@ -50,6 +50,7 @@ const Footer = () => {
         </div>
         <div className={styles.Logo1}>
           <img
+            loading="lazy"
             src="/icons/thriveleaf.svg"
             className={styles.leaf}
             alt="Thrive Logo Leaf"

@@ -34,6 +34,7 @@ const TopThreeCta = () => {
         <NextLink href={route} key={i}>
           <div role="listitem" className={styles.Tile}>
             <img
+              loading="lazy"
               role="img"
               className={styles.Image}
               src={imgPath}
