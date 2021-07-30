@@ -132,6 +132,7 @@ const ScheduleRecordDisplay = ({
             fontSize: '1rem',
             fontFamily: 'sans-serif',
           }}
+          disabled
         >
           Open Now
         </Button>
@@ -143,6 +144,7 @@ const ScheduleRecordDisplay = ({
             fontSize: '1rem',
             fontFamily: 'sans-serif',
           }}
+          disabled
         >
           Closed
         </Button>
