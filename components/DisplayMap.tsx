@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { Fragment, useEffect } from 'react'
-import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
+import MapboxGL from 'mapbox-gl'
 
 import {
   mapboxStylingURL,
@@ -33,9 +33,7 @@ const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
   </Fragment>
 )
 
-const MapboxMap = ReactMapboxGL({
-  accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
-})
+MapboxGL.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
 
 const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const { pathname } = useRouter()
@@ -46,6 +44,25 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(
     locRecordsToFilter?.filteredRecords || latLongInfo,
   )
+  useEffect(() => {
+    if (latLongInfo && !testWorkaround) {
+      const map = new MapboxGL.Map({
+        container: 'map',
+        style: mapboxStylingURL,
+        center: centerArr,
+        zoom,
+      })
+
+      map.fitBounds(fitBoundsArr)
+
+      map.addControl(
+        new MapboxGL.ScaleControl({
+          unit: 'imperial',
+        }),
+        'bottom-right',
+      )
+    }
+  }, [])
   // Below effect is to clear map when new data is fetched due to new global data fetch or changing the language
   useEffect(
     () =>
@@ -85,10 +102,11 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
           )}
         </CityFilter>
       )}
-      {!testWorkaround && (
+      {!testWorkaround && <div id="map" style={mapContainerStyle}></div>}
+      {/* {!testWorkaround && (
         // @ts-ignore
         <MapboxMap
-          style={mapboxStylingURL}
+          // style={mapboxStylingURL}
           containerStyle={mapContainerStyle}
           center={centerArr}
           fitBounds={fitBoundsArr}
@@ -115,7 +133,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
             : latLongInfo.map(returnMarker)}
           <ScaleControl measurement="mi" position="bottom-right" />
         </MapboxMap>
-      )}
+      )} */}
     </Details>
   )
 }
