@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, MutableRefObject } from 'react'
 import { useRouter } from 'next/router'
-import MapboxGL from 'mapbox-gl'
+import type { Map, Marker } from 'mapbox-gl'
 
 import Popup from './Popup'
 import { usePopup, useLanguage } from '../hooks'
@@ -11,7 +11,7 @@ import styles from './MapMarker.module.css'
 
 interface MapMarkerProps {
   locationRecord: PGOrgPlusLocation
-  map: MapboxGL.Map
+  map: Map
   onTop?: boolean
   testWorkaround?: boolean
 }
@@ -60,23 +60,31 @@ const MapMarker = ({
   }, [locationRecord])
 
   useEffect(() => {
-    if (imgSrc && map?.loaded) {
-      const marker = new MapboxGL.Marker({
-        anchor: 'bottom',
-        element: imgRef.current,
-      })
+    let marker: Marker
 
-      marker.setLngLat([longitude, latitude]).addTo(map)
+    const loadMarker = async () => {
+      if (imgSrc && imgRef.current && map?.loaded) {
+        const { Marker } = await import('mapbox-gl')
 
-      const markerEle = marker.getElement()
+        marker = new Marker({
+          anchor: 'bottom',
+          element: imgRef.current,
+        })
 
-      if (onTop) markerEle.style.zIndex = '8'
-      markerRef.current = markerEle as HTMLDivElement
-      return () => {
-        marker.remove()
+        marker.setLngLat([longitude, latitude]).addTo(map)
+
+        const markerEle = marker.getElement()
+
+        if (onTop) markerEle.style.zIndex = '8'
+        markerRef.current = markerEle as HTMLDivElement
       }
     }
-  }, [imgSrc])
+    loadMarker()
+
+    return () => {
+      marker?.remove()
+    }
+  }, [imgSrc, map])
 
   const linkToRecord = (): void => {
     if (id && query?.id !== String(id))

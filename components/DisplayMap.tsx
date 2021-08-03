@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { Fragment, useEffect, useState } from 'react'
-import MapboxGL from 'mapbox-gl'
+import type { Map } from 'mapbox-gl'
 
 import {
   mapboxStylingURL,
@@ -27,10 +27,8 @@ interface DisplayMapProps {
   testWorkaround?: boolean
 }
 
-MapboxGL.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
-
 const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
-  const [map, setMap] = useState<MapboxGL.Map | null>(null)
+  const [map, setMap] = useState<Map | null>(null)
 
   const { pathname } = useRouter()
   const { searchResults } = useGlobalSearch()
@@ -41,25 +39,35 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
     locRecordsToFilter?.filteredRecords || latLongInfo,
   )
   useEffect(() => {
-    if (latLongInfo && !testWorkaround) {
-      const map = new MapboxGL.Map({
-        container: 'map',
-        style: mapboxStylingURL,
-        center: centerArr,
-        zoom,
-      })
+    let map: Map
 
-      map.fitBounds(fitBoundsArr)
+    const loadMap = async () => {
+      if (latLongInfo && !testWorkaround) {
+        const { Map, ScaleControl } = await import('mapbox-gl')
 
-      map.addControl(
-        new MapboxGL.ScaleControl({
-          unit: 'imperial',
-        }),
-        'bottom-right',
-      )
+        map = new Map({
+          accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
+          container: 'map',
+          style: mapboxStylingURL,
+          center: centerArr,
+          zoom,
+        })
 
-      setMap(map)
+        map.fitBounds(fitBoundsArr)
+
+        map.addControl(
+          new ScaleControl({
+            unit: 'imperial',
+          }),
+          'bottom-right',
+        )
+
+        setMap(map)
+      }
     }
+    loadMap()
+
+    return () => map.remove()
   }, [])
 
   // Below effect is to clear map when new data is fetched due to new global data fetch or changing the language
@@ -74,7 +82,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const isInSBCounty: boolean = coords?.isInSBCounty
 
   const filteredRecordsReady: boolean = Boolean(
-    locRecordsToFilter?.filteredRecords,
+    locRecordsToFilter?.filteredRecords && map?.loaded,
   )
   const showFilters: boolean = !pathname.endsWith('[id]')
 
