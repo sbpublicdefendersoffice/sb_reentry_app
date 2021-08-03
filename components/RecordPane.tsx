@@ -1,4 +1,4 @@
-import { SetStateAction, Dispatch, Fragment } from 'react'
+import { SetStateAction, Dispatch, Fragment, useContext } from 'react'
 import { useRouter } from 'next/router'
 import { FetchedDataSearch, LeafLoader, OrgRecordCard } from './'
 import { Details, Paragraph } from '../ui'
@@ -6,6 +6,7 @@ import useLanguage from '../hooks/useLanguage'
 import { PGOrganizationResponse } from '../types/'
 import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
+import ViewContext from '../hooks/useView'
 export interface RecordPaneProps {
   displayCategory: string
   routeCategory: string
@@ -20,6 +21,9 @@ const RecordPane = ({
 }: RecordPaneProps) => {
   const { push, route } = useRouter()
   const { language } = useLanguage()
+  const { state } = useContext(ViewContext)
+  const { isListView, isMapView } = state
+  console.log('isListView in Record:',isListView, isMapView, screen.width<1275);
   const categoryTitle: string = routeCategory.replace(' ', '')
   const url: string = `/${categoryTitle}`
   const pushToCategory = () => {
@@ -28,26 +32,29 @@ const RecordPane = ({
   if (!orgInfo) return <LeafLoader />
   const recordsReady: boolean = Boolean(orgInfo?.length)
   return (
-    <div className={styles.RecordPane} role="menu">
+    <div
+      className={
+        isListView && !isMapView && screen.width<1275 ? styles.RecordPaneMobile : styles.RecordPane
+      }
+      role="menu"
+    >
       <Paragraph
         role="heading"
         size="heading-text"
-        className={styles.title}
+        className={
+          isListView && !isMapView && screen.width<1275 ? styles.titleMobile : styles.title
+        }
         onClick={pushToCategory}
       >
         {displayCategory}
       </Paragraph>
-      {orgInfo && (
-        <FetchedDataSearch
-          displayCategory={displayCategory}
-          originalRecords={orgInfo}
-          setRecords={setRecords}
-        />
-      )}
+
       <Details
         role="list"
         open
-        className={styles.details}
+        className={
+          isListView && !isMapView && screen.width<1275 ? styles.detailsMobile  : styles.details
+        }
         summary={`${displayCategory} ${
           language === ENGLISH ? 'Records' : 'Registros'
         }`}

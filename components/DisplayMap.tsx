@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useContext } from 'react'
+import { ViewContext } from '../hooks'
 import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
-
 import {
   mapboxStylingURL,
   mapContainerStyle,
@@ -17,28 +17,25 @@ import {
 } from '../hooks'
 import { MapMarker, CityFilter, ProximityFilter } from './'
 import { Details } from '../ui'
-
 import { PGOrgPlusLocation } from '../types'
-
 import styles from './DisplayMap.module.css'
-
 interface DisplayMapProps {
   latLongInfo: PGOrgPlusLocation[]
   testWorkaround?: boolean
 }
-
 const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
   <Fragment key={i}>
     <MapMarker locationRecord={locationRecord} />
   </Fragment>
 )
-
 const MapboxMap = ReactMapboxGL({
   accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
 })
-
 const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const { pathname } = useRouter()
+  const { state } = useContext(ViewContext)
+  const { isListView, isMapView } = state
+console.log('isListView in display:',isListView, isMapView, screen.width<1275);
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
   const { coords } = useLocation()
@@ -54,22 +51,21 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
       }),
     [language, searchResults],
   )
-
   const isInSBCounty: boolean = coords?.isInSBCounty
-
   const filteredRecordsReady: boolean = Boolean(
     locRecordsToFilter?.filteredRecords,
   )
   const showFilters: boolean = !pathname.endsWith('[id]')
-
   return (
     <Details
       role="main"
       open
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
-      className={styles.DisplayMap}
+      className={
+        isMapView && !isListView && screen.width<1275 ? styles.DisplayMapMobile : styles.DisplayMap
+      }
     >
-      {showFilters && (
+      {/* {showFilters && (
         <CityFilter
           locationsToFilter={latLongInfo}
           regionVisibility={locRecordsToFilter.visibility}
@@ -84,7 +80,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
             />
           )}
         </CityFilter>
-      )}
+      )} */}
       {!testWorkaround && (
         // @ts-ignore
         <MapboxMap
@@ -119,5 +115,4 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
     </Details>
   )
 }
-
 export default DisplayMap

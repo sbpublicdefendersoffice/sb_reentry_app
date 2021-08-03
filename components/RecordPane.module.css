@@ -9,9 +9,17 @@
   margin: none;
   padding: var(--pad-std) var(--pad-lg);
 }
+.RecordPaneMobile {
+display: none;
+}
 
 .title {
   cursor: pointer;
+  display: contents
+}
+.titleMobile {
+
+  display: none
 }
 
 .details {
@@ -19,18 +27,57 @@
   flex-direction: inherit;
   height: inherit;
   overflow: inherit;
+  display: contents;
+}
+.detailsMobile {
+display: none;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1275px) {
   .RecordPane {
-    width: 100%;
-    height: max-content;
+    display: none ;
+    /* height: max-content;
+    margin-left: 1.5rem; */
   }
 }
-@media (max-width: 1000px) {
-  .RecordPane {
-    width: 100%;
-    height: max-content;
-    margin-left: 1.5rem;
+@media (max-width: 1275px) {
+  .title {
+    display: none;
   }
 }
+  @media (max-width: 1275px) {
+  .details {
+   display: none;
+  }
+}
+  @media (max-width: 1275px) {
+  .RecordPaneMobile {
+    display: contents;
+    width: 100%;
+    height: max-content;
+    margin: 2rem;
+    /* margin-left: 1.5rem; */
+    
+
+  }
+  @media (max-width: 1275px) {
+    .titleMobile{
+      
+      display: flex;
+    margin: auto;
+
+    }
+  }
+  @media (max-width: 1275px) {
+  .detailsMobile{
+    display: contents;
+width: 100%;
+  display: flex;
+  flex-direction: inherit;
+  height: inherit;
+  overflow: inherit;
+  margin: 2rem;
+ 
+  }
+}
+  }
