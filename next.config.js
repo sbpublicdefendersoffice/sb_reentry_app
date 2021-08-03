@@ -1,15 +1,13 @@
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-
 const nextConfigOptions = {
   future: {
     webpack5: true,
   },
   target: 'serverless',
   webpack: (config, { isServer }) => {
-    // config.module.rules.push({
-    //   test: /\.pdf/,
-    //   type: 'asset/inline',
-    // })
+    config.module.rules.push({
+      test: /\.pdf/,
+      type: 'asset/inline',
+    })
 
     config.resolve.fallback = {
       ...config.resolve.fallback,
@@ -33,16 +31,6 @@ const nextConfigOptions = {
         sequelize: false,
         tls: false,
       }
-
-    if (process.env.NODE_ENV === 'production') {
-      config.plugins.push(
-        new BundleAnalyzerPlugin({
-          analyzerMode: 'server',
-          analyzerPort: isServer ? 8888 : 8889,
-          openAnalyzer: true,
-        }),
-      )
-    }
 
     return config
   },
