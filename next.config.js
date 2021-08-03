@@ -9,8 +9,7 @@ const nextConfigOptions = {
       type: 'asset/inline',
     })
 
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
+    const fallbackModules = {
       dns: false,
       fs: false,
       net: false,
@@ -19,18 +18,24 @@ const nextConfigOptions = {
       tls: false,
     }
 
-    if (!isServer)
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      ...fallbackModules,
+    }
+
+    if (!isServer) {
+      const serverOnlyModules = {
+        ...fallbackModules,
+        pg: false,
+        sequelize: false,
+        twilio: false,
+      }
+
       config.resolve.alias = {
         ...config.resolve.alias,
-        dns: false,
-        fs: false,
-        net: false,
-        pg: false,
-        'pg-hstore': false,
-        'pg-native': false,
-        sequelize: false,
-        tls: false,
+        ...serverOnlyModules,
       }
+    }
 
     return config
   },
