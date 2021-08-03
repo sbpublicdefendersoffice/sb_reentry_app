@@ -1,6 +1,7 @@
-import { useLanguage, useOpenNow } from '../hooks/'
+import { useLanguage } from '../hooks/'
 import React, { useState, useEffect } from 'react'
 import { CopyHolder, Language } from '../types'
+import { isOpenNow } from '../helpers'
 
 import { Paragraph } from '../ui'
 import { Button } from '@material-ui/core/'
@@ -87,7 +88,7 @@ const ScheduleRecordDisplay = ({
   const { language } = useLanguage()
 
   const activeCopy = copy[language]
-  const initialOpen = useOpenNow({
+  const initialOpen = isOpenNow({
     open_time,
     close_time,
     days,
@@ -99,7 +100,7 @@ const ScheduleRecordDisplay = ({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const isOpenChecker = useOpenNow({
+      const isOpenChecker = isOpenNow({
         open_time,
         close_time,
         days,
