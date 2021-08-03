@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, MutableRefObject } from 'react'
 import { useRouter } from 'next/router'
-import { Marker } from 'react-mapbox-gl'
+import MapboxGL from 'mapbox-gl'
 
 import Popup from './Popup'
 import { usePopup, useLanguage } from '../hooks'
@@ -11,7 +11,8 @@ import styles from './MapMarker.module.css'
 
 interface MapMarkerProps {
   locationRecord: PGOrgPlusLocation
-  customStyle?: { [cssQuality: string]: string | number }
+  map: MapboxGL.Map
+  onTop?: boolean
   testWorkaround?: boolean
 }
 
@@ -26,9 +27,13 @@ const copy: CopyHolder = {
 
 const MapMarker = ({
   locationRecord,
-  customStyle,
+  map,
   testWorkaround,
+  onTop,
 }: MapMarkerProps) => {
+  const markerRef: MutableRefObject<HTMLDivElement> | null = useRef(null)
+  const imgRef: MutableRefObject<HTMLImageElement> | null = useRef(null)
+
   const [imgSrc, setImgSrc] = useState<string>('')
   const { push, pathname, query } = useRouter()
   const { popupLocation, setPopupLocation, clearPopupLocation } = usePopup()
@@ -54,6 +59,25 @@ const MapMarker = ({
     else setImgSrc(single_category)
   }, [locationRecord])
 
+  useEffect(() => {
+    if (imgSrc && map?.loaded) {
+      const marker = new MapboxGL.Marker({
+        anchor: 'bottom',
+        element: imgRef.current,
+      })
+
+      marker.setLngLat([longitude, latitude]).addTo(map)
+
+      const markerEle = marker.getElement()
+
+      if (onTop) markerEle.style.zIndex = '8'
+      markerRef.current = markerEle as HTMLDivElement
+      return () => {
+        marker.remove()
+      }
+    }
+  }, [imgSrc])
+
   const linkToRecord = (): void => {
     if (id && query?.id !== String(id))
       if (isSearchPage) push('/search/[id]', `/search/${id}`)
@@ -71,12 +95,9 @@ const MapMarker = ({
       )}
 
       {!testWorkaround && (
-        <Marker
-          style={customStyle ? customStyle : {}}
-          coordinates={[longitude, latitude]}
-          anchor="bottom"
-        >
+        <div ref={markerRef}>
           <img
+            ref={imgRef}
             loading="lazy"
             src={`/icons/${imgSrc.replace(' ', '')}_marker.svg`}
             alt={activeCopy.altText}
@@ -86,7 +107,7 @@ const MapMarker = ({
             onMouseLeave={clearPopupLocation}
             onClick={linkToRecord}
           />
-        </Marker>
+        </div>
       )}
     </>
   )

@@ -25,7 +25,6 @@
     "pg": "^8.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-mapbox-gl": "^5.1.1",
     "sequelize": "^6.6.5",
     "styled-components": "^5.2.1",
     "twilio": "^3.55.1"

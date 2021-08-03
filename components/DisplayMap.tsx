@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import MapboxGL from 'mapbox-gl'
 
 import {
@@ -27,15 +27,11 @@ interface DisplayMapProps {
   testWorkaround?: boolean
 }
 
-const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
-  <Fragment key={i}>
-    <MapMarker locationRecord={locationRecord} />
-  </Fragment>
-)
-
 MapboxGL.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
 
 const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
+  const [map, setMap] = useState<MapboxGL.Map | null>(null)
+
   const { pathname } = useRouter()
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
@@ -61,8 +57,11 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
         }),
         'bottom-right',
       )
+
+      setMap(map)
     }
   }, [])
+
   // Below effect is to clear map when new data is fetched due to new global data fetch or changing the language
   useEffect(
     () =>
@@ -78,6 +77,12 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
     locRecordsToFilter?.filteredRecords,
   )
   const showFilters: boolean = !pathname.endsWith('[id]')
+
+  const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
+    <Fragment key={i}>
+      <MapMarker locationRecord={locationRecord} map={map} />
+    </Fragment>
+  )
 
   return (
     <Details
@@ -102,20 +107,10 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
           )}
         </CityFilter>
       )}
-      {!testWorkaround && <div id="map" style={mapContainerStyle}></div>}
-      {/* {!testWorkaround && (
-        // @ts-ignore
-        <MapboxMap
-          // style={mapboxStylingURL}
-          containerStyle={mapContainerStyle}
-          center={centerArr}
-          fitBounds={fitBoundsArr}
-          animationOptions={{ animate: false }}
-          zoom={[zoom]}
-        >
+      {!testWorkaround && (
+        <div id="map" style={mapContainerStyle}>
           {isInSBCounty && (
             <MapMarker
-              customStyle={{ zIndex: 8 }}
               locationRecord={{
                 city: '',
                 longitude: coords.longitude,
@@ -126,14 +121,15 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
                 name_english: 'Your location',
                 name_spanish: 'Tu ubicación',
               }}
+              map={map}
+              onTop
             />
           )}
           {filteredRecordsReady
             ? locRecordsToFilter.filteredRecords.map(returnMarker)
             : latLongInfo.map(returnMarker)}
-          <ScaleControl measurement="mi" position="bottom-right" />
-        </MapboxMap>
-      )} */}
+        </div>
+      )}
     </Details>
   )
 }
