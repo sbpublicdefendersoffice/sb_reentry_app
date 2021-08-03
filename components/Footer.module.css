@@ -71,7 +71,7 @@
 .Disclaimer {
   padding: 0 10%;
 }
-@media (max-width: 900px) {
+@media (max-width: 1275px) {
   .Footer {
     margin-bottom: 4rem;
   }
