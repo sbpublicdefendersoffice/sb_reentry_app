@@ -21,7 +21,7 @@ const FilterCity = ({ fields, handleFieldsSelected }) => {
       {' '}
       <Grid item md={3} className={classes.desktopFilterContainer}>
         <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label" style={{ width: '3rem' }}>
+          <InputLabel id="demo-simple-select-label" className={classes.menuItem}>
             {language === ENGLISH ? 'City' : 'Ciudad'}
           </InputLabel>
           <Select
