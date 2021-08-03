@@ -1,12 +1,5 @@
-const weekday = new Array(7)
-weekday[0] = 'Sun'
-weekday[1] = 'Mon'
-weekday[2] = 'Tues'
-weekday[3] = 'Wed'
-weekday[4] = 'Thu'
-weekday[5] = 'Fri'
-weekday[6] = 'Sat'
-const useOpenNow = scheduleInfo => {
+import { weekday } from '../constants/'
+const isOpenNow = scheduleInfo => {
   const { open_time, close_time, days } = scheduleInfo
   const now = new Date()
   const dayofWeek = weekday[now.getDay()]
@@ -17,4 +10,4 @@ const useOpenNow = scheduleInfo => {
     return false
   }
 }
-export default useOpenNow
+export default isOpenNow

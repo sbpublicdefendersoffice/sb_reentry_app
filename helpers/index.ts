@@ -1,3 +1,5 @@
+import { fromPairs } from 'lodash'
+
 export {
   googlePageviews,
   googleSearch,
@@ -19,3 +21,4 @@ export {
   POST,
   GET,
 } from './validators'
+export {default as isOpenNow } from "./isOpenNow"
