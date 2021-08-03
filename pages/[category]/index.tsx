@@ -73,17 +73,19 @@ const LandingPage = () => {
       </Head>
       <div className={classes.landingPageContainer}>
         <Grid container>
-          <DisplayCategoryImage
-            displayCategory={displayCategory}
-            routeCategory={routeCategory}
-          />
-          <Hidden smDown>
+          <Hidden mdDown>
+            <DisplayCategoryImage
+              displayCategory={displayCategory}
+              routeCategory={routeCategory}
+            />
+          </Hidden>
+          <Hidden mdDown>
             <CategoryDescription
               displayDescription={displayDescription}
               activeCopy={activeCopy}
             />
           </Hidden>
-          <Hidden smDown>
+          <Hidden mdDown>
             <DesktopFilterView
               fields={fields}
               handleFieldsSelected={handleFieldsSelected}
@@ -91,7 +93,7 @@ const LandingPage = () => {
               activeCopy={activeCopy}
             />
           </Hidden>
-          <Hidden mdUp>
+          <Hidden lgUp>
             <MobileButtonsLandingPage
               activeCopy={activeCopy}
               setOpen={setOpen}
@@ -113,7 +115,7 @@ const LandingPage = () => {
               />
             </>
           </Modal>
-          <Hidden mdUp>
+          {/* <Hidden lgUp>
             <div
               style={{
                 display: isListView && !isMapView ? 'contents' : 'none',
@@ -135,8 +137,8 @@ const LandingPage = () => {
                 <DisplayMap latLongInfo={convertedLocRecords} />
               </div>
             )}
-          </Hidden>
-          <Hidden smDown>
+          </Hidden> */}
+
             <RecordPane
               orgInfo={filteredResults}
               displayCategory={displayCategory}
@@ -146,7 +148,7 @@ const LandingPage = () => {
             {convertedLocRecords && (
               <DisplayMap latLongInfo={convertedLocRecords} />
             )}
-          </Hidden>
+
         </Grid>
       </div>
     </>
