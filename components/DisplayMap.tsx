@@ -28,7 +28,7 @@ interface DisplayMapProps {
 }
 
 const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
-  const [map, setMap] = useState<Map | null>(null)
+  const [mapState, setMap] = useState<Map | null>(null)
 
   const { pathname } = useRouter()
   const { searchResults } = useGlobalSearch()
@@ -67,8 +67,20 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
     }
     loadMap()
 
-    return () => map.remove()
+    return () => map?.remove()
   }, [])
+
+  useEffect(() => {
+    if (mapState) {
+      const tempMap: Map = mapState
+
+      tempMap.fitBounds(fitBoundsArr)
+      tempMap.setCenter(centerArr)
+      tempMap.setZoom(zoom)
+
+      setMap(tempMap)
+    }
+  }, [fitBoundsArr, centerArr, zoom])
 
   // Below effect is to clear map when new data is fetched due to new global data fetch or changing the language
   useEffect(
@@ -82,13 +94,13 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const isInSBCounty: boolean = coords?.isInSBCounty
 
   const filteredRecordsReady: boolean = Boolean(
-    locRecordsToFilter?.filteredRecords && map?.loaded,
+    locRecordsToFilter?.filteredRecords && mapState?.loaded,
   )
   const showFilters: boolean = !pathname.endsWith('[id]')
 
   const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
     <Fragment key={i}>
-      <MapMarker locationRecord={locationRecord} map={map} />
+      <MapMarker locationRecord={locationRecord} map={mapState} />
     </Fragment>
   )
 
@@ -129,7 +141,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
                 name_english: 'Your location',
                 name_spanish: 'Tu ubicación',
               }}
-              map={map}
+              map={mapState}
               onTop
             />
           )}

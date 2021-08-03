@@ -84,7 +84,7 @@ const MapMarker = ({
     return () => {
       marker?.remove()
     }
-  }, [imgSrc, map])
+  }, [imgSrc, map, locationRecord])
 
   const linkToRecord = (): void => {
     if (id && query?.id !== String(id))
