@@ -4,7 +4,7 @@ import { Title } from '../ui/'
 const DisplayCategoryImage = ({ displayCategory, routeCategory }) => {
   return (
     <>
-      <Grid item xs={12}>
+      <Grid item xs={12} style={{marginTop: "2rem"}}>
         <Title>{displayCategory}</Title>
       </Grid>
       <Grid item xs={12} sm={12} md={4}>
