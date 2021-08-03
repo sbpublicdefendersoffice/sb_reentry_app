@@ -2,14 +2,18 @@ import React, { useContext } from 'react'
 import { Grid, Fab } from '@material-ui/core/'
 import { FilterList, List, Room } from '@material-ui/icons/'
 import { ViewContext } from '../hooks/'
+import { useStyles } from '../constants'
+
 const MobileButtonsLandingPage = ({ activeCopy, setOpen }) => {
   const { dispatch } = useContext(ViewContext)
+  const classes = useStyles()
   return (
     <>
-      <Grid container spacing={2} justify="center">
-        <Grid item xs={3}>
+
+     <div style={{margin: "auto", marginTop: "2rem", marginBottom: "2rem", width: "100%"}}>
           <Fab
             variant="extended"
+            style={{margin: "1rem"}}
             onClick={e => {
               e.preventDefault()
               dispatch({
@@ -20,10 +24,11 @@ const MobileButtonsLandingPage = ({ activeCopy, setOpen }) => {
             <List />
             {activeCopy.list}
           </Fab>
-        </Grid>
-        <Grid item xs={3}>
+    
+   
           <Fab
             variant="extended"
+            style={{margin: "1rem"}}
             onClick={e => {
               e.preventDefault()
               dispatch({
@@ -34,14 +39,13 @@ const MobileButtonsLandingPage = ({ activeCopy, setOpen }) => {
             <Room />
             {activeCopy.map}
           </Fab>
-        </Grid>
-        <Grid item xs={3}>
-          <Fab variant="extended" onClick={() => setOpen(true)}>
+ 
+          <Fab variant="extended" style={{margin: "1rem"}} onClick={() => setOpen(true)}>
             <FilterList />
             {activeCopy.filter}
           </Fab>
-        </Grid>
-      </Grid>
+          </div>
+    
     </>
   )
 }
