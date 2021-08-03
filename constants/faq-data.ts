@@ -82,14 +82,14 @@ export const treatment: CopyHolder = {
   english: {
     listItem: ` I was Court-Ordered to enter into a treatment program, what should I do?`,
     description:
-      '"Court-ordered" treatment includes DUI or DUI programs, drug diversion programs or PC 1000, Proposition 36 or the Crime and Substance Abuse Prevention Act (SACPA), and the Criminal Court. Drugs Those directed by the Court to obtain treatment for any of these violations or programs should contact their parole or probation officer or assigned attorney to discuss which program they may be required to attend. If you have questions about DUI, PC1000 (Drug Diversion), Drug Courts, or SACPA (Prop 36), you can contact the Behavioral Wellness 24-Hour Toll Free Access Line (888) 868-1649 or by ',
+      '"Court-ordered" treatment includes DUI or DUI programs, drug diversion programs or PC 1000, Proposition 36 or the Crime and Substance Abuse Prevention Act (SACPA), and the Criminal Court. Those directed by the Court to obtain treatment for any of these violations or programs should contact their parole or probation officer or assigned attorney to discuss which program they may be required to attend. If you have questions about DUI, PC1000 (Drug Diversion), Drug Courts, or SACPA (Prop 36), you can contact the Behavioral Wellness 24-Hour Toll Free Access Line (888) 868-1649 or by ',
     href1: 'tel:8888681649',
   },
   spanish: {
     listItem:
       'Recibí una orden judicial para ingresar a un programa de tratamiento, ¿qué debo hacer?',
     description:
-      'El tratamiento "ordenado por la corte" incluye programas de DUI o DUI, programas de desvío de drogas o PC 1000, la Proposición 36 o la Ley de Prevención del Abuso de Sustancias y Delitos (SACPA) y el Tribunal Penal. Drogas Aquellos a quienes el Tribunal les indique que obtengan tratamiento por cualquiera de estas violaciones o programas deben comunicarse con su oficial de libertad condicional o de libertad condicional o abogado asignado para discutir a qué programa se les puede exigir que asistan. Si tiene preguntas sobre DUI, PC1000 (Desviación de Drogas), Tribunales de Drogas o SACPA (Prop 36), puede comunicarse con la Línea de Acceso Gratuito las 24 Horas de Behavioral Wellness (888) 868-1649 o ',
+      'El tratamiento "ordenado por la corte" incluye programas de DUI o DUI, programas de desvío de drogas o PC 1000, la Proposición 36 o la Ley de Prevención del Abuso de Sustancias y Delitos (SACPA) y el Tribunal Penal. Aquellos a quienes el Tribunal les indique que obtengan tratamiento por cualquiera de estas violaciones o programas deben comunicarse con su oficial de libertad condicional o de libertad condicional o abogado asignado para discutir a qué programa se les puede exigir que asistan. Si tiene preguntas sobre DUI, PC1000 (Desviación de Drogas), Tribunales de Drogas o SACPA (Prop 36), puede comunicarse con la Línea de Acceso Gratuito las 24 Horas de Behavioral Wellness (888) 868-1649 o ',
     href1: 'tel:8888681649',
   },
 }
