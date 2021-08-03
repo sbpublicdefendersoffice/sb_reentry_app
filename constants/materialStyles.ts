@@ -45,7 +45,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     formControl: {
-      // margin: '1rem !important',
+      margin: '2rem !important',
       width: '13.75rem',
       fontSize: '2rem',
 
@@ -127,10 +127,11 @@ export const useStyles = makeStyles((theme: Theme) =>
     appBar: {
       top: 'auto !important',
       bottom: 0,
+      marginTop: "4rem",
       backgroundColor: '#12385E !important',
       display: 'none !important',
       justifyContent: 'space-between',
-      '@media (max-width: 900px)': {
+      '@media (max-width: 1275px)': {
         display: 'flex !important',
       },
     },
