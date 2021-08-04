@@ -42,7 +42,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
     let map: Map
 
     const loadMap = async () => {
-      if (latLongInfo && !testWorkaround) {
+      if (latLongInfo && !testWorkaround && zoom && fitBoundsArr && centerArr) {
         const { Map, ScaleControl } = await import('mapbox-gl')
 
         map = new Map({
@@ -80,7 +80,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
 
       setMap(tempMap)
     }
-  }, [fitBoundsArr, centerArr, zoom])
+  }, [mapState, fitBoundsArr, centerArr, zoom])
 
   // Below effect is to clear map when new data is fetched due to new global data fetch or changing the language
   useEffect(
