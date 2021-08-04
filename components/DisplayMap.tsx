@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Fragment, useState, useEffect, useContext, useLayoutEffect } from 'react'
+import { Fragment, useState, useEffect, useContext} from 'react'
 import { ViewContext } from '../hooks'
 import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
 import {
@@ -36,7 +36,7 @@ const MapboxMap = ReactMapboxGL({
   accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
 })
 const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
-  // const [width] = useMediaQuery();
+ 
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: innerWidth,
     height: innerHeight,
@@ -48,11 +48,10 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
       height: innerHeight,
     }),
   )
-  console.log("🚀 ~ file: DisplayMap.tsx ~ line 50 ~ DisplayMap ~ width", windowSize.width)
+  
   const { pathname } = useRouter()
   const { state } = useContext(ViewContext)
   const { isListView, isMapView } = state
-console.log('isListView in display:',isListView, isMapView, screen.width<1275, screen.width);
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
   const { coords } = useLocation()
