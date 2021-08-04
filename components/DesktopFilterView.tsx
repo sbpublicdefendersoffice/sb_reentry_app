@@ -9,19 +9,10 @@ const DesktopFilterView = ({
 }) => {
   return (
     <>
-      <Grid item md={12}>
-        <Paper
-          elevation={3}
-          style={{
-            margin: 'auto',
-            marginBottom: '5rem',
-            display: 'flex',
-            padding: '3rem',
-            width: '80%',
-          }}
-        >
+      
+
           <Grid container>
-            <Grid item md={12}>
+            <Grid item xs={12}>
               <p
                 style={{
                   fontSize: '1.5rem',
@@ -38,8 +29,7 @@ const DesktopFilterView = ({
               routeCategory={routeCategory}
             />
           </Grid>
-        </Paper>
-      </Grid>
+
     </>
   )
 }
