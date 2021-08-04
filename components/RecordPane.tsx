@@ -1,12 +1,12 @@
-import { SetStateAction, Dispatch, Fragment, useContext } from 'react'
+import { SetStateAction, Dispatch, Fragment, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
-import { FetchedDataSearch, LeafLoader, OrgRecordCard } from './'
-import { Details, Paragraph } from '../ui'
-import useLanguage from '../hooks/useLanguage'
-import { PGOrganizationResponse } from '../types/'
+import { LeafLoader, OrgRecordCard } from './'
+import { Details, Paragraph, } from '../ui'
+import {useLanguage, ViewContext,useResizeEvent} from '../hooks/'
+import { PGOrganizationResponse, WindowSize } from '../types/'
 import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
-import ViewContext from '../hooks/useView'
+
 export interface RecordPaneProps {
   displayCategory: string
   routeCategory: string
@@ -23,7 +23,18 @@ const RecordPane = ({
   const { language } = useLanguage()
   const { state } = useContext(ViewContext)
   const { isListView, isMapView } = state
-  console.log('isListView in Record:',isListView, isMapView, screen.width<1275);
+  const [windowSize, setWindowSize] = useState<WindowSize>({
+    width: innerWidth,
+    height: innerHeight,
+  })
+
+  useResizeEvent(() =>
+    setWindowSize({
+      width: innerWidth,
+      height: innerHeight,
+    }),
+  )
+
   const categoryTitle: string = routeCategory.replace(' ', '')
   const url: string = `/${categoryTitle}`
   const pushToCategory = () => {
@@ -34,7 +45,7 @@ const RecordPane = ({
   return (
     <div
       className={
-        isListView && !isMapView && screen.width<1275 ? styles.RecordPaneMobile : styles.RecordPane
+        isListView && !isMapView && windowSize.width<1275 ? styles.RecordPaneMobile : styles.RecordPane
       }
       role="menu"
     >
@@ -42,7 +53,7 @@ const RecordPane = ({
         role="heading"
         size="heading-text"
         className={
-          isListView && !isMapView && screen.width<1275 ? styles.titleMobile : styles.title
+          isListView && !isMapView && windowSize.width<1275 ? styles.titleMobile : styles.title
         }
         onClick={pushToCategory}
       >
@@ -53,7 +64,7 @@ const RecordPane = ({
         role="list"
         open
         className={
-          isListView && !isMapView && screen.width<1275 ? styles.detailsMobile  : styles.details
+          isListView && !isMapView && windowSize.width<1275 ? styles.detailsMobile  : styles.details
         }
         summary={`${displayCategory} ${
           language === ENGLISH ? 'Records' : 'Registros'
