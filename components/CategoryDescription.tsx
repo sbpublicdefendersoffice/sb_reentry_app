@@ -7,15 +7,15 @@ const CategoryDescription = ({ activeCopy, displayDescription }) => {
   return (
     <>
       {' '}
-      <Grid item xs={12} sm={12} md={8}>
+      <Grid item xs={12}  >
         <p className={classes.landingPageDescription}>{displayDescription}</p>
       </Grid>
-      <Grid item xs={12} md={12}>
+      <Grid item xs={12} md={12} lg={12} style={{textAlign: "center", minWidth: "100%"}}>
         <Paragraph
           style={{
-            textAlign: 'center',
-            display: 'block',
-            fontSize: '2rem',
+          
+           
+            fontSize: '1.4rem',
             fontFamily: 'Roboto',
           }}
         >
