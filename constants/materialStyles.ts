@@ -1,4 +1,5 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { Autorenew } from '@material-ui/icons'
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -45,33 +46,53 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     formControl: {
-      margin: '2rem !important',
-      width: '13.75rem',
+      margin: theme.spacing(1),
+    minWidth: 120,
+    maxWidth: 300,
+ 
+      // height: '2rem',
+      // width: '11.93rem',
       fontSize: '2rem',
 
       display: 'flex',
-      '@media (max-width: 500px)': {
-        margin: '0rem !important',
-      },
+      // '@media (max-width: 1275px)': {
+        
+      //   margin: 'auto',
+      //   // width: '9.73rem',
+      // },
     },
 
     desktopFilterContainer: {
       flexBasis: '0rem',
       display: 'flex',
-      margin: '.8rem',
+      margin: 'auto',
+      marginBottom: '2rem',
       justifyContent: 'center',
+      '@media (max-width: 1275px)': {
+        margin: '1rem',
+      },
     },
     menuItemContainer: {
       display: 'flex',
-      fontSize: '1.6rem',
-      padding: '1rem',
-      marginLeft: '2rem',
-      width: '13rem',
+      fontSize: '1.4rem',
+      height: "auto",
+
+      minWidth: '13rem',
+
+    },
+    menuLabel: {
+      fontSize: '1.4rem',
+      '@media (max-width: 1275px)': {
+        margin: 'auto',
+        width: '8rem',
+      },
     },
     menuItem: {
-      display: 'flex',
-      fontSize: '1.6rem',
-      marginLeft: '2rem',
+      fontSize: '1.4rem',
+      '@media (max-width: 1275px)': {
+        margin: 'auto',
+        width: '14rem',
+      },
     },
 
     paper: {
@@ -101,10 +122,8 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
 
     landingPageDescription: {
-      marginTop: '5rem',
-      marginRight: '24rem',
-      fontSize: '2rem',
-      marginLeft: '-6rem',
+      fontSize: '1.6rem',
+
       '@media (max-width: 500px)': {
         width: '100%',
         marginLeft: '1rem',
@@ -127,7 +146,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     appBar: {
       top: 'auto !important',
       bottom: 0,
-      marginTop: "4rem",
+      marginTop: '4rem',
       backgroundColor: '#12385E !important',
       display: 'none !important',
       justifyContent: 'space-between',
