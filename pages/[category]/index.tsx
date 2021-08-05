@@ -9,14 +9,14 @@ import {
   useLanguage,
   useFormFields,
   useGetMatchingRecords,
-  ViewContext
+  ViewContext,
 } from '../../hooks/'
 import {
-  RecordPane,
   DisplayMap,
   MobileFilterModal,
   MobileButtonsLandingPage,
 } from '../../components'
+import RecordPane from '../../components/RecordPane'
 import {
   categoryCopy,
   siteTitle,
