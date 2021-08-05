@@ -1,8 +1,10 @@
-const getMatchingRecords = (allRecords, keywords) => {
+const getMatchingRecords = (allRecords, keywords,checkIsCity, checkIsService, checkIsPeopleServed, checkIsLanguage) => {
+
+
   const normalizedKeywords = keywords.map(keyword => keyword.toLowerCase())
-  let isCity = false
+  
   const filteredRecords = [...allRecords].filter(record => {
-    isCity = false
+
     const customersServed = record.customers_served_english?.toLowerCase()
     const matchingCustomersServed = normalizedKeywords.some(
       keyword => keyword === customersServed,
@@ -13,17 +15,19 @@ const getMatchingRecords = (allRecords, keywords) => {
     )
 
     return record?.locations.some(location => {
-      console.log(normalizedKeywords, location.city.toLowerCase())
+   
       const matchesCity = normalizedKeywords.includes(
         location.city.toLowerCase(),
       )
-      matchesCity ? (isCity = true) : (isCity = false)
+    
+  
 
       const matchesServiceName = location?.services.some(service => {
         const serviceName = service?.name_english.toLowerCase()
+  
         return normalizedKeywords.some(keyword => keyword == serviceName)
       })
-
+      
       return (
         matchesCity ||
         matchesServiceName ||
@@ -31,17 +35,16 @@ const getMatchingRecords = (allRecords, keywords) => {
         matchingLanguagesSpoken
       )
     })
-  })
-  {
-    isCity &&
-      filteredRecords.map(record => {
-        record.locations = record.locations.filter(location => {
-          return normalizedKeywords.includes(location.city.toLowerCase())
-        })
-        return record
-      })
-  }
+  }) 
+{checkIsCity && !checkIsService && !checkIsPeopleServed && !checkIsLanguage && filteredRecords.map(record => {
+    record.locations = record.locations.filter(location => {
+      return normalizedKeywords.includes(location.city.toLowerCase())
+    })
+    return record
+  })}
 
+ 
+console.log("filtered Records", filteredRecords)
   return filteredRecords
 }
 export default getMatchingRecords

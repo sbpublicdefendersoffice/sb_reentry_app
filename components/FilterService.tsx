@@ -22,7 +22,7 @@ const FilterService = ({ fields, handleFieldsSelected, routeCategory }) => {
     ]
   return (
     <>
-      {' '}
+   
       <Grid item xs={6} className={classes.desktopFilterContainer}>
         <FormControl className={classes.formControl}>
           <InputLabel
