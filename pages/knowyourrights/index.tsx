@@ -13,9 +13,7 @@ import {
 } from '@material-ui/core/'
 import { FlyerPDF, Item, RightsLinks } from '../../types/flyerPDF'
 import { siteTitle, useStyles } from '../../constants/'
-import GetAppIcon from '@material-ui/icons/GetApp'
-import PageviewIcon from '@material-ui/icons/Pageview'
-import HighlightOffIcon from '@material-ui/icons/HighlightOff'
+import { GetApp, Pageview, HighlightOff } from '@material-ui/icons/'
 import { useOnClickOutside, useLanguage } from '../../hooks/'
 import {
   InformedImmigrant,
@@ -183,7 +181,7 @@ const KnowYourRights = () => {
                               }}
                             >
                               {activeCopy.download}
-                              <GetAppIcon
+                              <GetApp
                                 style={{
                                   color: 'white',
                                   position: 'relative',
@@ -212,7 +210,7 @@ const KnowYourRights = () => {
                               }}
                             >
                               {activeCopy.view}
-                              <PageviewIcon
+                              <Pageview
                                 style={{
                                   color: 'white',
                                   position: 'relative',
@@ -262,7 +260,7 @@ const KnowYourRights = () => {
             >
               <div className={classes.flyerPaper}>
                 <button data-testid="modal" onClick={handleClose}>
-                  <HighlightOffIcon className={classes.flyerIcons} />
+                  <HighlightOff className={classes.flyerIcons} />
                 </button>
                 {activeItem && (
                   <img

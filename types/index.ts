@@ -1,3 +1,4 @@
+export type { CustomClicks } from './analytics'
 export type { AllowedMethod, AllowedURL } from './CORS'
 export type { Language, AppLanguageProps, CopyHolder } from './language'
 export type {

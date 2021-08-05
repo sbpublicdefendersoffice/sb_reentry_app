@@ -1,6 +1,7 @@
 import { fromPairs } from 'lodash'
 
 export {
+  googleCustomClick,
   googlePageviews,
   googleSearch,
   googleViewSearchResults,

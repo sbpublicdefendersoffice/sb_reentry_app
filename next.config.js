@@ -1,3 +1,5 @@
+const { StatsWriterPlugin } = require('webpack-stats-plugin')
+
 const nextConfigOptions = {
   future: {
     webpack5: true,
@@ -9,8 +11,7 @@ const nextConfigOptions = {
       type: 'asset/inline',
     })
 
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
+    const fallbackModules = {
       dns: false,
       fs: false,
       net: false,
@@ -19,18 +20,38 @@ const nextConfigOptions = {
       tls: false,
     }
 
-    if (!isServer)
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      ...fallbackModules,
+    }
+
+    if (!isServer) {
+      const serverOnlyModules = {
+        ...fallbackModules,
+        pg: false,
+        sequelize: false,
+        twilio: false,
+      }
+
       config.resolve.alias = {
         ...config.resolve.alias,
-        dns: false,
-        fs: false,
-        net: false,
-        pg: false,
-        'pg-hstore': false,
-        'pg-native': false,
-        sequelize: false,
-        tls: false,
+        ...serverOnlyModules,
       }
+    }
+
+    process.env.NODE_ENV === 'production' &&
+      config.plugins.push(
+        new StatsWriterPlugin({
+          filename: 'webpack-stats.json',
+          stats: {
+            context: './src', // optional
+            assets: true,
+            entrypoints: true,
+            chunks: true,
+            modules: true,
+          },
+        }),
+      )
 
     return config
   },
