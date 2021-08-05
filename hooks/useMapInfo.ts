@@ -6,7 +6,6 @@ import {
   CenterArr,
   BoundingArr,
   LocationState,
-  LocationRecord,
   PGOrgPlusLocation,
 } from '../types'
 

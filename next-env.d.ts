@@ -1,4 +1,4 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
 
-declare var gtag: any
+declare var gtag: any // eslint-disable-line no-unused-vars

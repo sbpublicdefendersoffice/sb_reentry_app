@@ -71,14 +71,9 @@ export default class MyDocument extends Document {
           </noscript>
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          {/* PWA Tags */}
-          <link rel="manifest" href="/manifest.json" />
-          <link rel="apple-touch-icon" href="./images/logo192.png" />
-          <meta name="theme-color" content="#2f4cb8" />
-          {/*  */}
           <link
             rel="icon"
-            href="./images/thriveleaffavicon.svg"
+            href="./icons/thriveleaffavicon.svg"
             type="image/svg+xml"
           />
         </Head>

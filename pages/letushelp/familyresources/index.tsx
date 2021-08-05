@@ -45,7 +45,7 @@ const ResourcesForFamilyAndFriendsLanding = () => {
   return (
     <>
       <div style={flexFullWidth}>
-        <PictureWithOval color="peri" pic="familyFriendsPic.jpeg" />
+        <PictureWithOval color="peri" pic="familyFriendsPic.jpg" />
         <LetUsHelpHeading>
           <Title>{title}</Title>
           <Paragraph size="med-text">{explainer}</Paragraph>

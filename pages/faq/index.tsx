@@ -45,7 +45,7 @@ const FaqPage = () => {
   return (
     <div className={classes.root}>
       <div style={flexFullWidth}>
-        <PictureWithOval color="highlight" pic="faqPic.jpeg" />
+        <PictureWithOval color="highlight" pic="faqPic.jpg" />
         <LetUsHelpHeading>
           <Title>{activeCopyFAQ.title}</Title>
           <Paragraph size="med-text">{activeCopyFAQ.description}</Paragraph>

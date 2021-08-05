@@ -77,6 +77,7 @@ const MapMarker = ({
           anchor="bottom"
         >
           <img
+            loading="lazy"
             src={`/icons/${imgSrc.replace(' ', '')}_marker.svg`}
             alt={activeCopy.altText}
             className={styles.MapMarker}

@@ -29,4 +29,4 @@ export {
   dummyPGOrgPlusLoc,
 } from './dummyData'
 
-export { dispatchPwaEvent, resizeWindow } from './window'
+export { resizeWindow } from './window'

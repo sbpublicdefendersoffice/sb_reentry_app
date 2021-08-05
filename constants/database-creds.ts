@@ -1,3 +1,4 @@
+import * as pg from 'pg'
 import { Options } from 'sequelize'
 
 const dialect = 'postgres'
@@ -13,7 +14,7 @@ const postgresEnvs: { [env: string]: Options } = {
   },
   production: {
     dialect,
-    dialectModule: require('pg'),
+    dialectModule: pg,
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASS,
     host: process.env.POSTGRES_HOST,

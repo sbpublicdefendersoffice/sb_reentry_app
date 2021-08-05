@@ -33,6 +33,7 @@ const ResourceHub = () => {
           <NextLink href={route}>
             <a className={`${styles.link} not-text-link`}>
               <img
+                loading="lazy"
                 role="img"
                 width="15rem"
                 height="15rem"

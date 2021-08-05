@@ -1,7 +1,6 @@
 import {
   renderWithLanguage,
   renderWithAllContext,
-  dummySortedRecord,
   dummyPGOrgRecord,
 } from '../../__helpers__'
 

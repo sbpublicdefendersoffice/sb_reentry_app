@@ -13,6 +13,7 @@ const SBPDLogo = () => {
 
   return (
     <img
+      loading="lazy"
       role="img"
       width="6rem"
       height="6rem"
