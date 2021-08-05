@@ -1,9 +1,7 @@
 import Head from 'next/head'
 import React from 'react'
 import { Paper, Typography, Grid } from '@material-ui/core/'
-import BusinessCenterIcon from '@material-ui/icons/BusinessCenter'
-import VerifiedUserIcon from '@material-ui/icons/VerifiedUser'
-import ForumIcon from '@material-ui/icons/Forum'
+import { BusinessCenter, VerifiedUser, Forum } from '@material-ui/icons/'
 import useLanguage from '../../hooks/useLanguage'
 import { useStyles, siteTitle, aboutCopy } from '../../constants/'
 
@@ -34,20 +32,20 @@ const AboutUs = () => {
       >
         <Grid style={{ display: 'flex' }} item xs={12} sm={3}>
           <Paper className={classes.aboutPaperIconCards}>
-            <VerifiedUserIcon className={classes.icons} />
+            <VerifiedUser className={classes.icons} />
             <h1> {activeCopy.provide}</h1>
           </Paper>
         </Grid>
         <Grid style={{ display: 'flex' }} item xs={12} sm={3}>
           <Paper className={classes.aboutPaperIconCards}>
-            <BusinessCenterIcon className={classes.icons} />
+            <BusinessCenter className={classes.icons} />
             <h1> {activeCopy.support}</h1>
           </Paper>
         </Grid>
 
         <Grid style={{ display: 'flex' }} item xs={12} sm={3}>
           <Paper className={classes.aboutPaperIconCards}>
-            <ForumIcon className={classes.icons} />
+            <Forum className={classes.icons} />
             <h1>{activeCopy.community}</h1>
           </Paper>
         </Grid>

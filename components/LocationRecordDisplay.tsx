@@ -1,8 +1,10 @@
 import { Card, Paragraph } from '../ui'
 
 import { ScheduleRecordDisplay, SendText } from './'
+import { googleCustomClick } from '../helpers/analytics'
 import { CopyHolder, PGScheduleRecord, PGServiceRecord } from '../types'
 import { useLanguage, useLocation } from '../hooks'
+import { isProd } from '../constants/env'
 
 import styles from './LocationRecordDisplay.module.css'
 
@@ -115,6 +117,9 @@ const LocationRecordDisplay = ({
                 href={`${baseUrl}${hrefToGoogleMaps}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  isProd && googleCustomClick({ used_google_maps: true })
+                }
               >
                 {activeCopy.find}
               </a>

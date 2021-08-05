@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
-import { Fragment, useEffect } from 'react'
-import ReactMapboxGL, { ScaleControl } from 'react-mapbox-gl'
+import { Fragment, useEffect, useState } from 'react'
+import type { Map } from 'mapbox-gl'
 
 import {
   mapboxStylingURL,
@@ -27,17 +27,9 @@ interface DisplayMapProps {
   testWorkaround?: boolean
 }
 
-const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
-  <Fragment key={i}>
-    <MapMarker locationRecord={locationRecord} />
-  </Fragment>
-)
-
-const MapboxMap = ReactMapboxGL({
-  accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
-})
-
 const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
+  const [mapState, setMap] = useState<Map | null>(null)
+
   const { pathname } = useRouter()
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
@@ -46,6 +38,50 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(
     locRecordsToFilter?.filteredRecords || latLongInfo,
   )
+  useEffect(() => {
+    let map: Map
+
+    const loadMap = async () => {
+      if (latLongInfo && !testWorkaround && zoom && fitBoundsArr && centerArr) {
+        const { Map, ScaleControl } = await import('mapbox-gl')
+
+        map = new Map({
+          accessToken: process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN,
+          container: 'map',
+          style: mapboxStylingURL,
+          center: centerArr,
+          zoom,
+        })
+
+        map.fitBounds(fitBoundsArr)
+
+        map.addControl(
+          new ScaleControl({
+            unit: 'imperial',
+          }),
+          'bottom-right',
+        )
+
+        setMap(map)
+      }
+    }
+    loadMap()
+
+    return () => map?.remove()
+  }, [])
+
+  useEffect(() => {
+    if (mapState) {
+      const tempMap: Map = mapState
+
+      tempMap.fitBounds(fitBoundsArr)
+      tempMap.setCenter(centerArr)
+      tempMap.setZoom(zoom)
+
+      setMap(tempMap)
+    }
+  }, [mapState, fitBoundsArr, centerArr, zoom])
+
   // Below effect is to clear map when new data is fetched due to new global data fetch or changing the language
   useEffect(
     () =>
@@ -58,9 +94,15 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const isInSBCounty: boolean = coords?.isInSBCounty
 
   const filteredRecordsReady: boolean = Boolean(
-    locRecordsToFilter?.filteredRecords,
+    locRecordsToFilter?.filteredRecords && mapState?.loaded,
   )
   const showFilters: boolean = !pathname.endsWith('[id]')
+
+  const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
+    <Fragment key={i}>
+      <MapMarker locationRecord={locationRecord} map={mapState} />
+    </Fragment>
+  )
 
   return (
     <Details
@@ -86,18 +128,9 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
         </CityFilter>
       )}
       {!testWorkaround && (
-        // @ts-ignore
-        <MapboxMap
-          style={mapboxStylingURL}
-          containerStyle={mapContainerStyle}
-          center={centerArr}
-          fitBounds={fitBoundsArr}
-          animationOptions={{ animate: false }}
-          zoom={[zoom]}
-        >
+        <div id="map" style={mapContainerStyle}>
           {isInSBCounty && (
             <MapMarker
-              customStyle={{ zIndex: 8 }}
               locationRecord={{
                 city: '',
                 longitude: coords.longitude,
@@ -108,13 +141,14 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
                 name_english: 'Your location',
                 name_spanish: 'Tu ubicación',
               }}
+              map={mapState}
+              onTop
             />
           )}
           {filteredRecordsReady
             ? locRecordsToFilter.filteredRecords.map(returnMarker)
             : latLongInfo.map(returnMarker)}
-          <ScaleControl measurement="mi" position="bottom-right" />
-        </MapboxMap>
+        </div>
       )}
     </Details>
   )

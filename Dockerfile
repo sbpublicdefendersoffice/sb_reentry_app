@@ -13,13 +13,13 @@ COPY . $dir
 # Install dependencies
 RUN yarn
 
-# NextJs public variables are weird...
+# NextJs public variables need to be loaded in client at build time
 RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
 
 # Build
 RUN yarn build
 
-# Expost
+# Expose port
 EXPOSE 3000
 
 # Start app

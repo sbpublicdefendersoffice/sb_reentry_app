@@ -24,8 +24,8 @@ export const mapContainerStyle: { [name: string]: string } = {
 export const centerArr: CenterArr = [-120.05238901434026, 34.762449495215634]
 
 export const fitBoundsArr: BoundingArr = [
-  [-120.5723618, 34.3953777],
-  [-119.5136408, 34.9733403],
+  [-120.6759, 34.2826],
+  [-119.2886, 35.128],
 ]
 
 export const allRegionsVisible: CountyVisibilityFilter = {

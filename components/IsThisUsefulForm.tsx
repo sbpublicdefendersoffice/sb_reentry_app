@@ -8,11 +8,11 @@ import {
 } from 'react'
 import { useRouter } from 'next/router'
 
-import { siteTitle } from '../constants/copy'
+import { siteTitle, isProd } from '../constants/'
 import { useLanguage, useToast } from '../hooks'
 import { Paragraph, Button } from '../ui'
 import { Feedback, CopyHolder } from '../types'
-import { POST } from '../helpers/validators'
+import { POST, googleCustomClick } from '../helpers/'
 
 export interface IsThisUsefulFormProps {
   feedbackInfo: Feedback
@@ -79,6 +79,7 @@ const IsThisUsefulForm = ({
       else {
         setToast(success)
         setFeedbackInfo(null)
+        isProd && googleCustomClick({ submit_feedback: true })
       }
     }
   }

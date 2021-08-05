@@ -5,7 +5,12 @@ import MapMarker from '../../components/MapMarker'
 describe('<MapMarker />', () => {
   it('renders correctly', () => {
     renderWithAllContext(
-      <MapMarker locationRecord={dummyPGOrgPlusLoc} testWorkaround />,
+      <MapMarker
+        locationRecord={dummyPGOrgPlusLoc}
+        // @ts-ignore
+        map={{}}
+        testWorkaround
+      />,
     )
   })
 })

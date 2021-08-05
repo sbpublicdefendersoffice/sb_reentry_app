@@ -1,4 +1,5 @@
 export {
+  googleCustomClick,
   googlePageviews,
   googleSearch,
   googleViewSearchResults,
