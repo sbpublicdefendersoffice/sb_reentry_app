@@ -25,7 +25,7 @@ import '../styles/globals.css'
 import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const { events } = useRouter()
+  const { events, route } = useRouter()
 
   const [language, setLanguage] = useState<Language | null>(null)
   const [coords, setCoords] = useState<SantaBarbaraCountyCoords | null>(null)
@@ -42,9 +42,10 @@ const App = ({ Component, pageProps }: AppProps) => {
   }, [])
 
   useEffect(() => {
-    if (isProd) {
-      events.on('routeChangeComplete', googlePageviews)
-      return () => events.off('routeChangeComplete', googlePageviews)
+    if (isProd && route) {
+      events.on('routeChangeComplete', url => googlePageviews(url, route))
+      return () =>
+        events.off('routeChangeComplete', url => googlePageviews(url, route))
     }
   }, [events])
 

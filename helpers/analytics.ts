@@ -1,8 +1,9 @@
 import { Language } from '../types/language'
 
-export const googlePageviews = (url: string): void => {
+export const googlePageviews = (url: string, route: string): void => {
   window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID, {
     page_path: url,
+    route,
   })
 }
 
