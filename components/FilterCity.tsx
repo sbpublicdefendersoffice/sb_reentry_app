@@ -13,15 +13,20 @@ import {
 } from '@material-ui/core/'
 import { useStyles, ENGLISH, cityCopy } from '../constants/'
 import { useLanguage } from '../hooks/'
+
 const FilterCity = ({ fields, handleFieldsSelected }) => {
   const classes = useStyles()
   const { language } = useLanguage()
   return (
     <>
       {' '}
-      <Grid item md={3} className={classes.desktopFilterContainer}>
+      <Grid item xs={6}  className={classes.desktopFilterContainer}>
         <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label" className={classes.menuItem}>
+          <InputLabel
+            id="demo-simple-select-label"
+            className={classes.menuItem}
+      
+          >
             {language === ENGLISH ? 'City' : 'Ciudad'}
           </InputLabel>
           <Select
@@ -47,7 +52,6 @@ const FilterCity = ({ fields, handleFieldsSelected }) => {
                   key={name}
                   value={name}
                   className={classes.menuItem}
-                  style={{ fontSize: '4rem !important' }}
                 >
                   <Checkbox checked={fields.citySelected.indexOf(name) > -1} />
                   <ListItemText
