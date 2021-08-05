@@ -28,16 +28,11 @@ import '../styles/globals.css'
 import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
-<<<<<<< HEAD
   const [state, dispatch] = useReducer(viewReducer, {
     isListView: false,
     isMapView: true,
   })
-  const { events } = useRouter()
-=======
   const { events, route } = useRouter()
-
->>>>>>> 85b77c8e44e8a45f7444ccec16aa7f7ab720dc9e
   const [language, setLanguage] = useState<Language | null>(null)
 
   const [coords, setCoords] = useState<SantaBarbaraCountyCoords | null>(null)
