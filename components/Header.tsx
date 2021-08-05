@@ -68,7 +68,7 @@ const Header = () => {
           </>
         )}
       </div>
-      <Hidden smDown>
+      <Hidden mdDown>
         <LiveDataSearch />
       </Hidden>
     </header>
