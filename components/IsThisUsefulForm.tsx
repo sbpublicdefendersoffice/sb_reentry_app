@@ -12,7 +12,7 @@ import { siteTitle } from '../constants/copy'
 import { useLanguage, useToast } from '../hooks'
 import { Paragraph, Button } from '../ui'
 import { Feedback, CopyHolder } from '../types'
-import { POST } from '../helpers/validators'
+import { POST, googleCustomClick } from '../helpers/'
 
 export interface IsThisUsefulFormProps {
   feedbackInfo: Feedback
@@ -79,6 +79,7 @@ const IsThisUsefulForm = ({
       else {
         setToast(success)
         setFeedbackInfo(null)
+        googleCustomClick({ submit_feedback: true })
       }
     }
   }
