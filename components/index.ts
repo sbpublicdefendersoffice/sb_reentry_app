@@ -52,12 +52,7 @@ export { default as Popup } from './Popup'
 export { default as ProbationAccordian } from './ProbationAccordian'
 export { default as ProximityFilter } from './ProximityFilter'
 export { default as PRRCcta } from './PRRCcta'
-<<<<<<< HEAD
-export { default as PwaDownload } from './PwaDownload'
-=======
-export { default as ProbationAccordian } from './ProbationAccordian'
->>>>>>> 2efe2155050611775245d879b642d6b389a5d629
-export { default as RecordPane } from './RecordPane'
+
 export { default as ResourceHub } from './ResourceHub'
 export { default as SBPDLogo } from './SBPDLogo'
 export { default as ScheduleRecordDisplay } from './ScheduleRecordDisplay'
@@ -68,3 +63,4 @@ export { default as TipsAccordian } from './TipsAccordian'
 export { default as Toast } from './Toast'
 export { default as Tooltip } from './Tooltip'
 export { default as TopThreeCta } from './TopThreeCta'
+
