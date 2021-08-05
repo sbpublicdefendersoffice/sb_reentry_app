@@ -2,23 +2,20 @@ import { useEffect, useState, useContext } from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import { useRouter } from 'next/router'
-import { Modal, Hidden, Grid } from '@material-ui/core/'
-import withWidth from '@material-ui/core/withWidth'
+import { Modal, Hidden, Grid, withWidth } from '@material-ui/core/'
 import {
   useMultipleListRecords,
   useConvertedLocationRecords,
   useLanguage,
   useFormFields,
   useGetMatchingRecords,
+  ViewContext
 } from '../../hooks/'
 import {
   RecordPane,
   DisplayMap,
   MobileFilterModal,
   MobileButtonsLandingPage,
-  DesktopFilterView,
-  CategoryDescription,
-  DisplayCategoryImage,
 } from '../../components'
 import {
   categoryCopy,
@@ -26,7 +23,6 @@ import {
   categories,
   useStyles,
 } from '../../constants/'
-import ViewContext from '../../hooks/useView'
 const LandingPage = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
@@ -42,7 +38,6 @@ const LandingPage = () => {
   const activeCopy = categoryCopy[language]
   const validCategory = categories[asPath]
   const { state } = useContext(ViewContext)
-  const { isListView, isMapView } = state
   const routeCategory: string = validCategory?.english.category.toLowerCase()
   const displayCategory: string = validCategory?.[language].category
   const displayDescription: string = validCategory?.[language].description
@@ -73,26 +68,6 @@ const LandingPage = () => {
       </Head>
       <div className={classes.landingPageContainer}>
         <Grid container>
-          <Hidden mdDown>
-            <DisplayCategoryImage
-              displayCategory={displayCategory}
-              routeCategory={routeCategory}
-            />
-          </Hidden>
-          <Hidden mdDown>
-            <CategoryDescription
-              displayDescription={displayDescription}
-              activeCopy={activeCopy}
-            />
-          </Hidden>
-          <Hidden mdDown>
-            <DesktopFilterView
-              fields={fields}
-              handleFieldsSelected={handleFieldsSelected}
-              routeCategory={routeCategory}
-              activeCopy={activeCopy}
-            />
-          </Hidden>
           <Hidden lgUp>
             <MobileButtonsLandingPage
               activeCopy={activeCopy}
@@ -115,40 +90,19 @@ const LandingPage = () => {
               />
             </>
           </Modal>
-          {/* <Hidden lgUp>
-            <div
-              style={{
-                display: isListView && !isMapView ? 'contents' : 'none',
-              }}
-            >
-              <RecordPane
-                orgInfo={filteredResults}
-                displayCategory={displayCategory}
-                routeCategory={routeCategory}
-                setRecords={setFetchedRecords}
-              />
-            </div>
-            {convertedLocRecords && (
-              <div
-                style={{
-                  display: isMapView && !isListView ? 'contents' : 'none',
-                }}
-              >
-                <DisplayMap latLongInfo={convertedLocRecords} />
-              </div>
-            )}
-          </Hidden> */}
-
-            <RecordPane
-              orgInfo={filteredResults}
-              displayCategory={displayCategory}
-              routeCategory={routeCategory}
-              setRecords={setFetchedRecords}
-            />
-            {convertedLocRecords && (
-              <DisplayMap latLongInfo={convertedLocRecords} />
-            )}
-
+          <RecordPane
+            orgInfo={filteredResults}
+            displayCategory={displayCategory}
+            displayDescription={displayDescription}
+            routeCategory={routeCategory}
+            setRecords={setFetchedRecords}
+            fields={fields}
+            handleFieldsSelected={handleFieldsSelected}
+            activeCopy={activeCopy}
+          />
+          {convertedLocRecords && (
+            <DisplayMap latLongInfo={convertedLocRecords} />
+          )}
         </Grid>
       </div>
     </>
