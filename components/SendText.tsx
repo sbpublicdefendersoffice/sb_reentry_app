@@ -5,7 +5,8 @@ import {
   validatePhoneNumber,
   INVALID_NUMBER,
   POST,
-} from '../helpers/validators'
+  googleCustomClick,
+} from '../helpers/'
 import useLanguage from '../hooks/useLanguage'
 import { CopyHolder } from '../types/language'
 
@@ -61,6 +62,7 @@ const SendText = ({
 
       const textResponse = await text.json()
       if (textResponse.error) throw new Error(textResponse.error)
+      else googleCustomClick({ used_twilio: true })
     } catch (error) {
       if (error.message === INVALID_NUMBER) setInputErrorMsg(activeCopy.error)
       else setInputErrorMsg(error.message)
