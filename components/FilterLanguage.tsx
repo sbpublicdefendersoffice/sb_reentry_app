@@ -18,7 +18,7 @@ const FilterLanguage = ({ fields, handleFieldsSelected }) => {
   const { language } = useLanguage()
   return (
     <>
-      <Grid item xs={6} className={classes.desktopFilterContainer}>
+      <Grid xs={12} lg={6} className={classes.desktopFilterContainer}>
         <FormControl className={classes.formControl}>
           <InputLabel
             id="demo-simple-select-label"

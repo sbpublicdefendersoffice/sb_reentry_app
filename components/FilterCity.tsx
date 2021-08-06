@@ -20,7 +20,7 @@ const FilterCity = ({ fields, handleFieldsSelected }) => {
   return (
     <>
       {' '}
-      <Grid item xs={6} className={classes.desktopFilterContainer}>
+      <Grid item xs={12} lg={6} className={classes.desktopFilterContainer}>
         <FormControl className={classes.formControl}>
           <InputLabel
             id="demo-simple-select-label"
