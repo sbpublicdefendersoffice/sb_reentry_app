@@ -5,6 +5,11 @@ export const useStyles = makeStyles((theme: Theme) =>
       width: '90%',
       height: '100%',
       fontFamily: 'Roboto',
+      textAlign: 'center',
+    },
+    landingPageContainer: {
+      width: '100%',
+      textAlign: 'center',
     },
     heading: {
       fontSize: '2rem !important',
@@ -39,6 +44,46 @@ export const useStyles = makeStyles((theme: Theme) =>
         borderBottom: '.25rem solid green !important',
       },
     },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+      maxWidth: 300,
+      fontSize: '2rem',
+      display: 'flex',
+    },
+
+    desktopFilterContainer: {
+      flexBasis: '0rem',
+      display: 'flex',
+      margin: 'auto',
+      marginBottom: '2rem',
+      justifyContent: 'center',
+      '@media (max-width: 1275px)': {
+        margin: '1rem',
+      },
+    },
+    menuItemContainer: {
+      display: 'flex',
+      fontSize: '1.4rem',
+      height: 'auto',
+
+      minWidth: '13rem',
+    },
+    menuLabel: {
+      fontSize: '1.4rem',
+      '@media (max-width: 1275px)': {
+        margin: 'auto',
+        width: '8rem',
+      },
+    },
+    menuItem: {
+      fontSize: '1.4rem',
+      '@media (max-width: 1275px)': {
+        margin: 'auto',
+        width: '14rem',
+      },
+    },
+
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
@@ -51,12 +96,26 @@ export const useStyles = makeStyles((theme: Theme) =>
       marginTop: '2rem',
       margin: 'auto',
       width: '80%',
-      color: theme.palette.text.secondary,
+      color: 'theme.palette.text.secondary',
       height: '40rem',
       overflow: 'scroll',
       '@media (max-width: 500px)': {
         width: '100%',
         marginLeft: '0rem',
+      },
+    },
+    filterModal: {
+      top: '45%',
+      left: '50%',
+      transform: `translate(-50%, -50%)`,
+    },
+
+    landingPageDescription: {
+      fontSize: '1.6rem',
+
+      '@media (max-width: 500px)': {
+        width: '100%',
+        marginLeft: '1rem',
       },
     },
     aboutPaper: {
@@ -65,9 +124,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       color: 'black',
     },
-    paperIconCards: {
-      width: '100%',
-    },
     aboutPaperIconCards: {
       padding: theme.spacing(2),
       textAlign: 'center',
@@ -75,6 +131,20 @@ export const useStyles = makeStyles((theme: Theme) =>
       minWidth: '11rem',
       color: 'black',
       overflow: 'hidden',
+    },
+    appBar: {
+      top: 'auto !important',
+      bottom: 0,
+      marginTop: '4rem',
+      backgroundColor: '#12385E !important',
+      display: 'none !important',
+      justifyContent: 'space-between',
+      '@media (max-width: 1275px)': {
+        display: 'flex !important',
+      },
+    },
+    footerIcons: {
+      flexGrow: 1,
     },
     aboutP: {
       width: '80%',
@@ -103,6 +173,14 @@ export const useStyles = makeStyles((theme: Theme) =>
     listItem: {
       marginBottom: '2rem',
       marginLeft: '2rem',
+    },
+    paperFilter: {
+      position: 'absolute',
+      width: 400,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
     },
     listItemText: {
       fontSize: '1.6rem',
@@ -300,6 +378,13 @@ export const useStyles = makeStyles((theme: Theme) =>
       color: '#13395e',
       margin: 'auto',
       fontSize: '3rem',
+    },
+    chips: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    chip: {
+      margin: 4,
     },
     flyerImage: {
       position: 'fixed',

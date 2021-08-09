@@ -9,7 +9,7 @@ import {
   useLanguage,
 } from '../../hooks/'
 import { siteTitle, categories } from '../../constants'
-import { RecordPane, DisplayMap } from '../../components'
+import { RecordPane, DisplayMap, DesktopFilterView } from '../../components'
 
 const LandingPage = () => {
   const { asPath } = useRouter()

@@ -1,5 +1,6 @@
 export type { CustomClicks } from './analytics'
 export type { AllowedMethod, AllowedURL } from './CORS'
+export type { Filter } from './filter'
 export type { Language, AppLanguageProps, CopyHolder } from './language'
 export type {
   CountyBreakdown,
