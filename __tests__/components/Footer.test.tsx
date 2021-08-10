@@ -9,11 +9,11 @@ describe('<Footer />', () => {
 
     const footerNode: HTMLElement = getByRole('region')
     const copyrightNode: HTMLElement = getByRole('contentinfo')
-    const lastLinkNode: HTMLElement = getAllByRole('link').pop()
+    // const lastLinkNode: HTMLElement = getAllByRole('link').pop()
 
     expect(footerNode).toBeInTheDocument()
-    expect(lastLinkNode).toHaveAttribute('href', '/privacypolicy')
-    expect(lastLinkNode).toHaveTextContent('Privacy Policy')
+    // expect(lastLinkNode).toHaveAttribute('href', '/privacypolicy')
+    // expect(lastLinkNode).toHaveTextContent('Privacy Policy')
     expect(copyrightNode).toHaveTextContent(copyright)
   })
 
