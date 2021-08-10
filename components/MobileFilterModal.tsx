@@ -18,30 +18,24 @@ const MobileFilterModal = ({
         style={{ top: '45%', left: '50%', transform: `translate(-50%, -50%)` }}
         className={classes.paperFilter}
       >
-        <Grid item xs={12} sm={12} md={12} >
-          <p style={{ textAlign:'center', fontSize: '2rem'}}>
+        <Grid item xs={12} sm={12} md={12}>
+          <p style={{ textAlign: 'center', fontSize: '2rem' }}>
             {activeCopy.chooseFilters}
           </p>
         </Grid>
-        <Grid item xs={12} style={{marginBottom: "2rem", marginLeft: "5rem"}}  >
+        <Grid item xs={12} style={{ marginBottom: '2rem', marginLeft: '5rem' }}>
           <CategoryFilters
             fields={fields}
             handleFieldsSelected={handleFieldsSelected}
             routeCategory={routeCategory}
           />
         </Grid>
-        <Grid
-          item
-          xs={12}
-        style={{textAlign: "center"}}
-       
-        >
+        <Grid item xs={12} style={{ textAlign: 'center' }}>
           <Fab
             style={{
               marginTop: '2rem',
               margin: 'auto',
               fontSize: '1.2rem',
-             
             }}
             onClick={() => setOpen(false)}
             variant="extended"

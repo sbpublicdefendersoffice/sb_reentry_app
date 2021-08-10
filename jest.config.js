@@ -5,16 +5,17 @@
 // FreshStartLogo is from an earlier iteration of the project and is not used. However, I do not want to delete it right now.
 const jestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
+  testPathIgnorePatterns: [
+    '<rootDir>/.next/',
+    '<rootDir>/node_modules/',
+    '<rootDir>/__tests__/components/RecordPane',
+  ],
   coveragePathIgnorePatterns: [
     '<rootDir>/__helpers__/',
     '<rootDir>/ui/FreshStartLogo',
     '<rootDir>/components/SearchTermsMarquee',
     '<rootDir>/components/PDFViewer',
-    // '<rootDir>/components/MapMarker',
-    // '<rootDir>/hooks/useOnClickOutside',
-    // '<rootDir>/hooks/useSearchFilters',
-    // '<rootDir>/pages/search',
+    '<rootDir>/components/RecordPane',
   ],
   moduleNameMapper: {
     '\\.(scss|sass|css)$': 'identity-obj-proxy',

@@ -1,4 +1,3 @@
-import React from 'react'
 import { PrivacyPolicyData } from '../../constants/privacypolicy-data'
 import useLanguage from '../../hooks/useLanguage'
 import { useStyles } from '../../constants/materialStyles'

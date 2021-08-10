@@ -1,5 +1,3 @@
-import { fromPairs } from 'lodash'
-
 export {
   googleCustomClick,
   googlePageviews,
@@ -21,4 +19,4 @@ export {
   POST,
   GET,
 } from './validators'
-export {default as isOpenNow } from "./isOpenNow"
+export { default as isOpenNow } from './isOpenNow'

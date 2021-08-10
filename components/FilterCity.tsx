@@ -1,4 +1,4 @@
-import React from 'react'
+/* eslint-disable */
 import {
   Grid,
   FormControl,
@@ -25,7 +25,6 @@ const FilterCity = ({ fields, handleFieldsSelected }) => {
           <InputLabel
             id="demo-simple-select-label"
             className={classes.menuItem}
-      
           >
             {language === ENGLISH ? 'City' : 'Ciudad'}
           </InputLabel>
@@ -48,11 +47,7 @@ const FilterCity = ({ fields, handleFieldsSelected }) => {
           >
             {cityCopy.map(name => {
               return (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  className={classes.menuItem}
-                >
+                <MenuItem key={name} value={name} className={classes.menuItem}>
                   <Checkbox checked={fields.citySelected.indexOf(name) > -1} />
                   <ListItemText
                     disableTypography

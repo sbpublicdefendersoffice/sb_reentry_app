@@ -1,7 +1,10 @@
-import { useRouter } from 'next/router'
-import { Fragment, useState, useEffect, useContext} from 'react'
-import { ViewContext } from '../hooks'
-
+// import { useRouter } from 'next/router'
+import {
+  Fragment,
+  useState,
+  useEffect,
+  // useContext
+} from 'react'
 
 import type { Map } from 'mapbox-gl'
 
@@ -17,14 +20,20 @@ import {
   useLocation,
   useSearchFilters,
   useGlobalSearch,
-  useResizeEvent
+  // ViewContext,
+  // useResizeEvent,
 } from '../hooks'
-import { MapMarker, CityFilter, ProximityFilter } from './'
+import {
+  MapMarker,
+  // CityFilter,
+  // ProximityFilter
+} from './'
 import { Details } from '../ui'
-import { PGOrgPlusLocation, WindowSize } from '../types'
+import {
+  PGOrgPlusLocation,
+  // WindowSize
+} from '../types'
 import styles from './DisplayMap.module.css'
-
-
 
 interface DisplayMapProps {
   latLongInfo: PGOrgPlusLocation[]
@@ -33,19 +42,9 @@ interface DisplayMapProps {
 
 const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const [mapState, setMap] = useState<Map | null>(null)
-  const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: innerWidth,
-    height: innerHeight,
-  })
-  useResizeEvent(() =>
-  setWindowSize({
-    width: innerWidth,
-    height: innerHeight,
-  }),
-)
-  const { pathname } = useRouter()
-  const { state } = useContext(ViewContext)
-  const { isListView, isMapView } = state
+
+  // const { pathname } = useRouter()
+  // const { state } = useContext(ViewContext)
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
   const { coords } = useLocation()
@@ -109,7 +108,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const filteredRecordsReady: boolean = Boolean(
     locRecordsToFilter?.filteredRecords && mapState?.loaded,
   )
-  const showFilters: boolean = !pathname.endsWith('[id]')
+  // const showFilters: boolean = !pathname.endsWith('[id]')
 
   const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
     <Fragment key={i}>
@@ -122,9 +121,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
       role="main"
       open
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
-      className={
-        isMapView && !isListView && windowSize.width<1275 ? styles.DisplayMapMobile : styles.DisplayMap
-      }
+      className={styles.DisplayMap}
     >
       {/* {showFilters && (
         <CityFilter

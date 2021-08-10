@@ -5,10 +5,10 @@
   height: var(--screen-minus-header) !important;
 }
 .DisplayMapMobile {
-display: none;
+  display: none;
 }
 @media (max-width: 1275px) {
-  .DisplayMap{
+  .DisplayMap {
     display: none;
   }
 }

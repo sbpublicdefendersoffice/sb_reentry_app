@@ -13,7 +13,7 @@ const CategoryFilters = ({
 }: Filter) => {
   return (
     <>
-      <Grid container >
+      <Grid container>
         <FilterCity
           fields={fields}
           handleFieldsSelected={handleFieldsSelected}

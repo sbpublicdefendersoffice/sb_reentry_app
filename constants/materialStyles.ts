@@ -1,5 +1,4 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
-import { Autorenew } from '@material-ui/icons'
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -47,19 +46,10 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     formControl: {
       margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
- 
-      // height: '2rem',
-      // width: '11.93rem',
+      minWidth: 120,
+      maxWidth: 300,
       fontSize: '2rem',
-
       display: 'flex',
-      // '@media (max-width: 1275px)': {
-        
-      //   margin: 'auto',
-      //   // width: '9.73rem',
-      // },
     },
 
     desktopFilterContainer: {
@@ -75,10 +65,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     menuItemContainer: {
       display: 'flex',
       fontSize: '1.4rem',
-      height: "auto",
+      height: 'auto',
 
       minWidth: '13rem',
-
     },
     menuLabel: {
       fontSize: '1.4rem',
