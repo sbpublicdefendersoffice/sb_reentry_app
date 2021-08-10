@@ -11,7 +11,7 @@ import {
   useGetMatchingRecords,
 } from '../../hooks/'
 import { siteTitle, categories } from '../../constants'
-import { RecordPane, DisplayMap, DesktopFilterView } from '../../components'
+import { RecordPane, DisplayMap, FilterView } from '../../components'
 
 const LandingPage = () => {
   const { asPath } = useRouter()
@@ -103,7 +103,7 @@ const LandingPage = () => {
         routeCategory={routeCategory}
         setRecords={setFetchedRecords}
       >
-        <DesktopFilterView
+        <FilterView
           fields={fields}
           handleFieldsSelected={handleFieldsSelected}
           routeCategory={routeCategory}

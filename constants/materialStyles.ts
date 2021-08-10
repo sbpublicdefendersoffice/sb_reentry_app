@@ -46,28 +46,17 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     formControl: {
       margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
+      height: '7rem',
       fontSize: '2rem',
       display: 'flex',
-    },
-
-    desktopFilterContainer: {
-      flexBasis: '0rem',
-      display: 'flex',
-      margin: 'auto',
-      marginBottom: '2rem',
-      justifyContent: 'center',
-      '@media (max-width: 1275px)': {
-        margin: '1rem',
-      },
+      width: '100%',
+      overflow: 'scroll',
     },
     menuItemContainer: {
       display: 'flex',
       fontSize: '1.4rem',
       height: 'auto',
-
-      minWidth: '13rem',
+      width: '100%',
     },
     menuLabel: {
       fontSize: '1.4rem',

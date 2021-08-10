@@ -1,21 +1,20 @@
 /* eslint-disable */
-import { Grid } from '@material-ui/core'
 import {
   FilterCity,
   FilterService,
   FilterLanguage,
   FilterPeopleServed,
-} from '../components/'
+} from '.'
 import { Filter } from '../types/filter'
-const CategoryFilters = ({
+
+const FilterView = ({
   fields,
   handleFieldsSelected,
   routeCategory,
-}: Filter) => {
-  return (
-    <Grid container>
-      <FilterCity fields={fields} handleFieldsSelected={handleFieldsSelected} />
-      <FilterService
+}: Filter) => (
+  <>
+    <FilterCity fields={fields} handleFieldsSelected={handleFieldsSelected} />
+    {/* <FilterService
         fields={fields}
         handleFieldsSelected={handleFieldsSelected}
         routeCategory={routeCategory}
@@ -27,8 +26,8 @@ const CategoryFilters = ({
       <FilterPeopleServed
         fields={fields}
         handleFieldsSelected={handleFieldsSelected}
-      />
-    </Grid>
-  )
-}
-export default CategoryFilters
+      /> */}
+  </>
+)
+
+export default FilterView
