@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import { Fragment, useEffect, useState } from 'react'
 import type { Map } from 'mapbox-gl'
 
@@ -15,7 +15,11 @@ import {
   useSearchFilters,
   useGlobalSearch,
 } from '../hooks'
-import { MapMarker, CityFilter, ProximityFilter } from './'
+import {
+  MapMarker,
+  // CityFilter,
+  // ProximityFilter
+} from './'
 import { Details } from '../ui'
 
 import { PGOrgPlusLocation } from '../types'
@@ -30,7 +34,7 @@ interface DisplayMapProps {
 const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const [mapState, setMap] = useState<Map | null>(null)
 
-  const { pathname } = useRouter()
+  // const { pathname } = useRouter()
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
   const { coords } = useLocation()
@@ -96,7 +100,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const filteredRecordsReady: boolean = Boolean(
     locRecordsToFilter?.filteredRecords && mapState?.loaded,
   )
-  const showFilters: boolean = !pathname.endsWith('[id]')
+  // const showFilters: boolean = !pathname.endsWith('[id]')
 
   const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
     <Fragment key={i}>
@@ -111,7 +115,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
       className={styles.DisplayMap}
     >
-      {showFilters && (
+      {/* {showFilters && (
         <CityFilter
           locationsToFilter={latLongInfo}
           regionVisibility={locRecordsToFilter.visibility}
@@ -126,7 +130,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
             />
           )}
         </CityFilter>
-      )}
+      )} */}
       {!testWorkaround && (
         <div id="map" style={mapContainerStyle}>
           {isInSBCounty && (

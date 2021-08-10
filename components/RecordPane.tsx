@@ -1,4 +1,4 @@
-import { SetStateAction, Dispatch, Fragment } from 'react'
+import { SetStateAction, Dispatch, Fragment, ReactNode } from 'react'
 import { useRouter } from 'next/router'
 import { FetchedDataSearch, LeafLoader, OrgRecordCard } from './'
 import { Details, Paragraph } from '../ui'
@@ -11,12 +11,14 @@ export interface RecordPaneProps {
   routeCategory: string
   orgInfo: PGOrganizationResponse[]
   setRecords: Dispatch<SetStateAction<PGOrganizationResponse[]>>
+  children?: ReactNode
 }
 const RecordPane = ({
   displayCategory,
   routeCategory,
   orgInfo,
   setRecords,
+  children,
 }: RecordPaneProps) => {
   const { push, route } = useRouter()
   const { language } = useLanguage()
@@ -44,6 +46,7 @@ const RecordPane = ({
           setRecords={setRecords}
         />
       )}
+      {children}
       <Details
         role="list"
         open

@@ -1,4 +1,6 @@
 export { default as useConvertedLocationRecords } from './useConvertedLocationRecords'
+export { default as useFormFields } from './useFormFields'
+export { default as useGetMatchingRecords } from './useGetMatchingRecords'
 export {
   GlobalSearchProvider,
   default as useGlobalSearch,
