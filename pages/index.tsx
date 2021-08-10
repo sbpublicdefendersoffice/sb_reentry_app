@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-import useLanguage from '../hooks/useLanguage'
+import { useLanguage } from '../hooks/'
 import { CopyHolder } from '../types/language'
 import {
   ResourceHub,
@@ -41,21 +41,37 @@ export const url2: string = '/letushelp'
 const Home = () => {
   const { push } = useRouter()
   const { language } = useLanguage()
+
   const { title, explainer, buttonText, title2, explainer2, buttonText2 } =
     copy[language]
 
   return (
     <>
-      <div style={flexFullWidth}>
-        <PictureWithOval color="peri" pic="homepageResourcesPic.jpg" />
+      <div
+        style={{
+          ...flexFullWidth,
+          backgroundImage: 'url("./images/maja_bg.jpg")',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          height: 'var(--screen-minus-header)',
+        }}
+      >
+        <div style={{ width: '50%' }} />
         <LetUsHelpHeading>
-          <Title>{title}</Title>
-          <Paragraph style={{ marginBottom: 'var(--margin-lg)' }}>
-            {explainer}
-          </Paragraph>
-          <Button light onClick={() => push(url, url)}>
-            {buttonText}
-          </Button>
+          <div
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.7)',
+              padding: '1rem',
+            }}
+          >
+            <Title>{title}</Title>
+            <Paragraph style={{ marginBottom: 'var(--margin-lg)' }}>
+              {explainer}
+            </Paragraph>
+            <Button light onClick={() => push(url, url)}>
+              {buttonText}
+            </Button>
+          </div>
         </LetUsHelpHeading>
       </div>
       <ResourceHub />

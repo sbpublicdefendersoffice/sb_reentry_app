@@ -14,12 +14,12 @@ const FilterView = ({
 }: Filter) => (
   <>
     <FilterCity fields={fields} handleFieldsSelected={handleFieldsSelected} />
-    {/* <FilterService
-        fields={fields}
-        handleFieldsSelected={handleFieldsSelected}
-        routeCategory={routeCategory}
-      />
-      <FilterLanguage
+    <FilterService
+      fields={fields}
+      handleFieldsSelected={handleFieldsSelected}
+      routeCategory={routeCategory}
+    />
+    {/* <FilterLanguage
         fields={fields}
         handleFieldsSelected={handleFieldsSelected}
       />
