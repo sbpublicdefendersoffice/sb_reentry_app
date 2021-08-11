@@ -23,7 +23,6 @@ import {
   categories,
   useStyles,
 } from '../../constants/'
-import { ItemAssignmentContext } from 'twilio/lib/rest/numbers/v2/regulatoryCompliance/bundle/itemAssignment'
 const LandingPage = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
@@ -35,7 +34,6 @@ const LandingPage = () => {
     peopleServedSelected: [],
     languageSelected: [],
   })
-
   const [checkIsCity, setCheckIsCity] = useState(false)
   const [checkIsService, setCheckIsService] = useState(false)
   const [checkIsLanguage, setCheckIsLanguage] = useState(false)
@@ -57,24 +55,22 @@ const LandingPage = () => {
       fields.peopleServedSelected,
       fields.languageSelected,
     )
-fields.citySelected.length>0?setCheckIsCity(true): setCheckIsCity(false)
-fields.serviceSelected.length>0?setCheckIsService(true): setCheckIsService(false)
-fields.peopleServedSelected.length>0?setCheckIsPeopleServed(true): setCheckIsPeopleServed(false)
-fields.languageSelected.length>0?setCheckIsLanguage(true): setCheckIsLanguage(false)
-    // if (fields.citySelected.length > 0) {
-    //   setCheckedItems(...field, )
-    // } else if (fields.citySelected == 0) {
-    //   setCheckIsCity(false)
-    // }
-    // if (fields.serviceSelected.length > 0) {
-    //   setCheckIsService(true)
-    // } else if (fields.serviceSelected == 0) {
-    //   setCheckIsService(false)
-    // }
+    fields.citySelected.length > 0
+      ? setCheckIsCity(true)
+      : setCheckIsCity(false)
+    fields.serviceSelected.length > 0
+      ? setCheckIsService(true)
+      : setCheckIsService(false)
+    fields.peopleServedSelected.length > 0
+      ? setCheckIsPeopleServed(true)
+      : setCheckIsPeopleServed(false)
+    fields.languageSelected.length > 0
+      ? setCheckIsLanguage(true)
+      : setCheckIsLanguage(false)
     if (fetchedRecords && keywordQuery.length === 0) {
       setFilteredResults(fetchedRecords)
       setLocationRecords(fetchedRecords)
-    } else if (fetchedRecords && keywordQuery.length > 0 )  {
+    } else if (fetchedRecords && keywordQuery.length > 0) {
       let newResults = useGetMatchingRecords(
         fetchedRecords,
         keywordQuery,
@@ -82,14 +78,20 @@ fields.languageSelected.length>0?setCheckIsLanguage(true): setCheckIsLanguage(fa
         checkIsService,
         checkIsLanguage,
         checkIsPeopleServed,
-
       )
       setFilteredResults(newResults)
       setLocationRecords(newResults)
     }
-  }, [fetchedRecords, fields, validCategory, checkIsCity, checkIsService, checkIsLanguage, checkIsPeopleServed])
+  }, [
+    fetchedRecords,
+    fields,
+    validCategory,
+    checkIsCity,
+    checkIsService,
+    checkIsLanguage,
+    checkIsPeopleServed,
+  ])
   if (!validCategory) return <Error statusCode={404} />
-  console.log('checkIs City', checkIsCity)
   return (
     <>
       <Head>
@@ -97,7 +99,7 @@ fields.languageSelected.length>0?setCheckIsLanguage(true): setCheckIsLanguage(fa
       </Head>
       <div className={classes.landingPageContainer}>
         <Grid container>
-          <Hidden lgUp>
+          <Hidden mdUp>
             <MobileButtonsLandingPage
               activeCopy={activeCopy}
               setOpen={setOpen}
