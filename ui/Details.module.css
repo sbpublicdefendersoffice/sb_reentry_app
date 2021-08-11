@@ -24,9 +24,7 @@
 }
 
 @media (max-width: 1275px) {
-  .Details {
-    margin-top: 13rem;
-  }
+
   .summary {
     display: block;
   }
