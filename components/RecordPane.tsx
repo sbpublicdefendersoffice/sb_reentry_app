@@ -9,7 +9,7 @@ import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
 import {
   DesktopFilterView,
-  DisplayCategoryImage,
+  // DisplayCategoryImage,
   // CategoryDescription,
 } from '../components'
 import { Hidden } from '@material-ui/core'
@@ -66,7 +66,7 @@ RecordPaneProps) => {
       }
       role="menu"
     >
-      {/* <Paragraph
+      <Paragraph
         role="heading"
         size="heading-text"
         className={
@@ -77,7 +77,7 @@ RecordPaneProps) => {
         onClick={pushToCategory}
       >
         {displayCategory}
-      </Paragraph> */}
+      </Paragraph>
       {/* <DisplayCategoryImage
         displayCategory={displayCategory}
         routeCategory={routeCategory}

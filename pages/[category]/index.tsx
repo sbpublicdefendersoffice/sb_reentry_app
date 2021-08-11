@@ -91,6 +91,9 @@ const LandingPage = () => {
     checkIsLanguage,
     checkIsPeopleServed,
   ])
+
+  //#endregion
+
   if (!validCategory) return <Error statusCode={404} />
   return (
     <>
