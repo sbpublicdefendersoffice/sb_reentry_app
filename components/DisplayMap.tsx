@@ -123,7 +123,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
       open
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
       className={
-        isMapView && !isListView && windowSize.width<1275 ? styles.DisplayMapMobile : styles.DisplayMap
+        isMapView && !isListView && windowSize.width<1275 && showFilters ? styles.DisplayMapMobile : styles.DisplayMapMobile
       }
     >
       {/* {showFilters && (
