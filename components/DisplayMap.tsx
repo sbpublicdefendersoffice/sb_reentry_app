@@ -26,7 +26,6 @@ import {
 import { Details } from '../ui'
 import { PGOrgPlusLocation, WindowSize } from '../types'
 import styles from './DisplayMap.module.css'
-import { isMap } from 'lodash'
 
 interface DisplayMapProps {
   latLongInfo: PGOrgPlusLocation[]
@@ -119,21 +118,14 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
       <MapMarker locationRecord={locationRecord} map={mapState} />
     </Fragment>
   )
-  console.log(
-    'windowSize',
-    windowSize.width < 1275,
-   
-    'isList',
-    isListView,
-    "does end with id", !showFilters
-  )
+
   return (
     <Details
       role="main"
       open
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
       className={
-        windowSize.width < 1275 && !showFilters  
+        windowSize.width < 1275 && !showFilters
           ? styles.DisplayMapMobile
           : showFilters && !isListView
           ? styles.DisplayMapMobile

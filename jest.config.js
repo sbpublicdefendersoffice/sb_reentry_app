@@ -9,6 +9,7 @@ const jestConfig = {
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',
     '<rootDir>/__tests__/components/RecordPane',
+    '<rootDir>/__tests__/components/DisplayMap',
   ],
   coveragePathIgnorePatterns: [
     '<rootDir>/__helpers__/',
@@ -16,6 +17,7 @@ const jestConfig = {
     '<rootDir>/components/SearchTermsMarquee',
     '<rootDir>/components/PDFViewer',
     '<rootDir>/components/RecordPane',
+    '<rootDir>/components/DisplayMap',
   ],
   moduleNameMapper: {
     '\\.(scss|sass|css)$': 'identity-obj-proxy',

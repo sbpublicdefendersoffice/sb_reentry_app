@@ -1,3 +1,3 @@
-import { createContext } from 'react';
-const ViewContext = createContext(null);
-export default ViewContext;
+import { createContext } from 'react'
+const ViewContext = createContext(null)
+export default ViewContext

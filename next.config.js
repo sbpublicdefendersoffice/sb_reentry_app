@@ -39,7 +39,7 @@ const nextConfigOptions = {
       }
     }
 
-    process.env.NODE_ENV === 'production' &&
+    if (process.env.NODE_ENV === 'production') {
       config.plugins.push(
         new StatsWriterPlugin({
           filename: 'webpack-stats.json',
@@ -52,6 +52,9 @@ const nextConfigOptions = {
           },
         }),
       )
+
+      if (process.env.PROD_SRC_MAPS === 'true') config.devtool = 'source-map'
+    }
 
     return config
   },
