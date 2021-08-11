@@ -10,7 +10,7 @@ import styles from './RecordPane.module.css'
 import {
   DesktopFilterView,
   DisplayCategoryImage,
-  CategoryDescription,
+  // CategoryDescription,
 } from '../components'
 import { Hidden } from '@material-ui/core'
 
@@ -32,9 +32,8 @@ const RecordPane = ({
   fields,
   handleFieldsSelected,
   activeCopy,
-  displayDescription,
-  setRecords,
-}: RecordPaneProps) => {
+}: // displayDescription,
+RecordPaneProps) => {
   const { push, route } = useRouter()
   const { language } = useLanguage()
   const { state } = useContext(ViewContext)
@@ -83,17 +82,17 @@ const RecordPane = ({
         displayCategory={displayCategory}
         routeCategory={routeCategory}
       />
-      <CategoryDescription
+      {/* <CategoryDescription
         displayDescription={displayDescription}
         activeCopy={activeCopy}
-      />
+      /> */}
       <Hidden mdDown>
-      <DesktopFilterView
-        fields={fields}
-        handleFieldsSelected={handleFieldsSelected}
-        routeCategory={routeCategory}
-        activeCopy={activeCopy}
-      />
+        <DesktopFilterView
+          fields={fields}
+          handleFieldsSelected={handleFieldsSelected}
+          routeCategory={routeCategory}
+          activeCopy={activeCopy}
+        />
       </Hidden>
       <Details
         role="list"

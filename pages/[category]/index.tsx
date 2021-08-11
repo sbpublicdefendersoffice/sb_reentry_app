@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Error from 'next/error'
 import { useRouter } from 'next/router'
@@ -9,7 +9,6 @@ import {
   useLanguage,
   useFormFields,
   useGetMatchingRecords,
-  ViewContext,
 } from '../../hooks/'
 import {
   DisplayMap,
@@ -28,6 +27,8 @@ const LandingPage = () => {
   const { language } = useLanguage()
   const classes = useStyles()
   const [filteredResults, setFilteredResults] = useState<any | null>([])
+
+  //#region
   const [fields, handleFieldsSelected] = useFormFields({
     citySelected: [],
     serviceSelected: [],
@@ -41,7 +42,6 @@ const LandingPage = () => {
   const [open, setOpen] = useState(false)
   const activeCopy = categoryCopy[language]
   const validCategory = categories[asPath]
-  const { state } = useContext(ViewContext)
   const routeCategory: string = validCategory?.english.category.toLowerCase()
   const displayCategory: string = validCategory?.[language].category
   const displayDescription: string = validCategory?.[language].description

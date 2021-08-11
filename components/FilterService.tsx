@@ -1,4 +1,4 @@
-import React from 'react'
+/* eslint-disable */
 import {
   Grid,
   FormControl,
@@ -22,7 +22,6 @@ const FilterService = ({ fields, handleFieldsSelected, routeCategory }) => {
     ]
   return (
     <>
-   
       <Grid item xs={12} lg={6} className={classes.desktopFilterContainer}>
         <FormControl className={classes.formControl}>
           <InputLabel

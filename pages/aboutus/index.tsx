@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import React from 'react'
 import { Paper, Typography, Grid } from '@material-ui/core/'
 import { BusinessCenter, VerifiedUser, Forum } from '@material-ui/icons/'
 import useLanguage from '../../hooks/useLanguage'

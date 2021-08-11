@@ -23,25 +23,19 @@ const MobileFilterModal = ({
             {activeCopy.chooseFilters}
           </p>
         </Grid>
-        <Grid item xs={12} style={{marginBottom: "2rem", marginLeft: "5rem"}}  >
+        <Grid item xs={12} style={{ marginBottom: '2rem', marginLeft: '5rem' }}>
           <CategoryFilters
             fields={fields}
             handleFieldsSelected={handleFieldsSelected}
             routeCategory={routeCategory}
           />
         </Grid>
-        <Grid
-          item
-          xs={12}
-        style={{textAlign: "center"}}
-       
-        >
+        <Grid item xs={12} style={{ textAlign: 'center' }}>
           <Fab
             style={{
               marginTop: '2rem',
               margin: 'auto',
               fontSize: '1.2rem',
-             
             }}
             onClick={() => setOpen(false)}
             variant="extended"

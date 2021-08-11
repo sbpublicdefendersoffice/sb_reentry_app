@@ -2,7 +2,7 @@ import NextLink from 'next/link'
 import { ReactElement, Fragment } from 'react'
 
 import { staticPageRoutes } from '../constants/routes'
-import { RouteInfo } from '../types/routes'
+import { RouteInfo, CopyHolder } from '../types/'
 import useLanguage from '../hooks/useLanguage'
 import { ENGLISH } from '../constants/language'
 import SBPDLogo from './SBPDLogo'
@@ -19,8 +19,18 @@ export const linkInfo = {
   href: 'https://www.countyofsb.org/defender',
 }
 
+const copy: CopyHolder = {
+  english: {
+    art: 'Homepage picture graciously provided by ',
+  },
+  spanish: {
+    art: 'Imagen de la página de inicio gentilmente proporcionada por ',
+  },
+}
+
 const Footer = () => {
   const { language } = useLanguage()
+  const activeCopy = copy[language]
 
   const StaticPages: ReactElement[] = staticPageRoutes.map(
     (routeData: RouteInfo, i: number) => {
@@ -80,6 +90,17 @@ const Footer = () => {
           </p>
         </a>
       </NextLink>
+      <span>
+        {activeCopy.art}
+        <a
+          className={styles.copyright}
+          href={'https://robertmaja.org/wp/home/'}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Robert Maja
+        </a>
+      </span>
       <Paragraph className={styles.Disclaimer}>
         {language === ENGLISH
           ? `Thrive is a free, nonprofit resource directory developed by Code for America and Santa Barbara County Public Defender's office for people who have been system impacted in Santa Barbara County. We are not a law firm and the information on this site is not legal advice.`

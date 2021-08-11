@@ -87,4 +87,4 @@ export {
   url,
   familyResources,
 } from './cards'
-export { weekday} from "./weekday"
+export { weekday } from './weekday'

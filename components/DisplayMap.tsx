@@ -1,7 +1,10 @@
 import { useRouter } from 'next/router'
-import { Fragment, useState, useEffect, useContext} from 'react'
-import { ViewContext } from '../hooks'
-
+import {
+  Fragment,
+  useState,
+  useEffect,
+  useContext
+} from 'react'
 
 import type { Map } from 'mapbox-gl'
 
@@ -17,14 +20,20 @@ import {
   useLocation,
   useSearchFilters,
   useGlobalSearch,
-  useResizeEvent
+  ViewContext,
+  useResizeEvent,
 } from '../hooks'
-import { MapMarker, CityFilter, ProximityFilter } from './'
+import {
+  MapMarker,
+  // CityFilter,
+  // ProximityFilter
+} from './'
 import { Details } from '../ui'
-import { PGOrgPlusLocation, WindowSize } from '../types'
+import {
+  PGOrgPlusLocation,
+  WindowSize
+} from '../types'
 import styles from './DisplayMap.module.css'
-
-
 
 interface DisplayMapProps {
   latLongInfo: PGOrgPlusLocation[]
@@ -46,6 +55,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const { pathname } = useRouter()
   const { state } = useContext(ViewContext)
   const { isListView, isMapView } = state
+  
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
   const { coords } = useLocation()
