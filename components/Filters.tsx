@@ -2,8 +2,8 @@ import { Grid } from '@material-ui/core'
 import {
   FilterCity,
   FilterService,
-  FilterLanguage,
-  FilterPeopleServed,
+  // FilterLanguage,
+  // FilterPeopleServed,
 } from '../components/'
 import { Filter } from '../types/filter'
 const CategoryFilters = ({
@@ -23,14 +23,14 @@ const CategoryFilters = ({
           handleFieldsSelected={handleFieldsSelected}
           routeCategory={routeCategory}
         />
-        <FilterLanguage
+        {/* <FilterLanguage
           fields={fields}
           handleFieldsSelected={handleFieldsSelected}
         />
         <FilterPeopleServed
           fields={fields}
           handleFieldsSelected={handleFieldsSelected}
-        />
+        /> */}
       </Grid>
     </>
   )
