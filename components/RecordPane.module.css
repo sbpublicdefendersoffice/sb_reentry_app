@@ -4,7 +4,7 @@
   flex-direction: column;
   height: var(--screen-minus-header);
   text-align: center;
-  width: 33%;
+  width: 42%;
   overflow: scroll;
   margin: none;
   padding: var(--pad-std) var(--pad-lg);
