@@ -18,7 +18,7 @@ const MobileFilterModal = ({
         style={{ top: '45%', left: '50%', transform: `translate(-50%, -50%)` }}
         className={classes.paperFilter}
       >
-        <Grid item xs={12} sm={12} md={12} >
+        <Grid item xs={12} >
           <p style={{ textAlign:'center', fontSize: '2rem'}}>
             {activeCopy.chooseFilters}
           </p>
