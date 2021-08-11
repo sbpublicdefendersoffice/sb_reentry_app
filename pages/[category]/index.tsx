@@ -99,7 +99,7 @@ const LandingPage = () => {
       </Head>
       <div className={classes.landingPageContainer}>
         <Grid container>
-          <Hidden mdUp>
+          <Hidden lgUp>
             <MobileButtonsLandingPage
               activeCopy={activeCopy}
               setOpen={setOpen}
