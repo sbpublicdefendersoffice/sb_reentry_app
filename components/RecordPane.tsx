@@ -66,7 +66,7 @@ RecordPaneProps) => {
       }
       role="menu"
     >
-      <Paragraph
+      {/* <Paragraph
         role="heading"
         size="heading-text"
         className={
@@ -77,11 +77,11 @@ RecordPaneProps) => {
         onClick={pushToCategory}
       >
         {displayCategory}
-      </Paragraph>
-      <DisplayCategoryImage
+      </Paragraph> */}
+      {/* <DisplayCategoryImage
         displayCategory={displayCategory}
         routeCategory={routeCategory}
-      />
+      /> */}
       {/* <CategoryDescription
         displayDescription={displayDescription}
         activeCopy={activeCopy}
