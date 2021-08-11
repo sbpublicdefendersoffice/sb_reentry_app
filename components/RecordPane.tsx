@@ -57,7 +57,6 @@ RecordPaneProps) => {
   }
   if (!orgInfo) return <LeafLoader />
   const recordsReady: boolean = Boolean(orgInfo?.length)
-  console.log('activeCOpy', activeCopy)
   return (
     <div
       className={

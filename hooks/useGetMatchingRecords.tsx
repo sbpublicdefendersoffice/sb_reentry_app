@@ -50,7 +50,6 @@ const getMatchingRecords = (
       })
   }
 
-  console.log('filtered Records', filteredRecords)
   return filteredRecords
 }
 export default getMatchingRecords
