@@ -1,10 +1,5 @@
 import { useRouter } from 'next/router'
-import {
-  Fragment,
-  useState,
-  useEffect,
-  useContext
-} from 'react'
+import { Fragment, useState, useEffect, useContext } from 'react'
 
 import type { Map } from 'mapbox-gl'
 
@@ -29,11 +24,9 @@ import {
   // ProximityFilter
 } from './'
 import { Details } from '../ui'
-import {
-  PGOrgPlusLocation,
-  WindowSize
-} from '../types'
+import { PGOrgPlusLocation, WindowSize } from '../types'
 import styles from './DisplayMap.module.css'
+import { isMap } from 'lodash'
 
 interface DisplayMapProps {
   latLongInfo: PGOrgPlusLocation[]
@@ -47,15 +40,15 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
     height: innerHeight,
   })
   useResizeEvent(() =>
-  setWindowSize({
-    width: innerWidth,
-    height: innerHeight,
-  }),
-)
+    setWindowSize({
+      width: innerWidth,
+      height: innerHeight,
+    }),
+  )
   const { pathname } = useRouter()
   const { state } = useContext(ViewContext)
   const { isListView, isMapView } = state
-  
+
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
   const { coords } = useLocation()
@@ -115,25 +108,36 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
       }),
     [language, searchResults],
   )
+  const showFilters: boolean = !pathname.endsWith('[id]')
   const isInSBCounty: boolean = coords?.isInSBCounty
   const filteredRecordsReady: boolean = Boolean(
     locRecordsToFilter?.filteredRecords && mapState?.loaded,
   )
-  const showFilters: boolean = !pathname.endsWith('[id]')
 
   const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
     <Fragment key={i}>
       <MapMarker locationRecord={locationRecord} map={mapState} />
     </Fragment>
   )
-
+  console.log(
+    'windowSize',
+    windowSize.width < 1275,
+   
+    'isList',
+    isListView,
+    "does end with id", !showFilters
+  )
   return (
     <Details
       role="main"
       open
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
       className={
-        isMapView && !isListView && windowSize.width<1275 && showFilters ? styles.DisplayMapMobile : styles.DisplayMapMobile
+        windowSize.width < 1275 && !showFilters  
+          ? styles.DisplayMapMobile
+          : showFilters && !isListView
+          ? styles.DisplayMapMobile
+          : styles.DisplayMap
       }
     >
       {/* {showFilters && (
