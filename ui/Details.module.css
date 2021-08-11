@@ -20,7 +20,6 @@
   color: var(--dark);
   border: var(--border-width) solid var(--deselected);
   border-radius: var(--radius-small);
-  width: 100%;
 }
 
 @media (max-width: 1275px) {
