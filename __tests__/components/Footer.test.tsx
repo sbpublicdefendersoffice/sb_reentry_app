@@ -5,7 +5,7 @@ import Footer, { copyright } from '../../components/Footer'
 
 describe('<Footer />', () => {
   it('renders language agnostic content correctly', () => {
-    const { getByRole, getAllByRole } = renderWithLanguage(<Footer />)
+    const { getByRole } = renderWithLanguage(<Footer />)
 
     const footerNode: HTMLElement = getByRole('region')
     const copyrightNode: HTMLElement = getByRole('contentinfo')

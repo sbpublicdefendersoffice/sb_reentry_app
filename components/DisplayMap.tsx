@@ -46,7 +46,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   )
   const { pathname } = useRouter()
   const { state } = useContext(ViewContext)
-  const { isListView, isMapView } = state
+  const { isListView } = state
 
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
