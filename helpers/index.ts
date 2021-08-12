@@ -19,3 +19,4 @@ export {
   POST,
   GET,
 } from './validators'
+export { default as isOpenNow } from './isOpenNow'

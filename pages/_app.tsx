@@ -1,6 +1,6 @@
 // import App from "next/app";
-import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useState, useEffect, useReducer } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 
@@ -12,22 +12,29 @@ import {
   LocationProvider,
   ToastProvider,
 } from '../hooks'
+import ViewContext from '../hooks/useView'
 import {
   Footer,
   Header,
   LangSwitcher,
   Toast,
   IsThisUsefulTag,
+  MobileAppBar,
 } from '../components'
 import { checkAndSetUserLocation, googlePageviews } from '../helpers/'
+import viewReducer from '../helpers/view'
 
 import '../styles/globals.css'
 import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const [state, dispatch] = useReducer(viewReducer, {
+    isListView: false,
+    isMapView: true,
+  })
   const { events, route } = useRouter()
-
   const [language, setLanguage] = useState<Language | null>(null)
+
   const [coords, setCoords] = useState<SantaBarbaraCountyCoords | null>(null)
   const [toast, setToast] = useState<string | null>(null)
 
@@ -64,20 +71,23 @@ const App = ({ Component, pageProps }: AppProps) => {
           <title>{siteTitle}</title>
         </Head>
         <LangProvider value={{ language, setLanguage }}>
-          <LocationProvider value={{ coords, setCoords }}>
-            <ToastProvider value={{ toast, setToast }}>
-              <GlobalSearchProvider>
-                <Header />
-                <LangSwitcher />
-                <main>
-                  <Component {...pageProps} />
-                </main>
-                <IsThisUsefulTag />
-                <Footer />
-                <Toast />
-              </GlobalSearchProvider>
-            </ToastProvider>
-          </LocationProvider>
+          <ViewContext.Provider value={{ state, dispatch }}>
+            <LocationProvider value={{ coords, setCoords }}>
+              <ToastProvider value={{ toast, setToast }}>
+                <GlobalSearchProvider>
+                  <Header />
+                  <LangSwitcher />
+                  <main>
+                    <Component {...pageProps} />
+                  </main>
+                  <IsThisUsefulTag />
+                  <Footer />
+                  <MobileAppBar />
+                  <Toast />
+                </GlobalSearchProvider>
+              </ToastProvider>
+            </LocationProvider>
+          </ViewContext.Provider>
         </LangProvider>
       </>
     )

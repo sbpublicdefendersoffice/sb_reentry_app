@@ -1,12 +1,20 @@
 .DisplayMap {
   position: relative;
   flex: 1;
-  width: 100%;
+  width: 50%;
   height: var(--screen-minus-header) !important;
 }
-
-@media (max-width: 700px) {
+.DisplayMapMobile {
+  width: 58%;
+}
+@media (max-width: 1275px) {
   .DisplayMap {
+    display: none;
+  }
+}
+@media (max-width: 1275px) {
+  .DisplayMapMobile {
+    width: 100%;
     padding: 0 calc(var(--pad-lg) + var(--pad-sm));
   }
 }

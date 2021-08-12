@@ -1,8 +1,10 @@
-import useLanguage from '../hooks/useLanguage'
-
+import { useLanguage } from '../hooks/'
+import React, { useState, useEffect } from 'react'
 import { CopyHolder, Language } from '../types'
+import { isOpenNow } from '../helpers'
 
 import { Paragraph } from '../ui'
+import { Button } from '@material-ui/core/'
 
 import styles from './ScheduleRecordDisplay.module.css'
 
@@ -56,7 +58,6 @@ export const ordinalParser = (
         .replace('4', fourth)
         .replace('5', fifth)} ${week}${days.length > 1 && 's'} ${ofMonth}.`
 }
-
 export const timeParser = (timeStr: string): string => {
   const splitTime: Array<string | number> = timeStr.split(':')
   splitTime[0] = +splitTime[0]
@@ -65,13 +66,11 @@ export const timeParser = (timeStr: string): string => {
   else if (splitTime[0] > 12) splitTime[0] = String(splitTime[0] - 12)
   return `${splitTime[0]}:${splitTime[1]} ${amOrPm}`
 }
-
 export const daysOpenParser = (
   wordForDay: string,
   specificDay: string,
   wordForOpen: string,
 ): string => `${wordForDay}${specificDay?.length > 3 ? 's' : ''} ${wordForOpen}`
-
 interface ScheduleRecordDisplayProps {
   open_time?: string
   close_time?: string
@@ -79,7 +78,6 @@ interface ScheduleRecordDisplayProps {
   notes?: string
   ordinal_open?: string
 }
-
 const ScheduleRecordDisplay = ({
   open_time,
   close_time,
@@ -88,7 +86,34 @@ const ScheduleRecordDisplay = ({
   notes,
 }: ScheduleRecordDisplayProps) => {
   const { language } = useLanguage()
+
   const activeCopy = copy[language]
+  const initialOpen = isOpenNow({
+    open_time,
+    close_time,
+    days,
+    ordinal_open,
+    notes,
+  })
+
+  const [isOpen, setIsOpen] = useState(initialOpen)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const isOpenChecker = isOpenNow({
+        open_time,
+        close_time,
+        days,
+        ordinal_open,
+        notes,
+      })
+
+      setIsOpen(isOpenChecker)
+    }, 15000)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [isOpen])
 
   return (
     <section role="region" className={styles.ScheduleRecordDisplay}>
@@ -99,6 +124,31 @@ const ScheduleRecordDisplay = ({
           </strong>
           : {days}
         </Paragraph>
+      )}
+      {isOpen ? (
+        <Button
+          style={{
+            backgroundColor: '#005EA2',
+            color: 'white',
+            fontSize: '1rem',
+            fontFamily: 'sans-serif',
+          }}
+          disabled
+        >
+          Open Now
+        </Button>
+      ) : (
+        <Button
+          style={{
+            backgroundColor: 'red',
+            color: 'white',
+            fontSize: '1rem',
+            fontFamily: 'sans-serif',
+          }}
+          disabled
+        >
+          Closed
+        </Button>
       )}
       {open_time && close_time && (
         <Paragraph role="article" size="med-text">
@@ -121,5 +171,4 @@ const ScheduleRecordDisplay = ({
     </section>
   )
 }
-
 export default ScheduleRecordDisplay

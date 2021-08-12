@@ -4,6 +4,7 @@
   outline: none;
   cursor: pointer;
   display: flex;
+
   justify-content: space-between;
 }
 
@@ -19,4 +20,11 @@
 .Image {
   width: 3rem;
   height: 3rem;
+}
+@media (max-width: 1275px) {
+  .GlobalSearchResult {
+    position: relative;
+    color: white;
+    margin-left: 0.4rem;
+  }
 }

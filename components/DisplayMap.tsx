@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState, useEffect, useContext } from 'react'
+
 import type { Map } from 'mapbox-gl'
 
 import {
@@ -14,12 +15,16 @@ import {
   useLocation,
   useSearchFilters,
   useGlobalSearch,
+  ViewContext,
+  useResizeEvent,
 } from '../hooks'
-import { MapMarker, CityFilter, ProximityFilter } from './'
+import {
+  MapMarker,
+  // CityFilter,
+  // ProximityFilter
+} from './'
 import { Details } from '../ui'
-
-import { PGOrgPlusLocation } from '../types'
-
+import { PGOrgPlusLocation, WindowSize } from '../types'
 import styles from './DisplayMap.module.css'
 
 interface DisplayMapProps {
@@ -29,8 +34,20 @@ interface DisplayMapProps {
 
 const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
   const [mapState, setMap] = useState<Map | null>(null)
-
+  const [windowSize, setWindowSize] = useState<WindowSize>({
+    width: innerWidth,
+    height: innerHeight,
+  })
+  useResizeEvent(() =>
+    setWindowSize({
+      width: innerWidth,
+      height: innerHeight,
+    }),
+  )
   const { pathname } = useRouter()
+  const { state } = useContext(ViewContext)
+  const { isListView } = state
+
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
   const { coords } = useLocation()
@@ -90,13 +107,11 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
       }),
     [language, searchResults],
   )
-
+  const showFilters: boolean = !pathname.endsWith('[id]')
   const isInSBCounty: boolean = coords?.isInSBCounty
-
   const filteredRecordsReady: boolean = Boolean(
     locRecordsToFilter?.filteredRecords && mapState?.loaded,
   )
-  const showFilters: boolean = !pathname.endsWith('[id]')
 
   const returnMarker = (locationRecord: PGOrgPlusLocation, i: number) => (
     <Fragment key={i}>
@@ -109,9 +124,15 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
       role="main"
       open
       summary={language === ENGLISH ? 'Map' : 'Mapa'}
-      className={styles.DisplayMap}
+      className={
+        windowSize.width < 1275 && !showFilters
+          ? styles.DisplayMapMobile
+          : showFilters && !isListView
+          ? styles.DisplayMapMobile
+          : styles.DisplayMap
+      }
     >
-      {showFilters && (
+      {/* {showFilters && (
         <CityFilter
           locationsToFilter={latLongInfo}
           regionVisibility={locRecordsToFilter.visibility}
@@ -126,7 +147,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
             />
           )}
         </CityFilter>
-      )}
+      )} */}
       {!testWorkaround && (
         <div id="map" style={mapContainerStyle}>
           {isInSBCounty && (
@@ -153,5 +174,4 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
     </Details>
   )
 }
-
 export default DisplayMap

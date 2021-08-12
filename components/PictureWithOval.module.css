@@ -1,6 +1,7 @@
 .PictureWithOval {
   position: relative;
   width: 50%;
+  overflow: hidden;
 }
 
 .Image {

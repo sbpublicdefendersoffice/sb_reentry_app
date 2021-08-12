@@ -4,8 +4,8 @@ export type Holder = { [title: string]: Array<string | number> }
 
 export interface TranslatedRecordResponse {
   offset?: string
-  category: string
-  records: OrgRecord[]
+  category?: string
+  records?: OrgRecord[]
 }
 
 export interface OrgRecord {

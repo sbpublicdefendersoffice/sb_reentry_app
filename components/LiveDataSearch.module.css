@@ -50,8 +50,18 @@
   height: 0;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1275px) {
   .LiveDataSearch {
     width: 100%;
+  }
+  .ResultsContainer {
+    list-style-type: none;
+    padding: 0 var(--pad-lg);
+    width: 100%;
+    position: fixed;
+    bottom: 6.5%;
+    top: auto;
+    max-height: 30rem;
+    background-color: white;
   }
 }

@@ -37,6 +37,24 @@ export {
   LisaSuccessStory,
 } from './successStory-data'
 export { aboutCopy } from './aboutus-data'
+export { categoryServiceFilter, categoryCopy } from './filter'
+export {
+  cityCopy,
+  foodServiceCopy,
+  medicalsupportServiceCopy,
+  transportationServiceCopy,
+  mentalhealthServiceCopy,
+  socialservicesServiceCopy,
+  clothingServiceCopy,
+  resourcedirectoryServiceCopy,
+  legalservicesServiceCopy,
+  communitysupportServiceCopy,
+  employmentServiceCopy,
+  housingServiceCopy,
+  substanceuseServiceCopy,
+  peopleServedCopy,
+  languageCopy,
+} from './service-filter-data'
 export {
   faqCopy,
   whereToStart,
@@ -69,3 +87,4 @@ export {
   url,
   familyResources,
 } from './cards'
+export { weekday } from './weekday'
