@@ -77,7 +77,8 @@
     "twilio/axios": "^0.21.1",
     "**/**/trim-newlines": "^3.0.1",
     "**/**/browserslist": "^4.16.5",
-    "**/**/path-parse": "^1.0.7"
+    "**/**/path-parse": "^1.0.7",
+    "**/**/url-parse": "^1.5.2"
   },
   "description": "A joint project between [Code for America](https://www.codeforamerica.org/) and [The County of Santa Barbara Public Defender's Office](https://www.countyofsb.org/defender)",
   "repository": {
