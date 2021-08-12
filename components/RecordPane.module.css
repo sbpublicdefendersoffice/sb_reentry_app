@@ -26,7 +26,7 @@
   flex-direction: inherit;
   height: inherit;
   overflow: inherit;
-  display: contents;
+  display: contents; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
 .detailsMobile {
   display: none;
@@ -64,12 +64,11 @@
     .detailsMobile {
       display: contents;
       width: 100%;
-      display: flex;
+      display: flex; /* stylelint-disable-line declaration-block-no-duplicate-properties */
       flex-direction: inherit;
       height: inherit;
       overflow: inherit;
       padding: 0 calc(var(--pad-lg) + var(--pad-sm));
-      /* margin: 2rem; */
     }
   }
 }
