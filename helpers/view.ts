@@ -2,18 +2,18 @@ const viewReducer = (state, action) => {
   const { key, type, value } = action
   switch (type) {
     case 'setState': {
-      const newState = { ...state }
+      const newState = Object.assign({}, state)
       newState[key] = value
       return newState
     }
     case 'toggleList': {
-      const newState = { ...state }
+      const newState = Object.assign({}, state)
       newState.isListView = true
       newState.isMapView = false
       return newState
     }
     case 'toggleMap': {
-      const newState = { ...state }
+      const newState = Object.assign({}, state)
       newState.isMapView = true
       newState.isListView = false
       return newState

@@ -4,7 +4,7 @@ export {
   googleSearch,
   googleViewSearchResults,
 } from './analytics'
-export { convertLocationsForMap } from './converters'
+export { default as isOpenNow } from './isOpenNow'
 export {
   checkAndSetUserLocation,
   isDistanceInBounds,
@@ -19,4 +19,4 @@ export {
   POST,
   GET,
 } from './validators'
-export { default as isOpenNow } from './isOpenNow'
+export { default as viewReducer } from './view'
