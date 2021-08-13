@@ -1,23 +1,26 @@
-// Concerning coverage path ignore:
-// __helpers__ is a folder of functions and data created to help with testing.
-// SearchTermsMarquee cannot be rendered by JSDom, as I understand it. I hope to find another way to test this, but for the moment I am not counting it against my coverage score.
-// Same with PDFViewer
-// FreshStartLogo is from an earlier iteration of the project and is not used. However, I do not want to delete it right now.
+// Ignored folders/files/lines fall into two buckets:
+// 1: Things that do not makes sense to test in an automated fashion or things that cannot be tested with JSDom
+// 2: Ignoring coverage for files that have not had tests written yet or are not working due to a breaking change
+// In the case of ignored lines, /* istanbul ignore next */ is used to indicate them
 const jestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testPathIgnorePatterns: [
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',
-    '<rootDir>/__tests__/components/RecordPane',
-    '<rootDir>/__tests__/components/DisplayMap',
+    //make below work
+    '<rootDir>/__tests__/components/(RecordPane|DisplayMap)',
   ],
   coveragePathIgnorePatterns: [
     '<rootDir>/__helpers__/',
-    '<rootDir>/ui/FreshStartLogo',
-    '<rootDir>/components/SearchTermsMarquee',
-    '<rootDir>/components/PDFViewer',
-    '<rootDir>/components/RecordPane',
-    '<rootDir>/components/DisplayMap',
+    '<rootDir>/__mocks__/',
+    '<rootDir>/(ui|hooks|helpers|constants|components)/index.ts',
+    '<rootDir>/helpers/analytics.ts',
+    '<rootDir>/next.config.js',
+    '<rootDir>/components/(SearchTermsMarquee|PDFViewer)',
+    //write tests for below
+    '<rootDir>/components/(RecordPane|DisplayMap|DesktopFilterView|Filter.*|Mobile.*|TagPane)',
+    '<rootDir>/helpers/view',
+    '<rootDir>/hooks/(useGetMatchingRecords|useFormFields|useOnClickOutside)',
   ],
   moduleNameMapper: {
     '\\.(scss|sass|css)$': 'identity-obj-proxy',

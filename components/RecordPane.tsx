@@ -7,11 +7,7 @@ import withWidth from '@material-ui/core/withWidth'
 import { PGOrganizationResponse, WindowSize } from '../types/'
 import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
-import {
-  DesktopFilterView,
-  // DisplayCategoryImage,
-  // CategoryDescription,
-} from '../components'
+import { DesktopFilterView } from '../components'
 import { Hidden } from '@material-ui/core'
 
 export interface RecordPaneProps {
@@ -78,14 +74,6 @@ RecordPaneProps) => {
       >
         {displayCategory}
       </Paragraph>
-      {/* <DisplayCategoryImage
-        displayCategory={displayCategory}
-        routeCategory={routeCategory}
-      /> */}
-      {/* <CategoryDescription
-        displayDescription={displayDescription}
-        activeCopy={activeCopy}
-      /> */}
       <Hidden mdDown>
         <DesktopFilterView
           fields={fields}

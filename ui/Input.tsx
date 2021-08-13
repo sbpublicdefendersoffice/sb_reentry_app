@@ -14,6 +14,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function InputFunc(
 
   return (
     <input
+      role="input"
       ref={ref}
       className={`${styles.Input} ${className && `${className}`}`}
       style={{ ...style, display: block ? 'block' : 'initial' }}

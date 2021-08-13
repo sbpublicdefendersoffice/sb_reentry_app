@@ -11,6 +11,7 @@ export const checkAndSetUserLocation = (
 ): void => {
   const langLocalizedCopy = inSantaBarbaraCopy[currentLanguage]
 
+  /* istanbul ignore next */
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position: GeolocationPosition): void => {
@@ -20,6 +21,7 @@ export const checkAndSetUserLocation = (
         // const isInSantaBarbara: boolean = true
         const isInSantaBarbara: boolean = validateIsInSantaBarbaraCounty(coords)
 
+        // @ts-ignore
         const coordsToSave: SantaBarbaraCountyCoords = Object.defineProperties(
           coords,
           {

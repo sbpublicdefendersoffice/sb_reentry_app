@@ -18,6 +18,7 @@ const Details = forwardRef<HTMLDetailsElement, DetailsProps>(
         document.querySelectorAll('.details-element')
       if (innerWidth >= 700)
         detailsDomElements.forEach((ele: HTMLDetailsElement): void => {
+          /* istanbul ignore next */
           if (!ele.open) ele.open = true
         })
     }

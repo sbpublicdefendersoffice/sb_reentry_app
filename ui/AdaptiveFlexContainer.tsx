@@ -14,6 +14,7 @@ const AdaptiveFlexContainer = forwardRef<
 
   return (
     <div
+      role="main"
       ref={ref}
       className={`${styles.AdaptiveFlexContainer} ${className}`}
       {...other}

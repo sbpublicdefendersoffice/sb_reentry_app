@@ -15,7 +15,7 @@
     "lint-es": "eslint './**/*.{js,jsx,ts,tsx}' --fix --cache && echo 'All ESLint checks passed!'",
     "start": "next start",
     "start_data": "docker start sb_reentry_app_postgres_1",
-    "test": "jest --cache --coverage && echo 'All Jest tests passed!'",
+    "test": "jest --cache --coverage --silent && echo 'All Jest tests passed!'",
     "type-check": "tsc && echo 'All TypeScript compiler checks passed!'"
   },
   "dependencies": {
