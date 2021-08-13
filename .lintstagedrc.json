@@ -1,5 +1,5 @@
 {
-  "./**/*.{js,jsx,ts,tsx}": ["yarn test", "yarn lint-es"],
+  "./**/*.{js,jsx,ts,tsx}": ["yarn lint-es", "yarn test"],
   "./**/*.{ts,tsx}": "yarn type-check",
   "./**/*.css": "yarn lint-css",
   "./**/*": "yarn format"
