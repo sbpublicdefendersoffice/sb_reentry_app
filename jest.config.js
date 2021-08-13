@@ -2,7 +2,6 @@
 // __helpers__ is a folder of functions and data created to help with testing.
 // SearchTermsMarquee cannot be rendered by JSDom, as I understand it. I hope to find another way to test this, but for the moment I am not counting it against my coverage score.
 // Same with PDFViewer
-// FreshStartLogo is from an earlier iteration of the project and is not used. However, I do not want to delete it right now.
 const jestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testPathIgnorePatterns: [
@@ -13,7 +12,9 @@ const jestConfig = {
   ],
   coveragePathIgnorePatterns: [
     '<rootDir>/__helpers__/',
-    '<rootDir>/ui/FreshStartLogo',
+    '<rootDir>/__mocks__/',
+    '<rootDir>/(ui|hooks|helpers|constants|components)/index.ts',
+    '<rootDir>/next.config.js',
     '<rootDir>/components/SearchTermsMarquee',
     '<rootDir>/components/PDFViewer',
     '<rootDir>/components/RecordPane',
