@@ -38,6 +38,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [coords, setCoords] = useState<SantaBarbaraCountyCoords | null>(null)
   const [toast, setToast] = useState<string | null>(null)
 
+  /* istanbul ignore next */ // JSDom doesn't have a navigator object to test AFAIK
   useEffect((): void => {
     const languageToLoad: Language = navigator.language.startsWith('es')
       ? SPANISH
@@ -48,6 +49,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     if (!coords) checkAndSetUserLocation(setCoords, setToast, languageToLoad)
   }, [])
 
+  /* istanbul ignore next */ // don't want to test third party scripts
   useEffect(() => {
     if (isProd && route) {
       events.on('routeChangeComplete', url => googlePageviews(url, route))

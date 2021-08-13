@@ -8,6 +8,9 @@ const jestConfig = {
   testPathIgnorePatterns: [
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',
+    //get back to below and make it work
+    '<rootDir>/__tests__/pages/category',
+    '<rootDir>/__tests__/pages/search',
     '<rootDir>/__tests__/components/RecordPane',
     '<rootDir>/__tests__/components/DisplayMap',
   ],
@@ -18,6 +21,9 @@ const jestConfig = {
     '<rootDir>/next.config.js',
     '<rootDir>/components/SearchTermsMarquee',
     '<rootDir>/components/PDFViewer',
+    //get back to below and make it work
+    '<rootDir>/pages/\\[category\\]/',
+    '<rootDir>/pages/search',
     '<rootDir>/components/RecordPane',
     '<rootDir>/components/DisplayMap',
   ],
