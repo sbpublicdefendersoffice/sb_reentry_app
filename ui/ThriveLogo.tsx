@@ -8,7 +8,9 @@ const ThriveLogo = forwardRef<SVGSVGElement, ThriveLogoProps>(
   function ThriveLogoFunc(props: ThriveLogoProps, ref) {
     const { forLightBg, ...other } = props
 
+    /* istanbul ignore next */
     const titleColor: string = forLightBg ? 'var(--primary)' : 'var(--light)'
+    /* istanbul ignore next */
     const secondaryColor: string = forLightBg
       ? 'var(--highlight)'
       : 'var(--secondary)'

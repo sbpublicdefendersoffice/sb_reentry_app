@@ -1,5 +1,6 @@
-// Concerning coverage path ignore:
+// Concerning ignore:
 // __helpers__ is a folder of functions and data created to help with testing.
+// Certain lines are ignored with /* istanbul ignore next */ as the lines effects cannot be test in JSDom
 // SearchTermsMarquee cannot be rendered by JSDom, as I understand it. I hope to find another way to test this, but for the moment I am not counting it against my coverage score.
 // Same with PDFViewer
 const jestConfig = {
