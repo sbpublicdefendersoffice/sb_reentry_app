@@ -1,6 +1,6 @@
 {
   "./**/*.{js,jsx,ts,tsx}": ["yarn test", "yarn lint-es"],
   "./**/*.{ts,tsx}": "yarn type-check",
-  "./**/*.css": "echo 'lint-css disabled because of version/security issue. will check later'",
+  "./**/*.css": "yarn lint-css",
   "./**/*": "yarn format"
 }
