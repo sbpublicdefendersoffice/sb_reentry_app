@@ -1,16 +1,15 @@
+import { useContext } from 'react'
 import { Disclaimer, LocationRecordDisplay } from './'
-import { Details, Title } from '../ui'
-
-import useLanguage from '../hooks/useLanguage'
+import { Details, Title, Paragraph } from '../ui'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import {Grid} from '@material-ui/core'
+import {useLanguage, useFavorite} from '../hooks/'
 import { CopyHolder, PGOrganizationResponse } from '../types'
-
 import styles from './OrgRecordDisplay.module.css'
-import { Paragraph } from '../ui'
-
 interface OrgRecordDisplayProps {
   sortedRecord: PGOrganizationResponse
 }
-
 export const copy: CopyHolder = {
   english: {
     orgInfo: 'Organization Information',
@@ -29,25 +28,42 @@ export const copy: CopyHolder = {
     location: 'Ubicaciones:',
   },
 }
-
 const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
-
+  const { favoriteResources, updateFavoriteResources } = useContext(
+    useFavorite
+  );
   const [org_name, languages_spoken, notes]: string[] = [
     sortedRecord[`name_${language}`],
     sortedRecord[`languages_spoken_${language}`],
     sortedRecord[`notes_${language}`],
   ]
-
-  const { website, locations } = sortedRecord
-
+  const { website, locations, id } = sortedRecord
+  const isFavIcon = <FavoriteIcon style={{color: "#13385E", fontSize: "3rem"}}/>;
+  const isNotFavIcon = <FavoriteBorderIcon style={{color: "#13385E", fontSize: "3rem"}}/>;
+  const heart = favoriteResources.some(item =>  item.id === id) ? isFavIcon : isNotFavIcon
+  const clickHeart = (e) => {
+    e.preventDefault();
+    updateFavoriteResources(sortedRecord.id, sortedRecord);
+  };
+  if (localStorage.getItem("favorites") === null) {
+    localStorage.setItem("favorites", "[]");
+  }
+  if (localStorage.getItem("favoriteRecords") === null) {
+    localStorage.setItem("favoriteRecords", "[]");
+  }
   return (
     <div role="menu" className={styles.OrgRecordDisplay}>
-      <Details open summary={activeCopy.orgInfo} className={styles.listing}>
-        <Title role="heading" className={styles.DisplayTitle}>
+          <Title role="heading" className={styles.DisplayTitle}>
           {org_name}
         </Title>
+  <Grid container justify="flex-end">
+        <button style={{background: "none", border: "none", marginTop: "-8rem"} } id={String(id)} onClick={(clickHeart)}>
+        <div className="resource-favorite">{heart}</div>
+        </button>
+        </Grid>
+        <Details open summary={activeCopy.orgInfo} className={styles.listing}>
         {notes && (
           <>
             <Paragraph role="term" size="heading-text">
@@ -104,5 +120,4 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
     </div>
   )
 }
-
 export default OrgRecordDisplay
