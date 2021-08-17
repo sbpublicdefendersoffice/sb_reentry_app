@@ -47,7 +47,9 @@ const BurgerItems = ({ open, setOpen }) => {
       </NextLink>
       <NextLink href="/favorites" as="/favorites">
         <a>
-          <h2 role="term">{language === ENGLISH ? 'Favorites' : 'Favoritas'}</h2>
+          <h2 role="term">
+            {language === ENGLISH ? 'Favorites' : 'Favoritas'}
+          </h2>
         </a>
       </NextLink>
     </StyledBurgerItems>

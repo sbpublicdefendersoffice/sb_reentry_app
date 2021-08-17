@@ -41,7 +41,8 @@ const Header = () => {
           </h2>
         </NextLink>
       )
-      if (i === lastStaticRouteIndex-1) return <Fragment key={i}>{link}</Fragment>
+      if (i === lastStaticRouteIndex - 1)
+        return <Fragment key={i}>{link}</Fragment>
       if (i === lastStaticRouteIndex) return null
       else
         return (

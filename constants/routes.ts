@@ -102,8 +102,8 @@ export const staticPageRoutes: RouteInfo[] = [
     route: '/faq',
   },
   {
-    title_english: "Favorites",
-    title_spanish: "Favoritas",
+    title_english: 'Favorites',
+    title_spanish: 'Favoritas',
     route: '/favorites',
   },
 ]

@@ -39,12 +39,9 @@
 }
 .Favorites {
   margin-bottom: 3rem;
-  align-items:flex-end;
-  display:flex;
+  align-items: flex-end;
+  display: flex;
   color: white;
-  
-  
-
 }
 .Title {
   word-wrap: break-word;
@@ -64,7 +61,7 @@
   border-bottom: 0.25rem solid var(--green);
 }
 @media (max-width: 1275px) {
-  .Favorites{
+  .Favorites {
     margin-bottom: 1rem;
     margin-right: 1rem;
   }
@@ -83,5 +80,4 @@
   .Separators {
     display: none;
   }
-
 }

@@ -13,3 +13,7 @@
   text-transform: capitalize;
   color: var(--highlight);
 }
+
+.Text {
+  flex: 1;
+}
