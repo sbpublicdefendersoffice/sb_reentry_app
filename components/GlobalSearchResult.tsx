@@ -49,7 +49,7 @@ const GlobalSearchResult = ({
         role="listitem"
         className={styles.GlobalSearchResult}
         tabIndex={0}
-        onClick={() => setIsFocused(false)}
+        // onClick={() => setIsFocused(false)}
       >
         <img
           role="img"
