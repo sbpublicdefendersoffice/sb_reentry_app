@@ -101,6 +101,11 @@ export const staticPageRoutes: RouteInfo[] = [
     title_spanish: 'FAQ',
     route: '/faq',
   },
+  {
+    title_english: 'Favorites',
+    title_spanish: 'Favoritas',
+    route: '/favorites',
+  },
 ]
 
 export const letUsHelpRoutes: RouteInfo[] = [

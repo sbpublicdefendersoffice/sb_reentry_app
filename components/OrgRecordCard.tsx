@@ -1,18 +1,26 @@
-import { Fragment, ReactElement } from 'react'
+import { Fragment, ReactElement, useContext } from 'react'
 import { useRouter } from 'next/router'
+import { Favorite, FavoriteBorder } from '@material-ui/icons'
+import { Button } from '@material-ui/core/'
 
 import useLanguage from '../hooks/useLanguage'
 import { PGOrganizationResponse } from '../types/'
 import { ENGLISH } from '../constants/language'
 import { Card, Paragraph } from '../ui'
+import FavoriteProvider from '../hooks/useFavorite'
+
 export interface OrgRecordCardProps {
   record: PGOrganizationResponse
 }
+
 export const urlSlug: string = '/[category]/[id]'
+
 import styles from './OrgRecordCard.module.css'
+
 const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
   const { language } = useLanguage()
   const { push, pathname, query } = useRouter()
+
   const {
     id,
     categories_english,
@@ -22,15 +30,39 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
     name_spanish,
   } = record
 
+  const { favoriteResources, updateFavoriteResources } =
+    useContext(FavoriteProvider)
+
+  const isFavIcon = <Favorite style={{ color: '#13385E', fontSize: '3rem' }} />
+  const isNotFavIcon = <FavoriteBorder style={{ fontSize: '3rem' }} />
+
+  const heart = favoriteResources.some(item => item.id === id)
+    ? isFavIcon
+    : isNotFavIcon
+
   const activeCategories: string[] =
     language === ENGLISH ? categories_english : categories_spanish
+
   const categoryTitle: string = multiple_categories
     ? multiple_categories[0].replace(' ', '')
     : 'socialservices'
+
   const isCategoryPage: boolean = pathname === '/[category]'
 
   const pushToRecord = (e): Promise<boolean> =>
-    push(urlSlug, `/${categoryTitle}/${e.target.title}`)
+    push(urlSlug, `/${categoryTitle}/${id}`)
+
+  const clickHeart = e => {
+    e.preventDefault()
+    e.stopPropagation()
+    updateFavoriteResources(id, record)
+  }
+
+  if (localStorage.getItem('favorites') === null)
+    localStorage.setItem('favorites', '[]')
+
+  if (localStorage.getItem('favoriteRecords') === null)
+    localStorage.setItem('favoriteRecords', '[]')
 
   return (
     <Card
@@ -50,7 +82,7 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
         src={`/icons/${isCategoryPage ? query.category : categoryTitle}.svg`}
         alt={`${categoryTitle}_icon`}
       />
-      <div>
+      <div className={styles.Text}>
         <Paragraph role="heading" title={String(id)} size="med-text">
           {name_english || name_spanish}
         </Paragraph>
@@ -67,6 +99,14 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
           )}
         </Paragraph>
       </div>
+      <Button
+        id={String(id)}
+        title={String(id)}
+        onClick={clickHeart}
+        style={{ background: 'none', border: 'none' }}
+      >
+        <div>{heart}</div>
+      </Button>
     </Card>
   )
 }

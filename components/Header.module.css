@@ -37,6 +37,12 @@
 .Burger {
   display: none;
 }
+.Favorites {
+  margin-bottom: 3rem;
+  align-items: flex-end;
+  display: flex;
+  color: white;
+}
 .Title {
   word-wrap: break-word;
   color: var(--light);
@@ -54,10 +60,16 @@
 .Title:hover {
   border-bottom: 0.25rem solid var(--green);
 }
-
+@media (max-width: 1275px) {
+  .Favorites {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
+}
 @media (max-width: 700px) {
   .ThriveLogo {
     width: 15rem;
+    margin-left: 1rem;
   }
 
   .Burger {

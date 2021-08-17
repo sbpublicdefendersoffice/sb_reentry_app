@@ -20,5 +20,6 @@ export { default as useResizeEvent } from './useResizeEvent'
 export { default as useSearchFilters } from './useSearchFilters'
 export { default as useSingleRecord } from './useSingleRecord'
 export { default as ViewContext } from './useView'
+export { default as FavoriteContext } from './useFavorite'
 
 export { Provider as ToastProvider, default as useToast } from './useToast'
