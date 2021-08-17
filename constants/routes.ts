@@ -1,5 +1,5 @@
 import { RouteInfo, InfoWithDescription } from '../types/routes'
-import { Favorite } from '@material-ui/icons'
+
 export const resourceRoutes: RouteInfo[] = [
   {
     title_english: 'Food',

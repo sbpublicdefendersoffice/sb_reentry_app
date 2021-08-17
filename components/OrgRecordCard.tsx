@@ -26,8 +26,10 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
   } = record
   const { favoriteResources, updateFavoriteResources } =
     useContext(FavoriteProvider)
-  const isFavIcon = <FavoriteIcon style={{ color: '#13385E', fontSize: "3rem" }} />
-  const isNotFavIcon = <FavoriteBorderIcon style={{fontSize: "3rem"}} />
+  const isFavIcon = (
+    <FavoriteIcon style={{ color: '#13385E', fontSize: '3rem' }} />
+  )
+  const isNotFavIcon = <FavoriteBorderIcon style={{ fontSize: '3rem' }} />
   const heart = favoriteResources.some(item => item.id === id)
     ? isFavIcon
     : isNotFavIcon
@@ -84,12 +86,13 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
         </Paragraph>
       </div>
       <Grid container justify="flex-end">
-        <Button id={String(id)}
+        <Button
+          id={String(id)}
           title={String(id)}
           onClick={clickHeart}
-          style={{ background: 'none', border: 'none'}}
+          style={{ background: 'none', border: 'none' }}
         >
-          <div >{heart}</div>
+          <div>{heart}</div>
         </Button>
       </Grid>
     </Card>
