@@ -76,6 +76,6 @@ describe('<Header />', () => {
 
     const routeNodes: HTMLElement[] = getAllByRole('term')
 
-    expect(routeNodes).toHaveLength(10)
+    expect(routeNodes).toHaveLength(11)
   })
 })
