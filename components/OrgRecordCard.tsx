@@ -26,8 +26,10 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
   } = record
   const { favoriteResources, updateFavoriteResources } =
     useContext(FavoriteProvider)
-  const isFavIcon = <FavoriteIcon style={{ color: '#13385E', fontSize: "3rem" }} />
-  const isNotFavIcon = <FavoriteBorderIcon style={{fontSize: "3rem"}} />
+  const isFavIcon = (
+    <FavoriteIcon style={{ color: '#13385E', fontSize: '3rem' }} />
+  )
+  const isNotFavIcon = <FavoriteBorderIcon style={{ fontSize: '3rem' }} />
   const heart = favoriteResources.some(item => item.id === id)
     ? isFavIcon
     : isNotFavIcon
@@ -38,8 +40,11 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
     : 'socialservices'
   const isCategoryPage: boolean = pathname === '/[category]'
   const pushToRecord = (e): Promise<boolean> =>
-    push(urlSlug, `/${categoryTitle}/${e.target.title}`)
+    push(urlSlug, `/${categoryTitle}/${id}`)
+
   const clickHeart = e => {
+    e.preventDefault()
+    e.stopPropagation()
     updateFavoriteResources(id, record)
   }
   if (localStorage.getItem('favorites') === null) {
@@ -55,6 +60,7 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
       title={String(id)}
       className={styles.OrgRecordCard}
       interactive
+      onClick={pushToRecord}
     >
       <img
         role="img"
@@ -64,9 +70,8 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
         height="4rem"
         src={`/icons/${isCategoryPage ? query.category : categoryTitle}.svg`}
         alt={`${categoryTitle}_icon`}
-        onClick={pushToRecord}
       />
-      <div onClick={pushToRecord}>
+      <div>
         <Paragraph role="heading" title={String(id)} size="med-text">
           {name_english || name_spanish}
         </Paragraph>
@@ -84,12 +89,13 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
         </Paragraph>
       </div>
       <Grid container justify="flex-end">
-        <Button id={String(id)}
+        <Button
+          id={String(id)}
           title={String(id)}
           onClick={clickHeart}
-          style={{ background: 'none', border: 'none'}}
+          style={{ background: 'none', border: 'none' }}
         >
-          <div >{heart}</div>
+          <div>{heart}</div>
         </Button>
       </Grid>
     </Card>
