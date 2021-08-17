@@ -9,8 +9,8 @@ import { Grid } from '@material-ui/core'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 export interface GlobalSearchResultProps {
   record: PGOrganizationResponse
-  searchQuery: string
-  delimiter: string
+  searchQuery?: string
+  delimiter?: string
   setIsFocused?: Dispatch<SetStateAction<boolean>>
 }
 const GlobalSearchResult = ({
