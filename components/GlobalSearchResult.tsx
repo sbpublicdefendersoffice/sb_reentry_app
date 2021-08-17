@@ -5,7 +5,6 @@ import { PGOrganizationResponse } from '../types/postgresRecords'
 import FavoriteProvider from '../hooks/useFavorite'
 import styles from './GlobalSearchResult.module.css'
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import { Grid } from '@material-ui/core'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 export interface GlobalSearchResultProps {
   record: PGOrganizationResponse
@@ -39,10 +38,12 @@ const GlobalSearchResult = ({
     : isNotFavIcon
   const mapRecordSearchTerms = (tags: string[]): string =>
     tags.filter(tag => tag.includes(searchQuery)).join(delimiter)
+
   const clickHeart = e => {
     e.preventDefault()
     updateFavoriteResources(id, record)
   }
+
   return (
     <NextLink href="/search/[id]" as={`/search/${id}`}>
       <li
@@ -59,23 +60,21 @@ const GlobalSearchResult = ({
           src={`/icons/${imgSrc.replace(' ', '')}.svg`}
           alt={`${imgSrc}_icon`}
         />
-        <div style={{ textAlign: 'left' }}>
+        <div className={styles.Text}>
           <Paragraph size="med-text">
             <span role="heading">{name_english || name_spanish}</span>
           </Paragraph>
-            <em role="term" className={styles.SingleSearchTerm}>
-              {mapRecordSearchTerms(tags_english || tags_spanish)}
-            </em>
+          <em role="term" className={styles.SingleSearchTerm}>
+            {mapRecordSearchTerms(tags_english || tags_spanish)}
+          </em>
         </div>
-        <Grid container justify="flex-end">
-          <button
-            style={{ background: 'none', border: 'none' }}
-            id={String(id)}
-            onClick={clickHeart}
-          >
-            <div className="resource-favorite">{heart}</div>
-          </button>
-        </Grid>
+        <button
+          style={{ background: 'none', border: 'none' }}
+          id={String(id)}
+          onClick={clickHeart}
+        >
+          <div className="resource-favorite">{heart}</div>
+        </button>
       </li>
     </NextLink>
   )

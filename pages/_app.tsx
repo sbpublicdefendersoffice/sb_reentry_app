@@ -10,8 +10,8 @@ import {
   LangProvider,
   LocationProvider,
   ToastProvider,
-  ViewContext, 
-  FavoriteContext
+  ViewContext,
+  FavoriteContext,
 } from '../hooks'
 import {
   Footer,
@@ -21,10 +21,14 @@ import {
   IsThisUsefulTag,
   MobileAppBar,
 } from '../components'
-import { checkAndSetUserLocation, googlePageviews, viewReducer } from '../helpers/'
+import {
+  checkAndSetUserLocation,
+  googlePageviews,
+  viewReducer,
+} from '../helpers/'
 import '../styles/globals.css'
 import '../styles/variables.css'
-declare var localStorage
+
 const App = ({ Component, pageProps }: AppProps) => {
   const ISSERVER = typeof localStorage === 'undefined'
   const [state, dispatch] = useReducer(viewReducer, {
@@ -37,7 +41,11 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [language, setLanguage] = useState<Language | null>(null)
   const [coords, setCoords] = useState<SantaBarbaraCountyCoords | null>(null)
   const [toast, setToast] = useState<string | null>(null)
-  const updateFavoriteResources = (name: React.Component<any, any>, otherName: React.Component<any, any>) => {
+
+  const updateFavoriteResources = (
+    name: React.Component<any, any>,
+    otherName: React.Component<any, any>,
+  ) => {
     const updated = [...favorites]
     const updatedRecords = [...favoriteRecords]
     const isFavorite = updated.indexOf(name)
@@ -53,6 +61,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     setFavorites(JSON.parse(localStorage.getItem('favorites')))
     setFavoriteRecords(JSON.parse(localStorage.getItem('favoriteRecords')))
   }
+
   useEffect((): void => {
     const languageToLoad: Language = navigator.language.startsWith('es')
       ? SPANISH
@@ -60,6 +69,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     setLanguage(languageToLoad)
     if (!coords) checkAndSetUserLocation(setCoords, setToast, languageToLoad)
   }, [])
+
   useEffect(() => {
     setFavorites(JSON.parse(localStorage.getItem('favorites')))
     setFavoriteRecords(JSON.parse(localStorage.getItem('favoriteRecords')))
@@ -70,6 +80,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       localStorage.setItem('favoriteRecords', '[]')
     }
   }, [])
+
   useEffect(() => {
     if (isProd && route) {
       events.on('routeChangeComplete', url => googlePageviews(url, route))
@@ -77,10 +88,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         events.off('routeChangeComplete', url => googlePageviews(url, route))
     }
   }, [events])
-  if (
-    !ISSERVER &&
-    localStorage.getItem('favorites') === null
-  ) {
+  if (!ISSERVER && localStorage.getItem('favorites') === null) {
     setFavorites(JSON.parse(localStorage.getItem('favorites')))
     setFavoriteRecords(JSON.parse(localStorage.getItem('favoriteRecords')))
     localStorage.setItem('favorites', '[]')
@@ -102,35 +110,28 @@ const App = ({ Component, pageProps }: AppProps) => {
         </Head>
         <LangProvider value={{ language, setLanguage }}>
           <ViewContext.Provider value={{ state, dispatch }}>
-            {/* <FavoriteRecordProvider
+            <FavoriteContext.Provider
               value={{
-                favoriteRecords: favoriteRecords,
-                updateFavoriteRecords: updateFavoriteRecords,
+                favoriteResources: favoriteRecords,
+                updateFavoriteResources: updateFavoriteResources,
               }}
-            > */}
-              <FavoriteContext.Provider
-                value={{
-                  favoriteResources: favoriteRecords,
-                  updateFavoriteResources: updateFavoriteResources,
-                }}
-              >
-                <LocationProvider value={{ coords, setCoords }}>
-                  <ToastProvider value={{ toast, setToast }}>
-                    <GlobalSearchProvider>
-                      <Header />
-                      <LangSwitcher />
-                      <main>
-                        <Component {...pageProps} />
-                      </main>
-                      <IsThisUsefulTag />
-                      <Footer />
-                      <MobileAppBar />
-                      <Toast />
-                    </GlobalSearchProvider>
-                  </ToastProvider>
-                </LocationProvider>
-              </FavoriteContext.Provider>
-            {/* </FavoriteRecordProvider> */}
+            >
+              <LocationProvider value={{ coords, setCoords }}>
+                <ToastProvider value={{ toast, setToast }}>
+                  <GlobalSearchProvider>
+                    <Header />
+                    <LangSwitcher />
+                    <main>
+                      <Component {...pageProps} />
+                    </main>
+                    <IsThisUsefulTag />
+                    <Footer />
+                    <MobileAppBar />
+                    <Toast />
+                  </GlobalSearchProvider>
+                </ToastProvider>
+              </LocationProvider>
+            </FavoriteContext.Provider>
           </ViewContext.Provider>
         </LangProvider>
       </>
