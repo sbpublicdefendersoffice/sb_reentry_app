@@ -1,5 +1,5 @@
 import { RouteInfo, InfoWithDescription } from '../types/routes'
-import { Favorite } from '@material-ui/icons'
+
 export const resourceRoutes: RouteInfo[] = [
   {
     title_english: 'Food',
@@ -26,6 +26,8 @@ export const resourceRoutes: RouteInfo[] = [
     imgPath: './icons/mentalhealth.svg',
   },
   {
+    title_english: 'Social Services',
+    title_spanish: 'Servicios Sociales',
     route: '/socialservices',
     imgPath: './icons/socialservices.svg',
   },
@@ -100,6 +102,8 @@ export const staticPageRoutes: RouteInfo[] = [
     route: '/faq',
   },
   {
+    title_english: "Favorites",
+    title_spanish: "Favoritas",
     route: '/favorites',
   },
 ]
