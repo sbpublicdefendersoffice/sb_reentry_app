@@ -1,17 +1,19 @@
 import NextLink from 'next/link'
-import { useState, useRef, ReactElement, Fragment } from 'react'
-import Burger from './Burger'
-import BurgerItems from './BurgerItems'
-import { useLanguage, useResizeEvent, useOnClickOutside } from '../hooks'
+import { useState, useRef, ReactElement, Fragment, useContext } from 'react'
+import {Burger, BurgerItems, LiveDataSearch} from './'
+import { useLanguage, useResizeEvent, useOnClickOutside, useFavorite } from '../hooks'
 import styles from './Header.module.css'
 import { staticPageRoutes } from '../constants/routes'
 import { RouteInfo } from '../types/routes'
+import { useStyles } from '../constants'
 import { ThriveLogo, Paragraph } from '../ui'
-import LiveDataSearch from './LiveDataSearch'
-import { Hidden } from '@material-ui/core'
+import { Hidden, Badge } from '@material-ui/core'
+import FavoriteIcon from '@material-ui/icons/Favorite';
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 const Header = () => {
   const { language } = useLanguage()
+  const classes = useStyles();
+  const { favoriteResources } = useContext(useFavorite);
   const [isBurgerVisible, setIsBurgerVisible] = useState<boolean>(
     innerWidth <= 700,
   )
@@ -68,6 +70,15 @@ const Header = () => {
           </>
         )}
       </div>
+      <div className={styles.Favorites}>
+        <NextLink href="/favorites" as="/favorites">
+          <div className={classes.badge}>
+          <Badge badgeContent={favoriteResources.length} color="primary">
+          <FavoriteIcon style={{color: "white", fontSize: "3rem" }}/>
+          </Badge>
+          </div>
+        </NextLink>
+        </div>
       <Hidden mdDown>
         <LiveDataSearch />
       </Hidden>
