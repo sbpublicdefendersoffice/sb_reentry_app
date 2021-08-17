@@ -32,5 +32,8 @@ export const StyledBurgerItems = styled.div`
     &:hover {
       color: white;
     }
+  h2 {
+    word-break: break-word;
+  }
   }
 `
