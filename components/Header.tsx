@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 import { useState, useRef, ReactElement, Fragment, useContext } from 'react'
 import {Burger, BurgerItems, LiveDataSearch} from './'
-import { useLanguage, useResizeEvent, useOnClickOutside, useFavorite } from '../hooks'
+import { useLanguage, useResizeEvent, useOnClickOutside, FavoriteContext } from '../hooks'
 import styles from './Header.module.css'
 import { staticPageRoutes } from '../constants/routes'
 import { RouteInfo } from '../types/routes'
@@ -13,7 +13,7 @@ const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 const Header = () => {
   const { language } = useLanguage()
   const classes = useStyles();
-  const { favoriteResources } = useContext(useFavorite);
+  const { favoriteResources } = useContext(FavoriteContext);
   const [isBurgerVisible, setIsBurgerVisible] = useState<boolean>(
     innerWidth <= 700,
   )
