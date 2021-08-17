@@ -68,6 +68,9 @@ export {
   edits,
   feedback,
 } from './faq-data'
+export {
+  favoritesCopy
+} from './favorites'
 export { probationsCopy } from './probation-data'
 
 export { useStyles } from './materialStyles'
