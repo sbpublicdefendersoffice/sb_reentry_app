@@ -2,7 +2,7 @@ const jestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testPathIgnorePatterns: [
     '<rootDir>/(.next|node_modules)/',
-    //make below work
+    // RecordPane needs to be fixed
     '<rootDir>/__tests__/components/RecordPane',
   ],
   coveragePathIgnorePatterns: [
@@ -10,7 +10,7 @@ const jestConfig = {
     '<rootDir>/(ui|hooks|helpers|constants|components)/index.ts',
     '<rootDir>/helpers/analytics.ts',
     '<rootDir>/next.config.js',
-    //write tests for below
+    // RecordPane needs to be fixed
     '<rootDir>/components/RecordPane',
   ],
   moduleNameMapper: {
