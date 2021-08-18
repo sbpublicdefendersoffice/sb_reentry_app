@@ -42,11 +42,14 @@ describe('<Header />', () => {
     )
   })
 
-  // it('does not render burger above 700px screen width', () => {
-  //   const { getByRole } = renderWithAllContext(<Header />)
+  it('does not render burger above 700px screen width', () => {
+    const { getByRole } = renderWithAllContext(<Header />)
 
-  //   expect(() => getByRole('button')).toThrowError()
-  // })
+    act(() => resizeWindow(700))
+    act(() => resizeWindow(1200))
+
+    expect(() => getByRole('button')).toThrowError()
+  })
 
   it('renders 5 static page links above 700px screen width', () => {
     const { getAllByRole } = renderWithAllContext(<Header />)

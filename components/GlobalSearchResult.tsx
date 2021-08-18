@@ -30,9 +30,17 @@ const GlobalSearchResult = ({
   const { favoriteResources, updateFavoriteResources } =
     useContext(FavoriteProvider)
   const isFavIcon = (
-    <FavoriteIcon style={{ color: '#13385E', fontSize: '3rem' }} />
+    <FavoriteIcon
+      data-testid="filled-heart"
+      style={{ color: '#13385E', fontSize: '3rem' }}
+    />
   )
-  const isNotFavIcon = <FavoriteBorderIcon style={{ fontSize: '3rem' }} />
+  const isNotFavIcon = (
+    <FavoriteBorderIcon
+      data-testid="outline-heart"
+      style={{ fontSize: '3rem' }}
+    />
+  )
   const heart = favoriteResources.some(item => item.id === id)
     ? isFavIcon
     : isNotFavIcon
@@ -69,6 +77,7 @@ const GlobalSearchResult = ({
           </em>
         </div>
         <button
+          role="button"
           style={{ background: 'none', border: 'none' }}
           id={String(id)}
           onClick={clickHeart}
