@@ -8,6 +8,7 @@ const jestConfig = {
   coveragePathIgnorePatterns: [
     '<rootDir>/(__helpers__|__mocks__/)/',
     '<rootDir>/(ui|hooks|helpers|constants|components)/index.ts',
+    '<rootDir>/components/(DisplayMap|MapMarker)',
     '<rootDir>/helpers/analytics.ts',
     '<rootDir>/next.config.js',
     // RecordPane needs to be fixed

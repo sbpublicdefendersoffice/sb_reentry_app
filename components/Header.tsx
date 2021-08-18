@@ -5,7 +5,7 @@ import {
   useLanguage,
   useResizeEvent,
   useOnClickOutside,
-  FavoriteContext,
+  useFavorite,
 } from '../hooks'
 import styles from './Header.module.css'
 import { staticPageRoutes } from '../constants/routes'
@@ -18,7 +18,7 @@ const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 const Header = () => {
   const { language } = useLanguage()
   const classes = useStyles()
-  const { favoriteResources } = useContext(FavoriteContext)
+  const { favoriteResources } = useContext(useFavorite)
   const [isBurgerVisible, setIsBurgerVisible] = useState<boolean>(
     innerWidth <= 700,
   )

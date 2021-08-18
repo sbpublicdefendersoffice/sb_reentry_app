@@ -4,7 +4,7 @@ import { Details, Title, Paragraph } from '../ui'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import { Grid } from '@material-ui/core'
-import { useLanguage, FavoriteContext } from '../hooks/'
+import { useLanguage, useFavorite } from '../hooks/'
 import { CopyHolder, PGOrganizationResponse } from '../types'
 import styles from './OrgRecordDisplay.module.css'
 interface OrgRecordDisplayProps {
@@ -31,8 +31,7 @@ export const copy: CopyHolder = {
 const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
-  const { favoriteResources, updateFavoriteResources } =
-    useContext(FavoriteContext)
+  const { favoriteResources, updateFavoriteResources } = useContext(useFavorite)
   const [org_name, languages_spoken, notes]: string[] = [
     sortedRecord[`name_${language}`],
     sortedRecord[`languages_spoken_${language}`],

@@ -16,7 +16,7 @@ const defaultLocationState: LocationState = {
   centerArr,
   zoom: 8.5,
 }
-
+/* istanbul ignore next */
 const useMapInfo = (latLongInfo: PGOrgPlusLocation[]) => {
   const [mapInfo, setMapInfo] = useState<LocationState>(defaultLocationState)
 
