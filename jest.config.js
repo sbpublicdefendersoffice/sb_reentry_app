@@ -8,7 +8,7 @@ const jestConfig = {
     '<rootDir>/.next/',
     '<rootDir>/node_modules/',
     //make below work
-    '<rootDir>/__tests__/components/(RecordPane|DisplayMap)',
+    '<rootDir>/__tests__/components/RecordPane',
   ],
   coveragePathIgnorePatterns: [
     '<rootDir>/__helpers__/',
@@ -16,9 +16,9 @@ const jestConfig = {
     '<rootDir>/(ui|hooks|helpers|constants|components)/index.ts',
     '<rootDir>/helpers/analytics.ts',
     '<rootDir>/next.config.js',
-    '<rootDir>/components/(SearchTermsMarquee|PDFViewer)',
+    '<rootDir>/components/(SearchTermsMarquee|PDFViewer|MapMarker|DisplayMap)',
     //write tests for below
-    '<rootDir>/components/(RecordPane|DisplayMap|DesktopFilterView|Filter.*|Mobile.*|TagPane)',
+    '<rootDir>/components/(RecordPane|DesktopFilterView|Filter.*|Mobile.*|TagPane)',
     '<rootDir>/helpers/view',
     '<rootDir>/hooks/(useGetMatchingRecords|useFormFields|useOnClickOutside)',
   ],

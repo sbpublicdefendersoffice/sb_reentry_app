@@ -29,10 +29,9 @@ import styles from './DisplayMap.module.css'
 
 interface DisplayMapProps {
   latLongInfo: PGOrgPlusLocation[]
-  testWorkaround?: boolean
 }
 
-const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
+const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
   const [mapState, setMap] = useState<Map | null>(null)
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: innerWidth,
@@ -59,7 +58,7 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
     let map: Map
 
     const loadMap = async () => {
-      if (latLongInfo && !testWorkaround && zoom && fitBoundsArr && centerArr) {
+      if (latLongInfo && zoom && fitBoundsArr && centerArr) {
         const { Map, ScaleControl } = await import('mapbox-gl')
 
         map = new Map({
@@ -148,29 +147,27 @@ const DisplayMap = ({ latLongInfo, testWorkaround }: DisplayMapProps) => {
           )}
         </CityFilter>
       )} */}
-      {!testWorkaround && (
-        <div id="map" style={mapContainerStyle}>
-          {isInSBCounty && (
-            <MapMarker
-              locationRecord={{
-                city: '',
-                longitude: coords.longitude,
-                latitude: coords.latitude,
-                single_category: 'user',
-                multiple_categories: ['user'],
-                id: 0,
-                name_english: 'Your location',
-                name_spanish: 'Tu ubicación',
-              }}
-              map={mapState}
-              onTop
-            />
-          )}
-          {filteredRecordsReady
-            ? locRecordsToFilter.filteredRecords.map(returnMarker)
-            : latLongInfo.map(returnMarker)}
-        </div>
-      )}
+      <div id="map" style={mapContainerStyle}>
+        {isInSBCounty && (
+          <MapMarker
+            locationRecord={{
+              city: '',
+              longitude: coords.longitude,
+              latitude: coords.latitude,
+              single_category: 'user',
+              multiple_categories: ['user'],
+              id: 0,
+              name_english: 'Your location',
+              name_spanish: 'Tu ubicación',
+            }}
+            map={mapState}
+            onTop
+          />
+        )}
+        {filteredRecordsReady
+          ? locRecordsToFilter.filteredRecords.map(returnMarker)
+          : latLongInfo.map(returnMarker)}
+      </div>
     </Details>
   )
 }
