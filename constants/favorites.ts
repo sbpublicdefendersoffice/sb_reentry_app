@@ -4,7 +4,7 @@ export const favoritesCopy: CopyHolder = {
   english: {
     title: 'Favorites',
     emptyMessage:
-      "Click the heart icon next to a reource to add them to your favorites' list.",
+      "Click the heart icon next to a resource to add them to your favorites' list.",
   },
 
   spanish: {
