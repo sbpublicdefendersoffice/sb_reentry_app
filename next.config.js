@@ -1,4 +1,4 @@
-const { StatsWriterPlugin } = require('webpack-stats-plugin')
+// const { StatsWriterPlugin } = require('webpack-stats-plugin')
 
 const nextConfigOptions = {
   future: {
@@ -28,6 +28,7 @@ const nextConfigOptions = {
     if (!isServer) {
       const serverOnlyModules = {
         ...fallbackModules,
+        'any-promise': false,
         pg: false,
         sequelize: false,
         twilio: false,
@@ -39,22 +40,22 @@ const nextConfigOptions = {
       }
     }
 
-    if (process.env.NODE_ENV === 'production') {
-      config.plugins.push(
-        new StatsWriterPlugin({
-          filename: 'webpack-stats.json',
-          stats: {
-            context: './src', // optional
-            assets: true,
-            entrypoints: true,
-            chunks: true,
-            modules: true,
-          },
-        }),
-      )
+    // if (process.env.NODE_ENV === 'production') {
+    //   config.plugins.push(
+    //     new StatsWriterPlugin({
+    //       filename: 'webpack-stats.json',
+    //       stats: {
+    //         context: './src', // optional
+    //         assets: true,
+    //         entrypoints: true,
+    //         chunks: true,
+    //         modules: true,
+    //       },
+    //     }),
+    //   )
 
-      if (process.env.PROD_SRC_MAPS === 'true') config.devtool = 'source-map'
-    }
+    //   if (process.env.PROD_SRC_MAPS === 'true') config.devtool = 'source-map'
+    // }
 
     return config
   },

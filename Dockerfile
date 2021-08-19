@@ -1,5 +1,5 @@
 # Base image
-FROM node:12.18.4
+FROM node:12.18.4-alpine
 
 
 # Create and set app directory
@@ -11,10 +11,11 @@ WORKDIR $dir
 COPY . $dir
 
 # Install dependencies
-RUN yarn
+RUN yarn install --prod --frozen-lockfile
+RUN yarn add -D typescript @types/node
 
 # NextJs public variables need to be loaded in client at build time
-RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
+# RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
 
 # Build
 RUN yarn build
