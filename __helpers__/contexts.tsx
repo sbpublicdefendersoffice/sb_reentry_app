@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { RouterContext } from 'next/dist/next-server/lib/router-context'
+import { RouterContext } from 'next/dist/shared/lib/router-context'
 import { render, RenderResult } from '@testing-library/react'
 
 import { Language, SantaBarbaraCountyCoords } from '../types'

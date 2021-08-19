@@ -14,11 +14,15 @@ COPY . $dir
 RUN yarn install --prod --frozen-lockfile
 RUN yarn add -D typescript @types/node
 
+# .babelrc is necessary for local tests but not for deployent
+RUN rm .babelrc
+
 # NextJs public variables need to be loaded in client at build time
 # RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
 
+
 # Build
-RUN yarn build
+RUN yarn docker-build
 
 # Expose port
 EXPOSE 3000
