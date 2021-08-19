@@ -1,4 +1,3 @@
-export { BASE_URL, OPTIONS_OBJECT } from './airtable'
 export { backendCategories, default as categories } from './categories'
 export {
   siteTitle,

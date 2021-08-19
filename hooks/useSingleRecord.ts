@@ -18,7 +18,7 @@ const useSingleRecord = () => {
   const id: string = requestParams[1]
 
   useEffect(() => {
-    const airtableApiRouteFetch = async () => {
+    const singleRecordApiRouteFetch = async () => {
       if (isRequestReady && id !== '[id]' && language) {
         const apiRequest = await fetch('/api/getSingleRecord', {
           method: POST,
@@ -31,7 +31,7 @@ const useSingleRecord = () => {
         setSortedRecord(apiResponse)
       }
     }
-    airtableApiRouteFetch()
+    singleRecordApiRouteFetch()
   }, [isRequestReady, id, language])
 
   return { sortedRecord }
