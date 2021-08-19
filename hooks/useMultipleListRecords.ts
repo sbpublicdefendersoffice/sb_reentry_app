@@ -12,7 +12,7 @@ const useMultipleListRecords = (category: string) => {
     useState<PGOrganizationResponse[] | null>(null)
 
   useEffect(() => {
-    const airtableApiRouteFetch = async () => {
+    const multipleRecordsFetch = async () => {
       if (category && language) {
         const apiRequest = await fetch('/api/getByCategory', {
           method: POST,
@@ -31,7 +31,7 @@ const useMultipleListRecords = (category: string) => {
         setFetchedRecords(apiResponse)
       }
     }
-    airtableApiRouteFetch()
+    multipleRecordsFetch()
   }, [category, language])
 
   return { fetchedRecords, setFetchedRecords }

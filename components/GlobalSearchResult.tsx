@@ -13,7 +13,6 @@ export interface GlobalSearchResultProps {
   setIsFocused?: Dispatch<SetStateAction<boolean>>
 }
 const GlobalSearchResult = ({
-  setIsFocused,
   searchQuery,
   record,
   delimiter,
@@ -54,12 +53,7 @@ const GlobalSearchResult = ({
 
   return (
     <NextLink href="/search/[id]" as={`/search/${id}`}>
-      <li
-        role="listitem"
-        className={styles.GlobalSearchResult}
-        tabIndex={0}
-        // onClick={() => setIsFocused(false)}
-      >
+      <li role="listitem" className={styles.GlobalSearchResult} tabIndex={0}>
         <img
           role="img"
           width="3rem"
