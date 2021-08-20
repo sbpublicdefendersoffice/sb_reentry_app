@@ -26,7 +26,20 @@ main {
   justify-content: center;
   flex-wrap: wrap;
 }
-
+.MuiList-padding {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+.MuiButton-text {
+  padding: 0px !important;
+  margin-top: -0.2rem !important;
+}
+.MuiListItem-gutters {
+  padding-left: 0 !important;
+}
+.MuiMenuItem-root {
+  padding-top: 0px !important;
+}
 a {
   text-decoration: none;
   color: var(--dark);
