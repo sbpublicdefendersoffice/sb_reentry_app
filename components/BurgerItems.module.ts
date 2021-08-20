@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 export const StyledBurgerItems = styled.div`
-  display: flex;
+  display: block !important;
   flex-direction: column;
   justify-content: center;
   background: #13395e;
   height: auto;
   text-align: left;
-  padding: 2rem;
+  padding: 1rem;
   position: absolute;
   top: 10rem;
   left: 0;
@@ -32,8 +32,17 @@ export const StyledBurgerItems = styled.div`
     &:hover {
       color: white;
     }
-  h2 {
-    word-break: break-word;
+    h2 {
+      word-break: break-word;
+    }
   }
+  .SubMenuItemInButton {
+    word-wrap: break-word;
+    color: var(--light);
+    font-size: var(--med-text);
+    font-weight: 100;
+    margin: 0 var(--margin-std);
+    border-bottom: 0.25rem solid transparent;
+    margin-left: 10rem;
   }
 `
