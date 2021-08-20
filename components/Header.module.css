@@ -10,17 +10,19 @@
   width: 90%;
   height: 100%;
   display: flex;
+  margin-left: '3rem';
   align-items: center;
   list-style-type: none;
+  flex: 1 1;
 }
 .ThriveLogo {
   width: 18rem;
+  margin-left: 3rem;
 }
 
 .Nav {
   display: inherit;
   justify-content: center;
-  flex: 1;
 }
 
 .NavContainer {
@@ -28,6 +30,7 @@
   display: inherit;
   justify-content: space-between;
   align-items: center;
+  margin-left: 3rem;
 }
 
 .Separators {
@@ -38,13 +41,11 @@
   display: none;
 }
 .Favorites {
-  margin-bottom: 3rem;
-  align-items:flex-end;
-  display:flex;
+  position: relative;
+  margin: 0rem 1rem 0rem 1rem;
+  align-items: flex-end;
+  display: flex;
   color: white;
-  
-  
-
 }
 .Title {
   word-wrap: break-word;
@@ -53,6 +54,34 @@
   font-weight: 100;
   margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
+}
+.Tagline {
+  word-wrap: break-word;
+  color: var(--light);
+  font-size: var(--med-text);
+  font-weight: 100;
+  margin: 0 var(--margin-std);
+  border-bottom: 0.25rem solid transparent;
+  position: absolute;
+  top: 8.7rem;
+  right: 2.3rem;
+  display: 'block';
+}
+.SubMenuItem {
+  word-wrap: break-word;
+  color: var(--light);
+  font-size: var(--med-text);
+  font-weight: 100;
+  margin: 0 var(--margin-std);
+  border-bottom: 0.25rem solid transparent;
+}
+.MuiMenu-list {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  color: pink;
+}
+.MuiMenuItem-root {
+  border-bottom: 0.25rem solid var(--green) !important;
 }
 
 .Title,
@@ -63,13 +92,16 @@
 .Title:hover {
   border-bottom: 0.25rem solid var(--green);
 }
+.SubMenuItem:hover {
+  border-bottom: 0.25rem solid var(--green);
+}
 @media (max-width: 1275px) {
-  .Favorites{
-    margin-bottom: 1rem;
-    margin-right: 1rem;
+  .Favorites {
+    top: 7rem;
+    right: 1.1rem;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 1275px) {
   .ThriveLogo {
     width: 15rem;
     margin-left: 1rem;
@@ -83,5 +115,4 @@
   .Separators {
     display: none;
   }
-
 }
