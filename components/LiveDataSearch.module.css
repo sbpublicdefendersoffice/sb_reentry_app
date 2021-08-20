@@ -1,41 +1,34 @@
 .LiveDataSearch {
-  position: absolute;
-  right: 0;
+  position: relative;
   background-color: var(--light);
-  width: max(40%, 30rem);
+  width: max(20%, 20rem);
   border: var(--border-width) solid var(--primary);
   border-radius: var(--radius-small);
   z-index: 9;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   overflow: hidden;
 }
-
 .SearchContainer {
   display: flex;
   width: 100%;
 }
-
 .SearchForm {
   width: inherit;
   display: inherit;
   align-items: center;
   padding-right: var(--pad-lg);
 }
-
 .Input {
   border: none !important;
   flex: 1;
   margin: 0;
 }
-
 .SearchIcon {
   margin: 0 var(--margin-sm);
   user-select: none;
 }
-
 .ResultsContainer {
   list-style-type: none;
   padding: 0 var(--pad-lg);
@@ -43,13 +36,11 @@
   max-height: 40rem;
   overflow: scroll;
 }
-
 .Label {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 @media (max-width: 1275px) {
   .LiveDataSearch {
     width: 100%;
