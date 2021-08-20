@@ -12,10 +12,10 @@ import styles from './Header.module.css'
 import { staticPageRoutes } from '../constants/routes'
 import { RouteInfo } from '../types/routes'
 import { useStyles } from '../constants'
-import { ThriveLogo, Paragraph } from '../ui'
+import { ThriveLogo } from '../ui'
 import { Hidden, Badge, Button, Menu, MenuItem } from '@material-ui/core'
 import { Favorite, ArrowDropDown, Search } from '@material-ui/icons/'
-import { withStyles } from '@material-ui/core/styles'
+
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 const copy: CopyHolder = {
   english: {
@@ -153,7 +153,6 @@ const Header = () => {
       else return <Fragment key={i}>{link}</Fragment>
     },
   )
-  // console.log('static Pages routes 2', anchorEl)
   return (
     <header role="banner" className={styles.Header}>
       <div className={styles.HeaderContainer}>
@@ -179,8 +178,6 @@ const Header = () => {
             style={{
               position: 'relative',
               marginLeft: '10rem',
-              // top: '4.2rem',
-              // right: '30rem',
               color: 'white',
               fontSize: '3rem',
             }}
