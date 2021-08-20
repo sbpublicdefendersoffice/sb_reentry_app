@@ -15,6 +15,38 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: '2rem !important',
       fontFamily: 'Roboto',
     },
+    menu: {
+      paddingTop: '0 !important',
+      color: 'pink',
+    },
+    dropDownItems: {
+      color: 'white !important',
+      backgroundColor: '#13385e !important',
+    },
+    dropDownBurgerItems: {
+      color: 'white !important',
+      backgroundColor: '#13385e !important',
+      '&:hover': {
+        borderBottom: '.25rem solid #00a968',
+      },
+    },
+    subMenuItem: {
+      wordWrap: 'break-word',
+      color: 'var(--light)',
+      fontSize: 'var(--med-text)',
+      margin: '0 var(--margin-std)',
+      borderBottom: '0.25rem solid transparent',
+      fontWeight: 100,
+    },
+    subMenuItemInButton: {
+      wordWrap: 'break-word',
+      color: 'var(--light)',
+      fontSize: 'var(--med-text)',
+      margin: '0 var(--margin-std)',
+      borderBottom: '0.25rem solid transparent',
+      fontWeight: 100,
+      marginLeft: '2rem',
+    },
     badge: {
       '& > *': {
         margin: theme.spacing(1),
