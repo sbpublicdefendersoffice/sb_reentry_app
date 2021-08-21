@@ -1,14 +1,18 @@
 import NextLink from 'next/link'
 import { ReactElement, Fragment, useState } from 'react'
-import { useStyles } from '../constants'
-import { staticPageRoutes } from '../constants/routes'
+
 import { RouteInfo, CopyHolder } from '../types/'
 import useLanguage from '../hooks/useLanguage'
 import { ENGLISH } from '../constants/language'
 import { ArrowDropDown } from '@material-ui/icons/'
 // import SBPDLogo from './SBPDLogo'
 import { ThriveLogo, Paragraph } from '../ui'
-
+import {
+  useStyles,
+  staticPageRoutes,
+  CourtSupportRoutes,
+  ResourcesSupportRoutes,
+} from '../constants'
 import { Button, Menu, MenuItem } from '@material-ui/core'
 import styles from './Footer.module.css'
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
@@ -40,26 +44,22 @@ const Footer = () => {
   const StaticPages: ReactElement[] = staticPageRoutes.map(
     (routeData: RouteInfo, i: number) => {
       const title = routeData[`title_${language}`]
-      const itemOne = routeData[`itemOne_${language}`]
-      const itemOneRoute = routeData[`itemOneRoute`]
-      const itemTwo = routeData[`itemTwo_${language}`]
-      const itemTwoRoute = routeData[`itemTwoRoute`]
-      const itemThree = routeData[`itemThree_${language}`]
-      const itemThreeRoute = routeData[`itemThreeRoute`]
-      const itemFour = routeData[`itemFour_${language}`]
-      const itemFourRoute = routeData[`itemFourRoute`]
-      const itemFive = routeData[`itemFive_${language}`]
-      const itemFiveRoute = routeData[`itemFiveRoute`]
-      const itemSix = routeData[`itemSix_${language}`]
-      const itemSixRoute = routeData[`itemSixRoute`]
       const [anchorEl, setAnchorEl] = useState(null)
+      const [anchorElCourt, setAnchorElCourt] = useState(null)
+      const [anchorElResource, setAnchorElResource] = useState(null)
       const { route } = routeData
-      const handleClick = event => {
-        setAnchorEl(event.currentTarget)
-      }
 
-      const handleClose = () => {
-        setAnchorEl(null)
+      const handleCourt = event => {
+        setAnchorElCourt(event.currentTarget)
+      }
+      const handleResource = event => {
+        setAnchorElResource(event.currentTarget)
+      }
+      const handleCloseCourt = event => {
+        setAnchorElCourt(null)
+      }
+      const handleCloseResource = event => {
+        setAnchorElResource(null)
       }
       const link: ReactElement = (
         <NextLink href={route} as={route}>
@@ -68,87 +68,95 @@ const Footer = () => {
           </h2>
         </NextLink>
       )
-      const button: ReactElement = (
-        <Fragment>
-          <Button
-            onClick={handleClick}
-            style={{
-              textTransform: 'inherit',
-              lineHeight: 'inherit',
-              padding: '0 !important',
-              marginTop: '.2rem !important',
-            }}
-          >
-            <h2 role="term" className={styles.Title}>
-              {title}
-              <ArrowDropDown style={{ alignItems: 'inherit' }} />
-            </h2>
-          </Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem className={classes.dropDownItems} onClick={handleClose}>
-              <NextLink href={itemOneRoute} as={itemOneRoute}>
-                <h2 role="term" className={styles.SubMenuItem}>
-                  {itemOne}
-                </h2>
-              </NextLink>
-            </MenuItem>
-            <MenuItem className={classes.dropDownItems} onClick={handleClose}>
-              {' '}
-              <NextLink href={itemTwoRoute} as={itemTwoRoute}>
-                <h2 role="term" className={styles.SubMenuItem}>
-                  {itemTwo}
-                </h2>
-              </NextLink>
-            </MenuItem>
-            <MenuItem className={classes.dropDownItems} onClick={handleClose}>
-              {' '}
-              <NextLink href={itemThreeRoute} as={itemThreeRoute}>
-                <h2 role="term" className={styles.SubMenuItem}>
-                  {itemThree}
-                </h2>
-              </NextLink>
-            </MenuItem>
-            <MenuItem className={classes.dropDownItems} onClick={handleClose}>
-              {' '}
-              <NextLink href={itemFourRoute} as={itemFourRoute}>
-                <h2 role="term" className={styles.SubMenuItem}>
-                  {itemFour}
-                </h2>
-              </NextLink>
-            </MenuItem>
-            <MenuItem className={classes.dropDownItems} onClick={handleClose}>
-              {' '}
-              <NextLink href={itemFiveRoute} as={itemFiveRoute}>
-                <h2 role="term" className={styles.SubMenuItem}>
-                  {itemFive}
-                </h2>
-              </NextLink>
-            </MenuItem>
-            <MenuItem className={classes.dropDownItems} onClick={handleClose}>
-              {' '}
-              <NextLink href={itemSixRoute} as={itemSixRoute}>
-                <h2 role="term" className={styles.SubMenuItem}>
-                  {itemSix}
-                </h2>
-              </NextLink>
-            </MenuItem>
-          </Menu>
-        </Fragment>
-      )
       if (i === lastStaticRouteIndex - 2 || i === lastStaticRouteIndex - 3)
-        return <Fragment key={i}>{button}</Fragment>
+        return <Fragment key={i}>{link}</Fragment>
+      if (i === lastStaticRouteIndex - 1)
+        return (
+          <Fragment key={i}>
+            <Button
+              onClick={handleCourt}
+              style={{
+                textTransform: 'inherit',
+                lineHeight: 'inherit',
+                padding: '0 !important',
+                marginTop: '.2rem !important',
+              }}
+            >
+              <h2 role="term" className={styles.Title}>
+                Court Resources
+                <ArrowDropDown style={{ alignItems: 'inherit' }} />
+              </h2>
+            </Button>{' '}
+            <Menu
+              id="court-support"
+              anchorEl={anchorElCourt}
+              keepMounted
+              open={Boolean(anchorElCourt)}
+              onClose={handleCloseCourt}
+            >
+              {CourtSupportRoutes.map(routeData => {
+                const title = routeData[`title_${language}`]
+                const { route } = routeData
+                return (
+                  <MenuItem
+                    className={classes.dropDownItems}
+                    onClick={handleCloseCourt}
+                  >
+                    <NextLink href={route} as={route}>
+                      <h2 role="term" className={styles.SubMenuItem}>
+                        {title}
+                      </h2>
+                    </NextLink>
+                  </MenuItem>
+                )
+              })}
+            </Menu>
+            <Button
+              onClick={handleResource}
+              style={{
+                textTransform: 'inherit',
+                lineHeight: 'inherit',
+                padding: '0 !important',
+                marginTop: '.2rem !important',
+              }}
+            >
+              <h2 role="term" className={styles.Title}>
+                Resource Support
+                <ArrowDropDown style={{ alignItems: 'inherit' }} />
+              </h2>
+            </Button>
+            <Menu
+              id="resource-support"
+              anchorEl={anchorElResource}
+              keepMounted
+              open={Boolean(anchorElResource)}
+              onClose={handleCloseResource}
+            >
+              {ResourcesSupportRoutes.map(routeData => {
+                const title = routeData[`title_${language}`]
+                const { route } = routeData
+                return (
+                  <MenuItem
+                    className={classes.dropDownItems}
+                    onClick={handleCloseResource}
+                  >
+                    <NextLink href={route} as={route}>
+                      <h2 role="term" className={styles.SubMenuItem}>
+                        {title}
+                      </h2>
+                    </NextLink>
+                  </MenuItem>
+                )
+              })}
+            </Menu>
+            {link}
+          </Fragment>
+        )
 
       if (i === lastStaticRouteIndex) return null
-      else return <Fragment key={i}>{link}</Fragment>
+      else return null
     },
   )
-
   return (
     <footer role="region" className={styles.Footer}>
       <div className={styles.container}>
