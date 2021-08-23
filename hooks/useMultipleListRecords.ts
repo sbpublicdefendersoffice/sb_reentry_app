@@ -8,8 +8,9 @@ import { PGOrganizationResponse } from '../types/postgresRecords'
 const useMultipleListRecords = (category: string) => {
   const { language } = useLanguage()
 
-  const [fetchedRecords, setFetchedRecords] =
-    useState<PGOrganizationResponse[] | null>(null)
+  const [fetchedRecords, setFetchedRecords] = useState<
+    PGOrganizationResponse[] | null
+  >(null)
 
   useEffect(() => {
     const multipleRecordsFetch = async () => {
