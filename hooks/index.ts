@@ -1,4 +1,7 @@
 export { default as useConvertedLocationRecords } from './useConvertedLocationRecords'
+export { default as useFavorite, FavoriteProvider } from './useFavorite'
+export { default as useFormFields } from './useFormFields'
+export { default as useGetMatchingRecords } from './useGetMatchingRecords'
 export {
   GlobalSearchProvider,
   default as useGlobalSearch,
@@ -8,18 +11,12 @@ export {
   Provider as LocationProvider,
   default as useLocation,
 } from './useLocation'
-
-export { useOnClickOutside } from './useOnClickOutside'
-export { default as useFormFields } from './useFormFields'
-export { default as useGetMatchingRecords } from './useGetMatchingRecords'
 export { default as useMapInfo } from './useMapInfo'
 export { default as useMultipleListRecords } from './useMultipleListRecords'
-
+export { useOnClickOutside } from './useOnClickOutside'
 export { default as usePopup } from './usePopup'
 export { default as useResizeEvent } from './useResizeEvent'
 export { default as useSearchFilters } from './useSearchFilters'
 export { default as useSingleRecord } from './useSingleRecord'
-export { default as ViewContext } from './useView'
-export { default as FavoriteContext } from './useFavorite'
-
 export { Provider as ToastProvider, default as useToast } from './useToast'
+export { default as ViewContext } from './useView'

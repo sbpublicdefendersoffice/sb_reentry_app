@@ -13,7 +13,6 @@ interface MapMarkerProps {
   locationRecord: PGOrgPlusLocation
   map: Map
   onTop?: boolean
-  testWorkaround?: boolean
 }
 
 const copy: CopyHolder = {
@@ -25,12 +24,7 @@ const copy: CopyHolder = {
   },
 }
 
-const MapMarker = ({
-  locationRecord,
-  map,
-  testWorkaround,
-  onTop,
-}: MapMarkerProps) => {
+const MapMarker = ({ locationRecord, map, onTop }: MapMarkerProps) => {
   const markerRef: MutableRefObject<HTMLDivElement> | null = useRef(null)
   const imgRef: MutableRefObject<HTMLImageElement> | null = useRef(null)
 
@@ -101,22 +95,19 @@ const MapMarker = ({
           {name}
         </Popup>
       )}
-
-      {!testWorkaround && (
-        <div ref={markerRef}>
-          <img
-            ref={imgRef}
-            loading="lazy"
-            src={`/icons/${imgSrc.replace(' ', '')}_marker.svg`}
-            alt={activeCopy.altText}
-            className={styles.MapMarker}
-            onMouseEnter={setPopupLocation}
-            onMouseMove={setPopupLocation}
-            onMouseLeave={clearPopupLocation}
-            onClick={linkToRecord}
-          />
-        </div>
-      )}
+      <div ref={markerRef}>
+        <img
+          ref={imgRef}
+          loading="lazy"
+          src={`/icons/${imgSrc.replace(' ', '')}_marker.svg`}
+          alt={activeCopy.altText}
+          className={styles.MapMarker}
+          onMouseEnter={setPopupLocation}
+          onMouseMove={setPopupLocation}
+          onMouseLeave={clearPopupLocation}
+          onClick={linkToRecord}
+        />
+      </div>
     </>
   )
 }

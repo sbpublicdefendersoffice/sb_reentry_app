@@ -15,7 +15,7 @@ import {
   MobileFilterModal,
   MobileButtonsLandingPage,
 } from '../../components'
-import RecordPane from '../../components/RecordPane'
+import { RecordPane } from '../../components'
 import {
   categoryCopy,
   siteTitle,
@@ -26,7 +26,7 @@ const LandingPage = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
   const classes = useStyles()
-  const [filteredResults, setFilteredResults] = useState<any | null>([])
+  const [filteredResults, setFilteredResults] = useState<any | null>(null)
 
   //#region
   const [fields, handleFieldsSelected] = useFormFields({

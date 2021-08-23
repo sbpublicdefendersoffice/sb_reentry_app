@@ -98,6 +98,7 @@ const ScheduleRecordDisplay = ({
 
   const [isOpen, setIsOpen] = useState(initialOpen)
 
+  /* istanbul ignore next */
   useEffect(() => {
     const interval = setInterval(() => {
       const isOpenChecker = isOpenNow({

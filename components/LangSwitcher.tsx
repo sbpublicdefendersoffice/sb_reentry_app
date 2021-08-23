@@ -20,6 +20,7 @@ const LangSwitcher = () => {
     if (!isInitialRender.current) setSearchResults(null)
   }, [language])
 
+  /* istanbul ignore next */
   useEffect((): void => {
     if (isInitialRender.current) isInitialRender.current = false
     else {

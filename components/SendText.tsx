@@ -63,7 +63,8 @@ const SendText = ({
 
       const textResponse = await text.json()
       if (textResponse.error) throw new Error(textResponse.error)
-      else isProd && googleCustomClick({ used_twilio: true })
+      /* istanbul ignore next */ else
+        isProd && googleCustomClick({ used_twilio: true })
     } catch (error) {
       if (error.message === INVALID_NUMBER) setInputErrorMsg(activeCopy.error)
       else setInputErrorMsg(error.message)
