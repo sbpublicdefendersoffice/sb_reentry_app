@@ -13,7 +13,6 @@
 }
 .SubMenuItem {
   word-wrap: break-word;
-
   color: var(--light);
   font-size: var(--med-text);
   font-weight: 100;
@@ -77,7 +76,7 @@
   }
   .ThriveLogo {
     text-align: center !important;
-    margin-left: 0rem;
+    margin-left: 0;
   }
   .Grid {
     display: block !important;
@@ -87,7 +86,7 @@
   .About {
     display: block !important;
     text-align: center !important;
-    margin-left: 0rem;
+    margin-left: 0;
   }
 
   .GridRight {
