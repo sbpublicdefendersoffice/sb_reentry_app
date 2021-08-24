@@ -50,7 +50,6 @@ const Header = () => {
   const StaticPages: ReactElement[] = staticPageRoutes.map(
     (routeData: RouteInfo, i: number) => {
       const title = routeData[`title_${language}`]
-      const [anchorEl, setAnchorEl] = useState(null)
       const [anchorElCourt, setAnchorElCourt] = useState(null)
       const [anchorElResource, setAnchorElResource] = useState(null)
       const { route } = routeData
@@ -61,10 +60,10 @@ const Header = () => {
       const handleResource = event => {
         setAnchorElResource(event.currentTarget)
       }
-      const handleCloseCourt = event => {
+      const handleCloseCourt = () => {
         setAnchorElCourt(null)
       }
-      const handleCloseResource = event => {
+      const handleCloseResource = () => {
         setAnchorElResource(null)
       }
       const link: ReactElement = (
@@ -88,7 +87,7 @@ const Header = () => {
                 marginTop: '.2rem !important',
               }}
             >
-              <h2 role="term" className={styles.Title}>
+              <h2 className={styles.Title}>
                 Court Resources
                 <ArrowDropDown style={{ alignItems: 'inherit' }} />
               </h2>
@@ -100,18 +99,17 @@ const Header = () => {
               open={Boolean(anchorElCourt)}
               onClose={handleCloseCourt}
             >
-              {CourtSupportRoutes.map(routeData => {
+              {CourtSupportRoutes.map((routeData, i) => {
                 const title = routeData[`title_${language}`]
                 const { route } = routeData
                 return (
                   <MenuItem
+                    key={i}
                     className={classes.dropDownItems}
                     onClick={handleCloseCourt}
                   >
                     <NextLink href={route} as={route}>
-                      <h2 role="term" className={styles.SubMenuItem}>
-                        {title}
-                      </h2>
+                      <h2 className={styles.SubMenuItem}>{title}</h2>
                     </NextLink>
                   </MenuItem>
                 )
@@ -126,7 +124,7 @@ const Header = () => {
                 marginTop: '.2rem !important',
               }}
             >
-              <h2 role="term" className={styles.Title}>
+              <h2 className={styles.Title}>
                 Resource Support
                 <ArrowDropDown style={{ alignItems: 'inherit' }} />
               </h2>
@@ -138,18 +136,17 @@ const Header = () => {
               open={Boolean(anchorElResource)}
               onClose={handleCloseResource}
             >
-              {ResourcesSupportRoutes.map(routeData => {
+              {ResourcesSupportRoutes.map((routeData, i) => {
                 const title = routeData[`title_${language}`]
                 const { route } = routeData
                 return (
                   <MenuItem
+                    key={i}
                     className={classes.dropDownItems}
                     onClick={handleCloseResource}
                   >
                     <NextLink href={route} as={route}>
-                      <h2 role="term" className={styles.SubMenuItem}>
-                        {title}
-                      </h2>
+                      <h2 className={styles.SubMenuItem}>{title}</h2>
                     </NextLink>
                   </MenuItem>
                 )
@@ -203,7 +200,7 @@ const Header = () => {
           <LiveDataSearch />
           <h4 className={styles.Tagline}>{activeCopy.tagline}</h4>
         </Hidden>
-        <div className={styles.Favorites}>
+        <div role="term" className={styles.Favorites}>
           <NextLink href="/favorites" as="/favorites">
             <div className={classes.badge}>
               <Badge badgeContent={favoriteResources.length} color="primary">
