@@ -13,7 +13,6 @@ export interface GlobalSearchResultProps {
   setIsFocused?: Dispatch<SetStateAction<boolean>>
 }
 const GlobalSearchResult = ({
-  setIsFocused,
   searchQuery,
   record,
   delimiter,
@@ -30,9 +29,17 @@ const GlobalSearchResult = ({
   const { favoriteResources, updateFavoriteResources } =
     useContext(FavoriteProvider)
   const isFavIcon = (
-    <FavoriteIcon style={{ color: '#13385E', fontSize: '3rem' }} />
+    <FavoriteIcon
+      data-testid="filled-heart"
+      style={{ color: '#13385E', fontSize: '3rem' }}
+    />
   )
-  const isNotFavIcon = <FavoriteBorderIcon style={{ fontSize: '3rem' }} />
+  const isNotFavIcon = (
+    <FavoriteBorderIcon
+      data-testid="outline-heart"
+      style={{ fontSize: '3rem' }}
+    />
+  )
   const heart = favoriteResources.some(item => item.id === id)
     ? isFavIcon
     : isNotFavIcon
@@ -46,12 +53,7 @@ const GlobalSearchResult = ({
 
   return (
     <NextLink href="/search/[id]" as={`/search/${id}`}>
-      <li
-        role="listitem"
-        className={styles.GlobalSearchResult}
-        tabIndex={0}
-        // onClick={() => setIsFocused(false)}
-      >
+      <li role="listitem" className={styles.GlobalSearchResult} tabIndex={0}>
         <img
           role="img"
           width="3rem"
@@ -69,6 +71,7 @@ const GlobalSearchResult = ({
           </em>
         </div>
         <button
+          role="button"
           style={{ background: 'none', border: 'none' }}
           id={String(id)}
           onClick={clickHeart}

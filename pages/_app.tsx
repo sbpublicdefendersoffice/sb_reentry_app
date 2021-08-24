@@ -11,7 +11,7 @@ import {
   LocationProvider,
   ToastProvider,
   ViewContext,
-  FavoriteContext,
+  FavoriteProvider,
 } from '../hooks'
 import {
   Footer,
@@ -81,6 +81,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
   }, [])
 
+  /* istanbul ignore next */
   useEffect(() => {
     if (isProd && route) {
       events.on('routeChangeComplete', url => googlePageviews(url, route))
@@ -88,6 +89,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         events.off('routeChangeComplete', url => googlePageviews(url, route))
     }
   }, [events])
+
   if (!ISSERVER && localStorage.getItem('favorites') === null) {
     setFavorites(JSON.parse(localStorage.getItem('favorites')))
     setFavoriteRecords(JSON.parse(localStorage.getItem('favoriteRecords')))
@@ -110,10 +112,10 @@ const App = ({ Component, pageProps }: AppProps) => {
         </Head>
         <LangProvider value={{ language, setLanguage }}>
           <ViewContext.Provider value={{ state, dispatch }}>
-            <FavoriteContext.Provider
+            <FavoriteProvider
               value={{
                 favoriteResources: favoriteRecords,
-                updateFavoriteResources: updateFavoriteResources,
+                updateFavoriteResources,
               }}
             >
               <LocationProvider value={{ coords, setCoords }}>
@@ -131,7 +133,7 @@ const App = ({ Component, pageProps }: AppProps) => {
                   </GlobalSearchProvider>
                 </ToastProvider>
               </LocationProvider>
-            </FavoriteContext.Provider>
+            </FavoriteProvider>
           </ViewContext.Provider>
         </LangProvider>
       </>

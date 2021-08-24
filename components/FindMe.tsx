@@ -37,7 +37,10 @@ const FindMe = () => {
         onMouseEnter={setPopupLocation}
         onMouseMove={setPopupLocation}
         onMouseLeave={clearPopupLocation}
-        onClick={() => checkAndSetUserLocation(setCoords, setToast, language)}
+        onClick={
+          /* istanbul ignore next */
+          () => checkAndSetUserLocation(setCoords, setToast, language)
+        }
       >
         <svg
           role="img"

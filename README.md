@@ -12,7 +12,11 @@ Timothy Malstead, Engineering (tmalstead@codeforamerica.org)
 
 ## Getting Started
 
+### _Tools Used_
+
 This is a [React](https://reactjs.org/) and [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and [modified](https://nextjs.org/docs/basic-features/typescript) to use [TypeScript](https://www.typescriptlang.org/)
+
+In addition, [Docker](https://www.docker.com/) is used in production deployment and to host the dev database locally.
 
 ### _Setup_
 
@@ -38,6 +42,20 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The app will auto-update as you edit components and pages.
 
+### _Running Data Locally_
+
+We recommend that you install [Docker Desktop](https://www.docker.com/products/docker-desktop) to aid you in using data for local development.
+
+After installing, run:
+
+```
+yarn build_data
+```
+
+from the root directory of the project.
+
+This will create an instance of a `PostgreSQL` database and seed it with information to get you up and running quickly.
+
 ### _Git Conventions and Branching_
 
 We kindly ask that if you are working on a feature, you checkout to a branch named with the following convention
@@ -54,7 +72,7 @@ git push origin feature_name
 
 and make a pull request.
 
-Please feel free to submit any information you feel is relevant along with your PR.
+Please feel free to submit any information you feel is relevant along with your PR. If we do not currently have you on our list of contributors, please reach out so that we can add you.
 
 ### _Production and Deployment_
 
@@ -139,6 +157,32 @@ The check will run automatically when you add a local commit, and there is no ne
 If there are errors in your staged code, please fix or comment them out and then run the checks again.
 
 If there is something that you feel you _must_ commit that is not passing the code formatting standards, you can commit using a `--no-verify` flag. Please keep this to a minimum and only use it when absolutely necessary. Linting, testing and formatting tools can be annoying, but in the end they are helping us write a better application.
+
+## Source Maps
+
+In `dev` mode, by default, we run source maps in `eval-source-map` mode. This is a good mix of performance and thoroughness.
+
+Should you need to examine even more exhaustive source maps in a production build, please enter:
+
+```
+yarn build_with_source_maps
+```
+
+This will create a production build with full `source-map` level source maps.
+
+Please note that this is a resource intensive information, thus we have increased the memory available to `node` to 4 gigabytes. That will likely be all that's necessary, but please feel free to adjust should your system need more.
+
+## Bundle Analysis
+
+When building a local production build, we have a `webpack` bundle visualizer to help you better understand the final bundle output.
+
+_After_ a production build has finished, enter:
+
+```
+yarn analyze
+```
+
+to view the visualization.
 
 ## Case and Naming Conventions
 

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef, useState } from 'react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { AppBar, Toolbar } from '@material-ui/core/'
@@ -13,17 +13,23 @@ import LiveDataSearch from './LiveDataSearch'
 
 const MobileAppBar = () => {
   const classes = useStyles()
-  const [showSearchBar, setShowSearchBar] = React.useState(false)
+  const [showSearchBar, setShowSearchBar] = useState(false)
   const node = useRef()
   useOnClickOutside(node, () => setShowSearchBar(false))
   const { back } = useRouter()
 
   return (
-    <AppBar position="fixed" className={classes.appBar} ref={node}>
+    <AppBar
+      role="toolbar"
+      position="fixed"
+      className={classes.appBar}
+      ref={node}
+    >
       <Toolbar>
         {!showSearchBar ? (
           <>
             <ArrowBackIcon
+              data-testid="back-button"
               className={classes.footerIcons}
               fontSize="large"
               onClick={() => back()}
@@ -33,6 +39,7 @@ const MobileAppBar = () => {
             </NextLink>
 
             <SearchIcon
+              data-testid="show-search-button"
               className={classes.footerIcons}
               fontSize="large"
               onClick={() => setShowSearchBar(true)}

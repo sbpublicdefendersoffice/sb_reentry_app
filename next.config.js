@@ -1,9 +1,4 @@
-const { StatsWriterPlugin } = require('webpack-stats-plugin')
-
 const nextConfigOptions = {
-  future: {
-    webpack5: true,
-  },
   target: 'serverless',
   webpack: (config, { isServer }) => {
     config.module.rules.push({
@@ -28,6 +23,7 @@ const nextConfigOptions = {
     if (!isServer) {
       const serverOnlyModules = {
         ...fallbackModules,
+        'any-promise': false,
         pg: false,
         sequelize: false,
         twilio: false,
@@ -39,7 +35,12 @@ const nextConfigOptions = {
       }
     }
 
-    if (process.env.NODE_ENV === 'production') {
+    if (
+      process.env.NODE_ENV === 'production' &&
+      process.env.PROD_STATS === 'true'
+    ) {
+      const { StatsWriterPlugin } = require('webpack-stats-plugin')
+
       config.plugins.push(
         new StatsWriterPlugin({
           filename: 'webpack-stats.json',
@@ -52,9 +53,13 @@ const nextConfigOptions = {
           },
         }),
       )
-
-      if (process.env.PROD_SRC_MAPS === 'true') config.devtool = 'source-map'
     }
+
+    if (
+      process.env.NODE_ENV === 'production' &&
+      process.env.PROD_SRC_MAPS === 'true'
+    )
+      config.devtool = 'source-map'
 
     return config
   },

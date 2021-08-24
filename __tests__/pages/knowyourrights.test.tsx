@@ -31,4 +31,24 @@ describe('know your rights page', () => {
 
     expect(doc).toBeInTheDocument()
   })
+
+  it('has a working download link', async () => {
+    const { render } = await getPage({
+      route: '/knowyourrights',
+      useApp: true,
+      useDocument: true,
+    })
+
+    render()
+
+    const downloadButtons: HTMLElement[] = await waitFor(() =>
+      screen.getAllByTestId('download-flyer'),
+    )
+
+    const downloadButton: HTMLElement = downloadButtons[0]
+
+    fireEvent.click(downloadButton)
+
+    expect(downloadButton).toBeInTheDocument()
+  })
 })

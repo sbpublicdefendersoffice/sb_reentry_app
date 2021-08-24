@@ -171,6 +171,7 @@ const KnowYourRights = () => {
                             id="simple-modal-title"
                           >
                             <Button
+                              data-testid="download-flyer"
                               onClick={() => handleOpen(activeFlyer)}
                               style={{
                                 position: 'absolute',
@@ -200,7 +201,10 @@ const KnowYourRights = () => {
                             id="simple-modal-title"
                           >
                             <Button
-                              onClick={() => handleOpen(activeFlyer)}
+                              onClick={
+                                /* istanbul ignore next */
+                                () => handleOpen(activeFlyer)
+                              }
                               style={{
                                 position: 'absolute',
                                 marginTop: '2rem',

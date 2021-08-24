@@ -74,4 +74,19 @@ describe('<FetchedDataSearch />', () => {
     expect(searchNode).toHaveAttribute('placeholder', placeholderCopy)
     expect(popUpNode).toHaveTextContent(tooltip)
   })
+
+  it('performs search', async () => {
+    const { getByRole } = renderWithLanguage(
+      <FetchedDataSearch {...FetchedDataSearchTestProps} />,
+    )
+
+    const searchNode: HTMLInputElement = getByRole('search') as HTMLInputElement
+
+    const value: string = 'mental health'
+
+    fireEvent.focus(searchNode)
+    fireEvent.change(searchNode, { target: { value } })
+
+    expect(searchNode.value).toBe(value)
+  })
 })
