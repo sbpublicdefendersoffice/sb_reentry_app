@@ -46,9 +46,7 @@ const Footer = () => {
       const link: ReactElement = (
         <Grid item xs={12} sm={12} md={3} spacing={2} className={styles.Grid}>
           <NextLink href={route} as={route}>
-            <h2 role="term" className={styles.Title}>
-              {title}
-            </h2>
+            <h2 className={styles.Title}>{title}</h2>
           </NextLink>
         </Grid>
       )
@@ -59,7 +57,6 @@ const Footer = () => {
           <>
             <Grid item xs={12} sm={12} md={2} className={styles.Grid}>
               <h2
-                role="term"
                 className={styles.ButtonTitle}
                 style={{
                   marginBottom: '3rem',
@@ -67,13 +64,12 @@ const Footer = () => {
               >
                 {activeCopy.court}
                 <div style={{ marginTop: '1rem' }}>
-                  {CourtSupportRoutes.map(routeData => {
+                  {CourtSupportRoutes.map((routeData, i) => {
                     const title = routeData[`title_${language}`]
                     const { route } = routeData
                     return (
-                      <NextLink href={route} as={route}>
+                      <NextLink key={i} href={route} as={route}>
                         <h2
-                          role="term"
                           className={styles.Title}
                           style={{
                             fontSize: '1.2rem',
@@ -89,16 +85,15 @@ const Footer = () => {
               </h2>{' '}
             </Grid>
             <Grid item xs={12} sm={12} md={4} className={styles.Grid}>
-              <h2 role="term" className={styles.ButtonTitle}>
+              <h2 className={styles.ButtonTitle}>
                 {activeCopy.resource}
                 <div style={{ marginTop: '1rem' }}>
-                  {ResourcesSupportRoutes.map(routeData => {
+                  {ResourcesSupportRoutes.map((routeData, i) => {
                     const title = routeData[`title_${language}`]
                     const { route } = routeData
                     return (
-                      <NextLink href={route} as={route}>
+                      <NextLink key={i} href={route} as={route}>
                         <h2
-                          role="term"
                           className={styles.Title}
                           style={{ margin: '.5rem 0rem .5rem 0rem' }}
                         >
@@ -118,7 +113,7 @@ const Footer = () => {
     },
   )
   return (
-    <footer>
+    <footer role="region">
       <div>
         <Grid container className={styles.Footer}>
           {' '}
