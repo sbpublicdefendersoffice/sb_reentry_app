@@ -27,18 +27,18 @@ main {
   flex-wrap: wrap;
 }
 .MuiList-padding {
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 .MuiButton-text {
-  padding: 0px !important;
+  padding: 0 !important;
   margin-top: -0.2rem !important;
 }
 .MuiListItem-gutters {
   padding-left: 0 !important;
 }
 .MuiMenuItem-root {
-  padding-top: 0px !important;
+  padding-top: 0 !important;
 }
 a {
   text-decoration: none;
