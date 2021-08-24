@@ -79,6 +79,8 @@ export {
   letUsHelpRoutes,
   PrivacyPolicyRoute,
   topThreeRoutes,
+  CourtSupportRoutes,
+  ResourcesSupportRoutes,
 } from './routes'
 export { margin, maxWidth, flexFullWidth } from './styling'
 export {
