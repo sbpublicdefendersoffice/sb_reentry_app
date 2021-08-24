@@ -42,7 +42,7 @@
 }
 .Favorites {
   position: relative;
-  margin: 0rem 1rem 0rem 1rem;
+  margin: 0 1rem 0 1rem;
   align-items: flex-end;
   display: flex;
   color: white;
@@ -76,8 +76,8 @@
   border-bottom: 0.25rem solid transparent;
 }
 .MuiMenu-list {
-  padding-top: 0px;
-  padding-bottom: 0px;
+  padding-top: 0;
+  padding-bottom: 0;
   color: pink;
 }
 .MuiMenuItem-root {
@@ -97,8 +97,9 @@
 }
 @media (max-width: 1275px) {
   .Favorites {
-    top: 7rem;
-    right: 1.1rem;
+    position: absolute;
+    top: 6rem;
+    right: 0;
   }
 }
 @media (max-width: 1275px) {
