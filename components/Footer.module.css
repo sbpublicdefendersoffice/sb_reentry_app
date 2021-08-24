@@ -1,10 +1,11 @@
 .Footer {
-  width: 100%;
+  /* width: 100%; */
   background-color: var(--primary);
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: var(--pad-std);
+  display: inline-flex;
+  /* height: 25rem; */
+  /* flex-direction: column; */
+  /* text-align: center;
+  padding: var(--pad-std); */
 }
 
 .Footer * {
@@ -15,7 +16,7 @@
   width: 90%;
   height: 90%;
   margin: 0 auto;
-  display: grid;
+  display: flex;
   grid-template-columns: auto auto min-content 1% min-content;
   grid-template-areas: 'nav . logo2 . logo1';
 }
@@ -24,22 +25,27 @@
   grid-area: nav;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  /* align-items: flex-end; */
   padding-bottom: var(--pad-std);
   font-size: var(--med-text);
-  border-bottom: 0.25rem solid #00a968;
+  white-space: nowrap;
   margin-bottom: 5rem;
   margin-top: 2rem;
 }
 .ThriveLogo {
   width: 18rem;
   margin-left: 3rem;
+  /* position: relative;
+  top: 1rem;
+  right: -9rem; */
 }
 .SubMenuItem {
   word-wrap: break-word;
+
   color: var(--light);
   font-size: var(--med-text);
   font-weight: 100;
+  justify-content: flex-start;
   margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
 }
@@ -57,6 +63,24 @@
   cursor: pointer;
   border-bottom: var(--border-width) dotted transparent;
 }
+.Grid {
+  display: inline-flex !important;
+  margin-top: 3rem !important;
+
+  /* margin-left: '8rem'; */
+}
+.GridRight {
+  text-align: right !important;
+  max-width: 30.833%;
+  margin-top: 3rem !important;
+  margin-bottom: 2rem !important;
+  flex-basis: 30.33%;
+}
+.About {
+  display: inline-flex !important;
+  margin-left: -8rem;
+}
+
 .Title,
 .ThriveLogo {
   cursor: pointer;
@@ -91,17 +115,58 @@
 
 .copyright {
   display: inline-block;
+  text-align: end;
+  margin-right: 1rem;
+  color: white !important;
 }
-
+.Margins {
+  margin: 1rem 0 1rem 0;
+  /* margin-left: '8rem'; */
+}
 .Disclaimer {
-  padding: 0 10%;
+  padding: 0 5%;
+  position: relative;
+  top: 2rem;
+  right: 2.3rem;
+  text-align: end;
 }
 .SubMenuItem:hover {
   border-bottom: 0.25rem solid var(--green);
 }
-@media (max-width: 1275px) {
+@media (max-width: 700px) {
   .Footer {
-    margin-bottom: 4rem;
+    text-align: center !important;
+    display: block !important;
+    height: 100%;
+  }
+  .ThriveLogo {
+    text-align: center !important;
+    margin-left: 0rem;
+  }
+  .Grid {
+    display: block !important;
+    text-align: center !important;
+    /* margin-top: 1rem !important; */
+    /* margin-left: '8rem'; */
+  }
+  .About {
+    display: block !important;
+    text-align: center !important;
+    margin-left: 0rem;
+  }
+
+  .GridRight {
+    text-align: center !important;
+    max-width: 95%;
+    margin: 3rem !important;
+    margin-bottom: 7rem !important;
+  }
+  .Margins {
+    margin: 1rem 0 1rem 0;
+  }
+  .Title {
+    text-align: center;
+    margin-top: 2rem !im;
   }
 }
 @media (max-width: 500px) {
