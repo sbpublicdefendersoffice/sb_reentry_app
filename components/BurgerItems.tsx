@@ -79,11 +79,12 @@ const BurgerItems = ({ open, setOpen }) => {
               </h2>
             </Button>{' '}
             {courtButtonClicked &&
-              CourtSupportRoutes.map(routeData => {
+              CourtSupportRoutes.map((routeData, i) => {
                 const title = routeData[`title_${language}`]
                 const { route } = routeData
                 return (
                   <MenuItem
+                    key={i}
                     className={classes.dropDownBurgerItems}
                     onClick={() => setOpen(false)}
                   >
@@ -110,11 +111,12 @@ const BurgerItems = ({ open, setOpen }) => {
               </h2>
             </Button>
             {resourceButtonClicked &&
-              ResourcesSupportRoutes.map(routeData => {
+              ResourcesSupportRoutes.map((routeData, i) => {
                 const title = routeData[`title_${language}`]
                 const { route } = routeData
                 return (
                   <MenuItem
+                    key={i}
                     className={classes.dropDownBurgerItems}
                     onClick={() => setOpen(false)}
                   >
