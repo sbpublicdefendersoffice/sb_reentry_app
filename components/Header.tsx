@@ -5,7 +5,7 @@ import {
   useLanguage,
   useResizeEvent,
   useOnClickOutside,
-  FavoriteContext,
+  useFavorite,
 } from '../hooks'
 import { CopyHolder } from '../types/'
 import styles from './Header.module.css'
@@ -35,7 +35,7 @@ const Header = () => {
   const { language } = useLanguage()
   const classes = useStyles()
   const activeCopy = copy[language]
-  const { favoriteResources } = useContext(FavoriteContext)
+  const { favoriteResources } = useContext(useFavorite)
   const [isBurgerVisible, setIsBurgerVisible] = useState<boolean>(
     innerWidth <= 1275,
   )
