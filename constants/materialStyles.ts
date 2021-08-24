@@ -26,6 +26,8 @@ export const useStyles = makeStyles((theme: Theme) =>
     dropDownBurgerItems: {
       color: 'white !important',
       backgroundColor: '#13385e !important',
+      marginLeft: '1.2rem !important',
+      borderBottom: '.25rem solid transparent',
       '&:hover': {
         borderBottom: '.25rem solid #00a968',
       },
@@ -34,6 +36,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       wordWrap: 'break-word',
       color: 'var(--light)',
       fontSize: 'var(--med-text)',
+      display: 'block !important',
       margin: '0 var(--margin-std)',
       borderBottom: '0.25rem solid transparent',
       fontWeight: 100,
@@ -47,6 +50,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 100,
       marginLeft: '2rem',
     },
+
     badge: {
       '& > *': {
         margin: theme.spacing(1),
