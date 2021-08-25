@@ -16,7 +16,8 @@ export const customFetch = (
     | ScheduleRecord
     | TranslatedRecordResponse
     | SortedRecord
-    | null,
+    | null
+    | any,
 ) =>
   jest.fn(() =>
     Promise.resolve({
