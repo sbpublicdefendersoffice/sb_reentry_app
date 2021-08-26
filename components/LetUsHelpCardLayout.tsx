@@ -6,12 +6,12 @@ import { url } from '../constants/cards'
 import { CopyHolder, CardInfo } from '../types/'
 import useLanguage from '../hooks/useLanguage'
 
-interface LetUsHelpCardLayoutProps {
+export interface LetUsHelpCardLayoutProps {
   heading?: string
   cards: CardInfo[]
 }
 
-const copy: CopyHolder = {
+export const copy: CopyHolder = {
   english: {
     click: 'Click here to learn more',
   },
@@ -28,7 +28,7 @@ const LetUsHelpCardLayout = ({ heading, cards }: LetUsHelpCardLayoutProps) => {
   const { click } = copy[language]
 
   return (
-    <CallToAction blueBg>
+    <CallToAction role="main" blueBg>
       {heading && <Title>{heading}</Title>}
       <div className={styles.LetUsHelpCardContainer}>
         {cards.map((card: CardInfo, i: number) => {
@@ -55,6 +55,7 @@ const LetUsHelpCardLayout = ({ heading, cards }: LetUsHelpCardLayoutProps) => {
                   {copy}
                 </Paragraph>
                 <Paragraph
+                  role="link"
                   className={styles.Link}
                   size="med-text"
                   onClick={() => push(url, `/search/${id}`)}
