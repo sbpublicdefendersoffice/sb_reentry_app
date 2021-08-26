@@ -1,8 +1,8 @@
-import { SetStateAction, Dispatch, Fragment, useContext, useState } from 'react'
+import { SetStateAction, Dispatch, Fragment, useState } from 'react'
 import { useRouter } from 'next/router'
 import { LeafLoader, OrgRecordCard } from './'
 import { Details, Paragraph } from '../ui'
-import { useLanguage, ViewContext, useResizeEvent } from '../hooks/'
+import { useLanguage, useView, useResizeEvent } from '../hooks/'
 import withWidth from '@material-ui/core/withWidth'
 import { PGOrganizationResponse, WindowSize } from '../types/'
 import { ENGLISH } from '../constants/language'
@@ -32,7 +32,7 @@ const RecordPane = ({
 RecordPaneProps) => {
   const { push, route } = useRouter()
   const { language } = useLanguage()
-  const { state } = useContext(ViewContext)
+  const { state } = useView()
   const { isListView, isMapView } = state
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: innerWidth,

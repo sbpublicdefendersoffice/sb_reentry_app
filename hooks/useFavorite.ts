@@ -1,9 +1,12 @@
-import { createContext } from 'react'
+import { createContext, useContext } from 'react'
 
-const useFavorite = createContext({
+const favorite = createContext({
   favoriteResources: [],
   updateFavoriteResources: (id, record) => null, // eslint-disable-line no-unused-vars
 })
 
-export const FavoriteProvider = useFavorite.Provider
+export const { Provider } = favorite
+
+const useFavorite = () => useContext(favorite)
+
 export default useFavorite

@@ -1,5 +1,8 @@
 export { default as useConvertedLocationRecords } from './useConvertedLocationRecords'
-export { default as useFavorite, FavoriteProvider } from './useFavorite'
+export {
+  default as useFavorite,
+  Provider as FavoriteProvider,
+} from './useFavorite'
 export { default as useFormFields } from './useFormFields'
 export { default as useGetMatchingRecords } from './useGetMatchingRecords'
 export {
@@ -19,4 +22,4 @@ export { default as useResizeEvent } from './useResizeEvent'
 export { default as useSearchFilters } from './useSearchFilters'
 export { default as useSingleRecord } from './useSingleRecord'
 export { Provider as ToastProvider, default as useToast } from './useToast'
-export { default as ViewContext } from './useView'
+export { default as useView, Provider as ViewProvider } from './useView'

@@ -1,3 +1,9 @@
-import { createContext } from 'react'
-const ViewContext = createContext(null)
-export default ViewContext
+import { createContext, useContext } from 'react'
+
+const view = createContext(null)
+
+export const { Provider } = view
+
+const useView = () => useContext(view)
+
+export default useView

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Fragment, useState, useEffect, useContext } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 
 import type { Map } from 'mapbox-gl'
 
@@ -15,7 +15,7 @@ import {
   useLocation,
   useSearchFilters,
   useGlobalSearch,
-  ViewContext,
+  useView,
   useResizeEvent,
 } from '../hooks'
 import {
@@ -44,7 +44,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
     }),
   )
   const { pathname } = useRouter()
-  const { state } = useContext(ViewContext)
+  const { state } = useView()
   const { isListView } = state
 
   const { searchResults } = useGlobalSearch()
