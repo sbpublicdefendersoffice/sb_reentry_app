@@ -1,11 +1,13 @@
 .LiveDataSearch {
-  position: relative;
+  position: absolute;
+  right: 7.5rem;
+  top: 5rem;
   background-color: var(--light);
-  width: max(20%, 20rem);
+  width: 20%;
   border: var(--border-width) solid var(--primary);
   border-radius: var(--radius-small);
   z-index: 9;
-  display: flex;
+
   align-items: center;
   justify-content: flex-start;
   overflow: hidden;
@@ -32,9 +34,11 @@
 .ResultsContainer {
   list-style-type: none;
   padding: 0 var(--pad-lg);
+
   width: 100%;
+  display: block;
   max-height: 40rem;
-  overflow: scroll;
+  overflow: auto;
 }
 .Label {
   opacity: 0;
@@ -43,14 +47,18 @@
 }
 @media (max-width: 1275px) {
   .LiveDataSearch {
+    position: absolute;
+    right: 0rem;
+    top: 0.5rem;
     width: 100%;
+    height: 3.6rem;
   }
   .ResultsContainer {
     list-style-type: none;
     padding: 0 var(--pad-lg);
     width: 100%;
     position: fixed;
-    bottom: 6.5%;
+    bottom: 8.7%;
     top: auto;
     max-height: 30rem;
     background-color: white;
