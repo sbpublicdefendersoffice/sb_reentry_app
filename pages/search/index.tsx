@@ -21,7 +21,9 @@ const GlobalSearchLanding = () => {
   useEffect((): void => {
     const captureQuery: RegExp = /^.*=(.*)$/
     const capturedQueryReference: string = '$1'
-    const query: string = asPath.replace(captureQuery, capturedQueryReference)
+    const query: string = decodeURI(
+      asPath.replace(captureQuery, capturedQueryReference),
+    )
 
     const filterOrFetch = async () => {
       if (searchResults) {
