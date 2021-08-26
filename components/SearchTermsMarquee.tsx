@@ -31,8 +31,9 @@ const SearchTermsMarquee = ({
 }: SearchTermsMarqueeProps) => {
   const tagsRef: MutableRefObject<HTMLParagraphElement> | null = useRef(null)
   const [isScrolling, setIsScrolling] = useState<boolean>(false)
-  const [searchTermsToScroll, setSearchTermsToScroll] =
-    useState<string[] | null>(null)
+  const [searchTermsToScroll, setSearchTermsToScroll] = useState<
+    string[] | null
+  >(null)
 
   const setScrollingEffect = (): void => {
     if (

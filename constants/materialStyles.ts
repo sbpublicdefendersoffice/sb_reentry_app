@@ -27,10 +27,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       color: 'white !important',
       backgroundColor: '#13385e !important',
       marginLeft: '1.2rem !important',
-      borderBottom: '.25rem solid transparent',
-      '&:hover': {
-        borderBottom: '.25rem solid #00a968',
-      },
     },
     subMenuItem: {
       wordWrap: 'break-word',
@@ -40,6 +36,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       margin: '0 var(--margin-std)',
       borderBottom: '0.25rem solid transparent',
       fontWeight: 100,
+      '&:hover': {
+        borderBottom: '.25rem solid #00a968',
+      },
     },
     subMenuItemInButton: {
       wordWrap: 'break-word',
