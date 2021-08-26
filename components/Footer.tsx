@@ -121,6 +121,7 @@ const Footer = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className={styles.ALink}
+                            key={i}
                           >
                             <h2
                               style={{ outline: '0 !important' }}
@@ -131,7 +132,9 @@ const Footer = () => {
                           </a>
                         ) : (
                           <NextLink href={route} as={route}>
-                            <h2 className={styles.SubMenuItem}>{title}</h2>
+                            <h2 key={i} className={styles.SubMenuItem}>
+                              {title}
+                            </h2>
                           </NextLink>
                         )
                       }
