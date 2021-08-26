@@ -41,14 +41,14 @@ main {
   padding-top: 0 !important;
 }
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   color: var(--dark);
   word-break: break-all;
 }
 
 a:not(.not-text-link) {
-  border-bottom: var(--border-width) dotted var(--secondary);
   color: var(--secondary);
+  text-decoration: none;
 }
 
 a:hover {
