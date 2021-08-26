@@ -39,7 +39,7 @@ const SearchTermsMarquee = ({
       !tagsRef.current?.getClientRects()[0].width ||
       !formRef.current?.getClientRects()[0].width
     ) {
-      return null
+      return
     }
     tagsRef.current?.getClientRects()[0].width >
     formRef.current?.getClientRects()[0].width
