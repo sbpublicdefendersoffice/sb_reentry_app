@@ -70,7 +70,7 @@ const manageFilteredMapState = (
   return { filteredRecords, visibility, radiusDistance }
 }
 
-const useSearchFilters = () => {
+const useLocationFilters = () => {
   const [locRecordsToFilter, setLocRecordsToFilter] = useReducer<
     Reducer<FilteredMapState, FilterMapAction>
   >(manageFilteredMapState, {
@@ -86,4 +86,4 @@ const useSearchFilters = () => {
   return { locRecordsToFilter, setLocRecordsToFilter }
 }
 
-export default useSearchFilters
+export default useLocationFilters

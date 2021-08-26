@@ -26,29 +26,33 @@ const LandingPage = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
   const classes = useStyles()
-  const [filteredResults, setFilteredResults] = useState<any | null>(null)
+
+  const activeCopy = categoryCopy[language]
+  const validCategory = categories[asPath]
+  const routeCategory: string = validCategory?.english.category.toLowerCase()
+  const displayDescription: string = validCategory?.[language].description
+  const displayCategory: string = validCategory?.[language].category
+
+  const { fetchedRecords, setFetchedRecords } =
+    useMultipleListRecords(routeCategory)
+  const { convertedLocRecords, setLocationRecords } =
+    useConvertedLocationRecords()
 
   //#region
+  const [filteredResults, setFilteredResults] = useState<any | null>(null)
   const [fields, handleFieldsSelected] = useFormFields({
     citySelected: [],
     serviceSelected: [],
     peopleServedSelected: [],
     languageSelected: [],
   })
+
   const [checkIsCity, setCheckIsCity] = useState(false)
   const [checkIsService, setCheckIsService] = useState(false)
   const [checkIsLanguage, setCheckIsLanguage] = useState(false)
   const [checkIsPeopleServed, setCheckIsPeopleServed] = useState(false)
   const [open, setOpen] = useState(false)
-  const activeCopy = categoryCopy[language]
-  const validCategory = categories[asPath]
-  const routeCategory: string = validCategory?.english.category.toLowerCase()
-  const displayCategory: string = validCategory?.[language].category
-  const displayDescription: string = validCategory?.[language].description
-  const { fetchedRecords, setFetchedRecords } =
-    useMultipleListRecords(routeCategory)
-  const { convertedLocRecords, setLocationRecords } =
-    useConvertedLocationRecords()
+
   useEffect((): void => {
     let keywordQuery = fields.serviceSelected.concat(
       fields.citySelected,
