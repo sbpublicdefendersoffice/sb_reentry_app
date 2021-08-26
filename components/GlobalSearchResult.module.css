@@ -16,7 +16,7 @@
 }
 
 .Text {
-  flex: 1;
+  flex: 1 !important;
   text-align: left;
 }
 
@@ -31,5 +31,6 @@
     position: relative;
     color: white;
     margin-left: 0.4rem;
+    width: 202%;
   }
 }
