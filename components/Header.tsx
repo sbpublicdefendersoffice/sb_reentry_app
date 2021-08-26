@@ -18,8 +18,8 @@ import {
   ResourcesSupportRoutes,
 } from '../constants'
 import { ThriveLogo } from '../ui'
-import { Hidden, Badge, Button, Menu, MenuItem } from '@material-ui/core'
-import { Favorite, ArrowDropDown, Search } from '@material-ui/icons/'
+import { Hidden, Badge, Button, Menu, MenuItem, Grid } from '@material-ui/core'
+import { Favorite, ArrowDropDown } from '@material-ui/icons/'
 
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 const copy: CopyHolder = {
@@ -108,9 +108,24 @@ const Header = () => {
                     className={classes.dropDownItems}
                     onClick={handleCloseCourt}
                   >
-                    <NextLink href={route} as={route}>
-                      <h2 className={styles.SubMenuItem}>{title}</h2>
-                    </NextLink>
+                    {route === 'https://portal.sbcourts.org/CASBPORTAL/' ? (
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.ALink}
+                      >
+                        <h2
+                          style={{ outline: '0 !important' }}
+                          className={styles.SubMenuItem}
+                        >
+                          {title}
+                        </h2>
+                      </a>
+                    ) : (
+                      <NextLink href={route} as={route}>
+                        <h2 className={styles.SubMenuItem}>{title}</h2>
+                      </NextLink>
+                    )}
                   </MenuItem>
                 )
               })}
@@ -181,25 +196,14 @@ const Header = () => {
         </div>
 
         <Hidden mdDown>
-          <div
-            style={{
-              position: 'relative',
-              marginLeft: '10rem',
-              color: 'white',
-              fontSize: '3rem',
-            }}
-          >
-            <Search
-              style={{
-                display: 'flex',
-                fontSize: '2rem',
-                marginRight: '1.5rem',
-              }}
-            />
-          </div>
-          <LiveDataSearch />
+          <Grid container style={{ width: '36%' }}>
+            <Grid item md={12} sm={4}>
+              <LiveDataSearch />
+            </Grid>
+          </Grid>
           <h4 className={styles.Tagline}>{activeCopy.tagline}</h4>
         </Hidden>
+
         <div role="term" className={styles.Favorites}>
           <NextLink href="/favorites" as="/favorites">
             <div className={classes.badge}>
