@@ -25,7 +25,7 @@ const ThriveStories = () => {
       <Head>
         <title>{`${siteTitle} | ${activeCopy.title}`}</title>
       </Head>
-      <div className={classes.root}>
+      <div className={classes.root} style={{ margin: '0 auto' }}>
         <Typography
           style={{ marginTop: '4rem' }}
           align="center"
