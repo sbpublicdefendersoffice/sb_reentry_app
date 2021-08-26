@@ -27,9 +27,9 @@
   font-weight: 100;
   margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
+  white-space: nowrap;
 }
 .ButtonTitle {
-  word-wrap: break-word;
   color: var(--light);
   font-size: var(--med-text);
   font-weight: 100;
@@ -41,6 +41,7 @@
   display: inline-flex !important;
   margin-top: 3rem !important;
   margin-left: 3rem !important;
+  max-width: 19.33%;
 }
 .GridRight {
   text-align: right !important;
@@ -50,8 +51,9 @@
   flex-basis: 30.33% !important;
 }
 .About {
-  display: inline-flex !important;
-  margin-left: -8rem;
+  display: inline !important;
+  margin-top: -3rem;
+  margin-left: -9rem !important;
 }
 
 .Title,
@@ -61,18 +63,18 @@
 
 .Margins {
   margin: 1rem 0 1rem 0;
+  white-space: nowrap;
 }
 
 .Title:hover {
   border-bottom: 0.25rem solid var(--green);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .Footer {
     text-align: center !important;
     display: block !important;
-    height: 100rem !important;
-    margin-bottom: 4rem;
+    height: auto !important;
   }
   .ThriveLogo {
     text-align: center !important;
@@ -81,22 +83,28 @@
   .Grid {
     display: block !important;
     text-align: center !important;
-    margin-left: '0rem';
+    margin-left: 0;
+    margin-top: 1rem !important;
+    max-width: 82.33% !important;
   }
   .About {
     display: block !important;
     text-align: center !important;
-    margin-left: 0;
+    margin-right: 3rem;
+    margin-top: -0.8rem;
+    margin-left: -2rem !important;
   }
 
   .GridRight {
     text-align: center !important;
     max-width: 95%;
     margin: 3rem !important;
-    margin-bottom: 7rem !important;
+    margin-bottom: 4rem !important;
+    padding-bottom: 1rem;
+    margin-top: 1rem !important;
   }
   .Margins {
-    margin: 1rem 0 1rem 0;
+    margin: 0.5rem 0 0.5rem 0;
   }
   .Title {
     text-align: center;
