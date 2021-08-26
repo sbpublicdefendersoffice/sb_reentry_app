@@ -210,7 +210,7 @@ export const CourtSupportRoutes: RouteInfo[] = [
   {
     title_english: 'Odyssey Portal',
     title_spanish: 'Odyssey Portal',
-    route: '/odysseyportal',
+    route: 'https://portal.sbcourts.org/CASBPORTAL/',
   },
   {
     title_english: 'Public Defender Services',
