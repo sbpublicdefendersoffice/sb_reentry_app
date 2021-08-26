@@ -88,11 +88,23 @@ const BurgerItems = ({ open, setOpen }) => {
                     className={classes.dropDownBurgerItems}
                     onClick={() => setOpen(false)}
                   >
-                    <NextLink href={route} as={route}>
-                      <h2 role="term" className={classes.subMenuItem}>
-                        {title}
-                      </h2>
-                    </NextLink>
+                    {route === 'https://portal.sbcourts.org/CASBPORTAL/' ? (
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          textTransform: 'inherit',
+                          padding: 'inherit',
+                          letterSpacing: 'none',
+                        }}
+                      >
+                        <h2 className={classes.subMenuItem}>{title}</h2>
+                      </a>
+                    ) : (
+                      <NextLink href={route} as={route}>
+                        <h2 className={classes.subMenuItem}>{title}</h2>
+                      </NextLink>
+                    )}
                   </MenuItem>
                 )
               })}
