@@ -3,7 +3,8 @@ import {
   PGLocationRecord,
   PGOrganizationResponse,
   PGServiceRecord,
-} from '../types/postgresRecords'
+  CopyHolder,
+} from '../types/'
 
 interface ServiceFilter {
   citySelected: string[]
@@ -11,7 +12,7 @@ interface ServiceFilter {
 }
 
 interface useSearchFiltersProps {
-  validCategory: string
+  validCategory: CopyHolder
   fetchedRecords: PGOrganizationResponse[] | null
   setLocationRecords: Dispatch<SetStateAction<PGOrganizationResponse[] | null>>
 }
