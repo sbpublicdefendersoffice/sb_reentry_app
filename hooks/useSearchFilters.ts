@@ -5,6 +5,7 @@ import {
   PGServiceRecord,
   CopyHolder,
 } from '../types/'
+import { useToast, useLanguage } from '../hooks'
 
 interface ServiceFilter {
   citySelected: string[]
@@ -17,11 +18,25 @@ interface useSearchFiltersProps {
   setLocationRecords: Dispatch<SetStateAction<PGOrganizationResponse[] | null>>
 }
 
+const copy: CopyHolder = {
+  english: {
+    excuse: 'No results found. Maybe try broadening your search?',
+  },
+  spanish: {
+    excuse:
+      'No se han encontrado resultados. ¿Quizás intente ampliar su búsqueda?',
+  },
+}
+
 const useSearchFilters = ({
   validCategory,
   fetchedRecords,
   setLocationRecords,
 }: useSearchFiltersProps) => {
+  const { setToast } = useToast()
+  const { language } = useLanguage()
+  const activeCopy = copy[language]
+
   const [searchFilteredResults, setSearchFilteredResults] = useState<
     any | null
   >(null)
@@ -80,7 +95,7 @@ const useSearchFilters = ({
             currentRecords.filter((rec: PGOrganizationResponse) =>
               rec?.locations?.some((loc: PGLocationRecord) =>
                 loc?.services?.some((serv: PGServiceRecord) =>
-                  services.includes(serv?.name_english.toLowerCase()),
+                  services.includes(serv?.[`name_${language}`].toLowerCase()),
                 ),
               ),
             )
@@ -89,7 +104,7 @@ const useSearchFilters = ({
             recordsFilteredByService.map((rec: PGOrganizationResponse) => {
               rec.locations = rec.locations.filter((loc: PGLocationRecord) =>
                 loc?.services?.some((serv: PGServiceRecord) =>
-                  services.includes(serv?.name_english.toLowerCase()),
+                  services.includes(serv?.[`name_${language}`].toLowerCase()),
                 ),
               )
               return rec
@@ -101,8 +116,9 @@ const useSearchFilters = ({
           setSearchFilteredResults(currentFiltersAppliedRecords)
           setLocationRecords(currentFiltersAppliedRecords)
         } else {
-          setSearchFilteredResults(fetchedRecords)
-          setLocationRecords(fetchedRecords)
+          setSearchFilteredResults([])
+          setLocationRecords([])
+          setToast(activeCopy.excuse)
         }
       } else {
         setSearchFilteredResults(fetchedRecords)
