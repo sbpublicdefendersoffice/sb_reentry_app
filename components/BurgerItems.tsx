@@ -91,13 +91,23 @@ const BurgerItems = ({ open, setOpen }) => {
                       <a
                         target="_blank"
                         rel="noopener noreferrer"
+                        href={route}
                         style={{
                           textTransform: 'inherit',
-                          padding: 'inherit',
+                          padding: 'none',
                           letterSpacing: 'none',
                         }}
                       >
-                        <h2 className={classes.subMenuItem}>{title}</h2>
+                        <h2
+                          style={{
+                            letterSpacing: '0',
+                            padding: '0',
+                            lineHeight: '0',
+                          }}
+                          className={classes.subMenuItem}
+                        >
+                          {title}
+                        </h2>
                       </a>
                     ) : (
                       <NextLink href={route} as={route}>
