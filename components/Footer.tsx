@@ -49,7 +49,7 @@ const Footer = () => {
       const [resourceButtonClicked, setResourceButtonClicked] = useState(false)
       const { route } = routeData
       const link: ReactElement = (
-        <div className={styles.Grid}>
+        <div>
           <NextLink href={route} as={route}>
             <h2 className={styles.Title}>{title}</h2>
           </NextLink>
@@ -63,8 +63,7 @@ const Footer = () => {
               item
               xs={12}
               sm={3}
-              className={styles.Grid}
-              style={{ maxWidth: 'auto' }}
+              style={{ maxWidth: 'auto', flexBasis: 'auto' }}
             >
               <Hidden smDown>
                 <h2
@@ -98,12 +97,10 @@ const Footer = () => {
               <Hidden mdUp>
                 <Button
                   onClick={() => setCourtButtonClicked(!courtButtonClicked)}
-                  className={styles.ButtonStyle}
                   style={{
                     textTransform: 'inherit',
                     lineHeight: 'inherit',
                     padding: '0 !important',
-
                     display: 'block',
                   }}
                 >
@@ -144,7 +141,12 @@ const Footer = () => {
                 </div>
               </Hidden>
             </Grid>
-            <Grid item xs={12} md={1} className={styles.Grid}>
+            <Grid
+              item
+              xs={12}
+              md={1}
+              style={{ maxWidth: '100%', flexBasis: 'auto' }}
+            >
               <Hidden smDown>
                 <h2 className={styles.ButtonTitle}>
                   {activeCopy.resource}
@@ -222,7 +224,14 @@ const Footer = () => {
       >
         {StaticPages}
       </div>
-      <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
+      <Grid
+        item
+        xs={12}
+        sm={12}
+        md={4}
+        className={styles.GridRight}
+        style={{ maxWidth: 'auto', flexBasis: 'auto' }}
+      >
         <div>
           <ThriveLogo role="img" className={styles.ThriveLogo} />
           <h4 style={{ marginBottom: '2rem' }}>{activeCopy.tagline}</h4>{' '}

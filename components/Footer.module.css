@@ -2,7 +2,7 @@
   background-color: var(--primary);
   display: flex;
   justify-content: space-evenly;
-  padding: 0 var(--pad-lg);
+  padding: 0 3rem 3rem 3rem;
   flex: 1;
 }
 
@@ -21,7 +21,7 @@
   font-size: var(--med-text);
   font-weight: 100;
   justify-content: flex-start;
-  margin: 0 var(--margin-std);
+  margin: var(--margin-std) var(--margin-std) 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
 }
 .Title {
@@ -39,10 +39,6 @@
   border-bottom: 0.25rem solid transparent;
 }
 
-.Grid {
-  width: max-content;
-}
-
 .GridRight {
   display: flex;
   flex-direction: column;
@@ -56,7 +52,8 @@
   margin-left: 3rem !important;
 }
 .Title,
-.ThriveLogo {
+.ThriveLogo,
+.SubMenuItem {
   cursor: pointer;
 }
 
@@ -64,23 +61,17 @@
   margin: 1rem 0 1rem 0;
 }
 
-.Title:hover {
+.Title:hover,
+.SubMenuItem:hover {
   border-bottom: 0.25rem solid var(--green);
 }
+
 @media (max-width: 1275px) {
   .Footer {
-    padding-bottom: 4rem;
-  }
-  .About {
-    margin-left: -5rem !important;
-  }
-  .ButtonStyle {
-    margin-left: 3rem !important;
-  }
-  .Title {
-    white-space: normal;
+    padding: 0 2rem 4rem 2rem;
   }
 }
+
 @media (max-width: 950px) {
   .Footer {
     text-align: center !important;
@@ -93,34 +84,17 @@
     font-weight: 100;
     margin: auto !important;
     border-bottom: 0.25rem solid transparent;
+    cursor: pointer;
   }
   .ThriveLogo {
     text-align: center !important;
     margin-left: 0;
   }
-  .Grid {
-    display: block !important;
-    text-align: center !important;
-    margin-left: 0;
-    margin-top: 1rem !important;
-    max-width: 85.33% !important;
-  }
-
-  .About {
-    display: block !important;
-    text-align: center !important;
-    margin-right: 3rem;
-    margin-top: -0.8rem;
-    margin-left: 2rem !important;
-  }
 
   .GridRight {
     text-align: center !important;
     max-width: 95%;
-    margin: 3rem !important;
-    margin-bottom: 4rem !important;
-    padding-bottom: 1rem;
-    margin-top: 1rem !important;
+    padding: 0 3rem 2rem 3rem;
   }
 
   .Margins {
@@ -128,7 +102,6 @@
   }
   .Title {
     text-align: center;
-    padding-top: 1rem;
   }
   .ButtonStyle {
     margin: auto !important;
