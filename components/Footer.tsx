@@ -49,18 +49,23 @@ const Footer = () => {
       const [resourceButtonClicked, setResourceButtonClicked] = useState(false)
       const { route } = routeData
       const link: ReactElement = (
-        <Grid item xs={12} md={1} spacing={1} className={styles.Grid}>
+        <div className={styles.Grid}>
           <NextLink href={route} as={route}>
             <h2 className={styles.Title}>{title}</h2>
           </NextLink>
-        </Grid>
+        </div>
       )
-      if (i === lastStaticRouteIndex - 2 || i === lastStaticRouteIndex - 3)
-        return <Fragment key={i}>{link}</Fragment>
+
       if (i === lastStaticRouteIndex - 1)
         return (
           <>
-            <Grid item xs={12} sm={3} className={styles.Grid}>
+            <Grid
+              item
+              xs={12}
+              sm={3}
+              className={styles.Grid}
+              style={{ maxWidth: 'auto' }}
+            >
               <Hidden smDown>
                 <h2
                   className={styles.ButtonTitle}
@@ -112,30 +117,29 @@ const Footer = () => {
                       const title = routeData[`title_${language}`]
                       const { route } = routeData
 
-                      {
-                        route === 'https://portal.sbcourts.org/CASBPORTAL/' ? (
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.ALink}
-                            href={route}
-                            key={i}
+                      return route ===
+                        'https://portal.sbcourts.org/CASBPORTAL/' ? (
+                        <a
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.ALink}
+                          href={route}
+                          key={i}
+                        >
+                          <h2
+                            style={{ outline: '0 !important' }}
+                            className={styles.SubMenuItem}
                           >
-                            <h2
-                              style={{ outline: '0 !important', color: 'blue' }}
-                              className={styles.SubMenuItem}
-                            >
-                              {title}
-                            </h2>
-                          </a>
-                        ) : (
-                          <NextLink href={route} as={route}>
-                            <h2 key={i} className={styles.SubMenuItem}>
-                              {title}
-                            </h2>
-                          </NextLink>
-                        )
-                      }
+                            {title}
+                          </h2>
+                        </a>
+                      ) : (
+                        <NextLink href={route} as={route}>
+                          <h2 key={i} className={styles.SubMenuItem}>
+                            {title}
+                          </h2>
+                        </NextLink>
+                      )
                     })}
                 </div>
               </Hidden>
@@ -198,19 +202,26 @@ const Footer = () => {
                     })}
                 </div>
               </Hidden>
-              <div className={styles.About}>{link}</div>
             </Grid>
+            <div>{link}</div>
           </>
         )
       if (i === lastStaticRouteIndex) return null
-      else return null
+      else return <Fragment key={i}>{link}</Fragment>
     },
   )
   return (
     <footer role="region" className={styles.Footer}>
-      <Grid item xs={12} sm={12} md={8} spacing={2}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          flex: 1,
+          padding: '2rem 0',
+        }}
+      >
         {StaticPages}
-      </Grid>
+      </div>
       <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
         <div>
           <ThriveLogo role="img" className={styles.ThriveLogo} />
