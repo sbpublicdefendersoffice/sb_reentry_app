@@ -214,15 +214,13 @@ const Footer = () => {
       <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
         <div>
           <ThriveLogo role="img" className={styles.ThriveLogo} />
-          <h4>{activeCopy.tagline}</h4>{' '}
+          <h4 style={{ marginBottom: '2rem' }}>{activeCopy.tagline}</h4>{' '}
           <NextLink href="/privacypolicy" as="/privacypolicy">
-            <a>
-              <p role="term" className={styles.Margins}>
-                {' '}
-                {language === ENGLISH
-                  ? 'Privacy Policy'
-                  : 'política de privacidad'}
-              </p>
+            <a role="term" className={styles.Margins}>
+              {' '}
+              {language === ENGLISH
+                ? 'Privacy Policy'
+                : 'política de privacidad'}
             </a>
           </NextLink>
           <p className={styles.Margins}>
