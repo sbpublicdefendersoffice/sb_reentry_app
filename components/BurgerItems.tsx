@@ -68,7 +68,6 @@ const BurgerItems = ({ open, setOpen }) => {
               onClick={() => setCourtButtonClicked(!courtButtonClicked)}
               style={{
                 textTransform: 'inherit',
-                lineHeight: 'inherit',
                 padding: '0 !important',
                 margin: '.5rem 0 .5rem 0',
                 display: 'block',
@@ -112,7 +111,6 @@ const BurgerItems = ({ open, setOpen }) => {
               onClick={() => setResourceButtonClicked(!resourceButtonClicked)}
               style={{
                 textTransform: 'inherit',
-                lineHeight: 'inherit',
                 padding: '0 !important',
                 margin: '.5rem 0 .5rem 0',
                 display: 'block',

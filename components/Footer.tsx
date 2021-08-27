@@ -5,7 +5,6 @@ import { RouteInfo, CopyHolder } from '../types/'
 import useLanguage from '../hooks/useLanguage'
 import { ENGLISH } from '../constants/language'
 import { ArrowDropDown } from '@material-ui/icons/'
-// import SBPDLogo from './SBPDLogo'
 import { ThriveLogo, Paragraph } from '../ui'
 import {
   staticPageRoutes,
@@ -111,7 +110,7 @@ const Footer = () => {
                 </Button>
                 <div style={{ marginTop: '1rem' }}>
                   {courtButtonClicked &&
-                    CourtSupportRoutes.map((routeData, i) => {
+                    CourtSupportRoutes.map(routeData => {
                       const title = routeData[`title_${language}`]
                       const { route } = routeData
 
@@ -270,15 +269,6 @@ const Footer = () => {
               <ThriveLogo role="img" className={styles.ThriveLogo} />
               <h4>{activeCopy.tagline}</h4>
             </div>
-            {/* <SBPDLogo />
-        <div className={styles.Logo1}>
-          <img
-            loading="lazy"
-            src="/icons/thriveleaf.svg"
-            className={styles.leaf}
-            alt="Thrive Logo Leaf"
-          />
-        </div> */}
           </Grid>
         </Grid>
       </div>

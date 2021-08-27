@@ -35,13 +35,13 @@ const SearchTermsMarquee = ({
 
   const setScrollingEffect = (): void => {
     if (
-      !tagsRef.current?.getClientRects()[0].width ||
-      !formRef.current?.getClientRects()[0].width
+      !tagsRef?.current?.getClientRects()[0]?.width ||
+      !formRef?.current?.getClientRects()[0]?.width
     ) {
       return null
     }
-    tagsRef.current?.getClientRects()[0].width >
-    formRef.current?.getClientRects()[0].width
+    tagsRef?.current?.getClientRects()[0]?.width >
+    formRef?.current?.getClientRects()[0]?.width
       ? setIsScrolling(true)
       : setIsScrolling(false)
   }
