@@ -33,7 +33,7 @@ const copy: CopyHolder = {
     tagline:
       'Una herramienta para clientes del condado de Santa Bárbara para los afectados por la justicia',
     court: 'Recursos de la corte',
-    resources: 'Soporte de recursos',
+    resource: 'Soporte de recursos',
   },
 }
 const Footer = () => {
@@ -57,14 +57,8 @@ const Footer = () => {
       if (i === lastStaticRouteIndex - 1)
         return (
           <>
-            <Grid
-              item
-              xs={12}
-              md={1}
-              style={{ maxWidth: '15.33%' }}
-              className={styles.Grid}
-            >
-              <Hidden mdDown>
+            <Grid item xs={12} sm={3} className={styles.Grid}>
+              <Hidden smDown>
                 <h2
                   className={styles.ButtonTitle}
                   style={{
@@ -93,14 +87,15 @@ const Footer = () => {
                   </div>
                 </h2>{' '}
               </Hidden>
-              <Hidden lgUp>
+              <Hidden mdUp>
                 <Button
                   onClick={() => setCourtButtonClicked(!courtButtonClicked)}
+                  className={styles.ButtonStyle}
                   style={{
                     textTransform: 'inherit',
                     lineHeight: 'inherit',
                     padding: '0 !important',
-                    margin: 'auto',
+
                     display: 'block',
                   }}
                 >
@@ -120,10 +115,11 @@ const Footer = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className={styles.ALink}
+                            href={route}
                             key={i}
                           >
                             <h2
-                              style={{ outline: '0 !important' }}
+                              style={{ outline: '0 !important', color: 'blue' }}
                               className={styles.SubMenuItem}
                             >
                               {title}
@@ -142,7 +138,7 @@ const Footer = () => {
               </Hidden>
             </Grid>
             <Grid item xs={12} md={1} className={styles.Grid}>
-              <Hidden mdDown>
+              <Hidden smDown>
                 <h2 className={styles.ButtonTitle}>
                   {activeCopy.resource}
                   <div style={{ marginTop: '1rem' }}>
@@ -163,7 +159,7 @@ const Footer = () => {
                   </div>
                 </h2>
               </Hidden>
-              <Hidden lgUp>
+              <Hidden mdUp>
                 <Button
                   onClick={() =>
                     setResourceButtonClicked(!resourceButtonClicked)
@@ -199,8 +195,7 @@ const Footer = () => {
                     })}
                 </div>
               </Hidden>
-
-              <div className={styles.About}> {link}</div>
+              <div className={styles.About}>{link}</div>
             </Grid>
           </>
         )
@@ -212,14 +207,14 @@ const Footer = () => {
     <footer role="region">
       <div>
         <Grid container className={styles.Footer}>
-          <Grid item xs={12} sm={12} md={8} spacing={1}>
+          <Grid item xs={12} sm={12} md={8} spacing={2}>
             {StaticPages}
           </Grid>
           <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
             <div>
               {' '}
               <em className={styles.Margins}>
-                <span role="contentinfo" style={{ display: 'inline-block' }}>
+                <span role="contentinfo" className={styles.DisplayInline}>
                   <p
                     className={styles.Margins}
                     style={{ marginRight: '.5rem' }}
@@ -248,7 +243,7 @@ const Footer = () => {
                 </a>
               </NextLink>
               <span className={styles.Margins}>
-                <p style={{ display: 'inline-block' }}> {activeCopy.art}</p>
+                <p className={styles.DisplayInline}> {activeCopy.art}</p>
                 <a
                   href={'https://robertmaja.org/wp/home/'}
                   target="_blank"
