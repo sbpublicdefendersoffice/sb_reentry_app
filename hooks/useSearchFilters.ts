@@ -1,8 +1,13 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react'
-import { PGOrganizationResponse } from '../types/postgresRecords'
+import {
+  PGLocationRecord,
+  PGOrganizationResponse,
+  PGServiceRecord,
+} from '../types/postgresRecords'
 
 interface ServiceFilter {
-  [filterName: string]: any[]
+  citySelected: string[]
+  serviceSelected: string[]
 }
 
 interface useSearchFiltersProps {
@@ -23,20 +28,81 @@ const useSearchFilters = ({
   const [fields, handleFieldsSelected] = useState<ServiceFilter>({
     citySelected: [],
     serviceSelected: [],
-    peopleServedSelected: [],
-    languageSelected: [],
   })
 
   useEffect(() => {
-    const query: any[] = Object.values(fields)
-      .reduce((sumArr, arr) => {
-        sumArr = [...sumArr, ...arr]
-        return sumArr
-      }, [])
-      .map(word => word.toLowerCase())
+    const isQuery: boolean = Object.values(fields).some(arr => arr.length)
 
     if (fetchedRecords) {
-      if (query.length) {
+      if (isQuery) {
+        let currentFiltersAppliedRecords: PGOrganizationResponse[] = []
+
+        if (fields.citySelected.length) {
+          const cities: string[] = fields.citySelected.map(str =>
+            str.toLowerCase(),
+          )
+
+          const currentRecords: PGOrganizationResponse[] =
+            currentFiltersAppliedRecords.length
+              ? currentFiltersAppliedRecords
+              : fetchedRecords
+
+          const recordsFilteredByCity: PGOrganizationResponse[] =
+            currentRecords.filter((rec: PGOrganizationResponse) =>
+              rec?.locations?.some((loc: PGLocationRecord) =>
+                cities.includes(loc.city.toLowerCase()),
+              ),
+            )
+
+          const locationsFilteredOut: PGOrganizationResponse[] =
+            recordsFilteredByCity.map((rec: PGOrganizationResponse) => {
+              rec.locations = rec.locations.filter((loc: PGLocationRecord) =>
+                cities.includes(loc.city.toLowerCase()),
+              )
+              return rec
+            })
+
+          currentFiltersAppliedRecords = locationsFilteredOut
+        }
+
+        if (fields.serviceSelected.length) {
+          const services: string[] = fields.serviceSelected.map(str =>
+            str.toLowerCase(),
+          )
+
+          const currentRecords: PGOrganizationResponse[] =
+            currentFiltersAppliedRecords.length
+              ? currentFiltersAppliedRecords
+              : fetchedRecords
+
+          const recordsFilteredByService: PGOrganizationResponse[] =
+            currentRecords.filter((rec: PGOrganizationResponse) =>
+              rec?.locations?.some((loc: PGLocationRecord) =>
+                loc?.services?.some((serv: PGServiceRecord) =>
+                  services.includes(serv?.name_english.toLowerCase()),
+                ),
+              ),
+            )
+
+          const servicesFilteredOut: PGOrganizationResponse[] =
+            recordsFilteredByService.map((rec: PGOrganizationResponse) => {
+              rec.locations = rec.locations.filter((loc: PGLocationRecord) =>
+                loc?.services?.some((serv: PGServiceRecord) =>
+                  services.includes(serv?.name_english.toLowerCase()),
+                ),
+              )
+              return rec
+            })
+
+          currentFiltersAppliedRecords = servicesFilteredOut
+        }
+        if (currentFiltersAppliedRecords.length) {
+          setSearchFilteredResults(currentFiltersAppliedRecords)
+          setLocationRecords(currentFiltersAppliedRecords)
+        } else {
+          setSearchFilteredResults(fetchedRecords)
+          setLocationRecords(fetchedRecords)
+        }
       } else {
         setSearchFilteredResults(fetchedRecords)
         setLocationRecords(fetchedRecords)
