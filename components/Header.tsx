@@ -16,6 +16,7 @@ import {
   staticPageRoutes,
   CourtSupportRoutes,
   ResourcesSupportRoutes,
+  ENGLISH,
 } from '../constants'
 import { ThriveLogo } from '../ui'
 import { Hidden, Badge, Button, Menu, MenuItem, Grid } from '@material-ui/core'
@@ -88,7 +89,9 @@ const Header = () => {
               }}
             >
               <h2 className={styles.Title}>
-                Court Resources
+                {language === ENGLISH
+                  ? 'Court Resources'
+                  : 'Recursos de la corte'}
                 <ArrowDropDown style={{ alignItems: 'inherit' }} />
               </h2>
             </Button>{' '}
@@ -104,13 +107,14 @@ const Header = () => {
                 const { route } = routeData
                 return (
                   <MenuItem
-                    key={i}
                     className={classes.dropDownItems}
                     onClick={handleCloseCourt}
+                    key={i}
                   >
                     {route === 'https://portal.sbcourts.org/CASBPORTAL/' ? (
                       <a
                         target="_blank"
+                        href={route}
                         rel="noopener noreferrer"
                         className={styles.ALink}
                       >
@@ -140,7 +144,9 @@ const Header = () => {
               }}
             >
               <h2 className={styles.Title}>
-                Resource Support
+                {language === ENGLISH
+                  ? 'Resource Support'
+                  : 'Soporte de recursos'}
                 <ArrowDropDown style={{ alignItems: 'inherit' }} />
               </h2>
             </Button>
