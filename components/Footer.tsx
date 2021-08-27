@@ -17,10 +17,12 @@ const currentYear: number = new Date().getFullYear()
 export const copyright: string = `© Copyright 2021${
   currentYear === 2021 ? '' : `-${currentYear}`
 }`
+
 export const linkInfo = {
   text: "Santa Barbara County Public Defender's Office",
   href: 'https://www.countyofsb.org/defender',
 }
+
 const copy: CopyHolder = {
   english: {
     art: 'Homepage picture graciously provided by ',
@@ -36,6 +38,7 @@ const copy: CopyHolder = {
     resource: 'Soporte de recursos',
   },
 }
+
 const Footer = () => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
@@ -204,69 +207,55 @@ const Footer = () => {
     },
   )
   return (
-    <footer role="region">
-      <div>
-        <Grid container className={styles.Footer}>
-          <Grid item xs={12} sm={12} md={8} spacing={2}>
-            {StaticPages}
-          </Grid>
-          <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
-            <div>
-              {' '}
-              <em className={styles.Margins}>
-                <span role="contentinfo" className={styles.DisplayInline}>
-                  <p
-                    className={styles.Margins}
-                    style={{ marginRight: '.5rem' }}
-                  >
-                    {copyright}
-                  </p>
-                </span>
-                <a
-                  role="link"
-                  className={styles.Margins}
-                  href={linkInfo.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {linkInfo.text}
-                </a>
-              </em>
-              <NextLink href="/privacypolicy" as="/privacypolicy">
-                <a>
-                  <p role="term" className={styles.Margins}>
-                    {' '}
-                    {language === ENGLISH
-                      ? 'Privacy Policy'
-                      : 'política de privacidad'}
-                  </p>
-                </a>
-              </NextLink>
-              <span className={styles.Margins}>
-                <p className={styles.DisplayInline}> {activeCopy.art}</p>
-                <a
-                  href={'https://robertmaja.org/wp/home/'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ display: 'inline-block' }}
-                >
-                  <p style={{ marginLeft: '.5rem' }} className={styles.Margins}>
-                    {' '}
-                    Robert Maja
-                  </p>
-                </a>
-              </span>
-              <Paragraph>
+    <footer role="region" className={styles.Footer}>
+      <Grid item xs={12} sm={12} md={8} spacing={2}>
+        {StaticPages}
+      </Grid>
+      <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
+        <div>
+          <ThriveLogo role="img" className={styles.ThriveLogo} />
+          <h4>{activeCopy.tagline}</h4>{' '}
+          <NextLink href="/privacypolicy" as="/privacypolicy">
+            <a>
+              <p role="term" className={styles.Margins}>
+                {' '}
                 {language === ENGLISH
-                  ? `Thrive is a free, nonprofit resource directory developed by Code for America and Santa Barbara County Public Defender's office for people who have been system impacted in Santa Barbara County. We are not a law firm and the information on this site is not legal advice.`
-                  : `Thrive es un directorio de recursos gratuito y sin fines de lucro desarrollado por Code para Oficina del Defensor Público del Condado de Santa Bárbara y Estados Unidos para personas que se han visto afectados por el sistema en el condado de Santa Bárbara. No somos un bufete de abogados y la información en este sitio no es un consejo legal. `}
-              </Paragraph>
-              <ThriveLogo role="img" className={styles.ThriveLogo} />
-              <h4>{activeCopy.tagline}</h4>
-            </div>
-          </Grid>
-        </Grid>
-      </div>
+                  ? 'Privacy Policy'
+                  : 'política de privacidad'}
+              </p>
+            </a>
+          </NextLink>
+          <p className={styles.Margins}>
+            {activeCopy.art}
+            <a
+              href={'https://robertmaja.org/wp/home/'}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'inline-block' }}
+            >
+              {' '}
+              Robert Maja
+            </a>
+          </p>
+          <Paragraph>
+            {language === ENGLISH
+              ? `Thrive is a free, nonprofit resource directory developed by Code for America and Santa Barbara County Public Defender's office for people who have been system impacted in Santa Barbara County. We are not a law firm and the information on this site is not legal advice.`
+              : `Thrive es un directorio de recursos gratuito y sin fines de lucro desarrollado por Code para Oficina del Defensor Público del Condado de Santa Bárbara y Estados Unidos para personas que se han visto afectados por el sistema en el condado de Santa Bárbara. No somos un bufete de abogados y la información en este sitio no es un consejo legal. `}
+          </Paragraph>
+          <em className={styles.Margins} role="contentinfo">
+            {copyright}{' '}
+            <a
+              role="link"
+              className={styles.Margins}
+              href={linkInfo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {linkInfo.text}
+            </a>
+          </em>
+        </div>
+      </Grid>
     </footer>
   )
 }

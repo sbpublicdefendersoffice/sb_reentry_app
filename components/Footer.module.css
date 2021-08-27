@@ -1,6 +1,8 @@
 .Footer {
   background-color: var(--primary);
-  display: inline-flex;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 var(--pad-lg);
 }
 
 .Footer * {
@@ -28,7 +30,8 @@
   font-weight: 100;
   margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
-  white-space: nowrap;
+
+  /* white-space: nowrap; */
 }
 .ButtonTitle {
   color: var(--light);
@@ -37,9 +40,7 @@
   margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
 }
-.DisplayInline {
-  display: inline-flex;
-}
+
 .Grid {
   display: inline-flex !important;
   margin-top: 3rem !important;
@@ -47,10 +48,11 @@
   max-width: 19.33%;
 }
 .GridRight {
+  display: flex;
+  flex-direction: column;
   text-align: right !important;
   max-width: 30.833%;
-  margin-top: 3rem !important;
-  margin-bottom: 2rem !important;
+  padding-bottom: var(--pad-std);
   flex-basis: 30.33% !important;
 }
 .About {
@@ -69,13 +71,15 @@
 
 .Margins {
   margin: 1rem 0 1rem 0;
-  white-space: nowrap;
 }
 
 .Title:hover {
   border-bottom: 0.25rem solid var(--green);
 }
 @media (max-width: 1275px) {
+  .Footer {
+    padding-bottom: 4rem;
+  }
   .About {
     margin-left: -5rem !important;
   }
@@ -137,8 +141,5 @@
   }
   .ButtonStyle {
     margin: auto !important;
-  }
-  .DisplayInline {
-    display: none;
   }
 }
