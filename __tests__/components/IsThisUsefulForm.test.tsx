@@ -1,6 +1,6 @@
-// import { fireEvent } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
 
-import { renderWithAllContext } from '../../__helpers__/contexts'
+import { renderWithAllContext, customFetch } from '../../__helpers__/'
 
 import { copy as parentCopy } from '../../components/IsThisUsefulTag'
 import IsThisUsefulForm, {
@@ -18,8 +18,6 @@ const blankFeedback: Feedback = {
   comment: '',
 }
 
-console.log = jest.fn()
-
 const defaultProps: IsThisUsefulFormProps = {
   feedbackInfo: blankFeedback,
   setFeedbackInfo: () => {},
@@ -34,13 +32,9 @@ describe('<IsThisUsefulForm />', () => {
 
     const formNode: HTMLElement = getByRole('form')
     const textboxNode: HTMLElement = getByRole('textbox')
-    // const buttonNode: HTMLElement = getByRole('button')
-
-    // fireEvent.click(buttonNode)
 
     expect(formNode).toBeInTheDocument()
     expect(textboxNode).toBeInTheDocument()
-    // expect(console.log).toHaveBeenCalled()
   })
 
   it('renders static english content correctly', () => {
@@ -82,5 +76,35 @@ describe('<IsThisUsefulForm />', () => {
     expect(articleNode).toHaveTextContent(useful)
     expect(yesNode).toHaveTextContent(yes)
     expect(noNode).toHaveTextContent(no)
+  })
+
+  it('calls submit function sucessfully', () => {
+    // @ts-ignore
+    window.fetch = customFetch({ approval: 'okay' })
+
+    const { getByRole } = renderWithAllContext(
+      <IsThisUsefulForm {...defaultProps} />,
+    )
+
+    const buttonNode: HTMLElement = getByRole('button')
+
+    fireEvent.click(buttonNode)
+
+    expect(window.fetch).toHaveBeenCalled()
+  })
+
+  it('displays error when error returns from api call', () => {
+    // @ts-ignore
+    window.fetch = customFetch({ error: "that's messed up" })
+
+    const { getByRole } = renderWithAllContext(
+      <IsThisUsefulForm {...defaultProps} />,
+    )
+
+    const buttonNode: HTMLElement = getByRole('button')
+
+    fireEvent.click(buttonNode)
+
+    expect(window.fetch).toHaveBeenCalled()
   })
 })
