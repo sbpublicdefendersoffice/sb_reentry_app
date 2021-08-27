@@ -11,6 +11,7 @@
   width: 18rem;
   margin-left: 3rem;
 }
+
 .SubMenuItem {
   word-wrap: break-word;
   color: var(--light);
@@ -36,7 +37,9 @@
   margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
 }
-
+.DisplayInline {
+  display: inline-flex;
+}
 .Grid {
   display: inline-flex !important;
   margin-top: 3rem !important;
@@ -51,11 +54,14 @@
   flex-basis: 30.33% !important;
 }
 .About {
-  display: inline !important;
+  display: inline-flex !important;
   margin-top: -3rem;
   margin-left: -9rem !important;
+  margin-right: 4rem !important;
 }
-
+.ButtonStyle {
+  margin-left: 3rem !important;
+}
 .Title,
 .ThriveLogo {
   cursor: pointer;
@@ -69,12 +75,29 @@
 .Title:hover {
   border-bottom: 0.25rem solid var(--green);
 }
-
+@media (max-width: 1275px) {
+  .About {
+    margin-left: -5rem !important;
+  }
+  .ButtonStyle {
+    margin-left: 3rem !important;
+  }
+  .Title {
+    white-space: normal;
+  }
+}
 @media (max-width: 950px) {
   .Footer {
     text-align: center !important;
     display: block !important;
     height: auto !important;
+  }
+  .ButtonTitle {
+    color: var(--light);
+    font-size: var(--med-text);
+    font-weight: 100;
+    margin: auto !important;
+    border-bottom: 0.25rem solid transparent;
   }
   .ThriveLogo {
     text-align: center !important;
@@ -85,14 +108,15 @@
     text-align: center !important;
     margin-left: 0;
     margin-top: 1rem !important;
-    max-width: 82.33% !important;
+    max-width: 85.33% !important;
   }
+
   .About {
     display: block !important;
     text-align: center !important;
     margin-right: 3rem;
     margin-top: -0.8rem;
-    margin-left: 4rem !important;
+    margin-left: 2rem !important;
   }
 
   .GridRight {
@@ -103,11 +127,18 @@
     padding-bottom: 1rem;
     margin-top: 1rem !important;
   }
+
   .Margins {
     margin: 0.5rem 0 0.5rem 0;
   }
   .Title {
     text-align: center;
     padding-top: 1rem;
+  }
+  .ButtonStyle {
+    margin: auto !important;
+  }
+  .DisplayInline {
+    display: none;
   }
 }
