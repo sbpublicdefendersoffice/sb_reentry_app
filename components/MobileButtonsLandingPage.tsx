@@ -1,11 +1,10 @@
 /* eslint-disable */
-import { useContext } from 'react'
 import { Fab } from '@material-ui/core/'
 import { FilterList, List, Room } from '@material-ui/icons/'
-import { ViewContext } from '../hooks/'
+import { useView } from '../hooks/'
 
 const MobileButtonsLandingPage = ({ activeCopy, setOpen }) => {
-  const { dispatch } = useContext(ViewContext)
+  const { dispatch } = useView()
   return (
     <>
       <div

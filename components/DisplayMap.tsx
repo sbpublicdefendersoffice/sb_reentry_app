@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Fragment, useState, useEffect, useContext } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 
 import type { Map } from 'mapbox-gl'
 
@@ -13,16 +13,12 @@ import {
   useMapInfo,
   useLanguage,
   useLocation,
-  useSearchFilters,
+  useLocationFilters,
   useGlobalSearch,
-  ViewContext,
+  useView,
   useResizeEvent,
 } from '../hooks'
-import {
-  MapMarker,
-  // CityFilter,
-  // ProximityFilter
-} from './'
+import { MapMarker, CityFilter, ProximityFilter } from './'
 import { Details } from '../ui'
 import { PGOrgPlusLocation, WindowSize } from '../types'
 import styles from './DisplayMap.module.css'
@@ -44,13 +40,13 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
     }),
   )
   const { pathname } = useRouter()
-  const { state } = useContext(ViewContext)
+  const { state } = useView()
   const { isListView } = state
 
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
   const { coords } = useLocation()
-  const { locRecordsToFilter, setLocRecordsToFilter } = useSearchFilters()
+  const { locRecordsToFilter, setLocRecordsToFilter } = useLocationFilters()
   const { fitBoundsArr, centerArr, zoom } = useMapInfo(
     locRecordsToFilter?.filteredRecords || latLongInfo,
   )
@@ -131,23 +127,23 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
           : styles.DisplayMap
       }
     >
-      {/* {showFilters && (
-        <CityFilter
-          locationsToFilter={latLongInfo}
-          regionVisibility={locRecordsToFilter.visibility}
-          setLocRecordsToFilter={setLocRecordsToFilter}
-        >
-          {isInSBCounty && (
-            <ProximityFilter
-              coords={coords}
-              locationsToFilter={latLongInfo}
-              setLocRecordsToFilter={setLocRecordsToFilter}
-              radiusDistance={locRecordsToFilter.radiusDistance}
-            />
-          )}
-        </CityFilter>
-      )} */}
       <div id="map" style={mapContainerStyle}>
+        {showFilters && (
+          <CityFilter
+            locationsToFilter={latLongInfo}
+            regionVisibility={locRecordsToFilter.visibility}
+            setLocRecordsToFilter={setLocRecordsToFilter}
+          >
+            {isInSBCounty && (
+              <ProximityFilter
+                coords={coords}
+                locationsToFilter={latLongInfo}
+                setLocRecordsToFilter={setLocRecordsToFilter}
+                radiusDistance={locRecordsToFilter.radiusDistance}
+              />
+            )}
+          </CityFilter>
+        )}
         {isInSBCounty && (
           <MapMarker
             locationRecord={{

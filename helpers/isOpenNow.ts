@@ -1,4 +1,5 @@
-import { weekday } from '../constants/'
+import { weekday } from '../constants'
+
 const isOpenNow = scheduleInfo => {
   const { open_time, close_time, days } = scheduleInfo
   const now = new Date()
@@ -10,4 +11,5 @@ const isOpenNow = scheduleInfo => {
     return false
   }
 }
+
 export default isOpenNow
