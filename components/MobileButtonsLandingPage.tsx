@@ -4,7 +4,7 @@ import { FilterList, List, Room } from '@material-ui/icons/'
 import { useView } from '../hooks/'
 
 const MobileButtonsLandingPage = ({ activeCopy, setOpen }) => {
-  const { dispatch } = useView()
+  const { setIsMapView } = useView()
   return (
     <>
       <div
@@ -20,9 +20,7 @@ const MobileButtonsLandingPage = ({ activeCopy, setOpen }) => {
           style={{ margin: '1rem' }}
           onClick={e => {
             e.preventDefault()
-            dispatch({
-              type: 'toggleList',
-            })
+            setIsMapView(false)
           }}
         >
           <List />
@@ -34,9 +32,7 @@ const MobileButtonsLandingPage = ({ activeCopy, setOpen }) => {
           style={{ margin: '1rem' }}
           onClick={e => {
             e.preventDefault()
-            dispatch({
-              type: 'toggleMap',
-            })
+            setIsMapView(true)
           }}
         >
           <Room />

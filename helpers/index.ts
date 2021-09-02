@@ -19,4 +19,3 @@ export {
   POST,
   GET,
 } from './validators'
-export { default as viewReducer } from './view'

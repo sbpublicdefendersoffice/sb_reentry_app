@@ -40,8 +40,8 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
     }),
   )
   const { pathname } = useRouter()
-  const { state } = useView()
-  const { isListView } = state
+  const { isMapView } = useView()
+  // const { isListView } = state
 
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
@@ -122,7 +122,7 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
       className={
         windowSize.width < 1275 && !showFilters
           ? styles.DisplayMapMobile
-          : showFilters && !isListView
+          : showFilters && isMapView
           ? styles.DisplayMapMobile
           : styles.DisplayMap
       }
