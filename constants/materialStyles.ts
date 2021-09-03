@@ -177,7 +177,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     appBar: {
       top: 'auto !important',
       bottom: 0,
-      marginTop: '4rem',
       backgroundColor: '#12385E !important',
       display: 'none !important',
       justifyContent: 'space-between',
