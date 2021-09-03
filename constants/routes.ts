@@ -77,29 +77,20 @@ export const resourceRoutes: RouteInfo[] = [
 
 export const staticPageRoutes: RouteInfo[] = [
   {
-    title_english: 'Resource Checklist',
-    title_spanish: 'Lista de recursos',
-    route: '/checklist',
+    title_english: 'Home',
+    title_spanish: 'Casa',
+    route: '/',
   },
   {
     title_english: 'Thrive Stories',
     title_spanish: 'Historias de éxito',
     route: '/thrivestories',
   },
-  {
-    title_english: 'Know Your Rights',
-    title_spanish: 'Conoce tus derechos',
-    route: '/knowyourrights',
-  },
+
   {
     title_english: 'About Us',
     title_spanish: 'Sobre nosotros',
     route: '/aboutus',
-  },
-  {
-    title_english: 'FAQ',
-    title_spanish: 'FAQ',
-    route: '/faq',
   },
   {
     title_english: 'Favorites',
@@ -203,5 +194,69 @@ export const topThreeRoutes: InfoWithDescription[] = [
       'El PRRC es una excelente fuente de información sobre los requisitos de libertad condicional, informes y muchos otros temas',
     route: '/search/1072',
     imgPath: './icons/clearmyrecord.svg',
+  },
+]
+export const CourtSupportRoutes: RouteInfo[] = [
+  {
+    title_english: 'Diversion Programs',
+    title_spanish: 'Programas de desvío',
+    route: '/letushelp/diversion/areyouaclient',
+  },
+  {
+    title_english: 'Specialty Courts',
+    title_spanish: 'Tribunales de especialidades',
+    route: '/letushelp/specialtycourts/areyouaclient',
+  },
+  {
+    title_english: 'Odyssey Portal',
+    title_spanish: 'Odyssey Portal',
+    route: 'https://portal.sbcourts.org/CASBPORTAL/',
+  },
+  {
+    title_english: 'Public Defender Services',
+    title_spanish: 'Servicios de defensa pública',
+    route: '/search/1069',
+  },
+  {
+    title_english: 'Helping prepare for court',
+    title_spanish: 'Ayudando a prepararse para la corte',
+    route: '/letushelp/prearraignment',
+  },
+  {
+    title_english: 'Legal terms to know',
+    title_spanish: 'Términos legales a conocer',
+    route: '/letushelp/legalterms',
+  },
+]
+export const ResourcesSupportRoutes: RouteInfo[] = [
+  {
+    title_english: 'Resource Checklist',
+    title_spanish: 'Soporte de recursos',
+    route: '/checklist',
+  },
+  {
+    title_english: 'Support for Women',
+    title_spanish: 'Apoyo a las mujeres',
+    route: '/letushelp/resourcesforwomen',
+  },
+  {
+    title_english: 'Support for families',
+    title_spanish: 'Apoyo a las familias',
+    route: '/letushelp/familyresources',
+  },
+  {
+    title_english: 'Highly Recommended Resources',
+    title_spanish: 'Recursos altamente recomendados',
+    route: '/letushelp/recommendedresources',
+  },
+  {
+    title_english: 'Know Your Rights',
+    title_spanish: 'Conoce tus derechos',
+    route: '/knowyourrights',
+  },
+  {
+    title_english: 'FAQ',
+    title_spanish: 'FAQ',
+    route: '/faq',
   },
 ]

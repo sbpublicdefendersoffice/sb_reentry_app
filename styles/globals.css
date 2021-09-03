@@ -26,16 +26,29 @@ main {
   justify-content: center;
   flex-wrap: wrap;
 }
-
+.MuiList-padding {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.MuiButton-text {
+  padding: 0 !important;
+  margin-top: -0.2rem !important;
+}
+.MuiListItem-gutters {
+  padding-left: 0 !important;
+}
+.MuiMenuItem-root {
+  padding-top: 0 !important;
+}
 a {
-  text-decoration: none;
+  text-decoration: none !important;
   color: var(--dark);
   word-break: break-all;
 }
 
 a:not(.not-text-link) {
-  border-bottom: var(--border-width) dotted var(--secondary);
   color: var(--secondary);
+  text-decoration: none;
 }
 
 a:hover {
@@ -46,6 +59,5 @@ a:hover {
   main {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 2rem;
   }
 }

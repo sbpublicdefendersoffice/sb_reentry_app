@@ -1,64 +1,168 @@
 import NextLink from 'next/link'
+import { useState, Fragment, ReactElement } from 'react'
 import { bool, func } from 'prop-types'
-
+import { Button, MenuItem } from '@material-ui/core'
 import { StyledBurgerItems } from './BurgerItems.module'
-import { ENGLISH } from '../constants/language'
-
+import {
+  useStyles,
+  staticPageRoutes,
+  CourtSupportRoutes,
+  ResourcesSupportRoutes,
+} from '../constants'
+import styles from './Header.module.css'
 import useLanguage from '../hooks/useLanguage'
-
+import { CopyHolder, RouteInfo } from '../types/'
+export const copy: CopyHolder = {
+  english: {
+    court: 'Court Resources',
+    resource: 'Resource Support',
+  },
+  spanish: {
+    court: 'Resource Support',
+    resource: 'Soporte de recursos',
+  },
+}
+const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 const BurgerItems = ({ open, setOpen }) => {
   const { language } = useLanguage()
+  const classes = useStyles()
+  const activeCopy = copy[language]
+  const handleOpen = event => {
+    if (event.target.innerText === activeCopy.resource) {
+      setOpen(true)
+    } else if (event.target.innerText === activeCopy.court) {
+      setOpen(true)
+    } else {
+      setOpen(!open)
+    }
+  }
+  const StaticPages: ReactElement[] = staticPageRoutes.map(
+    (routeData: RouteInfo, i: number) => {
+      const title = routeData[`title_${language}`]
+      const [courtButtonClicked, setCourtButtonClicked] = useState(false)
+      const [resourceButtonClicked, setResourceButtonClicked] = useState(false)
+      const { route } = routeData
+      const link: ReactElement = (
+        <MenuItem
+          className={classes.dropDownItems}
+          open={!open}
+          onClick={() => setOpen(!open)}
+        >
+          <NextLink href={route} as={route}>
+            <h2
+              role="term"
+              style={{ color: 'white' }}
+              className={styles.SubMenuItem}
+            >
+              {title}
+            </h2>
+          </NextLink>
+        </MenuItem>
+      )
+      if (i === lastStaticRouteIndex - 2 || i === lastStaticRouteIndex - 3)
+        return <Fragment key={i}>{link}</Fragment>
+      if (i === lastStaticRouteIndex - 1)
+        return (
+          <Fragment key={i}>
+            <Button
+              onClick={() => setCourtButtonClicked(!courtButtonClicked)}
+              style={{
+                textTransform: 'inherit',
+                padding: '0 !important',
+                margin: '.5rem 0 .5rem 0',
+                display: 'block',
+              }}
+            >
+              <h2 role="term" className={classes.subMenuItem}>
+                {activeCopy.court}
+              </h2>
+            </Button>{' '}
+            {courtButtonClicked &&
+              CourtSupportRoutes.map((routeData, i) => {
+                const title = routeData[`title_${language}`]
+                const { route } = routeData
+                return (
+                  <MenuItem
+                    key={i}
+                    className={classes.dropDownBurgerItems}
+                    onClick={() => setOpen(false)}
+                  >
+                    {route === 'https://portal.sbcourts.org/CASBPORTAL/' ? (
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={route}
+                        style={{
+                          textTransform: 'inherit',
+                          padding: 'none',
+                          letterSpacing: 'none',
+                        }}
+                      >
+                        <h2
+                          style={{
+                            letterSpacing: '0',
+                            padding: '0',
+                            lineHeight: '0',
+                          }}
+                          className={classes.subMenuItem}
+                        >
+                          {title}
+                        </h2>
+                      </a>
+                    ) : (
+                      <NextLink href={route} as={route}>
+                        <h2 className={classes.subMenuItem}>{title}</h2>
+                      </NextLink>
+                    )}
+                  </MenuItem>
+                )
+              })}
+            <Button
+              onClick={() => setResourceButtonClicked(!resourceButtonClicked)}
+              style={{
+                textTransform: 'inherit',
+                padding: '0 !important',
+                margin: '.5rem 0 .5rem 0',
+                display: 'block',
+              }}
+            >
+              <h2 role="term" className={classes.subMenuItem}>
+                {activeCopy.resource}
+              </h2>
+            </Button>
+            {resourceButtonClicked &&
+              ResourcesSupportRoutes.map((routeData, i) => {
+                const title = routeData[`title_${language}`]
+                const { route } = routeData
+                return (
+                  <MenuItem
+                    key={i}
+                    className={classes.dropDownBurgerItems}
+                    onClick={() => setOpen(false)}
+                  >
+                    <NextLink href={route} as={route}>
+                      <h2 role="term" className={classes.subMenuItem}>
+                        {title}
+                      </h2>
+                    </NextLink>
+                  </MenuItem>
+                )
+              })}
+            {link}
+          </Fragment>
+        )
+      if (i === lastStaticRouteIndex) return null
+      else return null
+    },
+  )
   return (
-    <StyledBurgerItems open={open} onClick={() => setOpen(!open)}>
-      <NextLink href="/checklist" as="/checklist">
-        <a>
-          <h2 role="term">
-            {language === ENGLISH ? 'Resource Checklist' : 'Lista de recursos'}
-          </h2>
-        </a>
-      </NextLink>
-      <NextLink href="/thrivestories" as="/thrivestories">
-        <a>
-          <h2 role="term">
-            {' '}
-            {language === ENGLISH ? 'Thrive Stories' : 'Historias de éxito'}
-          </h2>
-        </a>
-      </NextLink>
-      <NextLink href="/knowyourrights" as="/knowyourrights">
-        <a>
-          <h2 role="term">
-            {language === ENGLISH ? 'Know Your Rights' : 'Conoce tus derechos'}
-          </h2>
-        </a>
-      </NextLink>
-      <NextLink href="/aboutus" as="/aboutus">
-        <a>
-          <h2 role="term">
-            {' '}
-            {language === ENGLISH ? 'About Us' : 'Sobre nosotros'}
-          </h2>
-        </a>
-      </NextLink>
-      <NextLink href="/faq" as="/faq">
-        <a>
-          <h2 role="term">FAQ</h2>
-        </a>
-      </NextLink>
-      <NextLink href="/favorites" as="/favorites">
-        <a>
-          <h2 role="term">
-            {language === ENGLISH ? 'Favorites' : 'Favoritas'}
-          </h2>
-        </a>
-      </NextLink>
+    <StyledBurgerItems open={open} onClick={handleOpen}>
+      {StaticPages}
     </StyledBurgerItems>
   )
 }
-
 BurgerItems.propTypes = {
   open: bool.isRequired,
   setOpen: func.isRequired,
 }
-
 export default BurgerItems

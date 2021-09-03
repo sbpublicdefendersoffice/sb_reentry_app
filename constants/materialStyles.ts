@@ -14,7 +14,44 @@ export const useStyles = makeStyles((theme: Theme) =>
     heading: {
       fontSize: '2rem !important',
       fontFamily: 'Roboto',
+      textAlign: 'left',
     },
+    menu: {
+      paddingTop: '0 !important',
+      color: 'pink',
+    },
+    dropDownItems: {
+      color: 'white !important',
+      backgroundColor: '#13385e !important',
+    },
+    dropDownBurgerItems: {
+      color: 'white !important',
+      backgroundColor: '#13385e !important',
+      marginLeft: '1.2rem !important',
+    },
+    subMenuItem: {
+      wordWrap: 'break-word',
+      color: 'var(--light)',
+      fontSize: 'var(--med-text)',
+      display: 'block !important',
+      margin: '0 var(--margin-std)',
+      borderBottom: '0.25rem solid transparent',
+      fontWeight: 100,
+      '&:hover': {
+        borderBottom: '.25rem solid #00a968',
+      },
+    },
+
+    subMenuItemInButton: {
+      wordWrap: 'break-word',
+      color: 'var(--light)',
+      fontSize: 'var(--med-text)',
+      margin: '0 var(--margin-std)',
+      borderBottom: '0.25rem solid transparent',
+      fontWeight: 100,
+      marginLeft: '2rem',
+    },
+
     badge: {
       '& > *': {
         margin: theme.spacing(1),
@@ -40,7 +77,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     accordDescriptionLink: {
       fontSize: '1.5rem',
       fontFamily: 'Roboto',
-      textAlign: 'justify',
+      textAlign: 'left',
       cursor: 'pointer',
       overflow: 'auto !important',
       borderBottom: 'none !important',
@@ -140,7 +177,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     appBar: {
       top: 'auto !important',
       bottom: 0,
-      marginTop: '4rem',
       backgroundColor: '#12385E !important',
       display: 'none !important',
       justifyContent: 'space-between',

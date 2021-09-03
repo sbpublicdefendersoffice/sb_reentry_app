@@ -48,6 +48,38 @@ export const ImportantDocumentsAccord: CopyHolder = {
       '* Obtener o reemplazar algunos de estos documentos tiene tarifas asociadas, pero hay exenciones disponibles.',
   },
 }
+export const FinanceAccord: CopyHolder = {
+  english: {
+    listItem: 'Finances',
+    description:
+      'Below you will find resources that can assist you in managing your money',
+    action: 'Here are some of our finance resources',
+    href1:
+      'https://www.nerdwallet.com/article/loans/personal-loans/personal-loan-why-should-i-get',
+    item1: 'Should I get a personal loan',
+    href2:
+      'https://www.marketwatch.com/story/the-beginners-guide-to-building-a-budget-2019-08-09',
+    item2: 'Building a budget',
+    href3:
+      'https://www.thebalance.com/how-can-i-easily-open-bank-accounts-315723',
+    item3: 'Setting up a bank account',
+  },
+  spanish: {
+    listItem: 'Finanzas',
+    description:
+      'A continuación, encontrará recursos que pueden ayudarlo a administrar su dinero.',
+    action: 'Estos son algunos de nuestros recursos financieros',
+    href1:
+      'https://www.nerdwallet.com/article/loans/personal-loans/personal-loan-why-should-i-get',
+    item1: '¿Debería obtener un préstamo personal?',
+    href2:
+      'https://www.marketwatch.com/story/the-beginners-guide-to-building-a-budget-2019-08-09',
+    item2: 'Construyendo un presupuesto',
+    href3:
+      'https://www.thebalance.com/how-can-i-easily-open-bank-accounts-315723',
+    item3: 'Configurar una cuenta bancaria',
+  },
+}
 
 export const FoodAccord: CopyHolder = {
   english: {

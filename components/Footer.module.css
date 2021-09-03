@@ -1,98 +1,174 @@
 .Footer {
-  width: 100%;
   background-color: var(--primary);
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: var(--pad-std);
+  padding-bottom: 3rem;
 }
-
 .Footer * {
   color: var(--light-grey);
 }
-
-.container {
-  width: 90%;
-  height: 90%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto auto min-content 1% min-content;
-  grid-template-areas: 'nav . logo2 . logo1';
+.ThriveLogo {
+  width: 18rem;
+  margin-left: 3rem;
 }
 
-.Nav {
-  grid-area: nav;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding-bottom: var(--pad-std);
+.SubMenuItem {
+  word-wrap: break-word;
+  color: var(--light);
   font-size: var(--med-text);
+  font-weight: 100;
+  justify-content: flex-start;
+  margin: 0 var(--margin-std);
+  border-bottom: 0.25rem solid transparent;
 }
-
-.Link {
+.Title {
+  word-wrap: break-word;
+  color: var(--light);
   font-size: var(--med-text);
-  margin-right: 1rem;
+  font-weight: 100;
+  margin: 0 var(--margin-std);
+  border-bottom: 0.25rem solid transparent;
+  white-space: nowrap !important;
+}
+.TitleWrap {
+  word-wrap: break-word;
+  color: var(--light);
+  font-size: var(--med-text);
+  display: block;
+  font-weight: 100;
+  margin: 0 var(--margin-std);
+  border-bottom: 0.25rem solid transparent;
+  white-space: nowrap !important;
+}
+.ButtonTitle {
+  color: var(--light);
+  font-size: var(--med-text);
+  font-weight: 100;
+  border-bottom: 0.25rem solid transparent;
+  white-space: nowrap !important;
+  margin: 0 var(--margin-std);
+}
+.DisplayInline {
+  display: inline-flex;
+}
+.Grid {
+  display: inline-flex !important;
+  margin-top: 3rem !important;
+  margin-left: 3rem !important;
+  max-width: 19.33%;
+}
+.GridRight {
+  /* display: flex;
+  flex-direction: column; */
+  text-align: right !important;
+  max-width: 30.833%;
+  margin-top: 0 !important;
+  flex-basis: 30.33% !important;
+}
+.About {
+  display: inline-flex !important;
+  margin-top: -3.3rem;
+  margin-left: 7rem !important;
+  margin-right: 4rem !important;
+}
+.ButtonStyle {
+  margin-left: 3rem !important;
+}
+.Title,
+.ThriveLogo,
+.SubMenuItem {
   cursor: pointer;
-  border-bottom: var(--border-width) dotted transparent;
 }
 
-.Link:hover,
-.Link:active {
-  border-bottom-color: var(--secondary);
-  color: var(--secondary);
+.Margins {
+  margin: 1rem 0 1rem 0;
 }
 
-.Logo1,
-.Logo2 {
-  align-self: center;
+.Title:hover,
+.SubMenuItem:hover {
+  border-bottom: 0.25rem solid var(--green);
 }
 
-.Logo1 {
-  grid-area: logo1;
-  background-color: var(--primary);
-  border-radius: 50%;
-  width: 5rem;
-  height: 5rem;
-}
-
-.leaf {
-  width: 3.25rem;
-  transform: translate(0.2rem, 0.6rem);
-}
-
-.Logo2 {
-  grid-area: logo2;
-}
-
-.copyright {
-  display: inline-block;
-}
-
-.Disclaimer {
-  padding: 0 10%;
-}
 @media (max-width: 1275px) {
   .Footer {
     margin-bottom: 4rem;
+    padding-bottom: 0;
+  }
+  .About {
+    margin-left: 5rem !important;
+  }
+  .ButtonStyle {
+    margin-left: 3rem !important;
+  }
+  .DisplayInline {
+    display: block;
+  }
+  .Title {
+    word-wrap: break-word !important;
+    white-space: normal !important;
+  }
+  .TitleWrap {
+    white-space: normal !important;
+    display: flex;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    text-align: left !important;
   }
 }
-@media (max-width: 500px) {
-  .container {
-    grid-template-columns: auto auto min-content min-content;
-    grid-template-areas: 'nav . logo2 logo1';
+
+@media (max-width: 950px) {
+  .Footer {
+    text-align: center !important;
+    display: inline-flex !important;
+    height: auto !important;
+    margin: auto !important;
+    margin-bottom: 4rem !important;
+  }
+  .ButtonTitle {
+    color: var(--light);
+    font-size: var(--med-text);
+    font-weight: 100;
+    margin: auto !important;
+    border-bottom: 0.25rem solid transparent;
+    cursor: pointer;
+  }
+  .ThriveLogo {
+    text-align: center !important;
+    margin-left: 0;
+  }
+  .Grid {
+    display: block !important;
+    text-align: center !important;
+    margin-left: 0;
+    margin-top: 1rem !important;
+    max-width: 79.33% !important;
   }
 
-  .Link {
-    font-size: var(--standard-text);
-    margin-right: 0;
+  .About {
+    display: block !important;
+    text-align: center !important;
+    margin-right: 3rem;
+    margin-top: -0.8rem;
+    margin-left: 1.3rem !important;
   }
 
-  .Nav {
-    flex-direction: column;
-    text-align: left;
+  .GridRight {
+    text-align: center !important;
+    max-width: 95%;
+    margin: auto !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 1rem;
+    margin-top: 1rem !important;
   }
 
-  .Disclaimer {
-    padding: 0 5%;
+  .Margins {
+    margin: 0.5rem 0 0.5rem 0;
+  }
+  .Title {
+    text-align: center;
+    padding-top: 1rem;
+    white-space: initial !important;
+  }
+  .ButtonStyle {
+    margin: auto !important;
   }
 }

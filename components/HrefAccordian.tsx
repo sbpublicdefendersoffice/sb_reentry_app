@@ -7,13 +7,22 @@ import {
 } from '@material-ui/core/'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { CopyHolder } from '../types/'
-import { ImportantDocumentsAccord, JobAccord, useStyles } from '../constants/'
+import {
+  ImportantDocumentsAccord,
+  JobAccord,
+  FinanceAccord,
+  useStyles,
+} from '../constants/'
 import { useLanguage } from '../hooks/'
 
 const HrefAccordian = () => {
   const { language } = useLanguage()
   const classes = useStyles()
-  const checklist: CopyHolder[] = [ImportantDocumentsAccord, JobAccord]
+  const checklist: CopyHolder[] = [
+    ImportantDocumentsAccord,
+    JobAccord,
+    FinanceAccord,
+  ]
   return (
     <>
       {checklist.map((item, key) => {
@@ -52,8 +61,9 @@ const HrefAccordian = () => {
                         rel="noopener noreferrer"
                         className={classes.accordDescriptionLink}
                         href={activeCopy.href1}
+                        style={{ textAlign: 'left' }}
                       >
-                        {activeCopy.item1}
+                        <p>{activeCopy.item1}</p>
                       </a>
                       <a
                         style={{ display: 'block' }}
