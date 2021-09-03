@@ -15,6 +15,7 @@ export {
   JobAccord,
   ProbationAccord,
   TipsAccord,
+  FinanceAccord,
 } from './checklist-data'
 export { specialCourtReqsPDF } from './documents'
 export { isProd } from './env'
