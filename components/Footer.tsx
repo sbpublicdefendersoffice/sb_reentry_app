@@ -57,35 +57,48 @@ const Footer = () => {
       if (i === lastStaticRouteIndex - 1)
         return (
           <>
-            <Grid item xs={12} sm={3} className={styles.Grid}>
+            <Grid item xs={12} sm={1} spacing={3} className={styles.Grid}>
               <Hidden smDown>
-                <h2
-                  className={styles.ButtonTitle}
+                <Button
+                  onClick={() => setCourtButtonClicked(!courtButtonClicked)}
                   style={{
-                    marginBottom: '3rem',
+                    textTransform: 'inherit',
+                    lineHeight: 'inherit',
+                    padding: '0 !important',
+                    marginLeft: '2rem',
+                    display: 'block',
                   }}
                 >
-                  {activeCopy.court}
-                  <div style={{ marginTop: '1rem' }}>
-                    {CourtSupportRoutes.map((routeData, i) => {
-                      const title = routeData[`title_${language}`]
-                      const { route } = routeData
-                      return (
-                        <NextLink key={i} href={route} as={route}>
-                          <h2
-                            className={styles.Title}
-                            style={{
-                              fontSize: '1.2rem',
-                              margin: '.5rem 0rem .5rem 0rem',
-                            }}
-                          >
-                            {title}
-                          </h2>
-                        </NextLink>
-                      )
-                    })}
-                  </div>
-                </h2>{' '}
+                  <h2 className={styles.ButtonTitle}>
+                    {activeCopy.court}
+                    <div
+                      style={{
+                        marginTop: '1rem',
+                      }}
+                    >
+                      {courtButtonClicked &&
+                        CourtSupportRoutes.map((routeData, i) => {
+                          const title = routeData[`title_${language}`]
+                          const { route } = routeData
+                          return (
+                            <NextLink key={i} href={route} as={route}>
+                              <h2
+                                className={styles.TitleWrap}
+                                onClick={() => setCourtButtonClicked(false)}
+                                style={{
+                                  fontSize: '1.2rem',
+                                  margin: '.5rem 0rem .5rem 0rem',
+                                  whiteSpace: 'normal',
+                                }}
+                              >
+                                {title}
+                              </h2>
+                            </NextLink>
+                          )
+                        })}
+                    </div>
+                  </h2>{' '}
+                </Button>
               </Hidden>
               <Hidden mdUp>
                 <Button
@@ -105,59 +118,84 @@ const Footer = () => {
                 </Button>
                 <div style={{ marginTop: '1rem' }}>
                   {courtButtonClicked &&
-                    CourtSupportRoutes.map(routeData => {
+                    CourtSupportRoutes.map((routeData, i) => {
                       const title = routeData[`title_${language}`]
                       const { route } = routeData
-
-                      {
-                        route === 'https://portal.sbcourts.org/CASBPORTAL/' ? (
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.ALink}
-                            href={route}
-                            key={i}
-                          >
-                            <h2
-                              style={{ outline: '0 !important', color: 'blue' }}
-                              className={styles.SubMenuItem}
+                      return (
+                        <>
+                          {route ===
+                          'https://portal.sbcourts.org/CASBPORTAL/' ? (
+                            <a
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={route}
+                              key={i}
                             >
-                              {title}
-                            </h2>
-                          </a>
-                        ) : (
-                          <NextLink href={route} as={route}>
-                            <h2 key={i} className={styles.SubMenuItem}>
-                              {title}
-                            </h2>
-                          </NextLink>
-                        )
-                      }
+                              <h2
+                                style={{
+                                  outline: '0 !important',
+                                }}
+                                className={styles.Title}
+                              >
+                                {title}
+                              </h2>
+                            </a>
+                          ) : (
+                            <NextLink key={i} href={route} as={route}>
+                              <h2 className={styles.Title}>{title}</h2>
+                            </NextLink>
+                          )}
+                        </>
+                      )
                     })}
                 </div>
               </Hidden>
             </Grid>
-            <Grid item xs={12} md={1} className={styles.Grid}>
+            <Grid item xs={12} md={3} className={styles.Grid}>
               <Hidden smDown>
-                <h2 className={styles.ButtonTitle}>
-                  {activeCopy.resource}
-                  <div style={{ marginTop: '1rem' }}>
-                    {ResourcesSupportRoutes.map((routeData, i) => {
-                      const title = routeData[`title_${language}`]
-                      const { route } = routeData
-                      return (
-                        <NextLink key={i} href={route} as={route}>
-                          <h2
-                            className={styles.Title}
-                            style={{ margin: '.5rem 0rem .5rem 0rem' }}
-                          >
-                            {title}
-                          </h2>
-                        </NextLink>
-                      )
-                    })}
-                  </div>
-                </h2>
+                <Button
+                  onClick={() =>
+                    setResourceButtonClicked(!resourceButtonClicked)
+                  }
+                  style={{
+                    textTransform: 'inherit',
+                    lineHeight: 'inherit',
+                    padding: '0 !important',
+                    margin: 'auto',
+                    display: 'block',
+                    marginLeft: '9rem',
+                  }}
+                >
+                  <h2 className={styles.ButtonTitle}>
+                    {activeCopy.resource}
+
+                    <div
+                      style={{
+                        marginTop: '1rem',
+                      }}
+                    >
+                      {resourceButtonClicked &&
+                        ResourcesSupportRoutes.map((routeData, i) => {
+                          const title = routeData[`title_${language}`]
+                          const { route } = routeData
+                          return (
+                            <NextLink key={i} href={route} as={route}>
+                              <h2
+                                className={styles.TitleWrap}
+                                onClick={() => setResourceButtonClicked(false)}
+                                style={{
+                                  margin: '.5rem 0rem .5rem 0rem',
+                                  whiteSpace: 'normal',
+                                }}
+                              >
+                                {title}
+                              </h2>
+                            </NextLink>
+                          )
+                        })}
+                    </div>
+                  </h2>
+                </Button>
               </Hidden>
               <Hidden mdUp>
                 <Button
@@ -213,25 +251,8 @@ const Footer = () => {
           <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
             <div>
               {' '}
-              <em className={styles.Margins}>
-                <span role="contentinfo" className={styles.DisplayInline}>
-                  <p
-                    className={styles.Margins}
-                    style={{ marginRight: '.5rem' }}
-                  >
-                    {copyright}
-                  </p>
-                </span>
-                <a
-                  role="link"
-                  className={styles.Margins}
-                  href={linkInfo.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {linkInfo.text}
-                </a>
-              </em>
+              <ThriveLogo role="img" className={styles.ThriveLogo} />
+              <h4>{activeCopy.tagline}</h4>
               <NextLink href="/privacypolicy" as="/privacypolicy">
                 <a>
                   <p role="term" className={styles.Margins}>
@@ -261,8 +282,25 @@ const Footer = () => {
                   ? `Thrive is a free, nonprofit resource directory developed by Code for America and Santa Barbara County Public Defender's office for people who have been system impacted in Santa Barbara County. We are not a law firm and the information on this site is not legal advice.`
                   : `Thrive es un directorio de recursos gratuito y sin fines de lucro desarrollado por Code para Oficina del Defensor Público del Condado de Santa Bárbara y Estados Unidos para personas que se han visto afectados por el sistema en el condado de Santa Bárbara. No somos un bufete de abogados y la información en este sitio no es un consejo legal. `}
               </Paragraph>
-              <ThriveLogo role="img" className={styles.ThriveLogo} />
-              <h4>{activeCopy.tagline}</h4>
+              <em className={styles.Margins}>
+                <span role="contentinfo" className={styles.DisplayInline}>
+                  <p
+                    className={styles.Margins}
+                    style={{ marginRight: '.5rem' }}
+                  >
+                    {copyright}
+                  </p>
+                  <a
+                    role="link"
+                    className={styles.Margins}
+                    href={linkInfo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {linkInfo.text}
+                  </a>
+                </span>
+              </em>
             </div>
           </Grid>
         </Grid>
