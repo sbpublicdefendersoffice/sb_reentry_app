@@ -36,6 +36,7 @@ const Header = () => {
   const { language } = useLanguage()
   const classes = useStyles()
   const { favoriteResources } = useFavorite()
+  const activeCopy = copy[language]
   const [isBurgerVisible, setIsBurgerVisible] = useState<boolean>(
     innerWidth <= 1275,
   )
@@ -52,6 +53,7 @@ const Header = () => {
       const title = routeData[`title_${language}`]
       const [anchorElCourt, setAnchorElCourt] = useState(null)
       const [anchorElResource, setAnchorElResource] = useState(null)
+
       const { route } = routeData
 
       const handleCourt = event => {
