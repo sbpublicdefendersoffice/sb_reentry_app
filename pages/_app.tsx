@@ -1,6 +1,6 @@
 // import App from "next/app";
 import { useRouter } from 'next/router'
-import { useState, useEffect, useReducer } from 'react'
+import { useState, useEffect } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
 import { siteTitle, ENGLISH, SPANISH, isProd } from '../constants'
@@ -21,20 +21,17 @@ import {
   IsThisUsefulTag,
   MobileAppBar,
 } from '../components'
-import {
-  checkAndSetUserLocation,
-  googlePageviews,
-  viewReducer,
-} from '../helpers/'
+import { checkAndSetUserLocation, googlePageviews } from '../helpers/'
 import '../styles/globals.css'
 import '../styles/variables.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const ISSERVER = typeof localStorage === 'undefined'
-  const [state, dispatch] = useReducer(viewReducer, {
-    isListView: false,
-    isMapView: true,
-  })
+  const [isMapView, setIsMapView] = useState<boolean>(true)
+  // const [state, dispatch] = useReducer(viewReducer, {
+  //   isListView: false,
+  //   isMapView: true,
+  // })
   const [favorites, setFavorites] = useState(null)
   const [favoriteRecords, setFavoriteRecords] = useState(null)
   const { events, route } = useRouter()
@@ -111,7 +108,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <title>{siteTitle}</title>
         </Head>
         <LangProvider value={{ language, setLanguage }}>
-          <ViewProvider value={{ state, dispatch }}>
+          <ViewProvider value={{ isMapView, setIsMapView }}>
             <FavoriteProvider
               value={{
                 favoriteResources: favoriteRecords,

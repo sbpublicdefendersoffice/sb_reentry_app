@@ -32,8 +32,8 @@ const RecordPane = ({
 RecordPaneProps) => {
   const { push, route } = useRouter()
   const { language } = useLanguage()
-  const { state } = useView()
-  const { isListView, isMapView } = state
+  const { isMapView } = useView()
+  // const { isListView, isMapView } = state
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: innerWidth,
     height: innerHeight,
@@ -56,7 +56,7 @@ RecordPaneProps) => {
   return (
     <div
       className={
-        isListView && !isMapView && windowSize.width < 1275
+        !isMapView && windowSize.width < 1275
           ? styles.RecordPaneMobile
           : styles.RecordPane
       }
@@ -66,7 +66,7 @@ RecordPaneProps) => {
         role="heading"
         size="heading-text"
         className={
-          isListView && !isMapView && windowSize.width < 1275
+          !isMapView && windowSize.width < 1275
             ? styles.titleMobile
             : styles.title
         }
@@ -86,7 +86,7 @@ RecordPaneProps) => {
         role="list"
         open
         className={
-          isListView && !isMapView && windowSize.width < 1275
+          !isMapView && windowSize.width < 1275
             ? styles.detailsMobile
             : styles.details
         }

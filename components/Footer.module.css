@@ -61,7 +61,7 @@
   flex-direction: column; */
   text-align: right !important;
   max-width: 30.833%;
-  margin-top: 0rem !important;
+  margin-top: 0 !important;
   flex-basis: 30.33% !important;
 }
 .About {
@@ -91,7 +91,7 @@
 @media (max-width: 1275px) {
   .Footer {
     margin-bottom: 4rem;
-    padding-bottom: 0rem;
+    padding-bottom: 0;
   }
   .About {
     margin-left: 5rem !important;
@@ -155,7 +155,7 @@
     text-align: center !important;
     max-width: 95%;
     margin: auto !important;
-    margin-bottom: 0rem !important;
+    margin-bottom: 0 !important;
     padding-bottom: 1rem;
     margin-top: 1rem !important;
   }
