@@ -17,10 +17,12 @@ const currentYear: number = new Date().getFullYear()
 export const copyright: string = `© Copyright 2021${
   currentYear === 2021 ? '' : `-${currentYear}`
 }`
+
 export const linkInfo = {
   text: "Santa Barbara County Public Defender's Office",
   href: 'https://www.countyofsb.org/defender',
 }
+
 const copy: CopyHolder = {
   english: {
     art: 'Homepage picture graciously provided by ',
@@ -36,6 +38,7 @@ const copy: CopyHolder = {
     resource: 'Soporte de recursos',
   },
 }
+
 const Footer = () => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
@@ -52,8 +55,7 @@ const Footer = () => {
           </NextLink>
         </Grid>
       )
-      if (i === lastStaticRouteIndex - 2 || i === lastStaticRouteIndex - 3)
-        return <Fragment key={i}>{link}</Fragment>
+
       if (i === lastStaticRouteIndex - 1)
         return (
           <>
@@ -108,7 +110,6 @@ const Footer = () => {
                     textTransform: 'inherit',
                     lineHeight: 'inherit',
                     padding: '0 !important',
-
                     display: 'block',
                   }}
                 >
@@ -238,7 +239,7 @@ const Footer = () => {
           </>
         )
       if (i === lastStaticRouteIndex) return null
-      else return null
+      else return <Fragment key={i}>{link}</Fragment>
     },
   )
   return (
