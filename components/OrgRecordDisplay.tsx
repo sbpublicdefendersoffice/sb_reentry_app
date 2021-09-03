@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { Disclaimer, LocationRecordDisplay } from './'
 import { Details, Title, Paragraph } from '../ui'
 import FavoriteIcon from '@material-ui/icons/Favorite'
@@ -31,7 +30,7 @@ export const copy: CopyHolder = {
 const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
-  const { favoriteResources, updateFavoriteResources } = useContext(useFavorite)
+  const { favoriteResources, updateFavoriteResources } = useFavorite()
   const [org_name, languages_spoken, notes]: string[] = [
     sortedRecord[`name_${language}`],
     sortedRecord[`languages_spoken_${language}`],

@@ -10,7 +10,7 @@ import {
   LangProvider,
   LocationProvider,
   ToastProvider,
-  ViewContext,
+  ViewProvider,
   FavoriteProvider,
 } from '../hooks'
 import {
@@ -111,7 +111,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <title>{siteTitle}</title>
         </Head>
         <LangProvider value={{ language, setLanguage }}>
-          <ViewContext.Provider value={{ state, dispatch }}>
+          <ViewProvider value={{ state, dispatch }}>
             <FavoriteProvider
               value={{
                 favoriteResources: favoriteRecords,
@@ -134,7 +134,7 @@ const App = ({ Component, pageProps }: AppProps) => {
                 </ToastProvider>
               </LocationProvider>
             </FavoriteProvider>
-          </ViewContext.Provider>
+          </ViewProvider>
         </LangProvider>
       </>
     )

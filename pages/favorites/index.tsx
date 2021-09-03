@@ -1,4 +1,4 @@
-import { useContext, Fragment } from 'react'
+import { Fragment } from 'react'
 import Head from 'next/head'
 
 import { useFavorite, useLanguage } from '../../hooks/'
@@ -9,7 +9,7 @@ import { useStyles, favoritesCopy, siteTitle } from '../../constants/'
 const FavoritePage = () => {
   const { language } = useLanguage()
   const classes = useStyles()
-  const { favoriteResources } = useContext(useFavorite)
+  const { favoriteResources } = useFavorite()
 
   const activeCopy = favoritesCopy[language]
 

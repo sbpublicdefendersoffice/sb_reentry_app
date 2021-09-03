@@ -2,10 +2,15 @@ import { useEffect } from 'react'
 
 const RESIZE: keyof WindowEventMap = 'resize'
 
-const useResizeEvent = (callback: () => any): void =>
-  useEffect((): (() => void) => {
-    addEventListener(RESIZE, callback)
-    return () => removeEventListener(RESIZE, callback)
-  }, [])
+type Deps = null | any[] | []
+
+const useResizeEvent = (callback: () => any, deps?: Deps): void =>
+  useEffect(
+    (): (() => void) => {
+      addEventListener(RESIZE, callback)
+      return () => removeEventListener(RESIZE, callback)
+    },
+    deps !== undefined ? deps : [],
+  )
 
 export default useResizeEvent

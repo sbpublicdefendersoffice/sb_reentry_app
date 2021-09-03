@@ -1,4 +1,4 @@
-import { Fragment, ReactElement, useContext } from 'react'
+import { Fragment, ReactElement } from 'react'
 import { useRouter } from 'next/router'
 import { Favorite, FavoriteBorder } from '@material-ui/icons'
 import { Button } from '@material-ui/core/'
@@ -7,7 +7,7 @@ import useLanguage from '../hooks/useLanguage'
 import { PGOrganizationResponse } from '../types/'
 import { ENGLISH } from '../constants/language'
 import { Card, Paragraph } from '../ui'
-import FavoriteProvider from '../hooks/useFavorite'
+import useFavorite from '../hooks/useFavorite'
 
 export interface OrgRecordCardProps {
   record: PGOrganizationResponse
@@ -30,8 +30,7 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
     name_spanish,
   } = record
 
-  const { favoriteResources, updateFavoriteResources } =
-    useContext(FavoriteProvider)
+  const { favoriteResources, updateFavoriteResources } = useFavorite()
 
   const isFavIcon = <Favorite style={{ color: '#13385E', fontSize: '3rem' }} />
   const isNotFavIcon = <FavoriteBorder style={{ fontSize: '3rem' }} />

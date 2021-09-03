@@ -1,8 +1,8 @@
-import { Dispatch, SetStateAction, useContext } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import NextLink from 'next/link'
 import Paragraph from '../ui/Paragraph'
 import { PGOrganizationResponse } from '../types/postgresRecords'
-import FavoriteProvider from '../hooks/useFavorite'
+import useFavorite from '../hooks/useFavorite'
 import styles from './GlobalSearchResult.module.css'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
@@ -26,8 +26,7 @@ const GlobalSearchResult = ({
     multiple_categories,
   } = record
   const imgSrc = multiple_categories ? multiple_categories[0] : 'socialservices'
-  const { favoriteResources, updateFavoriteResources } =
-    useContext(FavoriteProvider)
+  const { favoriteResources, updateFavoriteResources } = useFavorite()
   const isFavIcon = (
     <FavoriteIcon
       data-testid="filled-heart"

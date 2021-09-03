@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, MutableRefObject } from 'react'
 
 import { Language, CopyHolder, PGOrganizationResponse } from '../types'
+import useResizeEvent from '../hooks/useResizeEvent'
 import { Paragraph } from '../ui'
 
 import styles from './SearchTermsMarquee.module.css'
@@ -34,27 +35,18 @@ const SearchTermsMarquee = ({
   const [searchTermsToScroll, setSearchTermsToScroll] = useState<any>(null)
 
   const setScrollingEffect = (): void => {
-    if (
-      !tagsRef?.current?.getClientRects()[0]?.width ||
-      !formRef?.current?.getClientRects()[0]?.width
-    ) {
-      return null
-    }
-    tagsRef?.current?.getClientRects()[0]?.width >
-    formRef?.current?.getClientRects()[0]?.width
-      ? setIsScrolling(true)
-      : setIsScrolling(false)
+    if (tagsRef.current && formRef.current)
+      tagsRef?.current?.getClientRects()?.[0]?.width >
+      formRef?.current?.getClientRects()?.[0]?.width
+        ? setIsScrolling(true)
+        : setIsScrolling(false)
   }
+
   const activeCopy = copy[language]
 
-  useEffect(() => {
-    if (tagsRef.current && formRef.current) {
-      addEventListener('resize', setScrollingEffect)
-      return () => removeEventListener('resize ', setScrollingEffect)
-    }
-  }, [
-    tagsRef.current?.getClientRects()[0].width,
-    formRef.current?.getClientRects()[0].width,
+  useResizeEvent(setScrollingEffect, [
+    tagsRef?.current?.getClientRects()?.[0]?.width,
+    formRef?.current?.getClientRects()?.[0]?.width,
     searchRecords,
   ])
 

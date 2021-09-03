@@ -1,6 +1,13 @@
-import { ChangeEvent, Dispatch, ReactNode } from 'react'
+import {
+  // ChangeEvent,
+  Dispatch,
+  ReactNode,
+} from 'react'
 
-import { ENGLISH, REGION_VISIBILITY } from '../constants'
+import {
+  ENGLISH,
+  //  REGION_VISIBILITY
+} from '../constants'
 import {
   CopyHolder,
   FilterMapAction,
@@ -32,26 +39,26 @@ export const copy: CopyHolder = {
 }
 
 const CityFilter = ({
-  locationsToFilter,
-  setLocRecordsToFilter,
-  regionVisibility,
+  // locationsToFilter,
+  // setLocRecordsToFilter,
+  // regionVisibility,
   children,
 }: CityFilterProps) => {
   const { language } = useLanguage()
-  const activeCopy = copy[language]
+  // const activeCopy = copy[language]
 
-  const handleCheck = (e: ChangeEvent<HTMLInputElement>): void => {
-    const { id } = e.target
+  // const handleCheck = (e: ChangeEvent<HTMLInputElement>): void => {
+  //   const { id } = e.target
 
-    setLocRecordsToFilter({
-      filterName: REGION_VISIBILITY,
-      value: {
-        ...regionVisibility,
-        [id]: !regionVisibility[id],
-      },
-      locationsToFilter,
-    })
-  }
+  //   setLocRecordsToFilter({
+  //     filterName: REGION_VISIBILITY,
+  //     value: {
+  //       ...regionVisibility,
+  //       [id]: !regionVisibility[id],
+  //     },
+  //     locationsToFilter,
+  //   })
+  // }
 
   return (
     <form
@@ -59,7 +66,7 @@ const CityFilter = ({
       className={styles.CityFilter}
       style={{ width: `${language === ENGLISH ? 7.25 : 8.5}rem` }}
     >
-      {Object.keys(regionVisibility).map((region: string) => (
+      {/* {Object.keys(regionVisibility).map((region: string) => (
         <div key={region} className={styles.CheckboxHolder}>
           <label role="label" className={styles.Label} htmlFor={region}>
             {activeCopy[region]}
@@ -72,7 +79,7 @@ const CityFilter = ({
             id={region}
           />
         </div>
-      ))}
+      ))} */}
       {children}
     </form>
   )
