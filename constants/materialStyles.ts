@@ -14,6 +14,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     heading: {
       fontSize: '2rem !important',
       fontFamily: 'Roboto',
+      textAlign: 'left',
     },
     menu: {
       paddingTop: '0 !important',
@@ -40,6 +41,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         borderBottom: '.25rem solid #00a968',
       },
     },
+
     subMenuItemInButton: {
       wordWrap: 'break-word',
       color: 'var(--light)',
@@ -75,7 +77,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     accordDescriptionLink: {
       fontSize: '1.5rem',
       fontFamily: 'Roboto',
-      textAlign: 'justify',
+      textAlign: 'left',
       cursor: 'pointer',
       overflow: 'auto !important',
       borderBottom: 'none !important',
