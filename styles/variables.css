@@ -12,6 +12,7 @@
   --med-grey: #b0b0b0;
   --light-grey: #ebebeb;
   --green: #00a968;
+  --green-transparent: rgba(0, 169, 104, 0.3);
   --peri: #9fb3de;
 
   /* Spacing Variables */
