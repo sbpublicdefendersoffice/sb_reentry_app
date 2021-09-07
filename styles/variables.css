@@ -1,6 +1,7 @@
 :root {
   /* Color Variables */
   --light: #fff;
+  --light-transparent: rgba(255, 255, 255, 0.85);
   --dark: #292929;
   --primary: #12385e;
   --secondary: #4c7fa1;

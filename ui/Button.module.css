@@ -1,7 +1,7 @@
 .Button {
   min-height: 2.5rem;
-  background-color: var(--highlight);
-  border: solid var(--border-width) var(--highlight);
+  background-color: var(--green);
+  border: solid var(--border-width) var(--green);
   border-radius: var(--radius-small);
   cursor: pointer;
   outline: none;
@@ -15,6 +15,7 @@
 
 .Light {
   background-color: var(--light);
+  border: solid var(--border-width) var(--highlight);
 }
 
 .Light .ButtonText {

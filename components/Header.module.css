@@ -44,6 +44,7 @@
   align-items: flex-end;
   display: flex;
   color: white;
+  cursor: pointer;
 }
 .SearchIcon {
   margin-left: 5rem;
