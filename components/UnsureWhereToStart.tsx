@@ -3,7 +3,45 @@ import { useState } from 'react'
 
 import { useLanguage, useResizeEvent } from '../hooks/'
 import { CopyHolder } from '../types/language'
-import { Title, Button } from '../ui'
+import { Title, Paragraph, Button } from '../ui'
+
+const resourceIcons: string[] = [
+  'legalservices',
+  'documents',
+  'specialtycourts',
+]
+const resourceCopy: CopyHolder[] = [
+  {
+    english: {
+      service: 'Public Defender Services',
+      copy: "Access the many services offered by the Public Defender's Office.",
+    },
+    spanish: {
+      service: 'Servicios de defensa pública',
+      copy: 'Acceda a los múltiples servicios que ofrece la Defensoría Pública.',
+    },
+  },
+  {
+    english: {
+      service: 'Help Preparing for Court',
+      copy: 'From documents to legal terms, we can help you through!',
+    },
+    spanish: {
+      service: 'Ayuda para prepararse para la corte',
+      copy: 'Desde documentos hasta términos legales, ¡podemos ayudarlo!',
+    },
+  },
+  {
+    english: {
+      service: 'Our Resource Guides',
+      copy: 'Food, jobs, medicine and more. Find resources to help you live your life.',
+    },
+    spanish: {
+      service: 'Nuestras guías de recursos',
+      copy: 'Alimentos, trabajos, medicinas y más. Encuentre recursos que lo ayuden a vivir su vida.',
+    },
+  },
+]
 
 const copy: CopyHolder = {
   english: {
@@ -41,6 +79,33 @@ const UnsureWhereToStart = () => {
       <div className={styles.Column}>
         <Title>{title}</Title>
         <Title className={styles.SecondTitle}>{title2}</Title>
+        {isLargeView && (
+          <div className={styles.Resources}>
+            {resourceCopy.map((resource: CopyHolder, i: number) => {
+              const { service, copy } = resource[language]
+
+              return (
+                <div key={i} className={styles.SingleResource}>
+                  <img
+                    className={styles.Icon}
+                    src={`./icons/${resourceIcons[i]}.svg`}
+                  />
+                  <div className={styles.TextHolder}>
+                    <Paragraph
+                      className={styles.ResourceTitle}
+                      color="highlight"
+                    >
+                      {service}
+                    </Paragraph>
+                    <Paragraph className={styles.ResourceCopy}>
+                      {copy}
+                    </Paragraph>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
         <Button block onClick={() => push(url, url)} className={styles.Button}>
           {isLargeView ? buttonText : title2}
         </Button>

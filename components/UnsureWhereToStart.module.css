@@ -14,14 +14,62 @@
 }
 
 .Column {
+  display: flex;
+  flex-direction: column;
   width: 50%;
   height: 100%;
+}
+
+.Resources {
+  display: inherit;
+  flex-direction: inherit;
+  flex: 1 0;
+  padding: var(--pad-std);
+}
+
+.SingleResource {
+  display: flex;
+  height: 33%;
+}
+
+.Icon {
+  width: 15%;
+}
+
+.TextHolder {
+  display: inherit;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding: var(--pad-std) 25% 0 0;
+}
+
+.ResourceTitle {
+  font-size: var(--heading-text);
+}
+
+.ResourceCopy {
+  font-size: var(--med-text);
 }
 
 .Button {
   margin: 0 auto;
   width: 20rem;
-  margin-top: var(--margin-lg);
+  margin-top: var(--margin-std);
+}
+
+@media (max-width: 900px) {
+  .TextHolder {
+    padding-right: 10%;
+  }
+
+  .ResourceTitle {
+    font-size: var(--med-text);
+  }
+
+  .ResourceCopy {
+    font-size: var(--standard-text);
+  }
 }
 
 @media (max-width: 700px) {
