@@ -8,7 +8,7 @@ export const PrivacyPolicyData: PrivacyPolicy = {
     learnMore: `to learn about other local programs that can help you during your re-integration process.`,
     overview: 'Overview',
     overviewDescription:
-      'We will only use your personal information to understand how to better serve you during your re-entry process. We will not knowingly disclose or sell your personal information to any third party, except as provided in this privacy policy. We will take all reasonable measures to protect your personal information.',
+      'We will only use your personal information to understand how to better serve you after your experience with the criminal legal system. We will not knowingly disclose or sell your personal information to any third party, except as provided in this privacy policy. We will take all reasonable measures to protect your personal information.',
     weCollect: 'The personal information we collect',
     weCollectDescription:
       'We collect all information that you provide through the Site, including your phone number, location and similar information that you include on your navigating the Thrive platform. In addition to the information you provide, we automatically collect and store information about your visit to the Site:',
@@ -56,7 +56,7 @@ export const PrivacyPolicyData: PrivacyPolicy = {
       'para conocer otros programas locales que pueden ayudarlo durante suproceso de reintegración.',
     overview: 'Información general',
     overviewDescription:
-      'Solo usaremos su información personal para comprender cómo mejorar servirle durante su proceso de reingreso. No divulgaremos a sabiendas o vender su información personal a terceros, excepto según lo dispuesto en esta política de privacidad. Tomaremos todas las medidas razonables para proteger Tu información personal. ',
+      'Solo usaremos su información personal para comprender cómo brindarle un mejor servicio después de su experiencia con el sistema legal penal. No divulgaremos ni venderemos a sabiendas su información personal a ningún tercero, excepto según lo dispuesto en esta política de privacidad. Tomaremos todas las medidas razonables para proteger su información personal. ',
     weCollect: 'La información personal que recopilamos',
     weCollectDescription:
       'Recopilamos toda la información que nos proporciona a través del Sitio, incluida su número de teléfono, ubicación e información similar que incluye en su navegación por la plataforma Thrive. Además de la información que proporcionar, recopilamos y almacenamos automáticamente información sobre su visita al sitio: ',
