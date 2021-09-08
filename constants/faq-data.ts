@@ -120,6 +120,21 @@ export const covid: CopyHolder = {
     href1: 'https://publichealthsbc.org/vaccine/',
   },
 }
+export const resumeTemplate: CopyHolder = {
+  english: {
+    listItem: `Is there a template I can use to build a resume?`,
+    description:
+      'Resumes will help you with obtaining a job. You can view many resume templates by  ',
+    href1: 'https://www.canva.com/resumes/templates/',
+  },
+  spanish: {
+    listItem:
+      '¿Existe una plantilla que pueda utilizar para crear un currículum?',
+    description:
+      'Los currículums lo ayudarán a obtener un trabajo. Puede ver muchas plantillas de currículum ',
+    href1: 'https://www.canva.com/resumes/templates/',
+  },
+}
 export const documents: CopyHolder = {
   english: {
     listItem: `How do I obtain my social security card, identification card, and/or birth certificate? `,

@@ -7,7 +7,7 @@ import { Title, Button } from '../ui'
 
 const copy: CopyHolder = {
   english: {
-    title: 'Unure where to start?',
+    title: 'Unsure where to start?',
     title2: 'Let us help',
     buttonText: 'See more help topics',
   },

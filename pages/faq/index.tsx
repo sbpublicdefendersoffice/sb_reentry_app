@@ -25,11 +25,13 @@ import {
   edits,
   feedback,
   flexFullWidth,
+  resumeTemplate,
 } from '../../constants/'
 const FaqPage = () => {
   const { language } = useLanguage()
   const classes = useStyles()
   const faqs: CopyHolder[] = [
+    resumeTemplate,
     whereToStart,
     probation,
     transferProbation,

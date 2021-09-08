@@ -12,14 +12,14 @@ const copy: CopyHolder = {
     about: 'About Us',
     title: "We're here to help you thrive",
     explainer:
-      "On ThriveSBC you will find a variety of resources to help you or a loved one with re-entry after a jail or prison stay. We're  here to help!",
+      "On ThriveSBC you will find a variety of resources to help you or a loved one who have been impacted by the criminal legal system. We're  here to help!",
     buttonText: 'Search For Resources',
   },
   spanish: {
     about: 'Sobre nosotros',
     title: 'Estamos aquí para ayudarlo a prosperar',
     explainer:
-      'En ThriveSBC encontrará una variedad de recursos para ayudarlo a usted oa un ser querido con el reingreso después de una estadía en la cárcel o prisión. ¡Estamos aquí para ayudar!',
+      'En ThriveSBC encontrará una variedad de recursos para ayudarlo a usted oa un ser querido que ha sido afectado por el sistema legal penal. ¡Estamos aquí para ayudar!',
     buttonText: 'Buscar recursos',
   },
 }
