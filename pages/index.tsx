@@ -1,14 +1,16 @@
 import {
   HomepageMainBanner,
-  ResourceHub,
+  WhatWeDo,
   UnsureWhereToStart,
+  ResourceHub,
 } from '../components'
 
 const Home = () => (
   <>
     <HomepageMainBanner />
-    <ResourceHub />
+    <WhatWeDo />
     <UnsureWhereToStart />
+    <ResourceHub />
   </>
 )
 
