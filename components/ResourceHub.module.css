@@ -52,8 +52,10 @@
   margin-top: var(--margin-std);
 }
 
-.singleTileHolder > :hover .imgBg {
+.singleTileHolder > :hover .imgBg,
+.singleTileHolder > :active .imgBg {
   background-color: var(--green);
+  animation: bounce 0.35s;
 }
 
 @media (max-width: 800px) {
@@ -78,5 +80,19 @@
 
   .categoryTitle {
     font-size: var(--standard-text);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }
