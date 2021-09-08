@@ -15,20 +15,20 @@
 
 .Light {
   background-color: var(--light);
-  border: solid var(--border-width) var(--highlight);
+  border: solid var(--border-width) var(--green);
 }
 
 .Light .ButtonText {
-  color: var(--highlight);
+  color: var(--green);
 }
 
 .Button:active {
   background-color: var(--light);
-  border-color: var(--highlight);
+  border-color: var(--green);
 }
 
 .Button:active > .ButtonText {
-  color: var(--highlight);
+  color: var(--green);
 }
 
 .Button:disabled {
