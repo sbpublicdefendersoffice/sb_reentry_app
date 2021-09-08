@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-
 import { useLanguage } from '../hooks/'
 import { CopyHolder } from '../types/language'
 import {
@@ -10,12 +9,11 @@ import {
 } from '../components'
 import { Title, Paragraph, Button } from '../ui'
 import { flexFullWidth } from '../constants/'
-
 const copy: CopyHolder = {
   english: {
     title: 'We help you thrive by providing the tools you need',
     explainer:
-      'On ThriveSBC you will find a variety of resources to help you or a loved one with re-entry after a jail or prison stay. We know this is a tough task, and Santa Barbara County is here to help!',
+      'On ThriveSBC you will find a variety of resources to help you or loved ones who have been impacted by the criminal legal system. We know this is a tough task, and Santa Barbara County is here to help!',
     buttonText: 'See Our Resources To Get Started',
     title2: 'Not sure where to start?',
     explainer2:
@@ -26,7 +24,7 @@ const copy: CopyHolder = {
     title:
       'Le ayudamos a prosperar proporcionándole las herramientas que necesita',
     explainer:
-      'En ThriveSBC encontrará una variedad de recursos para ayudarlo a usted oa un ser querido con el reingreso después de una estancia en la cárcel o prisión. ¡Sabemos que esta es una tarea difícil y el condado de Santa Bárbara está aquí para ayudar!',
+      'En ThriveSBC encontrará una variedad de recursos para ayudarlo a usted oa sus seres queridos que han sido afectados por el sistema legal penal. ¡Sabemos que esta es una tarea difícil y el condado de Santa Bárbara está aquí para ayudar!',
     buttonText: 'Vea nuestros recursos para comenzar',
     title2: '¿No estás seguro por dónde empezar?',
     explainer2:
@@ -34,17 +32,13 @@ const copy: CopyHolder = {
     buttonText2: 'Ayudemos',
   },
 }
-
 export const url: string = '/checklist'
 export const url2: string = '/letushelp'
-
 const Home = () => {
   const { push } = useRouter()
   const { language } = useLanguage()
-
   const { title, explainer, buttonText, title2, explainer2, buttonText2 } =
     copy[language]
-
   return (
     <>
       <div
@@ -94,5 +88,4 @@ const Home = () => {
     </>
   )
 }
-
 export default Home
