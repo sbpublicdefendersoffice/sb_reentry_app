@@ -1,0 +1,37 @@
+.UnsureWhereToStart {
+  width: 100%;
+  padding: 3rem;
+  display: flex;
+  background-color: var(--light-blue);
+  align-items: center;
+  justify-content: center;
+}
+
+.Image {
+  width: 50%;
+  border-radius: var(--radius-large);
+  object-fit: contain;
+}
+
+.Column {
+  width: 50%;
+  height: 100%;
+}
+
+.Button {
+  margin: 0 auto;
+  width: 20rem;
+  margin-top: var(--margin-lg);
+}
+
+@media (max-width: 700px) {
+  .Column {
+    width: 100%;
+    text-align: center;
+  }
+
+  .SecondTitle,
+  .Image {
+    display: none;
+  }
+}
