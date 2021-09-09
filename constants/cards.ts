@@ -24,7 +24,7 @@ export const womensResources: CardInfo[] = [
       'Provides advocacy, information, and support to women and minority veterans throughout the state of California.',
     copy_spanish:
       'Proporciona defensa, información y apoyo a mujeres y veteranos de minorías en todo el estado de California.',
-    id: 'recSh4EFZQUBGVi0z',
+    id: '1235',
   },
   {
     title_english: 'Alcoholics Anonymous Women’s Meetings',
@@ -33,7 +33,7 @@ export const womensResources: CardInfo[] = [
       'A list of meetings that are catered toward women in Santa Barbara County.',
     copy_spanish:
       'Una lista de reuniones dirigidas a mujeres en el condado de Santa Bárbara.',
-    id: 'recB9Kekep68b85zc',
+    id: '968',
   },
   {
     title_english: 'WillBridge',
@@ -42,7 +42,7 @@ export const womensResources: CardInfo[] = [
       'Transitional housing for the chronically homeless, mentally ill adults, females at risk of violent crimes and an alternative to incarceration. Must be clean and sober.',
     copy_spanish:
       'Vivienda de transición para personas crónicamente sin hogar, adultos con enfermedades mentales, mujeres en riesgo de delitos violentos y una alternativa al encarcelamiento. Debe estar limpio y sobrio.',
-    id: 'recSiVAakYS8kDWTI',
+    id: '1038',
   },
 ]
 
@@ -54,7 +54,7 @@ export const familyResources: CardInfo[] = [
       'Family counseling and counseling for children with emotional and behavioral problems provided.',
     copy_spanish:
       'Se proporciona asesoramiento y asesoramiento familiar para niños con problemas emocionales y de conducta.',
-    id: 'recco93qd8Gp1LlAi',
+    id: '1256',
   },
   {
     title_english: 'County of Santa Barbara Health Care Centers',
@@ -63,7 +63,7 @@ export const familyResources: CardInfo[] = [
       'We provide health care services for our neighbors in Santa Barbara County. You will never be turned away for care at Santa Barbara County Health Centers for your inability to pay.',
     copy_spanish:
       'Brindamos servicios de atención médica a nuestros vecinos del condado de Santa Bárbara. Nunca será rechazado para recibir atención en los Centros de Salud del Condado de Santa Bárbara por no poder pagar.',
-    id: 'rec5BtB15XlZwtSRy',
+    id: '1149',
   },
   {
     title_english: 'St. George Family and Youth Center',
@@ -72,7 +72,7 @@ export const familyResources: CardInfo[] = [
       'Nurturing the potential of every child and teen. All kids deserve the opportunity to discover who they are and what they can achieve. That’s why, through the Y, thousands of youth in Santa Barbara and Ventura counties are cultivating the values, skills, and relationships that lead to positive behaviors, better health, and lifelong achievement.',
     copy_spanish:
       'Fomentar el potencial de cada niño y adolescente. Todos los niños merecen la oportunidad de descubrir quiénes son y qué pueden lograr. Es por eso que, a través de la Y, miles de jóvenes en los condados de Santa Bárbara y Ventura están cultivando valores, habilidades y relaciones que conducen a comportamientos positivos, mejor salud y logros de por vida.',
-    id: 'rec9T52CKz8JIip2k',
+    id: '1257',
   },
 ]
 
@@ -87,7 +87,7 @@ export const recommendedResources: CardInfo[] = [
     copy_spanish:
       'CalFresh es para personas de bajos ingresos que cumplen con las reglas federales de elegibilidad de ingresos y desean aumentar su presupuesto para poner alimentos saludables y nutritivos sobre la mesa.',
 
-    id: 'recJrN2F4itTVubdk',
+    id: '1035',
   },
   {
     title_english: 'Allan Hancock College',
@@ -99,7 +99,7 @@ export const recommendedResources: CardInfo[] = [
     copy_spanish:
       'Allan Hancock College es un colegio comunitario público de California ubicado en el norte del condado de Santa Bárbara. Allan Hancock College brinda asistencia multifacética a estudiantes potenciales y estudiantes matriculados: veteranos y dependientes estudiantes veteranos potenciales y matriculados.',
 
-    id: 'rechob8jwIPo6an4u',
+    id: '1192',
   },
   {
     title_english: 'Behavioral Wellness',
@@ -111,7 +111,7 @@ export const recommendedResources: CardInfo[] = [
     copy_spanish:
       'Se proporciona una variedad de servicios en todo el condado para adultos, niños y jóvenes en edad de transición. Sirve a personas con problemas de salud mental y / o por abuso de alcohol y sustancias y personas que experimentan crisis de salud mental.',
 
-    id: 'recncoC6502aH2qYs',
+    id: '1142',
   },
   {
     title_english: 'Santa Barbara Rescue Mission',
@@ -123,7 +123,7 @@ export const recommendedResources: CardInfo[] = [
     copy_spanish:
       'La Misión de Rescate de Santa Bárbara es un ministerio de personas cristianas que brinda recursos físicos, emocionales, educativos y espirituales a todos los que luchan contra la falta de vivienda y la adicción.',
 
-    id: 'recKx4aMOQI7XJwAI',
+    id: '838',
   },
   {
     title_english: 'CalWorks',
@@ -135,7 +135,7 @@ export const recommendedResources: CardInfo[] = [
     copy_spanish:
       'Proporciona servicios de evaluación y administración de casos para ayudar a los adultos a desarrollar metas y planificar la obtención de empleo. Proveedores de apoyo de transición, como cuidado infantil subsidiado, transporte, asistente y gastos relacionados con el trabajo o la capacitación.',
 
-    id: 'rec0ekjJlDshscyin',
+    id: '15',
   },
   {
     title_english: 'Immigrant Hope',
@@ -147,7 +147,7 @@ export const recommendedResources: CardInfo[] = [
     copy_spanish:
       'DOJ reconocido y acreditado para brindar servicios legales de inmigración a bajo costo. Ofertas, tutoría cívica, clases de inglés y estudio del manual de licencias de conducir.',
 
-    id: 'reca3rBMch8WzNc5O',
+    id: '1208',
   },
 ]
 
