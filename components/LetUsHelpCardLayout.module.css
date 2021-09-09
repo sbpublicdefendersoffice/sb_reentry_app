@@ -39,6 +39,19 @@
   cursor: pointer;
 }
 
+.Category,
+.Heading,
+.Explainer {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.Category::-webkit-scrollbar,
+.Heading::-webkit-scrollbar,
+.Explainer::-webkit-scrollbar {
+  display: none;
+}
+
 @media (max-width: 700px) {
   .Card {
     width: 45%;

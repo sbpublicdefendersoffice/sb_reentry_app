@@ -21,7 +21,7 @@
 
 .Tile:hover,
 .Tile:active {
-  background-color: var(--highlight);
+  background-color: var(--green);
 }
 
 .Tile:hover p,
