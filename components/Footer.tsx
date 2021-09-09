@@ -244,68 +244,63 @@ const Footer = () => {
   )
   return (
     <footer role="region">
-      <div>
-        <Grid container className={styles.Footer}>
-          <Grid item xs={12} sm={12} md={8} spacing={2}>
-            {StaticPages}
-          </Grid>
-          <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
-            <div>
-              {' '}
-              <ThriveLogo role="img" className={styles.ThriveLogo} />
-              <h4>{activeCopy.tagline}</h4>
-              <NextLink href="/privacypolicy" as="/privacypolicy">
+      <Grid container className={styles.Footer}>
+        <Grid item xs={12} sm={12} md={8} spacing={2}>
+          {StaticPages}
+        </Grid>
+        <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
+          <div>
+            {' '}
+            <ThriveLogo role="img" className={styles.ThriveLogo} />
+            <h4>{activeCopy.tagline}</h4>
+            <NextLink href="/privacypolicy" as="/privacypolicy">
+              <p
+                style={{ cursor: 'pointer' }}
+                role="term"
+                className={styles.Margins}
+              >
                 <a>
-                  <p role="term" className={styles.Margins}>
-                    {' '}
-                    {language === ENGLISH
-                      ? 'Privacy Policy'
-                      : 'política de privacidad'}
-                  </p>
+                  {language === ENGLISH
+                    ? 'Privacy Policy'
+                    : 'Política de privacidad'}
                 </a>
-              </NextLink>
-              <span className={styles.Margins}>
-                <p className={styles.DisplayInline}> {activeCopy.art}</p>
+              </p>
+            </NextLink>
+            <div className={styles.Margins}>
+              <p className={styles.DisplayInline}> {activeCopy.art}</p>{' '}
+              <a
+                href={'https://robertmaja.org/wp/home/'}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: 'inline-block' }}
+              >
+                Robert Maja
+              </a>
+            </div>
+            <Paragraph className={styles.Margins}>
+              {language === ENGLISH
+                ? `Thrive is a free, nonprofit resource directory developed by Code for America and Santa Barbara County Public Defender's office for people who have been system impacted in Santa Barbara County. We are not a law firm and the information on this site is not legal advice.`
+                : `Thrive es un directorio de recursos gratuito y sin fines de lucro desarrollado por Code para Oficina del Defensor Público del Condado de Santa Bárbara y Estados Unidos para personas que se han visto afectados por el sistema en el condado de Santa Bárbara. No somos un bufete de abogados y la información en este sitio no es un consejo legal. `}
+            </Paragraph>
+            <em className={styles.Margins}>
+              <span role="contentinfo" className={styles.DisplayInline}>
+                <p className={styles.Margins} style={{ marginRight: '.5rem' }}>
+                  {copyright}
+                </p>
                 <a
-                  href={'https://robertmaja.org/wp/home/'}
+                  role="link"
+                  className={styles.Margins}
+                  href={linkInfo.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ display: 'inline-block' }}
                 >
-                  <p style={{ marginLeft: '.5rem' }} className={styles.Margins}>
-                    {' '}
-                    Robert Maja
-                  </p>
+                  {linkInfo.text}
                 </a>
               </span>
-              <Paragraph>
-                {language === ENGLISH
-                  ? `Thrive is a free, nonprofit resource directory developed by Code for America and Santa Barbara County Public Defender's office for people who have been system impacted in Santa Barbara County. We are not a law firm and the information on this site is not legal advice.`
-                  : `Thrive es un directorio de recursos gratuito y sin fines de lucro desarrollado por Code para Oficina del Defensor Público del Condado de Santa Bárbara y Estados Unidos para personas que se han visto afectados por el sistema en el condado de Santa Bárbara. No somos un bufete de abogados y la información en este sitio no es un consejo legal. `}
-              </Paragraph>
-              <em className={styles.Margins}>
-                <span role="contentinfo" className={styles.DisplayInline}>
-                  <p
-                    className={styles.Margins}
-                    style={{ marginRight: '.5rem' }}
-                  >
-                    {copyright}
-                  </p>
-                  <a
-                    role="link"
-                    className={styles.Margins}
-                    href={linkInfo.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {linkInfo.text}
-                  </a>
-                </span>
-              </em>
-            </div>
-          </Grid>
+            </em>
+          </div>
         </Grid>
-      </div>
+      </Grid>
     </footer>
   )
 }

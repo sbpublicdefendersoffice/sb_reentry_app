@@ -1,91 +1,19 @@
-import { useRouter } from 'next/router'
-import { useLanguage } from '../hooks/'
-import { CopyHolder } from '../types/language'
 import {
+  HomepageMainBanner,
+  WhatWeDo,
+  UnsureWhereToStart,
   ResourceHub,
-  TopThreeCta,
-  PictureWithOval,
-  LetUsHelpHeading,
+  // Quotes,
 } from '../components'
-import { Title, Paragraph, Button } from '../ui'
-import { flexFullWidth } from '../constants/'
-const copy: CopyHolder = {
-  english: {
-    title: 'We help you thrive by providing the tools you need',
-    explainer:
-      'On ThriveSBC you will find a variety of resources to help you or loved ones who have been impacted by the criminal legal system. We know this is a tough task, and Santa Barbara County is here to help!',
-    buttonText: 'See Our Resources To Get Started',
-    title2: 'Not sure where to start?',
-    explainer2:
-      'So much information can be overwhelming, but there are many routes to take to get help.',
-    buttonText2: 'Let us help',
-  },
-  spanish: {
-    title:
-      'Le ayudamos a prosperar proporcionándole las herramientas que necesita',
-    explainer:
-      'En ThriveSBC encontrará una variedad de recursos para ayudarlo a usted oa sus seres queridos que han sido afectados por el sistema legal penal. ¡Sabemos que esta es una tarea difícil y el condado de Santa Bárbara está aquí para ayudar!',
-    buttonText: 'Vea nuestros recursos para comenzar',
-    title2: '¿No estás seguro por dónde empezar?',
-    explainer2:
-      'Tanta información puede ser abrumadora, pero hay muchas rutas que puede tomar para obtener ayuda.',
-    buttonText2: 'Ayudemos',
-  },
-}
-export const url: string = '/checklist'
-export const url2: string = '/letushelp'
-const Home = () => {
-  const { push } = useRouter()
-  const { language } = useLanguage()
-  const { title, explainer, buttonText, title2, explainer2, buttonText2 } =
-    copy[language]
-  return (
-    <>
-      <div
-        style={{
-          ...flexFullWidth,
-          backgroundImage: 'url("./images/maja_bg.jpg")',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          height: 'var(--screen-minus-header)',
-        }}
-      >
-        <div style={{ width: '50%' }} />
-        <LetUsHelpHeading>
-          <div
-            style={{
-              backgroundColor: 'rgba(255,255,255,0.9)',
-              padding: '1rem',
-            }}
-          >
-            <Title>{title}</Title>
-            <Paragraph style={{ marginBottom: 'var(--margin-lg)' }}>
-              {explainer}
-            </Paragraph>
-            <Button light onClick={() => push(url, url)}>
-              {buttonText}
-            </Button>
-          </div>
-        </LetUsHelpHeading>
-      </div>
-      <ResourceHub />
-      <TopThreeCta />
-      <div style={{ ...flexFullWidth, textAlign: 'end' }}>
-        <LetUsHelpHeading>
-          <Title>{title2}</Title>
-          <Paragraph style={{ marginBottom: 'var(--margin-lg)' }}>
-            {explainer2}
-          </Paragraph>
-          <Button onClick={() => push(url2, url2)}>{buttonText2}</Button>
-        </LetUsHelpHeading>
-        <PictureWithOval
-          color="green"
-          pic="whereToStartPic.jpg"
-          shiftRight
-          lazy
-        />
-      </div>
-    </>
-  )
-}
+
+const Home = () => (
+  <>
+    <HomepageMainBanner />
+    <WhatWeDo />
+    <UnsureWhereToStart />
+    <ResourceHub />
+    {/* <Quotes /> */}
+  </>
+)
+
 export default Home

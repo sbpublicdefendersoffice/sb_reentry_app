@@ -1,0 +1,58 @@
+.Main {
+  position: relative;
+  width: 100%;
+  height: var(--screen-minus-header);
+  background-color: var(--light-blue);
+  display: flex;
+}
+
+.BGPic {
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.Article {
+  width: 50%;
+  height: 100%;
+  padding: 3rem;
+}
+
+.Backing {
+  padding: 0;
+  width: 100%;
+  background-color: transparent;
+}
+
+.Backing > *:not(.About) {
+  margin-top: var(--margin-std);
+}
+
+.About {
+  text-transform: uppercase;
+}
+
+.Paragraph {
+  font-size: var(--med-text);
+}
+
+@media (max-width: 700px) {
+  .BGPic {
+    width: 100%;
+  }
+
+  .Article {
+    width: 100%;
+    position: absolute;
+  }
+
+  .Backing {
+    padding: var(--pad-lg);
+    background-color: var(--light-transparent);
+  }
+
+  .Paragraph {
+    font-size: var(--standard-text);
+  }
+}
