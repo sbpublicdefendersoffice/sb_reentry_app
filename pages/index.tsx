@@ -3,6 +3,7 @@ import {
   WhatWeDo,
   UnsureWhereToStart,
   ResourceHub,
+  Quotes,
 } from '../components'
 
 const Home = () => (
@@ -11,6 +12,7 @@ const Home = () => (
     <WhatWeDo />
     <UnsureWhereToStart />
     <ResourceHub />
+    <Quotes />
   </>
 )
 
