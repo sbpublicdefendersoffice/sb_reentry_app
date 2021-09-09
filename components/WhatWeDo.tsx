@@ -5,11 +5,7 @@ import { ENGLISH } from '../constants'
 
 import styles from './WhatWeDo.module.css'
 
-const whatWeDoIcons: string[] = [
-  'legalservices',
-  'documents',
-  'specialtycourts',
-]
+const whatWeDoIcons: string[] = ['support', 'accurate', 'community']
 const whatWeDoText: CopyHolder[] = [
   {
     english: {
