@@ -54,7 +54,7 @@ const ResourceHub = () => {
   )
 
   return (
-    <section className={styles.ResourceHub}>
+    <section className={styles.ResourceHub} id="resourcehub">
       <Title role="heading">{activeCopy.hub}</Title>
       <Paragraph
         role="article"

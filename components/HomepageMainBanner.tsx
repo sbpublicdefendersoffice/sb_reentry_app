@@ -24,7 +24,7 @@ const copy: CopyHolder = {
   },
 }
 
-export const url: string = '/checklist'
+export const hub: string = '/#resourcehub'
 
 const HomepageMainBanner = () => {
   const { push } = useRouter()
@@ -44,7 +44,9 @@ const HomepageMainBanner = () => {
           </Paragraph>
           <Title>{title}</Title>
           <Paragraph className={styles.Paragraph}>{explainer}</Paragraph>
-          <Button onClick={() => push(url, url)}>{buttonText}</Button>
+          <Button onClick={() => push(hub, hub, { shallow: true })}>
+            {buttonText}
+          </Button>
         </div>
       </article>
     </section>

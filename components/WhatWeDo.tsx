@@ -54,6 +54,7 @@ const WhatWeDo = () => {
               <img
                 className={styles.Image}
                 src={`./icons/${whatWeDoIcons[i]}.svg`}
+                loading="lazy"
               />
               <Paragraph className={styles.Title} color="highlight">
                 {title}
