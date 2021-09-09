@@ -9,6 +9,7 @@ export {
   GlobalSearchProvider,
   default as useGlobalSearch,
 } from './useGlobalSearch'
+export { default as useIntersectionStyle } from './useIntersectionStyle'
 export { Provider as LangProvider, default as useLanguage } from './useLanguage'
 export {
   Provider as LocationProvider,

@@ -1,6 +1,6 @@
-import { useRef, useEffect, MutableRefObject } from 'react'
+import { useRef, MutableRefObject } from 'react'
 
-import { useLanguage } from '../hooks'
+import { useLanguage, useIntersectionStyle } from '../hooks'
 import { CopyHolder } from '../types'
 import { Title, Paragraph } from '../ui'
 
@@ -19,28 +19,11 @@ const copy: CopyHolder = {
 
 import styles from './Quotes.module.css'
 
-const observeScroll = (node: HTMLElement): void => {
-  const nodeObserver: IntersectionObserver = new IntersectionObserver(
-    (entries: IntersectionObserverEntry[]): void =>
-      entries.forEach((entry: IntersectionObserverEntry): void => {
-        if (entry.isIntersecting) {
-          node.classList.add(styles.LoadingAnimation)
-          nodeObserver.unobserve(node)
-        }
-      }),
-  )
-
-  nodeObserver.observe(node)
-}
-
 const Quotes = () => {
   const quoteRef: MutableRefObject<HTMLParagraphElement> = useRef()
-
-  useEffect(() => {
-    if (quoteRef.current) observeScroll(quoteRef.current)
-  }, [])
-
   const { language } = useLanguage()
+  useIntersectionStyle(quoteRef, styles.LoadingAnimation)
+
   const { title, quote, attribute } = copy[language]
 
   return (
