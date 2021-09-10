@@ -56,6 +56,48 @@ from the root directory of the project.
 
 This will create an instance of a `PostgreSQL` database and seed it with information to get you up and running quickly.
 
+#### If Docker is not available
+
+If Docker is not a viable option for your use case, you can install the dev data locally.
+
+#### Windows local data installation
+
+Make sure you have the [Chocolatey](https://chocolatey.org/install) package manager installed. I recommend installing [Git Bash](https://gitforwindows.org/) as it will install Choclatey and you will be able to take advantage of the \*NIX like syntax.
+
+Once installed, open shell _using admin rights_ and enter the following command
+
+```
+choco install postgresql13 --params '/Password:admin’
+```
+
+It should install fairly quickly. Approve whatever security allowances it asks for.
+
+Once that is done, close out of your shell session and enter into a new one _without_ admin rights and enter:
+
+```
+postgres --version
+```
+
+to ensure the installation was successful.
+
+Now, navigate to the root directory of the project and enter:
+
+```
+PGPASSWORD=admin psql -U postgres -f ./data/native_pg_init.sql
+```
+
+This will create the user you need to access the data in a dev environment and give them the correct permissions.
+
+After that, enter:
+
+```
+PGPASSWORD=admin psql -U postgres -d thrive -f ./data/native_pg_seed.sql
+```
+
+to seed the database.
+
+Congrats! You should now have a working database for the app on your Windows machine
+
 ### _Git Conventions and Branching_
 
 We kindly ask that if you are working on a feature, you checkout to a branch named with the following convention

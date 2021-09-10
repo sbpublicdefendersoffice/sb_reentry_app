@@ -8,5 +8,5 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/init.sql:/docker-entrypoint-initdb.d/docker_pg_init.sql
       - ./data:/mnt/data
