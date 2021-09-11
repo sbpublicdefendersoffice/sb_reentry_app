@@ -1,18 +1,16 @@
-import {
-  // useEffect,
-  useState,
-} from 'react'
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import Head from 'next/head'
 import Error from 'next/error'
 import { useRouter } from 'next/router'
+import { Op } from 'sequelize'
+import { useState } from 'react'
 import { Modal, Hidden, Grid, withWidth } from '@material-ui/core/'
+
 import {
   useMultipleListRecords,
   useConvertedLocationRecords,
   useLanguage,
   useSearchFilters,
-  // useFormFields,
-  // useGetMatchingRecords,
 } from '../../hooks/'
 import {
   DisplayMap,
@@ -26,10 +24,21 @@ import {
   categories,
   useStyles,
 } from '../../constants/'
-const LandingPage = () => {
+
+import { PGOrganizationResponse } from '../../types'
+import initDb from '../../helpers/sequelize'
+
+interface LandingPageProps {
+  width: string
+  preFetchedOrgs: PGOrganizationResponse[]
+}
+
+const LandingPage = ({ preFetchedOrgs }: LandingPageProps) => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
   const classes = useStyles()
+
+  console.log(preFetchedOrgs)
 
   const activeCopy = categoryCopy[language]
   const validCategory = categories[asPath]
@@ -49,64 +58,6 @@ const LandingPage = () => {
     })
 
   const [open, setOpen] = useState<boolean>(false)
-  //#region
-  // const [filteredResults, setFilteredResults] = useState<any | null>(null)
-  // const [fields, handleFieldsSelected] = useFormFields({
-  //   citySelected: [],
-  //   serviceSelected: [],
-  //   peopleServedSelected: [],
-  //   languageSelected: [],
-  // })
-
-  // const [checkIsCity, setCheckIsCity] = useState(false)
-  // const [checkIsService, setCheckIsService] = useState(false)
-  // const [checkIsLanguage, setCheckIsLanguage] = useState(false)
-  // const [checkIsPeopleServed, setCheckIsPeopleServed] = useState(false)
-
-  // useEffect((): void => {
-  //   let keywordQuery = fields.serviceSelected.concat(
-  //     fields.citySelected,
-  //     fields.peopleServedSelected,
-  //     fields.languageSelected,
-  //   )
-  //   fields.citySelected.length > 0
-  //     ? setCheckIsCity(true)
-  //     : setCheckIsCity(false)
-  //   fields.serviceSelected.length > 0
-  //     ? setCheckIsService(true)
-  //     : setCheckIsService(false)
-  //   fields.peopleServedSelected.length > 0
-  //     ? setCheckIsPeopleServed(true)
-  //     : setCheckIsPeopleServed(false)
-  //   fields.languageSelected.length > 0
-  //     ? setCheckIsLanguage(true)
-  //     : setCheckIsLanguage(false)
-  //   if (fetchedRecords && keywordQuery.length === 0) {
-  //     setFilteredResults(fetchedRecords)
-  //     setLocationRecords(fetchedRecords)
-  //   } else if (fetchedRecords && keywordQuery.length > 0) {
-  //     let newResults = useGetMatchingRecords(
-  //       fetchedRecords,
-  //       keywordQuery,
-  //       checkIsCity,
-  //       checkIsService,
-  //       checkIsLanguage,
-  //       checkIsPeopleServed,
-  //     )
-  //     setFilteredResults(newResults)
-  //     setLocationRecords(newResults)
-  //   }
-  // }, [
-  //   fetchedRecords,
-  //   fields,
-  //   validCategory,
-  //   checkIsCity,
-  //   checkIsService,
-  //   checkIsLanguage,
-  //   checkIsPeopleServed,
-  // ])
-
-  //#endregion
 
   if (!validCategory) return <Error statusCode={404} />
   return (
@@ -156,4 +107,60 @@ const LandingPage = () => {
     </>
   )
 }
+
 export default withWidth()(LandingPage)
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = Object.keys(categories).map((route: string) => ({
+    params: { category: route.slice(1) },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export const getStaticProps: GetStaticProps = async ({
+  params,
+}: GetStaticPropsContext) => {
+  const { orgObj, locObj, servObj } = initDb()
+
+  const preFetchedOrgs = await orgObj.findAll({
+    raw: true,
+    nest: true,
+    where: {
+      categories_english: { [Op.contains]: [params.category as string] },
+    },
+    attributes: [
+      'id',
+      `categories_english`,
+      `categories_spanish`,
+      `name_english`,
+      `name_spanish`,
+      `tags_english`,
+      `tags_spanish`,
+      `customers_served_english`,
+      `customers_served_spanish`,
+      `languages_spoken_english`,
+      `languages_spoken_spanish`,
+      ['categories_english', 'multiple_categories'],
+    ],
+    include: [
+      {
+        model: locObj,
+        required: false,
+        attributes: ['latitude', 'longitude', 'city'],
+        through: { attributes: [] },
+        include: [
+          {
+            model: servObj,
+            required: false,
+            attributes: [`name_english`, `name_spanish`],
+            through: { attributes: [] },
+          },
+        ],
+      },
+    ],
+    order: [[`name_english`, 'ASC']],
+  })
+
+  return { props: { preFetchedOrgs }, revalidate: 3600 }
+}

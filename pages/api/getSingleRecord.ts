@@ -10,7 +10,7 @@ const getSingleRecord = async (
   try {
     const { id, language } = JSON.parse(req.body)
 
-    if (language === ENGLISH || language || SPANISH) {
+    if (language === ENGLISH || language === SPANISH) {
       const { orgObj, locObj, servObj, schObj } = initDb()
 
       const returnedOrg = await orgObj.findOne({
