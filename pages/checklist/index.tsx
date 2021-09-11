@@ -38,7 +38,7 @@ const Checklist = () => {
       >
         {activeCopy.description}
       </Typography>
-      <div>
+      <div style={{ wordWrap: 'break-word' }}>
         <ProbationAccordian />
         <HrefAccordian data-testid="accordion" />
         <MainAccordian data-testid="accordion" />
