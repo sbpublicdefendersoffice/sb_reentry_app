@@ -33,10 +33,20 @@
   color: var(--light);
   font-size: var(--med-text);
   display: block;
+  width: auto;
   font-weight: 100;
   margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
   white-space: nowrap !important;
+}
+
+.Button {
+  text-transform: inherit !important;
+  line-height: inherit !important;
+  padding: 0 !important;
+  margin: auto !important;
+  display: block !important;
+  margin-left: 9rem !important;
 }
 .ButtonTitle {
   color: var(--light);
@@ -44,8 +54,21 @@
   font-weight: 100;
   border-bottom: 0.25rem solid transparent;
   white-space: nowrap !important;
+  width: 10rem !important;
   margin: 0 var(--margin-std);
+  text-align: left;
 }
+.ButtonTitleNoHover {
+  color: var(--light);
+  font-size: var(--med-text);
+  font-weight: 100;
+  border-bottom: 0.25rem solid transparent;
+  white-space: nowrap !important;
+  width: 12rem;
+  margin: 0 var(--margin-std);
+  text-align: left;
+}
+
 .DisplayInline {
   display: inline-flex;
 }
@@ -65,7 +88,7 @@
 }
 .About {
   display: inline-flex !important;
-  margin-top: -3.3rem;
+  margin-top: -3.2rem;
   margin-left: 7rem !important;
   margin-right: 4rem !important;
 }
@@ -80,11 +103,15 @@
 
 .Margins {
   margin: 1rem 0 0 0;
+
+  word-break: break-word;
 }
 
 .Title:hover,
+.ButtonTitle:hover,
+.TitleWrap:hover,
 .SubMenuItem:hover {
-  border-bottom: 0.25rem solid var(--green);
+  border-bottom: 0.25rem solid var(--green) !important;
 }
 
 @media (max-width: 1275px) {
@@ -93,7 +120,10 @@
     padding-bottom: 0;
   }
   .About {
-    margin-left: 5rem !important;
+    margin-left: 7rem !important;
+  }
+  .GridRight {
+    padding-bottom: 2rem;
   }
   .ButtonStyle {
     margin-left: 3rem !important;
@@ -137,7 +167,7 @@
   .Grid {
     display: block !important;
     text-align: center !important;
-    margin-left: 0;
+    margin-left: 5rem !important;
     margin-top: 1rem !important;
     max-width: 79.33% !important;
   }
@@ -147,7 +177,7 @@
     text-align: center !important;
     margin-right: 3rem;
     margin-top: -0.8rem;
-    margin-left: 1.3rem !important;
+    margin-left: 1.6rem !important;
   }
 
   .GridRight {
@@ -169,5 +199,13 @@
   }
   .ButtonStyle {
     margin: auto !important;
+  }
+}
+@media (max-width: 600px) {
+  .Grid {
+    margin-left: 3rem !important;
+  }
+  .About {
+    margin-left: 2rem;
   }
 }
