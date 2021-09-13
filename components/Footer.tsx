@@ -71,8 +71,15 @@ const Footer = () => {
                     display: 'block',
                   }}
                 >
-                  <h2 className={styles.ButtonTitle}>
+                  <h2
+                    className={
+                      courtButtonClicked
+                        ? styles.ButtonTitleNoHover
+                        : styles.ButtonTitle
+                    }
+                  >
                     {activeCopy.court}
+                    <ArrowDropDown style={{ alignItems: 'inherit' }} />
                     <div
                       style={{
                         marginTop: '1rem',
@@ -158,18 +165,17 @@ const Footer = () => {
                   onClick={() =>
                     setResourceButtonClicked(!resourceButtonClicked)
                   }
-                  style={{
-                    textTransform: 'inherit',
-                    lineHeight: 'inherit',
-                    padding: '0 !important',
-                    margin: 'auto',
-                    display: 'block',
-                    marginLeft: '9rem',
-                  }}
+                  className={styles.Button}
                 >
-                  <h2 className={styles.ButtonTitle}>
+                  <h2
+                    className={
+                      resourceButtonClicked
+                        ? styles.ButtonTitleNoHover
+                        : styles.ButtonTitle
+                    }
+                  >
                     {activeCopy.resource}
-
+                    <ArrowDropDown style={{ alignItems: 'inherit' }} />
                     <div
                       style={{
                         marginTop: '1rem',

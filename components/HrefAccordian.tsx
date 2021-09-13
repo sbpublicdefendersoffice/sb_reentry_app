@@ -61,7 +61,6 @@ const HrefAccordian = () => {
                         rel="noopener noreferrer"
                         className={classes.accordDescriptionLink}
                         href={activeCopy.href1}
-                        style={{ textAlign: 'left' }}
                       >
                         <p>{activeCopy.item1}</p>
                       </a>

@@ -52,7 +52,7 @@ const ProbationAccordian = () => {
                   <h5 style={{ fontSize: '1.6rem' }}>{activeCopy.action}</h5>
                   <div
                     style={{
-                      display: 'flex',
+                      display: 'block',
                       textAlign: 'center',
                       justifyContent: 'center',
                     }}
@@ -86,7 +86,7 @@ const ProbationAccordian = () => {
 
             {probationsCopy.map((probation, key) => {
               return (
-                <Grid item xs={6} key={key} sm={4}>
+                <Grid item xs={12} key={key} md={4}>
                   <Paper style={{ minHeight: '18rem' }}>
                     <List className={classes.centerFlex}>
                       <ListItem>
@@ -160,7 +160,12 @@ const ProbationAccordian = () => {
                         <a
                           className={classes.accordDescriptionLink}
                           href={activeCopy.href3}
-                          style={{ borderBottom: 'none' }}
+                          style={{
+                            borderBottom: 'none',
+                            wordBreak: 'break-word',
+                            display: 'block',
+                            textAlign: 'center',
+                          }}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
