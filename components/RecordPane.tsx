@@ -1,4 +1,4 @@
-import { SetStateAction, Dispatch, Fragment, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { useRouter } from 'next/router'
 import { LeafLoader, OrgRecordCard } from './'
 import { Details, Paragraph } from '../ui'
@@ -14,7 +14,6 @@ export interface RecordPaneProps {
   displayCategory: string
   routeCategory: string
   orgInfo: PGOrganizationResponse[]
-  setRecords: Dispatch<SetStateAction<PGOrganizationResponse[]>>
   fields?: any
   handleFieldsSelected?: any
   activeCopy?: any
@@ -24,16 +23,13 @@ const RecordPane = ({
   displayCategory,
   routeCategory,
   orgInfo,
-
   fields,
   handleFieldsSelected,
   activeCopy,
-}: // displayDescription,
-RecordPaneProps) => {
+}: RecordPaneProps) => {
   const { push, route } = useRouter()
   const { language } = useLanguage()
   const { isMapView } = useView()
-  // const { isListView, isMapView } = state
   const [windowSize, setWindowSize] = useState<WindowSize>({
     width: innerWidth,
     height: innerHeight,

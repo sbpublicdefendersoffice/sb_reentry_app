@@ -7,7 +7,6 @@ import { useState } from 'react'
 import { Modal, Hidden, Grid, withWidth } from '@material-ui/core/'
 
 import {
-  useMultipleListRecords,
   useConvertedLocationRecords,
   useLanguage,
   useSearchFilters,
@@ -38,16 +37,15 @@ const LandingPage = ({ preFetchedOrgs }: LandingPageProps) => {
   const { language } = useLanguage()
   const classes = useStyles()
 
-  console.log(preFetchedOrgs)
-
   const activeCopy = categoryCopy[language]
   const validCategory = categories[asPath]
   const routeCategory: string = validCategory?.english.category.toLowerCase()
   const displayDescription: string = validCategory?.[language].description
   const displayCategory: string = validCategory?.[language].category
 
-  const { fetchedRecords, setFetchedRecords } =
-    useMultipleListRecords(routeCategory)
+  const [fetchedRecords] = useState<PGOrganizationResponse[]>(
+    preFetchedOrgs.map(org => ({ ...org, single_category: routeCategory })),
+  )
   const { convertedLocRecords, setLocationRecords } =
     useConvertedLocationRecords()
   const { searchFilteredResults, fields, handleFieldsSelected } =
@@ -94,7 +92,6 @@ const LandingPage = ({ preFetchedOrgs }: LandingPageProps) => {
             displayCategory={displayCategory}
             displayDescription={displayDescription}
             routeCategory={routeCategory}
-            setRecords={setFetchedRecords}
             fields={fields}
             handleFieldsSelected={handleFieldsSelected}
             activeCopy={activeCopy}
@@ -123,11 +120,12 @@ export const getStaticProps: GetStaticProps = async ({
 }: GetStaticPropsContext) => {
   const { orgObj, locObj, servObj } = initDb()
 
-  const preFetchedOrgs = await orgObj.findAll({
-    raw: true,
+  const { category } = params
+
+  const foundOrgs = await orgObj.findAll({
     nest: true,
     where: {
-      categories_english: { [Op.contains]: [params.category as string] },
+      categories_english: { [Op.contains]: [category as string] },
     },
     attributes: [
       'id',
@@ -162,5 +160,10 @@ export const getStaticProps: GetStaticProps = async ({
     order: [[`name_english`, 'ASC']],
   })
 
-  return { props: { preFetchedOrgs }, revalidate: 3600 }
+  return {
+    props: {
+      preFetchedOrgs: JSON.parse(JSON.stringify(foundOrgs)),
+    },
+    revalidate: 3600,
+  }
 }

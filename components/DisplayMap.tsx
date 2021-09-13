@@ -41,7 +41,6 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
   )
   const { pathname } = useRouter()
   const { isMapView } = useView()
-  // const { isListView } = state
 
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
