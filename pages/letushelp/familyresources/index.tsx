@@ -1,4 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { GetStaticProps } from 'next'
+import { Op } from 'sequelize'
 
 import {
   PictureWithOval,
@@ -7,14 +9,11 @@ import {
   TagPane,
   DisplayMap,
 } from '../../../components'
-import {
-  useMultipleListRecords,
-  useLanguage,
-  useConvertedLocationRecords,
-} from '../../../hooks/'
-import { CopyHolder } from '../../../types/language'
+import { useLanguage, useConvertedLocationRecords } from '../../../hooks/'
+import { CopyHolder, PGOrganizationResponse } from '../../../types/'
 import { familyResources, flexFullWidth } from '../../../constants/'
 import { AdaptiveFlexContainer, Title, Paragraph } from '../../../ui'
+import initDb from '../../../helpers/sequelize'
 
 const copy: CopyHolder = {
   english: {
@@ -31,8 +30,16 @@ const copy: CopyHolder = {
   },
 }
 
-const ResourcesForFamilyAndFriendsLanding = () => {
-  const { fetchedRecords } = useMultipleListRecords('family')
+interface ResourcesForFamilyAndFriendsLandingProps {
+  familyOrgs: PGOrganizationResponse[]
+}
+
+const ResourcesForFamilyAndFriendsLanding = ({
+  familyOrgs,
+}: ResourcesForFamilyAndFriendsLandingProps) => {
+  const [fetchedRecords] = useState<PGOrganizationResponse[]>(
+    familyOrgs.map(org => ({ ...org, single_category: 'family' })),
+  )
   const { convertedLocRecords, setLocationRecords } =
     useConvertedLocationRecords()
   const { language } = useLanguage()
@@ -66,3 +73,52 @@ const ResourcesForFamilyAndFriendsLanding = () => {
 }
 
 export default ResourcesForFamilyAndFriendsLanding
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { orgObj, locObj, servObj } = initDb()
+
+  const familyOrgs = await orgObj.findAll({
+    nest: true,
+    where: {
+      categories_english: { [Op.contains]: ['family' as string] },
+    },
+    attributes: [
+      'id',
+      `categories_english`,
+      `categories_spanish`,
+      `name_english`,
+      `name_spanish`,
+      `tags_english`,
+      `tags_spanish`,
+      `customers_served_english`,
+      `customers_served_spanish`,
+      `languages_spoken_english`,
+      `languages_spoken_spanish`,
+      ['categories_english', 'multiple_categories'],
+    ],
+    include: [
+      {
+        model: locObj,
+        required: false,
+        attributes: ['latitude', 'longitude', 'city'],
+        through: { attributes: [] },
+        include: [
+          {
+            model: servObj,
+            required: false,
+            attributes: [`name_english`, `name_spanish`],
+            through: { attributes: [] },
+          },
+        ],
+      },
+    ],
+    order: [[`name_english`, 'ASC']],
+  })
+
+  return {
+    props: {
+      familyOrgs: JSON.parse(JSON.stringify(familyOrgs)),
+    },
+    revalidate: 3600,
+  }
+}

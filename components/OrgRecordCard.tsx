@@ -83,7 +83,7 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
       />
       <div className={styles.Text}>
         <Paragraph role="heading" title={String(id)} size="med-text">
-          {name_english || name_spanish}
+          {language === ENGLISH ? name_english : name_spanish}
         </Paragraph>
         <Paragraph title={String(id)}>
           {activeCategories?.map(
