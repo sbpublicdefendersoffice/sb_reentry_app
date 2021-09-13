@@ -4,6 +4,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: '90%',
       height: '100%',
+      margin: 'auto',
       fontFamily: 'Roboto',
       textAlign: 'center',
     },
@@ -15,6 +16,10 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: '2rem !important',
       fontFamily: 'Roboto',
       textAlign: 'left',
+      '@media (max-width: 1000px)': {
+        textAlign: 'center !important',
+        margin: 'auto',
+      },
     },
     menu: {
       paddingTop: '0 !important',
@@ -41,7 +46,6 @@ export const useStyles = makeStyles((theme: Theme) =>
         borderBottom: '.25rem solid #00a968',
       },
     },
-
     subMenuItemInButton: {
       wordWrap: 'break-word',
       color: 'var(--light)',
@@ -51,7 +55,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 100,
       marginLeft: '2rem',
     },
-
     badge: {
       '& > *': {
         margin: theme.spacing(1),
@@ -72,16 +75,28 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: '1.5rem !important',
       fontFamily: 'Roboto !important',
       width: '100%',
+      padding: '.4rem !important',
+      display: 'inline-flex !importnat',
+      textAlign: 'justify',
       wordBreak: 'break-word',
+      '@media (max-width: 1275px)': {
+        textAlign: 'center',
+        padding: '3rem',
+      },
     },
     accordDescriptionLink: {
       fontSize: '1.5rem',
       fontFamily: 'Roboto',
-      textAlign: 'left',
+      textAlign: 'center',
+      wordBreak: 'break-word',
       cursor: 'pointer',
       overflow: 'auto !important',
       borderBottom: 'none !important',
       color: '#12385e !important',
+      '@media (max-width: 1275px)': {
+        margin: 'auto',
+        textAlign: 'center',
+      },
       '&:hover': {
         borderBottom: '.25rem solid green !important',
       },
@@ -93,7 +108,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: '2rem',
       display: 'flex',
     },
-
     desktopFilterContainer: {
       flexBasis: '0rem',
       display: 'flex',
@@ -108,7 +122,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       fontSize: '1.4rem',
       height: 'auto',
-
       minWidth: '13rem',
     },
     menuLabel: {
@@ -125,7 +138,6 @@ export const useStyles = makeStyles((theme: Theme) =>
         width: '14rem',
       },
     },
-
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
@@ -139,7 +151,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       margin: 'auto',
       width: '80%',
       color: 'theme.palette.text.secondary',
-      height: '40rem',
       overflow: 'scroll',
       '@media (max-width: 500px)': {
         width: '100%',
@@ -151,10 +162,8 @@ export const useStyles = makeStyles((theme: Theme) =>
       left: '50%',
       transform: `translate(-50%, -50%)`,
     },
-
     landingPageDescription: {
       fontSize: '1.6rem',
-
       '@media (max-width: 500px)': {
         width: '100%',
         marginLeft: '1rem',
@@ -202,6 +211,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: '1.6rem',
       fontFamily: 'Roboto',
       marginTop: '2rem',
+      textAlign: 'left',
     },
     h4Style: {
       marginTop: '2rem',
@@ -254,7 +264,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       display: 'block !important',
       backgroundColor: 'none',
       margin: '1rem 1rem 1rem 1rem',
-      fontSize: '1.8rem',
+      fontSize: '1.8rem !important',
       minWidth: '40%',
       borderBottom: 'none',
     },
@@ -388,10 +398,20 @@ export const useStyles = makeStyles((theme: Theme) =>
     flyerCardContent: {
       textAlign: 'center',
       width: '100%',
-      height: '18rem !important',
+      height: '23rem !important',
       justifyContent: 'center',
+      padding: '2rem',
       backgroundColor: '#13395E',
       color: 'white',
+      '@media (max-width: 700px)': {
+        height: 'auto !important',
+      },
+    },
+    downloadButtons: {
+      marginTop: '3rem !important',
+      '@media (max-width: 700px)': {
+        margin: 'auto !important',
+      },
     },
     flyerMedia: {
       width: '12rem',

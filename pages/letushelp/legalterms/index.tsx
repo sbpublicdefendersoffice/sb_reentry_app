@@ -67,7 +67,13 @@ const LegalTermsPage = () => {
       <Head>
         <title>{`${siteTitle} | ${activeCopy.title}`}</title>
       </Head>
-      <div style={{ margin: '4rem 0 2rem 0', textAlign: 'center' }}>
+      <div
+        style={{
+          margin: '4rem 0 2rem 0',
+          textAlign: 'center',
+          padding: '2rem',
+        }}
+      >
         <Title style={{ marginBottom: '2rem' }}>{activeCopy.title} </Title>
         <Paragraph size="med-text">{activeCopy.description}</Paragraph>
       </div>

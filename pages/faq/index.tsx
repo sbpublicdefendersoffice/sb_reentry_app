@@ -1,4 +1,3 @@
-import NextLink from 'next/link'
 import {
   Typography,
   Accordion,
@@ -49,7 +48,9 @@ const FaqPage = () => {
       <div style={flexFullWidth}>
         <PictureWithOval color="highlight" pic="faqPic.jpg" />
         <LetUsHelpHeading>
-          <Title>{activeCopyFAQ.title}</Title>
+          <Title style={{ margin: '2rem 3rem', fontFamily: 'sans-serif' }}>
+            {activeCopyFAQ.title}
+          </Title>
           <Paragraph size="med-text">{activeCopyFAQ.description}</Paragraph>
         </LetUsHelpHeading>
       </div>
@@ -75,17 +76,26 @@ const FaqPage = () => {
                   <Grid item xs={12}>
                     <Typography>
                       {activeCopy && activeCopy.href1 && (
-                        <p className={classes.accordDescription}>
-                          {' '}
-                          {activeCopy.description}
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={activeCopy.href1}
+                        <span style={{ display: 'inline !important' }}>
+                          <p
+                            className={classes.accordDescription}
+                            style={{
+                              wordBreak: 'break-word',
+                              display: 'inline',
+                            }}
                           >
-                            {activeCopyFAQ.clickHere}
-                          </a>
-                        </p>
+                            {' '}
+                            {activeCopy.description}
+                            <a
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={activeCopy.href1}
+                              style={{}}
+                            >
+                              {activeCopyFAQ.clickHere}
+                            </a>
+                          </p>
+                        </span>
                       )}
                       {activeCopy && activeCopy.nextLink && (
                         <p
@@ -93,26 +103,22 @@ const FaqPage = () => {
                           style={{
                             marginTop: '1.5rem',
                             display: 'inline-block',
+                            wordBreak: 'break-word',
                           }}
                         >
                           {' '}
                           {activeCopy.description}
-                          <NextLink href={activeCopy.nextLink}>
-                            {activeCopyFAQ.clickHere}
-                          </NextLink>
+                          <a href={activeCopy.nextLink}>
+                            <p>{activeCopyFAQ.clickHere}</p>
+                          </a>
                         </p>
                       )}
                       {activeCopy && activeCopy.nextLinkTwo && (
-                        <p
-                          className={classes.accordDescription}
-                          style={{
-                            display: 'inline-block',
-                          }}
-                        >
+                        <p className={classes.accordDescription}>
                           {activeCopy.description2}
-                          <NextLink href={activeCopy.nextLinkTwo}>
-                            {activeCopyFAQ.clickHere}
-                          </NextLink>
+                          <a href={activeCopy.nextLinkTwo}>
+                            <p>{activeCopyFAQ.clickHere}</p>
+                          </a>
                         </p>
                       )}
                       {activeCopy &&
