@@ -14,10 +14,7 @@ const FavoritePage = () => {
       <Head>
         <title>{`${siteTitle} | ${activeCopy.title}`}</title>
       </Head>
-      <div
-        className={classes.root}
-        style={{ padding: '3rem 2rem', fontFamily: 'sans-serif' }}
-      >
+      <div className={classes.root} style={{ fontFamily: 'sans-serif' }}>
         <Title>{activeCopy.title}</Title>
         <div style={{ marginTop: '2rem' }}>
           {favoriteResources.length ? (
