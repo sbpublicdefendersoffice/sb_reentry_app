@@ -75,7 +75,7 @@
     "**/**/ssri": "^8.0.1",
     "stylelint/postcss": "7.0.32",
     "**/**/ws": "^7.4.6",
-    "twilio/axios": "^0.21.1",
+    "twilio/axios": "^0.21.2",
     "**/**/trim-newlines": "^3.0.1",
     "**/**/browserslist": "^4.16.5",
     "**/**/path-parse": "^1.0.7",
