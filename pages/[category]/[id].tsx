@@ -48,8 +48,6 @@ const IdPage = ({ fetchedOrg }: IdPageProps) => {
 
 export default IdPage
 
-// probably best just to do it by category though...
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const { orgObj } = initDb()
 
@@ -59,7 +57,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     attributes: ['id'],
   })
 
-  const paths = returnedOrgs.map(({ id }) => ({ params: { id: String(id) } }))
+  const paths = returnedOrgs.map(({ id }) => ({
+    params: { category: 'food', id: String(id) },
+  }))
 
   return { paths, fallback: false }
 }
@@ -71,6 +71,8 @@ export const getStaticProps: GetStaticProps = async ({
   const { id } = params
 
   const fetchedOrg = await orgObj.findOne({
+    raw: true,
+    nest: true,
     where: { id },
     attributes: [
       'id',
