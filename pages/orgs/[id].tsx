@@ -14,11 +14,11 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import { PGOrganizationResponse } from '../../types'
 import initDb from '../../helpers/sequelize'
 
-interface IdPageProps {
+interface OrgIdPageProps {
   fetchedOrg: PGOrganizationResponse
 }
 
-const OrgIdPage = ({ fetchedOrg }: IdPageProps) => {
+const OrgIdPage = ({ fetchedOrg }: OrgIdPageProps) => {
   //   const { asPath } = useRouter()
   //   const { language } = useLanguage()
   //   const { sortedRecord } = useSingleRecord()

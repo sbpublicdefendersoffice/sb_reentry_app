@@ -13,7 +13,7 @@ export interface OrgRecordCardProps {
   record: PGOrganizationResponse
 }
 
-export const urlSlug: string = '/[category]/[id]'
+export const urlSlug: string = '/orgs/[id]'
 
 import styles from './OrgRecordCard.module.css'
 
@@ -48,9 +48,6 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
 
   const isCategoryPage: boolean = pathname === '/[category]'
 
-  const pushToRecord = (): Promise<boolean> =>
-    push(urlSlug, `/${categoryTitle}/${id}`)
-
   const clickHeart = e => {
     e.preventDefault()
     e.stopPropagation()
@@ -70,7 +67,7 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
       title={String(id)}
       className={styles.OrgRecordCard}
       interactive
-      onClick={pushToRecord}
+      onClick={() => push(urlSlug, `/orgs/${id}`)}
     >
       <img
         role="img"

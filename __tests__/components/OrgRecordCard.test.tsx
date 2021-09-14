@@ -56,9 +56,9 @@ describe('<OrgRecordCard />', () => {
 
     const cardNode: HTMLElement = getByRole('region')
 
-    const { categories_english, id } = dummyProps.record
+    const { id } = dummyProps.record
 
-    const pushUrl: string = `/${categories_english[0]}/${id}`
+    const pushUrl: string = `/orgs/${id}`
 
     fireEvent.click(cardNode)
 

@@ -81,9 +81,9 @@ const MapMarker = ({ locationRecord, map, onTop }: MapMarkerProps) => {
   }, [imgSrc, map, locationRecord])
 
   const linkToRecord = (): void => {
-    if (id && query?.id !== String(id))
-      if (isSearchPage) push('/search/[id]', `/search/${id}`)
-      else push('/[category]/[id]', `/${single_category}/${id}`)
+    if (id && query?.id !== String(id)) push('/orgs/[id]', `/orgs/${id}`)
+    // if (isSearchPage) push('/search/[id]', `/search/${id}`)
+    // else push('/[category]/[id]', `/${single_category}/${id}`)
   }
 
   const name: string = language === ENGLISH ? name_english : name_spanish
