@@ -1,16 +1,16 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 
-// import { useRouter } from 'next/router'
-// import { useEffect } from 'react'
-// import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import Head from 'next/head'
 
-// import {
-//   useSingleRecord,
-//   useLanguage,
-//   useConvertedLocationRecords,
-// } from '../../hooks'
-// import { LeafLoader, DisplayMap, OrgRecordDisplay } from '../../components'
-// import { siteTitle } from '../../constants/copy'
+import {
+  // useSingleRecord,
+  useLanguage,
+  useConvertedLocationRecords,
+} from '../../hooks'
+import { LeafLoader, DisplayMap, OrgRecordDisplay } from '../../components'
+import { siteTitle } from '../../constants/copy'
 import { PGOrganizationResponse } from '../../types'
 import initDb from '../../helpers/sequelize'
 
@@ -19,33 +19,31 @@ interface OrgIdPageProps {
 }
 
 const OrgIdPage = ({ fetchedOrg }: OrgIdPageProps) => {
-  //   const { asPath } = useRouter()
-  //   const { language } = useLanguage()
-  //   const { sortedRecord } = useSingleRecord()
-  //   const { convertedLocRecords, setLocationRecords } =
-  //     useConvertedLocationRecords()
+  const { asPath } = useRouter()
+  const { language } = useLanguage()
+  // const { fetchedOrg } = useSingleRecord()
+  const { convertedLocRecords, setLocationRecords } =
+    useConvertedLocationRecords()
 
   console.log(fetchedOrg)
 
-  //   useEffect(() => {
-  //     if (sortedRecord) setLocationRecords([sortedRecord])
-  //   }, [sortedRecord])
+  useEffect(() => {
+    if (fetchedOrg) setLocationRecords([fetchedOrg])
+  }, [fetchedOrg])
 
-  //   if (asPath.startsWith('/[category]') || !sortedRecord) return <LeafLoader />
+  if (asPath.startsWith('/[category]') || !fetchedOrg) return <LeafLoader />
 
-  //   return (
-  //     <>
-  //       <Head>
-  //         <title>{`${siteTitle} | ${sortedRecord?.[`name_${language}`]}`}</title>
-  //       </Head>
-  //       <OrgRecordDisplay sortedRecord={sortedRecord} />
-  //       {Boolean(convertedLocRecords?.length) && (
-  //         <DisplayMap latLongInfo={convertedLocRecords} />
-  //       )}
-  //     </>
-  //   )
-
-  return <span>hello</span>
+  return (
+    <>
+      <Head>
+        <title>{`${siteTitle} | ${fetchedOrg?.[`name_${language}`]}`}</title>
+      </Head>
+      <OrgRecordDisplay sortedRecord={fetchedOrg} />
+      {Boolean(convertedLocRecords?.length) && (
+        <DisplayMap latLongInfo={convertedLocRecords} />
+      )}
+    </>
+  )
 }
 
 export default OrgIdPage
@@ -73,7 +71,6 @@ export const getStaticProps: GetStaticProps = async ({
   const { id } = params
 
   const fetchedOrg = await orgObj.findOne({
-    raw: true,
     nest: true,
     where: { id },
     attributes: [
@@ -113,5 +110,8 @@ export const getStaticProps: GetStaticProps = async ({
     ],
   })
 
-  return { props: { fetchedOrg }, revalidate: 3600 }
+  return {
+    props: { fetchedOrg: JSON.parse(JSON.stringify(fetchedOrg)) },
+    revalidate: 3600,
+  }
 }
