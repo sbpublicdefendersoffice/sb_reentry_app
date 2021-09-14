@@ -1,11 +1,9 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
-
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import Head from 'next/head'
 
 import { useLanguage, useConvertedLocationRecords } from '../../hooks'
-import { LeafLoader, DisplayMap, OrgRecordDisplay } from '../../components'
+import { DisplayMap, OrgRecordDisplay } from '../../components'
 import { siteTitle } from '../../constants/copy'
 import { PGOrganizationResponse } from '../../types'
 import initDb from '../../helpers/sequelize'
@@ -15,7 +13,6 @@ interface OrgIdPageProps {
 }
 
 const OrgIdPage = ({ fetchedOrg }: OrgIdPageProps) => {
-  const { asPath } = useRouter()
   const { language } = useLanguage()
 
   const { convertedLocRecords, setLocationRecords } =
@@ -26,8 +23,6 @@ const OrgIdPage = ({ fetchedOrg }: OrgIdPageProps) => {
   useEffect(() => {
     if (fetchedOrg) setLocationRecords([fetchedOrg])
   }, [fetchedOrg])
-
-  if (asPath.startsWith('/[category]') || !fetchedOrg) return <LeafLoader />
 
   return (
     <>

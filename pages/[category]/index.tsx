@@ -15,8 +15,8 @@ import {
   DisplayMap,
   MobileFilterModal,
   MobileButtonsLandingPage,
+  RecordPane,
 } from '../../components'
-import { RecordPane } from '../../components'
 import {
   categoryCopy,
   siteTitle,
