@@ -4,11 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import Head from 'next/head'
 
-import {
-  // useSingleRecord,
-  useLanguage,
-  useConvertedLocationRecords,
-} from '../../hooks'
+import { useLanguage, useConvertedLocationRecords } from '../../hooks'
 import { LeafLoader, DisplayMap, OrgRecordDisplay } from '../../components'
 import { siteTitle } from '../../constants/copy'
 import { PGOrganizationResponse } from '../../types'
@@ -21,7 +17,7 @@ interface OrgIdPageProps {
 const OrgIdPage = ({ fetchedOrg }: OrgIdPageProps) => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
-  // const { fetchedOrg } = useSingleRecord()
+
   const { convertedLocRecords, setLocationRecords } =
     useConvertedLocationRecords()
 
