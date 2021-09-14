@@ -58,7 +58,7 @@ const LetUsHelpCardLayout = ({ heading, cards }: LetUsHelpCardLayoutProps) => {
                   role="link"
                   className={styles.Link}
                   size="med-text"
-                  onClick={() => push(url, `/search/${id}`)}
+                  onClick={() => push(url, `/orgs/${id}`)}
                 >
                   {click}
                 </Paragraph>

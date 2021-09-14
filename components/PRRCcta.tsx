@@ -35,8 +35,8 @@ export const accessLineInfo = {
   },
 }
 
-export const url: string = '/search/[id]'
-export const as: string = '/search/rec5sVCDDkpXlclv0'
+export const url: string = '/orgs/[id]'
+export const as: string = '/orgs/rec5sVCDDkpXlclv0'
 
 import styles from './PRRCcta.module.css'
 

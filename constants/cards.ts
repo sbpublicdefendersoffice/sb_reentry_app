@@ -151,4 +151,4 @@ export const recommendedResources: CardInfo[] = [
   },
 ]
 
-export const url: string = '/search/[id]'
+export const url: string = '/orgs/[id]'
