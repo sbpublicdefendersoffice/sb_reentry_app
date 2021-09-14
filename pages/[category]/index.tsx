@@ -120,12 +120,13 @@ export const getStaticProps: GetStaticProps = async ({
 }: GetStaticPropsContext) => {
   const { orgObj, locObj, servObj } = initDb()
 
-  const { category } = params
+  const operator: string =
+    categories[`/${params.category}`].english.category.toLowerCase()
 
   const foundOrgs = await orgObj.findAll({
     nest: true,
     where: {
-      categories_english: { [Op.contains]: [category as string] },
+      categories_english: { [Op.contains]: [operator] },
     },
     attributes: [
       'id',
