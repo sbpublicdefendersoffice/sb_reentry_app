@@ -65,4 +65,6 @@ const nextConfigOptions = {
   },
 }
 
+console.log(`THE ENV_NODE IS: ----> ${process.env.NODE_ENV} <----`)
+
 module.exports = nextConfigOptions

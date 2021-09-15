@@ -28,7 +28,7 @@ RUN rm .babelrc
 COPY --from=DEPS /app/node_modules ./node_modules
 
 # NextJs public variables need to be loaded in client at build time
-# RUN grep '^NEXT_PUBLIC_.*$' app/.aptible.env > .env.production
+# RUN grep '^NEXT_PUBLIC_.*$\|^POSTGRES_.*$' app/.aptible.env > .env.production
 
 RUN yarn build && yarn install --prod --prefer-offline
 # =========
