@@ -11,7 +11,7 @@ import {
 } from '../../../components'
 import { useLanguage, useConvertedLocationRecords } from '../../../hooks/'
 import { CopyHolder, PGOrganizationResponse } from '../../../types/'
-import { womensResources, flexFullWidth, isDev } from '../../../constants/'
+import { womensResources, flexFullWidth } from '../../../constants/'
 import { AdaptiveFlexContainer, Title, Paragraph } from '../../../ui'
 import initDb from '../../../helpers/sequelize'
 
@@ -75,61 +75,50 @@ const ResourcesForWomenLanding = ({
 export default ResourcesForWomenLanding
 
 export const getStaticProps: GetStaticProps = async () => {
-  if (isDev) {
-    const dummyData = (await import('../../../__helpers__/dummyData'))
-      .dummyPGOrgRecord
+  const { orgObj, locObj, servObj } = initDb()
 
-    return {
-      props: {
-        womenOrgs: [dummyData],
+  const womenOrgs = await orgObj.findAll({
+    nest: true,
+    where: {
+      categories_english: { [Op.contains]: ['women' as string] },
+    },
+    attributes: [
+      'id',
+      `categories_english`,
+      `categories_spanish`,
+      `name_english`,
+      `name_spanish`,
+      `tags_english`,
+      `tags_spanish`,
+      `customers_served_english`,
+      `customers_served_spanish`,
+      `languages_spoken_english`,
+      `languages_spoken_spanish`,
+      ['categories_english', 'multiple_categories'],
+    ],
+    include: [
+      {
+        model: locObj,
+        required: false,
+        attributes: ['latitude', 'longitude', 'city'],
+        through: { attributes: [] },
+        include: [
+          {
+            model: servObj,
+            required: false,
+            attributes: [`name_english`, `name_spanish`],
+            through: { attributes: [] },
+          },
+        ],
       },
-    }
-  } else {
-    const { orgObj, locObj, servObj } = initDb()
+    ],
+    order: [[`name_english`, 'ASC']],
+  })
 
-    const womenOrgs = await orgObj.findAll({
-      nest: true,
-      where: {
-        categories_english: { [Op.contains]: ['women' as string] },
-      },
-      attributes: [
-        'id',
-        `categories_english`,
-        `categories_spanish`,
-        `name_english`,
-        `name_spanish`,
-        `tags_english`,
-        `tags_spanish`,
-        `customers_served_english`,
-        `customers_served_spanish`,
-        `languages_spoken_english`,
-        `languages_spoken_spanish`,
-        ['categories_english', 'multiple_categories'],
-      ],
-      include: [
-        {
-          model: locObj,
-          required: false,
-          attributes: ['latitude', 'longitude', 'city'],
-          through: { attributes: [] },
-          include: [
-            {
-              model: servObj,
-              required: false,
-              attributes: [`name_english`, `name_spanish`],
-              through: { attributes: [] },
-            },
-          ],
-        },
-      ],
-      order: [[`name_english`, 'ASC']],
-    })
-
-    return {
-      props: {
-        womenOrgs: JSON.parse(JSON.stringify(womenOrgs)),
-      },
-      revalidate: 3600,
-    }
+  return {
+    props: {
+      womenOrgs: JSON.parse(JSON.stringify(womenOrgs)),
+    },
+    revalidate: 3600,
   }
 }
