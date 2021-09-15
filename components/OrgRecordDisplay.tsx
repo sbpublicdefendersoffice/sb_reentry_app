@@ -6,6 +6,7 @@ import { Grid } from '@material-ui/core'
 import { useLanguage, useFavorite } from '../hooks/'
 import { CopyHolder, PGOrganizationResponse } from '../types'
 import styles from './OrgRecordDisplay.module.css'
+
 interface OrgRecordDisplayProps {
   sortedRecord: PGOrganizationResponse
 }

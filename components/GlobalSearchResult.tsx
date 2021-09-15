@@ -2,10 +2,11 @@ import { Dispatch, SetStateAction } from 'react'
 import NextLink from 'next/link'
 import Paragraph from '../ui/Paragraph'
 import { PGOrganizationResponse } from '../types/postgresRecords'
-import useFavorite from '../hooks/useFavorite'
+import { useFavorite, useLanguage } from '../hooks/'
 import styles from './GlobalSearchResult.module.css'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+
 export interface GlobalSearchResultProps {
   record: PGOrganizationResponse
   searchQuery?: string
@@ -17,14 +18,8 @@ const GlobalSearchResult = ({
   record,
   delimiter,
 }: GlobalSearchResultProps) => {
-  const {
-    id,
-    name_english,
-    name_spanish,
-    tags_english,
-    tags_spanish,
-    multiple_categories,
-  } = record
+  const { id, multiple_categories } = record
+  const { language } = useLanguage()
   const imgSrc = multiple_categories ? multiple_categories[0] : 'socialservices'
   const { favoriteResources, updateFavoriteResources } = useFavorite()
   const isFavIcon = (
@@ -51,7 +46,7 @@ const GlobalSearchResult = ({
   }
 
   return (
-    <NextLink href="/search/[id]" as={`/search/${id}`}>
+    <NextLink href="/orgs/[id]" as={`/orgs/${id}`}>
       <li role="listitem" className={styles.GlobalSearchResult} tabIndex={0}>
         <img
           role="img"
@@ -63,10 +58,10 @@ const GlobalSearchResult = ({
         />
         <div className={styles.Text}>
           <Paragraph size="med-text">
-            <span role="heading">{name_english || name_spanish}</span>
+            <span role="heading">{record[`name_${language}`]}</span>
           </Paragraph>
           <em role="term" className={styles.SingleSearchTerm}>
-            {mapRecordSearchTerms(tags_english || tags_spanish)}
+            {mapRecordSearchTerms(record[`tags_${language}`])}
           </em>
         </div>
         <button

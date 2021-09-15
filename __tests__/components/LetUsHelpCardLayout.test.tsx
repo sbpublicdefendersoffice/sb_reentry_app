@@ -61,6 +61,6 @@ describe('<LetUpHelpCardLayout />', () => {
 
     fireEvent.click(linkNode[0])
 
-    expect(push).toHaveBeenCalledWith(url, `/search/${cardProps.cards[0].id}`)
+    expect(push).toHaveBeenCalledWith(url, `/orgs/${cardProps.cards[0].id}`)
   })
 })

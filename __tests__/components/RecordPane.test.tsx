@@ -19,7 +19,6 @@ const dummyProps: RecordPaneProps = {
   displayCategory: 'Transportation',
   routeCategory: 'transportation',
   orgInfo: [dummyPGOrgRecord],
-  setRecords: () => {},
 }
 
 describe('<RecordPane />', () => {

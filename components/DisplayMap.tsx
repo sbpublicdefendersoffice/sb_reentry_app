@@ -18,7 +18,7 @@ import {
   useView,
   useResizeEvent,
 } from '../hooks'
-import { MapMarker, CityFilter, ProximityFilter } from './'
+import { MapMarker, CityFilter, ProximityFilter, LeafLoader } from './'
 import { Details } from '../ui'
 import { PGOrgPlusLocation, WindowSize } from '../types'
 import styles from './DisplayMap.module.css'
@@ -41,7 +41,6 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
   )
   const { pathname } = useRouter()
   const { isMapView } = useView()
-  // const { isListView } = state
 
   const { searchResults } = useGlobalSearch()
   const { language } = useLanguage()
@@ -128,41 +127,47 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
       }
     >
       <div id="map" style={mapContainerStyle}>
-        {showFilters && (
-          <CityFilter
-            locationsToFilter={latLongInfo}
-            regionVisibility={locRecordsToFilter.visibility}
-            setLocRecordsToFilter={setLocRecordsToFilter}
-          >
-            {isInSBCounty && (
-              <ProximityFilter
-                coords={coords}
+        {!mapState && !locRecordsToFilter?.filteredRecords?.length ? (
+          <LeafLoader />
+        ) : (
+          <>
+            {showFilters && (
+              <CityFilter
                 locationsToFilter={latLongInfo}
+                regionVisibility={locRecordsToFilter.visibility}
                 setLocRecordsToFilter={setLocRecordsToFilter}
-                radiusDistance={locRecordsToFilter.radiusDistance}
+              >
+                {isInSBCounty && (
+                  <ProximityFilter
+                    coords={coords}
+                    locationsToFilter={latLongInfo}
+                    setLocRecordsToFilter={setLocRecordsToFilter}
+                    radiusDistance={locRecordsToFilter.radiusDistance}
+                  />
+                )}
+              </CityFilter>
+            )}
+            {isInSBCounty && (
+              <MapMarker
+                locationRecord={{
+                  city: '',
+                  longitude: coords.longitude,
+                  latitude: coords.latitude,
+                  single_category: 'user',
+                  multiple_categories: ['user'],
+                  id: 0,
+                  name_english: 'Your location',
+                  name_spanish: 'Tu ubicación',
+                }}
+                map={mapState}
+                onTop
               />
             )}
-          </CityFilter>
+            {filteredRecordsReady
+              ? locRecordsToFilter.filteredRecords.map(returnMarker)
+              : latLongInfo.map(returnMarker)}
+          </>
         )}
-        {isInSBCounty && (
-          <MapMarker
-            locationRecord={{
-              city: '',
-              longitude: coords.longitude,
-              latitude: coords.latitude,
-              single_category: 'user',
-              multiple_categories: ['user'],
-              id: 0,
-              name_english: 'Your location',
-              name_spanish: 'Tu ubicación',
-            }}
-            map={mapState}
-            onTop
-          />
-        )}
-        {filteredRecordsReady
-          ? locRecordsToFilter.filteredRecords.map(returnMarker)
-          : latLongInfo.map(returnMarker)}
       </div>
     </Details>
   )

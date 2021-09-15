@@ -139,8 +139,8 @@ export const locationlessDummySortedRecord: SortedRecord = {
 }
 
 export const dummyPGLocationRecord: PGLocationRecord = {
-  latitude: 4,
-  longitude: 5,
+  longitude: -119.69805,
+  latitude: 34.406876,
   city: 'of angels',
   name: 'location one',
   address: '123 St',

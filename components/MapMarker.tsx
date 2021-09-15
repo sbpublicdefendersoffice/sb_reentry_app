@@ -44,11 +44,13 @@ const MapMarker = ({ locationRecord, map, onTop }: MapMarkerProps) => {
     multiple_categories,
     single_category,
   } = locationRecord
-  const isSearchPage: boolean =
-    pathname.startsWith('/search') || pathname.startsWith('/letushelp')
+  const isNotCategoryPage: boolean =
+    pathname.startsWith('/search') ||
+    pathname.startsWith('/letushelp') ||
+    pathname.startsWith('/orgs')
 
   useEffect(() => {
-    if (isSearchPage)
+    if (isNotCategoryPage)
       setImgSrc(multiple_categories ? multiple_categories[0] : 'socialservices')
     else setImgSrc(single_category)
   }, [locationRecord])
@@ -81,9 +83,7 @@ const MapMarker = ({ locationRecord, map, onTop }: MapMarkerProps) => {
   }, [imgSrc, map, locationRecord])
 
   const linkToRecord = (): void => {
-    if (id && query?.id !== String(id))
-      if (isSearchPage) push('/search/[id]', `/search/${id}`)
-      else push('/[category]/[id]', `/${single_category}/${id}`)
+    if (id && query?.id !== String(id)) push('/orgs/[id]', `/orgs/${id}`)
   }
 
   const name: string = language === ENGLISH ? name_english : name_spanish

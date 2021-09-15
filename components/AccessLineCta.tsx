@@ -6,8 +6,8 @@ import { CopyHolder } from '../types/language'
 
 import styles from './AccessLineCta.module.css'
 
-export const url: string = '/search/[id]'
-export const as: string = '/search/recncoC6502aH2qYs'
+export const url: string = '/orgs/[id]'
+export const as: string = '/orgs/recncoC6502aH2qYs'
 
 export const accessLineInfo = {
   displayNumber: '(888) 868-1649',

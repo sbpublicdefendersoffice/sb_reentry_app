@@ -1,4 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { GetStaticProps } from 'next'
+import { Op } from 'sequelize'
 
 import {
   PictureWithOval,
@@ -7,14 +9,11 @@ import {
   TagPane,
   DisplayMap,
 } from '../../../components'
-import {
-  useMultipleListRecords,
-  useLanguage,
-  useConvertedLocationRecords,
-} from '../../../hooks/'
-import { CopyHolder } from '../../../types/language'
+import { useLanguage, useConvertedLocationRecords } from '../../../hooks/'
+import { CopyHolder, PGOrganizationResponse } from '../../../types/'
 import { womensResources, flexFullWidth } from '../../../constants/'
 import { AdaptiveFlexContainer, Title, Paragraph } from '../../../ui'
+import initDb from '../../../helpers/sequelize'
 
 const copy: CopyHolder = {
   english: {
@@ -31,8 +30,16 @@ const copy: CopyHolder = {
   },
 }
 
-const ResourcesForWomenLanding = () => {
-  const { fetchedRecords } = useMultipleListRecords('women')
+interface ResourcesForWomenLandingProps {
+  womenOrgs: PGOrganizationResponse[]
+}
+
+const ResourcesForWomenLanding = ({
+  womenOrgs,
+}: ResourcesForWomenLandingProps) => {
+  const [fetchedRecords] = useState<PGOrganizationResponse[]>(
+    womenOrgs.map(org => ({ ...org, single_category: 'women' })),
+  )
   const { convertedLocRecords, setLocationRecords } =
     useConvertedLocationRecords()
   const { language } = useLanguage()
@@ -66,3 +73,52 @@ const ResourcesForWomenLanding = () => {
 }
 
 export default ResourcesForWomenLanding
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { orgObj, locObj, servObj } = initDb()
+
+  const womenOrgs = await orgObj.findAll({
+    nest: true,
+    where: {
+      categories_english: { [Op.contains]: ['women' as string] },
+    },
+    attributes: [
+      'id',
+      `categories_english`,
+      `categories_spanish`,
+      `name_english`,
+      `name_spanish`,
+      `tags_english`,
+      `tags_spanish`,
+      `customers_served_english`,
+      `customers_served_spanish`,
+      `languages_spoken_english`,
+      `languages_spoken_spanish`,
+      ['categories_english', 'multiple_categories'],
+    ],
+    include: [
+      {
+        model: locObj,
+        required: false,
+        attributes: ['latitude', 'longitude', 'city'],
+        through: { attributes: [] },
+        include: [
+          {
+            model: servObj,
+            required: false,
+            attributes: [`name_english`, `name_spanish`],
+            through: { attributes: [] },
+          },
+        ],
+      },
+    ],
+    order: [[`name_english`, 'ASC']],
+  })
+
+  return {
+    props: {
+      womenOrgs: JSON.parse(JSON.stringify(womenOrgs)),
+    },
+    revalidate: 3600,
+  }
+}
