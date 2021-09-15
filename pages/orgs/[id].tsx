@@ -18,8 +18,6 @@ const OrgIdPage = ({ fetchedOrg }: OrgIdPageProps) => {
   const { convertedLocRecords, setLocationRecords } =
     useConvertedLocationRecords()
 
-  console.log(fetchedOrg)
-
   useEffect(() => {
     if (fetchedOrg) setLocationRecords([fetchedOrg])
   }, [fetchedOrg])
