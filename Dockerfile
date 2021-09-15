@@ -17,11 +17,11 @@ RUN yarn add -D typescript @types/node --network-timeout 100000
 # .babelrc is necessary for local tests but not for deployment
 RUN rm .babelrc
 
-# NextJs public variables need to be loaded in client at build time
-RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
+# NextJs public variables need to be loaded in client at build time, and postgres variables are needed to pre-render the html at build time
+RUN grep '^NEXT_PUBLIC_.*$\|^POSTGRES_.*$' $dir/.aptible.env > .env.production
 
 # Build
-RUN NODE_ENV=production yarn docker-build
+RUN yarn docker-build
 
 # Expose port
 EXPOSE 3000
