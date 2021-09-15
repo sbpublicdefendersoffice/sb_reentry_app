@@ -6,6 +6,7 @@ ENV dir=/usr/src/app
 RUN mkdir -p $dir
 WORKDIR $dir
 
+
 # Copy source files
 COPY . $dir
 
@@ -18,6 +19,8 @@ RUN rm .babelrc
 
 # NextJs public variables need to be loaded in client at build time
 RUN grep '^NEXT_PUBLIC_.*$' $dir/.aptible.env > .env.production
+
+RUN echo $NODE_ENV
 
 # Build
 RUN yarn docker-build
