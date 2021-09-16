@@ -72,7 +72,7 @@ export default class MyDocument extends Document {
               href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css"
             />
           </noscript>
-          <meta charSet="utf-8" />
+          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <link
             rel="icon"
