@@ -1,6 +1,7 @@
+import Head from 'next/head'
+
 import useLanguage from '../../../hooks/useLanguage'
 import { Title, Paragraph } from '../../../ui'
-
 import {
   PictureWithOval,
   LetUsHelpHeading,
@@ -10,6 +11,7 @@ import {
   recommendedResources,
   recommendedResourcesCopy,
   flexFullWidth,
+  siteTitle,
 } from '../../../constants/'
 
 const RecommendedResourcesLanding = () => {
@@ -18,6 +20,9 @@ const RecommendedResourcesLanding = () => {
 
   return (
     <>
+      <Head>
+        <title>{`${siteTitle} | ${title}`}</title>
+      </Head>
       <div style={flexFullWidth}>
         <PictureWithOval color="highlight" pic="recResourcesPic.jpg" />
         <LetUsHelpHeading>

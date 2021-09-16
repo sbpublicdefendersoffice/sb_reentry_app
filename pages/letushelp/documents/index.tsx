@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import useLanguage from '../../../hooks/useLanguage'
 import { CopyHolder } from '../../../types/language'
 import {
@@ -6,7 +7,7 @@ import {
   PictureWithOval,
 } from '../../../components'
 import { Title, Paragraph } from '../../../ui'
-import { flexFullWidth } from '../../../constants/styling'
+import { flexFullWidth, siteTitle } from '../../../constants/'
 
 export const src: string = '/icons/documents.svg'
 
@@ -46,6 +47,9 @@ const DocumentsLanding = () => {
 
   return (
     <>
+      <Head>
+        <title>{`${siteTitle} | ${documents}`}</title>
+      </Head>
       <div style={flexFullWidth}>
         <PictureWithOval color="green" pic="documentsPic.jpg" />
         <LetUsHelpHeading>

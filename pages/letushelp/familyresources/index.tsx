@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import { Op } from 'sequelize'
 
@@ -11,7 +12,7 @@ import {
 } from '../../../components'
 import { useLanguage, useConvertedLocationRecords } from '../../../hooks/'
 import { CopyHolder, PGOrganizationResponse } from '../../../types/'
-import { familyResources, flexFullWidth } from '../../../constants/'
+import { familyResources, flexFullWidth, siteTitle } from '../../../constants/'
 import { AdaptiveFlexContainer, Title, Paragraph } from '../../../ui'
 import initDb from '../../../helpers/sequelize'
 
@@ -51,6 +52,9 @@ const ResourcesForFamilyAndFriendsLanding = ({
 
   return (
     <>
+      <Head>
+        <title>{`${siteTitle} | ${title}`}</title>
+      </Head>
       <div style={flexFullWidth}>
         <PictureWithOval color="peri" pic="familyFriendsPic.jpg" />
         <LetUsHelpHeading>

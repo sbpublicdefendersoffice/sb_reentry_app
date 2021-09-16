@@ -1,8 +1,10 @@
+import Head from 'next/head'
+
 import { CallToAction, Paragraph } from '../../../ui'
 import { CopyHolder } from '../../../types/language'
 import useLanguage from '../../../hooks/useLanguage'
 import { DiversionQualify, LetUsHelpIndexTitle } from '../../../components'
-import { margin } from '../../../constants/styling'
+import { margin, siteTitle } from '../../../constants/'
 
 export const copy: CopyHolder = {
   english: {
@@ -57,6 +59,9 @@ const DiversionLanding = () => {
 
   return (
     <>
+      <Head>
+        <title>{`${siteTitle} | ${title}`}</title>
+      </Head>
       <LetUsHelpIndexTitle {...{ src, title, whatIs, explain }} />
       <DiversionQualify />
       <CallToAction blueBg>
