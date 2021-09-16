@@ -1,15 +1,21 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
+
 import { searchByKeyword, googleViewSearchResults } from '../../helpers'
 import {
   useGlobalSearch,
   useLanguage,
   useConvertedLocationRecords,
 } from '../../hooks'
-import { isProd } from '../../constants/env'
-
-import { PGOrganizationResponse } from '../../types'
+import { isProd, siteTitle } from '../../constants/'
+import { PGOrganizationResponse, CopyHolder } from '../../types'
 import { TagPane, DisplayMap } from '../../components/'
+
+const copy: CopyHolder = {
+  english: { search: 'Search' },
+  spanish: { search: 'Buscar' },
+}
 
 const GlobalSearchLanding = () => {
   const { asPath } = useRouter()
@@ -17,6 +23,8 @@ const GlobalSearchLanding = () => {
   const { searchResults, setSearchResults } = useGlobalSearch()
   const { convertedLocRecords, setLocationRecords } =
     useConvertedLocationRecords()
+
+  const { search } = copy[language]
 
   useEffect((): void => {
     const captureQuery: RegExp = /^.*=(.*)$/
@@ -44,6 +52,9 @@ const GlobalSearchLanding = () => {
   return (
     convertedLocRecords && (
       <>
+        <Head>
+          <title>{`${siteTitle} | ${search}`}</title>
+        </Head>
         <TagPane orgInfo={searchResults} />
         <DisplayMap latLongInfo={convertedLocRecords} />
       </>

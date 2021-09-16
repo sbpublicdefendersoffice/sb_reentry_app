@@ -2,6 +2,7 @@ import { PrivacyPolicy } from '../types/privacypolicy'
 
 export const PrivacyPolicyData: PrivacyPolicy = {
   english: {
+    title: 'Privacy Policy',
     intro: `Thrive is a non-profit website run by Code for America, ("Code for America", "we", "us", "our"). This Privacy Policy describes how the Thrive website (the "Site") collects, uses, and protects your personal information. By submitting your personal information on the Site, you agree to the terms in this Privacy Policy. If you do not agree with these terms, please do not use the Site. You can go to`,
     twoelevenlink: `https://211santabarbaracounty.org/reentry/tips-for-success/tips-checklist/`,
     twoeleven: ' www.211santabarbaracounty.org',
@@ -48,6 +49,7 @@ export const PrivacyPolicyData: PrivacyPolicy = {
     doOurBest: 'We will do our best to resolve the issue.',
   },
   spanish: {
+    title: 'Política de privacidad',
     intro: `Thrive es un sitio web sin fines de lucro administrado por Code for America, ("Código para América "," nosotros "," nos "," nuestro "). Esta Política de privacidad describe cómo El sitio web de Thrive (el "Sitio") recopila, usa y protege su información personal información. Al enviar su información personal en el Sitio, usted acepta los términos de esta Política de privacidad. Si no está de acuerdo con estos términos, no utilice el Sitio. Puedes ir a`,
 
     twoelevenlink: `https://211santabarbaracounty.org/reentry/tips-for-success/tips-checklist/`,

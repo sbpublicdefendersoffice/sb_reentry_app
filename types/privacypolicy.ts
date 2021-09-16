@@ -3,6 +3,7 @@ export interface PrivacyPolicy {
   spanish: Item
 }
 interface Item {
+  title: string
   intro: string
   twoelevenlink: string
   twoeleven: string

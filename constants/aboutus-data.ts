@@ -12,7 +12,7 @@ export const aboutCopy: CopyHolder = {
   },
 
   spanish: {
-    title: 'Sobre nosotros`',
+    title: 'Sobre nosotros',
     provide: 'Proporcione información precisa',
     support: 'Apoyo',
     community: 'Alcance comunitario',
