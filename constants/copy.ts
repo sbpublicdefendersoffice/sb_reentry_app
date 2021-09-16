@@ -19,7 +19,8 @@ export const inSantaBarbaraCopy: CopyHolder = {
   english: {
     inCounty: `Looks like you're in Santa Barbara County. This means you'll be able to take advantage of all of ${siteTitle}'s region specific features.`,
     notInCounty: `Looks like you're not in Santa Barbara County. We're happy to show you services, but you will not be able to take advantage of all of ${siteTitle}'s region specific features.`,
-    error: 'An error occured when getting your location:',
+    error:
+      'If you change your mind, click on the green bulls-eye icon next to the search bar to enable location features. Reason:',
     permission:
       'Please enable location permission to use location-based features.',
   },
@@ -27,7 +28,8 @@ export const inSantaBarbaraCopy: CopyHolder = {
     inCounty: `Parece que estás en el condado de Santa Bárbara. Esto significa que podrá aprovechar todas
     de las características específicas de la región de ${siteTitle}.`,
     notInCounty: `Parece que no estás en el condado de Santa Bárbara. Nos complace mostrarle los servicios, pero no podrá aprovechar todas las características específicas de la región de ${siteTitle}.`,
-    error: 'Ocurrió un error al obtener su ubicación:',
+    error:
+      'Si cambia de opinión, haga clic en el icono de la diana verde junto a la barra de búsqueda para habilitar las funciones de ubicación. Razón:',
     permission:
       'Habilite el permiso de ubicación para utilizar funciones basadas en la ubicación.',
   },
