@@ -4,7 +4,7 @@ import Head from 'next/head'
 interface HeadTagsProps {
   title: string
   href: string
-  description: string
+  description?: string
   otherTags?: ReactNodeArray
 }
 

@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import {
   Typography,
   Accordion,
@@ -8,7 +7,7 @@ import {
 } from '@material-ui/core/'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
-import { PictureWithOval, LetUsHelpHeading } from '../../components'
+import { PictureWithOval, LetUsHelpHeading, HeadTags } from '../../components'
 import { Title, Paragraph } from '../../ui'
 import { CopyHolder } from '../../types/language'
 import useLanguage from '../../hooks/useLanguage'
@@ -50,9 +49,11 @@ const FaqPage = () => {
   const activeCopyFAQ = faqCopy[language]
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | FAQ`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | FAQ`}
+        href="/faq"
+        description="Frequently Asked Questions about ThriveSBC"
+      />
       <div className={classes.root}>
         <div style={flexFullWidth}>
           <PictureWithOval color="highlight" pic="faqPic.jpg" />

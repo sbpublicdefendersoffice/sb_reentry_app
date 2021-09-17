@@ -1,19 +1,17 @@
-import Head from 'next/head'
-
 import { specialCourtReqsPDF, siteTitle } from '../../constants/'
 import { useLanguage } from '../../hooks'
-import PDFViewer from '../../components/PDFViewer'
+import { PDFViewer, HeadTags } from '../../components/'
 
 const SpecialtyCourtsRequirementsLanding = () => {
   const { language } = useLanguage()
 
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${
-          specialCourtReqsPDF[`doc_title_${language}`]
-        }`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${specialCourtReqsPDF[`doc_title_${language}`]}`}
+        href="/documents/specialtycourtsrequirements"
+        description="Additional information about Specialty Courts in Santa Barbara County"
+      />
       <PDFViewer src={specialCourtReqsPDF.file} />
     </>
   )

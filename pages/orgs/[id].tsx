@@ -1,9 +1,8 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import { useEffect } from 'react'
-import Head from 'next/head'
 
 import { useLanguage, useConvertedLocationRecords } from '../../hooks'
-import { DisplayMap, OrgRecordDisplay } from '../../components'
+import { DisplayMap, OrgRecordDisplay, HeadTags } from '../../components'
 import { siteTitle } from '../../constants/copy'
 import { PGOrganizationResponse } from '../../types'
 import initDb from '../../helpers/sequelize'
@@ -24,9 +23,11 @@ const OrgIdPage = ({ fetchedOrg }: OrgIdPageProps) => {
 
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${fetchedOrg?.[`name_${language}`]}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${fetchedOrg?.[`name_${language}`]}`}
+        href={`/orgs/${fetchedOrg?.id}`}
+        description={`${fetchedOrg?.[`name_${language}`]} on ${siteTitle}`}
+      />
       <OrgRecordDisplay sortedRecord={fetchedOrg} />
       {Boolean(convertedLocRecords?.length) && (
         <DisplayMap latLongInfo={convertedLocRecords} />

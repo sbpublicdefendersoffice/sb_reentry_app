@@ -1,8 +1,7 @@
-import Head from 'next/head'
-
 import { PrivacyPolicyData } from '../../constants/privacypolicy-data'
 import { useStyles, siteTitle } from '../../constants/'
 import useLanguage from '../../hooks/useLanguage'
+import { HeadTags } from '../../components'
 
 const PrivacyPolicyPage = () => {
   const classes = useStyles()
@@ -11,9 +10,10 @@ const PrivacyPolicyPage = () => {
 
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${activeCopy.title}`}
+        href="/privacypolicy"
+      />
       <div style={{ width: '95%' }}>
         <h1
           style={{

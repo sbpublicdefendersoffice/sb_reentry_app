@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import { useState, useRef } from 'react'
 import {
   Link,
@@ -37,6 +36,8 @@ import {
   SB54PDF,
   copy,
 } from '../../constants/rights-data'
+
+import { HeadTags } from '../../components'
 const KnowYourRights = () => {
   const classes = useStyles()
   const { language } = useLanguage()
@@ -75,9 +76,11 @@ const KnowYourRights = () => {
   }
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${activeCopy.title}`}
+        href="/knowyourrights"
+        description="Know Your Rights in interactions with the police, immigration officials, in court and more."
+      />
       <div>
         <Typography
           style={{ marginTop: '3rem' }}

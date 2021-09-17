@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
 
 import { searchByKeyword, googleViewSearchResults } from '../../helpers'
 import {
@@ -10,7 +9,7 @@ import {
 } from '../../hooks'
 import { isProd, siteTitle } from '../../constants/'
 import { PGOrganizationResponse, CopyHolder } from '../../types'
-import { TagPane, DisplayMap } from '../../components/'
+import { TagPane, DisplayMap, HeadTags } from '../../components/'
 
 const copy: CopyHolder = {
   english: { search: 'Search' },
@@ -52,9 +51,7 @@ const GlobalSearchLanding = () => {
   return (
     convertedLocRecords && (
       <>
-        <Head>
-          <title>{`${siteTitle} | ${search}`}</title>
-        </Head>
+        <HeadTags title={`${siteTitle} | ${search}`} href="/search" />
         <TagPane orgInfo={searchResults} />
         <DisplayMap latLongInfo={convertedLocRecords} />
       </>

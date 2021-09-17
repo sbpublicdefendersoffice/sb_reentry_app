@@ -1,8 +1,8 @@
-import Head from 'next/head'
 import { Paper, Typography, Grid } from '@material-ui/core/'
 import { BusinessCenter, VerifiedUser, Forum } from '@material-ui/icons/'
 import useLanguage from '../../hooks/useLanguage'
 import { useStyles, siteTitle, aboutCopy } from '../../constants/'
+import { HeadTags } from '../../components'
 
 const AboutUs = () => {
   const classes = useStyles()
@@ -10,9 +10,11 @@ const AboutUs = () => {
   let activeCopy = aboutCopy[language]
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${activeCopy.title}`}
+        href="/aboutus"
+        description="Learn all about the organizations and people that made ThriveSBC"
+      />
       <Typography
         align="center"
         style={{ marginTop: '3rem' }}
