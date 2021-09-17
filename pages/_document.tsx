@@ -79,6 +79,13 @@ export default class MyDocument extends Document {
             href="./icons/thriveleaffavicon.svg"
             type="image/svg+xml"
           />
+          <link
+            rel="apple-touch-icon"
+            href="./icons/thriveleaffavicon.svg"
+            type="image/svg+xml"
+          />
+          <meta property="og:site_name" content="ThriveSBC" />
+          <meta property="og:type" content="website" />
         </Head>
         <body>
           <Main />
