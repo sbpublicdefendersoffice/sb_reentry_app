@@ -1,19 +1,17 @@
-const headers = async () => [
-  {
-    source: '/(.*)',
-    headers: [
-      { key: 'X-Content-Type-Options', value: 'nosniff' },
-      {
-        key: 'Content-Security-Policy',
-        value:
-          "default-src 'self'; script-src 'self'; script-src-elem 'self' 'unsafe-inline' *.googletagmanager.com; connect-src 'self' *.mapbox.com *.google-analytics.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' *.mapbox.com; font-src 'self' fonts.googleapis.com fonts.gstatic.com; worker-src 'self' blob:; object-src 'self' data:; frame-src 'self' data:;",
-      },
-    ],
-  },
-]
-
 const nextConfigOptions = {
-  headers,
+  headers: async () => [
+    {
+      source: '/(.*)',
+      headers: [
+        { key: 'X-Content-Type-Options', value: 'nosniff' },
+        {
+          key: 'Content-Security-Policy',
+          value:
+            "default-src 'self'; script-src 'self'; script-src-elem 'self' 'unsafe-inline' *.googletagmanager.com; connect-src 'self' *.mapbox.com *.google-analytics.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' *.mapbox.com; font-src 'self' fonts.googleapis.com fonts.gstatic.com; worker-src 'self' blob:; object-src 'self' data:; frame-src 'self' data:;",
+        },
+      ],
+    },
+  ],
   target: 'serverless',
   webpack: (config, { isServer }) => {
     config.module.rules.push({
