@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import { Op } from 'sequelize'
 
@@ -9,6 +8,7 @@ import {
   LetUsHelpCardLayout,
   TagPane,
   DisplayMap,
+  HeadTags,
 } from '../../../components'
 import { useLanguage, useConvertedLocationRecords } from '../../../hooks/'
 import { CopyHolder, PGOrganizationResponse } from '../../../types/'
@@ -52,9 +52,11 @@ const ResourcesForFamilyAndFriendsLanding = ({
 
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${title}`}
+        href="/letushelp/familyresources"
+        description="Resources in Santa Barbara County just for families"
+      />
       <div style={flexFullWidth}>
         <PictureWithOval color="peri" pic="familyFriendsPic.jpg" />
         <LetUsHelpHeading>

@@ -1,9 +1,8 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import { Button, Title, Paragraph } from '../../../ui'
 import { siteTitle } from '../../../constants/'
-import { FullPageDecision } from '../../../components'
+import { FullPageDecision, HeadTags } from '../../../components'
 import { CopyHolder } from '../../../types/'
 import { useLanguage } from '../../../hooks/'
 
@@ -34,9 +33,11 @@ const ClearMyRecordLanding = () => {
 
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${title}`}
+        href="/letushelp/clearmyrecord"
+        description="Guidance to the Clear My Record service offered by Code for America"
+      />
       <FullPageDecision>
         <Title>{leaving}</Title>
         <Paragraph size="med-text">{disclaimer}</Paragraph>

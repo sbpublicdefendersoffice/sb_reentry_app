@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import { Op } from 'sequelize'
-import Head from 'next/head'
 
 import {
   PictureWithOval,
@@ -9,6 +8,7 @@ import {
   LetUsHelpCardLayout,
   TagPane,
   DisplayMap,
+  HeadTags,
 } from '../../../components'
 import { useLanguage, useConvertedLocationRecords } from '../../../hooks/'
 import { CopyHolder, PGOrganizationResponse } from '../../../types/'
@@ -52,9 +52,11 @@ const ResourcesForWomenLanding = ({
 
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${title}`}
+        href="/letushelp/resourcesforwomen"
+        description="ThriveSBC's collection of resources for cis and trans women"
+      />
       <div style={flexFullWidth}>
         <PictureWithOval color="peri" pic="resourcesWomenPic.jpg" />
         <LetUsHelpHeading>

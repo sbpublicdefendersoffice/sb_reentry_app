@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Typography from '@material-ui/core/Typography'
 import useLanguage from '../../hooks/useLanguage'
 import { checkCopy, useStyles, siteTitle } from '../../constants/'
@@ -15,9 +14,6 @@ const Checklist = () => {
   const activeCopy = checkCopy[language]
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
-      </Head>
       <HeadTags
         title={`${siteTitle} | ${activeCopy.title}`}
         href="/checklist"

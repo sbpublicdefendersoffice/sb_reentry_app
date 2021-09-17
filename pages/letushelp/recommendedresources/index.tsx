@@ -1,11 +1,10 @@
-import Head from 'next/head'
-
 import useLanguage from '../../../hooks/useLanguage'
 import { Title, Paragraph } from '../../../ui'
 import {
   PictureWithOval,
   LetUsHelpHeading,
   LetUsHelpCardLayout,
+  HeadTags,
 } from '../../../components'
 import {
   recommendedResources,
@@ -20,9 +19,11 @@ const RecommendedResourcesLanding = () => {
 
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${title}`}
+        href="/letushelp/recommendedresources"
+        description="Resources we highly recommend"
+      />
       <div style={flexFullWidth}>
         <PictureWithOval color="highlight" pic="recResourcesPic.jpg" />
         <LetUsHelpHeading>

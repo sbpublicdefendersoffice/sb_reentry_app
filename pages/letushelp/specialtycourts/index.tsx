@@ -1,8 +1,7 @@
 import NextLink from 'next/link'
-import Head from 'next/head'
 
 import { CallToAction, Paragraph } from '../../../ui'
-import { LetUsHelpIndexTitle } from '../../../components'
+import { LetUsHelpIndexTitle, HeadTags } from '../../../components'
 import { CopyHolder } from '../../../types/language'
 import useLanguage from '../../../hooks/useLanguage'
 import { margin, maxWidth, siteTitle } from '../../../constants/'
@@ -56,9 +55,11 @@ const SpecialtyCourtsLanding = () => {
 
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${title}`}
+        href="/letushelp/specialtycourts"
+        description="Information and resources concerning Specialty Courts in Santa Barbara County"
+      />
       <LetUsHelpIndexTitle {...{ src, title, whatIs, explain }} />
       <CallToAction>
         <Paragraph style={margin} size="heading-text" color="highlight">

@@ -1,10 +1,10 @@
-import Head from 'next/head'
 import useLanguage from '../../../hooks/useLanguage'
 import { CopyHolder } from '../../../types/language'
 import {
   LetUsHelpIndexTitle,
   LetUsHelpHeading,
   PictureWithOval,
+  HeadTags,
 } from '../../../components'
 import { Title, Paragraph } from '../../../ui'
 import { flexFullWidth, siteTitle } from '../../../constants/'
@@ -47,9 +47,11 @@ const DocumentsLanding = () => {
 
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${documents}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${documents}`}
+        href="/letushelp/documents"
+        description="Documents you may need in order to aid you in your reentry"
+      />
       <div style={flexFullWidth}>
         <PictureWithOval color="green" pic="documentsPic.jpg" />
         <LetUsHelpHeading>

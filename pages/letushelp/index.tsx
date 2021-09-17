@@ -1,11 +1,10 @@
-import Head from 'next/head'
-
 import { siteTitle } from '../../constants'
 import { useLanguage } from '../../hooks'
 import {
   LetUsHelpContainer,
   LetUsHelpTitle,
   LetUsHelpTiles,
+  HeadTags,
 } from '../../components'
 import { CopyHolder } from '../../types'
 
@@ -20,9 +19,12 @@ const LetUsHelpPage = () => {
 
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${title}`}
+        href="/letushelp"
+        description="ThriveSBC's guided collection of resources to aid you in a successful reentry"
+      />
+
       <LetUsHelpContainer>
         <LetUsHelpTitle />
         <LetUsHelpTiles />
