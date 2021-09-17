@@ -1,9 +1,9 @@
 // import App from "next/app";
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import type { AppProps /*, AppContext */ } from 'next/app'
-import Head from 'next/head'
-import { siteTitle, ENGLISH, SPANISH, isProd } from '../constants'
+import { ENGLISH, SPANISH, isProd } from '../constants'
 import { Language, SantaBarbaraCountyCoords } from '../types'
 import {
   GlobalSearchProvider,
@@ -28,10 +28,6 @@ import '../styles/variables.css'
 const App = ({ Component, pageProps }: AppProps) => {
   const ISSERVER = typeof localStorage === 'undefined'
   const [isMapView, setIsMapView] = useState<boolean>(true)
-  // const [state, dispatch] = useReducer(viewReducer, {
-  //   isListView: false,
-  //   isMapView: true,
-  // })
   const [favorites, setFavorites] = useState(null)
   const [favoriteRecords, setFavoriteRecords] = useState(null)
   const { events, route } = useRouter()
@@ -98,14 +94,10 @@ const App = ({ Component, pageProps }: AppProps) => {
       <>
         <Head>
           <meta
-            name="description"
-            content={`${siteTitle}, A dynamic web app to help justice impacted individuals access resources to aid in a sucessful reentry after a jail or prison stay.`}
-          />
-          <meta
+            key="_app viewport"
             name="viewport"
             content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
           />
-          <title>{siteTitle}</title>
         </Head>
         <LangProvider value={{ language, setLanguage }}>
           <ViewProvider value={{ isMapView, setIsMapView }}>

@@ -1,11 +1,11 @@
 import { CSSProperties } from 'react'
-import Head from 'next/head'
 import { copy } from '../../../constants/prearraignment-data'
 import { siteTitle } from '../../../constants/copy'
 import Grid from '@material-ui/core/Grid'
 import useLanguage from '../../../hooks/useLanguage'
 import { Title, Paragraph } from '../../../ui'
 import { useStyles } from '../../../constants/materialStyles'
+import { HeadTags } from '../../../components'
 
 const cntr: CSSProperties = { display: 'flex', justifyContent: 'center' }
 
@@ -15,9 +15,11 @@ const PreArraignmentPage = () => {
   const activeCopy = copy[language]
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${activeCopy.title}`}
+        href="/letushelp/prearraignment"
+        description="Our collection of resources concering Pre-Arraignment"
+      />
       <div style={{ margin: '3rem 0 2rem 0' }}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={2} style={cntr}>

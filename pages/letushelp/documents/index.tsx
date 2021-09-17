@@ -4,9 +4,10 @@ import {
   LetUsHelpIndexTitle,
   LetUsHelpHeading,
   PictureWithOval,
+  HeadTags,
 } from '../../../components'
 import { Title, Paragraph } from '../../../ui'
-import { flexFullWidth } from '../../../constants/styling'
+import { flexFullWidth, siteTitle } from '../../../constants/'
 
 export const src: string = '/icons/documents.svg'
 
@@ -46,6 +47,11 @@ const DocumentsLanding = () => {
 
   return (
     <>
+      <HeadTags
+        title={`${siteTitle} | ${documents}`}
+        href="/letushelp/documents"
+        description="Documents you may need in order to aid you in your reentry"
+      />
       <div style={flexFullWidth}>
         <PictureWithOval color="green" pic="documentsPic.jpg" />
         <LetUsHelpHeading>

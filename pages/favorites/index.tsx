@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
-import Head from 'next/head'
+
 import { useFavorite, useLanguage } from '../../hooks/'
-import { GlobalSearchResult } from '../../components'
+import { GlobalSearchResult, HeadTags } from '../../components'
 import { Title, Paragraph } from '../../ui'
 import { useStyles, favoritesCopy, siteTitle } from '../../constants/'
 const FavoritePage = () => {
@@ -11,9 +11,11 @@ const FavoritePage = () => {
   const activeCopy = favoritesCopy[language]
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${activeCopy.title}`}
+        href="/favorites"
+        description="A place to save your favorite resources on ThriveSBC"
+      />
       <div className={classes.root} style={{ fontFamily: 'sans-serif' }}>
         <Title>{activeCopy.title}</Title>
         <div style={{ marginTop: '2rem' }}>

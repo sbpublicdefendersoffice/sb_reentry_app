@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import {
   Accordion,
   AccordionSummary,
@@ -35,6 +34,8 @@ import { siteTitle } from '../../../constants/copy'
 import useLanguage from '../../../hooks/useLanguage'
 import { Title, Paragraph } from '../../../ui'
 import { useStyles } from '../../../constants/materialStyles'
+import { HeadTags } from '../../../components'
+
 const LegalTermsPage = () => {
   const { language } = useLanguage()
   const classes = useStyles()
@@ -64,9 +65,11 @@ const LegalTermsPage = () => {
   const activeCopy = legaltermsCopy[language]
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${activeCopy.title}`}
+        href="/letushelp/legalterms"
+        description="A collection of legal terms you may hear"
+      />
       <div
         style={{
           margin: '4rem 0 2rem 0',

@@ -1,5 +1,4 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
-import Head from 'next/head'
 import Error from 'next/error'
 import { useRouter } from 'next/router'
 import { Op } from 'sequelize'
@@ -16,6 +15,7 @@ import {
   MobileFilterModal,
   MobileButtonsLandingPage,
   RecordPane,
+  HeadTags,
 } from '../../components'
 import {
   categoryCopy,
@@ -60,9 +60,11 @@ const LandingPage = ({ preFetchedOrgs }: LandingPageProps) => {
   if (!validCategory) return <Error statusCode={404} />
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${displayCategory}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${displayCategory}`}
+        href={`/${routeCategory}`.replace(/\s/g, '')}
+        description={`A list of all ${routeCategory} resources on ThriveSBC`}
+      />
       <div className={classes.landingPageContainer}>
         <Grid container>
           <Hidden lgUp>

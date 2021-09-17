@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import {
   Card,
   CardContent,
@@ -15,6 +14,7 @@ import {
   ArturoSuccessStory,
   LisaSuccessStory,
 } from '../../constants/'
+import { HeadTags } from '../../components'
 const ThriveStories = () => {
   const { language } = useLanguage()
   const classes = useStyles()
@@ -22,9 +22,11 @@ const ThriveStories = () => {
   const activeCopy = successCopy[language]
   return (
     <>
-      <Head>
-        <title>{`${siteTitle} | ${activeCopy.title}`}</title>
-      </Head>
+      <HeadTags
+        title={`${siteTitle} | ${activeCopy.title}`}
+        href="/thrivestories"
+        description="Thrive Stories: Inspiring stories from the justice-impacted"
+      />
       <div className={classes.root} style={{ margin: '0 auto' }}>
         <Typography
           style={{ marginTop: '4rem' }}

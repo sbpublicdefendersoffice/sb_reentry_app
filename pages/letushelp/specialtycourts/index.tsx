@@ -1,10 +1,10 @@
 import NextLink from 'next/link'
 
 import { CallToAction, Paragraph } from '../../../ui'
-import { LetUsHelpIndexTitle } from '../../../components'
+import { LetUsHelpIndexTitle, HeadTags } from '../../../components'
 import { CopyHolder } from '../../../types/language'
 import useLanguage from '../../../hooks/useLanguage'
-import { margin, maxWidth } from '../../../constants/styling'
+import { margin, maxWidth, siteTitle } from '../../../constants/'
 
 const copy: CopyHolder = {
   english: {
@@ -55,6 +55,11 @@ const SpecialtyCourtsLanding = () => {
 
   return (
     <>
+      <HeadTags
+        title={`${siteTitle} | ${title}`}
+        href="/letushelp/specialtycourts"
+        description="Information and resources concerning Specialty Courts in Santa Barbara County"
+      />
       <LetUsHelpIndexTitle {...{ src, title, whatIs, explain }} />
       <CallToAction>
         <Paragraph style={margin} size="heading-text" color="highlight">

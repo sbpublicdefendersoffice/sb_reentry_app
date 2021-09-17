@@ -8,10 +8,11 @@ import {
   LetUsHelpCardLayout,
   TagPane,
   DisplayMap,
+  HeadTags,
 } from '../../../components'
 import { useLanguage, useConvertedLocationRecords } from '../../../hooks/'
 import { CopyHolder, PGOrganizationResponse } from '../../../types/'
-import { womensResources, flexFullWidth } from '../../../constants/'
+import { womensResources, flexFullWidth, siteTitle } from '../../../constants/'
 import { AdaptiveFlexContainer, Title, Paragraph } from '../../../ui'
 import initDb from '../../../helpers/sequelize'
 
@@ -51,6 +52,11 @@ const ResourcesForWomenLanding = ({
 
   return (
     <>
+      <HeadTags
+        title={`${siteTitle} | ${title}`}
+        href="/letushelp/resourcesforwomen"
+        description="ThriveSBC's collection of resources for cis and trans women"
+      />
       <div style={flexFullWidth}>
         <PictureWithOval color="peri" pic="resourcesWomenPic.jpg" />
         <LetUsHelpHeading>

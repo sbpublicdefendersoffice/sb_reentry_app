@@ -8,10 +8,11 @@ import {
   LetUsHelpCardLayout,
   TagPane,
   DisplayMap,
+  HeadTags,
 } from '../../../components'
 import { useLanguage, useConvertedLocationRecords } from '../../../hooks/'
 import { CopyHolder, PGOrganizationResponse } from '../../../types/'
-import { familyResources, flexFullWidth } from '../../../constants/'
+import { familyResources, flexFullWidth, siteTitle } from '../../../constants/'
 import { AdaptiveFlexContainer, Title, Paragraph } from '../../../ui'
 import initDb from '../../../helpers/sequelize'
 
@@ -51,6 +52,11 @@ const ResourcesForFamilyAndFriendsLanding = ({
 
   return (
     <>
+      <HeadTags
+        title={`${siteTitle} | ${title}`}
+        href="/letushelp/familyresources"
+        description="Resources in Santa Barbara County just for families"
+      />
       <div style={flexFullWidth}>
         <PictureWithOval color="peri" pic="familyFriendsPic.jpg" />
         <LetUsHelpHeading>

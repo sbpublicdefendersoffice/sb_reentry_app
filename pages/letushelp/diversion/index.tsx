@@ -1,8 +1,12 @@
 import { CallToAction, Paragraph } from '../../../ui'
 import { CopyHolder } from '../../../types/language'
 import useLanguage from '../../../hooks/useLanguage'
-import { DiversionQualify, LetUsHelpIndexTitle } from '../../../components'
-import { margin } from '../../../constants/styling'
+import {
+  DiversionQualify,
+  LetUsHelpIndexTitle,
+  HeadTags,
+} from '../../../components'
+import { margin, siteTitle } from '../../../constants/'
 
 export const copy: CopyHolder = {
   english: {
@@ -57,6 +61,11 @@ const DiversionLanding = () => {
 
   return (
     <>
+      <HeadTags
+        title={`${siteTitle} | ${title}`}
+        href="/letushelp/diversion"
+        description="Resources concerning diversion in Santa Barbara County"
+      />
       <LetUsHelpIndexTitle {...{ src, title, whatIs, explain }} />
       <DiversionQualify />
       <CallToAction blueBg>
