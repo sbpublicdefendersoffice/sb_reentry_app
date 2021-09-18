@@ -46,7 +46,7 @@ const Footer = () => {
       const [resourceButtonClicked, setResourceButtonClicked] = useState(false)
       const { route } = routeData
       const link: ReactElement = (
-        <Grid item xs={12} md={3} className={styles.Grid}>
+        <Grid item xs={12} md={3} sm={1} className={styles.Grid}>
           <NextLink href={route} as={route}>
             <h2 className={styles.Title}>{title}</h2>
           </NextLink>
@@ -55,7 +55,7 @@ const Footer = () => {
       if (i === lastStaticRouteIndex - 1)
         return (
           <>
-            <Grid item xs={12} md={2} className={styles.Grid}>
+            <Grid item xs={12} md={2} sm={4} className={styles.Grid}>
               <Hidden smDown>
                 <div style={{ width: '10rem' }}>
                   <Button
@@ -148,7 +148,7 @@ const Footer = () => {
                 </div>
               </Hidden>
             </Grid>
-            <Grid item xs={12} md={2} className={styles.Grid}>
+            <Grid item xs={12} md={2} sm={3} className={styles.Grid}>
               <Hidden smDown>
                 <div
                   style={{
@@ -210,7 +210,7 @@ const Footer = () => {
                     {activeCopy.resource} <ArrowDropDown />
                   </h2>
                 </Button>
-                <div style={{ marginTop: '1rem' }}>
+                <div>
                   {resourceButtonClicked &&
                     ResourcesSupportRoutes.map((routeData, i) => {
                       const title = routeData[`title_${language}`]
@@ -230,7 +230,7 @@ const Footer = () => {
                 </div>
               </Hidden>
             </Grid>
-            {link}
+            <div className={styles.About}>{link}</div>
           </>
         )
       if (i === lastStaticRouteIndex) return null

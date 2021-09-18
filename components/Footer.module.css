@@ -48,6 +48,11 @@
   white-space: nowrap !important;
   text-align: left;
 }
+.About {
+  margin-left: 0rem;
+  display: inline;
+  padding-top: 1rem;
+}
 .ButtonTitleNoHover {
   color: var(--light);
   font-size: var(--med-text);
@@ -70,10 +75,7 @@
   margin-top: 0 !important;
   flex-basis: 30.33% !important;
 }
-.About {
-  display: inline-flex !important;
-  margin-top: -2.9rem;
-}
+
 .ButtonStyle {
   margin-left: 3rem !important;
 }
@@ -98,7 +100,10 @@
     padding-bottom: 0;
   }
   .About {
-    margin-left: 7rem !important;
+    margin-left: 4.6rem !important;
+  }
+  .Grid {
+    margin-left: 2rem !important;
   }
   .GridRight {
     padding-bottom: 2rem;
@@ -153,7 +158,7 @@
     text-align: center !important;
     margin-right: 3rem;
     margin-top: -0.8rem;
-    margin-left: 1.6rem !important;
+    margin-left: 2.5rem !important;
   }
   .GridRight {
     text-align: center !important;
@@ -180,6 +185,6 @@
     margin-left: 3rem !important;
   }
   .About {
-    margin-left: 2rem;
+    margin-left: 1.5rem !important;
   }
 }
