@@ -9,14 +9,12 @@
 .ThriveLogo {
   width: 18rem;
 }
-
 .SubMenuItem {
   word-wrap: break-word;
   color: var(--light);
   font-size: var(--med-text);
   font-weight: 100;
   justify-content: flex-start;
-  margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
 }
 .Title {
@@ -24,29 +22,23 @@
   color: var(--light);
   font-size: var(--med-text);
   font-weight: 100;
-  margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
   white-space: nowrap !important;
+  box-sizing: border-box;
 }
 .TitleWrap {
   word-wrap: break-word;
   color: var(--light);
   font-size: var(--med-text);
-  display: block;
-  width: auto;
+  display: inline-block !important;
   font-weight: 100;
-  margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
   white-space: nowrap !important;
 }
-
 .Button {
   text-transform: inherit !important;
   line-height: inherit !important;
-  padding: 0 !important;
-  margin: auto !important;
-  display: block !important;
-  margin-left: 9rem !important;
+  box-sizing: border-box;
 }
 .ButtonTitle {
   color: var(--light);
@@ -54,9 +46,12 @@
   font-weight: 100;
   border-bottom: 0.25rem solid transparent;
   white-space: nowrap !important;
-  width: 10rem !important;
-  margin: 0 var(--margin-std);
   text-align: left;
+}
+.About {
+  margin-left: 0rem;
+  display: inline;
+  padding-top: 1rem;
 }
 .ButtonTitleNoHover {
   color: var(--light);
@@ -64,11 +59,8 @@
   font-weight: 100;
   border-bottom: 0.25rem solid transparent;
   white-space: nowrap !important;
-  width: 12rem;
-  margin: 0 var(--margin-std);
   text-align: left;
 }
-
 .DisplayInline {
   display: inline-flex;
 }
@@ -76,22 +68,14 @@
   display: inline-flex !important;
   margin-top: 3rem !important;
   margin-left: 3rem !important;
-  max-width: 19.33%;
 }
 .GridRight {
-  /* display: flex;
-  flex-direction: column; */
   text-align: right !important;
   max-width: 30.833%;
   margin-top: 0 !important;
   flex-basis: 30.33% !important;
 }
-.About {
-  display: inline-flex !important;
-  margin-top: -3.2rem;
-  margin-left: 7rem !important;
-  margin-right: 4rem !important;
-}
+
 .ButtonStyle {
   margin-left: 3rem !important;
 }
@@ -100,26 +84,26 @@
 .SubMenuItem {
   cursor: pointer;
 }
-
 .Margins {
   margin: 1rem 0 0 0;
   word-break: break-word;
 }
-
 .Title:hover,
 .ButtonTitle:hover,
 .TitleWrap:hover,
 .SubMenuItem:hover {
   border-bottom: 0.25rem solid var(--green) !important;
 }
-
 @media (max-width: 1275px) {
   .Footer {
     margin-bottom: 4rem;
     padding-bottom: 0;
   }
   .About {
-    margin-left: 7rem !important;
+    margin-left: 4.6rem !important;
+  }
+  .Grid {
+    margin-left: 2rem !important;
   }
   .GridRight {
     padding-bottom: 2rem;
@@ -142,7 +126,6 @@
     text-align: left !important;
   }
 }
-
 @media (max-width: 950px) {
   .Footer {
     text-align: center !important;
@@ -170,15 +153,13 @@
     margin-top: 1rem !important;
     max-width: 79.33% !important;
   }
-
   .About {
     display: block !important;
     text-align: center !important;
     margin-right: 3rem;
     margin-top: -0.8rem;
-    margin-left: 1.6rem !important;
+    margin-left: 2.5rem !important;
   }
-
   .GridRight {
     text-align: center !important;
     max-width: 95%;
@@ -187,7 +168,6 @@
     padding-bottom: 1rem;
     margin-top: 1rem !important;
   }
-
   .Margins {
     margin: 0.5rem 0 0 0;
   }
@@ -205,6 +185,6 @@
     margin-left: 3rem !important;
   }
   .About {
-    margin-left: 2rem;
+    margin-left: 1.5rem !important;
   }
 }

@@ -17,12 +17,10 @@ const currentYear: number = new Date().getFullYear()
 export const copyright: string = `© Copyright 2021${
   currentYear === 2021 ? '' : `-${currentYear}`
 }`
-
 export const linkInfo = {
   text: "Santa Barbara County Public Defender's Office",
   href: 'https://www.countyofsb.org/defender',
 }
-
 const copy: CopyHolder = {
   english: {
     art: 'Homepage picture graciously provided by ',
@@ -38,7 +36,6 @@ const copy: CopyHolder = {
     resource: 'Soporte de recursos',
   },
 }
-
 const Footer = () => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
@@ -49,65 +46,57 @@ const Footer = () => {
       const [resourceButtonClicked, setResourceButtonClicked] = useState(false)
       const { route } = routeData
       const link: ReactElement = (
-        <Grid item xs={12} md={1} spacing={1} className={styles.Grid}>
+        <Grid item xs={12} md={3} sm={1} className={styles.Grid}>
           <NextLink href={route} as={route}>
             <h2 className={styles.Title}>{title}</h2>
           </NextLink>
         </Grid>
       )
-
       if (i === lastStaticRouteIndex - 1)
         return (
           <>
-            <Grid item xs={12} sm={1} spacing={3} className={styles.Grid}>
+            <Grid item xs={12} md={2} sm={4} className={styles.Grid}>
               <Hidden smDown>
-                <Button
-                  onClick={() => setCourtButtonClicked(!courtButtonClicked)}
-                  style={{
-                    textTransform: 'inherit',
-                    lineHeight: 'inherit',
-                    padding: '0 !important',
-                    marginLeft: '2rem',
-                    display: 'block',
-                  }}
-                >
-                  <h2
-                    className={
-                      courtButtonClicked
-                        ? styles.ButtonTitleNoHover
-                        : styles.ButtonTitle
-                    }
+                <div style={{ width: '10rem' }}>
+                  <Button
+                    onClick={() => setCourtButtonClicked(!courtButtonClicked)}
+                    style={{
+                      textTransform: 'inherit',
+                      lineHeight: 'inherit',
+                      padding: '0 !important',
+
+                      fontSize: '1rem',
+                    }}
                   >
-                    {activeCopy.court}
-                    <ArrowDropDown style={{ alignItems: 'inherit' }} />
-                    <div
-                      style={{
-                        marginTop: '1rem',
-                      }}
-                    >
-                      {courtButtonClicked &&
-                        CourtSupportRoutes.map((routeData, i) => {
-                          const title = routeData[`title_${language}`]
-                          const { route } = routeData
-                          return (
-                            <NextLink key={i} href={route} as={route}>
-                              <h2
-                                className={styles.TitleWrap}
-                                onClick={() => setCourtButtonClicked(false)}
-                                style={{
-                                  fontSize: '1.2rem',
-                                  margin: '.5rem 0rem .5rem 0rem',
-                                  whiteSpace: 'normal',
-                                }}
-                              >
-                                {title}
-                              </h2>
-                            </NextLink>
-                          )
-                        })}
-                    </div>
-                  </h2>{' '}
-                </Button>
+                    <h2 className={styles.ButtonTitle}>
+                      {activeCopy.court}
+                      <ArrowDropDown style={{ alignItems: 'inherit' }} />
+                    </h2>{' '}
+                  </Button>
+                  {courtButtonClicked &&
+                    CourtSupportRoutes.map((routeData, i) => {
+                      const title = routeData[`title_${language}`]
+                      const { route } = routeData
+                      return (
+                        <>
+                          <NextLink key={i} href={route} as={route}>
+                            <h2
+                              className={styles.TitleWrap}
+                              onClick={() => setCourtButtonClicked(false)}
+                              style={{
+                                fontSize: '1.2rem',
+                                margin: '.5rem 0rem .5rem 0rem',
+                                whiteSpace: 'normal',
+                              }}
+                            >
+                              {title}
+                            </h2>
+                          </NextLink>
+                          <br />
+                        </>
+                      )
+                    })}
+                </div>
               </Hidden>
               <Hidden mdUp>
                 <Button
@@ -159,50 +148,49 @@ const Footer = () => {
                 </div>
               </Hidden>
             </Grid>
-            <Grid item xs={12} md={3} className={styles.Grid}>
+            <Grid item xs={12} md={2} sm={3} className={styles.Grid}>
               <Hidden smDown>
-                <Button
-                  onClick={() =>
-                    setResourceButtonClicked(!resourceButtonClicked)
-                  }
-                  className={styles.Button}
+                <div
+                  style={{
+                    width: '10rem',
+                    marginLeft: '2rem',
+                    marginRight: '3rem',
+                  }}
                 >
-                  <h2
-                    className={
-                      resourceButtonClicked
-                        ? styles.ButtonTitleNoHover
-                        : styles.ButtonTitle
+                  <Button
+                    onClick={() =>
+                      setResourceButtonClicked(!resourceButtonClicked)
                     }
+                    className={styles.Button}
                   >
-                    {activeCopy.resource}
-                    <ArrowDropDown style={{ alignItems: 'inherit' }} />
-                    <div
-                      style={{
-                        marginTop: '1rem',
-                      }}
-                    >
-                      {resourceButtonClicked &&
-                        ResourcesSupportRoutes.map((routeData, i) => {
-                          const title = routeData[`title_${language}`]
-                          const { route } = routeData
-                          return (
-                            <NextLink key={i} href={route} as={route}>
-                              <h2
-                                className={styles.TitleWrap}
-                                onClick={() => setResourceButtonClicked(false)}
-                                style={{
-                                  margin: '.5rem 0rem .5rem 0rem',
-                                  whiteSpace: 'normal',
-                                }}
-                              >
-                                {title}
-                              </h2>
-                            </NextLink>
-                          )
-                        })}
-                    </div>
-                  </h2>
-                </Button>
+                    <h2 className={styles.ButtonTitle}>
+                      {activeCopy.resource}
+                      <ArrowDropDown style={{ alignItems: 'inherit' }} />
+                    </h2>
+                  </Button>
+                  {resourceButtonClicked &&
+                    ResourcesSupportRoutes.map((routeData, i) => {
+                      const title = routeData[`title_${language}`]
+                      const { route } = routeData
+                      return (
+                        <>
+                          <NextLink key={i} href={route} as={route}>
+                            <h2
+                              className={styles.TitleWrap}
+                              onClick={() => setResourceButtonClicked(false)}
+                              style={{
+                                margin: '.5rem 0rem .5rem 0rem',
+                                whiteSpace: 'normal',
+                              }}
+                            >
+                              {title}
+                            </h2>
+                          </NextLink>
+                          <br />
+                        </>
+                      )
+                    })}
+                </div>
               </Hidden>
               <Hidden mdUp>
                 <Button
@@ -215,13 +203,14 @@ const Footer = () => {
                     padding: '0 !important',
                     margin: 'auto',
                     display: 'block',
+                    boxSizing: 'border-box',
                   }}
                 >
                   <h2 className={styles.ButtonTitle}>
                     {activeCopy.resource} <ArrowDropDown />
                   </h2>
                 </Button>
-                <div style={{ marginTop: '1rem' }}>
+                <div>
                   {resourceButtonClicked &&
                     ResourcesSupportRoutes.map((routeData, i) => {
                       const title = routeData[`title_${language}`]
@@ -240,8 +229,8 @@ const Footer = () => {
                     })}
                 </div>
               </Hidden>
-              <div className={styles.About}>{link}</div>
             </Grid>
+            <div className={styles.About}>{link}</div>
           </>
         )
       if (i === lastStaticRouteIndex) return null
@@ -251,7 +240,7 @@ const Footer = () => {
   return (
     <footer role="region">
       <Grid container className={styles.Footer}>
-        <Grid item xs={12} sm={12} md={8} spacing={2}>
+        <Grid item xs={12} sm={12} md={8}>
           {StaticPages}
         </Grid>
         <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
