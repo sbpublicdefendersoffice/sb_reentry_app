@@ -27,6 +27,9 @@ import {
   flexFullWidth,
   resumeTemplate,
   siteTitle,
+  alcoholanddrugclass,
+  duiPrograms,
+  sr22,
 } from '../../constants/'
 
 const FaqPage = () => {
@@ -36,12 +39,15 @@ const FaqPage = () => {
   const faqs: CopyHolder[] = [
     resumeTemplate,
     whereToStart,
+    covid,
     probation,
     transferProbation,
     volunteer,
     treatment,
     refill,
-    covid,
+    alcoholanddrugclass,
+    duiPrograms,
+    sr22,
     documents,
     edits,
     feedback,
