@@ -178,3 +178,53 @@ export const feedback: CopyHolder = {
       'En la parte inferior de cada página hay un "¿Es útil esta página?" que se puede utilizar para especificar información inexacta. Haga clic en "sí" o "no" para completar un formulario de comentarios.',
   },
 }
+export const alcoholanddrugclass: CopyHolder = {
+  english: {
+    listItem: `Where can I find an online Alcohol and Drug classes?`,
+    description:
+      'There are many classes that you can take online including drug education classes, alcohol awareness, DUI/DWI classes, MIP, MIC classes and many more. View more info by ',
+    href1:
+      'https://www.alcoholdrugclass.com/Alcohol-Awareness-Class/California-Santa-Barbara.aspx',
+  },
+  spanish: {
+    listItem: '¿Dónde puedo encontrar clases de alcohol y drogas en línea?',
+    description:
+      'Hay muchas clases que puede tomar en línea, incluidas clases de educación sobre drogas, conciencia sobre el alcohol, clases de DUI / DWI, MIP, clases de MIC y muchas más. Ver más información por',
+    href1:
+      'https://www.alcoholdrugclass.com/Alcohol-Awareness-Class/California-Santa-Barbara.aspx',
+  },
+}
+
+export const duiPrograms: CopyHolder = {
+  english: {
+    listItem: `Where can I learn about the DUI programs in Santa Barbara County?`,
+    description:
+      'There are programs such as the DUI school for wet reckless driving and underage DUI, DUI School for first time convictions, 18-month DUI program for second-time convtions, and 30-month programs for subsequent convictions. To learn more about each of the programs/classes specifically you can learn more by ',
+    href1:
+      'https://www.santabarbaracriminaldefenselawyers.com/criminal-defense/dui/dui-schools/',
+  },
+  spanish: {
+    listItem:
+      '¿Dónde puedo aprender sobre los programas de DUI en el condado de Santa Bárbara?',
+    description:
+      'Hay programas como la escuela de DUI para la conducción imprudente en mojado y DUI de menores de edad, la escuela de DUI para las condenas por primera vez, el programa de DUI de 18 meses para las condenas por segunda vez y los programas de 30 meses para las condenas posteriores. Para obtener más información sobre cada uno de los programas / clases específicamente, puede obtener más información al',
+    href1:
+      'https://www.santabarbaracriminaldefenselawyers.com/criminal-defense/dui/dui-schools/',
+  },
+}
+export const sr22: CopyHolder = {
+  english: {
+    listItem: `What is California SR22 insurance?`,
+    description:
+      'A CA SR22 document is issued by your insurance company to serve as a guarantee to the DMV that you have secured the minimum liability coverage required by state law. The California SR22 is required of drivers who have had their driver’s license suspended. You can learn more by ',
+    href1:
+      'https://www.santabarbaracriminaldefenselawyers.com/criminal-defense/dui/dui-schools/',
+  },
+  spanish: {
+    listItem: '¿Qué es el seguro SR22 de California?',
+    description:
+      'Su compañía de seguros emite un documento CA SR22 para que sirva como garantía al DMV de que ha obtenido la cobertura de responsabilidad mínima requerida por la ley estatal. La SR22 de California se requiere para los conductores a quienes se les ha suspendido la licencia de conducir. Puedes aprender más por ',
+    href1:
+      'https://www.santabarbaracriminaldefenselawyers.com/criminal-defense/dui/dui-schools/',
+  },
+}
