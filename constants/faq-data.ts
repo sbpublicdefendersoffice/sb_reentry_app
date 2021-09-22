@@ -178,7 +178,7 @@ export const feedback: CopyHolder = {
       'En la parte inferior de cada página hay un "¿Es útil esta página?" que se puede utilizar para especificar información inexacta. Haga clic en "sí" o "no" para completar un formulario de comentarios.',
   },
 }
-export const alcoholanddrugclass: CopyHolder = {
+export const alcoholAndDrugClass: CopyHolder = {
   english: {
     listItem: `Where can I find an online Alcohol and Drug classes?`,
     description:

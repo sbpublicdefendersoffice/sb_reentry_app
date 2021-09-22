@@ -27,7 +27,7 @@ import {
   flexFullWidth,
   resumeTemplate,
   siteTitle,
-  alcoholanddrugclass,
+  alcoholAndDrugClass,
   duiPrograms,
   sr22,
 } from '../../constants/'
@@ -45,7 +45,7 @@ const FaqPage = () => {
     volunteer,
     treatment,
     refill,
-    alcoholanddrugclass,
+    alcoholAndDrugClass,
     duiPrograms,
     sr22,
     documents,

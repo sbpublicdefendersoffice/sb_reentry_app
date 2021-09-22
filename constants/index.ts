@@ -56,7 +56,7 @@ export {
   transportationServiceCopy,
 } from './service-filter-data'
 export {
-  alcoholanddrugclass,
+  alcoholAndDrugClass,
   covid,
   documents,
   duiPrograms,
