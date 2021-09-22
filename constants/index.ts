@@ -56,14 +56,17 @@ export {
   transportationServiceCopy,
 } from './service-filter-data'
 export {
+  alcoholAndDrugClass,
   covid,
   documents,
+  duiPrograms,
   edits,
   faqCopy,
   feedback,
   probation,
   refill,
   resumeTemplate,
+  sr22,
   transferProbation,
   treatment,
   volunteer,
