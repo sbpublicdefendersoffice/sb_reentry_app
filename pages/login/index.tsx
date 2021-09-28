@@ -8,7 +8,7 @@ const LoginPage = () => {
   const { push } = useRouter()
 
   const getCookie = async (): Promise<void> => {
-    await fetch('/api/jwt')
+    await fetch('/api/jwt', { credentials: 'include' })
     push('/testlogin')
   }
 
