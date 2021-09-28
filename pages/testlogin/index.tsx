@@ -52,7 +52,7 @@ export const getServerSideProps: GetServerSideProps = async (
         return obj
       }, {})
 
-    token = verify(headers['Auth-Token'], secret)
+    if (headers['Auth-Token']) token = verify(headers['Auth-Token'], secret)
   }
 
   return {
