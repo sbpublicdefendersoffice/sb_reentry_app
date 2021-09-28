@@ -19,7 +19,13 @@ const LoginPage = () => {
         href={`/login`}
         description={`Login`}
       />
-      <div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
         <Button onClick={getCookie}>Log In To Thrive</Button>
       </div>
     </>

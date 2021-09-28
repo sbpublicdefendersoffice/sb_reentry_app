@@ -8,6 +8,8 @@ const jwt = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
+  //here is where database sign in logic would happen
+
   res.setHeader(
     'Set-Cookie',
     `Auth-Token=${sign({ userLoggedIn: true }, secret, {

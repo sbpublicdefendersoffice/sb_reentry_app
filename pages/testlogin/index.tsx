@@ -18,11 +18,19 @@ const TestLoginPage = ({ userLoggedIn }: TestLoginPageProps) => {
         href={`/testlogin`}
         description={`Login Test`}
       />
-      <span>
-        {userLoggedIn
-          ? "you're logged in, good on ya"
-          : "you're not even logged in my friend"}
-      </span>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <span>
+          {userLoggedIn
+            ? "you're logged in, here's your private information"
+            : "you're not logged in, so you don't get to see privleged information"}
+        </span>
+      </div>
     </>
   )
 }
