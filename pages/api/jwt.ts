@@ -10,8 +10,8 @@ const jwt = async (
 ): Promise<void> => {
   res.setHeader(
     'Set-Cookie',
-    `Auth-Token=${sign({ howdy: 'hi' }, secret, {
-      expiresIn: '24h',
+    `Auth-Token=${sign({ userLoggedIn: true }, secret, {
+      expiresIn: `${oneDay}s`,
     })}; Max-Age=${oneDay}; Path=/; HttpOnly; Secure; SameSite=Strict`,
   )
   res.send({})

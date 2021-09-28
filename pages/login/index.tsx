@@ -1,17 +1,16 @@
-import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
 import { HeadTags } from '../../components'
 import { siteTitle } from '../../constants'
 import { Button } from '../../ui'
 
 const LoginPage = () => {
-  useEffect(() => {
-    const getCookie = async (): Promise<Response> => await fetch('/api/jwt')
+  const { push } = useRouter()
 
-    getCookie()
-  }, [])
-
-  const checkHeader = async (): Promise<Response> => await fetch('/api/testJwt')
+  const getCookie = async (): Promise<void> => {
+    await fetch('/api/jwt')
+    push('/testlogin')
+  }
 
   return (
     <>
@@ -20,9 +19,8 @@ const LoginPage = () => {
         href={`/login`}
         description={`Login`}
       />
-      <span>check the application tab</span>
       <div>
-        <Button onClick={checkHeader}>Check Header</Button>
+        <Button onClick={getCookie}>Log In To Thrive</Button>
       </div>
     </>
   )
