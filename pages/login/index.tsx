@@ -1,7 +1,8 @@
+import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 
 import { HeadTags } from '../../components'
-import { siteTitle } from '../../constants'
+import { siteTitle, isDev } from '../../constants'
 import { Button } from '../../ui'
 
 const LoginPage = () => {
@@ -9,7 +10,7 @@ const LoginPage = () => {
 
   const getCookie = async (): Promise<void> => {
     await fetch('/api/jwt', { credentials: 'include' })
-    push('/testlogin')
+    push('/login/verify')
   }
 
   return (
@@ -33,3 +34,18 @@ const LoginPage = () => {
 }
 
 export default LoginPage
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  // login is still under development, so we don't want people accessing it in production
+  if (!isDev)
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+
+  return {
+    props: {},
+  }
+}

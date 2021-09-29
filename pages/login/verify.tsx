@@ -2,21 +2,21 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { verify } from 'jsonwebtoken'
 
 import { HeadTags } from '../../components'
-import { siteTitle } from '../../constants'
+import { siteTitle, isDev } from '../../constants'
 
 const secret: string = 'Super Secret, Secret Squirrel!'
 
-interface TestLoginPageProps {
+interface LoginVerifyPageProps {
   userLoggedIn: boolean
 }
 
-const TestLoginPage = ({ userLoggedIn }: TestLoginPageProps) => {
+const LoginVerifyPage = ({ userLoggedIn }: LoginVerifyPageProps) => {
   return (
     <>
       <HeadTags
-        title={`${siteTitle} | Login Test`}
-        href={`/testlogin`}
-        description={`Login Test`}
+        title={`${siteTitle} | Verify Login`}
+        href={`/login/verify`}
+        description={`Verify Login`}
       />
       <div
         style={{
@@ -35,11 +35,19 @@ const TestLoginPage = ({ userLoggedIn }: TestLoginPageProps) => {
   )
 }
 
-export default TestLoginPage
+export default LoginVerifyPage
 
 export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext,
 ) => {
+  if (!isDev)
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+
   let token: any
 
   if (ctx.req.headers.cookie) {
