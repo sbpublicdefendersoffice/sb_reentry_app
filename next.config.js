@@ -44,6 +44,7 @@ const nextConfigOptions = {
         pg: false,
         sequelize: false,
         twilio: false,
+        jsonwebtoken: false,
       }
 
       config.resolve.alias = {

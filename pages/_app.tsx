@@ -125,6 +125,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             </FavoriteProvider>
           </ViewProvider>
         </LangProvider>
+        <br style={{ display: 'none' }} data-testid="end_of_doc" />
       </>
     )
   )

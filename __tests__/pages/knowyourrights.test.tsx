@@ -6,7 +6,6 @@ describe('know your rights page', () => {
     const { render } = await getPage({
       route: '/knowyourrights',
       useApp: true,
-      useDocument: true,
     })
 
     render()
@@ -36,7 +35,6 @@ describe('know your rights page', () => {
     const { render } = await getPage({
       route: '/knowyourrights',
       useApp: true,
-      useDocument: true,
     })
 
     render()

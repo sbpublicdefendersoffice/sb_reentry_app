@@ -6,7 +6,6 @@ describe('thrive stories page', () => {
     const { render } = await getPage({
       route: '/thrivestories',
       useApp: true,
-      useDocument: true,
     })
 
     render()

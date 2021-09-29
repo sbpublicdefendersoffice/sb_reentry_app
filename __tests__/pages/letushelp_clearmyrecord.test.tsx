@@ -16,7 +16,6 @@ describe('clear my record page', () => {
     const { render } = await getPage({
       route: '/letushelp/clearmyrecord',
       useApp: true,
-      useDocument: true,
     })
 
     render()

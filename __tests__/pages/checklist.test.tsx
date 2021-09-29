@@ -16,7 +16,6 @@ describe('checklist page', () => {
     const { render } = await getPage({
       route: '/checklist',
       useApp: true,
-      useDocument: true,
     })
 
     render()

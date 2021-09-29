@@ -6,7 +6,6 @@ describe('diversion page', () => {
     const { render } = await getPage({
       route: '/letushelp/diversion',
       useApp: true,
-      useDocument: true,
     })
 
     render()
