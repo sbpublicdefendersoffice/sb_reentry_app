@@ -6,7 +6,6 @@ describe('about us page', () => {
     const { render } = await getPage({
       route: '/aboutus',
       useApp: true,
-      useDocument: true,
     })
 
     render()

@@ -16,7 +16,6 @@ describe('category page', () => {
     const { render } = await getPage({
       route: '/food',
       useApp: true,
-      useDocument: true,
     })
 
     render()

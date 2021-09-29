@@ -86,7 +86,6 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <br style={{ display: 'none' }} data-testid="end_of_doc" />
         </body>
       </Html>
     )

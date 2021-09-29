@@ -16,7 +16,6 @@ describe('home page', () => {
     const { render } = await getPage({
       route: '/',
       useApp: true,
-      useDocument: true,
     })
 
     render()

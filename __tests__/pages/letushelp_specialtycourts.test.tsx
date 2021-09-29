@@ -6,7 +6,6 @@ describe('specialty courts page', () => {
     const { render } = await getPage({
       route: '/letushelp/specialtycourts',
       useApp: true,
-      useDocument: true,
     })
 
     render()

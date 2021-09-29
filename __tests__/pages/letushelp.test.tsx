@@ -6,7 +6,6 @@ describe('let us help page', () => {
     const { render } = await getPage({
       route: '/letushelp',
       useApp: true,
-      useDocument: true,
     })
 
     render()
