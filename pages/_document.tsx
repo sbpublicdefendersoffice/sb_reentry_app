@@ -35,11 +35,6 @@ export default class MyDocument extends Document {
             crossOrigin="true"
           />
           <link
-            rel="preload"
-            as="style"
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap"
-          />
-          <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap"
             media="print"
