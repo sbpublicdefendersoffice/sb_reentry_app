@@ -39,13 +39,7 @@
 .Burger {
   display: none;
 }
-.Favorites {
-  margin: 0.3rem 3rem 0 0;
-  align-items: flex-end;
-  display: flex;
-  color: white;
-  cursor: pointer;
-}
+
 .SearchIcon {
   margin-left: 5rem;
   margin-top: 0.5rem;
