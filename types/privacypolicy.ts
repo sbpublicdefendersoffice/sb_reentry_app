@@ -27,6 +27,8 @@ interface Item {
   weDisclose: string
   howWeProtect: string
   howWeProtectDescription: string
+  cookies: string
+  cookiesdDescription: string
   changes: string
   changesDescription: string
   effectiveDate: string

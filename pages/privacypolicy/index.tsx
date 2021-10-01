@@ -27,7 +27,6 @@ const PrivacyPolicyPage = () => {
         <p className={classes.centerFlex}>
           {activeCopy.intro}
           <a
-            style={{ color: 'black', borderBottom: 'none' }}
             href={activeCopy.twoelevenlink}
             target="_blank"
             rel="noopener noreferrer"
@@ -57,7 +56,6 @@ const PrivacyPolicyPage = () => {
         <p className={classes.centerFlex}>
           {activeCopy.weShareDescription}
           <a
-            style={{ color: 'black', borderBottom: 'none' }}
             href={activeCopy.sbpdHref}
             target="_blank"
             rel="noopener noreferrer"
@@ -70,6 +68,8 @@ const PrivacyPolicyPage = () => {
         <p className={classes.centerFlex}>
           {activeCopy.howWeProtectDescription}
         </p>
+        <h1 className={classes.h4Style}>{activeCopy.cookies}</h1>
+        <p className={classes.centerFlex}>{activeCopy.cookiesdDescription}</p>
         <h1 className={classes.h4Style}>{activeCopy.changes}</h1>
         <p className={classes.centerFlex}>{activeCopy.changesDescription}</p>
         <h1 className={classes.h4Style}>{activeCopy.effectiveDate}</h1>
@@ -84,7 +84,9 @@ const PrivacyPolicyPage = () => {
             fontSize: '1.6rem',
             borderBottom: 'none',
           }}
-          href={`mailto: ${activeCopy.contactEmail}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`mailto:${activeCopy.contactEmail}`}
         >
           <p style={{ textAlign: 'center', marginTop: '1.5rem' }}>
             {activeCopy.contactEmail}
