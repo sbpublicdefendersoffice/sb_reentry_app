@@ -4,8 +4,6 @@ import { verify } from 'jsonwebtoken'
 import { HeadTags } from '../../components'
 import { siteTitle, isDev } from '../../constants'
 
-const secret: string = 'Super Secret, Secret Squirrel!'
-
 interface LoginVerifyPageProps {
   userLoggedIn: boolean
 }
@@ -60,7 +58,8 @@ export const getServerSideProps: GetServerSideProps = async (
         return obj
       }, {})
 
-    if (headers['Auth-Token']) token = verify(headers['Auth-Token'], secret)
+    if (headers['Auth-Token'])
+      token = verify(headers['Auth-Token'], process.env.JWT_SIGNATURE)
   }
 
   return {

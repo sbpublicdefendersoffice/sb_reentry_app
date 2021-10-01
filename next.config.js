@@ -45,6 +45,7 @@ const nextConfigOptions = {
         sequelize: false,
         twilio: false,
         jsonwebtoken: false,
+        bcrypt: false,
       }
 
       config.resolve.alias = {
