@@ -13,12 +13,13 @@ import {
   successCopy,
   ArturoSuccessStory,
   LisaSuccessStory,
+  MelissaSuccessStory,
 } from '../../constants/'
 import { HeadTags } from '../../components'
 const ThriveStories = () => {
   const { language } = useLanguage()
   const classes = useStyles()
-  const successStories: SuccessStory[] = [ArturoSuccessStory, LisaSuccessStory]
+  const successStories: SuccessStory[] = [ArturoSuccessStory, LisaSuccessStory, MelissaSuccessStory]
   const activeCopy = successCopy[language]
   return (
     <>

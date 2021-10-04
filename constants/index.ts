@@ -34,6 +34,7 @@ export {
 export {
   ArturoSuccessStory,
   LisaSuccessStory,
+  MelissaSuccessStory,
   successCopy,
 } from './successStory-data'
 export { aboutCopy } from './aboutus-data'
