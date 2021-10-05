@@ -17,6 +17,8 @@
   width: 50%;
   height: 100%;
   padding: 3rem;
+  display: inherit;
+  flex-direction: column;
 }
 
 .Backing {
