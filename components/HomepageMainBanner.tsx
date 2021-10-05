@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useLanguage } from '../hooks/'
 import { CopyHolder } from '../types/language'
 
+import { Newsfeed } from '../components'
 import { Paragraph, Title, Button } from '../ui'
 
 import styles from './HomepageMainBanner.module.css'
@@ -48,6 +49,7 @@ const HomepageMainBanner = () => {
             {buttonText}
           </Button>
         </div>
+        <Newsfeed />
       </article>
     </section>
   )

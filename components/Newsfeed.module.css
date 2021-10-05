@@ -1,4 +1,16 @@
 .Newsfeed {
   width: 100%;
   flex: 1;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.Latest {
+  text-transform: uppercase;
+}
+
+.List {
+  padding-top: var(--pad-lg);
 }
