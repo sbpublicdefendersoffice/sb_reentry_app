@@ -1,10 +1,9 @@
 .Newsfeed {
   width: 100%;
   flex: 1;
-  padding-top: 2rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
 }
 
 .Latest {
@@ -13,4 +12,35 @@
 
 .List {
   padding-top: var(--pad-lg);
+}
+
+.Item {
+  width: 100%;
+  min-height: 5rem;
+  border-radius: var(--radius-small);
+  margin-bottom: var(--margin-std);
+  background-color: var(--light);
+  padding: var(--pad-std);
+  display: flex;
+}
+
+.Cell {
+  width: 33%;
+  height: 100%;
+}
+
+@media (max-width: 700px) {
+  .Newsfeed {
+    padding: var(--pad-lg);
+    background-color: var(--light-transparent);
+  }
+}
+
+@media (max-width: 499px) {
+  .Newsfeed {
+    margin-top: 0;
+    background-color: var(--light-blue);
+    max-height: 22rem;
+    overflow: scroll;
+  }
 }

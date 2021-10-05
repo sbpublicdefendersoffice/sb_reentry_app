@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
-import { useLanguage } from '../hooks/'
+import { useLanguage, useResizeEvent } from '../hooks/'
 import { CopyHolder } from '../types/language'
 
 import { Newsfeed } from '../components'
@@ -30,7 +31,9 @@ export const hub: string = '/#resourcehub'
 const HomepageMainBanner = () => {
   const { push } = useRouter()
   const { language } = useLanguage()
+  const [isAbove500px, setIsAbove500px] = useState<boolean>(innerWidth >= 500)
   const { about, title, explainer, buttonText } = copy[language]
+  useResizeEvent(() => setIsAbove500px(innerWidth >= 500))
 
   return (
     <section className={styles.Main}>
@@ -49,7 +52,14 @@ const HomepageMainBanner = () => {
             {buttonText}
           </Button>
         </div>
-        <Newsfeed />
+        <div
+          style={{
+            display: isAbove500px ? 'block' : 'none',
+            overflow: 'scroll',
+          }}
+        >
+          <Newsfeed />
+        </div>
       </article>
     </section>
   )
