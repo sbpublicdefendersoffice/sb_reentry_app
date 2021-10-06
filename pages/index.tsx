@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 
 import {
   HomepageMainBanner,
@@ -6,16 +6,16 @@ import {
   UnsureWhereToStart,
   ResourceHub,
   HeadTags,
-  Newsfeed,
+  // Newsfeed,
   // Quotes,
 } from '../components'
-import { useResizeEvent } from '../hooks/'
+// import { useResizeEvent } from '../hooks/'
 
 import { siteTitle } from '../constants'
 
 const Home = () => {
-  const [isBelow500px, setIsBelow500px] = useState<boolean>(innerWidth < 500)
-  useResizeEvent(() => setIsBelow500px(innerWidth < 500))
+  // const [isBelow500px, setIsBelow500px] = useState<boolean>(innerWidth < 500)
+  // useResizeEvent(() => setIsBelow500px(innerWidth < 500))
 
   return (
     <>
@@ -32,11 +32,11 @@ const Home = () => {
         ]}
       />
       <HomepageMainBanner />
-      <div
+      {/* <div
         style={{ display: isBelow500px ? 'block' : 'none', overflow: 'scroll' }}
       >
         <Newsfeed />
-      </div>
+      </div> */}
       <WhatWeDo />
       <UnsureWhereToStart />
       <ResourceHub />
