@@ -19,7 +19,11 @@ import { HeadTags } from '../../components'
 const ThriveStories = () => {
   const { language } = useLanguage()
   const classes = useStyles()
-  const successStories: SuccessStory[] = [ArturoSuccessStory, LisaSuccessStory, MelissaSuccessStory]
+  const successStories: SuccessStory[] = [
+    ArturoSuccessStory,
+    LisaSuccessStory,
+    MelissaSuccessStory,
+  ]
   const activeCopy = successCopy[language]
   return (
     <>
