@@ -27,6 +27,7 @@ export const ArturoSuccessStory: SuccessStory = {
     bio: 'Soy un estudiante anteriormente encarcelado que después de trece años dentro y fuera de prisión, se graduó con mi título de AS en Tecnología Automotriz. Recientemente cambié mi carrera a Sociología con Transferencia y planeo asistir a UCSB o Berkeley. Actualmente soy presidente del Club B.I.G.E. (Beyond Incarceration Greater Education), que ayuda a las personas anteriormente encarceladas a inscribirse en la universidad y reducir la reincidencia. También trabajo para el programa Beyond Barriers de Allan Hancock College como mentor estudiantil, devolviendo a mi comunidad lo que me fue dado gratuitamente.',
   },
 }
+
 export const LisaSuccessStory: SuccessStory = {
   english: {
     name: 'Lisandra Barrera-Rising',
