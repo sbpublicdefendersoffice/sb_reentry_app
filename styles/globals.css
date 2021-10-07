@@ -62,3 +62,7 @@ a:hover {
     justify-content: flex-start;
   }
 }
+
+.MuiCardMedia-root {
+  background-size: contain !important;
+}
