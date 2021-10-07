@@ -64,7 +64,7 @@ const nextConfigOptions = {
         new StatsWriterPlugin({
           filename: 'webpack-stats.json',
           stats: {
-            context: './src', // optional
+            context: './src',
             assets: true,
             entrypoints: true,
             chunks: true,
