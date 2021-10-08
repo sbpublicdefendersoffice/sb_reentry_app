@@ -16,12 +16,31 @@
 
 .Item {
   width: 100%;
-  min-height: 5rem;
   border-radius: var(--radius-small);
   margin-bottom: var(--margin-std);
   background-color: var(--light);
   padding: var(--pad-std);
   display: flex;
+  align-items: center;
+}
+
+.Image {
+  width: 8rem;
+  height: 8rem;
+}
+
+.Text {
+  flex: 1;
+  padding: 0 var(--pad-lg);
+}
+
+.Links {
+  display: flex;
+  justify-content: space-evenly;
+}
+.Link {
+  margin: 0 var(--margin-std);
+  cursor: pointer;
 }
 
 .Cell {
@@ -33,6 +52,11 @@
   .Newsfeed {
     padding: var(--pad-lg);
     background-color: var(--light-transparent);
+  }
+
+  .Image {
+    width: 6rem;
+    height: 6rem;
   }
 }
 
