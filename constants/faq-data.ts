@@ -228,3 +228,17 @@ export const sr22: CopyHolder = {
       'https://www.santabarbaracriminaldefenselawyers.com/criminal-defense/dui/dui-schools/',
   },
 }
+export const clearMyRecord: CopyHolder = {
+  english: {
+    listItem: `Click here to visit clear my record`,
+    description:
+      'In mid November, ThriveSBC will be transitioning to an in house record expungement tool.',
+    nextLink: '/letushelp/clearmyrecord',
+  },
+  spanish: {
+    listItem: 'Haga clic aquí para ir a borrar mis antecedentes penales',
+    description:
+      'A mediados de noviembre, ThriveSBC hará la transición a una herramienta interna de eliminación de antecedentes penales.',
+    nextLink: '/letushelp/clearmyrecord',
+  },
+}
