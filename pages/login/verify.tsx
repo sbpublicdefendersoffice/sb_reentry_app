@@ -26,7 +26,7 @@ const LoginVerifyPage = ({ userLoggedIn }: LoginVerifyPageProps) => {
         <span>
           {userLoggedIn
             ? "you're logged in, here's your private information"
-            : "you're not logged in, so you don't get to see privleged information"}
+            : "you're not logged in, so you don't get to see privileged information"}
         </span>
       </div>
     </>
