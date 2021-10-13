@@ -116,6 +116,11 @@ export interface Feedback {
   language: Language
   comment: string
 }
+export interface User {
+  org: string
+  email: string
+  pwd: string
+}
 
 export interface CardInfo {
   title_english: string

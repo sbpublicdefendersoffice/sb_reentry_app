@@ -33,6 +33,7 @@ export type {
   ScheduleRecord,
   SortedRecord,
   Feedback,
+  User,
   CardInfo,
 } from './records'
 export type { RouteInfo, InfoWithDescription } from './routes'
