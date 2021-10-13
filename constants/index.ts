@@ -72,6 +72,7 @@ export {
   treatment,
   volunteer,
   whereToStart,
+  clearMyRecord,
 } from './faq-data'
 export { favoritesCopy } from './favorites'
 export { probationsCopy } from './probation-data'

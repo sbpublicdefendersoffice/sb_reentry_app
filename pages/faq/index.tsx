@@ -30,6 +30,7 @@ import {
   alcoholAndDrugClass,
   duiPrograms,
   sr22,
+  clearMyRecord,
 } from '../../constants/'
 
 const FaqPage = () => {
@@ -51,6 +52,7 @@ const FaqPage = () => {
     documents,
     edits,
     feedback,
+    clearMyRecord,
   ]
   const activeCopyFAQ = faqCopy[language]
   return (
