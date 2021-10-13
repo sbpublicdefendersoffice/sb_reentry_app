@@ -72,13 +72,13 @@ const recordClearance = async (
         let widthOfText: number = font.widthOfTextAtSize(txt, sizeOfText)
 
         while (widthOfText > box_width)
-          widthOfText = font.widthOfTextAtSize(txt, --sizeOfText)
+          widthOfText = font.widthOfTextAtSize(txt, (sizeOfText -= 0.1))
 
         page.drawText(txt, { x, y, size: sizeOfText })
       }
     })
 
-    const content = await pdfDoc.saveAsBase64()
+    const financeFormAttachment = await pdfDoc.saveAsBase64()
 
     sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
 
@@ -89,7 +89,7 @@ const recordClearance = async (
       text,
       attachments: [
         {
-          content,
+          content: financeFormAttachment,
           filename: `${name}_SBPD_EXPUNGEMENT_FINANCIAL_DECLARATION_Updated_10_20_19_${language}.pdf`,
           type: 'application/pdf',
           disposition: 'attachment',
