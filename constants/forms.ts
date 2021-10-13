@@ -15,15 +15,15 @@ export const financeFormFields: Fields = {
   },
   address: {
     english: { box_width: 200, x: 95, y: 642 },
-    spanish: { box_width: 135, x: 150, y: 630 },
+    spanish: { box_width: 135, x: 150, y: 633 },
   },
   city: {
     english: { box_width: 110, x: 325, y: 642 },
-    spanish: { box_width: 70, x: 330, y: 630 },
+    spanish: { box_width: 70, x: 330, y: 633 },
   },
   state_and_zip: {
     english: { box_width: 75, x: 505, y: 642 },
-    spanish: { box_width: 65, x: 515, y: 630 },
+    spanish: { box_width: 65, x: 515, y: 633 },
   },
   home_phone: {
     english: { box_width: 180, x: 80, y: 620 },
@@ -160,5 +160,129 @@ export const financeFormFields: Fields = {
   partner_unemployed_benefits_amount: {
     english: { box_width: 58, x: 519, y: 413 },
     spanish: { box_width: 70, x: 508, y: 418 },
+  },
+  expenses_rent: {
+    english: { box_width: 70, x: 232, y: 390 },
+    spanish: { box_width: 70, x: 232, y: 395 },
+  },
+  expenses_utilities: {
+    english: { box_width: 70, x: 232, y: 379 },
+    spanish: { box_width: 70, x: 232, y: 385 },
+  },
+  expenses_food: {
+    english: { box_width: 70, x: 232, y: 367 },
+    spanish: { box_width: 70, x: 232, y: 373 },
+  },
+  expenses_mortgage: {
+    english: { box_width: 70, x: 232, y: 356 },
+    spanish: { box_width: 70, x: 232, y: 362 },
+  },
+  expenses_child_support: {
+    english: { box_width: 70, x: 232, y: 345 },
+    spanish: { box_width: 70, x: 232, y: 351 },
+  },
+  expenses_vehicle_payment: {
+    english: { box_width: 70, x: 232, y: 327 },
+    spanish: { box_width: 70, x: 232, y: 331 },
+  },
+  expenses_vehicle_insurance: {
+    english: { box_width: 70, x: 232, y: 314 },
+    spanish: { box_width: 70, x: 232, y: 320 },
+  },
+  expenses_other_expense_one_description: {
+    english: { box_width: 188, x: 25, y: 292 },
+    spanish: { box_width: 188, x: 29, y: 298 },
+  },
+  expenses_other_expense_one_amount: {
+    english: { box_width: 70, x: 232, y: 292 },
+    spanish: { box_width: 70, x: 232, y: 298 },
+  },
+  expenses_other_expense_two_description: {
+    english: { box_width: 188, x: 25, y: 282 },
+    spanish: { box_width: 188, x: 29, y: 287 },
+  },
+  expenses_other_expense_two_amount: {
+    english: { box_width: 70, x: 232, y: 282 },
+    spanish: { box_width: 70, x: 232, y: 287 },
+  },
+  other_income_child_support: {
+    english: { box_width: 70, x: 512, y: 390 },
+    spanish: { box_width: 70, x: 512, y: 395 },
+  },
+  other_income_disability: {
+    english: { box_width: 70, x: 512, y: 379 },
+    spanish: { box_width: 70, x: 512, y: 385 },
+  },
+  other_income_social_security: {
+    english: { box_width: 70, x: 512, y: 367 },
+    spanish: { box_width: 70, x: 512, y: 373 },
+  },
+  other_income_welfare_afdc: {
+    english: { x: 381, y: 358 },
+    spanish: { x: 394, y: 362 },
+  },
+  other_income_welfare_fs: {
+    english: { x: 411, y: 358 },
+    spanish: { x: 423, y: 362 },
+  },
+  other_income_welfare_amount: {
+    english: { box_width: 70, x: 512, y: 356 },
+    spanish: { box_width: 70, x: 512, y: 362 },
+  },
+  other_income_ssi_ssp_gr: {
+    english: { box_width: 70, x: 512, y: 345 },
+    spanish: { box_width: 70, x: 512, y: 351 },
+  },
+  other_income_real_estate_yes: {
+    english: { x: 381, y: 337 },
+    spanish: { x: 419, y: 341 },
+  },
+  other_income_real_estate_no: {
+    english: { x: 412, y: 337 },
+    spanish: { x: 443, y: 341 },
+  },
+  other_income_real_estate_address: {
+    english: { box_width: 136, x: 361, y: 327 },
+    spanish: { box_width: 133, x: 363, y: 331 },
+  },
+  other_income_real_estate_value: {
+    english: { box_width: 70, x: 512, y: 327 },
+    spanish: { box_width: 70, x: 512, y: 331 },
+  },
+  other_income_checking: {
+    english: { box_width: 70, x: 512, y: 314 },
+    spanish: { box_width: 70, x: 512, y: 320 },
+  },
+  other_income_savings: {
+    english: { box_width: 70, x: 512, y: 303 },
+    spanish: { box_width: 70, x: 512, y: 309 },
+  },
+  other_income_cash: {
+    english: { box_width: 70, x: 512, y: 292 },
+    spanish: { box_width: 70, x: 512, y: 298 },
+  },
+  other_income_value_of_assets: {
+    english: { box_width: 70, x: 512, y: 282 },
+    spanish: { box_width: 70, x: 512, y: 287 },
+  },
+  hearing_option_initals: {
+    english: { box_width: 350, x: 230, y: 188 },
+    spanish: { box_width: 395, x: 185, y: 194 },
+  },
+  hearing_option_no_reimbursement: {
+    english: { x: 38, y: 178 },
+    spanish: { x: 38, y: 183 },
+  },
+  hearing_option_judge_hearing: {
+    english: { x: 38, y: 169 },
+    spanish: { x: 38, y: 163 },
+  },
+  date: {
+    english: { box_width: 107, x: 62, y: 65 },
+    spanish: { box_width: 107, x: 64, y: 59 },
+  },
+  signature: {
+    english: { box_width: 328, x: 218, y: 65 },
+    spanish: { box_width: 322, x: 216, y: 59 },
   },
 }
