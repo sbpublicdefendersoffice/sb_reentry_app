@@ -260,3 +260,17 @@ export const ResourcesSupportRoutes: RouteInfo[] = [
     route: '/faq',
   },
 ]
+export const LoginRoute: RouteInfo[] = [
+  {
+    title_english: 'Login',
+    title_spanish: 'Acceso',
+    route: '/login',
+  },
+]
+export const SignupRoute: RouteInfo[] = [
+  {
+    title_english: 'Sign Up',
+    title_spanish: 'Inscribirse',
+    route: '/signup',
+  },
+]
