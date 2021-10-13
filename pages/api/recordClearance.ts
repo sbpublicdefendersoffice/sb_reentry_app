@@ -20,40 +20,28 @@ interface Fields {
 
 const pageInfo: Fields = {
   name: {
-    english: {
-      box_width: 195,
-      x: 25,
-      y: 667,
-    },
-    spanish: {
-      box_width: 190,
-      x: 30,
-      y: 660,
-    },
+    english: { box_width: 195, x: 25, y: 667 },
+    spanish: { box_width: 190, x: 30, y: 660 },
   },
   dob: {
-    english: {
-      box_width: 180,
-      x: 230,
-      y: 660,
-    },
-    spanish: {
-      box_width: 170,
-      x: 230,
-      y: 660,
-    },
+    english: { box_width: 180, x: 230, y: 667 },
+    spanish: { box_width: 170, x: 230, y: 660 },
   },
   ssn: {
-    english: {
-      box_width: 160,
-      x: 420,
-      y: 667,
-    },
-    spanish: {
-      box_width: 170,
-      x: 410,
-      y: 660,
-    },
+    english: { box_width: 160, x: 420, y: 667 },
+    spanish: { box_width: 170, x: 410, y: 660 },
+  },
+  address: {
+    english: { box_width: 200, x: 95, y: 642 },
+    spanish: { box_width: 135, x: 150, y: 630 },
+  },
+  city: {
+    english: { box_width: 110, x: 325, y: 642 },
+    spanish: { box_width: 70, x: 330, y: 630 },
+  },
+  state_and_zip: {
+    english: { box_width: 75, x: 505, y: 642 },
+    spanish: { box_width: 65, x: 515, y: 630 },
   },
 }
 
