@@ -84,6 +84,8 @@ export {
   ResourcesSupportRoutes,
   staticPageRoutes,
   topThreeRoutes,
+  LoginRoute,
+  SignupRoute,
 } from './routes'
 export { margin, maxWidth, flexFullWidth } from './styling'
 export {
