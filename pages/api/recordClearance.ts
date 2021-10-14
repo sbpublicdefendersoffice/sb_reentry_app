@@ -5,10 +5,11 @@ import { readFileSync } from 'fs'
 
 import { ENGLISH, financeFormFields } from '../../constants'
 
-const type: string = 'application/pdf'
-const disposition: string = 'attachment'
-const financialFormPath: string =
-  'documents/SBPD_EXPUNGEMENT_FINANCIAL_DECLARATION_Updated_10_20_19.pdf'
+const [type, disposition, financialFormPath]: string[] = [
+  'application/pdf',
+  'attachment',
+  'documents/SBPD_EXPUNGEMENT_FINANCIAL_DECLARATION_Updated_10_20_19.pdf',
+]
 
 const recordClearance = async (
   req: NextApiRequest,
