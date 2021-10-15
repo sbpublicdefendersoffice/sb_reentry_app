@@ -7,8 +7,6 @@ import {
   ENGLISH,
   financeFormFields,
   applicationFormFields,
-  pageHeightInPixels,
-  pageWidthInPixels,
 } from '../../constants'
 import { FieldInfo } from '../../types'
 
@@ -16,7 +14,7 @@ const [type, disposition, financialFormPath, applicationPath]: string[] = [
   'application/pdf',
   'attachment',
   'documents/SBPD_EXPUNGEMENT_FINANCIAL_DECLARATION_Updated_10_20_19.pdf',
-  'documents/#_SBPD_EXPUNGEMENT_APPLICATION.pdf',
+  'documents/SBPD_EXPUNGEMENT_Application.pdf',
 ]
 
 const recordClearance = async (
@@ -27,62 +25,38 @@ const recordClearance = async (
     //below will be a JSON.parse when testing is done
     const { to, from, subject, text, name, language } = req.body
 
-    // split up application info from finance info, where there are duplicated information, copy them to each
+    //#region application second stab
+    // when abstracted to form filler function params=== PDFDocument,language,formFields
 
-    //#region application
+    const application = await PDFDocument.load(readFileSync(applicationPath))
+    const font = await application.embedFont(StandardFonts.Helvetica)
+    const page = application.getPage(language === ENGLISH ? 0 : 1)
 
-    const clearanceApplication = await PDFDocument.create()
-    let currentPage = clearanceApplication.addPage([
-      pageWidthInPixels,
-      pageHeightInPixels,
-    ])
+    Object.entries(req.body).forEach(([key, val]) => {
+      if (applicationFormFields[key]) {
+        // console.log(key)
+        // console.log(key, applicationFormFields[key][language])
+        const { box_width, x, y } = applicationFormFields[key][language]
+        let sizeOfText: number = 10
 
-    for (let i = 1; i <= 1; ++i) {
-      const curPath: string = applicationPath.replace('#', `${i}`)
-      //if there is not application path -1_XXXX_no, load current path
-      // execute in another loop all of the fields associated with the current file
-      // something like object(appFileds).filter => startsWith(i)
-
-      const openedFile = await PDFDocument.load(readFileSync(curPath))
-      const font = await openedFile.embedFont(StandardFonts.Helvetica)
-      const openedPage = openedFile.getPage(0)
-
-      Object.entries(req.body).forEach(async ([key, val]) => {
-        const field: FieldInfo =
-          applicationFormFields[`${i}_${key}`]?.[language]
-        let sizeOfText: number = 12
-
-        if (field) {
-          const { box_width, x, y } = field
-
+        if (box_width) {
           const txt: string = val as string
 
-          if (box_width) {
-            let widthOfText: number = font.widthOfTextAtSize(txt, sizeOfText)
+          let widthOfText: number = font.widthOfTextAtSize(txt, sizeOfText)
 
-            while (widthOfText > box_width)
-              widthOfText = font.widthOfTextAtSize(txt, (sizeOfText -= 0.1))
+          while (widthOfText > box_width)
+            widthOfText = font.widthOfTextAtSize(txt, (sizeOfText -= 0.1))
 
-            openedPage.drawText(txt, { x, y, size: sizeOfText })
-          } else openedPage.drawText('X', { x, y, size: sizeOfText })
-        }
-        const finalOpenedFile = await openedFile.save()
-        const embeddedPages = await clearanceApplication.embedPdf(
-          finalOpenedFile,
-        )
+          page.drawText(txt, { x, y, size: sizeOfText })
+        } else page.drawText('X', { x, y, size: sizeOfText })
+      }
+    })
 
-        // currentPage.setSize(openedPage.getWidth(), openedPage.getHeight())
-        currentPage.drawPage(embeddedPages[embeddedPages.length - 1])
-      })
+    const finalApplication: Uint8Array = await application.save()
 
-      // remember to expand each page to 720px down and then to add 1/2" margin on top and bottom when done with each page
-
-      // const newForm = await openedFile.save()
-    }
-    const finalDoc = await clearanceApplication.save()
-
-    writeFileSync('1.pdf', finalDoc)
+    writeFileSync('temp.pdf', finalApplication)
     res.json({ howdy: 'hello' })
+
     //#endregion
 
     //#region finance form

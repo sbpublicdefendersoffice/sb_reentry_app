@@ -1,26 +1,29 @@
 import { Fields } from '../types'
 
-export const pageHeightInPixels: number = 720
-export const pageWidthInPixels: number = 612
-
 export const applicationFormFields: Fields = {
-  '1_name': {
-    english: { box_width: 287, x: 73, y: 132 },
+  name: {
+    english: { box_width: 290, x: 70, y: 544 },
+    spanish: { box_width: 314, x: 78, y: 529 },
   },
-  '1_preferred_phone': {
-    english: { box_width: 170, x: 403, y: 132 },
+  preferred_phone: {
+    english: { box_width: 173, x: 400, y: 544 },
+    spanish: { box_width: 130, x: 443, y: 529 },
   },
-  '1_full_address': {
-    english: { box_width: 493, x: 82, y: 97 },
+  full_address: {
+    english: { box_width: 495, x: 77, y: 531 },
+    spanish: { box_width: 491, x: 82, y: 517 },
   },
-  '1_email': {
-    english: { box_width: 175, x: 76, y: 63 },
+  email: {
+    english: { box_width: 144, x: 72, y: 519 },
+    spanish: { box_width: 92, x: 121, y: 505 },
   },
-  '1_dob': {
-    english: { box_width: 71, x: 325, y: 63 },
+  dob: {
+    english: { box_width: 77, x: 282, y: 519 },
+    spanish: { box_width: 76, x: 319, y: 505 },
   },
-  '1_license': {
-    english: { box_width: 71, x: 504, y: 63 },
+  license: {
+    english: { box_width: 117, x: 457, y: 519 },
+    spanish: { box_width: 65, x: 510, y: 505 },
   },
 }
 
