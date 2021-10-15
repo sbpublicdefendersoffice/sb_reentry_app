@@ -6,7 +6,7 @@ export interface FieldInfo {
 
 export interface Fields {
   [field_name: string]: {
-    english: FieldInfo
-    spanish: FieldInfo
+    english?: FieldInfo
+    spanish?: FieldInfo
   }
 }

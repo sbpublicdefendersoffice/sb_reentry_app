@@ -1,5 +1,29 @@
 import { Fields } from '../types'
 
+export const pageHeightInPixels: number = 720
+export const pageWidthInPixels: number = 612
+
+export const applicationFormFields: Fields = {
+  '1_name': {
+    english: { box_width: 287, x: 73, y: 132 },
+  },
+  '1_preferred_phone': {
+    english: { box_width: 170, x: 403, y: 132 },
+  },
+  '1_full_address': {
+    english: { box_width: 493, x: 82, y: 97 },
+  },
+  '1_email': {
+    english: { box_width: 175, x: 76, y: 63 },
+  },
+  '1_dob': {
+    english: { box_width: 71, x: 325, y: 63 },
+  },
+  '1_license': {
+    english: { box_width: 71, x: 504, y: 63 },
+  },
+}
+
 export const financeFormFields: Fields = {
   name: {
     english: { box_width: 195, x: 25, y: 667 },
