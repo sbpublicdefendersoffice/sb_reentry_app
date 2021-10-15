@@ -55,7 +55,7 @@ const recordClearance = async (
     const finalApplication: Uint8Array = await application.save()
 
     writeFileSync('temp.pdf', finalApplication)
-    res.json({ howdy: 'hello' })
+    res.json({ saved: 'successfully' })
 
     //#endregion
 

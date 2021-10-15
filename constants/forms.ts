@@ -25,6 +25,194 @@ export const applicationFormFields: Fields = {
     english: { box_width: 117, x: 457, y: 519 },
     spanish: { box_width: 65, x: 510, y: 505 },
   },
+  case_num_1: {
+    english: { box_width: 138, x: 112, y: 471 },
+    spanish: { box_width: 132, x: 118, y: 456 },
+  },
+  case_attorney_1: {
+    english: { box_width: 273, x: 300, y: 471 },
+    spanish: { box_width: 272, x: 303, y: 456 },
+  },
+  case_charges_1: {
+    english: { box_width: 348, x: 82, y: 459 },
+    spanish: { box_width: 357, x: 75, y: 444 },
+  },
+  case_felony_1: {
+    english: { x: 438, y: 459 },
+    spanish: { x: 437, y: 444 },
+  },
+  case_misdemeanor_1: {
+    english: { x: 490, y: 459 },
+    spanish: { x: 507, y: 444 },
+  },
+  case_date_convicted_1: {
+    english: { box_width: 449, x: 123, y: 448 },
+    spanish: { box_width: 449, x: 123, y: 432 },
+  },
+  case_probation_formal_1: {
+    english: { x: 183, y: 434 },
+    spanish: { x: 208, y: 420 },
+  },
+  case_probation_informal_1: {
+    english: { x: 237, y: 434 },
+    spanish: { x: 260, y: 420 },
+  },
+  case_probation_duration_1: {
+    english: { box_width: 444, x: 128, y: 423 },
+    spanish: { box_width: 399, x: 174, y: 409 },
+  },
+  case_probation_violate_1: {
+    english: { x: 214, y: 410 },
+    spanish: { x: 255, y: 397 },
+  },
+  case_probation_no_violate_1: {
+    english: { x: 252, y: 410 },
+    spanish: { x: 286, y: 397 },
+  },
+  case_num_2: {
+    english: { box_width: 138, x: 112, y: 388 },
+    spanish: { box_width: 132, x: 118, y: 373 },
+  },
+  case_attorney_2: {
+    english: { box_width: 273, x: 300, y: 388 },
+    spanish: { box_width: 272, x: 303, y: 373 },
+  },
+  case_charges_2: {
+    english: { box_width: 348, x: 82, y: 376 },
+    spanish: { box_width: 357, x: 75, y: 361 },
+  },
+  case_felony_2: {
+    english: { x: 438, y: 376 },
+    spanish: { x: 437, y: 361 },
+  },
+  case_misdemeanor_2: {
+    english: { x: 490, y: 376 },
+    spanish: { x: 507, y: 361 },
+  },
+  case_date_convicted_2: {
+    english: { box_width: 449, x: 123, y: 364 },
+    spanish: { box_width: 449, x: 123, y: 349 },
+  },
+  case_probation_formal_2: {
+    english: { x: 183, y: 350 },
+    spanish: { x: 208, y: 336 },
+  },
+  case_probation_informal_2: {
+    english: { x: 237, y: 350 },
+    spanish: { x: 260, y: 336 },
+  },
+  case_probation_duration_2: {
+    english: { box_width: 444, x: 128, y: 340 },
+    spanish: { box_width: 399, x: 174, y: 325 },
+  },
+  case_probation_violate_2: {
+    english: { x: 214, y: 327 },
+    spanish: { x: 255, y: 312 },
+  },
+  case_probation_no_violate_2: {
+    english: { x: 252, y: 327 },
+    spanish: { x: 286, y: 312 },
+  },
+  case_num_3: {
+    english: { box_width: 138, x: 112, y: 304 },
+    spanish: { box_width: 132, x: 118, y: 289 },
+  },
+  case_attorney_3: {
+    english: { box_width: 273, x: 300, y: 304 },
+    spanish: { box_width: 272, x: 303, y: 289 },
+  },
+  case_charges_3: {
+    english: { box_width: 348, x: 82, y: 292 },
+    spanish: { box_width: 357, x: 75, y: 277 },
+  },
+  case_felony_3: {
+    english: { x: 438, y: 292 },
+    spanish: { x: 437, y: 277 },
+  },
+  case_misdemeanor_3: {
+    english: { x: 490, y: 292 },
+    spanish: { x: 507, y: 277 },
+  },
+  case_date_convicted_3: {
+    english: { box_width: 449, x: 123, y: 281 },
+    spanish: { box_width: 449, x: 123, y: 265 },
+  },
+  case_probation_formal_3: {
+    english: { x: 183, y: 267 },
+    spanish: { x: 208, y: 253 },
+  },
+  case_probation_informal_3: {
+    english: { x: 237, y: 267 },
+    spanish: { x: 260, y: 253 },
+  },
+  case_probation_duration_3: {
+    english: { box_width: 444, x: 128, y: 256 },
+    spanish: { box_width: 399, x: 174, y: 241 },
+  },
+  case_probation_violate_3: {
+    english: { x: 214, y: 243 },
+    spanish: { x: 255, y: 228 },
+  },
+  case_probation_no_violate_3: {
+    english: { x: 252, y: 243 },
+    spanish: { x: 286, y: 228 },
+  },
+  current_probation_yes: {
+    english: { x: 329, y: 219 },
+    spanish: { x: 397, y: 205 },
+  },
+  current_probation_no: {
+    english: { x: 367, y: 219 },
+    spanish: { x: 429, y: 205 },
+  },
+  current_probation_info: {
+    english: { box_width: 246, x: 329, y: 209 },
+    spanish: { box_width: 213, x: 359, y: 194 },
+  },
+  arrests_since_probation_yes: {
+    english: { x: 400, y: 182 },
+    spanish: { x: 463, y: 167 },
+  },
+  arrests_since_probation_no: {
+    english: { x: 439, y: 182 },
+    spanish: { x: 495, y: 167 },
+  },
+  arrests_since_probation_info: {
+    english: { box_width: 356, x: 216, y: 173 },
+    spanish: { box_width: 328, x: 243, y: 157 },
+  },
+  owe_money_yes: {
+    english: { x: 273, y: 147 },
+    spanish: { x: 292, y: 133 },
+  },
+  owe_money_no: {
+    english: { x: 311, y: 147 },
+    spanish: { x: 323, y: 133 },
+  },
+  owe_money_amount: {
+    english: { box_width: 145, x: 431, y: 147 },
+    spanish: { box_width: 148, x: 425, y: 133 },
+  },
+  day: {
+    english: { box_width: 47, x: 94, y: 85 },
+    spanish: { box_width: 47, x: 95, y: 62 },
+  },
+  month: {
+    english: { box_width: 43, x: 175, y: 85 },
+    spanish: { box_width: 45, x: 173, y: 62 },
+  },
+  year: {
+    english: { box_width: 46, x: 238, y: 85 },
+    spanish: { box_width: 45, x: 237, y: 62 },
+  },
+  location: {
+    english: { box_width: 140, x: 305, y: 85 },
+    spanish: { box_width: 143, x: 300, y: 62 },
+  },
+  signature: {
+    english: { box_width: 420, x: 76, y: 74 },
+    spanish: { box_width: 420, x: 74, y: 48 },
+  },
 }
 
 export const financeFormFields: Fields = {
