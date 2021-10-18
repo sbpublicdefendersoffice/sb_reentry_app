@@ -62,6 +62,18 @@
   font-size: var(--med-text);
 }
 
+@media (max-width: 1275px) {
+  .IsThisUsefulForm {
+    bottom: 4.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .IsThisUsefulForm {
+    bottom: 4rem;
+  }
+}
+
 @keyframes formFadeIn {
   0% {
     transform: translateY(25rem);
