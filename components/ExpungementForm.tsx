@@ -1,15 +1,16 @@
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 
 import { useLanguage } from '../hooks'
 import { ExpungementInfo, CopyHolder } from '../types'
-import { ExpungementMainInfo, ExpungementCaseInfo } from './'
+import {
+  ExpungementMainInfo,
+  ExpungementCaseInfo,
+  ExpungementProbationInfo,
+} from './'
 
 import styles from './ExpungementForm.module.css'
 
 import { Title, Button } from '../ui'
-
-// probation:
-// current_probation_yes, current_probation_no, current_probation_info, arrests_since_probation_yes, arrests_since_probation_no, arrests_since_probation_info, owe_money_yes, owe_money_no, owe_money_amount
 
 //sign for both
 // day, month, year, location, signature
@@ -52,7 +53,7 @@ const copy: CopyHolder = {
   },
 }
 
-const { load } = styles
+const { Load } = styles
 
 const ExpungementForm = () => {
   const { language } = useLanguage()
@@ -68,17 +69,27 @@ const ExpungementForm = () => {
     console.log(expungeInfo)
   }
 
+  const handleChange = ({
+    target,
+  }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
+    // @ts-ignore
+    const { id, value, checked } = target
+    if (checked) setExpungeInfo(val => ({ ...val, [id]: true, [value]: false }))
+    else setExpungeInfo(val => ({ ...val, [id]: value }))
+  }
+
   return (
     <form className={styles.ExpungementForm} onSubmit={submitExpungementForm}>
       <Title>{title}</Title>
       <ExpungementMainInfo
         expungeInfo={expungeInfo}
         setExpungeInfo={setExpungeInfo}
-        animationClass={load}
+        animationClass={Load}
       />
-      <ExpungementCaseInfo
-        setExpungeInfo={setExpungeInfo}
-        animationClass={load}
+      <ExpungementCaseInfo handleChange={handleChange} animationClass={Load} />
+      <ExpungementProbationInfo
+        handleChange={handleChange}
+        animationClass={Load}
       />
       <Button role="button" type="submit">
         {submit}

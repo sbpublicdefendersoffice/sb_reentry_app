@@ -31,8 +31,24 @@
   flex: 0;
 }
 
-.load {
+.Load {
   animation: load 1s;
+}
+
+.LabelMargin {
+  margin-right: var(--margin-sm);
+}
+
+.Selected {
+  color: var(--dark);
+}
+
+.Deslected {
+  color: var(--deselected);
+}
+
+.HR {
+  margin: var(--margin-lg) 0;
 }
 
 @media (max-width: 700px) {

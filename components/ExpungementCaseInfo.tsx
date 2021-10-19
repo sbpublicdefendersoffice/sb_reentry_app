@@ -1,17 +1,10 @@
-import {
-  useRef,
-  Dispatch,
-  SetStateAction,
-  MutableRefObject,
-  ChangeEvent,
-  Fragment,
-} from 'react'
+import { useRef, MutableRefObject, ChangeEvent, Fragment } from 'react'
 
-import { ExpungementInfo, CopyHolder } from '../types'
+import { CopyHolder } from '../types'
 import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
-import styles from './ExpungementCaseInfo.module.css'
+import styles from './ExpungementForm.module.css'
 
 const copy: CopyHolder = {
   english: {
@@ -43,12 +36,14 @@ const copy: CopyHolder = {
 }
 
 interface ExpungementCaseInfoProps {
-  setExpungeInfo: Dispatch<SetStateAction<ExpungementInfo>>
+  handleChange: ({
+    target, // eslint-disable-line no-unused-vars
+  }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
   animationClass: string
 }
 
 const ExpungementCaseInfo = ({
-  setExpungeInfo,
+  handleChange,
   animationClass,
 }: ExpungementCaseInfoProps) => {
   const caseRef: MutableRefObject<HTMLDivElement> = useRef()
@@ -69,15 +64,6 @@ const ExpungementCaseInfo = ({
   } = copy[language]
 
   useIntersectionStyle(caseRef, animationClass)
-
-  const handleChange = ({
-    target,
-  }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
-    // @ts-ignore
-    const { id, value, checked } = target
-    if (checked) setExpungeInfo(val => ({ ...val, [id]: true, [value]: false }))
-    else setExpungeInfo(val => ({ ...val, [id]: value }))
-  }
 
   return (
     <Card ref={caseRef}>
@@ -131,7 +117,7 @@ const ExpungementCaseInfo = ({
             />
           </section>
           <section>
-            <label className={styles.Label}>{on_probation}</label>
+            <label className={styles.LabelMargin}>{on_probation}</label>
             <label htmlFor={`case_probation_formal_${i}`}>Formal</label>
             <Input
               onChange={handleChange}
@@ -158,7 +144,7 @@ const ExpungementCaseInfo = ({
             />
           </section>
           <section>
-            <label className={styles.Label}>{probation_violation}</label>
+            <label className={styles.LabelMargin}>{probation_violation}</label>
             <label htmlFor={`case_probation_violate_${i}`}>{yes}</label>
             <Input
               onChange={handleChange}

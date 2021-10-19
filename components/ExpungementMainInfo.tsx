@@ -6,8 +6,8 @@ import {
   ChangeEvent,
 } from 'react'
 
-import styles from './ExpungementMainInfo.module.css'
-const { PreferredPhone, Selected, Deslected } = styles
+import styles from './ExpungementForm.module.css'
+const { LabelMargin, Selected, Deslected } = styles
 
 import { states } from '../constants'
 import { ExpungementInfo, CopyHolder } from '../types'
@@ -144,7 +144,7 @@ const ExpungementMainInfo = ({
         <Input onChange={handleChange} type="tel" id="cell_phone" />
       </section>
       <section>
-        <label className={PreferredPhone}>{preferred_phone}</label>
+        <label className={LabelMargin}>{preferred_phone}</label>
         <label
           htmlFor="home_phone_radio"
           className={expungeInfo?.home_phone ? Selected : Deslected}
