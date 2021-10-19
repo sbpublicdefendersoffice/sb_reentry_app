@@ -70,13 +70,14 @@ const ExpungementForm = () => {
     e: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault()
-    console.log('howdy')
+    console.log(expungeInfo)
   }
 
   return (
     <form className={styles.ExpungementForm} onSubmit={submitExpungementForm}>
       <Title>{title}</Title>
       <ExpungementMainInfo
+        expungeInfo={expungeInfo}
         setExpungeInfo={setExpungeInfo}
         animationClass={load}
       />

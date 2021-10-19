@@ -6,12 +6,16 @@ import {
   ChangeEvent,
 } from 'react'
 
+import styles from './ExpungementMainInfo.module.css'
+const { PreferredPhone, Selected, Deslected } = styles
+
 import { states } from '../constants'
 import { ExpungementInfo, CopyHolder } from '../types'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 import { Card, Paragraph, Input } from '../ui'
 
 interface ExpungementMainInfoProps {
+  expungeInfo: ExpungementInfo
   setExpungeInfo: Dispatch<SetStateAction<ExpungementInfo>>
   animationClass: string
 }
@@ -48,6 +52,7 @@ const copy: CopyHolder = {
 }
 
 const ExpungementMainInfo = ({
+  expungeInfo,
   setExpungeInfo,
   animationClass,
 }: ExpungementMainInfoProps) => {
@@ -137,27 +142,45 @@ const ExpungementMainInfo = ({
         <Input onChange={handleChange} type="tel" id="cell_phone" />
       </section>
       <section>
-        <label>Preferred Phone</label>
-        <label htmlFor="home_phone_radio">{home_phone}</label>
+        <label className={PreferredPhone}>Please call me on my:</label>
+        <label
+          htmlFor="home_phone_radio"
+          className={expungeInfo?.home_phone ? Selected : Deslected}
+        >
+          {home_phone}
+        </label>
         <Input
           onChange={handleChange}
           type="radio"
+          disabled={!expungeInfo?.home_phone}
           name="preferred_phone"
           value="home_phone"
           id="home_phone_radio"
         />
-        <label htmlFor="work_phone_radio">{work_phone}</label>
+        <label
+          htmlFor="work_phone_radio"
+          className={expungeInfo?.work_phone ? Selected : Deslected}
+        >
+          {work_phone}
+        </label>
         <Input
           onChange={handleChange}
           type="radio"
+          disabled={!expungeInfo?.work_phone}
           name="preferred_phone"
           value="work_phone"
           id="work_phone_radio"
         />
-        <label htmlFor="cell_phone_radio">{cell_phone}</label>
+        <label
+          htmlFor="cell_phone_radio"
+          className={expungeInfo?.cell_phone ? Selected : Deslected}
+        >
+          {cell_phone}
+        </label>
         <Input
           onChange={handleChange}
           type="radio"
+          disabled={!expungeInfo?.cell_phone}
           name="preferred_phone"
           value="cell_phone"
           id="cell_phone_radio"

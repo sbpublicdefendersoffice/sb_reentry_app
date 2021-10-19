@@ -1,0 +1,11 @@
+.PreferredPhone {
+  margin: 0 var(--margin-sm) 0 0;
+}
+
+.Selected {
+  color: var(--dark);
+}
+
+.Deslected {
+  color: var(--deselected);
+}
