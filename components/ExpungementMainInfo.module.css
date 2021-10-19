@@ -1,5 +1,5 @@
 .PreferredPhone {
-  margin: 0 var(--margin-sm) 0 0;
+  margin-right: var(--margin-sm);
 }
 
 .Selected {

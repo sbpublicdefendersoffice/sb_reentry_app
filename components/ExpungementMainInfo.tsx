@@ -34,6 +34,7 @@ const copy: CopyHolder = {
     home_phone: 'Home Phone',
     work_phone: 'Work Phone',
     cell_phone: 'Cell Phone',
+    preferred_phone: 'Please call me on my:',
   },
   spanish: {
     info: 'Información Identificativa',
@@ -48,6 +49,7 @@ const copy: CopyHolder = {
     home_phone: 'Teléfono de casa',
     work_phone: 'Teléfono del trabajo',
     cell_phone: 'Teléfono móvil',
+    preferred_phone: 'Por favor llámame a mi:',
   },
 }
 
@@ -72,6 +74,7 @@ const ExpungementMainInfo = ({
     home_phone,
     work_phone,
     cell_phone,
+    preferred_phone,
   } = copy[language]
 
   useIntersectionStyle(infoRef, animationClass)
@@ -81,9 +84,8 @@ const ExpungementMainInfo = ({
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     // @ts-ignore
     const { id, value, checked, name } = target
-    if (checked) {
-      setExpungeInfo(val => ({ ...val, [name]: val[value] }))
-    } else setExpungeInfo(val => ({ ...val, [id]: value }))
+    if (checked) setExpungeInfo(val => ({ ...val, [name]: val[value] }))
+    else setExpungeInfo(val => ({ ...val, [id]: value }))
   }
 
   return (
@@ -142,7 +144,7 @@ const ExpungementMainInfo = ({
         <Input onChange={handleChange} type="tel" id="cell_phone" />
       </section>
       <section>
-        <label className={PreferredPhone}>Please call me on my:</label>
+        <label className={PreferredPhone}>{preferred_phone}</label>
         <label
           htmlFor="home_phone_radio"
           className={expungeInfo?.home_phone ? Selected : Deslected}

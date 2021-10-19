@@ -2,17 +2,11 @@ import { useState, FormEvent } from 'react'
 
 import { useLanguage } from '../hooks'
 import { ExpungementInfo, CopyHolder } from '../types'
-import { ExpungementMainInfo } from './'
+import { ExpungementMainInfo, ExpungementCaseInfo } from './'
 
 import styles from './ExpungementForm.module.css'
 
 import { Title, Button } from '../ui'
-
-// basic info:
-// name, preferred_phone, full_address, email, dob, license, ssn, address, city, state, zip (send previous two as state_and_zip), home_phone, work_phone, cell_phone
-
-// case info, for 1, 2, and 3:
-// case_num_1, case_attorney_1, case_charges_1, case_felony_1, case_misdemeanor_1, case_date_convicted_1, case_probation_formal_1, case_probation_informal_1, case_probation_duration_1,  case_probation_violate_1, case_probation_no_violate_1
 
 // probation:
 // current_probation_yes, current_probation_no, current_probation_info, arrests_since_probation_yes, arrests_since_probation_no, arrests_since_probation_info, owe_money_yes, owe_money_no, owe_money_amount
@@ -70,6 +64,7 @@ const ExpungementForm = () => {
     e: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault()
+    //remember to send state and zip as state_and_zip
     console.log(expungeInfo)
   }
 
@@ -78,6 +73,10 @@ const ExpungementForm = () => {
       <Title>{title}</Title>
       <ExpungementMainInfo
         expungeInfo={expungeInfo}
+        setExpungeInfo={setExpungeInfo}
+        animationClass={load}
+      />
+      <ExpungementCaseInfo
         setExpungeInfo={setExpungeInfo}
         animationClass={load}
       />

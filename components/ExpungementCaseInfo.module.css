@@ -1,0 +1,7 @@
+.Label {
+  margin-right: var(--margin-sm);
+}
+
+.HR {
+  margin: var(--margin-lg) 0;
+}
