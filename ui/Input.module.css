@@ -4,4 +4,5 @@
   border-radius: var(--radius-small);
   margin: var(--margin-std) var(--margin-sm);
   font-size: var(--med-text);
+  min-width: 3rem;
 }

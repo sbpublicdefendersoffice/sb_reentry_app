@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 
 import { useLanguage } from '../hooks'
-import { ExpungementInfo } from '../types'
+import { ExpungementInfo, CopyHolder } from '../types'
+import { ExpungementMainInfo } from './'
 
 import styles from './ExpungementForm.module.css'
 
-import { Title, Paragraph, Input, Button } from '../ui'
+import { Title, Button } from '../ui'
 
 // basic info:
 // name, preferred_phone, full_address, email, dob, license, ssn, address, city, state, zip (send previous two as state_and_zip), home_phone, work_phone, cell_phone
@@ -46,12 +47,44 @@ import { Title, Paragraph, Input, Button } from '../ui'
 
 //hearing_option_initals, hearing_option_no_reimbursement, hearing_option_judge_hearing, date, signature,
 
+const copy: CopyHolder = {
+  english: {
+    title: 'Apply for Criminal Record Expungement',
+    submit: 'Submit Information',
+  },
+  spanish: {
+    title: 'Solicite la eliminación de antecedentes penales',
+    submit: 'Enviar información',
+  },
+}
+
+const { load } = styles
+
 const ExpungementForm = () => {
   const { language } = useLanguage()
+  const { title, submit } = copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
 
-  return <form className={styles.ExpungementForm}>let's expunge!</form>
+  const submitExpungementForm = async (
+    e: FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
+    e.preventDefault()
+    console.log('howdy')
+  }
+
+  return (
+    <form className={styles.ExpungementForm} onSubmit={submitExpungementForm}>
+      <Title>{title}</Title>
+      <ExpungementMainInfo
+        setExpungeInfo={setExpungeInfo}
+        animationClass={load}
+      />
+      <Button role="button" type="submit">
+        {submit}
+      </Button>
+    </form>
+  )
 }
 
 export default ExpungementForm
