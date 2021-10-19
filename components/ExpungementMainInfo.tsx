@@ -189,6 +189,8 @@ const ExpungementMainInfo = ({
         />
         <label htmlFor="license">{license}</label>
         <Input onChange={handleChange} type="text" id="license" />
+        <label htmlFor="email">E-mail</label>
+        <Input onChange={handleChange} type="email" required id="email" />
       </section>
     </Card>
   )

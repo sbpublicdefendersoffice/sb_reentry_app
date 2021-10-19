@@ -1,6 +1,12 @@
-import { useState, FormEvent, ChangeEvent } from 'react'
+import {
+  useState,
+  useRef,
+  FormEvent,
+  ChangeEvent,
+  MutableRefObject,
+} from 'react'
 
-import { useLanguage } from '../hooks'
+import { useLanguage, useIntersectionStyle } from '../hooks'
 import { ExpungementInfo, CopyHolder } from '../types'
 import {
   ExpungementMainInfo,
@@ -10,12 +16,10 @@ import {
 
 import styles from './ExpungementForm.module.css'
 
-import { Title, Button } from '../ui'
+import { Title, Button, Card, Paragraph } from '../ui'
 
 //sign for both
 // day, month, year, location, signature
-
-// uptrust_enroll, charged_with
 
 // marital status
 // marital_status_single, marital_status_married,  marital_status_separated, marital_status_divorced,marital_status_commonlaw
@@ -46,26 +50,36 @@ const copy: CopyHolder = {
   english: {
     title: 'Apply for Criminal Record Expungement',
     submit: 'Submit Information',
+    uptrust: 'Uptrust Enrollment',
+    enroll:
+      'I would like to be enrolled in Uptrust to receive text messages about upcoming court hearings and office appointments',
   },
   spanish: {
     title: 'Solicite la eliminación de antecedentes penales',
     submit: 'Enviar información',
+    uptrust: 'Inscripción Uptrust',
+    enroll:
+      'Yo quisiera inscribirme en Uptrust para recibir mensajes de texto acerca de la proxima audiencias judiciales y citas en la oficina',
   },
 }
 
 const { Load } = styles
 
 const ExpungementForm = () => {
+  const uptrustRef: MutableRefObject<HTMLDivElement> = useRef()
   const { language } = useLanguage()
-  const { title, submit } = copy[language]
+  const { title, submit, uptrust, enroll } = copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
+
+  useIntersectionStyle(uptrustRef, Load)
 
   const submitExpungementForm = async (
     e: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault()
     //remember to send state and zip as state_and_zip
+    // fill out charged with from case charges info
     console.log(expungeInfo)
   }
 
@@ -86,6 +100,23 @@ const ExpungementForm = () => {
         setExpungeInfo={setExpungeInfo}
         animationClass={Load}
       />
+      <Card ref={uptrustRef}>
+        <Paragraph size="med-text" color="highlight">
+          {uptrust}
+        </Paragraph>
+        <label htmlFor="uptrust_enroll" className={styles.LabelMargin}>
+          {enroll}
+        </label>
+        <input
+          type="checkbox"
+          onChange={() =>
+            setExpungeInfo(val => ({
+              ...val,
+              uptrust_enroll: !Boolean(val?.uptrust_enroll),
+            }))
+          }
+        />
+      </Card>
       <ExpungementCaseInfo handleChange={handleChange} animationClass={Load} />
       <ExpungementProbationInfo
         handleChange={handleChange}
