@@ -16,20 +16,18 @@ import {
   ExpungementDependents,
   ExpungementEmploymentAndIncome,
   ExpungementFinanceOptions,
+  ExpungementMonthlyExpenses,
 } from './'
 
 import styles from './ExpungementForm.module.css'
 
 import { Title, Button, Card, Paragraph } from '../ui'
 
-//sign for both
-// day, month, year, location, signature
-
-// expenses
-// expenses_rent, expenses_utilities, expenses_food, expenses_mortgage, expenses_child_support, expenses_vehicle_payment, expenses_vehicle_insurance, expenses_other_expense_one_description, expenses_other_expense_one_amount, expenses_other_expense_two_description, expenses_other_expense_two_amount,
-
 // other income
 // other_income_child_support, other_income_disability, other_income_social_security, other_income_welfare_afdc, other_income_welfare_fs, other_income_welfare_amount, other_income_ssi_ssp_gr, other_income_real_estate_yes, other_income_real_estate_no, other_income_real_estate_address, other_income_real_estate_value, other_income_checking, other_income_savings, other_income_cash, other_income_value_of_assets,
+
+//sign for both
+// day, month, year, location, signature
 
 const copy: CopyHolder = {
   english: {
@@ -66,6 +64,7 @@ const ExpungementForm = () => {
     //remember to send state and zip as state_and_zip
     // fill out charged with from case charges info
     // for employment pay period, convert the boolean into a p/w p/m string
+    // change all number fields to not accept negative numbers
     console.log(expungeInfo)
   }
 
@@ -126,6 +125,10 @@ const ExpungementForm = () => {
       />
       <ExpungementEmploymentAndIncome
         expungeInfo={expungeInfo}
+        handleChange={handleChange}
+        animationClass={Load}
+      />
+      <ExpungementMonthlyExpenses
         handleChange={handleChange}
         animationClass={Load}
       />

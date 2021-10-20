@@ -18,6 +18,7 @@ export { default as ExpungementFinanceOptions } from './ExpungementFinanceOption
 export { default as ExpungementForm } from './ExpungementForm'
 export { default as ExpungementMainInfo } from './ExpungementMainInfo'
 export { default as ExpungementMaritalAndVeteranStatus } from './ExpungementMaritalAndVeteranStatus'
+export { default as ExpungementMonthlyExpenses } from './ExpungementMonthlyExpenses'
 export { default as ExpungementProbationInfo } from './ExpungementProbationInfo'
 export { default as FetchedDataSearch } from './FetchedDataSearch'
 export { default as FilterCity } from './FilterCity'
