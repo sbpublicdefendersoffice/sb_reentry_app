@@ -14,6 +14,7 @@ import {
   ExpungementProbationInfo,
   ExpungementMaritalAndVeteranStatus,
   ExpungementDependents,
+  ExpungementEmploymentAndIncome,
 } from './'
 
 import styles from './ExpungementForm.module.css'
@@ -22,14 +23,6 @@ import { Title, Button, Card, Paragraph } from '../ui'
 
 //sign for both
 // day, month, year, location, signature
-
-// for employment pay period, convert the boolean into a p/w p/m string
-
-// employment, self
-// employer, employer_address, time_at_job, supervisor, take_home_pay (have a per week, per month here too), unemployed, unemployed_benefits_yes, unemployed_benefits_no, unemployed_benefits_amount,
-
-// employment, partner
-// partner_employer, partner_employer_address, partner_time_at_job, partner_supervisor, partner_take_home_pay (have a per week, per month here too), partner_unemployed, partner_unemployed_benefits_yes, partner_unemployed_benefits_no, partner_unemployed_benefits_amount
 
 // expenses
 // expenses_rent, expenses_utilities, expenses_food, expenses_mortgage, expenses_child_support, expenses_vehicle_payment, expenses_vehicle_insurance, expenses_other_expense_one_description, expenses_other_expense_one_amount, expenses_other_expense_two_description, expenses_other_expense_two_amount,
@@ -73,15 +66,15 @@ const ExpungementForm = () => {
     e.preventDefault()
     //remember to send state and zip as state_and_zip
     // fill out charged with from case charges info
+    // for employment pay period, convert the boolean into a p/w p/m string
     console.log(expungeInfo)
   }
 
   const handleChange = ({
     target,
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
-    // @ts-ignore
-    const { id, value, checked } = target
-    if (checked) {
+    const { id, value, type } = target
+    if (type === 'radio') {
       const falseRadioVals: { [value: string]: boolean } = value
         .split(';')
         .reduce((obj, str) => {
@@ -94,7 +87,12 @@ const ExpungementForm = () => {
         ...falseRadioVals,
         [id]: true,
       }))
-    } else setExpungeInfo(val => ({ ...val, [id]: value }))
+    } else if (type === 'checkbox')
+      setExpungeInfo(val => ({
+        ...val,
+        [id]: !Boolean(val?.[id]),
+      }))
+    else setExpungeInfo(val => ({ ...val, [id]: value }))
   }
 
   return (
@@ -112,21 +110,18 @@ const ExpungementForm = () => {
         <label htmlFor="uptrust_enroll" className={styles.LabelMargin}>
           {enroll}
         </label>
-        <input
-          type="checkbox"
-          onChange={() =>
-            setExpungeInfo(val => ({
-              ...val,
-              uptrust_enroll: !Boolean(val?.uptrust_enroll),
-            }))
-          }
-        />
+        <input type="checkbox" id="uptrust_enroll" onChange={handleChange} />
       </Card>
       <ExpungementMaritalAndVeteranStatus
         handleChange={handleChange}
         animationClass={Load}
       />
       <ExpungementDependents
+        handleChange={handleChange}
+        animationClass={Load}
+      />
+      <ExpungementEmploymentAndIncome
+        expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
       />
