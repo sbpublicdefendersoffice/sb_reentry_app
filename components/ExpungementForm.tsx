@@ -12,6 +12,7 @@ import {
   ExpungementMainInfo,
   ExpungementCaseInfo,
   ExpungementProbationInfo,
+  ExpungementMaritalAndVeteranStatus,
 } from './'
 
 import styles from './ExpungementForm.module.css'
@@ -20,12 +21,6 @@ import { Title, Button, Card, Paragraph } from '../ui'
 
 //sign for both
 // day, month, year, location, signature
-
-// marital status
-// marital_status_single, marital_status_married,  marital_status_separated, marital_status_divorced,marital_status_commonlaw
-
-// military experience
-// veteran_yes, veteran_no, military_branch, discharge_date,
 
 // dependents
 // number_of_dependents, dependent_relationship_and_age,
@@ -88,8 +83,20 @@ const ExpungementForm = () => {
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     // @ts-ignore
     const { id, value, checked } = target
-    if (checked) setExpungeInfo(val => ({ ...val, [id]: true, [value]: false }))
-    else setExpungeInfo(val => ({ ...val, [id]: value }))
+    if (checked) {
+      const falseRadioVals: { [value: string]: boolean } = value
+        .split(';')
+        .reduce((obj, str) => {
+          obj[str] = false
+          return obj
+        }, {})
+
+      setExpungeInfo(val => ({
+        ...val,
+        ...falseRadioVals,
+        [id]: true,
+      }))
+    } else setExpungeInfo(val => ({ ...val, [id]: value }))
   }
 
   return (
@@ -117,6 +124,10 @@ const ExpungementForm = () => {
           }
         />
       </Card>
+      <ExpungementMaritalAndVeteranStatus
+        handleChange={handleChange}
+        animationClass={Load}
+      />
       <ExpungementCaseInfo handleChange={handleChange} animationClass={Load} />
       <ExpungementProbationInfo
         handleChange={handleChange}
