@@ -108,9 +108,7 @@ const ExpungementMonthlyExpenses = ({
         />
       </section>
       <section>
-        <label htmlFor="expenses_other_expense_one_description">
-          {other} $
-        </label>
+        <label htmlFor="expenses_other_expense_one_description">{other}</label>
         <Input
           onChange={handleChange}
           type="text"
@@ -124,9 +122,7 @@ const ExpungementMonthlyExpenses = ({
         />
       </section>
       <section>
-        <label htmlFor="expenses_other_expense_one_description">
-          {other} $
-        </label>
+        <label htmlFor="expenses_other_expense_one_description">{other}</label>
         <Input
           onChange={handleChange}
           type="text"

@@ -17,14 +17,12 @@ import {
   ExpungementEmploymentAndIncome,
   ExpungementFinanceOptions,
   ExpungementMonthlyExpenses,
+  ExpungementOtherIncomeAssets,
 } from './'
 
 import styles from './ExpungementForm.module.css'
 
 import { Title, Button, Card, Paragraph } from '../ui'
-
-// other income
-// other_income_child_support, other_income_disability, other_income_social_security, other_income_welfare_afdc, other_income_welfare_fs, other_income_welfare_amount, other_income_ssi_ssp_gr, other_income_real_estate_yes, other_income_real_estate_no, other_income_real_estate_address, other_income_real_estate_value, other_income_checking, other_income_savings, other_income_cash, other_income_value_of_assets,
 
 //sign for both
 // day, month, year, location, signature
@@ -129,6 +127,11 @@ const ExpungementForm = () => {
         animationClass={Load}
       />
       <ExpungementMonthlyExpenses
+        handleChange={handleChange}
+        animationClass={Load}
+      />
+      <ExpungementOtherIncomeAssets
+        expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
       />
