@@ -13,6 +13,7 @@ import {
   ExpungementCaseInfo,
   ExpungementProbationInfo,
   ExpungementMaritalAndVeteranStatus,
+  ExpungementDependents,
 } from './'
 
 import styles from './ExpungementForm.module.css'
@@ -21,9 +22,6 @@ import { Title, Button, Card, Paragraph } from '../ui'
 
 //sign for both
 // day, month, year, location, signature
-
-// dependents
-// number_of_dependents, dependent_relationship_and_age,
 
 // for employment pay period, convert the boolean into a p/w p/m string
 
@@ -125,6 +123,10 @@ const ExpungementForm = () => {
         />
       </Card>
       <ExpungementMaritalAndVeteranStatus
+        handleChange={handleChange}
+        animationClass={Load}
+      />
+      <ExpungementDependents
         handleChange={handleChange}
         animationClass={Load}
       />

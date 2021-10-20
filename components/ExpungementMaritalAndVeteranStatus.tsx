@@ -35,7 +35,7 @@ const copy: CopyHolder = {
 
 import styles from './ExpungementForm.module.css'
 
-interface ExpungementMaritalAndVeteranStatus {
+interface ExpungementMaritalAndVeteranStatusProps {
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -45,7 +45,7 @@ interface ExpungementMaritalAndVeteranStatus {
 const ExpungementMaritalAndVeteranStatus = ({
   handleChange,
   animationClass,
-}: ExpungementMaritalAndVeteranStatus) => {
+}: ExpungementMaritalAndVeteranStatusProps) => {
   const vetRef: MutableRefObject<HTMLDivElement> = useRef()
   const { language } = useLanguage()
 
