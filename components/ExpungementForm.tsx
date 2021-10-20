@@ -15,6 +15,7 @@ import {
   ExpungementMaritalAndVeteranStatus,
   ExpungementDependents,
   ExpungementEmploymentAndIncome,
+  ExpungementFinanceOptions,
 } from './'
 
 import styles from './ExpungementForm.module.css'
@@ -29,8 +30,6 @@ import { Title, Button, Card, Paragraph } from '../ui'
 
 // other income
 // other_income_child_support, other_income_disability, other_income_social_security, other_income_welfare_afdc, other_income_welfare_fs, other_income_welfare_amount, other_income_ssi_ssp_gr, other_income_real_estate_yes, other_income_real_estate_no, other_income_real_estate_address, other_income_real_estate_value, other_income_checking, other_income_savings, other_income_cash, other_income_value_of_assets,
-
-//hearing_option_initals, hearing_option_no_reimbursement, hearing_option_judge_hearing, date, signature,
 
 const copy: CopyHolder = {
   english: {
@@ -120,13 +119,18 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
+      <ExpungementCaseInfo handleChange={handleChange} animationClass={Load} />
+      <ExpungementProbationInfo
+        handleChange={handleChange}
+        animationClass={Load}
+      />
       <ExpungementEmploymentAndIncome
         expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
       />
-      <ExpungementCaseInfo handleChange={handleChange} animationClass={Load} />
-      <ExpungementProbationInfo
+      <ExpungementFinanceOptions
+        expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
       />
