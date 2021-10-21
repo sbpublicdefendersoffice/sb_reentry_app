@@ -230,15 +230,16 @@ export const sr22: CopyHolder = {
 }
 export const clearMyRecord: CopyHolder = {
   english: {
-    listItem: `Click here to visit clear my record`,
+    listItem: `Where can I go to start the process of clearing my record?`,
     description:
-      'In mid November, ThriveSBC will be transitioning to an in house record expungement tool.',
+      'In mid November, ThriveSBC will be transitioning to an in house record expungement tool. In the meantime you can start the process by',
     nextLink: '/letushelp/clearmyrecord',
   },
   spanish: {
-    listItem: 'Haga clic aquí para ir a borrar mis antecedentes penales',
+    listItem:
+      '¿A dónde puedo ir para iniciar el proceso de limpieza de mi registro?',
     description:
-      'A mediados de noviembre, ThriveSBC hará la transición a una herramienta interna de eliminación de antecedentes penales.',
+      'A mediados de noviembre, ThriveSBC hará la transición a una herramienta interna de eliminación de antecedentes penales. Mientras tanto, puede iniciar el proceso',
     nextLink: '/letushelp/clearmyrecord',
   },
 }

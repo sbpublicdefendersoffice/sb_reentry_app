@@ -38,6 +38,7 @@ const FaqPage = () => {
   const classes = useStyles()
 
   const faqs: CopyHolder[] = [
+    clearMyRecord,
     resumeTemplate,
     whereToStart,
     covid,
@@ -52,7 +53,6 @@ const FaqPage = () => {
     documents,
     edits,
     feedback,
-    clearMyRecord,
   ]
   const activeCopyFAQ = faqCopy[language]
   return (
