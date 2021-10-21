@@ -21,6 +21,7 @@ export { default as ExpungementMaritalAndVeteranStatus } from './ExpungementMari
 export { default as ExpungementMonthlyExpenses } from './ExpungementMonthlyExpenses'
 export { default as ExpungementOtherIncomeAssets } from './ExpungementOtherIncomeAssets'
 export { default as ExpungementProbationInfo } from './ExpungementProbationInfo'
+export { default as ExpungementSignature } from './ExpungementSignature'
 export { default as FetchedDataSearch } from './FetchedDataSearch'
 export { default as FilterCity } from './FilterCity'
 export { default as FilterPeopleServed } from './FilterPeopleServed'

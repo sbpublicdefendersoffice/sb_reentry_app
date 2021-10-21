@@ -18,18 +18,22 @@ import {
   ExpungementFinanceOptions,
   ExpungementMonthlyExpenses,
   ExpungementOtherIncomeAssets,
+  ExpungementSignature,
 } from './'
 
 import styles from './ExpungementForm.module.css'
 
 import { Title, Button, Card, Paragraph } from '../ui'
 
-//sign for both
-// day, month, year, location, signature
-
 const copy: CopyHolder = {
   english: {
     title: 'Apply for Criminal Record Expungement',
+    elgible: 'You are not eligible for this relief if',
+    one: 'You are serving a sentence, are on probation, or are charged with a crime',
+    two: 'You have not complied with the terms and conditions of probation',
+    three:
+      'If it has been less than a year since your date of conviction and you were not granted probation',
+    four: 'You went to prison for this offense',
     submit: 'Submit Information',
     uptrust: 'Uptrust Enrollment',
     enroll:
@@ -37,6 +41,12 @@ const copy: CopyHolder = {
   },
   spanish: {
     title: 'Solicite la eliminación de antecedentes penales',
+    elgible: 'No es elegible para este alivio si',
+    one: 'Está cumpliendo una sentencia, está en libertad condicional o está acusado de un delito',
+    two: 'No ha cumplido con los términos y condiciones de la libertad condicional',
+    three:
+      'Si ha pasado menos de un año desde la fecha de su condena y no se le concedió libertad condicional',
+    four: 'Fuiste a prisión por este delito',
     submit: 'Enviar información',
     uptrust: 'Inscripción Uptrust',
     enroll:
@@ -49,7 +59,8 @@ const { Load } = styles
 const ExpungementForm = () => {
   const uptrustRef: MutableRefObject<HTMLDivElement> = useRef()
   const { language } = useLanguage()
-  const { title, submit, uptrust, enroll } = copy[language]
+  const { title, submit, uptrust, enroll, elgible, one, two, three, four } =
+    copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
 
@@ -94,6 +105,13 @@ const ExpungementForm = () => {
   return (
     <form className={styles.ExpungementForm} onSubmit={submitExpungementForm}>
       <Title>{title}</Title>
+      <Paragraph color="highlight" size="heading-text">
+        {elgible}
+      </Paragraph>
+      <Paragraph size="med-text">1) {one}</Paragraph>
+      <Paragraph size="med-text">2) {two}</Paragraph>
+      <Paragraph size="med-text">3) {three}</Paragraph>
+      <Paragraph size="med-text">4) {four}</Paragraph>
       <ExpungementMainInfo
         expungeInfo={expungeInfo}
         setExpungeInfo={setExpungeInfo}
@@ -140,6 +158,7 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
+      <ExpungementSignature handleChange={handleChange} animationClass={Load} />
       <Button role="button" type="submit">
         {submit}
       </Button>
