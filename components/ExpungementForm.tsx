@@ -74,6 +74,7 @@ const ExpungementForm = () => {
     // fill out charged with from case charges info
     // for employment pay period, convert the boolean into a p/w p/m string
     // change all number fields to not accept negative numbers
+    // do i need to make the date into separate things for the form or what?
     console.log(expungeInfo)
   }
 
@@ -158,7 +159,11 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
-      <ExpungementSignature handleChange={handleChange} animationClass={Load} />
+      <ExpungementSignature
+        expungeInfo={expungeInfo}
+        handleChange={handleChange}
+        animationClass={Load}
+      />
       <Button role="button" type="submit">
         {submit}
       </Button>

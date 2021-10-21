@@ -162,7 +162,7 @@ const ExpungementCaseInfo = ({
               id={`case_probation_no_violate_${i}`}
             />
           </section>
-          {i !== 3 && <hr className={styles.HR} />}
+          {i !== 3 && <hr className={styles.VertMargin} />}
         </Fragment>
       ))}
     </Card>

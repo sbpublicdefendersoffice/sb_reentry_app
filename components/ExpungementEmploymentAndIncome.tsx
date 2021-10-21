@@ -5,7 +5,7 @@ import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
 import styles from './ExpungementForm.module.css'
-const { LabelMargin, Selected, Deslected, HR } = styles
+const { LabelMargin, Selected, Deslected, VertMargin } = styles
 
 const copy: CopyHolder = {
   english: {
@@ -165,7 +165,7 @@ const ExpungementEmploymentAndIncome = ({
           id="unemployed_benefits_amount"
         />
       </section>
-      <hr className={HR} />
+      <hr className={VertMargin} />
       <Paragraph size="med-text" color="highlight">
         {partner_employ}
       </Paragraph>

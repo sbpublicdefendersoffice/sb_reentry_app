@@ -5,7 +5,7 @@ import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
 import styles from './ExpungementForm.module.css'
-const { Selected, Deslected, HR } = styles
+const { Selected, Deslected, VertMargin } = styles
 
 const copy: CopyHolder = {
   english: {
@@ -53,8 +53,8 @@ const ExpungementFinanceOptions = ({
       <Paragraph size="med-text" color="highlight">
         {payment}
       </Paragraph>
-      <Paragraph>{info}</Paragraph>
-      <hr className={HR} />
+      <Paragraph className={VertMargin}>{info}</Paragraph>
+      <hr className={VertMargin} />
       <section>
         <label htmlFor="hearing_option_no_reimbursement">{no_reimburse}</label>
         <Input
@@ -65,7 +65,7 @@ const ExpungementFinanceOptions = ({
           id="hearing_option_no_reimbursement"
         />
       </section>
-      <hr className={HR} />
+      <hr className={VertMargin} />
       <section>
         <label htmlFor="hearing_option_no_reimbursement">{hearing}</label>
         <Input
