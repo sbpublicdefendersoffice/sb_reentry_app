@@ -274,3 +274,24 @@ export const SignupRoute: RouteInfo[] = [
     route: '/signup',
   },
 ]
+export const VerifyEmailRoute: RouteInfo[] = [
+  {
+    title_english: 'Verify Email',
+    title_spanish: 'Verify Email',
+    route: '/verifyemail',
+  },
+]
+export const VerifyEmailWithIDRoute: RouteInfo[] = [
+  {
+    title_english: 'Verify Email',
+    title_spanish: 'Verify Email',
+    route: '/verifyemail/:verificationString',
+  },
+]
+export const ResetPasswordWithIDRoute: RouteInfo[] = [
+  {
+    title_english: 'Verify Email',
+    title_spanish: 'Verify Email',
+    route: '/forgotpassword/:passwordResetCode',
+  },
+]

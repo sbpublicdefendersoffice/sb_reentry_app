@@ -86,6 +86,8 @@ export {
   topThreeRoutes,
   LoginRoute,
   SignupRoute,
+  VerifyEmailRoute,
+  ResetPasswordWithIDRoute,
 } from './routes'
 export { margin, maxWidth, flexFullWidth } from './styling'
 export {
