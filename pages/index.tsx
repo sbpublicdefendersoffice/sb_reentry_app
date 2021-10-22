@@ -22,7 +22,7 @@ const Home = () => {
       <HeadTags
         title={siteTitle}
         href="/"
-        description={`${siteTitle}, A Santa Barbara County client tool for the justice-impacted`}
+        description={`${siteTitle}, A Santa Barbara County tool for the justice-impacted community`}
         otherTags={[
           <meta
             key="_app viewport"
