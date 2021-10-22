@@ -75,6 +75,7 @@ const ExpungementForm = () => {
     // for employment pay period, convert the boolean into a p/w p/m string
     // change all number fields to not accept negative numbers
     // do i need to make the date into separate things for the form or what?
+    // .slice(0, 2),'10/01/2021'.slice(3,5),.slice(6),
     console.log(expungeInfo)
   }
 

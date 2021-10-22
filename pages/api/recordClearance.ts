@@ -8,8 +8,10 @@ import { fillOutPDFForm } from '../../helpers'
 const [type, disposition, financialFormPath, applicationPath]: string[] = [
   'application/pdf',
   'attachment',
-  'documents/SBPD_EXPUNGEMENT_FINANCIAL_DECLARATION_Updated_10_20_19.pdf',
-  'documents/SBPD_EXPUNGEMENT_Application.pdf',
+  'documents/Financial_Declaration.pdf',
+  'documents/Expungements_Intake.pdf',
+  // 'documents/SBPD_EXPUNGEMENT_FINANCIAL_DECLARATION_Updated_10_20_19.pdf',
+  // 'documents/SBPD_EXPUNGEMENT_Application.pdf',
 ]
 
 const recordClearance = async (
@@ -20,12 +22,12 @@ const recordClearance = async (
     //below will be a JSON.parse when testing is done
     const { to, from, subject, text, name, language } = req.body
 
-    const applicationAttachment = await fillOutPDFForm(
-      readFileSync(applicationPath),
-      req,
-      applicationFormFields,
-      language,
-    )
+    // const applicationAttachment = await fillOutPDFForm(
+    //   readFileSync(applicationPath),
+    //   req,
+    //   applicationFormFields,
+    //   language,
+    // )
 
     const financeFormAttachment = await fillOutPDFForm(
       readFileSync(financialFormPath),
@@ -48,12 +50,12 @@ const recordClearance = async (
           type,
           disposition,
         },
-        {
-          content: applicationAttachment,
-          filename: `${name}_SBPD_EXPUNGEMENT_APPLICATION_${language}.pdf`,
-          type,
-          disposition,
-        },
+        // {
+        //   content: applicationAttachment,
+        //   filename: `${name}_SBPD_EXPUNGEMENT_APPLICATION_${language}.pdf`,
+        //   type,
+        //   disposition,
+        // },
       ],
     }
 

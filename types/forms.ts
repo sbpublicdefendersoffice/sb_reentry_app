@@ -1,7 +1,13 @@
 export interface FieldInfo {
   box_width?: number
-  x: number
-  y: number
+  x?: number
+  y?: number
+  radioOrBooleanVals?: {
+    [key: string]: {
+      x: number
+      y: number
+    }
+  }
 }
 
 export interface Fields {

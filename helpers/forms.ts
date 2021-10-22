@@ -29,7 +29,10 @@ export const fillOutPDFForm = async (
           widthOfText = font.widthOfTextAtSize(txt, (sizeOfText -= 0.1))
 
         page.drawText(txt, { x, y, size: sizeOfText })
-      } else page.drawText('X', { x, y, size: sizeOfText })
+      } else {
+        const { x, y } = fieldInfo[key][language].radioOrBooleanVals[val]
+        page.drawText('X', { x, y, size: sizeOfText })
+      }
     }
   })
 
