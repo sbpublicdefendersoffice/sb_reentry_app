@@ -14,7 +14,7 @@ export const fillOutPDFForm = async (
 ): Promise<string | Uint8Array> => {
   const pdf = await PDFDocument.load(form)
   const font = await pdf.embedFont(StandardFonts.Helvetica)
-  const page = pdf.getPage(language === SPANISH && multiPage ? 1 : 0) // good way to get only one page for others
+  const page = pdf.getPage(language === SPANISH && multiPage ? 1 : 0)
 
   Object.entries(req.body).forEach(([key, val]) => {
     if (fieldInfo?.[key]) {
