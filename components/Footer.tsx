@@ -24,14 +24,14 @@ export const linkInfo = {
 const copy: CopyHolder = {
   english: {
     art: 'Homepage picture graciously provided by ',
-    tagline: 'A Santa Barbara County client tool for the justice-impacted',
+    tagline: 'A Santa Barbara County tool for the justice-impacted community',
     court: 'Court Resources',
     resource: 'Resource Support',
   },
   spanish: {
     art: 'Imagen de la página de inicio gentilmente proporcionada por ',
     tagline:
-      'Una herramienta para clientes del condado de Santa Bárbara para los afectados por la justicia',
+      'Una herramienta del condado de Santa Bárbara para la comunidad afectada por la justicia',
     court: 'Recursos de la corte',
     resource: 'Soporte de recursos',
   },
