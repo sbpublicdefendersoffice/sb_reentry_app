@@ -1,21 +1,16 @@
-import { StylesContext } from '@material-ui/styles'
-import { hash } from 'bcrypt'
-
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { useState, Dispatch, SetStateAction, FormEvent } from 'react'
+import { FormEvent } from 'react'
 import { HeadTags } from '../../components'
-
 import { siteTitle, isDev } from '../../constants'
 import { useFormFields } from '../../hooks'
-import { User, CopyHolder } from '../../types'
+import { CopyHolder } from '../../types'
 import { Button } from '../../ui'
 import { useLanguage, useToast } from '../../hooks'
 import { POST } from '../../helpers/'
-
+import { useToken } from '../../hooks/'
 import CheckIcon from '@material-ui/icons/Check'
 import CloseIcon from '@material-ui/icons/Close'
-
 export const copy: CopyHolder = {
   english: {
     signup: `Sign Up`,
@@ -35,41 +30,46 @@ export const copy: CopyHolder = {
   },
 }
 const initialForm = {
-  org: 'oreg',
-  email: 'v123@gmail.com',
+  org: '',
+  email: '',
   pwd: '123456qQ',
   confirmPwd: '123456qQ',
 }
 const SignupPage = () => {
+  const [token, setToken] = useToken()
   const { push } = useRouter()
   const { setToast } = useToast()
   const { language } = useLanguage()
   const [fields, handleFieldChange] = useFormFields(initialForm)
-
   const { confirmPasswordMessage, passwordMessage, error, signup, success } =
     copy[language]
   const { email, org, pwd, confirmPwd } = fields
-
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
-
     if (fields) {
       const postUserToPostgres: Response = await fetch('/api/postUser', {
         method: POST,
         body: JSON.stringify(fields),
       })
       const apiResponse = await postUserToPostgres.json()
-      if (apiResponse.error) setToast(`${error}${apiResponse.error}`)
-      else {
+
+      if (apiResponse.error) {
+        setToast(`${error}${apiResponse.error}`)
+        return
+      } else {
         setToast(success)
         fields.org = ''
         fields.email = ''
         fields.pwd = ''
         fields.confirmPwd = ''
       }
+      const { token } = await apiResponse
+      //@ts-ignore
+      setToken(token)
+      push('/verifyemail')
+      //not sure why it is getting
     }
   }
-
   return (
     <>
       <HeadTags
@@ -128,7 +128,6 @@ const SignupPage = () => {
             Already have an account? Log in
           </Button>
         </div>
-
         <>
           <p style={{ fontWeight: 'bold' }}>
             All checkmarks must turn green, password must have:
@@ -178,9 +177,7 @@ const SignupPage = () => {
     </>
   )
 }
-
 export default SignupPage
-
 export const getServerSideProps: GetServerSideProps = async () => {
   // login is still under development, so we don't want people accessing it in production
   if (!isDev)
@@ -190,7 +187,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
         permanent: false,
       },
     }
-
   return {
     props: {},
   }
