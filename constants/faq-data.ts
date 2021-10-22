@@ -23,7 +23,7 @@ export const whereToStart: CopyHolder = {
     description2:
       'You can also navigate to “Not sure where to start?” to help support you with key information by ',
     nextLink: '/checklist',
-    nextLinkTwo: '/letushelp',
+    nextLink2: '/letushelp',
   },
   spanish: {
     listItem:
@@ -33,7 +33,7 @@ export const whereToStart: CopyHolder = {
     También puede navegar a "¿No está seguro de por dónde empezar?" para ayudarlo con información clave al `,
 
     nextLink: '/checklist',
-    nextLinkTwo: '/letushelp',
+    nextLink2: '/letushelp',
   },
 }
 export const probation: CopyHolder = {
@@ -232,7 +232,7 @@ export const clearMyRecord: CopyHolder = {
   english: {
     listItem: `Where can I go to start the process of clearing my record?`,
     description:
-      'In mid November, ThriveSBC will be transitioning to an in house record expungement tool. In the meantime you can start the process by',
+      'In mid November, ThriveSBC will be transitioning to an in house record expungement tool. In the meantime you can start the process by ',
     nextLink: '/letushelp/clearmyrecord',
   },
   spanish: {

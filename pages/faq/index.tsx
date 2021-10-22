@@ -84,7 +84,7 @@ const FaqPage = () => {
                   data-testid="accordion"
                   id="panel3a-header"
                 >
-                  <Typography>
+                  <Typography component="span">
                     {' '}
                     <p className={classes.heading}>{activeCopy.listItem}</p>
                   </Typography>
@@ -92,8 +92,8 @@ const FaqPage = () => {
                 <AccordionDetails>
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
-                      <Typography>
-                        {activeCopy && activeCopy.href1 && (
+                      <Typography component="span">
+                        {
                           <span style={{ display: 'inline !important' }}>
                             <p
                               className={classes.accordDescription}
@@ -102,51 +102,32 @@ const FaqPage = () => {
                                 display: 'inline',
                               }}
                             >
-                              {' '}
                               {activeCopy.description}
-                              <a
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                href={activeCopy.href1}
-                                style={{}}
-                              >
-                                {activeCopyFAQ.clickHere}
-                              </a>
+                              {activeCopy.href1 && (
+                                <a
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  href={activeCopy.href1}
+                                  style={{}}
+                                >
+                                  {activeCopyFAQ.clickHere}
+                                </a>
+                              )}
+                              {activeCopy.nextLink && (
+                                <a href={activeCopy.nextLink}>
+                                  {activeCopyFAQ.clickHere}
+                                </a>
+                              )}
+                              {activeCopy.description2 &&
+                                ' ' + activeCopy.description2}
+                              {activeCopy.nextLink2 && (
+                                <a href={activeCopy.nextLink2}>
+                                  {activeCopyFAQ.clickHere}
+                                </a>
+                              )}
                             </p>
                           </span>
-                        )}
-                        {activeCopy && activeCopy.nextLink && (
-                          <p
-                            className={classes.accordDescription}
-                            style={{
-                              marginTop: '1.5rem',
-                              display: 'inline-block',
-                              wordBreak: 'break-word',
-                            }}
-                          >
-                            {' '}
-                            {activeCopy.description}
-                            <a href={activeCopy.nextLink}>
-                              <p>{activeCopyFAQ.clickHere}</p>
-                            </a>
-                          </p>
-                        )}
-                        {activeCopy && activeCopy.nextLinkTwo && (
-                          <p className={classes.accordDescription}>
-                            {activeCopy.description2}
-                            <a href={activeCopy.nextLinkTwo}>
-                              <p>{activeCopyFAQ.clickHere}</p>
-                            </a>
-                          </p>
-                        )}
-                        {activeCopy &&
-                          !activeCopy.href1 &&
-                          !activeCopy.nextLink &&
-                          !activeCopy.nextLinkTwo && (
-                            <p className={classes.accordDescription}>
-                              {activeCopy.description}
-                            </p>
-                          )}
+                        }
                       </Typography>
                     </Grid>
                   </Grid>
