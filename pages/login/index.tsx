@@ -1,23 +1,14 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import {
-  useState,
-  Dispatch,
-  SetStateAction,
-  ChangeEvent,
-  FormEvent,
-} from 'react'
+import { useState, FormEvent } from 'react'
 import { HeadTags } from '../../components'
-
+import { useFormFields } from '../../hooks'
 import { siteTitle, isDev } from '../../constants'
-import { User, CopyHolder } from '../../types'
+import { CopyHolder } from '../../types'
 import { Button } from '../../ui'
 import { useLanguage, useToast } from '../../hooks'
 import { POST } from '../../helpers/'
-export interface LoginPageProps {
-  userInfo: User
-  setUserInfo: Dispatch<SetStateAction<User | null>>
-}
+
 export const copy: CopyHolder = {
   english: {
     login: `Login`,
@@ -36,43 +27,46 @@ export const copy: CopyHolder = {
     success: 'Has iniciado sesión con éxito',
   },
 }
-const LoginPage = ({ userInfo, setUserInfo }: LoginPageProps) => {
+const initialForm = {
+  email: 'v123@gmail.com',
+  pwd: '123456qQ',
+}
+const LoginPage = () => {
   const { push } = useRouter()
   const { setToast } = useToast()
+  // const [token, setToken] = useToken()
   const { language } = useLanguage()
   const [errorMessage, setErrorMessage] = useState('')
   const { login, forgot, signup, error, success, password } = copy[language]
-  const { email, pwd } = userInfo
-  const getCookie = async (): Promise<void> => {
-    await fetch('/api/jwt', { credentials: 'include' })
-    push('/login/verify')
-  }
+
+  const [adminCredentials, setAdminCredentials] = useFormFields(initialForm)
+  // const getCookie = async (): Promise<void> => {
+  //   await fetch('/api/jwt', { credentials: 'include' })
+  //   push('/login/verify')
+  // }
+  const { email, pwd } = adminCredentials
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
-    if (userInfo) {
-      const postUserToPostgres: Response = await fetch('/api/postUser', {
+    if (adminCredentials) {
+      const postUserToPostgres: Response = await fetch('/api/postLogin', {
         method: POST,
-        body: JSON.stringify(userInfo),
+        body: JSON.stringify(adminCredentials),
       })
+
       const apiResponse = await postUserToPostgres.json()
       if (apiResponse.error) setToast(`${error}${apiResponse.error}`)
       else {
         setToast(success)
-        setUserInfo(null)
+        // const { token } = apiResponse
+        //@ts-ignore
+        // setToken(token)
+        push('/dashboard')
+        adminCredentials.email = ''
+        adminCredentials.pwd = ''
       }
     }
   }
-  const setEmail = ({ target }: ChangeEvent<HTMLInputElement>): void =>
-    setUserInfo(prevState => ({
-      ...prevState,
-      email: target.value,
-    }))
-  const setPwd = ({ target }: ChangeEvent<HTMLInputElement>): void =>
-    setUserInfo(prevState => ({
-      ...prevState,
-      pwd: target.value,
-    }))
   return (
     <>
       <HeadTags
@@ -92,19 +86,21 @@ const LoginPage = ({ userInfo, setUserInfo }: LoginPageProps) => {
           {errorMessage && <div className={'fail'}>{errorMessage}</div>}
           <input
             value={email}
-            onChange={setEmail}
+            name="email"
+            onChange={setAdminCredentials}
             placeholder="someone@gmail.com"
           />
           <input
             type="password"
             value={pwd}
-            onChange={setPwd}
+            name="pwd"
+            onChange={setAdminCredentials}
             placeholder={password}
           />
           <Button type="submit" disabled={!email || !pwd}>
             {login}
           </Button>
-          <Button onClick={() => push('/forgot-password')}>{forgot}</Button>
+          <Button onClick={() => push('/forgotpassword')}>{forgot}</Button>
           <Button onClick={() => push('/signup')}>{signup}</Button>
           {/* <Button onClick={getCookie}>Log In To Thrive</Button> */}
         </div>
