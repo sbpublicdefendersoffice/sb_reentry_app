@@ -25,11 +25,11 @@ import { Favorite, ArrowDropDown } from '@material-ui/icons/'
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 const copy: CopyHolder = {
   english: {
-    tagline: 'A Santa Barbara County client tool for the justice-impacted',
+    tagline: 'A Santa Barbara County tool for the justice-impacted community',
   },
   spanish: {
     tagline:
-      'Una herramienta para clientes del condado de Santa Bárbara para los afectados por la justicia',
+      'Una herramienta del condado de Santa Bárbara para la comunidad afectada por la justicia',
   },
 }
 const Header = () => {
