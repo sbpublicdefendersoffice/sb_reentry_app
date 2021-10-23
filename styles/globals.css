@@ -66,3 +66,7 @@ a:hover {
 .MuiCardMedia-root {
   background-size: contain !important;
 }
+
+.makeStyles-accordDescription-11 {
+  text-align: center !important;
+}
