@@ -23,7 +23,7 @@ export const whereToStart: CopyHolder = {
     description2:
       'You can also navigate to “Not sure where to start?” to help support you with key information by ',
     nextLink: '/checklist',
-    nextLinkTwo: '/letushelp',
+    nextLink2: '/letushelp',
   },
   spanish: {
     listItem:
@@ -33,7 +33,7 @@ export const whereToStart: CopyHolder = {
     También puede navegar a "¿No está seguro de por dónde empezar?" para ayudarlo con información clave al `,
 
     nextLink: '/checklist',
-    nextLinkTwo: '/letushelp',
+    nextLink2: '/letushelp',
   },
 }
 export const probation: CopyHolder = {
@@ -226,5 +226,20 @@ export const sr22: CopyHolder = {
       'Su compañía de seguros emite un documento CA SR22 para que sirva como garantía al DMV de que ha obtenido la cobertura de responsabilidad mínima requerida por la ley estatal. La SR22 de California se requiere para los conductores a quienes se les ha suspendido la licencia de conducir. Puedes aprender más por ',
     href1:
       'https://www.santabarbaracriminaldefenselawyers.com/criminal-defense/dui/dui-schools/',
+  },
+}
+export const clearMyRecord: CopyHolder = {
+  english: {
+    listItem: `Where can I go to start the process of clearing my record?`,
+    description:
+      'In mid November, ThriveSBC will be transitioning to an in house record expungement tool. In the meantime you can start the process by ',
+    nextLink: '/letushelp/clearmyrecord',
+  },
+  spanish: {
+    listItem:
+      '¿A dónde puedo ir para iniciar el proceso de limpieza de mi registro?',
+    description:
+      'A mediados de noviembre, ThriveSBC hará la transición a una herramienta interna de eliminación de antecedentes penales. Mientras tanto, puede iniciar el proceso',
+    nextLink: '/letushelp/clearmyrecord',
   },
 }
