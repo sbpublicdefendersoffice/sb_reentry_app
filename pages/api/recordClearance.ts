@@ -3,7 +3,7 @@ import sendGrid, { MailDataRequired } from '@sendgrid/mail'
 import { readFileSync, writeFileSync } from 'fs'
 
 import { financeFormFields, applicationFormFields } from '../../constants'
-import { fillOutPDFForm } from '../../helpers'
+import { fillOutPDFForm, nativeFillOutApplication } from '../../helpers'
 
 const [type, disposition, financialFormPath, applicationPath]: string[] = [
   'application/pdf',
@@ -20,23 +20,32 @@ const recordClearance = async (
     //below will be a JSON.parse when testing is done
     const { to, from, subject, text, name, language } = req.body
 
-    const applicationAttachment = await fillOutPDFForm(
+    // await nativeFillOutApplication(readFileSync(financialFormPath), req)
+
+    const filledOutApp = await nativeFillOutApplication(
       readFileSync(applicationPath),
       req,
-      applicationFormFields,
-      language,
     )
 
-    const financeFormAttachment = await fillOutPDFForm(
-      readFileSync(financialFormPath),
-      req,
-      financeFormFields,
-      language,
-      true,
-    )
+    writeFileSync('./application.pdf', filledOutApp)
 
-    writeFileSync('./application.pdf', applicationAttachment)
-    writeFileSync('./finance.pdf', financeFormAttachment)
+    // const applicationAttachment = await fillOutPDFForm(
+    //   readFileSync(applicationPath),
+    //   req,
+    //   applicationFormFields,
+    //   language,
+    // )
+
+    // const financeFormAttachment = await fillOutPDFForm(
+    //   readFileSync(financialFormPath),
+    //   req,
+    //   financeFormFields,
+    //   language,
+    //   true,
+    // )
+
+    // writeFileSync('./application.pdf', applicationAttachment)
+    // writeFileSync('./finance.pdf', financeFormAttachment)
 
     // sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
 
@@ -63,7 +72,7 @@ const recordClearance = async (
 
     // const sendMsg = await sendGrid.send(message)
 
-    res.json({ saved: 'documents' })
+    res.json({ place: 'holder' })
   } catch (error) {
     console.error(error)
     res.json({ error: error.message })

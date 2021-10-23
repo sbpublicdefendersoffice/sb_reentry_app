@@ -4,6 +4,46 @@ import { PDFDocument, StandardFonts } from 'pdf-lib'
 import { Fields } from '../types'
 import { ENGLISH, SPANISH } from '../constants'
 
+export const nativeFillOutApplication = async (
+  formBytes: Buffer,
+  req: NextApiRequest,
+): Promise<string | Uint8Array> => {
+  const pdf = await PDFDocument.load(formBytes)
+  const form = pdf.getForm()
+  const fields = form.getFields()
+
+  // fields.forEach(field => {
+  //   const type = field.constructor.name
+  //   const name = field.getName()
+
+  //   console.log(type, name)
+
+  //   if (type === 'PDFRadioGroup') {
+  //     const options = form.getRadioGroup(name).getOptions()
+
+  //     options.forEach(str => console.log(str))
+  //   }
+  // })
+
+  fields.forEach(field => {
+    const name = field.getName()
+    const data = req.body[name]
+
+    if (data) {
+      const type = field.constructor.name
+
+      if (type === 'PDFTextField') form.getTextField(name).setText(data)
+      else if (type === 'PDFCheckBox') form.getCheckBox(name).check()
+      else if (type === 'PDFRadioGroup') form.getRadioGroup(name).select(data)
+    }
+  })
+
+  // const finalPdf: string = await pdf.saveAsBase64()
+  const finalPdf: Uint8Array = await pdf.save()
+
+  return finalPdf
+}
+
 export const fillOutPDFForm = async (
   form: Buffer,
   req: NextApiRequest,
