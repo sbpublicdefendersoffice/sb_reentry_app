@@ -1,4 +1,4 @@
-import { useRef, MutableRefObject, ChangeEvent, Fragment } from 'react'
+import { useRef, MutableRefObject, ChangeEvent } from 'react'
 
 import { CopyHolder } from '../types'
 import { Card, Paragraph, Input } from '../ui'
@@ -8,30 +8,24 @@ import styles from './ExpungementForm.module.css'
 
 const copy: CopyHolder = {
   english: {
+    numbers: 'Case Numbers, if known',
     caseInfo: 'Case Information',
-    case_number: 'Case Number',
-    case_attorney: 'Attorney',
-    case_charges: 'Charges',
-    case_felony: 'Felony',
-    case_misdemeanor: 'Misdemeanor',
-    case_date_convicted: 'Date Convicted',
-    on_probation: 'Were you placed on probation?',
-    probation_duration: 'If yes, for how long?',
-    probation_violation: 'Did you ever violate your probation?',
+    case_felony: 'My Case Was A Felony',
+    case_misdemeanor: 'My Case Was A Misdemeanor',
     yes: 'Yes',
+    unsure: 'Unsure',
+    marijuana: 'Was it Marijuana Related?',
+    county: 'Were You Convicted in Santa Barbara County?',
   },
   spanish: {
+    numbers: 'Números de Caso, si se Conocen',
     caseInfo: 'Información del caso',
-    case_number: 'Número de caso',
-    case_attorney: 'Abogado',
-    case_charges: 'Cargos',
-    case_felony: 'Delito Grave',
-    case_misdemeanor: 'Delito Menor',
-    case_date_convicted: 'Fecha de Condena',
-    on_probation: '¿Fue puesto en libertad condicional?',
-    probation_duration: 'Si es asi, por cuanto tiempo?',
-    probation_violation: '¿Alguna vez violó su libertad condicional?',
+    case_felony: 'Mi caso fue un delito grave',
+    case_misdemeanor: 'Mi caso fue un delito menor',
     yes: 'Si',
+    unsure: 'Inseguro',
+    marijuana: '¿Estaba relacionado con la marihuana?',
+    county: '¿Fue condenado en el condado de Santa Bárbara?',
   },
 }
 
@@ -51,16 +45,13 @@ const ExpungementCaseInfo = ({
 
   const {
     caseInfo,
-    case_number,
-    case_charges,
-    case_attorney,
     case_felony,
     case_misdemeanor,
-    case_date_convicted,
-    on_probation,
-    probation_duration,
-    probation_violation,
     yes,
+    unsure,
+    marijuana,
+    numbers,
+    // county,
   } = copy[language]
 
   useIntersectionStyle(caseRef, animationClass)
@@ -70,101 +61,54 @@ const ExpungementCaseInfo = ({
       <Paragraph size="med-text" color="highlight">
         {caseInfo}
       </Paragraph>
-      {[1, 2, 3].map((i: number) => (
-        <Fragment key={i}>
-          <section>
-            <label htmlFor={`case_num_${i}`}>{case_number}</label>
-            <Input onChange={handleChange} type="text" id={`case_num_${i}`} />
-            <label htmlFor={`case_attorney_${i}`}>{case_attorney}</label>
-            <Input
-              onChange={handleChange}
-              type="text"
-              id={`case_attorney_${i}`}
-            />
-          </section>
-          <section>
-            <label htmlFor={`case_charges_${i}`}>{case_charges}</label>
-            <Input
-              onChange={handleChange}
-              type="text"
-              id={`case_charges_${i}`}
-            />
-            <label htmlFor={`case_felony_${i}`}>{case_felony}</label>
-            <Input
-              onChange={handleChange}
-              type="radio"
-              name={`felony_or_misdemeanor_${i}`}
-              value={`case_misdemeanor_${i}`}
-              id={`case_felony_${i}`}
-            />
-            <label htmlFor={`case_misdemeanor_${i}`}>{case_misdemeanor}</label>
-            <Input
-              onChange={handleChange}
-              type="radio"
-              name={`felony_or_misdemeanor_${i}`}
-              value={`case_felony_${i}`}
-              id={`case_misdemeanor_${i}`}
-            />
-          </section>
-          <section>
-            <label htmlFor={`case_date_convicted_${i}`}>
-              {case_date_convicted}
-            </label>
-            <Input
-              onChange={handleChange}
-              type="date"
-              id={`case_date_convicted_${i}`}
-            />
-          </section>
-          <section>
-            <label className={styles.LabelMargin}>{on_probation}</label>
-            <label htmlFor={`case_probation_formal_${i}`}>Formal</label>
-            <Input
-              onChange={handleChange}
-              type="radio"
-              name={`formal_or_informal_${i}`}
-              value={`case_probation_informal_${i}`}
-              id={`case_probation_formal_${i}`}
-            />
-            <label htmlFor={`case_probation_informal_${i}`}>Informal</label>
-            <Input
-              onChange={handleChange}
-              type="radio"
-              name={`formal_or_informal_${i}`}
-              value={`case_probation_formal_${i}`}
-              id={`case_probation_informal_${i}`}
-            />
-            <label htmlFor={`case_probation_duration_${i}`}>
-              {probation_duration}
-            </label>
-            <Input
-              onChange={handleChange}
-              type="text"
-              id={`case_probation_duration_${i}`}
-            />
-          </section>
-          <section>
-            <label className={styles.LabelMargin}>{probation_violation}</label>
-            <label htmlFor={`case_probation_violate_${i}`}>{yes}</label>
-            <Input
-              onChange={handleChange}
-              type="radio"
-              name={`violate_or_no_${i}`}
-              value={`case_probation_no_violate_${i}`}
-              id={`case_probation_violate_${i}`}
-            />
-            <label htmlFor={`case_probation_no_violate_${i}`}>No</label>
-            <Input
-              onChange={handleChange}
-              type="radio"
-              name={`violate_or_no_${i}`}
-              value={`case_probation_violate_${i}`}
-              id={`case_probation_no_violate_${i}`}
-            />
-          </section>
-          {i !== 3 && <hr className={styles.VertMargin} />}
-        </Fragment>
-      ))}
+      <section>
+        <label htmlFor="Felony">{case_felony}</label>
+        <Input onChange={handleChange} type="checkbox" id="Felony" />
+        <label htmlFor="Misdemeanor">{case_misdemeanor}</label>
+        <Input onChange={handleChange} type="checkbox" id="Misdemeanor" />
+        <label htmlFor="Unsure">{unsure}</label>
+        <Input onChange={handleChange} type="checkbox" id="Unsure" />
+        <label className={styles.LabelMargin}>{marijuana}</label>
+        <label htmlFor="marijuana_related_yes">{yes}</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Was it marijuana related"
+          value="Was it marijuana related_yes_On"
+          id="marijuana_related_yes"
+        />
+        <label htmlFor="marijuana_related_no">No</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Was it marijuana related"
+          value="Was it marijuana related_no_On"
+          id="marijuana_related_no"
+        />
+      </section>
+      <section>
+        <label htmlFor="Case Numbers if known">{numbers}</label>
+        <Input onChange={handleChange} type="text" id="Case Numbers if known" />
+      </section>
+      {/* <section>
+        <label className={styles.LabelMargin}>{county}</label>
+        <label htmlFor="convicted_in_sb_yes">{yes}</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Convicted in Santa Barbara County"
+          value="Convicted in Santa Barbara County_yes_On"
+          id="convicted_in_sb_yes"
+        />
+        <label htmlFor="convicted_in_sb_no">No</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Convicted in Santa Barbara County"
+          value="Convicted in Santa Barbara County_no_On"
+          id="convicted_in_sb_no"
+        />
+      </section> */}
     </Card>
   )
 }

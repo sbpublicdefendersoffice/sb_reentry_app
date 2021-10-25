@@ -14,6 +14,8 @@ const copy: CopyHolder = {
     when_and_where: 'If yes, where?',
     fines: 'I paid all fines/fees/restitution',
     unsure: 'Unsure',
+    granted: 'Were You Granted Probation for your Conviction?',
+    complete: 'Completed probation with no violations?',
   },
   spanish: {
     probation_and_fees: 'Libertad Condicional y Restitución',
@@ -23,6 +25,8 @@ const copy: CopyHolder = {
     when_and_where: '¿Si es así, donde?',
     fines: 'Pagué todas las multas / tarifas / restitución',
     unsure: 'Inseguro',
+    granted: '¿Se le concedió libertad condicional por su condena?',
+    complete: '¿Libertad condicional completa sin infracciones?',
   },
 }
 
@@ -47,6 +51,8 @@ const ExpungementProbationInfo = ({
     when_and_where,
     fines,
     unsure,
+    granted,
+    complete,
   } = copy[language]
 
   useIntersectionStyle(proRef, animationClass)
@@ -84,6 +90,50 @@ const ExpungementProbationInfo = ({
         />
         <label htmlFor="unsure If yes where">{when_and_where}</label>
         <Input onChange={handleChange} type="text" id="unsure If yes where" />
+      </section>
+      <section>
+        <label className={styles.LabelMargin}>{granted}</label>
+        <label htmlFor="granted_probation_yes">{yes}</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Granted probation"
+          value="Granted probation_yes_On"
+          id="granted_probation_yes"
+        />
+        <label htmlFor="granted_probation_no">No</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Granted probation"
+          value="Granted probation_no_On"
+          id="granted_probation_no"
+        />
+        <label className={styles.LabelMargin}>{complete}</label>
+        <label htmlFor="completed_probation_yes">{yes}</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Completed probation with no violations"
+          value="Completed probation with no violations_yes_On"
+          id="completed_probation_yes"
+        />
+        <label htmlFor="completed_probation_no">No</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Completed probation with no violations"
+          value="Completed probation with no violations_no_On"
+          id="completed_probation_no"
+        />
+        <label htmlFor="completed_probation_unsure">{unsure}</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Completed probation with no violations"
+          value="Completed probation with no violations_unsure_On"
+          id="completed_probation_unsure"
+        />
       </section>
       <section>
         <label className={styles.LabelMargin}>{fines}</label>

@@ -10,10 +10,10 @@ import { useLanguage, useIntersectionStyle } from '../hooks'
 import { ExpungementInfo, CopyHolder } from '../types'
 import {
   ExpungementMainInfo,
-  ExpungementCaseInfo,
   ExpungementProbationInfo,
   ExpungementMaritalAndVeteranStatus,
   ExpungementDependents,
+  ExpungementCaseInfo,
   ExpungementEmploymentAndIncome,
   ExpungementFinanceOptions,
   ExpungementMonthlyExpenses,
@@ -73,7 +73,7 @@ const ExpungementForm = () => {
     // for employment pay period, convert the boolean into a p/w p/m string
     // change all number fields to not accept negative numbers
     // do i need to make the date into separate things for the form or what?
-    //when done, remember to make TWO types for form data held in state and send to backend
+    //when done, remember to make TWO interfaces for form data held in state and send to backend
 
     //@ts-ignore
     const { Address, City, state, zip } = expungeInfo
@@ -137,6 +137,7 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
+      <ExpungementCaseInfo handleChange={handleChange} animationClass={Load} />
       <ExpungementProbationInfo
         handleChange={handleChange}
         animationClass={Load}
@@ -145,7 +146,7 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
-      {/*  <ExpungementCaseInfo handleChange={handleChange} animationClass={Load} />
+      {/* 
       <ExpungementEmploymentAndIncome
         expungeInfo={expungeInfo}
         handleChange={handleChange}

@@ -22,17 +22,17 @@ const recordClearance = async (
 
     // await nativeFillOutApplication(readFileSync(financialFormPath), req)
 
-    const filledOutApp = await nativeFillOutApplication(
-      readFileSync(applicationPath),
-      body,
-    )
+    // const filledOutApp = await nativeFillOutApplication(
+    //   readFileSync(applicationPath),
+    //   body,
+    // )
 
     const filledOutFinance = await nativeFillOutApplication(
       readFileSync(financialFormPath),
       body,
     )
 
-    writeFileSync('./application.pdf', filledOutApp)
+    // writeFileSync('./application.pdf', filledOutApp)
     writeFileSync('./finance.pdf', filledOutFinance)
 
     // const applicationAttachment = await fillOutPDFForm(

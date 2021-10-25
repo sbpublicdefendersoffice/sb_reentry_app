@@ -37,6 +37,12 @@ const copy: CopyHolder = {
     other: 'Other',
     phone: 'Phone',
     text: 'Text',
+    communicate: 'Preferred Method of Communication',
+    purpose: 'What is your primary purpose for applying?',
+    employment: 'Employment',
+    housing: 'Housing',
+    benefits: 'Government Benefits',
+    licensing: 'Licensing',
   },
   spanish: {
     info: 'Información Identificativa',
@@ -59,6 +65,12 @@ const copy: CopyHolder = {
     other: 'Otro',
     phone: 'Teléfono',
     text: 'Texto',
+    communicate: 'Método de comunicación preferido',
+    purpose: '¿Cuál es su propósito principal para postularse?',
+    employment: 'Empleo',
+    housing: 'Alojamiento',
+    benefits: 'Beneficios del gobierno',
+    licensing: 'Licencia',
   },
 }
 
@@ -90,6 +102,12 @@ const ExpungementMainInfo = ({
     other,
     phone,
     text,
+    communicate,
+    purpose,
+    employment,
+    housing,
+    benefits,
+    licensing,
   } = copy[language]
 
   useIntersectionStyle(infoRef, animationClass)
@@ -212,12 +230,31 @@ const ExpungementMainInfo = ({
         <Input onChange={handleChange} type="email" id="Email Address" />
       </section>
       <section>
+        <label className={LabelMargin}>{communicate}</label>
         <label htmlFor="Email">E-mail</label>
         <Input onChange={handleChange} type="checkbox" id="Email" />
         <label htmlFor="Phone">{phone}</label>
         <Input onChange={handleChange} type="checkbox" id="Phone" />
         <label htmlFor="Text">{text}</label>
         <Input onChange={handleChange} type="checkbox" id="Text" />
+      </section>
+      <section>
+        <label className={LabelMargin}>{purpose}</label>
+        <label htmlFor="Employment">{employment}</label>
+        <Input onChange={handleChange} type="checkbox" id="Employment" />
+        <label htmlFor="Housing">{housing}</label>
+        <Input onChange={handleChange} type="checkbox" id="Housing" />
+        <label htmlFor="Government Benefits">{benefits}</label>
+        <Input
+          onChange={handleChange}
+          type="checkbox"
+          id="Government Benefits"
+        />
+        <label htmlFor="Licensing">{licensing}</label>
+        <Input onChange={handleChange} type="checkbox" id="Licensing" />
+
+        <label htmlFor="Other-1">{other}</label>
+        <Input onChange={handleChange} id="Other-1" type="text" />
       </section>
     </Card>
   )
