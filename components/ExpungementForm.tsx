@@ -70,32 +70,34 @@ const ExpungementForm = () => {
     e: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault()
-    //remember to send state and zip as state_and_zip
-    // fill out charged with from case charges info
     // for employment pay period, convert the boolean into a p/w p/m string
     // change all number fields to not accept negative numbers
     // do i need to make the date into separate things for the form or what?
-    // .slice(0, 2),'10/01/2021'.slice(3,5),.slice(6),
-    console.log(expungeInfo)
+
+    //@ts-ignore
+    const { Address, City, state, zip } = expungeInfo
+    const stateAndZip = `${state || 'CA'}, ${zip}`
+
+    const sendForm: Response = await fetch('/api/recordClearance', {
+      method: 'POST',
+      body: JSON.stringify({
+        'Mailing Address': `${Address} ${City} ${stateAndZip}`,
+        'State  Zip': stateAndZip,
+        ...expungeInfo,
+      }),
+    })
+
+    const res = await sendForm.json()
+
+    console.log(res)
   }
 
   const handleChange = ({
     target,
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
-    const { id, value, type } = target
+    const { id, value, type, name } = target
     if (type === 'radio') {
-      const falseRadioVals: { [value: string]: boolean } = value
-        .split(';')
-        .reduce((obj, str) => {
-          obj[str] = false
-          return obj
-        }, {})
-
-      setExpungeInfo(val => ({
-        ...val,
-        ...falseRadioVals,
-        [id]: true,
-      }))
+      setExpungeInfo(val => ({ ...val, [name]: value }))
     } else if (type === 'checkbox')
       setExpungeInfo(val => ({
         ...val,
@@ -114,12 +116,8 @@ const ExpungementForm = () => {
       <Paragraph size="med-text">2) {two}</Paragraph>
       <Paragraph size="med-text">3) {three}</Paragraph>
       <Paragraph size="med-text">4) {four}</Paragraph>
-      <ExpungementMainInfo
-        expungeInfo={expungeInfo}
-        setExpungeInfo={setExpungeInfo}
-        animationClass={Load}
-      />
-      <Card ref={uptrustRef}>
+      <ExpungementMainInfo handleChange={handleChange} animationClass={Load} />
+      {/* <Card ref={uptrustRef}>
         <Paragraph size="med-text" color="highlight">
           {uptrust}
         </Paragraph>
@@ -164,7 +162,7 @@ const ExpungementForm = () => {
         expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
-      />
+      /> */}
       <Button role="button" type="submit">
         {submit}
       </Button>

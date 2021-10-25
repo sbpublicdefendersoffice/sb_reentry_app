@@ -6,34 +6,28 @@ import { ENGLISH, SPANISH } from '../constants'
 
 export const nativeFillOutApplication = async (
   formBytes: Buffer,
-  req: NextApiRequest,
+  body: any,
 ): Promise<string | Uint8Array> => {
   const pdf = await PDFDocument.load(formBytes)
   const form = pdf.getForm()
   const fields = form.getFields()
 
-  // fields.forEach(field => {
-  //   const type = field.constructor.name
-  //   const name = field.getName()
-
-  //   console.log(type, name)
-
-  //   if (type === 'PDFRadioGroup') {
-  //     const options = form.getRadioGroup(name).getOptions()
-
-  //     options.forEach(str => console.log(str))
-  //   }
-  // })
-
   fields.forEach(field => {
-    const name = field.getName()
-    const data = req.body[name]
+    let name = field.getName()
+    let data = body[name]
 
     if (data) {
       const type = field.constructor.name
 
-      if (type === 'PDFTextField') form.getTextField(name).setText(data)
-      else if (type === 'PDFCheckBox') form.getCheckBox(name).check()
+      if (type === 'PDFTextField') {
+        if (name === 'Date of Birth') {
+          const tmp = data.slice(2).replace(/-/g, '')
+
+          data = `${tmp.slice(2)}${tmp.slice(0, 2)}`
+        }
+
+        form.getTextField(name).setText(data)
+      } else if (type === 'PDFCheckBox') form.getCheckBox(name).check()
       else if (type === 'PDFRadioGroup') form.getRadioGroup(name).select(data)
     }
   })

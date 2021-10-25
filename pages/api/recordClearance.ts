@@ -17,14 +17,14 @@ const recordClearance = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    //below will be a JSON.parse when testing is done
-    const { to, from, subject, text, name, language } = req.body
+    const body = JSON.parse(req.body)
+    // const { to, from, subject, text, name, language } = body
 
     // await nativeFillOutApplication(readFileSync(financialFormPath), req)
 
     const filledOutApp = await nativeFillOutApplication(
       readFileSync(applicationPath),
-      req,
+      body,
     )
 
     writeFileSync('./application.pdf', filledOutApp)

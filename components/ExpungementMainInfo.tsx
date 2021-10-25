@@ -1,22 +1,17 @@
-import {
-  useRef,
-  Dispatch,
-  SetStateAction,
-  MutableRefObject,
-  ChangeEvent,
-} from 'react'
+import { useRef, MutableRefObject, ChangeEvent } from 'react'
 
 import styles from './ExpungementForm.module.css'
-const { LabelMargin, Selected, Deslected } = styles
+const { LabelMargin } = styles
 
 import { states } from '../constants'
-import { ExpungementInfo, CopyHolder } from '../types'
+import { CopyHolder } from '../types'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 import { Card, Paragraph, Input } from '../ui'
 
 interface ExpungementMainInfoProps {
-  expungeInfo: ExpungementInfo
-  setExpungeInfo: Dispatch<SetStateAction<ExpungementInfo>>
+  handleChange: ({
+    target, // eslint-disable-line no-unused-vars
+  }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
   animationClass: string
 }
 
@@ -30,11 +25,18 @@ const copy: CopyHolder = {
     city: 'City',
     state: 'State',
     zip: 'Zip',
-    license: "ID/Driver's License #",
-    home_phone: 'Home Phone',
-    work_phone: 'Work Phone',
-    cell_phone: 'Cell Phone',
-    preferred_phone: 'Please call me on my:',
+    primary_phone: 'Primary Phone',
+    leave_message: 'Is it okay to leave a voice message',
+    yes: 'Yes',
+    alternate_number: 'Alternate Number',
+    alias: 'Any other names that might be on your record',
+    race: 'Race/Ethnicity',
+    primary_lang: 'Primary Language',
+    English: 'English',
+    Spanish: 'Spanish',
+    other: 'Other',
+    phone: 'Phone',
+    text: 'Text',
   },
   spanish: {
     info: 'Información Identificativa',
@@ -45,17 +47,23 @@ const copy: CopyHolder = {
     city: 'Ciudad',
     state: 'Estado',
     zip: 'Código Postal',
-    license: 'Número de identificación',
-    home_phone: 'Teléfono de casa',
-    work_phone: 'Teléfono del trabajo',
-    cell_phone: 'Teléfono móvil',
-    preferred_phone: 'Por favor llámame a mi:',
+    primary_phone: 'Teléfono Principal',
+    leave_message: '¿Está bien dejar un mensaje de voz?',
+    yes: 'Si',
+    alternate_number: 'Número Alternativo',
+    alias: 'Cualquier otro nombre que pueda estar en su registro',
+    race: 'Raza / etnia',
+    primary_lang: 'Lenguaje primario',
+    English: 'Inglés',
+    Spanish: 'Español',
+    other: 'Otro',
+    phone: 'Teléfono',
+    text: 'Texto',
   },
 }
 
 const ExpungementMainInfo = ({
-  expungeInfo,
-  setExpungeInfo,
+  handleChange,
   animationClass,
 }: ExpungementMainInfoProps) => {
   const infoRef: MutableRefObject<HTMLDivElement> = useRef()
@@ -70,23 +78,21 @@ const ExpungementMainInfo = ({
     city,
     state,
     zip,
-    license,
-    home_phone,
-    work_phone,
-    cell_phone,
-    preferred_phone,
+    primary_phone,
+    leave_message,
+    yes,
+    alternate_number,
+    alias,
+    race,
+    primary_lang,
+    English,
+    Spanish,
+    other,
+    phone,
+    text,
   } = copy[language]
 
   useIntersectionStyle(infoRef, animationClass)
-
-  const handleChange = ({
-    target,
-  }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
-    // @ts-ignore
-    const { id, value, checked, name } = target
-    if (checked) setExpungeInfo(val => ({ ...val, [name]: val[value] }))
-    else setExpungeInfo(val => ({ ...val, [id]: value }))
-  }
 
   return (
     <Card ref={infoRef}>
@@ -94,33 +100,99 @@ const ExpungementMainInfo = ({
         {info}
       </Paragraph>
       <section>
-        <label htmlFor="name">{name}</label>
-        <Input onChange={handleChange} type="text" id="name" />
-        <label htmlFor="ssn">{ssn}</label>
+        <label htmlFor="Full Name">{name}</label>
+        <Input onChange={handleChange} type="text" id="Full Name" />
+      </section>
+      <section>
+        <label htmlFor="Any other names that might be on your record">
+          {alias}
+        </label>
         <Input
           onChange={handleChange}
           type="text"
-          id="ssn"
+          id="Any other names that might be on your record"
+        />
+      </section>
+      <section>
+        <label htmlFor="Social Security No">{ssn}</label>
+        <Input
+          onChange={handleChange}
+          type="text"
+          id="Social Security No"
           placeholder="555-55-5555"
           required
           pattern="\d{3}-?\d{2}-?\d{4}"
         />
-        <label htmlFor="dob">{dob}</label>
-        <Input onChange={handleChange} type="date" id="dob" />
+        <label htmlFor="Date of Birth">{dob}</label>
+        <Input onChange={handleChange} type="date" id="Date of Birth" />
       </section>
       <section>
-        <label htmlFor="address">{address}</label>
-        <Input onChange={handleChange} type="text" id="address" />
-        <label htmlFor="city">{city}</label>
-        <Input onChange={handleChange} type="text" id="city" />
+        <label htmlFor="RaceEthnicity">{race}</label>
+        <Input onChange={handleChange} type="text" id="RaceEthnicity" />
+      </section>
+      <section>
+        <label className={LabelMargin}>{primary_lang}</label>
+        <label htmlFor="English">{English}</label>
+        <Input onChange={handleChange} type="checkbox" id="English" />
+        <label htmlFor="Spanish">{Spanish}</label>
+        <Input onChange={handleChange} type="checkbox" id="Spanish" />
+        <label htmlFor="M ixteco">Mixteco</label>
+        <Input onChange={handleChange} type="checkbox" id="M ixteco" />
+        <label htmlFor="Other">{other}</label>
+        <Input onChange={handleChange} type="checkbox" id="Other" />
+        <Input onChange={handleChange} type="text" id="Other-0" />
+      </section>
+      <section>
+        <label htmlFor="Phone Number">{primary_phone}</label>
+        <Input onChange={handleChange} type="tel" id="Phone Number" />
+        <label className={LabelMargin}>{leave_message}</label>
+        <label htmlFor="primary_phone_yes">{yes}</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Is it okay to leave a voice message"
+          value="Is it okay to leave a voice message_yes_On"
+          id="primary_phone_yes"
+        />
+        <label htmlFor="primary_phone_no">No</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Is it okay to leave a voice message"
+          value="Is it okay to leave a voice message_no_On"
+          id="primary_phone_no"
+        />
+      </section>
+      <section>
+        <label htmlFor="Alternate Number">{alternate_number}</label>
+        <Input onChange={handleChange} type="tel" id="Alternate Number" />
+        <label className={LabelMargin}>{leave_message}</label>
+        <label htmlFor="alternate_phone_yes">{yes}</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Is it okay to leave a voice message"
+          value="Is it okay to leave a voice message_yes_On"
+          id="alternate_phone_yes"
+        />
+        <label htmlFor="alternate_phone_no">No</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Is it okay to leave a voice message"
+          value="Is it okay to leave a voice message_no_On"
+          id="alternate_phone_no"
+        />
+      </section>
+      <section>
+        <label htmlFor="Address">{address}</label>
+        <Input onChange={handleChange} type="text" id="Address" required />
+        <label htmlFor="City">{city}</label>
+        <Input onChange={handleChange} type="text" id="City" required />
         <label htmlFor="state">{state}</label>
-        <select onChange={handleChange} id="state">
+        <select onChange={handleChange} id="state" defaultValue="CA" required>
           {states.map((state: string, i: number) => (
-            <option
-              key={i}
-              value={state}
-              selected={state === 'CA' ? true : false}
-            >
+            <option key={i} value={state}>
               {state}
             </option>
           ))}
@@ -136,61 +208,16 @@ const ExpungementMainInfo = ({
         />
       </section>
       <section>
-        <label htmlFor="home_phone">{home_phone}</label>
-        <Input onChange={handleChange} type="tel" id="home_phone" />
-        <label htmlFor="work_phone">{work_phone}</label>
-        <Input onChange={handleChange} type="tel" id="work_phone" />
-        <label htmlFor="cell_phone">{cell_phone}</label>
-        <Input onChange={handleChange} type="tel" id="cell_phone" />
+        <label htmlFor="Email Address">E-mail</label>
+        <Input onChange={handleChange} type="email" id="Email Address" />
       </section>
       <section>
-        <label className={LabelMargin}>{preferred_phone}</label>
-        <label
-          htmlFor="home_phone_radio"
-          className={expungeInfo?.home_phone ? Selected : Deslected}
-        >
-          {home_phone}
-        </label>
-        <Input
-          onChange={handleChange}
-          type="radio"
-          disabled={!expungeInfo?.home_phone}
-          name="preferred_phone"
-          value="home_phone"
-          id="home_phone_radio"
-        />
-        <label
-          htmlFor="work_phone_radio"
-          className={expungeInfo?.work_phone ? Selected : Deslected}
-        >
-          {work_phone}
-        </label>
-        <Input
-          onChange={handleChange}
-          type="radio"
-          disabled={!expungeInfo?.work_phone}
-          name="preferred_phone"
-          value="work_phone"
-          id="work_phone_radio"
-        />
-        <label
-          htmlFor="cell_phone_radio"
-          className={expungeInfo?.cell_phone ? Selected : Deslected}
-        >
-          {cell_phone}
-        </label>
-        <Input
-          onChange={handleChange}
-          type="radio"
-          disabled={!expungeInfo?.cell_phone}
-          name="preferred_phone"
-          value="cell_phone"
-          id="cell_phone_radio"
-        />
-        <label htmlFor="license">{license}</label>
-        <Input onChange={handleChange} type="text" id="license" />
-        <label htmlFor="email">E-mail</label>
-        <Input onChange={handleChange} type="email" required id="email" />
+        <label htmlFor="Email">E-mail</label>
+        <Input onChange={handleChange} type="checkbox" id="Email" />
+        <label htmlFor="Phone">{phone}</label>
+        <Input onChange={handleChange} type="checkbox" id="Phone" />
+        <label htmlFor="Text">{text}</label>
+        <Input onChange={handleChange} type="checkbox" id="Text" />
       </section>
     </Card>
   )
