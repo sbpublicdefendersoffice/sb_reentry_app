@@ -44,18 +44,14 @@ const ExpungementDependents = ({
         {dependents}
       </Paragraph>
       <section>
-        <label htmlFor="number_of_dependents">{number}</label>
+        <label htmlFor="Number of Dependents">{number}</label>
         <Input
           onChange={handleChange}
           type="number"
-          id="number_of_dependents"
+          id="Number of Dependents"
         />
-        <label htmlFor="dependent_relationship_and_age">{relationship}</label>
-        <Input
-          onChange={handleChange}
-          type="text"
-          id="dependent_relationship_and_age"
-        />
+        <label htmlFor="Relationship and Ages">{relationship}</label>
+        <Input onChange={handleChange} type="text" id="Relationship and Ages" />
       </section>
     </Card>
   )

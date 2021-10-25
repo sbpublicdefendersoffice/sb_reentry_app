@@ -73,6 +73,7 @@ const ExpungementForm = () => {
     // for employment pay period, convert the boolean into a p/w p/m string
     // change all number fields to not accept negative numbers
     // do i need to make the date into separate things for the form or what?
+    //when done, remember to make TWO types for form data held in state and send to backend
 
     //@ts-ignore
     const { Address, City, state, zip } = expungeInfo
@@ -88,7 +89,6 @@ const ExpungementForm = () => {
     })
 
     const res = await sendForm.json()
-
     console.log(res)
   }
 
@@ -101,7 +101,7 @@ const ExpungementForm = () => {
     } else if (type === 'checkbox')
       setExpungeInfo(val => ({
         ...val,
-        [id]: !Boolean(val?.[id]),
+        [id]: String(!Boolean(val?.[id])),
       }))
     else setExpungeInfo(val => ({ ...val, [id]: value }))
   }
@@ -117,16 +117,27 @@ const ExpungementForm = () => {
       <Paragraph size="med-text">3) {three}</Paragraph>
       <Paragraph size="med-text">4) {four}</Paragraph>
       <ExpungementMainInfo handleChange={handleChange} animationClass={Load} />
-      {/* <Card ref={uptrustRef}>
+      <Card ref={uptrustRef}>
         <Paragraph size="med-text" color="highlight">
           {uptrust}
         </Paragraph>
-        <label htmlFor="uptrust_enroll" className={styles.LabelMargin}>
+        <label
+          htmlFor="I would like to be enrolled in Uptrust to receive"
+          className={styles.LabelMargin}
+        >
           {enroll}
         </label>
-        <input type="checkbox" id="uptrust_enroll" onChange={handleChange} />
+        <input
+          type="checkbox"
+          id="I would like to be enrolled in Uptrust to receive"
+          onChange={handleChange}
+        />
       </Card>
       <ExpungementMaritalAndVeteranStatus
+        handleChange={handleChange}
+        animationClass={Load}
+      />
+      <ExpungementProbationInfo
         handleChange={handleChange}
         animationClass={Load}
       />
@@ -134,11 +145,7 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
-      <ExpungementCaseInfo handleChange={handleChange} animationClass={Load} />
-      <ExpungementProbationInfo
-        handleChange={handleChange}
-        animationClass={Load}
-      />
+      {/*  <ExpungementCaseInfo handleChange={handleChange} animationClass={Load} />
       <ExpungementEmploymentAndIncome
         expungeInfo={expungeInfo}
         handleChange={handleChange}

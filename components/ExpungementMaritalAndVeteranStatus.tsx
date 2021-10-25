@@ -76,40 +76,40 @@ const ExpungementMaritalAndVeteranStatus = ({
         <Input
           onChange={handleChange}
           type="radio"
-          name="marital_status"
-          value="marital_status_married;marital_status_separated;marital_status_divorced;marital_status_commonlaw"
+          name="Marital Status"
+          value="Marital Status_Single_On"
           id="marital_status_single"
         />
         <label htmlFor="marital_status_married">{married}</label>
         <Input
           onChange={handleChange}
           type="radio"
-          name="marital_status"
-          value="marital_status_single;marital_status_separated;marital_status_divorced;marital_status_commonlaw"
+          name="Marital Status"
+          value="Marital Status_Married_On"
           id="marital_status_married"
         />
         <label htmlFor="marital_status_separated">{separated}</label>
         <Input
           onChange={handleChange}
           type="radio"
-          name="marital_status"
-          value="marital_status_single;marital_status_married;marital_status_divorced;marital_status_commonlaw"
+          name="Marital Status"
+          value="Marital Status_Separated_On"
           id="marital_status_separated"
         />
         <label htmlFor="marital_status_divorced">{divorced}</label>
         <Input
           onChange={handleChange}
           type="radio"
-          name="marital_status"
-          value="marital_status_single;marital_status_married;marital_status_separated;marital_status_commonlaw"
+          name="Marital Status"
+          value="Marital Status_Divorced_On"
           id="marital_status_divorced"
         />
         <label htmlFor="marital_status_commonlaw">{commonlaw}</label>
         <Input
           onChange={handleChange}
           type="radio"
-          name="marital_status"
-          value="marital_status_single;marital_status_married;marital_status_separated;marital_status_divorced"
+          name="Marital Status"
+          value="Marital Status_CommonLaw_On"
           id="marital_status_commonlaw"
         />
       </section>
@@ -119,22 +119,22 @@ const ExpungementMaritalAndVeteranStatus = ({
         <Input
           onChange={handleChange}
           type="radio"
-          name="veteran_status"
-          value="veteran_no"
+          name="Are you a veteran"
+          value="Are you a veteran_Yes_On"
           id="veteran_yes"
         />
         <label htmlFor="veteran_no">No</label>
         <Input
           onChange={handleChange}
           type="radio"
-          name="veteran_status"
-          value="veteran_yes"
+          name="Are you a veteran"
+          value="Are you a veteran_No_On"
           id="veteran_no"
         />
-        <label htmlFor="military_branch">{branch}</label>
-        <Input onChange={handleChange} type="text" id="military_branch" />
-        <label htmlFor="discharge_date">{discharge}</label>
-        <Input onChange={handleChange} type="date" id="discharge_date" />
+        <label htmlFor="If yes which branch">{branch}</label>
+        <Input onChange={handleChange} type="text" id="If yes which branch" />
+        <label htmlFor="Discharge Date">{discharge}</label>
+        <Input onChange={handleChange} type="date" id="Discharge Date" />
       </section>
     </Card>
   )
