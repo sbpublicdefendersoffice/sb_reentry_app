@@ -1,13 +1,14 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, useEffect } from 'react'
 import { HeadTags } from '../../components'
 import { useFormFields } from '../../hooks'
-import { siteTitle, isDev } from '../../constants'
+import { siteTitle, isDev, useStyles } from '../../constants'
 import { CopyHolder } from '../../types'
-import { Button } from '../../ui'
+
 import { useLanguage, useToast } from '../../hooks'
 import { POST } from '../../helpers/'
+import { Button, TextField } from '@mui/material'
 
 export const copy: CopyHolder = {
   english: {
@@ -33,7 +34,9 @@ const initialForm = {
 }
 const LoginPage = () => {
   const { push } = useRouter()
+  const classes = useStyles()
   const { setToast } = useToast()
+  const [successful, setSuccessful] = useState(false)
   // const [token, setToken] = useToken()
   const { language } = useLanguage()
   const [errorMessage, setErrorMessage] = useState('')
@@ -45,7 +48,17 @@ const LoginPage = () => {
   //   push('/login/verify')
   // }
   const { email, pwd } = adminCredentials
-
+  useEffect(() => {
+    if (successful) setSuccessful(successful)
+  }, [successful])
+  // useEffect(() => {
+  //   if (!success) {
+  //     setTimeout(() => {
+  //       setSuccessful(!success)
+  //       // setAdminInfo({ ...props })
+  //     }, 3000)
+  //   }
+  // }, [successful])
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     if (adminCredentials) {
@@ -55,20 +68,25 @@ const LoginPage = () => {
       })
 
       const apiResponse = await postUserToPostgres.json()
-      if (apiResponse.error) setToast(`${error}${apiResponse.error}`)
-      else {
+      if (apiResponse.error) {
+        // setSuccessful(false)
+        setToast(`${error}${apiResponse.error}`)
+      } else {
+        // setSuccessful(true)
+        push('/dashboard')
         setToast(success)
+
         // const { token } = apiResponse
         //@ts-ignore
         // setToken(token)
-        push('/dashboard')
+
         adminCredentials.email = ''
         adminCredentials.pwd = ''
       }
     }
   }
   return (
-    <>
+    <div style={{ margin: 'auto', textAlign: 'center' }}>
       <HeadTags
         title={`${siteTitle} | Login`}
         href={`/login`}
@@ -82,30 +100,51 @@ const LoginPage = () => {
             justifyContent: 'center',
           }}
         >
-          <h1>{login}</h1>
+          <h1 style={{ marginBottom: '2rem' }}>{login}</h1>
           {errorMessage && <div className={'fail'}>{errorMessage}</div>}
-          <input
+          <TextField
             value={email}
+            variant="outlined"
             name="email"
             onChange={setAdminCredentials}
             placeholder="someone@gmail.com"
+            style={{ marginBottom: '2rem' }}
           />
-          <input
+
+          <TextField
             type="password"
+            variant="outlined"
             value={pwd}
             name="pwd"
             onChange={setAdminCredentials}
             placeholder={password}
           />
-          <Button type="submit" disabled={!email || !pwd}>
-            {login}
+
+          <hr style={{ margin: '2rem' }} />
+          <Button
+            className={classes.greenButton}
+            style={{ marginTop: '1rem' }}
+            type="submit"
+            disabled={!email || !pwd}
+          >
+            <h4 style={{ padding: '1rem' }}> {login}</h4>
           </Button>
-          <Button onClick={() => push('/forgotpassword')}>{forgot}</Button>
-          <Button onClick={() => push('/signup')}>{signup}</Button>
+          <Button
+            className={classes.greenButton}
+            onClick={() => push('/forgotpassword')}
+          >
+            <h4 style={{ padding: '1rem' }}> {forgot}</h4>
+          </Button>
+          <Button
+            className={classes.greenButton}
+            onClick={() => push('/signup')}
+          >
+            <h4 style={{ padding: '1rem' }}> {signup}</h4>
+          </Button>
           {/* <Button onClick={getCookie}>Log In To Thrive</Button> */}
         </div>
       </form>
-    </>
+    </div>
   )
 }
 
