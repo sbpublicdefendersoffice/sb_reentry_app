@@ -18,8 +18,8 @@ const postUser = async (
       const user = await adminObj.findOne({ where: { email: email } })
 
       if (user) {
-        prompt('User Already Exists')
-        return res.status(403).json({ message: 'User already exists' })
+        // res.status(403).json({ message: 'User already exists' })
+        throw new Error('User Already Exists')
       }
       const saltRounds = 10
 
@@ -67,7 +67,7 @@ const postUser = async (
           from: 'verification@thrivesbc.com',
           subject: 'Please verify for your email',
           text: `Thanks for signing up! To verify your email, click here:
-           http://localhost:3000/verifyemail/${verificationString}`,
+             http://localhost:3000/verifyemail/${verificationString}`,
         })
       } catch (err) {
         console.log(err)

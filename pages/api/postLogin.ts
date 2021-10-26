@@ -14,10 +14,15 @@ const postLogin = async (
       const { adminObj } = initDb()
       //@ts-ignore
       const user = await adminObj.findOne({ email: email })
-      if (!user) return res.status(401).json('user doesnt exist')
+      if (!user) {
+        res.status(401)
+        throw new Error('User')
+      }
+
       const { id, isVerified, hashedPassword } = user
 
       let isCorrect = await bcrypt.compare(pwd, hashedPassword)
+      if (!isCorrect) throw new Error('Passwords do not match')
       if (isCorrect) {
         jwt.sign(
           { id, email, isVerified },

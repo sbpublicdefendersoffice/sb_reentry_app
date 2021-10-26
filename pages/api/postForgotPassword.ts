@@ -8,7 +8,7 @@ const postForgotPassword = async (
   res: NextApiResponse,
 ): Promise<void> => {
   const { adminObj } = initDb()
-  console.log('🚨', req.body)
+
   try {
     const passwordResetCode = uuid()
     const user = await adminObj.update(
