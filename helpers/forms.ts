@@ -4,6 +4,12 @@ import { PDFDocument, StandardFonts } from 'pdf-lib'
 import { Fields } from '../types'
 import { ENGLISH, SPANISH } from '../constants'
 
+const dateTitles = new Set<string>([
+  'Date of Birth',
+  'Discharge Date',
+  'Fecha de alta',
+])
+
 export const nativeFillOutApplication = async (
   formBytes: Buffer,
   body: any,
@@ -23,10 +29,12 @@ export const nativeFillOutApplication = async (
       const type = field.constructor.name
 
       if (type === 'PDFTextField') {
-        if (name === 'Date of Birth') {
-          const tmp = data.slice(2).replace(/-/g, '')
+        if (dateTitles.has(name)) {
+          let tmp = data.slice(2).replace(/-/g, '')
 
-          data = `${tmp.slice(2)}${tmp.slice(0, 2)}`
+          if (title === 'Expungements')
+            data = `${tmp.slice(2)}${tmp.slice(0, 2)}`
+          else data = `${tmp.slice(2, 4)}/${tmp.slice(4, 6)}/${tmp.slice(0, 2)}`
         }
 
         form.getTextField(name).setText(data)
