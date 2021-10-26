@@ -29,7 +29,8 @@ const ForgotPasswordPage = () => {
   }
   return success ? (
     <div>
-      <h1>Forgot PasswordPage</h1>
+      <h1>Success</h1>
+      <p>Check your email for a reset link</p>
     </div>
   ) : (
     <form role="form" onSubmit={onSubmitClicked}>
