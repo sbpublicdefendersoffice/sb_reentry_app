@@ -9,8 +9,11 @@ export const nativeFillOutApplication = async (
   body: any,
 ): Promise<string | Uint8Array> => {
   const pdf = await PDFDocument.load(formBytes)
+  const title = pdf.getTitle()
   const form = pdf.getForm()
   const fields = form.getFields()
+
+  console.log(title)
 
   fields.forEach(field => {
     let name = field.getName()

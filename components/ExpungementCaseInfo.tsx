@@ -16,6 +16,7 @@ const copy: CopyHolder = {
     unsure: 'Unsure',
     marijuana: 'Was it Marijuana Related?',
     county: 'Were You Convicted in Santa Barbara County?',
+    city: 'If so, what city?',
   },
   spanish: {
     numbers: 'Números de Caso, si se Conocen',
@@ -26,6 +27,7 @@ const copy: CopyHolder = {
     unsure: 'Inseguro',
     marijuana: '¿Estaba relacionado con la marihuana?',
     county: '¿Fue condenado en el condado de Santa Bárbara?',
+    city: 'Si es así, ¿qué ciudad?',
   },
 }
 
@@ -51,7 +53,8 @@ const ExpungementCaseInfo = ({
     unsure,
     marijuana,
     numbers,
-    // county,
+    county,
+    city,
   } = copy[language]
 
   useIntersectionStyle(caseRef, animationClass)
@@ -90,7 +93,7 @@ const ExpungementCaseInfo = ({
         <label htmlFor="Case Numbers if known">{numbers}</label>
         <Input onChange={handleChange} type="text" id="Case Numbers if known" />
       </section>
-      {/* <section>
+      <section>
         <label className={styles.LabelMargin}>{county}</label>
         <label htmlFor="convicted_in_sb_yes">{yes}</label>
         <Input
@@ -105,10 +108,35 @@ const ExpungementCaseInfo = ({
           onChange={handleChange}
           type="radio"
           name="Convicted in Santa Barbara County"
-          value="Convicted in Santa Barbara County_no_On"
+          value="Convicted in Santa Barbara County_no If yes_On"
           id="convicted_in_sb_no"
         />
-      </section> */}
+        <label className={styles.LabelMargin}>{city}</label>
+        <label htmlFor="convicted_in_city_sb">Santa Barbara</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="City Convicted In"
+          value="Convicted in Santa Barbara County_Santa Barbara_On"
+          id="convicted_in_city_sb"
+        />
+        <label htmlFor="convicted_in_city_sm">Santa Maria</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="City Convicted In"
+          value="Convicted in Santa Barbara County_Santa Maria_On"
+          id="convicted_in_city_sm"
+        />
+        <label htmlFor="convicted_in_city_lom">Lompoc</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="City Convicted In"
+          value="Convicted in Santa Barbara County_Lompoc_On"
+          id="convicted_in_city_lom"
+        />
+      </section>
     </Card>
   )
 }

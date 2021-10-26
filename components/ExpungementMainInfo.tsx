@@ -189,16 +189,16 @@ const ExpungementMainInfo = ({
         <Input
           onChange={handleChange}
           type="radio"
-          name="Is it okay to leave a voice message"
-          value="Is it okay to leave a voice message_yes_On"
+          name="alt number Is it okay to leave a voice message"
+          value="Is is okay to leave a voice message_yes_On"
           id="alternate_phone_yes"
         />
         <label htmlFor="alternate_phone_no">No</label>
         <Input
           onChange={handleChange}
           type="radio"
-          name="Is it okay to leave a voice message"
-          value="Is it okay to leave a voice message_no_On"
+          name="alt number Is it okay to leave a voice message"
+          value="Is is okay to leave a voice message_no_On"
           id="alternate_phone_no"
         />
       </section>
