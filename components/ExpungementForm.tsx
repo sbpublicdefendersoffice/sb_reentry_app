@@ -15,7 +15,6 @@ import {
   ExpungementDependents,
   ExpungementCaseInfo,
   ExpungementEmploymentAndIncome,
-  ExpungementFinanceOptions,
   ExpungementMonthlyExpenses,
   ExpungementOtherIncomeAssets,
   ExpungementSignature,
@@ -147,22 +146,16 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
-      {/* 
       <ExpungementEmploymentAndIncome
-        expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
       />
+      {/* 
       <ExpungementMonthlyExpenses
         handleChange={handleChange}
         animationClass={Load}
       />
       <ExpungementOtherIncomeAssets
-        expungeInfo={expungeInfo}
-        handleChange={handleChange}
-        animationClass={Load}
-      />
-      <ExpungementFinanceOptions
         expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}

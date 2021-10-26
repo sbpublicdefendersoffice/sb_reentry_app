@@ -1,36 +1,34 @@
 import { useRef, MutableRefObject, ChangeEvent } from 'react'
 
-import { CopyHolder, ExpungementInfo } from '../types'
+import { CopyHolder } from '../types'
 import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
 import styles from './ExpungementForm.module.css'
-const { LabelMargin, Selected, Deslected, VertMargin } = styles
+const { LabelMargin, VertMargin } = styles
 
 const copy: CopyHolder = {
   english: {
     employ: 'Employment and Income',
-    employer_name: 'Employer',
+    employer_name: 'Employer Name',
     address: 'Employer Address',
     duration: 'Length of Time at Job',
     pay: 'Take Home Pay',
     week: 'Per Week',
     month: 'Per Month',
-    unemployed: 'Unemployed',
-    benefits: 'Benefits',
+    benefits: 'Umemployment Benefits?',
     yes: 'Yes',
     amount: 'Benefits Amount',
     partner_employ: 'Partner Employment and Income',
   },
   spanish: {
     employ: 'Empleo e Ingresos',
-    employer_name: 'Empleador',
+    employer_name: 'Nombre del empleador',
     address: 'Dirección del empleado',
     duration: 'Tiempo en el trabajo',
     pay: 'Salario Neto',
     week: 'Por Semana',
     month: 'Per Mensual',
-    unemployed: 'Desempleados',
     benefits: 'Beneficios',
     yes: 'Si',
     amount: 'Monto de Beneficios',
@@ -39,7 +37,6 @@ const copy: CopyHolder = {
 }
 
 interface ExpungementEmploymentAndIncomeProps {
-  expungeInfo: ExpungementInfo
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -47,7 +44,6 @@ interface ExpungementEmploymentAndIncomeProps {
 }
 
 const ExpungementEmploymentAndIncome = ({
-  expungeInfo,
   handleChange,
   animationClass,
 }: ExpungementEmploymentAndIncomeProps) => {
@@ -64,7 +60,6 @@ const ExpungementEmploymentAndIncome = ({
     pay,
     week,
     month,
-    unemployed,
     benefits,
     yes,
     amount,
@@ -77,201 +72,99 @@ const ExpungementEmploymentAndIncome = ({
         {employ}
       </Paragraph>
       <section>
-        <label htmlFor="employer">{employer_name}</label>
-        <Input onChange={handleChange} type="text" id="employer" />
-        <label htmlFor="employer_address">{address}</label>
-        <Input onChange={handleChange} type="text" id="employer_address" />
+        <label htmlFor="Employer Name">{employer_name}</label>
+        <Input onChange={handleChange} type="text" id="Employer Name" />
+        <label htmlFor="Address-0">{address}</label>
+        <Input onChange={handleChange} type="text" id="Address-0" />
       </section>
       <section>
-        <label htmlFor="time_at_job">{duration}</label>
-        <Input onChange={handleChange} type="text" id="time_at_job" />
-        <label htmlFor="supervisor">Supervisor</label>
-        <Input onChange={handleChange} type="text" id="supervisor" />
+        <label htmlFor="Length of Time">{duration}</label>
+        <Input onChange={handleChange} type="text" id="Length of Time" />
+        <label htmlFor="Supervisor">Supervisor</label>
+        <Input onChange={handleChange} type="text" id="Supervisor" />
       </section>
       <section>
-        <label htmlFor="take_home_pay">{pay} $</label>
-        <Input onChange={handleChange} type="number" id="take_home_pay" />
-        <label htmlFor="pay_per_week">{week}</label>
-        <Input
-          onChange={handleChange}
-          type="radio"
-          name="week_or_month"
-          value="pay_per_month"
-          id="pay_per_week"
-        />
-        <label htmlFor="pay_per_month">{month}</label>
-        <Input
-          onChange={handleChange}
-          type="radio"
-          name="week_or_month"
-          value="pay_per_week"
-          id="pay_per_month"
-        />
-      </section>
-      <section>
-        <label htmlFor="unemployed">{unemployed}</label>
-        <Input onChange={handleChange} type="checkbox" id="unemployed" />
-        <label
-          className={`${LabelMargin} ${
-            expungeInfo?.unemployed ? Selected : Deslected
-          }`}
-        >
-          {benefits}
-        </label>
-        <label
-          htmlFor="unemployed_benefits_yes"
-          className={expungeInfo?.unemployed ? Selected : Deslected}
-        >
-          {yes}
-        </label>
-        <Input
-          onChange={handleChange}
-          type="radio"
-          name="benefits_or_no"
-          disabled={!expungeInfo?.unemployed}
-          value="unemployed_benefits_no"
-          id="unemployed_benefits_yes"
-        />
-        <label
-          htmlFor="unemployed_benefits_no"
-          className={expungeInfo?.unemployed ? Selected : Deslected}
-        >
-          No
-        </label>
-        <Input
-          onChange={handleChange}
-          type="radio"
-          name="benefits_or_no"
-          disabled={!expungeInfo?.unemployed}
-          value="unemployed_benefits_yes"
-          id="unemployed_benefits_no"
-        />
-        <label
-          htmlFor="unemployed_benefits_amount"
-          className={
-            expungeInfo?.unemployed && expungeInfo?.unemployed_benefits_yes
-              ? Selected
-              : Deslected
-          }
-        >
-          {amount} $
-        </label>
-        <Input
-          onChange={handleChange}
-          disabled={
-            !expungeInfo?.unemployed && expungeInfo?.unemployed_benefits_yes
-          }
-          type="number"
-          id="unemployed_benefits_amount"
-        />
-      </section>
-      <hr className={VertMargin} />
-      {/* <Paragraph size="med-text" color="highlight">
-        {partner_employ}
-      </Paragraph>
-      <section>
-        <label htmlFor="partner_employer">{employer_name}</label>
-        <Input onChange={handleChange} type="text" id="partner_employer" />
-        <label htmlFor="partner_employer_address">{address}</label>
-        <Input
-          onChange={handleChange}
-          type="text"
-          id="partner_employer_address"
-        />
-      </section>
-      <section>
-        <label htmlFor="partner_time_at_job">{duration}</label>
-        <Input onChange={handleChange} type="text" id="partner_time_at_job" />
-        <label htmlFor="partner_supervisor">Supervisor</label>
-        <Input onChange={handleChange} type="text" id="partner_supervisor" />
-      </section>
-      <section>
-        <label htmlFor="partner_take_home_pay">{pay} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="partner_take_home_pay"
-        />
-        <label htmlFor="partner_pay_per_week">{week}</label>
-        <Input
-          onChange={handleChange}
-          type="radio"
-          name="partner_week_or_month"
-          value="partner_pay_per_month"
-          id="partner_pay_per_week"
-        />
-        <label htmlFor="pay_per_month">{month}</label>
-        <Input
-          onChange={handleChange}
-          type="radio"
-          name="partner_week_or_month"
-          value="partner_pay_per_week"
-          id="partner_pay_per_month"
-        />
-      </section>
-      <section>
-        <label htmlFor="partner_unemployed">{unemployed}</label>
+        <label htmlFor="Take Home Pay">{pay} $</label>
+        <Input onChange={handleChange} type="number" id="Take Home Pay" />
+        <label htmlFor="Weekly Take Home Pay">{week}</label>
         <Input
           onChange={handleChange}
           type="checkbox"
-          id="partner_unemployed"
+          id="Weekly Take Home Pay"
         />
-        <label
-          className={`${LabelMargin} ${
-            expungeInfo?.partner_unemployed ? Selected : Deslected
-          }`}
-        >
-          {benefits}
-        </label>
-        <label
-          htmlFor="partner_unemployed_benefits_yes"
-          className={expungeInfo?.partner_unemployed ? Selected : Deslected}
-        >
-          {yes}
-        </label>
+        <label htmlFor="Monthly">{month}</label>
+        <Input onChange={handleChange} type="checkbox" id="Monthly" />
+      </section>
+      <section>
+        <label className={LabelMargin}>{benefits}</label>
+        <label htmlFor="unemployed_benefits_yes">{yes}</label>
         <Input
           onChange={handleChange}
           type="radio"
-          name="partner_benefits_or_no"
-          disabled={!expungeInfo?.partner_unemployed}
-          value="partner_unemployed_benefits_no"
-          id="partner_unemployed_benefits_yes"
+          name="Unemployment Benefits"
+          value="Unemployment Benefits_Yes_On"
+          id="unemployed_benefits_yes"
         />
-        <label
-          htmlFor="partner_unemployed_benefits_no"
-          className={expungeInfo?.partner_unemployed ? Selected : Deslected}
-        >
-          No
-        </label>
+        <label htmlFor="unemployed_benefits_no">No</label>
         <Input
           onChange={handleChange}
           type="radio"
-          name="partner_benefits_or_no"
-          disabled={!expungeInfo?.partner_unemployed}
-          value="partner_unemployed_benefits_yes"
-          id="partner_unemployed_benefits_no"
+          name="Unemployment Benefits"
+          value="Unemployment Benefits_No Amount_On"
+          id="unemployed_benefits_no"
         />
-        <label
-          htmlFor="partner_unemployed_benefits_amount"
-          className={
-            expungeInfo?.partner_unemployed &&
-            expungeInfo?.partner_unemployed_benefits_yes
-              ? Selected
-              : Deslected
-          }
-        >
-          {amount} $
-        </label>
+        <label htmlFor="No Amount">{amount} $</label>
+        <Input onChange={handleChange} type="number" id="No Amount" />
+      </section>
+      <hr className={VertMargin} />
+      <Paragraph size="med-text" color="highlight">
+        {partner_employ}
+      </Paragraph>
+      <section>
+        <label htmlFor="Employer Name-0">{employer_name}</label>
+        <Input onChange={handleChange} type="text" id="Employer Name-0" />
+        <label htmlFor="Address-1">{address}</label>
+        <Input onChange={handleChange} type="text" id="Address-1" />
+      </section>
+      <section>
+        <label htmlFor="Length of Time-0">{duration}</label>
+        <Input onChange={handleChange} type="text" id="Length of Time-0" />
+        <label htmlFor="Supervisor-0">Supervisor</label>
+        <Input onChange={handleChange} type="text" id="Supervisor-0" />
+      </section>
+      <section>
+        <label htmlFor="Weekly Take Home Pay-0">{pay} $</label>
         <Input
           onChange={handleChange}
-          disabled={
-            !expungeInfo?.partner_unemployed &&
-            expungeInfo?.partner_unemployed_benefits_yes
-          }
           type="number"
-          id="partner_unemployed_benefits_amount"
+          id="Weekly Take Home Pay-0"
         />
-      </section> */}
+        <label htmlFor="Weekly">{week}</label>
+        <Input onChange={handleChange} type="checkbox" id="Weekly" />
+        <label htmlFor="Monthly-0">{month}</label>
+        <Input onChange={handleChange} type="checkbox" id="Monthly-0" />
+      </section>
+      <section>
+        <label className={LabelMargin}>{benefits}</label>
+        <label htmlFor="unemployed_benefits_yes">{yes}</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Unemployment Benefits-0"
+          value="Unemployment Benefits_Yes-0_On"
+          id="unemployed_benefits_yes"
+        />
+        <label htmlFor="unemployed_benefits_no">No</label>
+        <Input
+          onChange={handleChange}
+          type="radio"
+          name="Unemployment Benefits-0"
+          value="Unemployment Benefits_No Amount-0_On"
+          id="unemployed_benefits_no"
+        />
+        <label htmlFor="No Amount-0">{amount} $</label>
+        <Input onChange={handleChange} type="number" id="No Amount-0" />
+      </section>
     </Card>
   )
 }
