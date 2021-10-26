@@ -66,74 +66,36 @@ const ExpungementMonthlyExpenses = ({
         {expenses}
       </Paragraph>
       <section>
-        <label htmlFor="expenses_rent">{rent} $</label>
-        <Input onChange={handleChange} type="number" id="expenses_rent" />
-        <label htmlFor="expenses_utilities">{utilities} $</label>
-        <Input onChange={handleChange} type="number" id="expenses_utilities" />
+        <label htmlFor="Textfield">{rent} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield" />
+        <label htmlFor="Textfield-1">{utilities} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-1" />
       </section>
       <section>
-        <label htmlFor="expenses_food">{food} $</label>
-        <Input onChange={handleChange} type="number" id="expenses_food" />
-        <label htmlFor="expenses_mortgage">{mortgage} $</label>
-        <Input onChange={handleChange} type="number" id="expenses_mortgage" />
+        <label htmlFor="Textfield-3">{food} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-3" />
+        <label htmlFor="Textfield-5">{mortgage} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-5" />
       </section>
       <section>
-        <label htmlFor="expenses_child_support">{cSupport} $</label>
+        <label htmlFor="Textfield-7">{cSupport} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-7" />
+        <label htmlFor="Vehicle LoansPayment Monthly">{vehicle} $</label>
         <Input
           onChange={handleChange}
           type="number"
-          id="expenses_child_support"
-        />
-        <label htmlFor="expenses_vehicle_payment">{vehicle} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="expenses_vehicle_payment"
+          id="Vehicle LoansPayment Monthly"
         />
       </section>
       <section>
-        <label htmlFor="expenses_vehicle_insurance">{insurance} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="expenses_vehicle_insurance"
-        />
+        <label htmlFor="Textfield-10">{insurance} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-10" />
       </section>
       <section>
-        <label htmlFor="expenses_vehicle_insurance">{insurance} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="expenses_vehicle_insurance"
-        />
-      </section>
-      <section>
-        <label htmlFor="expenses_other_expense_one_description">{other}</label>
-        <Input
-          onChange={handleChange}
-          type="text"
-          id="expenses_other_expense_one_description"
-        />
-        <label htmlFor="expenses_other_expense_one_amount">{amount} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="expenses_other_expense_one_amount"
-        />
-      </section>
-      <section>
-        <label htmlFor="expenses_other_expense_one_description">{other}</label>
-        <Input
-          onChange={handleChange}
-          type="text"
-          id="expenses_other_expense_two_description"
-        />
-        <label htmlFor="expenses_other_expense_two_amount">{amount} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="expenses_other_expense_two_amount"
-        />
+        <label htmlFor="Textfield-13">{other}</label>
+        <Input onChange={handleChange} type="text" id="Textfield-13" />
+        <label htmlFor="Textfield-14">{amount} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-14" />
       </section>
     </Card>
   )

@@ -70,9 +70,8 @@ const ExpungementForm = () => {
     e: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault()
-    // for employment pay period, convert the boolean into a p/w p/m string
     // change all number fields to not accept negative numbers
-    // do i need to make the date into separate things for the form or what?
+    // further styling and options needed for input types
     //when done, remember to make TWO interfaces for form data held in state and send to backend
 
     //@ts-ignore
@@ -150,11 +149,11 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
-      {/* 
       <ExpungementMonthlyExpenses
         handleChange={handleChange}
         animationClass={Load}
       />
+      {/* 
       <ExpungementOtherIncomeAssets
         expungeInfo={expungeInfo}
         handleChange={handleChange}
