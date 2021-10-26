@@ -166,7 +166,7 @@ const ExpungementEmploymentAndIncome = ({
         />
       </section>
       <hr className={VertMargin} />
-      <Paragraph size="med-text" color="highlight">
+      {/* <Paragraph size="med-text" color="highlight">
         {partner_employ}
       </Paragraph>
       <section>
@@ -271,7 +271,7 @@ const ExpungementEmploymentAndIncome = ({
           type="number"
           id="partner_unemployed_benefits_amount"
         />
-      </section>
+      </section> */}
     </Card>
   )
 }

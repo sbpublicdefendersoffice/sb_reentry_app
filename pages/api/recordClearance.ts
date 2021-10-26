@@ -22,17 +22,17 @@ const recordClearance = async (
 
     // await nativeFillOutApplication(readFileSync(financialFormPath), req)
 
-    // const filledOutApp = await nativeFillOutApplication(
-    //   readFileSync(applicationPath),
-    //   body,
-    // )
+    const filledOutApp = await nativeFillOutApplication(
+      readFileSync(applicationPath),
+      body,
+    )
 
     const filledOutFinance = await nativeFillOutApplication(
       readFileSync(financialFormPath),
       body,
     )
 
-    // writeFileSync('./application.pdf', filledOutApp)
+    writeFileSync('./application.pdf', filledOutApp)
     writeFileSync('./finance.pdf', filledOutFinance)
 
     // const applicationAttachment = await fillOutPDFForm(
@@ -78,7 +78,7 @@ const recordClearance = async (
 
     // const sendMsg = await sendGrid.send(message)
 
-    res.json({ place: 'holder' })
+    res.json({ test: 'successful' })
   } catch (error) {
     console.error(error)
     res.json({ error: error.message })

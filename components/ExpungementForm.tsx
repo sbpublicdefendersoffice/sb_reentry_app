@@ -6,7 +6,7 @@ import {
   MutableRefObject,
 } from 'react'
 
-import { useLanguage, useIntersectionStyle } from '../hooks'
+import { useLanguage, useIntersectionStyle, useToast } from '../hooks'
 import { ExpungementInfo, CopyHolder } from '../types'
 import {
   ExpungementMainInfo,
@@ -57,6 +57,7 @@ const copy: CopyHolder = {
 const { Load } = styles
 
 const ExpungementForm = () => {
+  const { setToast } = useToast()
   const uptrustRef: MutableRefObject<HTMLDivElement> = useRef()
   const { language } = useLanguage()
   const { title, submit, uptrust, enroll, elgible, one, two, three, four } =
@@ -89,7 +90,7 @@ const ExpungementForm = () => {
     })
 
     const res = await sendForm.json()
-    console.log(res)
+    setToast(res.test)
   }
 
   const handleChange = ({
@@ -146,12 +147,12 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
-      {/* 
       <ExpungementEmploymentAndIncome
         expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
       />
+      {/* 
       <ExpungementMonthlyExpenses
         handleChange={handleChange}
         animationClass={Load}
@@ -170,7 +171,8 @@ const ExpungementForm = () => {
         expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
-      /> */}
+      /> 
+      */}
       <Button role="button" type="submit">
         {submit}
       </Button>

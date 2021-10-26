@@ -29,10 +29,7 @@ export const nativeFillOutApplication = async (
         form.getTextField(name).setText(data)
       } else if (type === 'PDFCheckBox' && data === 'true')
         form.getCheckBox(name).check()
-      else if (type === 'PDFRadioGroup') {
-        console.log(name, data)
-        form.getRadioGroup(name).select(data)
-      }
+      else if (type === 'PDFRadioGroup') form.getRadioGroup(name).select(data)
     }
   })
 
