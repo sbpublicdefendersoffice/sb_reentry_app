@@ -5,12 +5,13 @@ import { HeadTags } from '../../components'
 import { siteTitle, isDev } from '../../constants'
 import { useFormFields } from '../../hooks'
 import { CopyHolder } from '../../types'
-import { Button } from '../../ui'
+
 import { useLanguage, useToast } from '../../hooks'
 import { POST } from '../../helpers/'
 import { useToken } from '../../hooks/'
-import CheckIcon from '@material-ui/icons/Check'
-import CloseIcon from '@material-ui/icons/Close'
+import { useStyles } from '../../constants'
+import { Button, TextField } from '@mui/material'
+import { Check, Close } from '@mui/icons-material'
 export const copy: CopyHolder = {
   english: {
     signup: `Sign Up`,
@@ -38,6 +39,7 @@ const initialForm = {
 const SignupPage = () => {
   const [token, setToken] = useToken()
   const { push } = useRouter()
+  const classes = useStyles()
   const { setToast } = useToast()
   const { language } = useLanguage()
   const [fields, handleFieldChange] = useFormFields(initialForm)
@@ -71,7 +73,7 @@ const SignupPage = () => {
     }
   }
   return (
-    <>
+    <div style={{ margin: 'auto', textAlign: 'center' }}>
       <HeadTags
         title={`${siteTitle} | Sign Up`}
         href={`/signup`}
@@ -86,46 +88,68 @@ const SignupPage = () => {
           }}
         >
           <h1>{signup}</h1>
-          {error && <div className={'fail'}>{error}</div>}
-          <input
+
+          <TextField
             value={org}
             name="org"
             onChange={handleFieldChange}
+            style={{ marginTop: '1rem' }}
             placeholder="Thrive SBC"
           />
-          <input
+          <TextField
             value={email}
+            //@ts-ignore
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             name="email"
             title="Please enter a valid email address"
             onChange={handleFieldChange}
+            style={{ marginTop: '1rem' }}
             placeholder="someone@gmail.com"
             required
           />
-          <input
+          <TextField
             type="password"
             name="pwd"
+            //@ts-ignore
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             value={pwd}
+            style={{ marginTop: '1rem' }}
             onChange={handleFieldChange}
             placeholder={passwordMessage}
             spellCheck
             title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
             required
           />
-          <input
+          <TextField
             type="password"
             value={confirmPwd}
             name="confirmPwd"
+            style={{ marginTop: '1rem' }}
             onChange={handleFieldChange}
             placeholder={confirmPasswordMessage}
           />
-          <Button type="submit" disabled={!email || !pwd || pwd !== confirmPwd}>
-            Sign Up
+          <Button
+            className={classes.downloadButtons}
+            style={{
+              textAlign: 'center',
+              backgroundColor: '#04A868',
+              color: 'white',
+              marginBottom: '1rem',
+            }}
+            type="submit"
+            disabled={!email || !pwd || pwd !== confirmPwd}
+          >
+            <h4 style={{ padding: '1rem' }}>Sign Up</h4>
           </Button>
           {/* <Button onClick={getCookie}>Log In To Thrive</Button> */}
-          <Button onClick={() => push('/login')}>
-            Already have an account? Log in
+          <Button
+            style={{
+              marginTop: '1rem',
+            }}
+            className={classes.greenButton}
+            onClick={() => push('/login')}
+          >
+            <h4 style={{ padding: '1rem' }}>Already have an account? Log in</h4>
           </Button>
         </div>
         <>
@@ -134,47 +158,47 @@ const SignupPage = () => {
           </p>
           <p>
             {pwd.length >= '8' ? (
-              <CheckIcon style={{ color: 'green' }} />
+              <Check style={{ color: 'green' }} />
             ) : (
-              <CloseIcon style={{ color: 'red' }} />
+              <Close style={{ color: 'red' }} />
             )}
             At least 8 characters
           </p>
           <p>
             {pwd.match(/[A-Z]/g) ? (
-              <CheckIcon style={{ color: 'green' }} />
+              <Check style={{ color: 'green' }} />
             ) : (
-              <CloseIcon style={{ color: 'red' }} />
+              <Close style={{ color: 'red' }} />
             )}
             At least 1 uppercase letter
           </p>
           <p>
             {pwd.match(/[a-z]/g) ? (
-              <CheckIcon style={{ color: 'green' }} />
+              <Check style={{ color: 'green' }} />
             ) : (
-              <CloseIcon style={{ color: 'red' }} />
+              <Close style={{ color: 'red' }} />
             )}
             At least 1 lowercase letter
           </p>
           <p>
             {pwd.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/) ? (
-              <CheckIcon style={{ color: 'green' }} />
+              <Check style={{ color: 'green' }} />
             ) : (
-              <CloseIcon style={{ color: 'red' }} />
+              <Close style={{ color: 'red' }} />
             )}
             At least 1 number or special character
           </p>
           <p>
             {pwd === confirmPwd && pwd !== '' ? (
-              <CheckIcon style={{ color: 'green' }} />
+              <Check style={{ color: 'green' }} />
             ) : (
-              <CloseIcon style={{ color: 'red' }} />
+              <Close style={{ color: 'red' }} />
             )}
             Password === Confirm Password
           </p>
         </>
       </form>
-    </>
+    </div>
   )
 }
 export default SignupPage
