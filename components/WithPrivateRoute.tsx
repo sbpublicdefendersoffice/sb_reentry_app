@@ -1,5 +1,6 @@
 import React from 'react'
 import Router from 'next/router'
+// import { useUser } from '../hooks/'
 
 const login = '/login?redirected=true' // Define your login route address.
 
@@ -9,7 +10,7 @@ const login = '/login?redirected=true' // Define your login route address.
  * @returns {{auth: null}}
  */
 const checkUserAuthentication = () => {
-  return { auth: null } // change null to { isAdmin: true } for test it.
+  return { isAdmin: true } // change null to { isAdmin: true } for test it.
 }
 
 export default WrappedComponent => {
@@ -19,7 +20,7 @@ export default WrappedComponent => {
     const userAuth = await checkUserAuthentication()
 
     // Are you an authorized user or not?
-    if (!userAuth?.auth) {
+    if (!userAuth?.isAdmin) {
       // Handle server-side and client-side rendering.
       if (context.res) {
         context.res?.writeHead(302, {
