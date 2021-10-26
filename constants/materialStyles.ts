@@ -84,6 +84,12 @@ export const useStyles = makeStyles((theme: Theme) =>
         padding: '3rem',
       },
     },
+    greenButton: {
+      textAlign: 'center',
+      backgroundColor: '#04A868',
+      color: 'white',
+      marginBottom: '1rem',
+    },
     accordDescriptionLink: {
       fontSize: '1.5rem',
       fontFamily: 'Roboto',
