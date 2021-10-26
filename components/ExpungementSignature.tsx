@@ -58,15 +58,16 @@ const ExpungementSignature = ({
       <Paragraph className={VertMargin}>{disclaimer}</Paragraph>
       <Paragraph className={VertMargin}>{fees}</Paragraph>
       <section>
-        <label htmlFor="date">{date}</label>
+        <label htmlFor="Date">{date}</label>
         <Input
           onChange={handleChange}
           type="date"
-          id="date"
-          value={expungeInfo?.date || new Date().toISOString().substring(0, 10)}
+          id="Date"
+          //@ts-ignore
+          value={expungeInfo?.Date || new Date().toISOString().substring(0, 10)}
         />
-        <label htmlFor="signature">{signature}</label>
-        <Input onChange={handleChange} type="text" id="signature" />
+        <label htmlFor="Signature">{signature}</label>
+        <Input onChange={handleChange} type="text" id="Signature" />
       </section>
       <label className={LabelMargin} htmlFor="certified">
         {certify}

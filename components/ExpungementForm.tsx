@@ -153,9 +153,7 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
-      {/* 
       <ExpungementOtherIncomeAssets
-        expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
       />
@@ -163,8 +161,7 @@ const ExpungementForm = () => {
         expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
-      /> 
-      */}
+      />
       <Button role="button" type="submit">
         {submit}
       </Button>

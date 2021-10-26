@@ -1,6 +1,6 @@
 import { useRef, MutableRefObject, ChangeEvent } from 'react'
 
-import { CopyHolder, ExpungementInfo } from '../types'
+import { CopyHolder } from '../types'
 import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
@@ -14,8 +14,6 @@ const copy: CopyHolder = {
     amount: 'Amount',
     real_estate: 'Real Estate',
     yes: 'Yes',
-    location: 'Located at',
-    value: 'Value',
     checking: 'Amount in checking account',
     savings: 'Amount in savings account',
     cash: 'Cash on Hand',
@@ -30,8 +28,6 @@ const copy: CopyHolder = {
     amount: 'Monto',
     real_estate: 'Bienes Raíces',
     yes: 'Si',
-    location: 'Ubicado en',
-    value: 'Valor',
     checking: 'Saldo en cuenta de Cheques',
     savings: 'Saldo en cuenta de Ahorros',
     cash: 'Dinero en Efectivo',
@@ -40,10 +36,9 @@ const copy: CopyHolder = {
 }
 
 import styles from './ExpungementForm.module.css'
-const { LabelMargin, Selected, Deslected } = styles
+const { LabelMargin } = styles
 
 interface ExpungementOtherIncomeAssetsProps {
-  expungeInfo: ExpungementInfo
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -51,7 +46,6 @@ interface ExpungementOtherIncomeAssetsProps {
 }
 
 const ExpungementOtherIncomeAssets = ({
-  expungeInfo,
   handleChange,
   animationClass,
 }: ExpungementOtherIncomeAssetsProps) => {
@@ -69,8 +63,6 @@ const ExpungementOtherIncomeAssets = ({
     amount,
     real_estate,
     yes,
-    location,
-    value,
     checking,
     savings,
     cash,
@@ -83,139 +75,52 @@ const ExpungementOtherIncomeAssets = ({
         {income}
       </Paragraph>
       <section>
-        <label htmlFor="other_income_child_support">{cSupport} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="other_income_child_support"
-        />
-        <label htmlFor="other_income_disability">{disability} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="other_income_disability"
-        />
+        <label htmlFor="Textfield-0">{cSupport} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-0" />
+        <label htmlFor="Textfield-2">{disability} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-2" />
       </section>
       <section>
-        <label htmlFor="other_income_social_security">{social} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="other_income_social_security"
-        />
+        <label htmlFor="Textfield-4">{social} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-4" />
         <label className={LabelMargin}>{welfare}</label>
-        <label htmlFor="other_income_welfare_amount">{amount} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="other_income_welfare_amount"
-        />
-        <label htmlFor="other_income_welfare_afdc">AFDC</label>
-        <Input
-          onChange={handleChange}
-          type="checkbox"
-          id="other_income_welfare_afdc"
-        />
-        <label htmlFor="other_income_welfare_fs">FS</label>
-        <Input
-          onChange={handleChange}
-          type="checkbox"
-          id="other_income_welfare_fs"
-        />
+        <label htmlFor="AFDC">AFDC</label>
+        <Input onChange={handleChange} type="checkbox" id="AFDC" />
+        <label htmlFor="FS">FS</label>
+        <Input onChange={handleChange} type="checkbox" id="FS" />
+        <label htmlFor="Textfield-6">{amount} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-6" />
       </section>
       <section>
-        <label htmlFor="other_income_social_security" className={LabelMargin}>
-          {real_estate}
-        </label>
-        <label htmlFor="other_income_real_estate_yes">{yes}</label>
+        <label htmlFor="Textfield-8">SSI/SSP/GR $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-8" />
+        <label className={LabelMargin}>{real_estate}</label>
+        <label htmlFor="real_estate_yes">{yes}</label>
         <Input
           onChange={handleChange}
           type="radio"
-          name="real_estate_yes_or_no"
-          value="other_income_real_estate_no"
-          id="other_income_real_estate_yes"
+          id="real_estate_yes"
+          name="Real Estate"
+          value="Real Estate_Yes_On"
         />
-        <label htmlFor="other_income_real_estate_no">No</label>
-        <Input
-          onChange={handleChange}
-          type="radio"
-          name="real_estate_yes_or_no"
-          value="other_income_real_estate_yes"
-          id="other_income_real_estate_no"
-        />
-        <label
-          htmlFor="other_income_real_estate_address"
-          className={
-            expungeInfo?.other_income_real_estate_yes ? Selected : Deslected
-          }
-        >
-          {location}
-        </label>
-        <Input
-          onChange={handleChange}
-          disabled={!expungeInfo?.other_income_real_estate_yes}
-          type="text"
-          id="other_income_real_estate_address"
-        />
-        <label
-          htmlFor="other_income_real_estate_value"
-          className={
-            expungeInfo?.other_income_real_estate_yes ? Selected : Deslected
-          }
-        >
-          {value} $
-        </label>
-        <Input
-          onChange={handleChange}
-          disabled={!expungeInfo?.other_income_real_estate_yes}
-          type="number"
-          id="other_income_real_estate_value"
-        />
+        <label htmlFor="real_estate_no">No</label>
+        <Input type="radio" id="real_estate_no" name="Real Estate" />
+        <Input onChange={handleChange} type="number" id="Textfield-9" />
       </section>
       <section>
-        <label htmlFor="other_income_checking">{checking} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="other_income_savings"
-        />
-        <label htmlFor="other_income_checking">{savings} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="other_income_savings"
-        />
+        <label htmlFor="Textfield-11">{checking} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-11" />
+        <label htmlFor="Textfield-12">{savings} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-12" />
       </section>
       <section>
-        <label htmlFor="other_income_ssi_ssp_gr">SSI/SSP/GR $</label>
+        <label htmlFor="Textfield-15">{cash} $</label>
+        <Input onChange={handleChange} type="number" id="Textfield-15" />
+        <label htmlFor="Other Income or assets valued at">{other} $</label>
         <Input
           onChange={handleChange}
           type="number"
-          id="other_income_ssi_ssp_gr"
-        />
-        <label htmlFor="oother_income_cash">{cash} $</label>
-        <Input onChange={handleChange} type="number" id="other_income_cash" />
-      </section>
-      <section>
-        <label htmlFor="other_income_checking">{checking} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="other_income_checking"
-        />
-        <label htmlFor="other_income_savings">{savings} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="other_income_savings"
-        />
-      </section>
-      <section>
-        <label htmlFor="other_income_value_of_assets">{other} $</label>
-        <Input
-          onChange={handleChange}
-          type="number"
-          id="other_income_value_of_assets"
+          id="Other Income or assets valued at"
         />
       </section>
     </Card>

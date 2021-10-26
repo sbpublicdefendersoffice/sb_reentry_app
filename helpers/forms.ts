@@ -5,6 +5,7 @@ import { Fields } from '../types'
 import { ENGLISH, SPANISH } from '../constants'
 
 const dateTitles = new Set<string>([
+  'Date',
   'Date of Birth',
   'Discharge Date',
   'Fecha de alta',
@@ -18,8 +19,6 @@ export const nativeFillOutApplication = async (
   const title = pdf.getTitle()
   const form = pdf.getForm()
   const fields = form.getFields()
-
-  console.log(title)
 
   fields.forEach(field => {
     let name = field.getName()
