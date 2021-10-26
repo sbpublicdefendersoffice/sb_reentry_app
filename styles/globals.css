@@ -70,3 +70,7 @@ a:hover {
 .makeStyles-accordDescription-11 {
   text-align: center !important;
 }
+
+.MuiTypography-body1 {
+  width: -webkit-fill-available !important;
+}
