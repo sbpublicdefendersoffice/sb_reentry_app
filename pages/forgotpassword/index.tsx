@@ -86,9 +86,10 @@ const ForgotPasswordPage = () => {
           {errorMessage && <div className="fail">{errorMessage}</div>}
           <TextField
             value={email}
-            //@ts-ignore
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            style={{ marginBottom: '2rem' }}
+            inputProps={{
+              style: { fontSize: '1.6rem', marginBottom: '2rem' },
+              pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
+            }}
             title={validEmail}
             onChange={e => setEmail(e.target.value)}
             placeholder={`${someone}@gmail.com`}

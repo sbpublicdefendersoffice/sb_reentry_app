@@ -98,8 +98,10 @@ const PasswordResetLandingPage = () => {
             <div className={classes.root}>
               <TextField
                 type="password"
-                //@ts-ignore
-                pattern={'(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}'}
+                inputProps={{
+                  style: { fontSize: '1.6rem' },
+                  pattern: '(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
+                }}
                 value={pwd}
                 onChange={e => setPwd(e.target.value)}
                 placeholder={pwdText}

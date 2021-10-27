@@ -140,8 +140,9 @@ const SignupPage = () => {
           />
           <TextField
             value={email}
-            //@ts-ignore
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            inputProps={{
+              pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
+            }}
             name="email"
             title={validEmail}
             onChange={handleFieldChange}
@@ -152,8 +153,9 @@ const SignupPage = () => {
           <TextField
             type="password"
             name="pwd"
-            //@ts-ignore
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            inputProps={{
+              pattern: '(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
+            }}
             value={pwd}
             style={{ marginTop: '1rem' }}
             onChange={handleFieldChange}

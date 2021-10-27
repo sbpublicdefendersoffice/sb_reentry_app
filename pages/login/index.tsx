@@ -125,21 +125,23 @@ const LoginPage = () => {
             value={email}
             variant="outlined"
             title={validEmail}
-            //@ts-ignore
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            inputProps={{
+              style: { marginBottom: '2rem' },
+              pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
+            }}
             required
             name="email"
             onChange={setAdminCredentials}
             placeholder={`${someone}@gmail.com`}
-            style={{ marginBottom: '2rem' }}
           />
 
           <TextField
             type="password"
             variant="outlined"
             title={mustContain}
-            //@ts-ignore
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            inputProps={{
+              pattern: '(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
+            }}
             value={pwd}
             name="pwd"
             onChange={setAdminCredentials}
