@@ -72,7 +72,10 @@ const ExpungementForm = () => {
     e.preventDefault()
     // change all number fields to not accept negative numbers
     // further styling and options needed for input types
-    //when done, remember to make TWO interfaces for form data held in state and send to backend
+    // when done, remember to make TWO interfaces for form data held in state and send to backend
+    // set address fields to required. I will ask Amanda what fields they need to be required
+    // need to figure out how to set today's date in state easily, how to do spanish check boxes, because there are no radio buttons for some reason. it goes well though.
+    // and remember to delete english Address, City and State & Zip Fields
 
     //@ts-ignore
     const { Address, City, state, zip } = expungeInfo
@@ -83,6 +86,7 @@ const ExpungementForm = () => {
       body: JSON.stringify({
         'Mailing Address': `${Address} ${City} ${stateAndZip}`,
         'State  Zip': stateAndZip,
+        language,
         ...expungeInfo,
       }),
     })
