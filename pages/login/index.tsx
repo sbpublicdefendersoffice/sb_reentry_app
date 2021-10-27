@@ -18,6 +18,10 @@ export const copy: CopyHolder = {
     password: 'Password',
     error: 'There was an error logging in.',
     success: 'You have logged in successfully',
+    someone: 'someone',
+    validEmail: 'Please enter a valid email address',
+    mustContain:
+      'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
   },
   spanish: {
     login: `Acceso`,
@@ -26,11 +30,16 @@ export const copy: CopyHolder = {
     password: 'Contraseña',
     error: 'Hubo un error al iniciar sesión.',
     success: 'Has iniciado sesión con éxito',
+    someone: 'alguien',
+    validEmail:
+      'Por favor, introduce una dirección de correo electrónico válida',
+    mustContain:
+      'Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 caracteres o más',
   },
 }
 const initialForm = {
-  email: 'v123@gmail.com',
-  pwd: '123456qQ',
+  email: '',
+  pwd: '',
 }
 const LoginPage = () => {
   const { push } = useRouter()
@@ -40,7 +49,17 @@ const LoginPage = () => {
   // const [token, setToken] = useToken()
   const { language } = useLanguage()
   const [errorMessage, setErrorMessage] = useState('')
-  const { login, forgot, signup, error, success, password } = copy[language]
+  const {
+    login,
+    forgot,
+    signup,
+    validEmail,
+    someone,
+    error,
+    success,
+    password,
+    mustContain,
+  } = copy[language]
 
   const [adminCredentials, setAdminCredentials] = useFormFields(initialForm)
   // const getCookie = async (): Promise<void> => {
@@ -88,7 +107,7 @@ const LoginPage = () => {
   return (
     <div style={{ margin: 'auto', textAlign: 'center' }}>
       <HeadTags
-        title={`${siteTitle} | Login`}
+        title={`${siteTitle} | ${login}`}
         href={`/login`}
         description={`Login`}
       />
@@ -105,15 +124,22 @@ const LoginPage = () => {
           <TextField
             value={email}
             variant="outlined"
+            title={validEmail}
+            //@ts-ignore
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            required
             name="email"
             onChange={setAdminCredentials}
-            placeholder="someone@gmail.com"
+            placeholder={`${someone}@gmail.com`}
             style={{ marginBottom: '2rem' }}
           />
 
           <TextField
             type="password"
             variant="outlined"
+            title={mustContain}
+            //@ts-ignore
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
             value={pwd}
             name="pwd"
             onChange={setAdminCredentials}

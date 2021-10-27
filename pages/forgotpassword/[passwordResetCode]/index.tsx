@@ -1,21 +1,63 @@
-import React, { useEffect, useState, FormEvent } from 'react'
+import React, { useState, FormEvent } from 'react'
 import { useRouter } from 'next/router'
-import { useToken } from '../../../hooks'
+import { useLanguage } from '../../../hooks'
 import { POST } from '../../../helpers/'
 import { useStyles } from '../../../constants'
 import { PasswordResetSuccess, PasswordResetFail } from '../../../components'
-import { Input, Button, TextField } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import { Check, Close } from '@mui/icons-material'
+import { CopyHolder } from '../../../types'
 
+export const copy: CopyHolder = {
+  english: {
+    resetPwd: `Reset Password`,
+    enterNew: 'Please enter a new password',
+    pwdText: `Password'`,
+
+    checkMarks: 'All check marks must turn green, the password must have:',
+    characters: 'At least 8 characters',
+    upperCase: 'At least 1 uppercase letter',
+    lowerCase: 'At least 1 lowercase letter',
+    number: 'At least 1 number or special character',
+    match: 'Password is equal to confirm password',
+    confirm: 'Confirm Password',
+  },
+  spanish: {
+    resetPwd: `Restablecer la contraseña`,
+    enterNew: 'Ingrese una nueva contraseña',
+    pwdText: `Contraseña`,
+
+    checkMarks:
+      'Todas las marcas de verificación deben ponerse verdes, la contraseña debe tener:',
+    characters: 'Al menos 8 carácteres',
+    upperCase: 'Al menos 1 letra mayúscula',
+    lowerCase: 'Al menos 1 letra minúscula',
+    number: 'Al menos 1 número o carácter especial',
+    match: 'La contraseña es igual a Confirmar contraseña',
+    confirm: 'confirmar Contraseña',
+  },
+}
 const PasswordResetLandingPage = () => {
   const { asPath } = useRouter()
   const [pwd, setPwd] = useState('')
   const classes = useStyles()
   const [confirmPwd, setConfirmPwd] = useState('')
   const passwordResetCode = asPath.split('/')[2]
-
+  const { language } = useLanguage()
   const [isFailure, setIsFailure] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const {
+    resetPwd,
+    enterNew,
+    pwdText,
+    checkMarks,
+    characters,
+    upperCase,
+    lowerCase,
+    number,
+    match,
+    confirm,
+  } = copy[language]
   const info = {
     passwordResetCode: passwordResetCode,
     pwd: pwd,
@@ -23,8 +65,7 @@ const PasswordResetLandingPage = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     try {
-      console.log('🚨 info from frontend', info)
-
+      e.preventDefault()
       const postUserToPostgres: Response = await fetch(
         `/api/postResetPassword`,
         {
@@ -36,9 +77,9 @@ const PasswordResetLandingPage = () => {
         },
       )
 
-      setIsSuccess(true)
+      await setIsSuccess(true)
     } catch (err) {
-      setIsFailure(true)
+      await setIsFailure(true)
     }
   }
   if (isFailure) return <PasswordResetFail />
@@ -48,86 +89,84 @@ const PasswordResetLandingPage = () => {
       {isFailure && <PasswordResetFail />}
       {isSuccess && <PasswordResetSuccess />}
       {!isSuccess && !isFailure && (
-        <div style={{ margin: 'auto', textAlign: 'center' }}>
-          {' '}
-          <h1 className={classes.h4Style}>Reset Password</h1>
-          <p style={{ marginBottom: '4rem' }}>Please enter a new password</p>
+        <div className={classes.root}>
+          <h1>{resetPwd}</h1>
+          <p className={classes.fontSize} style={{ margin: '2rem' }}>
+            {enterNew}
+          </p>
           <form role="form" onSubmit={handleSubmit}>
-            <div>
+            <div className={classes.root}>
               <TextField
                 type="password"
                 //@ts-ignore
                 pattern={'(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}'}
                 value={pwd}
                 onChange={e => setPwd(e.target.value)}
-                placeholder="Password"
+                placeholder={pwdText}
               />
               <br />
               <TextField
                 type="password"
-                style={{ marginTop: '2rem' }}
+                style={{ margin: '1rem 0 2rem 0' }}
                 value={confirmPwd}
                 onChange={e => setConfirmPwd(e.target.value)}
-                placeholder=" Confirm Password"
+                placeholder={confirm}
               />
               <br />
               <Button
-                className={classes.downloadButtons}
-                style={{
-                  textAlign: 'center',
-                  backgroundColor: '#04A868',
-                  color: 'white',
-                  marginBottom: '2rem',
-                }}
+                className={classes.greenButton}
                 type="submit"
                 disabled={!pwd || !confirmPwd || pwd !== confirmPwd}
               >
-                <h4 style={{ padding: '1rem' }}> Reset Password</h4>
+                <h4 style={{ padding: '1rem' }}>{resetPwd}</h4>
               </Button>
-              <hr />
-              <div style={{ marginTop: '3rem' }}>
-                <p style={{ fontWeight: 'bold' }}>
-                  All checkmarks must turn green, password must have:
+              <hr style={{ width: '20%', margin: 'auto' }} />
+              <div style={{ marginTop: '3rem !important' }}>
+                <p
+                  className={classes.checkMarks}
+                  style={{ fontWeight: 'bold', margin: '2rem' }}
+                >
+                  {checkMarks}
                 </p>
-                <p>
+                <p className={classes.checkMarks}>
                   {pwd.length >= 8 ? (
                     <Check style={{ color: 'green' }} />
                   ) : (
                     <Close style={{ color: 'red' }} />
                   )}
-                  At least 8 characters
+                  {characters}
                 </p>
-                <p>
+                <p className={classes.checkMarks}>
                   {pwd.match(/[A-Z]/g) ? (
                     <Check style={{ color: 'green' }} />
                   ) : (
                     <Close style={{ color: 'red' }} />
                   )}
-                  At least 1 uppercase letter
+                  {upperCase}
                 </p>
-                <p>
+                <p className={classes.checkMarks}>
                   {pwd.match(/[a-z]/g) ? (
                     <Check style={{ color: 'green' }} />
                   ) : (
                     <Close style={{ color: 'red' }} />
                   )}
-                  At least 1 lowercase letter
+                  {lowerCase}
                 </p>
-                <p>
+                <p className={classes.checkMarks}>
                   {pwd.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/) ? (
                     <Check style={{ color: 'green' }} />
                   ) : (
                     <Close style={{ color: 'red' }} />
                   )}
-                  At least 1 number or special character
+                  {number}
                 </p>
-                <p>
+                <p className={classes.checkMarks}>
                   {pwd === confirmPwd && pwd !== '' ? (
                     <Check style={{ color: 'green' }} />
                   ) : (
                     <Close style={{ color: 'red' }} />
                   )}
-                  Password === Confirm Password
+                  {match}
                 </p>
               </div>
             </div>

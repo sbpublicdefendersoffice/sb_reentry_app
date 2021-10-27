@@ -2,14 +2,14 @@ import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { FormEvent } from 'react'
 import { HeadTags } from '../../components'
-import { siteTitle, isDev } from '../../constants'
+import { siteTitle, isDev, useStyles } from '../../constants'
 import { useFormFields } from '../../hooks'
 import { CopyHolder } from '../../types'
 
 import { useLanguage, useToast } from '../../hooks'
 import { POST } from '../../helpers/'
 import { useToken } from '../../hooks/'
-import { useStyles } from '../../constants'
+
 import { Button, TextField } from '@mui/material'
 import { Check, Close } from '@mui/icons-material'
 export const copy: CopyHolder = {
@@ -20,6 +20,18 @@ export const copy: CopyHolder = {
     passwordMessage: 'password',
     confirmPasswordMessage: 'Confirm password',
     error: 'There was an error creating your account',
+    alreadyHave: 'Already have an account? Log in',
+    checkMarks: 'All check marks must turn green, the password must have:',
+    characters: 'At least 8 characters',
+    upperCase: 'At least 1 uppercase letter',
+    lowerCase: 'At least 1 lowercase letter',
+    number: 'At least 1 number or special character',
+    match: 'Password is equal to confirm password',
+
+    validEmail: 'Please enter a valid email address',
+    someone: 'someone',
+    mustContain:
+      'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
   },
   spanish: {
     signup: 'Inscribirse',
@@ -28,13 +40,27 @@ export const copy: CopyHolder = {
     passwordMessage: 'Contraseña',
     confirmPasswordMessage: 'confirmar Contraseña',
     error: 'Hubo un error al crear tu cuenta',
+    alreadyHave: '¿Ya tienes una cuenta? Iniciar sesión',
+    checkMarks:
+      'Todas las marcas de verificación deben ponerse verdes, la contraseña debe tener:',
+    characters: 'Al menos 8 carácteres',
+    upperCase: 'Al menos 1 letra mayúscula',
+    lowerCase: 'Al menos 1 letra minúscula',
+    number: 'Al menos 1 número o carácter especial',
+    match: 'La contraseña es igual a Confirmar contraseña',
+
+    validEmail:
+      'Por favor, introduce una dirección de correo electrónico válida',
+    someone: 'alguien',
+    mustContain:
+      'Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 caracteres o más',
   },
 }
 const initialForm = {
   org: '',
   email: '',
-  pwd: '123456qQ',
-  confirmPwd: '123456qQ',
+  pwd: '',
+  confirmPwd: '',
 }
 const SignupPage = () => {
   const [token, setToken] = useToken()
@@ -43,8 +69,24 @@ const SignupPage = () => {
   const { setToast } = useToast()
   const { language } = useLanguage()
   const [fields, handleFieldChange] = useFormFields(initialForm)
-  const { confirmPasswordMessage, passwordMessage, error, signup, success } =
-    copy[language]
+  const {
+    confirmPasswordMessage,
+    passwordMessage,
+    error,
+    signup,
+    success,
+    alreadyHave,
+    checkMarks,
+    characters,
+    upperCase,
+    lowerCase,
+    number,
+
+    match,
+    validEmail,
+    someone,
+    mustContain,
+  } = copy[language]
   const { email, org, pwd, confirmPwd } = fields
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
@@ -69,15 +111,14 @@ const SignupPage = () => {
       //@ts-ignore
       setToken(token)
       push('/verifyemail')
-      //not sure why it is getting
     }
   }
   return (
     <div style={{ margin: 'auto', textAlign: 'center' }}>
       <HeadTags
-        title={`${siteTitle} | Sign Up`}
+        title={`${siteTitle} | ${signup}`}
         href={`/signup`}
-        description={`Signup`}
+        description={signup}
       />
       <form role="form" onSubmit={handleSubmit}>
         <div
@@ -85,6 +126,7 @@ const SignupPage = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
+            marginTop: '4rem',
           }}
         >
           <h1>{signup}</h1>
@@ -101,10 +143,10 @@ const SignupPage = () => {
             //@ts-ignore
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
             name="email"
-            title="Please enter a valid email address"
+            title={validEmail}
             onChange={handleFieldChange}
             style={{ marginTop: '1rem' }}
-            placeholder="someone@gmail.com"
+            placeholder={`${someone}@gmail.com`}
             required
           />
           <TextField
@@ -117,7 +159,7 @@ const SignupPage = () => {
             onChange={handleFieldChange}
             placeholder={passwordMessage}
             spellCheck
-            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+            title={mustContain}
             required
           />
           <TextField
@@ -128,73 +170,76 @@ const SignupPage = () => {
             onChange={handleFieldChange}
             placeholder={confirmPasswordMessage}
           />
+          <hr style={{ margin: '2rem' }} />
           <Button
-            className={classes.downloadButtons}
-            style={{
-              textAlign: 'center',
-              backgroundColor: '#04A868',
-              color: 'white',
-              marginBottom: '1rem',
-            }}
+            className={
+              !email || !pwd || pwd !== confirmPwd
+                ? classes.disabledButton
+                : classes.greenButton
+            }
+            // style={{
+            //   textAlign: 'center',
+            //   backgroundColor: '#04A868',
+            //   color: 'white',
+            //   marginBottom: '1rem',
+            // }}
             type="submit"
             disabled={!email || !pwd || pwd !== confirmPwd}
           >
-            <h4 style={{ padding: '1rem' }}>Sign Up</h4>
+            <h4 style={{ padding: '1rem' }}>{signup}</h4>
           </Button>
           {/* <Button onClick={getCookie}>Log In To Thrive</Button> */}
           <Button
             style={{
-              marginTop: '1rem',
+              margin: '1rem 0 1rem 0',
             }}
             className={classes.greenButton}
             onClick={() => push('/login')}
           >
-            <h4 style={{ padding: '1rem' }}>Already have an account? Log in</h4>
+            <h4 style={{ padding: '1rem' }}>{alreadyHave}</h4>
           </Button>
         </div>
         <>
-          <p style={{ fontWeight: 'bold' }}>
-            All checkmarks must turn green, password must have:
-          </p>
-          <p>
+          <p style={{ fontWeight: 'bold', padding: '1rem' }}>{checkMarks}</p>
+          <p className={classes.checkMarks}>
             {pwd.length >= '8' ? (
               <Check style={{ color: 'green' }} />
             ) : (
               <Close style={{ color: 'red' }} />
             )}
-            At least 8 characters
+            {characters}
           </p>
-          <p>
+          <p className={classes.checkMarks}>
             {pwd.match(/[A-Z]/g) ? (
               <Check style={{ color: 'green' }} />
             ) : (
               <Close style={{ color: 'red' }} />
             )}
-            At least 1 uppercase letter
+            {upperCase}
           </p>
-          <p>
+          <p className={classes.checkMarks}>
             {pwd.match(/[a-z]/g) ? (
               <Check style={{ color: 'green' }} />
             ) : (
               <Close style={{ color: 'red' }} />
             )}
-            At least 1 lowercase letter
+            {lowerCase}
           </p>
-          <p>
+          <p className={classes.checkMarks}>
             {pwd.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/) ? (
               <Check style={{ color: 'green' }} />
             ) : (
               <Close style={{ color: 'red' }} />
             )}
-            At least 1 number or special character
+            {number}
           </p>
-          <p>
+          <p className={classes.checkMarks}>
             {pwd === confirmPwd && pwd !== '' ? (
               <Check style={{ color: 'green' }} />
             ) : (
               <Close style={{ color: 'red' }} />
             )}
-            Password === Confirm Password
+            {match}
           </p>
         </>
       </form>
