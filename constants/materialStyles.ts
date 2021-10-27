@@ -86,9 +86,15 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     greenButton: {
       textAlign: 'center',
-      backgroundColor: '#04A868',
-      color: 'white',
-      marginBottom: '1rem',
+      backgroundColor: '#04A868 !important',
+      color: 'white !important',
+      marginBottom: '1rem !important',
+    },
+    disabledButton: {
+      textAlign: 'center',
+      // backgroundColor: '#04A868 !important',
+      // color: 'white !important',
+      marginBottom: '1rem !important',
     },
     accordDescriptionLink: {
       fontSize: '1.5rem',
@@ -211,6 +217,10 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     fontSize: {
       fontSize: '1.6rem',
+    },
+    checkMarks: {
+      fontSize: '1.6rem',
+      padding: '.2rem',
     },
     ulist: {
       listStyle: 'square',

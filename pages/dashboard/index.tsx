@@ -5,13 +5,13 @@ import NextLink from 'next/link'
 import { useToken, useUser } from '../../hooks/'
 import { useFormFields } from '../../hooks'
 import { POST } from '../../helpers/'
-import { Button } from '../../ui'
-
+import { Button, TextField } from '@mui/material'
+import { useStyles } from '../../constants'
 const Dashboard = props => {
   const admin = null
   const [token, setToken] = useToken()
   const { push } = useRouter()
-
+  const classes = useStyles()
   //might have to check how im pulling this in
   // const initialForm = {
   //   org: admin.org || '',
@@ -59,53 +59,70 @@ const Dashboard = props => {
   }
   //going to change
   return (
-    <div>
-      {/* <form
+    <div style={{ margin: 'auto', textAlign: 'center' }}>
+      <form
         role="form"
         //  onSubmit={saveChanges}
-      > */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}
       >
-        <h1>Info for ___</h1>
-        {/* {!isVerified && ( */}
-        <div className={'fail'}>
-          You wont be able to make any changes until you verify your email
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          <h1>Dashboard Information for: {'ThriveSBC'}</h1>
+          {/* {!isVerified && ( */}
+          {/* <div className={'fail'}>
+        You wont be able to make any changes until you verify your email
+      </div> */}
+          {/* )} */}
+          {/* <h1>{login}</h1> */}
+          {/* {errorMessage && <div className={'fail'}>{errorMessage}</div>} */}
+          <TextField
+            style={{ margin: '2rem 0 1rem 0' }}
+            name="org"
+            label="Organization"
+            inputProps={{ style: { fontSize: '1.6rem' } }}
+            InputLabelProps={{
+              style: { fontSize: '1.5rem', fontWeight: 'bold' },
+            }}
+            // helperText="Organization"
+            value={'thrivesbc'}
+            // size="lg"
+          />
+
+          <TextField
+            label={'Website'}
+            value={'www.thrivesbc.com'}
+            style={{ marginBottom: '2rem' }}
+            name="website"
+            inputProps={{ style: { fontSize: '1.6rem' } }}
+            InputLabelProps={{
+              style: { fontSize: '1.5rem', fontWeight: 'bold' },
+            }}
+            // onChange={setAdminInfo}
+            placeholder={'website'}
+          />
+          <Button
+            className={classes.greenButton}
+            type="submit"
+            //  disabled={!org || !website}
+          >
+            <h3 style={{ padding: '1rem' }}>Save Changes</h3>
+          </Button>
+          <Button
+            className={classes.greenButton}
+            //  onClick={resetValues}
+          >
+            <h3 style={{ padding: '1rem' }}> Reset Values</h3>
+          </Button>
+          <Button className={classes.greenButton} onClick={logOut}>
+            <h3 style={{ padding: '1rem' }}>Logout</h3>
+          </Button>
+          {/* <Button onClick={getCookie}>Log In To Thrive</Button> */}
         </div>
-        {/* )} */}
-        {/* <h1>{login}</h1> */}
-        {/* {errorMessage && <div className={'fail'}>{errorMessage}</div>} */}
-        {/* <input
-              value={org}
-              name="org"
-              onChange={setAdminInfo}
-              placeholder="org"
-            />
-            <input
-              value={website}
-              name="website"
-              onChange={setAdminInfo}
-              placeholder={'website'}
-            /> */}
-        <Button
-          type="submit"
-          //  disabled={!org || !website}
-        >
-          Save Changes
-        </Button>
-        <Button
-        //  onClick={resetValues}
-        >
-          Reset Values
-        </Button>
-        <Button onClick={logOut}>Logout</Button>
-        {/* <Button onClick={getCookie}>Log In To Thrive</Button> */}
-      </div>
-      {/* </form> */}
+      </form>
     </div>
   )
 }
