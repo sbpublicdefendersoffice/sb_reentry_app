@@ -6,15 +6,8 @@ const resetPasswordRoute = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    // const { passwordResetCode } = req.body //req.params
     const { adminObj } = initDb()
     const { pwd, passwordResetCode } = JSON.parse(req.body)
-    console.log(
-      '🚀 ~ file: postResetPassword.tsx ~ line 11 ~ passwordResetCode 🚨',
-      passwordResetCode,
-    )
-    console.log('🚀 ~ file: postResetPassword.tsx ~ line 11 ~ pwd 🔥', pwd)
-
     const saltRounds: number = 10
     let hashedPassword: string
     await bcrypt
@@ -30,14 +23,12 @@ const resetPasswordRoute = async (
       { where: { passwordResetCode: passwordResetCode } },
     )
     if (!admin) {
-      console.log('No user Matches this one 🤣')
-      return res
-        .status(404)
-        .json({ message: 'No user matches password reset code' })
+      res.status(404)
+
+      throw new Error('No user matches password reset code')
     }
-    console.log('Right berrfore the 200 🚨😁')
-    res.status(200)
-    // res.end
+
+    res.status(200).end()
   } catch (err) {
     const error: string = err.message
     console.error(error)
