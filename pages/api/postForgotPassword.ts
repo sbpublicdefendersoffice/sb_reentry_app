@@ -16,27 +16,22 @@ const postForgotPassword = async (
       { where: { email: req.body } },
     )
     if (user) {
-      try {
-        //@ts-ignore
-        await sendEmail({
-          to: req.body,
-          from: 'verification@thrivesbc.com',
-          subject: 'Password Reset',
-          text: `
+      //@ts-ignore
+      await sendEmail({
+        to: req.body,
+        from: 'verification@thrivesbc.com',
+        subject: 'Password Reset',
+        text: `
           To reset your password, click this link:
           http://localhost:3000/forgotpassword/${passwordResetCode}
           `,
-        })
-      } catch (err) {
-        const error: string = err.message
-        console.error(error)
-        res.json({ error })
-      }
+      })
     }
   } catch (err) {
     console.error(err)
     res.status(500)
   }
-  res.status(200)
+
+  res.status(200).end()
 }
 export default postForgotPassword
