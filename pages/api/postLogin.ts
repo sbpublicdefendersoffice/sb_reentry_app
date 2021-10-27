@@ -15,14 +15,17 @@ const postLogin = async (
       //@ts-ignore
       const user = await adminObj.findOne({ email: email })
       if (!user) {
-        res.status(401)
-        throw new Error('User')
+        throw new Error('User does not exist')
+        res.status(401).end()
       }
 
       const { id, isVerified, hashedPassword } = user
 
       let isCorrect = await bcrypt.compare(pwd, hashedPassword)
-      if (!isCorrect) throw new Error('Passwords do not match')
+      if (!isCorrect) {
+        throw new Error('Username or password is incorrect. Please try again')
+        res.status(401).end()
+      }
       if (isCorrect) {
         jwt.sign(
           { id, email, isVerified },
@@ -36,7 +39,7 @@ const postLogin = async (
           },
         )
       } else {
-        res.status(401)
+        res.status(401).end()
       }
     }
   } catch (err) {
