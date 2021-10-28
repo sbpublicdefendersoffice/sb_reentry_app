@@ -1,6 +1,7 @@
 import { Card, Paragraph } from '../ui'
 
-import { ScheduleRecordDisplay, SendText } from './'
+import SendText from './SendText'
+import ScheduleRecordDisplay from './ScheduleRecordDisplay'
 import { googleCustomClick } from '../helpers/analytics'
 import { CopyHolder, PGScheduleRecord, PGServiceRecord } from '../types'
 import { useLanguage, useLocation } from '../hooks'

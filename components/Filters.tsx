@@ -1,10 +1,6 @@
 import { Grid } from '@material-ui/core'
-import {
-  FilterCity,
-  FilterService,
-  // FilterLanguage,
-  // FilterPeopleServed,
-} from '../components/'
+import FilterCity from './FilterCity'
+import FilterService from './FilterService'
 import { Filter } from '../types/filter'
 const CategoryFilters = ({
   fields,
