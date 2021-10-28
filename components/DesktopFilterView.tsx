@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Grid } from '@material-ui/core/'
-import { CategoryFilters } from '../components/'
+import CategoryFilters from './Filters'
 const DesktopFilterView = ({
   activeCopy,
   fields,

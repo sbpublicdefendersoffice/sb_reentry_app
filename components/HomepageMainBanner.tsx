@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useLanguage, useResizeEvent } from '../hooks/'
 import { CopyHolder } from '../types/language'
 
-import { Newsfeed } from '../components'
+import Newsfeed from './Newsfeed'
 import { Paragraph, Title, Button } from '../ui'
 
 import styles from './HomepageMainBanner.module.css'
