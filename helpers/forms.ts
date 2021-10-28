@@ -13,6 +13,8 @@ const spanishFields: { [englishName: string]: string } = {
   'Phone Number': 'Telefono primario',
   'Alternate Number': 'Telefono Alternativo',
   'Email Address': 'El correo electronico',
+  'I would like to be enrolled in Uptrust to receive':
+    'Yo quisiera inscribirme en Uptrust para recibir me',
   'If yes which branch': 'En que rama militar sirvio',
   'Discharge Date': 'Fecha de alta',
   'Number of Dependents': 'Cuantos dependientes',
@@ -49,6 +51,27 @@ const spanishFields: { [englishName: string]: string } = {
   'Other income or assets valued at': 'Textfield-34',
   Date: 'Fecha',
   Signature: 'Firma',
+  'Weekly Take Home Pay': 'Semanal',
+  Monthly: 'Mensual',
+  Weekly: 'Semanal-0',
+  'Monthly-0': 'Mensual-0',
+  AFDC: 'AFDC-0',
+  FS: 'FS-0',
+}
+
+const radioToCheckFields: { [englishName: string]: string } = {
+  'Marital Status_Single_On': 'Soletero',
+  'Marital Status_Married_On': 'Casado',
+  'Marital Status_Separated_On': 'Separado',
+  'Marital Status_Divorced_On': 'Divorciado',
+  'Marital Status_CommonLaw_On': 'Viviendo juntos',
+  'Are you a veteran_Yes_On': 'Si',
+  'Are you a veteran_No_On': 'No',
+  'Unemployment Benefits_Yes_On': 'Si-0',
+  'Unemployment Benefits_No Amount_On': 'No-0',
+  'Unemployment Benefits_Yes-0_On': 'Si-1',
+  'Unemployment Benefits_No Amount-0_On': 'No-2',
+  'Real Estate_Yes_On': 'Si-2',
 }
 
 const dateTitles = new Set<string>([
@@ -78,14 +101,15 @@ export const nativeFillOutApplication = async (
     })
 
   fields.forEach(field => {
-    let name = field.getName()
-    let data = body[name]
+    let fieldName = field.getName()
+    let data = body[fieldName]
 
     if (data) {
+      if (typeof data === 'boolean') data = String(data)
       const type = field.constructor.name
 
       if (type === 'PDFTextField') {
-        if (dateTitles.has(name)) {
+        if (dateTitles.has(fieldName)) {
           let tmp = data.slice(2).replace(/-/g, '')
 
           if (title === 'Expungements')
@@ -93,10 +117,15 @@ export const nativeFillOutApplication = async (
           else data = `${tmp.slice(2, 4)}/${tmp.slice(4, 6)}/${tmp.slice(0, 2)}`
         }
 
-        form.getTextField(name).setText(data)
+        form.getTextField(fieldName).setText(data)
       } else if (type === 'PDFCheckBox' && data === 'true')
-        form.getCheckBox(name).check()
-      else if (type === 'PDFRadioGroup') form.getRadioGroup(name).select(data)
+        form.getCheckBox(fieldName).check()
+      else if (type === 'PDFRadioGroup') {
+        if (body?.language === SPANISH && title === 'Financial Declaration') {
+          const spanCheckName: string = radioToCheckFields[data]
+          form.getCheckBox(spanCheckName).check()
+        } else form.getRadioGroup(fieldName).select(data)
+      }
     }
   })
 

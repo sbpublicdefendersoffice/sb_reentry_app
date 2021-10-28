@@ -74,8 +74,9 @@ const ExpungementForm = () => {
     // further styling and options needed for input types
     // when done, remember to make TWO interfaces for form data held in state and send to backend
     // set address fields to required. I will ask Amanda what fields they need to be required
-    // need to figure out how to set today's date in state easily, how to do spanish check boxes, because there are no radio buttons for some reason. it goes well though.
-    // and remember to delete english Address, City and State & Zip Fields
+    // need to figure out how to set today's date in state easily
+    // pass down date in state to signature
+    // do server and client side validation
 
     //@ts-ignore
     const { Address, City, state, zip } = expungeInfo
@@ -104,7 +105,7 @@ const ExpungementForm = () => {
     } else if (type === 'checkbox')
       setExpungeInfo(val => ({
         ...val,
-        [id]: String(!Boolean(val?.[id])),
+        [id]: !Boolean(val?.[id]),
       }))
     else setExpungeInfo(val => ({ ...val, [id]: value }))
   }
