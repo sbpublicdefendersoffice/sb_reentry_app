@@ -68,18 +68,24 @@ const ExpungementMonthlyExpenses = ({
       <section>
         <label htmlFor="Textfield">{rent} $</label>
         <Input onChange={handleChange} type="number" id="Textfield" />
+      </section>
+      <section>
         <label htmlFor="Textfield-1">{utilities} $</label>
         <Input onChange={handleChange} type="number" id="Textfield-1" />
       </section>
       <section>
         <label htmlFor="Textfield-3">{food} $</label>
         <Input onChange={handleChange} type="number" id="Textfield-3" />
+      </section>
+      <section>
         <label htmlFor="Textfield-5">{mortgage} $</label>
         <Input onChange={handleChange} type="number" id="Textfield-5" />
       </section>
       <section>
         <label htmlFor="Textfield-7">{cSupport} $</label>
         <Input onChange={handleChange} type="number" id="Textfield-7" />
+      </section>
+      <section>
         <label htmlFor="Vehicle LoansPayment Monthly">{vehicle} $</label>
         <Input
           onChange={handleChange}

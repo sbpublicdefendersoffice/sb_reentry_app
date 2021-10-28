@@ -74,12 +74,16 @@ const ExpungementEmploymentAndIncome = ({
       <section>
         <label htmlFor="Employer Name">{employer_name}</label>
         <Input onChange={handleChange} type="text" id="Employer Name" />
+      </section>
+      <section>
         <label htmlFor="Address-0">{address}</label>
         <Input onChange={handleChange} type="text" id="Address-0" />
       </section>
       <section>
         <label htmlFor="Length of Time">{duration}</label>
         <Input onChange={handleChange} type="text" id="Length of Time" />
+      </section>
+      <section>
         <label htmlFor="Supervisor">Supervisor</label>
         <Input onChange={handleChange} type="text" id="Supervisor" />
       </section>
@@ -123,12 +127,16 @@ const ExpungementEmploymentAndIncome = ({
       <section>
         <label htmlFor="Employer Name-0">{employer_name}</label>
         <Input onChange={handleChange} type="text" id="Employer Name-0" />
+      </section>
+      <section>
         <label htmlFor="Address-1">{address}</label>
         <Input onChange={handleChange} type="text" id="Address-1" />
       </section>
       <section>
         <label htmlFor="Length of Time-0">{duration}</label>
         <Input onChange={handleChange} type="text" id="Length of Time-0" />
+      </section>
+      <section>
         <label htmlFor="Supervisor-0">Supervisor</label>
         <Input onChange={handleChange} type="text" id="Supervisor-0" />
       </section>

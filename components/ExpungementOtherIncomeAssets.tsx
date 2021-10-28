@@ -77,12 +77,16 @@ const ExpungementOtherIncomeAssets = ({
       <section>
         <label htmlFor="Textfield-0">{cSupport} $</label>
         <Input onChange={handleChange} type="number" id="Textfield-0" />
+      </section>
+      <section>
         <label htmlFor="Textfield-2">{disability} $</label>
         <Input onChange={handleChange} type="number" id="Textfield-2" />
       </section>
       <section>
         <label htmlFor="Textfield-4">{social} $</label>
         <Input onChange={handleChange} type="number" id="Textfield-4" />
+      </section>
+      <section>
         <label className={LabelMargin}>{welfare}</label>
         <label htmlFor="AFDC">AFDC</label>
         <Input onChange={handleChange} type="checkbox" id="AFDC" />
@@ -94,6 +98,8 @@ const ExpungementOtherIncomeAssets = ({
       <section>
         <label htmlFor="Textfield-8">SSI/SSP/GR $</label>
         <Input onChange={handleChange} type="number" id="Textfield-8" />
+      </section>
+      <section>
         <label className={LabelMargin}>{real_estate}</label>
         <label htmlFor="real_estate_yes">{yes}</label>
         <Input
@@ -110,12 +116,16 @@ const ExpungementOtherIncomeAssets = ({
       <section>
         <label htmlFor="Textfield-11">{checking} $</label>
         <Input onChange={handleChange} type="number" id="Textfield-11" />
+      </section>
+      <section>
         <label htmlFor="Textfield-12">{savings} $</label>
         <Input onChange={handleChange} type="number" id="Textfield-12" />
       </section>
       <section>
         <label htmlFor="Textfield-15">{cash} $</label>
         <Input onChange={handleChange} type="number" id="Textfield-15" />
+      </section>
+      <section>
         <label htmlFor="Other Income or assets valued at">{other} $</label>
         <Input
           onChange={handleChange}

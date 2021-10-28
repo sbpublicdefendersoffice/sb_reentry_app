@@ -141,6 +141,8 @@ const ExpungementMainInfo = ({
           required
           pattern="\d{3}-?\d{2}-?\d{4}"
         />
+      </section>
+      <section>
         <label htmlFor="Date of Birth">{dob}</label>
         <Input onChange={handleChange} type="date" id="Date of Birth" />
       </section>
@@ -205,8 +207,12 @@ const ExpungementMainInfo = ({
       <section>
         <label htmlFor="Address">{address}</label>
         <Input onChange={handleChange} type="text" id="Address" required />
+      </section>
+      <section>
         <label htmlFor="City">{city}</label>
         <Input onChange={handleChange} type="text" id="City" required />
+      </section>
+      <section>
         <label htmlFor="state">{state}</label>
         <select onChange={handleChange} id="state" defaultValue="CA" required>
           {states.map((state: string, i: number) => (

@@ -66,6 +66,8 @@ const ExpungementSignature = ({
           //@ts-ignore
           value={expungeInfo?.Date || new Date().toISOString().substring(0, 10)}
         />
+      </section>
+      <section>
         <label htmlFor="Signature">{signature}</label>
         <Input onChange={handleChange} type="text" id="Signature" />
       </section>

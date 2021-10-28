@@ -24,9 +24,6 @@ interface ExpungementDependentsProps {
   animationClass: string
 }
 
-// dependents
-// number_of_dependents, dependent_relationship_and_age,
-
 const ExpungementDependents = ({
   handleChange,
   animationClass,
@@ -50,6 +47,8 @@ const ExpungementDependents = ({
           type="number"
           id="Number of Dependents"
         />
+      </section>
+      <section>
         <label htmlFor="Relationship and Ages">{relationship}</label>
         <Input onChange={handleChange} type="text" id="Relationship and Ages" />
       </section>

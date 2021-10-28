@@ -6,3 +6,7 @@
   font-size: var(--med-text);
   min-width: 3rem;
 }
+
+.Input[type='date'] {
+  font-family: 'Roboto', sans-serif;
+}

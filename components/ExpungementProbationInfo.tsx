@@ -88,6 +88,8 @@ const ExpungementProbationInfo = ({
           value="Are you currently on probation or parole_unsure If yes where_On"
           id="current_probation_unsure"
         />
+      </section>
+      <section>
         <label htmlFor="unsure If yes where">{when_and_where}</label>
         <Input onChange={handleChange} type="text" id="unsure If yes where" />
       </section>
@@ -109,6 +111,8 @@ const ExpungementProbationInfo = ({
           value="Granted probation_no_On"
           id="granted_probation_no"
         />
+      </section>
+      <section>
         <label className={styles.LabelMargin}>{complete}</label>
         <label htmlFor="completed_probation_yes">{yes}</label>
         <Input

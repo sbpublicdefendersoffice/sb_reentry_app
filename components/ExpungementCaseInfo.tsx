@@ -71,6 +71,8 @@ const ExpungementCaseInfo = ({
         <Input onChange={handleChange} type="checkbox" id="Misdemeanor" />
         <label htmlFor="Unsure">{unsure}</label>
         <Input onChange={handleChange} type="checkbox" id="Unsure" />
+      </section>
+      <section>
         <label className={styles.LabelMargin}>{marijuana}</label>
         <label htmlFor="marijuana_related_yes">{yes}</label>
         <Input
@@ -111,6 +113,8 @@ const ExpungementCaseInfo = ({
           value="Convicted in Santa Barbara County_no If yes_On"
           id="convicted_in_sb_no"
         />
+      </section>
+      <section>
         <label className={styles.LabelMargin}>{city}</label>
         <label htmlFor="convicted_in_city_sb">Santa Barbara</label>
         <Input

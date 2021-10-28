@@ -133,6 +133,8 @@ const ExpungementMaritalAndVeteranStatus = ({
         />
         <label htmlFor="If yes which branch">{branch}</label>
         <Input onChange={handleChange} type="text" id="If yes which branch" />
+      </section>
+      <section>
         <label htmlFor="Discharge Date">{discharge}</label>
         <Input onChange={handleChange} type="date" id="Discharge Date" />
       </section>
