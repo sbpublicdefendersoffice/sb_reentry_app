@@ -4,7 +4,7 @@ export {
   googleSearch,
   googleViewSearchResults,
 } from './analytics'
-export { fillOutPDFForm, nativeFillOutApplication } from './forms'
+export { fillOutPDFForm } from './forms'
 export { default as isOpenNow } from './isOpenNow'
 export {
   checkAndSetUserLocation,

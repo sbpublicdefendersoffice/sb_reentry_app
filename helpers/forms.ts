@@ -1,8 +1,6 @@
-import { NextApiRequest } from 'next'
-import { PDFDocument, StandardFonts } from 'pdf-lib'
+import { PDFDocument } from 'pdf-lib'
 
-import { Fields } from '../types'
-import { ENGLISH, SPANISH } from '../constants'
+import { SPANISH } from '../constants'
 
 // before anyone barks at me, I know these english to spanish translations are not correct. that's how they are on the form and i can't go back and change them right now. needs are as needs must
 const spanishFields: { [englishName: string]: string } = {
@@ -83,10 +81,10 @@ const dateTitles = new Set<string>([
   'Fecha',
 ])
 
-export const nativeFillOutApplication = async (
+export const fillOutPDFForm = async (
   formBytes: Buffer,
   body: any,
-): Promise<string | Uint8Array> => {
+): Promise<string> => {
   const pdf = await PDFDocument.load(formBytes)
   const title = pdf.getTitle()
   const form = pdf.getForm()
@@ -129,51 +127,50 @@ export const nativeFillOutApplication = async (
     }
   })
 
-  // const finalPdf: string = await pdf.saveAsBase64()
-  const finalPdf: Uint8Array = await pdf.save()
+  const finalPdf: string = await pdf.saveAsBase64()
 
   return finalPdf
 }
 
-export const fillOutPDFForm = async (
-  form: Buffer,
-  req: NextApiRequest,
-  fieldInfo: Fields,
-  language: string,
-  multiPage?: boolean,
-  txtSize?: number,
-): Promise<string | Uint8Array> => {
-  const pdf = await PDFDocument.load(form)
-  const font = await pdf.embedFont(StandardFonts.Helvetica)
-  const page = pdf.getPage(language === SPANISH && multiPage ? 1 : 0)
+// export const fillOutPDFForm = async (
+//   form: Buffer,
+//   req: NextApiRequest,
+//   fieldInfo: Fields,
+//   language: string,
+//   multiPage?: boolean,
+//   txtSize?: number,
+// ): Promise<string | Uint8Array> => {
+//   const pdf = await PDFDocument.load(form)
+//   const font = await pdf.embedFont(StandardFonts.Helvetica)
+//   const page = pdf.getPage(language === SPANISH && multiPage ? 1 : 0)
 
-  Object.entries(req.body).forEach(([key, val]) => {
-    if (fieldInfo?.[key]) {
-      const { box_width, x, y } =
-        fieldInfo?.[key]?.[language] || fieldInfo?.[key]?.[ENGLISH]
-      let sizeOfText: number = txtSize || 10
+//   Object.entries(req.body).forEach(([key, val]) => {
+//     if (fieldInfo?.[key]) {
+//       const { box_width, x, y } =
+//         fieldInfo?.[key]?.[language] || fieldInfo?.[key]?.[ENGLISH]
+//       let sizeOfText: number = txtSize || 10
 
-      if (box_width) {
-        const txt: string = val as string
+//       if (box_width) {
+//         const txt: string = val as string
 
-        let widthOfText: number = font.widthOfTextAtSize(txt, sizeOfText)
+//         let widthOfText: number = font.widthOfTextAtSize(txt, sizeOfText)
 
-        while (widthOfText > box_width)
-          widthOfText = font.widthOfTextAtSize(txt, (sizeOfText -= 0.1))
+//         while (widthOfText > box_width)
+//           widthOfText = font.widthOfTextAtSize(txt, (sizeOfText -= 0.1))
 
-        page.drawText(txt, { x, y, size: sizeOfText })
-      } else {
-        const { x, y } =
-          fieldInfo?.[key]?.[language]?.radioOrBooleanVals?.[val] ||
-          //@ts-ignore
-          fieldInfo?.[key]?.[ENGLISH]?.radioOrBooleanVals?.[val]
-        page.drawText('X', { x, y, size: sizeOfText })
-      }
-    }
-  })
+//         page.drawText(txt, { x, y, size: sizeOfText })
+//       } else {
+//         const { x, y } =
+//           fieldInfo?.[key]?.[language]?.radioOrBooleanVals?.[val] ||
+//           //@ts-ignore
+//           fieldInfo?.[key]?.[ENGLISH]?.radioOrBooleanVals?.[val]
+//         page.drawText('X', { x, y, size: sizeOfText })
+//       }
+//     }
+//   })
 
-  // const finalPdf: string = await pdf.saveAsBase64()
-  const finalPdf: Uint8Array = await pdf.save()
+//   // const finalPdf: string = await pdf.saveAsBase64()
+//   const finalPdf: Uint8Array = await pdf.save()
 
-  return finalPdf
-}
+//   return finalPdf
+// }

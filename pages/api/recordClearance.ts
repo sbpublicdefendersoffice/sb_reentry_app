@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import sendGrid, { MailDataRequired } from '@sendgrid/mail'
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync } from 'fs'
 
-import { financeFormFields, applicationFormFields } from '../../constants'
-import { fillOutPDFForm, nativeFillOutApplication } from '../../helpers'
+import { fillOutPDFForm } from '../../helpers'
 
 const [type, disposition, financialFormPath, applicationPath]: string[] = [
   'application/pdf',
@@ -18,67 +17,44 @@ const recordClearance = async (
 ): Promise<void> => {
   try {
     const body = JSON.parse(req.body)
-    // const { to, from, subject, text, name, language } = body
+    const name: string = body['Full Name']
 
-    // await nativeFillOutApplication(readFileSync(financialFormPath), req)
-
-    const filledOutApp = await nativeFillOutApplication(
+    const filledOutApp = await fillOutPDFForm(
       readFileSync(applicationPath),
       body,
     )
 
-    const filledOutFinance = await nativeFillOutApplication(
+    const filledOutFinance = await fillOutPDFForm(
       readFileSync(financialFormPath),
       body,
     )
 
-    writeFileSync('./application.pdf', filledOutApp)
-    writeFileSync('./finance.pdf', filledOutFinance)
+    sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
 
-    // const applicationAttachment = await fillOutPDFForm(
-    //   readFileSync(applicationPath),
-    //   req,
-    //   applicationFormFields,
-    //   language,
-    // )
+    const message: MailDataRequired = {
+      to: process.env.SBPD_RECORDS_EXPUNGMENT_EMAIL,
+      from: process.env.SENDGRID_RECORDS_EXPUNGEMENT_EMAIL,
+      subject: `Expungment forms for ${name}`,
+      text: `Here's the form for ${name}`,
+      attachments: [
+        {
+          content: filledOutFinance,
+          filename: `${name} Financial Declaration.pdf`,
+          type,
+          disposition,
+        },
+        {
+          content: filledOutApp,
+          filename: `${name} Expungment Application.pdf`,
+          type,
+          disposition,
+        },
+      ],
+    }
 
-    // const financeFormAttachment = await fillOutPDFForm(
-    //   readFileSync(financialFormPath),
-    //   req,
-    //   financeFormFields,
-    //   language,
-    //   true,
-    // )
+    const sendMsg = await sendGrid.send(message)
 
-    // writeFileSync('./application.pdf', applicationAttachment)
-    // writeFileSync('./finance.pdf', financeFormAttachment)
-
-    // sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
-
-    // const message: MailDataRequired = {
-    //   to,
-    //   from,
-    //   subject,
-    //   text,
-    //   attachments: [
-    //     {
-    //       content: financeFormAttachment,
-    //       filename: `${name}_SBPD_EXPUNGEMENT_FINANCIAL_DECLARATION_Updated_10_20_19_${language}.pdf`,
-    //       type,
-    //       disposition,
-    //     },
-    //     {
-    //       content: applicationAttachment,
-    //       filename: `${name}_SBPD_EXPUNGEMENT_APPLICATION_${language}.pdf`,
-    //       type,
-    //       disposition,
-    //     },
-    //   ],
-    // }
-
-    // const sendMsg = await sendGrid.send(message)
-
-    res.json({ test: 'successful' })
+    res.json({ sendMsg })
   } catch (error) {
     console.error(error)
     res.json({ error: error.message })

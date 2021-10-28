@@ -93,7 +93,7 @@ const ExpungementForm = () => {
     })
 
     const res = await sendForm.json()
-    setToast(res.test)
+    setToast(res.statusCode)
   }
 
   const handleChange = ({
