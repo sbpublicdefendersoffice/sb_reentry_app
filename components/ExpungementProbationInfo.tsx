@@ -5,6 +5,7 @@ import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
 import styles from './ExpungementForm.module.css'
+const { LabelMargin, TitleLabel } = styles
 
 const copy: CopyHolder = {
   english: {
@@ -31,6 +32,8 @@ const copy: CopyHolder = {
 }
 
 interface ExpungementProbationInfoProps {
+  probationOrParole: boolean
+  grantedProbation: boolean
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -38,6 +41,8 @@ interface ExpungementProbationInfoProps {
 }
 
 const ExpungementProbationInfo = ({
+  probationOrParole,
+  grantedProbation,
   handleChange,
   animationClass,
 }: ExpungementProbationInfoProps) => {
@@ -63,7 +68,9 @@ const ExpungementProbationInfo = ({
         {probation_and_fees}
       </Paragraph>
       <section>
-        <label className={styles.LabelMargin}>{currently_on_probation}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>
+          {currently_on_probation}
+        </label>
         <label htmlFor="current_probation_yes">{yes}</label>
         <Input
           onChange={handleChange}
@@ -90,11 +97,18 @@ const ExpungementProbationInfo = ({
         />
       </section>
       <section>
-        <label htmlFor="unsure If yes where">{when_and_where}</label>
-        <Input onChange={handleChange} type="text" id="unsure If yes where" />
+        <label className={TitleLabel} htmlFor="unsure If yes where">
+          {when_and_where}
+        </label>
+        <Input
+          disabled={!probationOrParole}
+          onChange={handleChange}
+          type="text"
+          id="unsure If yes where"
+        />
       </section>
       <section>
-        <label className={styles.LabelMargin}>{granted}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{granted}</label>
         <label htmlFor="granted_probation_yes">{yes}</label>
         <Input
           onChange={handleChange}
@@ -113,9 +127,10 @@ const ExpungementProbationInfo = ({
         />
       </section>
       <section>
-        <label className={styles.LabelMargin}>{complete}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{complete}</label>
         <label htmlFor="completed_probation_yes">{yes}</label>
         <Input
+          disabled={!grantedProbation}
           onChange={handleChange}
           type="radio"
           name="Completed probation with no violations"
@@ -124,6 +139,7 @@ const ExpungementProbationInfo = ({
         />
         <label htmlFor="completed_probation_no">No</label>
         <Input
+          disabled={!grantedProbation}
           onChange={handleChange}
           type="radio"
           name="Completed probation with no violations"
@@ -132,6 +148,7 @@ const ExpungementProbationInfo = ({
         />
         <label htmlFor="completed_probation_unsure">{unsure}</label>
         <Input
+          disabled={!grantedProbation}
           onChange={handleChange}
           type="radio"
           name="Completed probation with no violations"
@@ -140,7 +157,7 @@ const ExpungementProbationInfo = ({
         />
       </section>
       <section>
-        <label className={styles.LabelMargin}>{fines}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{fines}</label>
         <label htmlFor="owe_money_yes">{yes}</label>
         <Input
           onChange={handleChange}

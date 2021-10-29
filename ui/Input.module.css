@@ -18,4 +18,5 @@
 
 .Input:disabled {
   background-color: var(--light-grey);
+  cursor: not-allowed;
 }

@@ -161,6 +161,15 @@ const ExpungementForm = () => {
         animationClass={Load}
       />
       <ExpungementProbationInfo
+        //@ts-ignore
+        probationOrParole={
+          expungeInfo?.['Are you currently on probation or parole'] ===
+          'Are you currently on probation or parole_yes_On'
+        }
+        //@ts-ignore
+        grantedProbation={
+          expungeInfo?.['Granted probation'] === 'Granted probation_yes_On'
+        }
         handleChange={handleChange}
         animationClass={Load}
       />
