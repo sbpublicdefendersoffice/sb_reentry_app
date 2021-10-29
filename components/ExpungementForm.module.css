@@ -43,12 +43,9 @@
   margin-right: var(--margin-sm);
 }
 
-.Selected {
-  color: var(--dark);
-}
-
-.Deslected {
-  color: var(--deselected);
+.TitleLabel {
+  font-size: var(--med-text);
+  color: var(--highlight);
 }
 
 .VertMargin {
@@ -58,7 +55,7 @@
 @media (max-width: 700px) {
   .ExpungementForm > div > section {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .ExpungementForm > div > section > input,
@@ -71,7 +68,11 @@
     margin: var(--margin-std) 0;
   }
 
-  .ExpungementForm > div > section > input {
+  .ExpungementForm > div > section > input[type='text'],
+  .ExpungementForm > div > section > input[type='number'],
+  .ExpungementForm > div > section > input[type='date'],
+  .ExpungementForm > div > section > input[type='tel'],
+  .ExpungementForm > div > section > input[type='email'] {
     width: 100%;
   }
 }

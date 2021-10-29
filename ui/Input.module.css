@@ -1,5 +1,4 @@
 .Input {
-  outline: none;
   border: var(--border-width) solid var(--primary);
   border-radius: var(--radius-small);
   margin: var(--margin-std) var(--margin-sm);

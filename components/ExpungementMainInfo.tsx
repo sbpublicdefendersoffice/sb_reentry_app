@@ -1,7 +1,7 @@
 import { useRef, MutableRefObject, ChangeEvent } from 'react'
 
 import styles from './ExpungementForm.module.css'
-const { LabelMargin } = styles
+const { LabelMargin, TitleLabel, VertMargin } = styles
 
 import { states } from '../constants'
 import { CopyHolder } from '../types'
@@ -118,11 +118,16 @@ const ExpungementMainInfo = ({
         {info}
       </Paragraph>
       <section>
-        <label htmlFor="Full Name">{name}</label>
+        <label className={TitleLabel} htmlFor="Full Name">
+          {name}
+        </label>
         <Input onChange={handleChange} type="text" id="Full Name" />
       </section>
       <section>
-        <label htmlFor="Any other names that might be on your record">
+        <label
+          className={TitleLabel}
+          htmlFor="Any other names that might be on your record"
+        >
           {alias}
         </label>
         <Input
@@ -132,7 +137,9 @@ const ExpungementMainInfo = ({
         />
       </section>
       <section>
-        <label htmlFor="Social Security No">{ssn}</label>
+        <label className={TitleLabel} htmlFor="Social Security No">
+          {ssn}
+        </label>
         <Input
           onChange={handleChange}
           type="text"
@@ -143,15 +150,19 @@ const ExpungementMainInfo = ({
         />
       </section>
       <section>
-        <label htmlFor="Date of Birth">{dob}</label>
+        <label className={TitleLabel} htmlFor="Date of Birth">
+          {dob}
+        </label>
         <Input onChange={handleChange} type="date" id="Date of Birth" />
       </section>
       <section>
-        <label htmlFor="RaceEthnicity">{race}</label>
+        <label className={TitleLabel} htmlFor="RaceEthnicity">
+          {race}
+        </label>
         <Input onChange={handleChange} type="text" id="RaceEthnicity" />
       </section>
       <section>
-        <label className={LabelMargin}>{primary_lang}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{primary_lang}</label>
         <label htmlFor="English">{English}</label>
         <Input onChange={handleChange} type="checkbox" id="English" />
         <label htmlFor="Spanish">{Spanish}</label>
@@ -163,9 +174,13 @@ const ExpungementMainInfo = ({
         <Input onChange={handleChange} type="text" id="Other-0" />
       </section>
       <section>
-        <label htmlFor="Phone Number">{primary_phone}</label>
+        <label className={TitleLabel} htmlFor="Phone Number">
+          {primary_phone}
+        </label>
         <Input onChange={handleChange} type="tel" id="Phone Number" />
-        <label className={LabelMargin}>{leave_message}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>
+          {leave_message}
+        </label>
         <label htmlFor="primary_phone_yes">{yes}</label>
         <Input
           onChange={handleChange}
@@ -184,9 +199,13 @@ const ExpungementMainInfo = ({
         />
       </section>
       <section>
-        <label htmlFor="Alternate Number">{alternate_number}</label>
+        <label className={TitleLabel} htmlFor="Alternate Number">
+          {alternate_number}
+        </label>
         <Input onChange={handleChange} type="tel" id="Alternate Number" />
-        <label className={LabelMargin}>{leave_message}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>
+          {leave_message}
+        </label>
         <label htmlFor="alternate_phone_yes">{yes}</label>
         <Input
           onChange={handleChange}
@@ -205,15 +224,21 @@ const ExpungementMainInfo = ({
         />
       </section>
       <section>
-        <label htmlFor="Address">{address}</label>
+        <label className={TitleLabel} htmlFor="Address">
+          {address}
+        </label>
         <Input onChange={handleChange} type="text" id="Address" required />
       </section>
       <section>
-        <label htmlFor="City">{city}</label>
+        <label className={TitleLabel} htmlFor="City">
+          {city}
+        </label>
         <Input onChange={handleChange} type="text" id="City" required />
       </section>
       <section>
-        <label htmlFor="state">{state}</label>
+        <label className={TitleLabel} htmlFor="state">
+          {state}
+        </label>
         <select onChange={handleChange} id="state" defaultValue="CA" required>
           {states.map((state: string, i: number) => (
             <option key={i} value={state}>
@@ -221,7 +246,9 @@ const ExpungementMainInfo = ({
             </option>
           ))}
         </select>
-        <label htmlFor="zip">{zip}</label>
+        <label className={TitleLabel} htmlFor="zip">
+          {zip}
+        </label>
         <Input
           onChange={handleChange}
           id="zip"
@@ -232,11 +259,13 @@ const ExpungementMainInfo = ({
         />
       </section>
       <section>
-        <label htmlFor="Email Address">E-mail</label>
+        <label className={TitleLabel} htmlFor="Email Address">
+          E-mail
+        </label>
         <Input onChange={handleChange} type="email" id="Email Address" />
       </section>
       <section>
-        <label className={LabelMargin}>{communicate}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{communicate}</label>
         <label htmlFor="Email">E-mail</label>
         <Input onChange={handleChange} type="checkbox" id="Email" />
         <label htmlFor="Phone">{phone}</label>
@@ -245,7 +274,7 @@ const ExpungementMainInfo = ({
         <Input onChange={handleChange} type="checkbox" id="Text" />
       </section>
       <section>
-        <label className={LabelMargin}>{purpose}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{purpose}</label>
         <label htmlFor="Employment">{employment}</label>
         <Input onChange={handleChange} type="checkbox" id="Employment" />
         <label htmlFor="Housing">{housing}</label>

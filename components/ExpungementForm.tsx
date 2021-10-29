@@ -70,13 +70,12 @@ const ExpungementForm = () => {
     e: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault()
-    // change all number fields to not accept negative numbers
     // further styling and options needed for input types
     // when done, remember to make TWO interfaces for form data held in state and send to backend
     // set address fields to required. I will ask Amanda what fields they need to be required
     // need to figure out how to set today's date in state easily
     // pass down date in state to signature
-    // do server and client side validation
+    // do server and client side validation, including for negative numbers
 
     //@ts-ignore
     const { Address, City, state, zip } = expungeInfo
