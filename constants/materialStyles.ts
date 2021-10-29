@@ -1,4 +1,5 @@
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { makeStyles, createStyles } from '@mui/styles'
+import { Theme } from '@mui/material'
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -57,7 +58,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     badge: {
       '& > *': {
-        margin: theme.spacing(1),
+        margin: '1rem',
       },
     },
     linkHeading: {
@@ -114,7 +115,7 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     formControl: {
-      margin: theme.spacing(1),
+      margin: '1rem',
       minWidth: 120,
       maxWidth: 300,
       fontSize: '2rem',
@@ -151,18 +152,18 @@ export const useStyles = makeStyles((theme: Theme) =>
       },
     },
     paper: {
-      padding: theme.spacing(2),
+      padding: '1.2rem',
       textAlign: 'center',
-      color: theme.palette.text.secondary,
+      color: '#12385E !important',
       minHeight: '10rem',
     },
     paperModal: {
-      padding: theme.spacing(2),
+      padding: '1.2rem',
       textAlign: 'center',
       marginTop: '2rem',
       margin: 'auto',
       width: '80%',
-      color: 'theme.palette.text.secondary',
+      color: '#12385E !important',
       overflow: 'scroll',
       '@media (max-width: 500px)': {
         width: '100%',
@@ -183,12 +184,14 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     aboutPaper: {
       textAlign: 'center',
-      width: '100%',
+      width: '80%',
+      margin: 'auto',
+      justifyContent: 'center',
       display: 'flex',
       color: 'black',
     },
     aboutPaperIconCards: {
-      padding: theme.spacing(2),
+      padding: '1.2rem',
       textAlign: 'center',
       width: '30rem',
       minWidth: '11rem',
@@ -244,10 +247,10 @@ export const useStyles = makeStyles((theme: Theme) =>
     paperFilter: {
       position: 'absolute',
       width: 400,
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: '#12385E !important',
       border: '2px solid #000',
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
+      boxShadow: 'initial',
+      padding: '1.4rem',
     },
     listItemText: {
       fontSize: '1.6rem',
@@ -285,9 +288,9 @@ export const useStyles = makeStyles((theme: Theme) =>
       borderBottom: 'none',
     },
     paperCard: {
-      padding: theme.spacing(2),
+      padding: '1.2rem',
       textAlign: 'center',
-      color: theme.palette.text.secondary,
+      color: '#12385E !important',
       minHeight: '22rem',
     },
     media: {
@@ -322,15 +325,15 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontSize: '1.5rem',
     },
     checklistPaper: {
-      padding: theme.spacing(2),
+      padding: '1.2rem',
       textAlign: 'center',
-      color: theme.palette.text.secondary,
+      color: '#12385E !important',
       minHeight: '10rem',
     },
     checklistPaperCard: {
-      padding: theme.spacing(2),
+      padding: '1.2rem',
       textAlign: 'center',
-      color: theme.palette.text.secondary,
+      color: '#12385E !important',
       minHeight: '22rem',
     },
     flyerRoot: {

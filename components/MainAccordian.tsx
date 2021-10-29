@@ -4,8 +4,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   Grid,
-} from '@material-ui/core/'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+} from '@mui/material'
+import { ExpandMore } from '@mui/icons-material'
 import { CopyHolder } from '../types/'
 import { useRouter } from 'next/router'
 import {
@@ -48,7 +48,7 @@ const MainAccordian = () => {
           <Accordion key={key} style={{ margin: '1rem' }}>
             <AccordionSummary
               data-testid="accordion"
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={<ExpandMore />}
               aria-controls="panel3a-content"
               id="panel3a-header"
             >

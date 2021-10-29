@@ -4,8 +4,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   Grid,
-} from '@material-ui/core/'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+} from '@mui/material'
+import { ExpandMore } from '@mui/icons-material'
 import { CopyHolder } from '../types/'
 import { TipsAccord } from '../constants/checklist-data'
 import useLanguage from '../hooks/useLanguage'
@@ -21,7 +21,7 @@ const TipsAccordian = () => {
         return (
           <Accordion key={key} style={{ margin: '1rem' }}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={<ExpandMore />}
               aria-controls="panel3a-content"
               id="panel3a-header"
             >

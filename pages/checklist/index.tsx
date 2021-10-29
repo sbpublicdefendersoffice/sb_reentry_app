@@ -1,4 +1,4 @@
-import Typography from '@material-ui/core/Typography'
+import { Typography } from '@mui/material'
 import useLanguage from '../../hooks/useLanguage'
 import { checkCopy, useStyles, siteTitle } from '../../constants/'
 import {

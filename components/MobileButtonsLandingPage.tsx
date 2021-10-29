@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { Fab } from '@material-ui/core/'
-import { FilterList, List, Room } from '@material-ui/icons/'
+import { Fab } from '@mui/material'
+import { FilterList, List, Room } from '@mui/icons-material'
 import { useView } from '../hooks/'
 
 const MobileButtonsLandingPage = ({ activeCopy, setOpen }) => {
