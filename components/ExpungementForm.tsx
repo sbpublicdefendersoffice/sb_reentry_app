@@ -151,7 +151,15 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
-      <ExpungementCaseInfo handleChange={handleChange} animationClass={Load} />
+      <ExpungementCaseInfo
+        //@ts-ignore
+        convictedInCounty={
+          expungeInfo?.['Convicted in Santa Barbara County'] ===
+          'Convicted in Santa Barbara County_yes_On'
+        }
+        handleChange={handleChange}
+        animationClass={Load}
+      />
       <ExpungementProbationInfo
         handleChange={handleChange}
         animationClass={Load}

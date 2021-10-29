@@ -5,6 +5,7 @@ import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
 import styles from './ExpungementForm.module.css'
+const { LabelMargin, TitleLabel } = styles
 
 const copy: CopyHolder = {
   english: {
@@ -32,6 +33,7 @@ const copy: CopyHolder = {
 }
 
 interface ExpungementCaseInfoProps {
+  convictedInCounty: boolean
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -39,6 +41,7 @@ interface ExpungementCaseInfoProps {
 }
 
 const ExpungementCaseInfo = ({
+  convictedInCounty,
   handleChange,
   animationClass,
 }: ExpungementCaseInfoProps) => {
@@ -73,7 +76,7 @@ const ExpungementCaseInfo = ({
         <Input onChange={handleChange} type="checkbox" id="Unsure" />
       </section>
       <section>
-        <label className={styles.LabelMargin}>{marijuana}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{marijuana}</label>
         <label htmlFor="marijuana_related_yes">{yes}</label>
         <Input
           onChange={handleChange}
@@ -92,11 +95,13 @@ const ExpungementCaseInfo = ({
         />
       </section>
       <section>
-        <label htmlFor="Case Numbers if known">{numbers}</label>
+        <label className={TitleLabel} htmlFor="Case Numbers if known">
+          {numbers}
+        </label>
         <Input onChange={handleChange} type="text" id="Case Numbers if known" />
       </section>
       <section>
-        <label className={styles.LabelMargin}>{county}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{county}</label>
         <label htmlFor="convicted_in_sb_yes">{yes}</label>
         <Input
           onChange={handleChange}
@@ -115,9 +120,10 @@ const ExpungementCaseInfo = ({
         />
       </section>
       <section>
-        <label className={styles.LabelMargin}>{city}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{city}</label>
         <label htmlFor="convicted_in_city_sb">Santa Barbara</label>
         <Input
+          disabled={!convictedInCounty}
           onChange={handleChange}
           type="radio"
           name="City Convicted In"
@@ -126,6 +132,7 @@ const ExpungementCaseInfo = ({
         />
         <label htmlFor="convicted_in_city_sm">Santa Maria</label>
         <Input
+          disabled={!convictedInCounty}
           onChange={handleChange}
           type="radio"
           name="City Convicted In"
@@ -134,6 +141,7 @@ const ExpungementCaseInfo = ({
         />
         <label htmlFor="convicted_in_city_lom">Lompoc</label>
         <Input
+          disabled={!convictedInCounty}
           onChange={handleChange}
           type="radio"
           name="City Convicted In"
