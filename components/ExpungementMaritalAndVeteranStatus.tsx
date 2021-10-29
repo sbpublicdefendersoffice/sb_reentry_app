@@ -34,8 +34,10 @@ const copy: CopyHolder = {
 }
 
 import styles from './ExpungementForm.module.css'
+const { LabelMargin, TitleLabel } = styles
 
 interface ExpungementMaritalAndVeteranStatusProps {
+  applicantIsVeteran: boolean
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -43,6 +45,7 @@ interface ExpungementMaritalAndVeteranStatusProps {
 }
 
 const ExpungementMaritalAndVeteranStatus = ({
+  applicantIsVeteran,
   handleChange,
   animationClass,
 }: ExpungementMaritalAndVeteranStatusProps) => {
@@ -71,7 +74,7 @@ const ExpungementMaritalAndVeteranStatus = ({
         {status}
       </Paragraph>
       <section>
-        <label className={styles.LabelMargin}>{marital}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{marital}</label>
         <label htmlFor="marital_status_single">{single}</label>
         <Input
           onChange={handleChange}
@@ -114,7 +117,7 @@ const ExpungementMaritalAndVeteranStatus = ({
         />
       </section>
       <section>
-        <label className={styles.LabelMargin}>{veteran}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{veteran}</label>
         <label htmlFor="veteran_yes">{yes}</label>
         <Input
           onChange={handleChange}
@@ -132,11 +135,23 @@ const ExpungementMaritalAndVeteranStatus = ({
           id="veteran_no"
         />
         <label htmlFor="If yes which branch">{branch}</label>
-        <Input onChange={handleChange} type="text" id="If yes which branch" />
+        <Input
+          disabled={!applicantIsVeteran}
+          onChange={handleChange}
+          type="text"
+          id="If yes which branch"
+        />
       </section>
       <section>
-        <label htmlFor="Discharge Date">{discharge}</label>
-        <Input onChange={handleChange} type="date" id="Discharge Date" />
+        <label className={TitleLabel} htmlFor="Discharge Date">
+          {discharge}
+        </label>
+        <Input
+          disabled={!applicantIsVeteran}
+          onChange={handleChange}
+          type="date"
+          id="Discharge Date"
+        />
       </section>
     </Card>
   )

@@ -9,3 +9,13 @@
 .Input[type='date'] {
   font-family: 'Roboto', sans-serif;
 }
+
+.Input[type='checkbox'],
+.Input[type='radio'] {
+  transform: scale(2);
+  cursor: pointer;
+}
+
+.Input:disabled {
+  background-color: var(--light-grey);
+}

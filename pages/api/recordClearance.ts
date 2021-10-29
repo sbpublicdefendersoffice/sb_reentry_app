@@ -35,7 +35,7 @@ const recordClearance = async (
       to: process.env.SBPD_RECORDS_EXPUNGMENT_EMAIL,
       from: process.env.SENDGRID_RECORDS_EXPUNGEMENT_EMAIL,
       subject: `Expungment forms for ${name}`,
-      text: `Here's the form for ${name}`,
+      text: `Here's the forms for ${name}`,
       attachments: [
         {
           content: filledOutFinance,

@@ -22,7 +22,7 @@ import {
 
 import styles from './ExpungementForm.module.css'
 
-import { Title, Button, Card, Paragraph } from '../ui'
+import { Title, Button, Card, Paragraph, Input } from '../ui'
 
 const copy: CopyHolder = {
   english: {
@@ -119,24 +119,35 @@ const ExpungementForm = () => {
       <Paragraph size="med-text">2) {two}</Paragraph>
       <Paragraph size="med-text">3) {three}</Paragraph>
       <Paragraph size="med-text">4) {four}</Paragraph>
-      <ExpungementMainInfo handleChange={handleChange} animationClass={Load} />
+      <ExpungementMainInfo
+        //@ts-ignore
+        otherLang={expungeInfo?.Other}
+        handleChange={handleChange}
+        animationClass={Load}
+      />
       <Card ref={uptrustRef}>
         <Paragraph size="med-text" color="highlight">
           {uptrust}
         </Paragraph>
-        <label
-          htmlFor="I would like to be enrolled in Uptrust to receive"
-          className={styles.LabelMargin}
-        >
-          {enroll}
-        </label>
-        <input
-          type="checkbox"
-          id="I would like to be enrolled in Uptrust to receive"
-          onChange={handleChange}
-        />
+        <div style={{ textAlign: 'center' }}>
+          <label
+            htmlFor="I would like to be enrolled in Uptrust to receive"
+            className={styles.LabelMargin}
+          >
+            {enroll}
+          </label>
+          <Input
+            type="checkbox"
+            id="I would like to be enrolled in Uptrust to receive"
+            onChange={handleChange}
+          />
+        </div>
       </Card>
       <ExpungementMaritalAndVeteranStatus
+        //@ts-ignore
+        applicantIsVeteran={
+          expungeInfo?.['Are you a veteran'] === 'Are you a veteran_Yes_On'
+        }
         handleChange={handleChange}
         animationClass={Load}
       />

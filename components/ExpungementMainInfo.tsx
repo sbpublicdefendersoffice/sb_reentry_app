@@ -1,7 +1,7 @@
 import { useRef, MutableRefObject, ChangeEvent } from 'react'
 
 import styles from './ExpungementForm.module.css'
-const { LabelMargin, TitleLabel, VertMargin } = styles
+const { LabelMargin, TitleLabel, Deselected } = styles
 
 import { states } from '../constants'
 import { CopyHolder } from '../types'
@@ -9,6 +9,7 @@ import { useLanguage, useIntersectionStyle } from '../hooks'
 import { Card, Paragraph, Input } from '../ui'
 
 interface ExpungementMainInfoProps {
+  otherLang: boolean
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -75,6 +76,7 @@ const copy: CopyHolder = {
 }
 
 const ExpungementMainInfo = ({
+  otherLang,
   handleChange,
   animationClass,
 }: ExpungementMainInfoProps) => {
@@ -121,7 +123,7 @@ const ExpungementMainInfo = ({
         <label className={TitleLabel} htmlFor="Full Name">
           {name}
         </label>
-        <Input onChange={handleChange} type="text" id="Full Name" />
+        <Input onChange={handleChange} type="text" id="Full Name" required />
       </section>
       <section>
         <label
@@ -171,7 +173,12 @@ const ExpungementMainInfo = ({
         <Input onChange={handleChange} type="checkbox" id="M ixteco" />
         <label htmlFor="Other">{other}</label>
         <Input onChange={handleChange} type="checkbox" id="Other" />
-        <Input onChange={handleChange} type="text" id="Other-0" />
+        <Input
+          disabled={!otherLang}
+          onChange={handleChange}
+          type="text"
+          id="Other-0"
+        />
       </section>
       <section>
         <label className={TitleLabel} htmlFor="Phone Number">
