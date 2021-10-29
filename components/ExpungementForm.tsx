@@ -70,11 +70,8 @@ const ExpungementForm = () => {
     e: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault()
-    // further styling and options needed for input types
     // when done, remember to make TWO interfaces for form data held in state and send to backend
     // set address fields to required. I will ask Amanda what fields they need to be required
-    // need to figure out how to set today's date in state easily
-    // pass down date in state to signature
     // do server and client side validation, including for negative numbers
 
     //@ts-ignore
@@ -180,23 +177,43 @@ const ExpungementForm = () => {
         animationClass={Load}
       />
       <ExpungementEmploymentAndIncome
+        //@ts-ignore
+        unemployment={
+          expungeInfo?.['Unemployment Benefits'] ===
+          'Unemployment Benefits_Yes_On'
+        }
+        //@ts-ignore
+        partnerUnemployment={
+          expungeInfo?.['Unemployment Benefits-0'] ===
+          'Unemployment Benefits_Yes-0_On'
+        }
         handleChange={handleChange}
         animationClass={Load}
       />
       <ExpungementMonthlyExpenses
+        //@ts-ignore
+        hasOtherExpenses={!!expungeInfo?.['Textfield-13']}
         handleChange={handleChange}
         animationClass={Load}
       />
       <ExpungementOtherIncomeAssets
+        //@ts-ignore
+        hasRealEstate={expungeInfo?.['Real Estate'] === 'Real Estate_Yes_On'}
         handleChange={handleChange}
         animationClass={Load}
       />
       <ExpungementSignature
+        setExpungeInfo={setExpungeInfo}
         expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
       />
-      <Button role="button" type="submit">
+      <Button
+        //@ts-ignore
+        disabled={!expungeInfo?.['certified']}
+        role="button"
+        type="submit"
+      >
         {submit}
       </Button>
     </form>

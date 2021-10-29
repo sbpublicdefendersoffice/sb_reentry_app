@@ -36,9 +36,10 @@ const copy: CopyHolder = {
 }
 
 import styles from './ExpungementForm.module.css'
-const { LabelMargin } = styles
+const { LabelMargin, TitleLabel } = styles
 
 interface ExpungementOtherIncomeAssetsProps {
+  hasRealEstate: boolean
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -46,6 +47,7 @@ interface ExpungementOtherIncomeAssetsProps {
 }
 
 const ExpungementOtherIncomeAssets = ({
+  hasRealEstate,
   handleChange,
   animationClass,
 }: ExpungementOtherIncomeAssetsProps) => {
@@ -75,32 +77,42 @@ const ExpungementOtherIncomeAssets = ({
         {income}
       </Paragraph>
       <section>
-        <label htmlFor="Textfield-0">{cSupport} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-0">
+          {cSupport} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-0" />
       </section>
       <section>
-        <label htmlFor="Textfield-2">{disability} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-2">
+          {disability} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-2" />
       </section>
       <section>
-        <label htmlFor="Textfield-4">{social} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-4">
+          {social} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-4" />
       </section>
       <section>
-        <label className={LabelMargin}>{welfare}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{welfare}</label>
         <label htmlFor="AFDC">AFDC</label>
         <Input onChange={handleChange} type="checkbox" id="AFDC" />
         <label htmlFor="FS">FS</label>
         <Input onChange={handleChange} type="checkbox" id="FS" />
-        <label htmlFor="Textfield-6">{amount} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-6">
+          {amount} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-6" />
       </section>
       <section>
-        <label htmlFor="Textfield-8">SSI/SSP/GR $</label>
+        <label className={TitleLabel} htmlFor="Textfield-8">
+          SSI/SSP/GR $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-8" />
       </section>
       <section>
-        <label className={LabelMargin}>{real_estate}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{real_estate}</label>
         <label htmlFor="real_estate_yes">{yes}</label>
         <Input
           onChange={handleChange}
@@ -111,22 +123,38 @@ const ExpungementOtherIncomeAssets = ({
         />
         <label htmlFor="real_estate_no">No</label>
         <Input type="radio" id="real_estate_no" name="Real Estate" />
-        <Input onChange={handleChange} type="number" id="Textfield-9" />
+        <Input
+          disabled={!hasRealEstate}
+          onChange={handleChange}
+          type="number"
+          id="Textfield-9"
+        />
       </section>
       <section>
-        <label htmlFor="Textfield-11">{checking} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-11">
+          {checking} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-11" />
       </section>
       <section>
-        <label htmlFor="Textfield-12">{savings} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-12">
+          {savings} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-12" />
       </section>
       <section>
-        <label htmlFor="Textfield-15">{cash} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-15">
+          {cash} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-15" />
       </section>
       <section>
-        <label htmlFor="Other Income or assets valued at">{other} $</label>
+        <label
+          className={TitleLabel}
+          htmlFor="Other Income or assets valued at"
+        >
+          {other} $
+        </label>
         <Input
           onChange={handleChange}
           type="number"

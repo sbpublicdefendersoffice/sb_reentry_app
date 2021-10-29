@@ -1,11 +1,18 @@
-import { useRef, MutableRefObject, ChangeEvent } from 'react'
+import {
+  useRef,
+  useEffect,
+  MutableRefObject,
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+} from 'react'
 
 import { CopyHolder, ExpungementInfo } from '../types'
 import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
 import styles from './ExpungementForm.module.css'
-const { VertMargin, LabelMargin } = styles
+const { VertMargin, LabelMargin, TitleLabel } = styles
 
 const copy: CopyHolder = {
   english: {
@@ -31,6 +38,7 @@ const copy: CopyHolder = {
 }
 
 interface ExpungementSignatureProps {
+  setExpungeInfo: Dispatch<SetStateAction<ExpungementInfo>>
   expungeInfo: ExpungementInfo
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
@@ -39,6 +47,7 @@ interface ExpungementSignatureProps {
 }
 
 const ExpungementSignature = ({
+  setExpungeInfo,
   expungeInfo,
   handleChange,
   animationClass,
@@ -47,6 +56,14 @@ const ExpungementSignature = ({
   const { language } = useLanguage()
 
   const { sign, disclaimer, fees, certify, date, signature } = copy[language]
+  useEffect(
+    () =>
+      setExpungeInfo(val => ({
+        ...val,
+        Date: new Date().toISOString().substring(0, 10),
+      })),
+    [],
+  )
 
   useIntersectionStyle(signRef, animationClass)
 
@@ -58,17 +75,21 @@ const ExpungementSignature = ({
       <Paragraph className={VertMargin}>{disclaimer}</Paragraph>
       <Paragraph className={VertMargin}>{fees}</Paragraph>
       <section>
-        <label htmlFor="Date">{date}</label>
+        <label className={TitleLabel} htmlFor="Date">
+          {date}
+        </label>
         <Input
           onChange={handleChange}
           type="date"
           id="Date"
           //@ts-ignore
-          value={expungeInfo?.Date || new Date().toISOString().substring(0, 10)}
+          value={expungeInfo?.Date}
         />
       </section>
       <section>
-        <label htmlFor="Signature">{signature}</label>
+        <label className={TitleLabel} htmlFor="Signature">
+          {signature}
+        </label>
         <Input onChange={handleChange} type="text" id="Signature" />
       </section>
       <label className={LabelMargin} htmlFor="certified">

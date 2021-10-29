@@ -4,6 +4,9 @@ import { CopyHolder } from '../types'
 import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
+import styles from './ExpungementForm.module.css'
+const { TitleLabel } = styles
+
 const copy: CopyHolder = {
   english: {
     expenses: 'Monthly Expenses (Self & Spouse)',
@@ -32,6 +35,7 @@ const copy: CopyHolder = {
 }
 
 interface ExpungementMonthlyExpensesProps {
+  hasOtherExpenses: boolean
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -39,6 +43,7 @@ interface ExpungementMonthlyExpensesProps {
 }
 
 const ExpungementMonthlyExpenses = ({
+  hasOtherExpenses,
   handleChange,
   animationClass,
 }: ExpungementMonthlyExpensesProps) => {
@@ -66,27 +71,39 @@ const ExpungementMonthlyExpenses = ({
         {expenses}
       </Paragraph>
       <section>
-        <label htmlFor="Textfield">{rent} $</label>
+        <label className={TitleLabel} htmlFor="Textfield">
+          {rent} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield" />
       </section>
       <section>
-        <label htmlFor="Textfield-1">{utilities} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-1">
+          {utilities} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-1" />
       </section>
       <section>
-        <label htmlFor="Textfield-3">{food} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-3">
+          {food} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-3" />
       </section>
       <section>
-        <label htmlFor="Textfield-5">{mortgage} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-5">
+          {mortgage} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-5" />
       </section>
       <section>
-        <label htmlFor="Textfield-7">{cSupport} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-7">
+          {cSupport} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-7" />
       </section>
       <section>
-        <label htmlFor="Vehicle LoansPayment Monthly">{vehicle} $</label>
+        <label className={TitleLabel} htmlFor="Vehicle LoansPayment Monthly">
+          {vehicle} $
+        </label>
         <Input
           onChange={handleChange}
           type="number"
@@ -94,14 +111,25 @@ const ExpungementMonthlyExpenses = ({
         />
       </section>
       <section>
-        <label htmlFor="Textfield-10">{insurance} $</label>
+        <label className={TitleLabel} htmlFor="Textfield-10">
+          {insurance} $
+        </label>
         <Input onChange={handleChange} type="number" id="Textfield-10" />
       </section>
       <section>
-        <label htmlFor="Textfield-13">{other}</label>
+        <label className={TitleLabel} htmlFor="Textfield-13">
+          {other}
+        </label>
         <Input onChange={handleChange} type="text" id="Textfield-13" />
-        <label htmlFor="Textfield-14">{amount} $</label>
-        <Input onChange={handleChange} type="number" id="Textfield-14" />
+        <label className={TitleLabel} htmlFor="Textfield-14">
+          {amount} $
+        </label>
+        <Input
+          disabled={!hasOtherExpenses}
+          onChange={handleChange}
+          type="number"
+          id="Textfield-14"
+        />
       </section>
     </Card>
   )

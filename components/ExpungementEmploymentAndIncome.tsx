@@ -5,7 +5,7 @@ import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
 import styles from './ExpungementForm.module.css'
-const { LabelMargin, VertMargin } = styles
+const { LabelMargin, VertMargin, TitleLabel } = styles
 
 const copy: CopyHolder = {
   english: {
@@ -37,6 +37,8 @@ const copy: CopyHolder = {
 }
 
 interface ExpungementEmploymentAndIncomeProps {
+  unemployment: boolean
+  partnerUnemployment: boolean
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -44,6 +46,8 @@ interface ExpungementEmploymentAndIncomeProps {
 }
 
 const ExpungementEmploymentAndIncome = ({
+  unemployment,
+  partnerUnemployment,
   handleChange,
   animationClass,
 }: ExpungementEmploymentAndIncomeProps) => {
@@ -72,23 +76,33 @@ const ExpungementEmploymentAndIncome = ({
         {employ}
       </Paragraph>
       <section>
-        <label htmlFor="Employer Name">{employer_name}</label>
+        <label className={TitleLabel} htmlFor="Employer Name">
+          {employer_name}
+        </label>
         <Input onChange={handleChange} type="text" id="Employer Name" />
       </section>
       <section>
-        <label htmlFor="Address-0">{address}</label>
+        <label className={TitleLabel} htmlFor="Address-0">
+          {address}
+        </label>
         <Input onChange={handleChange} type="text" id="Address-0" />
       </section>
       <section>
-        <label htmlFor="Length of Time">{duration}</label>
+        <label className={TitleLabel} htmlFor="Length of Time">
+          {duration}
+        </label>
         <Input onChange={handleChange} type="text" id="Length of Time" />
       </section>
       <section>
-        <label htmlFor="Supervisor">Supervisor</label>
+        <label className={TitleLabel} htmlFor="Supervisor">
+          Supervisor
+        </label>
         <Input onChange={handleChange} type="text" id="Supervisor" />
       </section>
       <section>
-        <label htmlFor="Take Home Pay">{pay} $</label>
+        <label className={TitleLabel} htmlFor="Take Home Pay">
+          {pay} $
+        </label>
         <Input onChange={handleChange} type="number" id="Take Home Pay" />
         <label htmlFor="Weekly Take Home Pay">{week}</label>
         <Input
@@ -100,7 +114,7 @@ const ExpungementEmploymentAndIncome = ({
         <Input onChange={handleChange} type="checkbox" id="Monthly" />
       </section>
       <section>
-        <label className={LabelMargin}>{benefits}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{benefits}</label>
         <label htmlFor="unemployed_benefits_yes">{yes}</label>
         <Input
           onChange={handleChange}
@@ -118,30 +132,45 @@ const ExpungementEmploymentAndIncome = ({
           id="unemployed_benefits_no"
         />
         <label htmlFor="No Amount">{amount} $</label>
-        <Input onChange={handleChange} type="number" id="No Amount" />
+        <Input
+          disabled={!unemployment}
+          onChange={handleChange}
+          type="number"
+          id="No Amount"
+        />
       </section>
       <hr className={VertMargin} />
       <Paragraph size="med-text" color="highlight">
         {partner_employ}
       </Paragraph>
       <section>
-        <label htmlFor="Employer Name-0">{employer_name}</label>
+        <label className={TitleLabel} htmlFor="Employer Name-0">
+          {employer_name}
+        </label>
         <Input onChange={handleChange} type="text" id="Employer Name-0" />
       </section>
       <section>
-        <label htmlFor="Address-1">{address}</label>
+        <label className={TitleLabel} htmlFor="Address-1">
+          {address}
+        </label>
         <Input onChange={handleChange} type="text" id="Address-1" />
       </section>
       <section>
-        <label htmlFor="Length of Time-0">{duration}</label>
+        <label className={TitleLabel} htmlFor="Length of Time-0">
+          {duration}
+        </label>
         <Input onChange={handleChange} type="text" id="Length of Time-0" />
       </section>
       <section>
-        <label htmlFor="Supervisor-0">Supervisor</label>
+        <label className={TitleLabel} htmlFor="Supervisor-0">
+          Supervisor
+        </label>
         <Input onChange={handleChange} type="text" id="Supervisor-0" />
       </section>
       <section>
-        <label htmlFor="Weekly Take Home Pay-0">{pay} $</label>
+        <label className={TitleLabel} htmlFor="Weekly Take Home Pay-0">
+          {pay} $
+        </label>
         <Input
           onChange={handleChange}
           type="number"
@@ -153,7 +182,7 @@ const ExpungementEmploymentAndIncome = ({
         <Input onChange={handleChange} type="checkbox" id="Monthly-0" />
       </section>
       <section>
-        <label className={LabelMargin}>{benefits}</label>
+        <label className={`${LabelMargin} ${TitleLabel}`}>{benefits}</label>
         <label htmlFor="unemployed_benefits_yes">{yes}</label>
         <Input
           onChange={handleChange}
@@ -171,7 +200,12 @@ const ExpungementEmploymentAndIncome = ({
           id="unemployed_benefits_no"
         />
         <label htmlFor="No Amount-0">{amount} $</label>
-        <Input onChange={handleChange} type="number" id="No Amount-0" />
+        <Input
+          disabled={!partnerUnemployment}
+          onChange={handleChange}
+          type="number"
+          id="No Amount-0"
+        />
       </section>
     </Card>
   )
