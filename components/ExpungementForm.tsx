@@ -174,6 +174,8 @@ const ExpungementForm = () => {
         animationClass={Load}
       />
       <ExpungementDependents
+        //@ts-ignore
+        hasDependents={Number(expungeInfo?.['Number of Dependents'])}
         handleChange={handleChange}
         animationClass={Load}
       />

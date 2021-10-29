@@ -4,6 +4,9 @@ import { CopyHolder } from '../types'
 import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
+import styles from './ExpungementForm.module.css'
+const { TitleLabel } = styles
+
 const copy: CopyHolder = {
   english: {
     dependents: 'Dependents',
@@ -18,6 +21,7 @@ const copy: CopyHolder = {
 }
 
 interface ExpungementDependentsProps {
+  hasDependents: boolean
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
@@ -25,6 +29,7 @@ interface ExpungementDependentsProps {
 }
 
 const ExpungementDependents = ({
+  hasDependents,
   handleChange,
   animationClass,
 }: ExpungementDependentsProps) => {
@@ -41,7 +46,9 @@ const ExpungementDependents = ({
         {dependents}
       </Paragraph>
       <section>
-        <label htmlFor="Number of Dependents">{number}</label>
+        <label className={TitleLabel} htmlFor="Number of Dependents">
+          {number}
+        </label>
         <Input
           onChange={handleChange}
           type="number"
@@ -49,8 +56,15 @@ const ExpungementDependents = ({
         />
       </section>
       <section>
-        <label htmlFor="Relationship and Ages">{relationship}</label>
-        <Input onChange={handleChange} type="text" id="Relationship and Ages" />
+        <label className={TitleLabel} htmlFor="Relationship and Ages">
+          {relationship}
+        </label>
+        <Input
+          disabled={!hasDependents}
+          onChange={handleChange}
+          type="text"
+          id="Relationship and Ages"
+        />
       </section>
     </Card>
   )
