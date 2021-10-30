@@ -12,6 +12,7 @@ export {
 } from './location'
 export { searchByKeyword } from './search'
 export { sendEmail } from './sendEmail'
+export { validator } from './formValidator'
 export {
   validateRequest,
   validatePhoneNumber,
