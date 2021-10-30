@@ -46,7 +46,7 @@ const updateAdminInfoRoute = async (
       )
 
       // const { org, info } = updateAdminInfo
-       // something not right here
+      // something not right here
 
       jwt.sign(
         { id, isVerified, email },

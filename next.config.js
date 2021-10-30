@@ -1,3 +1,5 @@
+const CircularDependencyPlugin = require('circular-dependency-plugin')
+
 // watch out with adding external sources and apis in production mode, make sure to add them to CSP below
 const nextConfigOptions = {
   headers: async () =>
@@ -17,7 +19,7 @@ const nextConfigOptions = {
         ]
       : [],
   target: 'serverless',
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, webpack }) => {
     config.module.rules.push({
       test: /\.pdf/,
       type: 'asset/inline',
@@ -30,6 +32,9 @@ const nextConfigOptions = {
       'pg-hstore': false,
       'pg-native': false,
       tls: false,
+      'mock-aws-s3': false,
+      'aws-sdk': false,
+      nock: false,
     }
 
     config.resolve.fallback = {
@@ -53,6 +58,12 @@ const nextConfigOptions = {
         ...serverOnlyModules,
       }
     }
+
+    if (isServer)
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@mapbox': false,
+      }
 
     if (
       process.env.NODE_ENV === 'production' &&
@@ -79,6 +90,19 @@ const nextConfigOptions = {
       process.env.PROD_SRC_MAPS === 'true'
     )
       config.devtool = 'source-map'
+
+    config.plugins.push(
+      new CircularDependencyPlugin({
+        // exclude detection of files based on a RegExp
+        exclude: /node_modules/,
+        // add errors to webpack instead of warnings
+        failOnError: true,
+        // allow import cycles that include an asyncronous import,
+        // e.g. via import(/* webpackMode: "weak" */ './file.js')
+        allowAsyncCycles: false,
+        cwd: process.cwd(),
+      }),
+    )
 
     return config
   },

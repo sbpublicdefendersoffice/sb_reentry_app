@@ -1,6 +1,8 @@
 import NextLink from 'next/link'
 import { useState, useRef, ReactElement, Fragment } from 'react'
-import { Burger, BurgerItems, LiveDataSearch } from './'
+import Burger from './Burger'
+import BurgerItems from './BurgerItems'
+import LiveDataSearch from './LiveDataSearch'
 import {
   useLanguage,
   useResizeEvent,

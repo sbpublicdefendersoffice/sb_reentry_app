@@ -1,4 +1,5 @@
-import { Disclaimer, LocationRecordDisplay } from './'
+import LocationRecordDisplay from './LocationRecordDisplay'
+import Disclaimer from './Disclaimer'
 import { Details, Title, Paragraph } from '../ui'
 import { Favorite, FavoriteBorder } from '@mui/icons-material'
 

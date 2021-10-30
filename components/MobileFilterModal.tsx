@@ -1,6 +1,6 @@
 import { Fab, Grid } from '@mui/material'
 import { useStyles } from '../constants'
-import { CategoryFilters } from '../components'
+import CategoryFilters from './Filters'
 import { Filter } from '../types/filter'
 const MobileFilterModal = ({
   fields,

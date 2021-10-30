@@ -4,7 +4,6 @@ import {
   // useState
 } from 'react'
 
-// import { LeafLoader } from '../components'
 import { useLanguage } from '../hooks/'
 import { CopyHolder, Language } from '../types/'
 import { Paragraph } from '../ui'

@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react'
 import { useRouter } from 'next/router'
-import { LeafLoader, OrgRecordCard } from './'
+import LeafLoader from './LeafLoader'
+import OrgRecordCard from './OrgRecordCard'
 import { Details, Paragraph } from '../ui'
 import { useLanguage, useView, useResizeEvent } from '../hooks/'
 import withWidth from '@mui/material'
@@ -9,19 +10,6 @@ import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
 import { DesktopFilterView } from '../components'
 import { Hidden } from '@mui/material'
-// import useMediaQuery from '@mui/material/useMediaQuery';
-// import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles'
-// function useWidth() {
-//   const theme = useTheme()
-//   const keys = [...theme.breakpoints.keys].reverse()
-//   return (
-//     keys.reduce((output, key) => {
-//       // eslint-disable-next-line react-hooks/rules-of-hooks
-//       const matches = useMediaQuery(theme.breakpoints.up(key))
-//       return !output && matches ? key : output
-//     }, null) || 'xs'
-//   )
-// }
 export interface RecordPaneProps {
   displayCategory: string
   routeCategory: string

@@ -2,7 +2,7 @@ import { MouseEvent } from 'react'
 import { useRouter } from 'next/router'
 
 import { Button, Title } from '../ui'
-import { FullPageDecision } from '../components'
+import FullPageDecision from './FullPageDecision'
 import { CopyHolder } from '../types/language'
 import useLanguage from '../hooks/useLanguage'
 

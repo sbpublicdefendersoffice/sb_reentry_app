@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { useToken } from '../hooks'
+import useToken from './useToken'
 
 const useUser = () => {
   const [token] = useToken()

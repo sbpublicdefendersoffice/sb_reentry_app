@@ -310,7 +310,11 @@
 
 "@babel/runtime@^7.13.10", "@babel/runtime@^7.15.4", "@babel/runtime@^7.7.2":
   version "7.15.4"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.15.4.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
   dependencies:
     regenerator-runtime "^0.13.4"
@@ -386,9 +390,15 @@
     source-map "^0.5.7"
     stylis "^4.0.3"
 
+<<<<<<< HEAD
 "@emotion/cache@^11.4.0", "@emotion/cache@^11.5.0":
   version "11.5.0"
   resolved "https://registry.npmjs.org/@emotion/cache/-/cache-11.5.0.tgz"
+=======
+"@emotion/cache@^11.5.0":
+  version "11.5.0"
+  resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-11.5.0.tgz#a5eb78cbef8163939ee345e3ddf0af217b845e62"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-mAZ5QRpLriBtaj/k2qyrXwck6yeoz1V5lMt/jfj6igWU35yYlNKs2LziXVgvH81gnJZ+9QQNGelSsnuoAy6uIw==
   dependencies:
     "@emotion/memoize" "^0.7.4"
@@ -411,17 +421,29 @@
 
 "@emotion/is-prop-valid@^1.1.0":
   version "1.1.0"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-1.1.0.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-1.1.0.tgz#29ef6be1e946fb4739f9707def860f316f668cde"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-9RkilvXAufQHsSsjQ3PIzSns+pxuX4EW8EbGeSPjZMHuMx6z/MOzb9LpqNieQX4F3mre3NWS2+X3JNRHTQztUQ==
   dependencies:
     "@emotion/memoize" "^0.7.4"
 
+<<<<<<< HEAD
 "@emotion/memoize@0.7.4", "@emotion/memoize@^0.7.4":
+=======
+"@emotion/memoize@0.7.4":
+>>>>>>> refs/remotes/origin/vic/createAccount
   version "0.7.4"
   resolved "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.4.tgz"
   integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
 
+<<<<<<< HEAD
 "@emotion/memoize@^0.7.5":
+=======
+"@emotion/memoize@^0.7.4", "@emotion/memoize@^0.7.5":
+>>>>>>> refs/remotes/origin/vic/createAccount
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.5.tgz#2c40f81449a4e554e9fc6396910ed4843ec2be50"
   integrity sha512-igX9a37DR2ZPGYtV6suZ6whr8pTFtyHL3K/oLUotxpSVO2ASaprmAe2Dkq7tBo7CRY7MMDrAa9nuQP9/YG8FxQ==
@@ -452,7 +474,11 @@
 
 "@emotion/sheet@^1.0.3":
   version "1.0.3"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@emotion/sheet/-/sheet-1.0.3.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-1.0.3.tgz#00c326cd7985c5ccb8fe2c1b592886579dcfab8f"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-YoX5GyQ4db7LpbmXHMuc8kebtBGP6nZfRC5Z13OKJMixBEwdZrJ914D6yJv/P+ZH/YY3F5s89NYX2hlZAf3SRQ==
 
 "@emotion/styled@^11.3.0":
@@ -478,12 +504,20 @@
 
 "@emotion/utils@^1.0.0":
   version "1.0.0"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@emotion/utils/-/utils-1.0.0.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-1.0.0.tgz#abe06a83160b10570816c913990245813a2fd6af"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-mQC2b3XLDs6QCW+pDQDiyO/EdGZYOygE8s5N5rrzjSI4M3IejPE/JPndCBwRT9z982aqQNi6beWs1UeayrQxxA==
 
 "@emotion/weak-memoize@^0.2.5":
   version "0.2.5"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
 "@eslint/eslintrc@^0.4.3":
@@ -888,26 +922,44 @@
     prop-types "^15.7.2"
     react-is "^16.8.0 || ^17.0.0"
 
+<<<<<<< HEAD
 "@mui/core@5.0.0-alpha.51":
   version "5.0.0-alpha.51"
   resolved "https://registry.npmjs.org/@mui/core/-/core-5.0.0-alpha.51.tgz"
   integrity sha512-Dum1SM5qk9eGeC6TLw6Au/53yuHqpkFM65hFYEtZccjJhUtdQMve+XVsmhgYPNkhiC0HyWgIR8Q5E1q5Fkc+pQ==
+=======
+"@mui/core@5.0.0-alpha.53":
+  version "5.0.0-alpha.53"
+  resolved "https://registry.yarnpkg.com/@mui/core/-/core-5.0.0-alpha.53.tgz#ede1445be3bf5a93d25bdd8ead23afdfb1b68f8b"
+  integrity sha512-dTwuhzE0puewJ+/Cw35iAiaBGVcZqVyqspheQHVJuhysSd+o58SONRAiM6MQgI/iFKiJ57HKh+En1MwuC7DMLw==
+>>>>>>> refs/remotes/origin/vic/createAccount
   dependencies:
     "@babel/runtime" "^7.15.4"
     "@emotion/is-prop-valid" "^1.1.0"
     "@mui/utils" "^5.0.1"
+<<<<<<< HEAD
+=======
+    "@popperjs/core" "^2.4.4"
+>>>>>>> refs/remotes/origin/vic/createAccount
     clsx "^1.1.1"
     prop-types "^15.7.2"
     react-is "^17.0.2"
 
 "@mui/icons-material@^5.0.4":
+<<<<<<< HEAD
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.0.4.tgz#2d1e69c323695a1c6e26be3abcc532818dd442d2"
   integrity sha512-pW/2bjRGnBZujoLdtH/C+ghT0Tmlk9HmZHF6HuALuVOnRiHF9VwrcNrx0FLHYT0aMARZR4dBA15nU/53R1YNeQ==
+=======
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.0.5.tgz#7af61046da4e54de2da7fcf4bdeb3e439e7c10a7"
+  integrity sha512-beJo4kmgZwr+2x0ppgHcqqdNQYX4WKddJyMn4eHJAh9dNAGyeY1AJ/8Po+TJKyoSr3C2ZqnW7WrSonAJr2HrUw==
+>>>>>>> refs/remotes/origin/vic/createAccount
   dependencies:
     "@babel/runtime" "^7.15.4"
 
 "@mui/material@^5.0.4":
+<<<<<<< HEAD
   version "5.0.4"
   resolved "https://registry.npmjs.org/@mui/material/-/material-5.0.4.tgz"
   integrity sha512-075EXSBHoEYeFkE5WDtXyxfd+bNIQRvqlgiouukvMqLGta1EmLq9H6+ONYV4I0Luug8NvNyRocVyRwdjH0Ufmw==
@@ -919,6 +971,18 @@
     "@mui/utils" "^5.0.1"
     "@popperjs/core" "^2.4.4"
     "@types/react-transition-group" "^4.4.3"
+=======
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@mui/material/-/material-5.0.6.tgz#0e688c918fd88a07f59385614c65fce937077a9f"
+  integrity sha512-1NmLel2Q+PnSfhFhdrhTbZFLfGpGKcPbu8onwGJu+vbD3YMTjr8gXvQ/sYZC0Motfu8jLnQdlq4FD4fRhqndnw==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    "@mui/core" "5.0.0-alpha.53"
+    "@mui/system" "^5.0.6"
+    "@mui/types" "^7.0.0"
+    "@mui/utils" "^5.0.1"
+    "@types/react-transition-group" "^4.4.4"
+>>>>>>> refs/remotes/origin/vic/createAccount
     clsx "^1.1.1"
     csstype "^3.0.9"
     hoist-non-react-statics "^3.3.2"
@@ -928,13 +992,18 @@
 
 "@mui/private-theming@^5.0.1":
   version "5.0.1"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@mui/private-theming/-/private-theming-5.0.1.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.0.1.tgz#50a0ea6ad5a8d1d78072859c4bdaaa6b6584d986"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-R8Cf2+32cG1OXFAqTighA5Mx9R5BQ57cN1ZVaNgfgdbI87Yig2fVMdFSPrw3txcjKlnwsvFJF8AdwQMqq1tJ3Q==
   dependencies:
     "@babel/runtime" "^7.15.4"
     "@mui/utils" "^5.0.1"
     prop-types "^15.7.2"
 
+<<<<<<< HEAD
 "@mui/styled-engine@^5.0.1":
   version "5.0.1"
   resolved "https://registry.npmjs.org/@mui/styled-engine/-/styled-engine-5.0.1.tgz"
@@ -975,6 +1044,25 @@
     "@babel/runtime" "^7.15.4"
     "@mui/private-theming" "^5.0.1"
     "@mui/styled-engine" "^5.0.1"
+=======
+"@mui/styled-engine@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.0.2.tgz#a2d188e80d2c8c3501316649c1901a41ac07e376"
+  integrity sha512-vApnXLj/5V+SbBy+jGFtPgu3tgs0ybSdwWLwXcnUAdNdRyJBffi2KyOP8fhUONLOcZBMU2heNXWz/Zqn5kbDKQ==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    "@emotion/cache" "^11.5.0"
+    prop-types "^15.7.2"
+
+"@mui/system@^5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.0.6.tgz#053ad18e3888f041137db9f0c0ac1486c86972a0"
+  integrity sha512-qZdgODiO82/r1bH9KV5bdqqx/q14i32OGUK/bO6phhXM/DX0TmWSUsnPqFX4F7/UKrvBHsGzIb8ohdRuihQD+Q==
+  dependencies:
+    "@babel/runtime" "^7.15.4"
+    "@mui/private-theming" "^5.0.1"
+    "@mui/styled-engine" "^5.0.2"
+>>>>>>> refs/remotes/origin/vic/createAccount
     "@mui/types" "^7.0.0"
     "@mui/utils" "^5.0.1"
     clsx "^1.1.1"
@@ -983,12 +1071,20 @@
 
 "@mui/types@^7.0.0":
   version "7.0.0"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@mui/types/-/types-7.0.0.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@mui/types/-/types-7.0.0.tgz#a7398502bc9c508875aafcbe28aea599b2c3d203"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-M/tkF2pZ4uoPhZ8pnNhlVnOFtz6F3dnYKIsnj8MuXKT6d26IE2u0UjA8B0275ggN74dR9rlHG5xJt5jgDx/Ung==
 
 "@mui/utils@^5.0.1":
   version "5.0.1"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@mui/utils/-/utils-5.0.1.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.0.1.tgz#d4f0f41b82db6ac273920a1b5b6a4de7879271f5"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-GWO104N+o9KG5fKiTEYnAg7kONKEg3vLN+VROAU0f3it6lFGLCVPcQYex/1gJ4QAy96u6Ez8/Hmmhi1+3cX0tQ==
   dependencies:
     "@babel/runtime" "^7.15.4"
@@ -1089,12 +1185,20 @@
 
 "@popperjs/core@^2.4.4":
   version "2.10.2"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.10.2.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.10.2.tgz#0798c03351f0dea1a5a4cabddf26a55a7cbee590"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
 
 "@sendgrid/client@^7.5.0":
   version "7.5.0"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@sendgrid/client/-/client-7.5.0.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@sendgrid/client/-/client-7.5.0.tgz#f22e083f6d457aed392a5e44f055ae3a378b2449"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-tu2l3a1Egp65hRsDdX6qUHvpZydZvgEL7PLViQh4uu5DTqztpNCyw0UQYkyPYyXInWJjLax12UOciTG2V/s4OQ==
   dependencies:
     "@sendgrid/helpers" "^7.5.0"
@@ -1102,14 +1206,22 @@
 
 "@sendgrid/helpers@^7.5.0":
   version "7.5.0"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@sendgrid/helpers/-/helpers-7.5.0.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@sendgrid/helpers/-/helpers-7.5.0.tgz#1459915f740266b1741687333380a7434860541c"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-uzCzpougTDKifyVksx5obZtMcEypq7UVAon/FLurrGEncGrx/N4bYDGPo4chmEdHAZvN75fpavyfETx3DZYebg==
   dependencies:
     deepmerge "^4.2.2"
 
 "@sendgrid/mail@^7.5.0":
   version "7.5.0"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@sendgrid/mail/-/mail-7.5.0.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@sendgrid/mail/-/mail-7.5.0.tgz#adcd3a1b1153108866a26edff80c3658e576a0db"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-/JEQJagigZreHsApOdFdZC2ZtSwaQY5Kvjj29a3BUrx8bEX0bQUlBjlIVQkrxpkgzTvTQgR3kaRzX6BoLiS44A==
   dependencies:
     "@sendgrid/client" "^7.5.0"
@@ -1415,14 +1527,32 @@
 
 "@types/react-is@^16.7.1 || ^17.0.0":
   version "17.0.3"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/@types/react-is/-/react-is-17.0.3.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-17.0.3.tgz#2d855ba575f2fc8d17ef9861f084acc4b90a137a"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-aBTIWg1emtu95bLTLx0cpkxwGW3ueZv71nE2YFBpL8k/z5czEW8yYpOo8Dp+UUAFAtKwNaOsh/ioSeQnWlZcfw==
   dependencies:
     "@types/react" "*"
 
+<<<<<<< HEAD
 "@types/react-transition-group@^4.2.0", "@types/react-transition-group@^4.4.3":
   version "4.4.4"
   resolved "https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.4.4.tgz"
+  integrity sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug==
+=======
+"@types/react-transition-group@^4.2.0":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.2.tgz#38890fd9db68bf1f2252b99a942998dc7877c5b3"
+  integrity sha512-KibDWL6nshuOJ0fu8ll7QnV/LVTo3PzQ9aCPnRUYPfX7eZohHwLIdNHj7pftanREzHNP4/nJa8oeM73uSiavMQ==
+>>>>>>> refs/remotes/origin/vic/createAccount
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-transition-group@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.4.tgz#acd4cceaa2be6b757db61ed7b432e103242d163e"
   integrity sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug==
   dependencies:
     "@types/react" "*"
@@ -2398,6 +2528,11 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
+circular-dependency-plugin@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/circular-dependency-plugin/-/circular-dependency-plugin-5.2.2.tgz#39e836079db1d3cf2f988dc48c5188a44058b600"
+  integrity sha512-g38K9Cm5WRwlaH6g03B9OEz/0qRizI+2I7n+Gz+L5DxXJAPAiWQvwlYNm1V1jkdpUv95bOe/ASm2vfi/G560jQ==
+
 cjs-module-lexer@^1.0.0:
   version "1.2.2"
   resolved "https://registry.npmjs.org/cjs-module-lexer/-/cjs-module-lexer-1.2.2.tgz"
@@ -2774,6 +2909,11 @@ csstype@^2.5.2:
 csstype@^3.0.2, csstype@^3.0.9:
   version "3.0.9"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.0.9.tgz"
+  integrity sha512-rpw6JPxK6Rfg1zLOYCSwle2GFOOsnjmDYDaBwEcwoOg4qlsIVCN789VkBZDJAGi4T07gI4YSutR43t9Zz4Lzuw==
+
+csstype@^3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.9.tgz#6410af31b26bd0520933d02cbc64fce9ce3fbf0b"
   integrity sha512-rpw6JPxK6Rfg1zLOYCSwle2GFOOsnjmDYDaBwEcwoOg4qlsIVCN789VkBZDJAGi4T07gI4YSutR43t9Zz4Lzuw==
 
 data-uri-to-buffer@3.0.1:
@@ -7878,7 +8018,11 @@ stylis@3.5.4:
 
 stylis@^4.0.10, stylis@^4.0.3:
   version "4.0.10"
+<<<<<<< HEAD
   resolved "https://registry.npmjs.org/stylis/-/stylis-4.0.10.tgz"
+=======
+  resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.0.10.tgz#446512d1097197ab3f02fb3c258358c3f7a14240"
+>>>>>>> refs/remotes/origin/vic/createAccount
   integrity sha512-m3k+dk7QeJw660eIKRRn3xPF6uuvHs/FFzjX3HQ5ove0qYsiygoAhwn5a3IYKaZPo5LrYD0rfVmtv1gNY1uYwg==
 
 sugarss@^2.0.0:

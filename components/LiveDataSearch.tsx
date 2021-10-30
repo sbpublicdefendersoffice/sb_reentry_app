@@ -14,12 +14,14 @@ import debounce from 'lodash/debounce'
 
 import { useLanguage, useGlobalSearch } from '../hooks/'
 
-import { Tooltip, FindMe } from './'
+import Tooltip from './Tooltip'
+import FindMe from './FindMe'
+import GlobalSearchResult from './GlobalSearchResult'
+import SearchTermsMarquee from './SearchTermsMarquee'
 
 import Input from '../ui/Input'
 import { searchByKeyword, googleSearch } from '../helpers/'
 import { searchCopy, isProd } from '../constants/'
-import { GlobalSearchResult, SearchTermsMarquee } from './'
 import { PGOrganizationResponse } from '../types'
 
 import styles from './LiveDataSearch.module.css'

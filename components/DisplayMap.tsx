@@ -18,7 +18,10 @@ import {
   useView,
   useResizeEvent,
 } from '../hooks'
-import { MapMarker, CityFilter, ProximityFilter, LeafLoader } from './'
+import LeafLoader from './LeafLoader'
+import MapMarker from './MapMarker'
+import CityFilter from './CityFilter'
+import ProximityFilter from './ProximityFilter'
 import { Details } from '../ui'
 import { PGOrgPlusLocation, WindowSize } from '../types'
 import styles from './DisplayMap.module.css'
