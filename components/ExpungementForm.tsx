@@ -5,9 +5,11 @@ import {
   ChangeEvent,
   MutableRefObject,
 } from 'react'
+import { useRouter } from 'next/router'
 
 import { useLanguage, useIntersectionStyle, useToast } from '../hooks'
-import { ExpungementInfo, CopyHolder } from '../types'
+import { validations } from '../constants'
+import { ExpungementInfo, CopyHolder, Validation } from '../types'
 import {
   ExpungementMainInfo,
   ExpungementProbationInfo,
@@ -37,6 +39,8 @@ const copy: CopyHolder = {
     uptrust: 'Uptrust Enrollment',
     enroll:
       'I would like to be enrolled in Uptrust to receive text messages about upcoming court hearings and office appointments',
+    success:
+      "Form has been submitted to be sent to the Public Defender's office",
   },
   spanish: {
     title: 'Solicite la eliminación de antecedentes penales',
@@ -50,17 +54,30 @@ const copy: CopyHolder = {
     uptrust: 'Inscripción Uptrust',
     enroll:
       'Yo quisiera inscribirme en Uptrust para recibir mensajes de texto acerca de la proxima audiencias judiciales y citas en la oficina',
+    success:
+      'El formulario ha sido enviado para ser enviado a la oficina del Defensor Público.',
   },
 }
 
 const { Load } = styles
 
 const ExpungementForm = () => {
+  const { push } = useRouter()
   const { setToast } = useToast()
   const uptrustRef: MutableRefObject<HTMLDivElement> = useRef()
   const { language } = useLanguage()
-  const { title, submit, uptrust, enroll, elgible, one, two, three, four } =
-    copy[language]
+  const {
+    title,
+    submit,
+    uptrust,
+    enroll,
+    elgible,
+    one,
+    two,
+    three,
+    four,
+    success,
+  } = copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
 
@@ -69,27 +86,45 @@ const ExpungementForm = () => {
   const submitExpungementForm = async (
     e: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
-    e.preventDefault()
     // when done, remember to make TWO interfaces for form data held in state and send to backend
-    // set address fields to required. I will ask Amanda what fields they need to be required
-    // do server and client side validation, including for negative numbers
+    e.preventDefault()
+    try {
+      validations.forEach((v: Validation): void => {
+        const { error, field } = v
+        if (!expungeInfo[field]) throw new Error(`${error[language]}&&#ident`)
 
-    //@ts-ignore
-    const { Address, City, state, zip } = expungeInfo
-    const stateAndZip = `${state || 'CA'}, ${zip}`
+        if (field === 'Social Security No') {
+          const ssn: string = expungeInfo['Social Security No'].replace(
+            /[^0-9]/g,
+            '',
+          )
 
-    const sendForm: Response = await fetch('/api/recordClearance', {
-      method: 'POST',
-      body: JSON.stringify({
-        'Mailing Address': `${Address} ${City} ${stateAndZip}`,
-        'State  Zip': stateAndZip,
-        language,
-        ...expungeInfo,
-      }),
-    })
+          if (ssn.length !== 9) throw new Error(`${error[language]}&&#ident`)
+        }
+      })
 
-    const res = await sendForm.json()
-    setToast(res.statusCode)
+      //@ts-ignore
+      const { Address, City, state, zip } = expungeInfo
+      const stateAndZip = `${state || 'CA'}, ${zip}`
+
+      const sendForm: Response = await fetch('/api/recordClearance', {
+        method: 'POST',
+        body: JSON.stringify({
+          'Mailing Address': `${Address} ${City} ${stateAndZip}`,
+          'State  Zip': stateAndZip,
+          language,
+          ...expungeInfo,
+        }),
+      })
+
+      const res = await sendForm.json()
+      if (res.error) throw new Error(res.error)
+      else setToast(success)
+    } catch (err) {
+      const [msg, id] = err.message.split('&&')
+      setToast(msg)
+      push(id, id, { shallow: true })
+    }
   }
 
   const handleChange = ({

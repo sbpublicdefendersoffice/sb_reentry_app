@@ -60,4 +60,4 @@ export type {
   AllModels,
 } from './sequelize'
 export type { Color, TextSize, UseToastProps, WindowSize } from './ui'
-export type { FieldInfo, Fields, ExpungementInfo } from './forms'
+export type { FieldInfo, Fields, ExpungementInfo, Validation } from './forms'

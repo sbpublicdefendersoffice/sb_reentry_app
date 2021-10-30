@@ -1,7 +1,7 @@
 import { useRef, MutableRefObject, ChangeEvent } from 'react'
 
 import styles from './ExpungementForm.module.css'
-const { LabelMargin, TitleLabel, Deselected } = styles
+const { LabelMargin, TitleLabel } = styles
 
 import { states } from '../constants'
 import { CopyHolder } from '../types'
@@ -115,7 +115,7 @@ const ExpungementMainInfo = ({
   useIntersectionStyle(infoRef, animationClass)
 
   return (
-    <Card ref={infoRef}>
+    <Card ref={infoRef} id="ident">
       <Paragraph size="med-text" color="highlight">
         {info}
       </Paragraph>
@@ -123,7 +123,7 @@ const ExpungementMainInfo = ({
         <label className={TitleLabel} htmlFor="Full Name">
           {name}
         </label>
-        <Input onChange={handleChange} type="text" id="Full Name" required />
+        <Input onChange={handleChange} type="text" id="Full Name" />
       </section>
       <section>
         <label
@@ -147,8 +147,6 @@ const ExpungementMainInfo = ({
           type="text"
           id="Social Security No"
           placeholder="555-55-5555"
-          required
-          pattern="\d{3}-?\d{2}-?\d{4}"
         />
       </section>
       <section>
@@ -234,19 +232,19 @@ const ExpungementMainInfo = ({
         <label className={TitleLabel} htmlFor="Address">
           {address}
         </label>
-        <Input onChange={handleChange} type="text" id="Address" required />
+        <Input onChange={handleChange} type="text" id="Address" />
       </section>
       <section>
         <label className={TitleLabel} htmlFor="City">
           {city}
         </label>
-        <Input onChange={handleChange} type="text" id="City" required />
+        <Input onChange={handleChange} type="text" id="City" />
       </section>
       <section>
         <label className={TitleLabel} htmlFor="state">
           {state}
         </label>
-        <select onChange={handleChange} id="state" defaultValue="CA" required>
+        <select onChange={handleChange} id="state" defaultValue="CA">
           {states.map((state: string, i: number) => (
             <option key={i} value={state}>
               {state}
@@ -261,8 +259,6 @@ const ExpungementMainInfo = ({
           id="zip"
           type="text"
           placeholder="12345"
-          required
-          pattern="\d{5}"
         />
       </section>
       <section>

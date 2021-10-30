@@ -17,6 +17,14 @@ export interface Fields {
   }
 }
 
+export interface Validation {
+  field: string
+  error: {
+    english: string
+    spanish: string
+  }
+}
+
 export interface ExpungementInfo {
   name: string
   email: string

@@ -1,4 +1,37 @@
-import { Fields } from '../types'
+import { Fields, Validation } from '../types'
+
+export const validations: Validation[] = [
+  {
+    field: 'Full Name',
+    error: {
+      english: "Applicant's full name is required",
+      spanish: 'Se requiere el nombre completo del solicitante',
+    },
+  },
+  {
+    field: 'Social Security No',
+    error: {
+      english:
+        'A Social Security Number comprised of nine digits must be provided',
+      spanish:
+        'Se debe proporcionar un número de seguro social compuesto por nueve dígitos',
+    },
+  },
+  {
+    field: 'Address',
+    error: {
+      english: 'An address is required',
+      spanish: 'Se requiere una dirección',
+    },
+  },
+  {
+    field: 'City',
+    error: {
+      english: 'Enter your city of residence',
+      spanish: 'Ingrese su ciudad de residencia',
+    },
+  },
+]
 
 export const states: string[] = [
   'AL',
