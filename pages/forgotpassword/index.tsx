@@ -4,7 +4,8 @@ import { Button, TextField } from '@mui/material'
 import { POST } from '../../helpers/'
 import { useStyles } from '../../constants'
 import { CopyHolder } from '../../types'
-import { useLanguage } from '../../hooks'
+import { useLanguage, useToast, useFormFields } from '../../hooks'
+import { validator } from '../../helpers/formValidator'
 export const copy: CopyHolder = {
   english: {
     successText: `Success`,
@@ -28,11 +29,14 @@ export const copy: CopyHolder = {
       'Por favor, introduce una dirección de correo electrónico válida',
   },
 }
+const initState = {
+  email: '',
+}
 const ForgotPasswordPage = () => {
   const { push } = useRouter()
   const classes = useStyles()
+  const { setToast } = useToast()
   const { language } = useLanguage()
-  const [email, setEmail] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [success, setSuccess] = useState(false)
   const {
@@ -44,24 +48,37 @@ const ForgotPasswordPage = () => {
     someone,
     sendReset,
   } = copy[language]
-  const onSubmitClicked = async (
-    e: FormEvent<HTMLFormElement>,
-  ): Promise<void> => {
+  const submit = () => {}
+  const { handleChange, handleBlur, state, errors, handleSubmit } =
+    useFormFields({
+      initState,
+      callback: submit,
+      validator,
+    })
+  let isValidForm =
+    Object.values(errors).filter(error => typeof error !== 'undefined')
+      .length === 0
+  const { email } = state
+  const onSubmitClicked = async e => {
     e.preventDefault()
-    try {
-      const postUserToPostgres: Response = await fetch(
-        `/api/postForgotPassword/`,
-        {
-          method: POST,
-          body: email,
-        },
-      )
-      await setSuccess(true)
+    const postUserToPostgres: Response = await fetch(
+      `/api/postForgotPassword/`,
+      {
+        method: POST,
+        body: email,
+      },
+    )
+    const apiResponse = await postUserToPostgres.json()
+    if (apiResponse.error) {
+      setToast(`There was an error:`)
+    } else {
+      setSuccess(true)
       setTimeout(() => {
         push('/login')
       }, 3000)
-    } catch (error) {
-      setErrorMessage(error.errorMessage)
+      setToast('Email was sent to the email provided')
+      setSuccess(true)
+      state.email = ''
     }
   }
   return success ? (
@@ -86,24 +103,22 @@ const ForgotPasswordPage = () => {
           {errorMessage && <div className="fail">{errorMessage}</div>}
           <TextField
             value={email}
-            inputProps={{
-              style: { fontSize: '1.6rem', marginBottom: '2rem' },
-              pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
-            }}
+            name="email"
+            onChange={handleChange}
             title={validEmail}
-            onChange={e => setEmail(e.target.value)}
             placeholder={`${someone}@gmail.com`}
+            //@ts-ignore
+            error={errors.email ? true : false}
+            //@ts-ignore
+            helperText={errors.email}
+            onBlur={handleBlur}
           />
           <Button
-            // style={{
-            //   textAlign: 'center',
-            //   backgroundColor: '#04A868',
-            //   color: 'white',
-
-            //   marginBottom: '1rem',
-            // }}
-            className={classes.greenButton}
-            disabled={!email}
+            className={
+              //@ts-ignore
+              errors.email ? classes.disabledButton : classes.greenButton
+            }
+            disabled={!isValidForm}
             type="submit"
           >
             <h4 style={{ padding: '1rem' }}> {sendReset}</h4>

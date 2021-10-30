@@ -1,15 +1,13 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { FormEvent } from 'react'
+import { useState } from 'react'
 import { HeadTags } from '../../components'
 import { siteTitle, isDev, useStyles } from '../../constants'
-import { useFormFields } from '../../hooks'
+import { validator } from '../../helpers/formValidator'
 import { CopyHolder } from '../../types'
-
 import { useLanguage, useToast } from '../../hooks'
 import { POST } from '../../helpers/'
-import { useToken } from '../../hooks/'
-
+import { useToken, useFormFields } from '../../hooks/'
 import { Button, TextField } from '@mui/material'
 import { Check, Close } from '@mui/icons-material'
 export const copy: CopyHolder = {
@@ -27,7 +25,6 @@ export const copy: CopyHolder = {
     lowerCase: 'At least 1 lowercase letter',
     number: 'At least 1 number or special character',
     match: 'Password is equal to confirm password',
-
     validEmail: 'Please enter a valid email address',
     someone: 'someone',
     mustContain:
@@ -48,7 +45,6 @@ export const copy: CopyHolder = {
     lowerCase: 'Al menos 1 letra minúscula',
     number: 'Al menos 1 número o carácter especial',
     match: 'La contraseña es igual a Confirmar contraseña',
-
     validEmail:
       'Por favor, introduce una dirección de correo electrónico válida',
     someone: 'alguien',
@@ -56,63 +52,44 @@ export const copy: CopyHolder = {
       'Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 caracteres o más',
   },
 }
-const initialForm = {
+const initState = {
   org: '',
   email: '',
   pwd: '',
   confirmPwd: '',
 }
 const SignupPage = () => {
-  const [token, setToken] = useToken()
   const { push } = useRouter()
   const classes = useStyles()
-  const { setToast } = useToast()
   const { language } = useLanguage()
-  const [fields, handleFieldChange] = useFormFields(initialForm)
+  const submit = () => {
+    console.log(' Submited')
+  }
+  const { handleChange, handleBlur, state, errors, handleSubmit } =
+    useFormFields({
+      initState,
+      callback: submit,
+      validator,
+    })
+  let isValidForm =
+    Object.values(errors).filter(error => typeof error !== 'undefined')
+      .length === 0
   const {
     confirmPasswordMessage,
     passwordMessage,
-    error,
     signup,
-    success,
     alreadyHave,
     checkMarks,
     characters,
     upperCase,
     lowerCase,
     number,
-
     match,
     validEmail,
     someone,
     mustContain,
   } = copy[language]
-  const { email, org, pwd, confirmPwd } = fields
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault()
-    if (fields) {
-      const postUserToPostgres: Response = await fetch('/api/postUser', {
-        method: POST,
-        body: JSON.stringify(fields),
-      })
-      const apiResponse = await postUserToPostgres.json()
-
-      if (apiResponse.error) {
-        setToast(`${error}${apiResponse.error}`)
-        return
-      } else {
-        setToast(success)
-        fields.org = ''
-        fields.email = ''
-        fields.pwd = ''
-        fields.confirmPwd = ''
-      }
-      const { token } = await apiResponse
-      //@ts-ignore
-      setToken(token)
-      push('/verifyemail')
-    }
-  }
+  const { email, org, pwd, confirmPwd } = state
   return (
     <div style={{ margin: 'auto', textAlign: 'center' }}>
       <HeadTags
@@ -130,37 +107,45 @@ const SignupPage = () => {
           }}
         >
           <h1>{signup}</h1>
-
           <TextField
             value={org}
             name="org"
-            onChange={handleFieldChange}
+            onChange={handleChange}
+            //@ts-ignore
+            helperText={errors.org}
+            //@ts-ignore
+            error={errors.org ? true : false}
             style={{ marginTop: '1rem' }}
+            onBlur={handleBlur}
             placeholder="Thrive SBC"
           />
           <TextField
             value={email}
-            inputProps={{
-              pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
-            }}
             name="email"
             title={validEmail}
-            onChange={handleFieldChange}
+            onChange={handleChange}
             style={{ marginTop: '1rem' }}
             placeholder={`${someone}@gmail.com`}
+            //@ts-ignore
+            error={errors.email ? true : false}
+            //@ts-ignore
+            helperText={errors.email}
+            onBlur={handleBlur}
             required
           />
           <TextField
             type="password"
             name="pwd"
-            inputProps={{
-              pattern: '(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
-            }}
             value={pwd}
+            onBlur={handleBlur}
             style={{ marginTop: '1rem' }}
-            onChange={handleFieldChange}
+            onChange={handleChange}
             placeholder={passwordMessage}
             spellCheck
+            //@ts-ignore
+            error={errors.pwd ? true : false}
+            //@ts-ignore
+            helperText={errors.pwd}
             title={mustContain}
             required
           />
@@ -168,25 +153,27 @@ const SignupPage = () => {
             type="password"
             value={confirmPwd}
             name="confirmPwd"
+            //@ts-ignore
+            error={errors.confirmPwd ? true : false}
             style={{ marginTop: '1rem' }}
-            onChange={handleFieldChange}
+            //@ts-ignore
+            helperText={errors.confirmPwd}
+            onChange={handleChange}
+            onBlur={handleBlur}
             placeholder={confirmPasswordMessage}
+            required
           />
           <hr style={{ margin: '2rem' }} />
           <Button
             className={
-              !email || !pwd || pwd !== confirmPwd
+              confirmPwd !== pwd
+                ? classes.disabledButton
+                : pwd.length == 0
                 ? classes.disabledButton
                 : classes.greenButton
             }
-            // style={{
-            //   textAlign: 'center',
-            //   backgroundColor: '#04A868',
-            //   color: 'white',
-            //   marginBottom: '1rem',
-            // }}
             type="submit"
-            disabled={!email || !pwd || pwd !== confirmPwd}
+            disabled={!isValidForm || pwd !== confirmPwd}
           >
             <h4 style={{ padding: '1rem' }}>{signup}</h4>
           </Button>
@@ -204,7 +191,7 @@ const SignupPage = () => {
         <>
           <p style={{ fontWeight: 'bold', padding: '1rem' }}>{checkMarks}</p>
           <p className={classes.checkMarks}>
-            {pwd.length >= '8' ? (
+            {pwd.length >= 8 ? (
               <Check style={{ color: 'green' }} />
             ) : (
               <Close style={{ color: 'red' }} />

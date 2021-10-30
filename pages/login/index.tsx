@@ -2,14 +2,12 @@ import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { useState, FormEvent, useEffect } from 'react'
 import { HeadTags } from '../../components'
-import { useFormFields } from '../../hooks'
 import { siteTitle, isDev, useStyles } from '../../constants'
 import { CopyHolder } from '../../types'
-
-import { useLanguage, useToast } from '../../hooks'
+import { validator } from '../../helpers/formValidator'
+import { useLanguage, useToast, useFormFields } from '../../hooks'
 import { POST } from '../../helpers/'
 import { Button, TextField } from '@mui/material'
-
 export const copy: CopyHolder = {
   english: {
     login: `Login`,
@@ -37,7 +35,7 @@ export const copy: CopyHolder = {
       'Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 caracteres o más',
   },
 }
-const initialForm = {
+const initState = {
   email: '',
   pwd: '',
 }
@@ -46,61 +44,47 @@ const LoginPage = () => {
   const classes = useStyles()
   const { setToast } = useToast()
   const [successful, setSuccessful] = useState(false)
-  // const [token, setToken] = useToken()
   const { language } = useLanguage()
   const [errorMessage, setErrorMessage] = useState('')
-  const {
-    login,
-    forgot,
-    signup,
-    validEmail,
-    someone,
-    error,
-    success,
-    password,
-    mustContain,
-  } = copy[language]
+  const { login, forgot, signup, validEmail, someone, password, mustContain } =
+    copy[language]
+  const submit = () => {
+    console.log(' Submited')
+  }
+  const { handleChange, handleBlur, state, errors } = useFormFields({
+    initState,
+    callback: submit,
+    validator,
+  })
+  let isValidForm =
+    Object.values(errors).filter(error => typeof error !== 'undefined')
+      .length === 0
 
-  const [adminCredentials, setAdminCredentials] = useFormFields(initialForm)
-  // const getCookie = async (): Promise<void> => {
-  //   await fetch('/api/jwt', { credentials: 'include' })
-  //   push('/login/verify')
-  // }
-  const { email, pwd } = adminCredentials
+  const { email, pwd } = state
   useEffect(() => {
     if (successful) setSuccessful(successful)
   }, [successful])
-  // useEffect(() => {
-  //   if (!success) {
-  //     setTimeout(() => {
-  //       setSuccessful(!success)
-  //       // setAdminInfo({ ...props })
-  //     }, 3000)
-  //   }
-  // }, [successful])
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+
+  const handleSubmit = async e => {
     e.preventDefault()
-    if (adminCredentials) {
+    const { name: fieldName } = e.target
+    const faildFiels = validator(state, fieldName)
+    if (state) {
       const postUserToPostgres: Response = await fetch('/api/postLogin', {
         method: POST,
-        body: JSON.stringify(adminCredentials),
+        body: JSON.stringify(state),
       })
-
       const apiResponse = await postUserToPostgres.json()
       if (apiResponse.error) {
-        // setSuccessful(false)
-        setToast(`${error}${apiResponse.error}`)
+        setToast(`Your account was not found`)
       } else {
-        // setSuccessful(true)
         push('/dashboard')
-        setToast(success)
+        setToast('You have successfully logged in')
 
-        // const { token } = apiResponse
         //@ts-ignore
-        // setToken(token)
 
-        adminCredentials.email = ''
-        adminCredentials.pwd = ''
+        state.email = ''
+        state.pwd = ''
       }
     }
   }
@@ -125,35 +109,38 @@ const LoginPage = () => {
             value={email}
             variant="outlined"
             title={validEmail}
-            inputProps={{
-              style: { marginBottom: '2rem' },
-              pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$',
-            }}
+            //@ts-ignore
+            error={errors.email ? true : false}
+            //@ts-ignore
+            helperText={errors.email}
+            onBlur={handleBlur}
             required
             name="email"
-            onChange={setAdminCredentials}
+            onChange={handleChange}
             placeholder={`${someone}@gmail.com`}
           />
-
           <TextField
             type="password"
             variant="outlined"
             title={mustContain}
-            inputProps={{
-              pattern: '(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
-            }}
             value={pwd}
             name="pwd"
-            onChange={setAdminCredentials}
+            onChange={handleChange}
             placeholder={password}
+            //@ts-ignore
+            error={errors.pwd ? true : false}
+            //@ts-ignore
+            helperText={errors.pwd}
+            onBlur={handleBlur}
           />
-
           <hr style={{ margin: '2rem' }} />
           <Button
-            className={classes.greenButton}
+            className={
+              !isValidForm ? classes.disabledButton : classes.greenButton
+            }
             style={{ marginTop: '1rem' }}
             type="submit"
-            disabled={!email || !pwd}
+            disabled={!isValidForm}
           >
             <h4 style={{ padding: '1rem' }}> {login}</h4>
           </Button>
@@ -175,9 +162,7 @@ const LoginPage = () => {
     </div>
   )
 }
-
 export default LoginPage
-
 export const getServerSideProps: GetServerSideProps = async () => {
   // login is still under development, so we don't want people accessing it in production
   if (!isDev)
@@ -187,7 +172,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
         permanent: false,
       },
     }
-
   return {
     props: {},
   }
