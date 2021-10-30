@@ -4,8 +4,7 @@ import Paragraph from '../ui/Paragraph'
 import { PGOrganizationResponse } from '../types/postgresRecords'
 import { useFavorite, useLanguage } from '../hooks/'
 import styles from './GlobalSearchResult.module.css'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import { Favorite, FavoriteBorder } from '@mui/icons-material'
 
 export interface GlobalSearchResultProps {
   record: PGOrganizationResponse
@@ -23,16 +22,16 @@ const GlobalSearchResult = ({
   const imgSrc = multiple_categories ? multiple_categories[0] : 'socialservices'
   const { favoriteResources, updateFavoriteResources } = useFavorite()
   const isFavIcon = (
-    <FavoriteIcon
+    <Favorite
       data-testid="filled-heart"
-      style={{ color: '#13385E', fontSize: '3rem' }}
+      style={{
+        color: '#13385E',
+        fontSize: '3rem',
+      }}
     />
   )
   const isNotFavIcon = (
-    <FavoriteBorderIcon
-      data-testid="outline-heart"
-      style={{ fontSize: '3rem' }}
-    />
+    <FavoriteBorder data-testid="outline-heart" style={{ fontSize: '3rem' }} />
   )
   const heart = favoriteResources.some(item => item.id === id)
     ? isFavIcon

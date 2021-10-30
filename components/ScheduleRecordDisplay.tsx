@@ -4,7 +4,7 @@ import { CopyHolder, Language } from '../types'
 import { isOpenNow } from '../helpers'
 
 import { Paragraph } from '../ui'
-import { Button } from '@material-ui/core/'
+import { Button } from '@mui/material'
 
 import styles from './ScheduleRecordDisplay.module.css'
 

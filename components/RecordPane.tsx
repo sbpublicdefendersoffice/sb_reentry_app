@@ -3,13 +3,25 @@ import { useRouter } from 'next/router'
 import { LeafLoader, OrgRecordCard } from './'
 import { Details, Paragraph } from '../ui'
 import { useLanguage, useView, useResizeEvent } from '../hooks/'
-import withWidth from '@material-ui/core/withWidth'
+import withWidth from '@mui/material'
 import { PGOrganizationResponse, WindowSize } from '../types/'
 import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
 import { DesktopFilterView } from '../components'
-import { Hidden } from '@material-ui/core'
-
+import { Hidden } from '@mui/material'
+// import useMediaQuery from '@mui/material/useMediaQuery';
+// import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles'
+// function useWidth() {
+//   const theme = useTheme()
+//   const keys = [...theme.breakpoints.keys].reverse()
+//   return (
+//     keys.reduce((output, key) => {
+//       // eslint-disable-next-line react-hooks/rules-of-hooks
+//       const matches = useMediaQuery(theme.breakpoints.up(key))
+//       return !output && matches ? key : output
+//     }, null) || 'xs'
+//   )
+// }
 export interface RecordPaneProps {
   displayCategory: string
   routeCategory: string
@@ -100,4 +112,4 @@ const RecordPane = ({
     </div>
   )
 }
-export default withWidth()(RecordPane)
+export default RecordPane
