@@ -3,28 +3,23 @@ import initDb from '../../helpers/sequelize'
 import bcrypt from 'bcrypt'
 import { v4 as uuid } from 'uuid'
 import { sendEmail } from '../../helpers'
-import jwt from 'jsonwebtoken'
-
+import { sign } from 'jsonwebtoken'
+const oneWeekInSeconds: number = 604800
 const postUser = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
   try {
     let { email, pwd, org } = JSON.parse(req.body)
-
     if (email && pwd && org) {
       const { adminObj } = initDb()
       // @ts-ignore
       const user = await adminObj.findOne({ where: { email: email } })
-
       if (user) {
-        // res.status(403).json({ message: 'User already exists' })
         throw new Error('User Already Exists')
       }
       const saltRounds = 10
-
       let hashedPassword: string
-
       await bcrypt
         .hash(pwd, saltRounds)
         .then(hash => {
@@ -43,21 +38,11 @@ const postUser = async (
         isVerified: false,
       })
       const { id } = addAdmin
-      jwt.sign(
-        {
-          id: id,
-          email,
-          isVerified: false,
-        },
-        process.env.JWT_SECRET,
-        { expiresIn: '2d' },
-        (err, token) => {
-          if (err) {
-            return res.status(500).json({ message: err })
-          }
-
-          res.status(200).json({ token })
-        },
+      res.setHeader(
+        'Set-Cookie',
+        `Auth-Token=${sign({ userLoggedIn: true }, process.env.JWT_SIGNATURE, {
+          expiresIn: `${oneWeekInSeconds}s`,
+        })}; Max-Age=${oneWeekInSeconds}; Path=/; HttpOnly; Secure; SameSite=Strict`,
       )
       res.json(addAdmin)
       try {
@@ -80,5 +65,4 @@ const postUser = async (
     res.json({ error })
   }
 }
-
 export default postUser
