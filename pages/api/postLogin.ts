@@ -14,7 +14,9 @@ const postLogin = async (
       const { adminObj } = initDb()
       //@ts-ignore
       const user = await adminObj.findOne({ email: email })
+
       if (!user) {
+        console.log('user is not found')
         throw new Error('User does not exist')
         res.status(401).end()
       }
@@ -24,7 +26,6 @@ const postLogin = async (
       let isCorrect = await bcrypt.compare(pwd, hashedPassword)
       if (!isCorrect) {
         throw new Error('Username or password is incorrect. Please try again')
-        res.status(401).end()
       }
       if (isCorrect) {
         jwt.sign(
@@ -40,6 +41,7 @@ const postLogin = async (
         )
       } else {
         res.status(401).end()
+        return
       }
     }
   } catch (err) {

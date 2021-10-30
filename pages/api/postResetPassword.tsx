@@ -23,11 +23,8 @@ const resetPasswordRoute = async (
       { where: { passwordResetCode: passwordResetCode } },
     )
     if (!admin) {
-      res.status(404)
-
-      throw new Error('No user matches password reset code')
+      throw new Error('Password Reset Code does not match')
     }
-
     res.status(200).end()
   } catch (err) {
     const error: string = err.message
