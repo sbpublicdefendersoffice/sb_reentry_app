@@ -1,25 +1,22 @@
 import { useRouter } from 'next/router'
+import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import React, { useState, useEffect } from 'react'
-import WithPrivateRoute from '../../components/WithPrivateRoute'
-import NextLink from 'next/link'
+// import WithPrivateRoute from '../../components/WithPrivateRoute'
+// import NextLink from 'next/link'
 import { useToken, useUser } from '../../hooks/'
-import { useFormFields } from '../../hooks'
-import { POST } from '../../helpers/'
+import { verify } from 'jsonwebtoken'
+// import { useFormFields } from '../../hooks'
+// import { POST } from '../../helpers/'
 import { Button, TextField } from '@mui/material'
-import { useStyles } from '../../constants'
-const Dashboard = props => {
+import { useStyles, isDev } from '../../constants'
+interface DashboardProps {
+  userLoggedIn: boolean
+}
+const Dashboard = ({ userLoggedIn }: DashboardProps) => {
   const admin = null
   const [token, setToken] = useToken()
   const { push } = useRouter()
   const classes = useStyles()
-  //might have to check how im pulling this in
-  // const initialForm = {
-  //   org: admin.org || '',
-  //   website: admin.website || '',
-  // }
-  // const [adminInfo, setAdminInfo] = useFormFields(initialForm)
-  // const { org, website } = adminInfo
-  // const { id, org, website, isVerified } = admin
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [showErrorMessage, setShowErrorMessage] = useState(false)
@@ -57,7 +54,7 @@ const Dashboard = props => {
   const logOut = () => {
     push('/')
   }
-  //going to change
+
   return (
     <div style={{ margin: 'auto', textAlign: 'center' }}>
       <form
@@ -120,15 +117,41 @@ const Dashboard = props => {
           <Button className={classes.greenButton} onClick={logOut}>
             <h3 style={{ padding: '1rem' }}>Logout</h3>
           </Button>
-          {/* <Button onClick={getCookie}>Log In To Thrive</Button> */}
         </div>
       </form>
     </div>
   )
 }
 
-Dashboard.getInitialProps = async props => {
-  console.info('### Congrats? You are authorized', props)
-  return {}
+export default Dashboard
+export const getServerSideProps: GetServerSideProps = async (
+  ctx: GetServerSidePropsContext,
+) => {
+  if (!isDev)
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+
+  let token: any
+
+  if (ctx.req.headers.cookie) {
+    const headers: { [name: string]: string } = ctx.req.headers.cookie
+      .split(';')
+      .reduce((obj, str) => {
+        const split: string[] = str.split('=')
+        obj[split[0].trim()] = split[1].trim()
+
+        return obj
+      }, {})
+
+    if (headers['Auth-Token'])
+      token = verify(headers['Auth-Token'], process.env.JWT_SIGNATURE)
+  }
+
+  return {
+    props: token === undefined ? {} : { userLoggedIn: token?.userLoggedIn },
+  }
 }
-export default WithPrivateRoute(Dashboard)
