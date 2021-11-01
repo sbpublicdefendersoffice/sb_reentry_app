@@ -8,7 +8,7 @@ import withWidth from '@mui/material'
 import { PGOrganizationResponse, WindowSize } from '../types/'
 import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
-import { DesktopFilterView } from '../components'
+import DesktopFilterView from './Filters'
 import { Hidden } from '@mui/material'
 export interface RecordPaneProps {
   displayCategory: string

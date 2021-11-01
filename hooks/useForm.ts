@@ -1,4 +1,4 @@
-import { useToast } from '../hooks'
+import useToast from './useToast'
 import { POST } from '../helpers/'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
