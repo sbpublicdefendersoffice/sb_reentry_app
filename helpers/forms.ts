@@ -1,4 +1,5 @@
 import { PDFDocument } from 'pdf-lib'
+import { ExpungeFormInfo } from '../types'
 
 import { SPANISH } from '../constants'
 
@@ -83,7 +84,7 @@ const dateTitles = new Set<string>([
 
 export const fillOutPDFForm = async (
   formBytes: Buffer,
-  body: any,
+  body: ExpungeFormInfo,
 ): Promise<string> => {
   const pdf = await PDFDocument.load(formBytes)
   const title = pdf.getTitle()

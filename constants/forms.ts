@@ -7,15 +7,16 @@ export const validations: Validation[] = [
       english: "Applicant's full name is required",
       spanish: 'Se requiere el nombre completo del solicitante',
     },
+    id: 'ident',
   },
   {
-    field: 'Social Security No',
+    field: 'Date of Birth',
     error: {
-      english:
-        'A Social Security Number comprised of nine digits must be provided',
+      english: 'Date of Birth must be entered for record keeping purposes',
       spanish:
-        'Se debe proporcionar un número de seguro social compuesto por nueve dígitos',
+        'Se debe ingresar la fecha de nacimiento para fines de mantenimiento de registros',
     },
+    id: 'ident',
   },
   {
     field: 'Address',
@@ -23,6 +24,7 @@ export const validations: Validation[] = [
       english: 'An address is required',
       spanish: 'Se requiere una dirección',
     },
+    id: 'ident',
   },
   {
     field: 'City',
@@ -30,6 +32,41 @@ export const validations: Validation[] = [
       english: 'Enter your city of residence',
       spanish: 'Ingrese su ciudad de residencia',
     },
+    id: 'ident',
+  },
+  {
+    field: 'zip',
+    error: {
+      english: 'Please enter the zip code in which you reside',
+      spanish: 'Ingrese el código postal en el que reside',
+    },
+    id: 'ident',
+  },
+  {
+    field: 'Date',
+    error: {
+      english: "You must enter today's date",
+      spanish: 'Debes ingresar la fecha de hoy',
+    },
+    id: 'sign',
+  },
+  {
+    field: 'Signature',
+    error: {
+      english: 'A signature is required',
+      spanish: 'Se requiere una firma',
+    },
+    id: 'sign',
+  },
+  {
+    field: 'certified',
+    error: {
+      english:
+        'You must click to indicate that you understand the terms and condtions of expungement',
+      spanish:
+        'Debe hacer clic para indicar que comprende los términos y condiciones de la eliminación de antecedentes penales.',
+    },
+    id: 'sign',
   },
 ]
 

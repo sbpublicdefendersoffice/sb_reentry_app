@@ -4,7 +4,7 @@ import { readFileSync } from 'fs'
 
 import { fillOutPDFForm } from '../../helpers'
 import { validations } from '../../constants'
-import { Validation } from '../../types'
+import { Validation, ExpungeFormInfo } from '../../types'
 
 const [type, disposition, financialFormPath, applicationPath]: string[] = [
   'application/pdf',
@@ -18,18 +18,12 @@ const recordClearance = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const body = JSON.parse(req.body)
+    const body: ExpungeFormInfo = JSON.parse(req.body)
     const { language } = body
 
     validations.forEach((v: Validation): void => {
-      const { error, field } = v
-      if (!body[field]) throw new Error(`${error[language]}&&#ident`)
-
-      if (field === 'Social Security No') {
-        const ssn: string = body['Social Security No'].replace(/[^0-9]/g, '')
-
-        if (ssn.length !== 9) throw new Error(`${error[language]}&&#ident`)
-      }
+      const { error, field, id } = v
+      if (!body[field]) throw new Error(`${error[language]}&&#${id}`)
     })
 
     const filledOutApp = await fillOutPDFForm(

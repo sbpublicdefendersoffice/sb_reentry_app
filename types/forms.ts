@@ -1,3 +1,5 @@
+import { Language } from './language'
+
 export interface FieldInfo {
   box_width?: number
   x?: number
@@ -23,133 +25,103 @@ export interface Validation {
     english: string
     spanish: string
   }
+  id: string
 }
 
 export interface ExpungementInfo {
-  name: string
-  email: string
-  dob: string
-  ssn: string
-  license?: string
-  city: string
-  state?: string
-  zip?: number
-  state_and_zip?: string
-  full_address?: string
-  home_phone?: string
-  work_phone?: string
-  cell_phone?: string
-  preferred_phone?: string
-  case_num_1?: string
-  case_attorney_1?: string
-  case_charges_1?: string
-  case_felony_1?: boolean
-  case_misdemeanor_1?: boolean
-  case_date_convicted_1?: string
-  case_probation_formal_1?: boolean
-  case_probation_informal_1?: boolean
-  case_probation_duration_1?: string
-  case_probation_violate_1?: boolean
-  case_probation_no_violate_1?: boolean
-  case_num_2?: string
-  case_attorney_2?: string
-  case_charges_2?: string
-  case_felony_2?: boolean
-  case_misdemeanor_2?: boolean
-  case_date_convicted_2?: string
-  case_probation_formal_2?: boolean
-  case_probation_informal_2?: boolean
-  case_probation_duration_2?: string
-  case_probation_violate_2?: boolean
-  case_probation_no_violate_2?: boolean
-  case_num_3?: string
-  case_attorney_3?: string
-  case_charges_3?: string
-  case_felony_3?: boolean
-  case_misdemeanor_3?: boolean
-  case_date_convicted_3?: string
-  case_probation_formal_3?: boolean
-  case_probation_informal_3?: boolean
-  case_probation_duration_3?: string
-  case_probation_violate_3?: boolean
-  case_probation_no_violate_3?: boolean
-  current_probation_yes: boolean
-  current_probation_no: boolean
-  current_probation_info?: string
-  arrests_since_probation_yes: boolean
-  arrests_since_probation_no: boolean
-  arrests_since_probation_info?: string
-  owe_money_yes: boolean
-  owe_money_no: boolean
-  owe_money_amount?: string
-  day: string
-  month: string
-  year: string
-  location: string
-  signature: string
-  uptrust_enroll?: boolean
-  charged_with?: string
-  marital_status_single?: boolean
-  marital_status_married?: boolean
-  marital_status_separated?: boolean
-  marital_status_divorced?: boolean
-  marital_status_commonlaw?: boolean
-  veteran_yes?: boolean
-  veteran_no?: boolean
-  military_branch?: string
-  discharge_date?: string
-  number_of_dependents: number
-  dependent_relationship_and_age?: string
-  employer?: string
-  employer_address?: string
-  time_at_job?: string
-  supervisor?: string
-  take_home_pay?: number
-  pay_per_week?: boolean
-  pay_per_month?: boolean
-  unemployed: boolean
-  unemployed_benefits_yes?: boolean
-  unemployed_benefits_no?: boolean
-  unemployed_benefits_amount?: string
-  partner_employer?: string
-  partner_employer_address?: string
-  partner_time_at_job?: string
-  partner_supervisor?: string
-  partner_take_home_pay?: number
-  partner_pay_per_week?: boolean
-  partner_pay_per_month?: boolean
-  partner_unemployed: boolean
-  partner_unemployed_benefits_yes?: boolean
-  partner_unemployed_benefits_no?: boolean
-  partner_unemployed_benefits_amount?: string
-  expenses_rent?: number
-  expenses_utilities?: number
-  expenses_food?: number
-  expenses_mortgage?: number
-  expenses_child_support?: number
-  expenses_vehicle_payment?: number
-  expenses_vehicle_insurance?: number
-  expenses_other_expense_one_description?: string
-  expenses_other_expense_one_amount?: number
-  expenses_other_expense_two_description?: string
-  expenses_other_expense_two_amount?: number
-  other_income_child_support?: number
-  other_income_disability?: number
-  other_income_social_security?: number
-  other_income_welfare_afdc?: boolean
-  other_income_welfare_fs?: boolean
-  other_income_welfare_amount?: number
-  other_income_ssi_ssp_gr?: number
-  other_income_real_estate_yes?: boolean
-  other_income_real_estate_no?: boolean
-  other_income_real_estate_address?: string
-  other_income_real_estate_value?: number
-  other_income_checking?: number
-  other_income_savings?: number
-  other_income_cash?: number
-  other_income_value_of_assets?: number
-  hearing_option_initals: string
-  hearing_option_no_reimbursement: boolean
-  hearing_option_judge_hearing: boolean
-  date: string
+  'Full Name': string
+  'Any other names that might be on your record'?: string
+  'Social Security No'?: string
+  'Date of Birth': string
+  RaceEthnicity: string
+  English?: boolean
+  Spanish?: boolean
+  'M ixteco'?: boolean
+  Other?: boolean
+  'Other-0'?: string
+  'Phone Number'?: string
+  'Is it okay to leave a voice message'?: string
+  'Alternate Number'?: string
+  'alt number Is it okay to leave a voice message'?: string
+  Address: string
+  City: string
+  state: string
+  zip?: string
+  'Email Address'?: string
+  Email?: boolean
+  Phone?: boolean
+  Text?: boolean
+  Employment?: boolean
+  Housing?: boolean
+  'Government Benefits'?: boolean
+  Licensing?: boolean
+  'Other-1'?: string
+  'I would like to be enrolled in Uptrust to receive'?: boolean
+  'Marital Status'?: string
+  'Are you a veteran'?: string
+  'If yes which branch'?: string
+  'Discharge Date'?: string
+  Felony?: boolean
+  Misdemeanor?: boolean
+  Unsure?: boolean
+  'Was it marijuana related'?: string
+  'Case Numbers if known'?: string
+  'Convicted in Santa Barbara County'?: string
+  'City Convicted In'?: string
+  'Are you currently on probation or parole'?: string
+  'unsure If yes where'?: string
+  'Granted probation'?: string
+  'Completed probation with no violations'?: string
+  'I paid all finesfeesrestitution'?: string
+  'Number of Dependents'?: string
+  'Relationship and Ages'?: string
+  'Employer Name'?: string
+  'Address-0'?: string
+  'Length of Time'?: string
+  Supervisor?: string
+  'Take Home Pay'?: string
+  'Weekly Take Home Pay'?: boolean
+  Monthly?: boolean
+  'Unemployment Benefits'?: string
+  'No Amount'?: string
+  'Employer Name-0'?: string
+  'Address-1'?: string
+  'Length of Time-0'?: string
+  'Supervisor-0'?: string
+  'Weekly Take Home Pay-0'?: string
+  Weekly?: boolean
+  'Monthly-0'?: boolean
+  'Unemployment Benefits-0'?: string
+  'No Amount-0'?: string
+  Textfield?: string
+  'Textfield-1'?: string
+  'Textfield-3'?: string
+  'Textfield-5'?: string
+  'Textfield-7'?: string
+  'Vehicle LoansPayment Monthly'?: string
+  'Textfield-10'?: string
+  'Textfield-13'?: string
+  'Textfield-14'?: string
+  'Textfield-0'?: string
+  'Textfield-2'?: string
+  'Textfield-4'?: string
+  AFDC?: boolean
+  FS?: boolean
+  'Textfield-6'?: string
+  'Textfield-8'?: string
+  'Real Estate'?: string
+  'Textfield-9'?: string
+  'Textfield-11'?: string
+  'Textfield-12'?: string
+  'Textfield-15'?: string
+  'Other Income or assets valued at'?: string
+  Date: string
+  Signature: string
+  certified: boolean
+}
+
+export interface ExpungeFormInfo extends ExpungementInfo {
+  'State  Zip': string
+  'Mailing Address': string
+  language: Language
 }

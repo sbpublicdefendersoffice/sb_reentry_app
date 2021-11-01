@@ -68,7 +68,7 @@ const ExpungementSignature = ({
   useIntersectionStyle(signRef, animationClass)
 
   return (
-    <Card ref={signRef}>
+    <Card ref={signRef} id="sign">
       <Paragraph size="med-text" color="highlight">
         {sign}
       </Paragraph>
@@ -82,7 +82,6 @@ const ExpungementSignature = ({
           onChange={handleChange}
           type="date"
           id="Date"
-          //@ts-ignore
           value={expungeInfo?.Date}
         />
       </section>

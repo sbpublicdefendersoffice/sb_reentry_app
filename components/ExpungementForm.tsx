@@ -86,24 +86,13 @@ const ExpungementForm = () => {
   const submitExpungementForm = async (
     e: FormEvent<HTMLFormElement>,
   ): Promise<void> => {
-    // when done, remember to make TWO interfaces for form data held in state and send to backend
     e.preventDefault()
     try {
       validations.forEach((v: Validation): void => {
-        const { error, field } = v
-        if (!expungeInfo[field]) throw new Error(`${error[language]}&&#ident`)
-
-        if (field === 'Social Security No') {
-          const ssn: string = expungeInfo['Social Security No'].replace(
-            /[^0-9]/g,
-            '',
-          )
-
-          if (ssn.length !== 9) throw new Error(`${error[language]}&&#ident`)
-        }
+        const { error, field, id } = v
+        if (!expungeInfo[field]) throw new Error(`${error[language]}&&#${id}`)
       })
 
-      //@ts-ignore
       const { Address, City, state, zip } = expungeInfo
       const stateAndZip = `${state || 'CA'}, ${zip}`
 
@@ -152,7 +141,6 @@ const ExpungementForm = () => {
       <Paragraph size="med-text">3) {three}</Paragraph>
       <Paragraph size="med-text">4) {four}</Paragraph>
       <ExpungementMainInfo
-        //@ts-ignore
         otherLang={expungeInfo?.Other}
         handleChange={handleChange}
         animationClass={Load}
@@ -176,7 +164,6 @@ const ExpungementForm = () => {
         </div>
       </Card>
       <ExpungementMaritalAndVeteranStatus
-        //@ts-ignore
         applicantIsVeteran={
           expungeInfo?.['Are you a veteran'] === 'Are you a veteran_Yes_On'
         }
@@ -184,7 +171,6 @@ const ExpungementForm = () => {
         animationClass={Load}
       />
       <ExpungementCaseInfo
-        //@ts-ignore
         convictedInCounty={
           expungeInfo?.['Convicted in Santa Barbara County'] ===
           'Convicted in Santa Barbara County_yes_On'
@@ -193,12 +179,10 @@ const ExpungementForm = () => {
         animationClass={Load}
       />
       <ExpungementProbationInfo
-        //@ts-ignore
         probationOrParole={
           expungeInfo?.['Are you currently on probation or parole'] ===
           'Are you currently on probation or parole_yes_On'
         }
-        //@ts-ignore
         grantedProbation={
           expungeInfo?.['Granted probation'] === 'Granted probation_yes_On'
         }
@@ -206,18 +190,15 @@ const ExpungementForm = () => {
         animationClass={Load}
       />
       <ExpungementDependents
-        //@ts-ignore
-        hasDependents={Number(expungeInfo?.['Number of Dependents'])}
+        hasDependents={!!Number(expungeInfo?.['Number of Dependents'])}
         handleChange={handleChange}
         animationClass={Load}
       />
       <ExpungementEmploymentAndIncome
-        //@ts-ignore
         unemployment={
           expungeInfo?.['Unemployment Benefits'] ===
           'Unemployment Benefits_Yes_On'
         }
-        //@ts-ignore
         partnerUnemployment={
           expungeInfo?.['Unemployment Benefits-0'] ===
           'Unemployment Benefits_Yes-0_On'
@@ -226,13 +207,11 @@ const ExpungementForm = () => {
         animationClass={Load}
       />
       <ExpungementMonthlyExpenses
-        //@ts-ignore
         hasOtherExpenses={!!expungeInfo?.['Textfield-13']}
         handleChange={handleChange}
         animationClass={Load}
       />
       <ExpungementOtherIncomeAssets
-        //@ts-ignore
         hasRealEstate={expungeInfo?.['Real Estate'] === 'Real Estate_Yes_On'}
         handleChange={handleChange}
         animationClass={Load}
@@ -244,7 +223,6 @@ const ExpungementForm = () => {
         animationClass={Load}
       />
       <Button
-        //@ts-ignore
         disabled={!expungeInfo?.['certified']}
         role="button"
         type="submit"
