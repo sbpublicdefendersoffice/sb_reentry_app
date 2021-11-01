@@ -1,14 +1,10 @@
 import { useRouter } from 'next/router'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import React, { useState, useEffect } from 'react'
-// import WithPrivateRoute from '../../components/WithPrivateRoute'
-// import NextLink from 'next/link'
-import { useToken, useUser } from '../../hooks/'
+import React, { useState } from 'react'
+import { useToken } from '../../hooks/'
 import { verify } from 'jsonwebtoken'
-// import { useFormFields } from '../../hooks'
-// import { POST } from '../../helpers/'
 import { Button, TextField } from '@mui/material'
-import { useStyles, isDev } from '../../constants'
+import { useStyles } from '../../constants'
 interface DashboardProps {
   userLoggedIn: boolean
 }
@@ -127,14 +123,6 @@ export default Dashboard
 export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext,
 ) => {
-  if (!isDev)
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-
   let token: any
 
   if (ctx.req.headers.cookie) {
