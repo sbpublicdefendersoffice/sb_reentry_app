@@ -204,7 +204,7 @@ const Header = () => {
           )}
         </div>
 
-        <Hidden mdDown>
+        <Hidden lgDown>
           <Grid container style={{ width: '36%' }}>
             <Grid item md={12} sm={4}>
               <LiveDataSearch />
