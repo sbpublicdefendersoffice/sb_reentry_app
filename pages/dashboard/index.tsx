@@ -3,7 +3,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import React, { useState, useEffect } from 'react'
 // import WithPrivateRoute from '../../components/WithPrivateRoute'
 // import NextLink from 'next/link'
-import { useToken, useUser } from '../../hooks/'
+
 import { verify } from 'jsonwebtoken'
 // import { useFormFields } from '../../hooks'
 // import { POST } from '../../helpers/'
@@ -14,7 +14,7 @@ interface DashboardProps {
 }
 const Dashboard = ({ userLoggedIn }: DashboardProps) => {
   const admin = null
-  const [token, setToken] = useToken()
+
   const { push } = useRouter()
   const classes = useStyles()
 

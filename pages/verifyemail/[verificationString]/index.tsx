@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useToken, useLanguage } from '../../../hooks'
+import { useLanguage } from '../../../hooks'
 import { POST } from '../../../helpers/'
 import { EmailSuccess, EmailFail } from '../../../components'
 import { LeafLoader } from '../../../components'
@@ -12,7 +12,7 @@ const EmailLandingPage = () => {
   const [isLoading, setIsLoading] = useState(true)
   const classes = useStyles()
   const [isSuccess, setIsSuccess] = useState(false)
-  const [, setToken] = useToken()
+
   useEffect(() => {
     const loadVerification = async () => {
       try {
@@ -39,7 +39,7 @@ const EmailLandingPage = () => {
       }
     }
     loadVerification()
-  }, [setToken, verificationString])
+  }, [verificationString])
 
   if (isLoading)
     return (
