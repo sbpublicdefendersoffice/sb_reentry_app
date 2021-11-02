@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { useState, FormEvent, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { HeadTags } from '../../components'
 import { siteTitle, isDev, useStyles } from '../../constants'
 import { CopyHolder } from '../../types'
@@ -20,6 +20,8 @@ export const copy: CopyHolder = {
     validEmail: 'Please enter a valid email address',
     mustContain:
       'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
+    tryAgain: 'Email or password is incorrect, try again',
+    successfulLogin: 'You have successfully logged in',
   },
   spanish: {
     login: `Acceso`,
@@ -33,6 +35,9 @@ export const copy: CopyHolder = {
       'Por favor, introduce una dirección de correo electrónico válida',
     mustContain:
       'Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 caracteres o más',
+    tryAgain:
+      'El correo electrónico o la contraseña son incorrectos, inténtalo de nuevo.',
+    successfulLogin: 'Has iniciado sesión correctamente',
   },
 }
 const initState = {
@@ -46,8 +51,17 @@ const LoginPage = () => {
   const [successful, setSuccessful] = useState(false)
   const { language } = useLanguage()
   const [errorMessage, setErrorMessage] = useState('')
-  const { login, forgot, signup, validEmail, someone, password, mustContain } =
-    copy[language]
+  const {
+    login,
+    forgot,
+    signup,
+    validEmail,
+    someone,
+    password,
+    mustContain,
+    tryAgain,
+    successfulLogin,
+  } = copy[language]
   const submit = () => {
     console.log(' Submited')
   }
@@ -67,25 +81,22 @@ const LoginPage = () => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const { name: fieldName } = e.target
-    const faildFiels = validator(state, fieldName)
-    if (state) {
-      const postUserToPostgres: Response = await fetch('/api/postLogin', {
-        method: POST,
-        body: JSON.stringify(state),
-      })
-      const apiResponse = await postUserToPostgres.json()
-      if (apiResponse.error) {
-        setToast(`Your account was not found`)
-      } else {
-        push('/dashboard')
-        setToast('You have successfully logged in')
 
-        //@ts-ignore
+    const postUserToPostgres: Response = await fetch('/api/postLogin', {
+      method: POST,
+      body: JSON.stringify(state),
+    })
+    const apiResponse = await postUserToPostgres.json()
+    if (apiResponse.error) {
+      setToast(tryAgain)
+    } else {
+      push('/dashboard')
+      setToast(successfulLogin)
 
-        state.email = ''
-        state.pwd = ''
-      }
+      //@ts-ignore
+
+      state.email = ''
+      state.pwd = ''
     }
   }
   return (
