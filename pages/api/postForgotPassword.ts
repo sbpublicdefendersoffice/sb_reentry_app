@@ -13,7 +13,10 @@ const postForgotPassword = async (
       { passwordResetCode: passwordResetCode },
       { where: { email: req.body } },
     )
-    if (!user) throw new Error('User does not exist')
+    if (user[0] !== 1) {
+      res.status(401).json({ message: 'error' })
+      return
+    }
     if (user) {
       //@ts-ignore
       await sendEmail({
@@ -25,10 +28,13 @@ const postForgotPassword = async (
           http://localhost:3000/forgotpassword/${passwordResetCode}
           `,
       })
+      return res.status(200).json({ message: 'Email was sent to your inbox' })
     }
   } catch (err) {
     console.error(err)
-    res.status(500).end()
+    res
+      .status(500)
+      .json({ message: 'We did not find this email in our system' })
     return
   }
   res.status(200)
