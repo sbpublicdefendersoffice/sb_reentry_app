@@ -1,16 +1,26 @@
-import { useToast } from '../hooks'
+import { useToast, useLanguage } from '../hooks'
 import { POST } from '../helpers/'
+import { CopyHolder } from '../types'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
+export const copy: CopyHolder = {
+  english: {
+    successMessage: `Your account was successfully created`,
+    failMessage: 'Account already exists',
+  },
+  spanish: {
+    successMessage: 'Su cuenta fue creada con éxito',
+    failMessage: 'Your account was successfully created',
+  },
+}
 const useForm = ({ initState, callback, validator }) => {
   const [state, setState] = useState(initState)
   const [errors, setErrors] = useState({})
   const { push } = useRouter()
   const { setToast } = useToast()
+  const { language } = useLanguage()
   const [isSubmited, setIsSubmited] = useState(false)
-  const getCookie = async (): Promise<void> => {
-    await fetch('/api/jwt', { credentials: 'include' })
-  }
+  const { successMessage, failMessage } = copy[language]
   useEffect(() => {
     const isValidErrors = () =>
       Object.values(errors).filter(error => typeof error !== 'undefined')
@@ -48,11 +58,10 @@ const useForm = ({ initState, callback, validator }) => {
       })
       const apiResponse = await postUserToPostgres.json()
       if (apiResponse.error) {
-        setToast(`there was an error: ${apiResponse.error}`)
+        setToast(failMessage)
         return
       } else {
-        getCookie()
-        setToast('Your account was successfully created')
+        setToast(successMessage)
         state.org = ''
         state.email = ''
         state.pwd = ''
@@ -61,39 +70,10 @@ const useForm = ({ initState, callback, validator }) => {
       push('/verifyemail')
     }
   }
-  const handleForgotPasswordSubmit = async e => {
-    e.preventDefault()
-    const { name: fieldName } = e.target
-    const faildFiels = validator(state, fieldName)
-    setErrors(() => ({
-      ...errors,
-      [fieldName]: Object.values(faildFiels)[0],
-    }))
-    setIsSubmited(true)
-    console.log('🥳', state)
-    if (state) {
-      const postUserToPostgres: Response = await fetch(
-        '/api/postForgotPassword',
-        {
-          method: POST,
-          body: state.email,
-        },
-      )
-      const apiResponse = await postUserToPostgres.json()
-      if (apiResponse.error) {
-        setToast(`there was an error: ${apiResponse.error}`)
-        return
-      } else {
-        setToast('Your email was sent')
-        state.email = ''
-      }
-    }
-  }
   return {
     handleChange,
     handleSubmit,
     handleBlur,
-    handleForgotPasswordSubmit,
     state,
     errors,
   }
