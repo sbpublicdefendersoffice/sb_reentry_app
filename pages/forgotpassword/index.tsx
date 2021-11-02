@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Button, TextField } from '@mui/material'
 import { POST } from '../../helpers/'
@@ -15,6 +15,8 @@ export const copy: CopyHolder = {
     someone: 'someone',
     sendReset: 'Send Reset Link',
     validEmail: 'Please enter a valid email address',
+    doesNotExist: 'User does not exist in our system',
+    emailSent: 'An email was sent to the email provided',
   },
   spanish: {
     successText: `Éxito`,
@@ -27,6 +29,9 @@ export const copy: CopyHolder = {
     sendReset: 'Enviar enlace de reinicio',
     validEmail:
       'Por favor, introduce una dirección de correo electrónico válida',
+    userDoesNotExist: 'La usuario no existe en nuestro sistema',
+    emailSent:
+      'El correo electrónico se envió al correo electrónico proporcionado',
   },
 }
 const initState = {
@@ -47,6 +52,8 @@ const ForgotPasswordPage = () => {
     enterEmail,
     someone,
     sendReset,
+    doesNotExist,
+    emailSent,
   } = copy[language]
   const submit = () => {}
   const { handleChange, handleBlur, state, errors, handleSubmit } =
@@ -69,15 +76,16 @@ const ForgotPasswordPage = () => {
       },
     )
     const apiResponse = await postUserToPostgres.json()
-    if (apiResponse.error) {
-      setToast(`There was an error:`)
+
+    if (apiResponse.message == 'error') {
+      setToast(doesNotExist)
     } else {
       setSuccess(true)
       setTimeout(() => {
         push('/login')
       }, 3000)
-      setToast('Email was sent to the email provided')
-      setSuccess(true)
+      setToast(emailSent)
+
       state.email = ''
     }
   }
@@ -110,8 +118,9 @@ const ForgotPasswordPage = () => {
             //@ts-ignore
             error={errors.email ? true : false}
             //@ts-ignore
-            helperText={errors.email}
+            helperText={errors.email ? validEmail : false}
             onBlur={handleBlur}
+            style={{ marginBottom: '1.5rem' }}
           />
           <Button
             className={
