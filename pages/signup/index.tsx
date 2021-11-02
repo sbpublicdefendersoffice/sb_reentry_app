@@ -1,13 +1,11 @@
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
 import { HeadTags } from '../../components'
 import { siteTitle, isDev, useStyles } from '../../constants'
 import { validator } from '../../helpers/formValidator'
 import { CopyHolder } from '../../types'
-import { useLanguage, useToast } from '../../hooks'
-import { POST } from '../../helpers/'
-import { useToken, useFormFields } from '../../hooks/'
+import { useLanguage } from '../../hooks'
+import { useFormFields } from '../../hooks/'
 import { Button, TextField } from '@mui/material'
 import { Check, Close } from '@mui/icons-material'
 export const copy: CopyHolder = {
@@ -17,8 +15,12 @@ export const copy: CopyHolder = {
       'Your account was created. Please look out for an email in your inbox',
     passwordMessage: 'password',
     confirmPasswordMessage: 'Confirm password',
+    confirmPasswordMatch:
+      'Make sure confirm password and password are exactly the same',
     error: 'There was an error creating your account',
     alreadyHave: 'Already have an account? Log in',
+    invalidOrg: 'Remove special characters',
+    passwordRequired: 'Password is required',
     checkMarks: 'All check marks must turn green, the password must have:',
     characters: 'At least 8 characters',
     upperCase: 'At least 1 uppercase letter',
@@ -38,6 +40,8 @@ export const copy: CopyHolder = {
     confirmPasswordMessage: 'confirmar Contraseña',
     error: 'Hubo un error al crear tu cuenta',
     alreadyHave: '¿Ya tienes una cuenta? Iniciar sesión',
+    passwordRequired: 'se requiere contraseña',
+    invalidOrg: 'Quitar caracteres especiales',
     checkMarks:
       'Todas las marcas de verificación deben ponerse verdes, la contraseña debe tener:',
     characters: 'Al menos 8 carácteres',
@@ -50,6 +54,8 @@ export const copy: CopyHolder = {
     someone: 'alguien',
     mustContain:
       'Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 caracteres o más',
+    confirmPasswordMatch:
+      'Asegúrese de confirmar que la contraseña y la contraseña sean exactamente iguales',
   },
 }
 const initState = {
@@ -88,6 +94,9 @@ const SignupPage = () => {
     validEmail,
     someone,
     mustContain,
+    invalidOrg,
+    confirmPasswordMatch,
+    passwordRequired,
   } = copy[language]
   const { email, org, pwd, confirmPwd } = state
   return (
@@ -112,9 +121,9 @@ const SignupPage = () => {
             name="org"
             onChange={handleChange}
             //@ts-ignore
-            helperText={errors.org}
-            //@ts-ignore
             error={errors.org ? true : false}
+            //@ts-ignore
+            helperText={errors.org ? invalidOrg : false}
             style={{ marginTop: '1rem' }}
             onBlur={handleBlur}
             placeholder="Thrive SBC"
@@ -129,7 +138,7 @@ const SignupPage = () => {
             //@ts-ignore
             error={errors.email ? true : false}
             //@ts-ignore
-            helperText={errors.email}
+            helperText={errors.email ? validEmail : false}
             onBlur={handleBlur}
             required
           />
@@ -145,7 +154,7 @@ const SignupPage = () => {
             //@ts-ignore
             error={errors.pwd ? true : false}
             //@ts-ignore
-            helperText={errors.pwd}
+            helperText={errors.pwd ? passwordRequired : false}
             title={mustContain}
             required
           />
@@ -157,7 +166,7 @@ const SignupPage = () => {
             error={errors.confirmPwd ? true : false}
             style={{ marginTop: '1rem' }}
             //@ts-ignore
-            helperText={errors.confirmPwd}
+            helperText={errors.confirmPwd ? confirmPasswordMatch : false}
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder={confirmPasswordMessage}
