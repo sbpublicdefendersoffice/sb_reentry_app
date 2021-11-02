@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from 'react'
 import { useRouter } from 'next/router'
-import { useLanguage, useToast, useFormFields } from '../../../hooks'
+import { useLanguage, useFormFields } from '../../../hooks'
 import { POST } from '../../../helpers/'
 import { useStyles } from '../../../constants'
 import { PasswordResetSuccess, PasswordResetFail } from '../../../components'
@@ -20,6 +20,8 @@ export const copy: CopyHolder = {
     number: 'At least 1 number or special character',
     match: 'Password is equal to confirm password',
     confirm: 'Confirm Password',
+    validPassword: 'Enter a valid password',
+    validConfirmPassword: 'Make sure that both passwords listed above match',
   },
   spanish: {
     resetPwd: `Restablecer la contraseña`,
@@ -33,6 +35,9 @@ export const copy: CopyHolder = {
     number: 'Al menos 1 número o carácter especial',
     match: 'La contraseña es igual a Confirmar contraseña',
     confirm: 'confirmar Contraseña',
+    validPassword: 'Ingrese una contraseña válida',
+    validConfirmPassword:
+      'Asegúrese de que las dos contraseñas enumeradas anteriormente coincidan',
   },
 }
 const initState = {
@@ -42,7 +47,6 @@ const initState = {
 const PasswordResetLandingPage = () => {
   const { asPath } = useRouter()
   const classes = useStyles()
-  const { setToast } = useToast()
   const passwordResetCode = asPath.split('/')[2]
   const { language } = useLanguage()
   const [isFailure, setIsFailure] = useState(false)
@@ -55,9 +59,7 @@ const PasswordResetLandingPage = () => {
     callback: submit,
     validator,
   })
-  let isValidForm =
-    Object.values(errors).filter(error => typeof error !== 'undefined')
-      .length === 0
+
   const {
     resetPwd,
     enterNew,
@@ -69,11 +71,9 @@ const PasswordResetLandingPage = () => {
     number,
     match,
     confirm,
+    validPassword,
+    validConfirmPassword,
   } = copy[language]
-  const info = {
-    passwordResetCode: passwordResetCode,
-    pwd: state.pwd,
-  }
   const { pwd, confirmPwd } = state
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
@@ -85,7 +85,7 @@ const PasswordResetLandingPage = () => {
       }),
     })
     const apiResponse = await postUserToPostgres.json()
-    if (apiResponse.error) {
+    if (apiResponse.message == 'error') {
       await setIsFailure(true)
     } else {
       await setIsSuccess(true)
@@ -111,9 +111,9 @@ const PasswordResetLandingPage = () => {
                 value={pwd}
                 onChange={handleChange}
                 //@ts-ignore
-                helperText={errors.pwd}
-                //@ts-ignore
                 error={errors.pwd ? true : false}
+                //@ts-ignore
+                helperText={errors.pwd ? validPassword : false}
                 onBlur={handleBlur}
                 placeholder={pwdText}
               />
@@ -125,9 +125,9 @@ const PasswordResetLandingPage = () => {
                 value={confirmPwd}
                 onChange={handleChange}
                 //@ts-ignore
-                helperText={errors.pwd}
-                //@ts-ignore
                 error={errors.pwd ? true : false}
+                //@ts-ignore
+                helperText={errors.pwd ? validConfirmPassword : false}
                 onBlur={handleBlur}
                 placeholder={confirm}
               />
