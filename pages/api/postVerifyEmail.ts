@@ -8,14 +8,17 @@ const postVerifyEmail = async (
   res: NextApiResponse,
 ): Promise<void> => {
   const { adminObj } = initDb()
+  const verificationString = JSON.parse(req.body)
 
   const user = await adminObj.update(
     { isVerified: true },
-    { where: { verificationString: req.body } },
+    { where: { verificationString } },
   )
 
+  const userIsVerified: boolean = Boolean(user[0])
+
   try {
-    if (!user) {
+    if (!userIsVerified) {
       return res
         .status(401)
         .json({ message: 'The email verification code is incorrect' })
@@ -23,6 +26,7 @@ const postVerifyEmail = async (
     //@ts-ignore
     const { id, email } = user
 
+    // aside from not being the best place to set the login cookie, the below will not work because user is NOT returning id and email. sice you have only requested to change isVerified, it is only returning an array https://sequelize.org/master/manual/model-querying-basics.html#simple-update-queries
     jwt.sign(
       { id, email, isVerified: true },
       process.env.JWT_SECRET,

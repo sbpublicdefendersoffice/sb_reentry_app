@@ -20,8 +20,7 @@ const EmailLandingPage = () => {
           '/api/postVerifyEmail',
           {
             method: POST,
-
-            body: verificationString,
+            body: JSON.stringify(verificationString),
           },
         )
 
