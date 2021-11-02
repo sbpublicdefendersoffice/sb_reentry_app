@@ -39,9 +39,10 @@ export const validateOrg = (org, errors) => {
     errors.org = 'Invalid Organization name'
     result = false
   } else {
-    const re = /^[a-zA-Z0-9_.-]*$/
+    const re = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/
     result = re.test(String(org).toLowerCase())
-    if (!result) errors.org = 'Invalid Organization name'
+    if (!result)
+      errors.org = 'Invalid Organization name, remove special characters'
   }
   return result
 }
