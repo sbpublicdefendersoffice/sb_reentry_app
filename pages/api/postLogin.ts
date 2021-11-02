@@ -13,12 +13,10 @@ const postLogin = async (
     if (email && pwd) {
       const { adminObj } = initDb()
       //@ts-ignore
-      const user = await adminObj.findOne({ email: email })
+      const user = await adminObj.findOne({ where: { email: email } })
 
       if (!user) {
-        console.log('user is not found')
         throw new Error('User does not exist')
-        res.status(401).end()
       }
 
       const { id, isVerified, hashedPassword } = user
