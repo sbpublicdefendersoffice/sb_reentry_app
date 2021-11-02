@@ -22,10 +22,12 @@ const resetPasswordRoute = async (
       { hashedPassword: hashedPassword, passwordResetCode: '' },
       { where: { passwordResetCode: passwordResetCode } },
     )
-    if (!admin) {
-      throw new Error('Password Reset Code does not match')
+    if (admin[0] !== 1) {
+      return res.status(401).json({ message: 'error' })
     }
-    res.status(200).end()
+    res.status(200).json({
+      message: 'Your password has been reset successfully. You can now log in',
+    })
   } catch (err) {
     const error: string = err.message
     console.error(error)
