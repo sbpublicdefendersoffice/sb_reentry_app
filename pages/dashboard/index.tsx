@@ -1,14 +1,12 @@
 import { useRouter } from 'next/router'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import React, { useState, useEffect } from 'react'
-// import WithPrivateRoute from '../../components/WithPrivateRoute'
+
 // import NextLink from 'next/link'
 
 import { verify } from 'jsonwebtoken'
-// import { useFormFields } from '../../hooks'
-// import { POST } from '../../helpers/'
 import { Button, TextField } from '@mui/material'
-import { useStyles, isDev } from '../../constants'
+import { useStyles } from '../../constants'
 interface DashboardProps {
   userLoggedIn: boolean
 }
@@ -21,36 +19,6 @@ const Dashboard = ({ userLoggedIn }: DashboardProps) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [showErrorMessage, setShowErrorMessage] = useState(false)
 
-  // useEffect(() => {
-  //   if (showSuccessMessage || showErrorMessage) {
-  //     setTimeout(() => {
-  //       setShowSuccessMessage(false)
-  //       setShowErrorMessage(false)
-  //       // setAdminInfo({ ...props })
-  //     }, 3000)
-  //   }
-  // }, [showSuccessMessage, showErrorMessage, org, website])
-  // const saveChanges = async () => {
-  //   try {
-  //     const updateAdminInfo: Response = await fetch(`api/admins/${id}`, {
-  //       method: POST,
-  //       body: JSON.stringify(adminInfo),
-  //       headers: { Authorization: `Bearer ${token}` },
-
-  //       // org,
-  //       // website
-  //     })
-  //   const apiResponse = await updateAdminInfo.json()
-  //   const { token: newToken } = apiResponse
-  //   //@ts-ignore
-  //   setToken(newToken)
-  //   setShowSuccessMessage(true)
-  // } catch (error) {
-  //   setShowErrorMessage(true)
-  // }
-  // const resetValues = () => {
-  //   initialForm
-  // }
   const logOut = () => {
     push('/')
   }
@@ -69,13 +37,7 @@ const Dashboard = ({ userLoggedIn }: DashboardProps) => {
           }}
         >
           <h1>Dashboard Information for: {'ThriveSBC'}</h1>
-          {/* {!isVerified && ( */}
-          {/* <div className={'fail'}>
-        You wont be able to make any changes until you verify your email
-      </div> */}
-          {/* )} */}
-          {/* <h1>{login}</h1> */}
-          {/* {errorMessage && <div className={'fail'}>{errorMessage}</div>} */}
+
           <TextField
             style={{ margin: '2rem 0 1rem 0' }}
             name="org"
@@ -84,9 +46,7 @@ const Dashboard = ({ userLoggedIn }: DashboardProps) => {
             InputLabelProps={{
               style: { fontSize: '1.5rem', fontWeight: 'bold' },
             }}
-            // helperText="Organization"
             value={'thrivesbc'}
-            // size="lg"
           />
 
           <TextField
@@ -127,14 +87,6 @@ export default Dashboard
 export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext,
 ) => {
-  if (!isDev)
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-
   let token: any
 
   if (ctx.req.headers.cookie) {

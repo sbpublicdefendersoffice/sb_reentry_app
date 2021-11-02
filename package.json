@@ -5,8 +5,8 @@
   "scripts": {
     "analyze": "yarn webpack-bundle-analyzer ./.next/webpack-stats.json -r ./.next/report.html -m static",
     "aptible-deploy": "git push aptible HEAD:master",
-    "docker-build": "next build",
-    "build": "PROD_STATS=true next build",
+    "docker-build": "NODE_OPTIONS=--max_old_space_size=4096 next build",
+    "build": "NODE_OPTIONS=--max_old_space_size=4096 PROD_STATS=true next build",
     "build_data": "docker compose -f ./docker_postgres.yml up -d",
     "build_with_source_maps": "NODE_OPTIONS=--max_old_space_size=4096 PROD_SRC_MAPS=true next build",
     "code-check": "yarn lint-es && yarn test && yarn type-check && yarn lint-css && yarn format",
@@ -22,12 +22,10 @@
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.4",
     "@mui/styles": "^5.0.2",
     "@sendgrid/mail": "^7.5.0",
-    "add": "^2.0.6",
     "bcrypt": "^5.0.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
@@ -39,8 +37,7 @@
     "sequelize": "^6.6.5",
     "styled-components": "^5.3.0",
     "twilio": "^3.67.0",
-    "uuid": "^8.3.2",
-    "yarn": "^1.22.17"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",

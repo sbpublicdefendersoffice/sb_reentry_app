@@ -1,8 +1,7 @@
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { HeadTags } from '../../components'
-import { siteTitle, isDev, useStyles } from '../../constants'
+import { siteTitle, useStyles } from '../../constants'
 import { CopyHolder } from '../../types'
 import { validator } from '../../helpers/formValidator'
 import { useLanguage, useToast, useFormFields } from '../../hooks'
@@ -174,16 +173,3 @@ const LoginPage = () => {
   )
 }
 export default LoginPage
-export const getServerSideProps: GetServerSideProps = async () => {
-  // login is still under development, so we don't want people accessing it in production
-  if (!isDev)
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  return {
-    props: {},
-  }
-}

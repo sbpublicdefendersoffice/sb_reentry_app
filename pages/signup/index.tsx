@@ -245,16 +245,3 @@ const SignupPage = () => {
   )
 }
 export default SignupPage
-export const getServerSideProps: GetServerSideProps = async () => {
-  // login is still under development, so we don't want people accessing it in production
-  if (!isDev)
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  return {
-    props: {},
-  }
-}

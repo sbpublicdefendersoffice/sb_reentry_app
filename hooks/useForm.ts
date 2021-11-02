@@ -1,4 +1,5 @@
-import { useToast, useLanguage } from '../hooks'
+import useToast from './useToast'
+import useLanguage from './useLanguage'
 import { POST } from '../helpers/'
 import { CopyHolder } from '../types'
 import { useRouter } from 'next/router'
