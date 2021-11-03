@@ -53,11 +53,11 @@ const useForm = ({ initState, callback, validator }) => {
     }))
     setIsSubmited(true)
     if (state) {
-      const postUserToPostgres: Response = await fetch('/api/postUser', {
+      const postCBOToPostgres: Response = await fetch('/api/postCBO', {
         method: POST,
         body: JSON.stringify(state),
       })
-      const apiResponse = await postUserToPostgres.json()
+      const apiResponse = await postCBOToPostgres.json()
       if (apiResponse.error) {
         setToast(failMessage)
         return
