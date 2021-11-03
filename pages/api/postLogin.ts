@@ -11,19 +11,19 @@ const postLogin = async (
     let { email, pwd } = JSON.parse(req.body)
 
     if (email && pwd) {
-      const { adminObj } = initDb()
+      const { cboObj } = initDb()
       //@ts-ignore
-      const user = await adminObj.findOne({ where: { email: email } })
+      const cbo = await cboObj.findOne({ where: { email: email } })
 
-      if (!user) {
-        throw new Error('User does not exist')
+      if (!cbo) {
+        throw new Error('Email does not exist')
       }
 
-      const { id, isVerified, hashedPassword } = user
+      const { id, isVerified, hashedPassword } = cbo
 
       let isCorrect = await bcrypt.compare(pwd, hashedPassword)
       if (!isCorrect) {
-        throw new Error('Username or password is incorrect. Please try again')
+        throw new Error('Email or password is incorrect. Please try again')
       }
       if (isCorrect) {
         jwt.sign(
