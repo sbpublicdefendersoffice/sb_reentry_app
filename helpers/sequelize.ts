@@ -6,7 +6,7 @@ import { AllModels } from '../types/sequelize'
 const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY } = DataTypes
 const opt: ModelOptions = { timestamps: false }
 
-let sql, orgObj, locObj, servObj, schObj, useObj, adminObj
+let sql, orgObj, locObj, servObj, schObj, useObj, cboObj
 
 const initDb = (): AllModels => {
   try {
@@ -102,13 +102,9 @@ const initDb = (): AllModels => {
         },
         opt,
       )
-      adminObj = sql.define(
-        'admins',
+      cboObj = sql.define(
+        'cbo',
         {
-          // id: {
-          //   primaryKey: true,
-          //   type: INTEGER || null,
-          // },
           created_at: {
             type: DATE,
           },
@@ -117,27 +113,10 @@ const initDb = (): AllModels => {
           hashedPassword: { type: TEXT },
           verificationString: { type: TEXT },
           passwordResetCode: { type: TEXT },
-
           isVerified: { type: BOOLEAN },
         },
         opt,
       )
-      // useObj = sql.define(
-      //   'admin_users',
-      //   {
-      //     // id: {
-      //     //   primaryKey: true,
-      //     //   type: INTEGER,
-      //     // },
-      //     created_at: {
-      //       type: DATE,
-      //     },
-      //     name: { type: TEXT },
-      //     email: { type: TEXT },
-      //     hashedPassword: { type: TEXT },
-      //   },
-      //   opt,
-      // )
 
       const locOrgObj = sql.define(
         'locations_organizations',
@@ -243,7 +222,7 @@ const initDb = (): AllModels => {
         .then(() => console.log('Database models created'))
     }
 
-    return { orgObj, locObj, servObj, schObj, useObj, adminObj }
+    return { orgObj, locObj, servObj, schObj, useObj, cboObj }
   } catch (err) {
     console.error(`Error setting up database: ${err}`)
   }
