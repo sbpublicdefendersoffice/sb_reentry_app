@@ -1,13 +1,17 @@
 import {
   useState,
-  useRef,
   FormEvent,
   ChangeEvent,
-  MutableRefObject,
+  // MutableRefObject,
+  // useRef,
 } from 'react'
 import { useRouter } from 'next/router'
 
-import { useLanguage, useIntersectionStyle, useToast } from '../hooks'
+import {
+  useLanguage,
+  // useIntersectionStyle,
+  useToast,
+} from '../hooks'
 import { validations, states } from '../constants'
 import { ExpungementInfo, CopyHolder, Validation } from '../types'
 // import {
@@ -64,6 +68,12 @@ const copy: CopyHolder = {
     benefits: 'Government Benefits',
     licensing: 'Licensing',
     other: 'Other',
+    marital: 'Are you married or do you have a legal domestic partner?',
+    single: 'I am single',
+    married: 'I am married',
+    separated: 'I am separated',
+    divorced: 'I am divorced',
+    commonlaw: 'I have a common-law partner',
   },
   spanish: {
     title: 'Solicite la eliminación de antecedentes penales',
@@ -103,15 +113,25 @@ const copy: CopyHolder = {
     benefits: 'Beneficios del gobierno',
     licensing: 'Licencia',
     other: 'Otro',
+    marital: '¿Eres casado o tienes pareja legal?',
+    single: 'Estoy soltero',
+    married: 'Estoy casado',
+    separated: 'Estoy separado',
+    divorced: 'Estoy divorciado',
+    commonlaw: 'Tengo un socio de hecho',
   },
 }
 
-const { Load, Field, RadioCard } = styles
+const {
+  // Load,
+  Field,
+  RadioCard,
+} = styles
 
 const ExpungementForm = () => {
   const { push } = useRouter()
   const { setToast } = useToast()
-  const uptrustRef: MutableRefObject<HTMLDivElement> = useRef()
+  // const uptrustRef: MutableRefObject<HTMLDivElement> = useRef()
   const { language } = useLanguage()
   const {
     title,
@@ -147,11 +167,17 @@ const ExpungementForm = () => {
     benefits,
     licensing,
     other,
+    marital,
+    single,
+    married,
+    separated,
+    divorced,
+    commonlaw,
   } = copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
 
-  useIntersectionStyle(uptrustRef, Load)
+  // useIntersectionStyle(uptrustRef, Load)
 
   const submitExpungementForm = async (
     e: FormEvent<HTMLFormElement>,
@@ -360,6 +386,52 @@ const ExpungementForm = () => {
             />
           </Card>
         </section>
+        <section className={Field}>
+          <label>{marital}</label>
+          <Card className={RadioCard}>
+            <label htmlFor="marital_status_single">{single}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Marital Status"
+              value="Marital Status_Single_On"
+              id="marital_status_single"
+            />
+            <label htmlFor="marital_status_married">{married}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Marital Status"
+              value="Marital Status_Married_On"
+              id="marital_status_married"
+            />
+            <label htmlFor="marital_status_separated">{separated}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Marital Status"
+              value="Marital Status_Separated_On"
+              id="marital_status_separated"
+            />
+            <label htmlFor="marital_status_divorced">{divorced}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Marital Status"
+              value="Marital Status_Divorced_On"
+              id="marital_status_divorced"
+            />
+            <label htmlFor="marital_status_commonlaw">{commonlaw}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Marital Status"
+              value="Marital Status_CommonLaw_On"
+              id="marital_status_commonlaw"
+            />
+          </Card>
+        </section>
+        <section className={Field}></section>
         <section className={Field}></section>
       </Card>
       {/* <ExpungementMainInfo
