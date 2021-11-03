@@ -84,6 +84,14 @@ const copy: CopyHolder = {
     currently_on_probation: 'Are you currently on probation or parole?',
     where: 'If you are on probation or parole, what county is it in?',
     dependents: 'How many people depend on your financial support?',
+    income:
+      "What is your regular income? If you have one, include your partner's income as well",
+    frequency: 'How frequently do you receive income?',
+    week: 'Weekly',
+    month: 'Monthly',
+    income_source: 'Where does your income come from?',
+    savings: 'How much money do you have saved?',
+    unemployment_benefits: 'Do you collect unemployment benefits?',
   },
   spanish: {
     title: 'Solicite la eliminación de antecedentes penales',
@@ -141,6 +149,14 @@ const copy: CopyHolder = {
     where:
       'Si está en libertad condicional o en libertad condicional, ¿en qué condado se encuentra?',
     dependents: '¿Cuántas personas dependen de su apoyo financiero?',
+    income:
+      '¿Cuál es su ingreso regular? Si tiene uno, incluya también los ingresos de su pareja',
+    frequency: '¿Con qué frecuencia recibe ingresos?',
+    week: 'Semanalmente',
+    month: 'Mensual',
+    income_source: '¿De dónde provienen sus ingresos?',
+    savings: '¿Cuánto dinero has ahorrado?',
+    unemployment_benefits: '¿Cobran prestaciones por desempleo?',
   },
 }
 
@@ -205,6 +221,13 @@ const ExpungementForm = () => {
     currently_on_probation,
     where,
     dependents,
+    income,
+    frequency,
+    week,
+    month,
+    income_source,
+    savings,
+    unemployment_benefits,
   } = copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
@@ -564,6 +587,48 @@ const ExpungementForm = () => {
             type="number"
             id="Number of Dependents"
           />
+        </section>
+        <section className={Field}>
+          <label htmlFor="Take Home Pay">{income}</label>
+          <Input onChange={handleChange} type="number" id="Take Home Pay" />
+        </section>
+        <section className={Field}>
+          <label>{frequency}</label>
+          <Card className={RadioCard}>
+            <label htmlFor="Weekly">{week}</label>
+            <Input onChange={handleChange} type="checkbox" id="Weekly" />
+            <label htmlFor="Monthly-0">{month}</label>
+            <Input onChange={handleChange} type="checkbox" id="Monthly-0" />
+          </Card>
+        </section>
+        <section className={Field}>
+          <label htmlFor="Employer Name">{income_source}</label>
+          <Input onChange={handleChange} type="text" id="Employer Name" />
+        </section>
+        <section className={Field}>
+          <label htmlFor="Textfield-12">{savings}</label>
+          <Input onChange={handleChange} type="number" id="Textfield-12" />
+        </section>
+        <section className={Field}>
+          <label>{unemployment_benefits}</label>
+          <Card className={RadioCard}>
+            <label htmlFor="unemployed_benefits_yes">{yes}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Unemployment Benefits"
+              value="Unemployment Benefits_Yes_On"
+              id="unemployed_benefits_yes"
+            />
+            <label htmlFor="unemployed_benefits_no">No</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Unemployment Benefits"
+              value="Unemployment Benefits_No Amount_On"
+              id="unemployed_benefits_no"
+            />
+          </Card>
         </section>
         <section className={Field}></section>
         <section className={Field}></section>
