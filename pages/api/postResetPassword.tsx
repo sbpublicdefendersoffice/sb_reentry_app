@@ -6,7 +6,7 @@ const resetPasswordRoute = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { adminObj } = initDb()
+    const { cboObj } = initDb()
     const { pwd, passwordResetCode } = JSON.parse(req.body)
     const saltRounds: number = 10
     let hashedPassword: string
@@ -18,11 +18,11 @@ const resetPasswordRoute = async (
       .catch(err => {
         console.log(err)
       })
-    const admin = await adminObj.update(
+    const cbo = await cboObj.update(
       { hashedPassword: hashedPassword, passwordResetCode: '' },
       { where: { passwordResetCode: passwordResetCode } },
     )
-    if (admin[0] !== 1) {
+    if (cbo[0] !== 1) {
       return res.status(401).json({ message: 'error' })
     }
     res.status(200).json({
