@@ -81,6 +81,9 @@ const copy: CopyHolder = {
     marijuana: 'Was your case marijuana related?',
     numbers: 'What were your case numbers, if you know?',
     county: 'Were You Convicted in Santa Barbara County?',
+    currently_on_probation: 'Are you currently on probation or parole?',
+    where: 'If you are on probation or parole, what county is it in?',
+    dependents: 'How many people depend on your financial support?',
   },
   spanish: {
     title: 'Solicite la eliminación de antecedentes penales',
@@ -133,6 +136,11 @@ const copy: CopyHolder = {
     marijuana: '¿Estuvo relacionado tu caso con la marihuana?',
     numbers: '¿Cuáles fueron sus números de caso, si lo sabe?',
     county: '¿Fue condenado en el condado de Santa Bárbara?',
+    currently_on_probation:
+      '¿Está actualmente en libertad condicional o en libertad condicional?',
+    where:
+      'Si está en libertad condicional o en libertad condicional, ¿en qué condado se encuentra?',
+    dependents: '¿Cuántas personas dependen de su apoyo financiero?',
   },
 }
 
@@ -194,6 +202,9 @@ const ExpungementForm = () => {
     marijuana,
     numbers,
     county,
+    currently_on_probation,
+    where,
+    dependents,
   } = copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
@@ -512,6 +523,47 @@ const ExpungementForm = () => {
               id="convicted_in_sb_no"
             />
           </Card>
+        </section>
+        <section className={Field}>
+          <label>{currently_on_probation}</label>
+          <Card className={RadioCard}>
+            <label htmlFor="current_probation_yes">{yes}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Are you currently on probation or parole"
+              value="Are you currently on probation or parole_yes_On"
+              id="current_probation_yes"
+            />
+            <label htmlFor="current_probation_no">No</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Are you currently on probation or parole"
+              value="Are you currently on probation or parole_no_On"
+              id="current_probation_no"
+            />
+            <label htmlFor="current_probation_unsure">{dont_know}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Are you currently on probation or parole"
+              value="Are you currently on probation or parole_unsure If yes where_On"
+              id="current_probation_unsure"
+            />
+          </Card>
+        </section>
+        <section className={Field}>
+          <label htmlFor="unsure If yes where">{where}</label>
+          <Input onChange={handleChange} type="text" id="unsure If yes where" />
+        </section>
+        <section className={Field}>
+          <label htmlFor="Number of Dependents">{dependents}</label>
+          <Input
+            onChange={handleChange}
+            type="number"
+            id="Number of Dependents"
+          />
         </section>
         <section className={Field}></section>
         <section className={Field}></section>
