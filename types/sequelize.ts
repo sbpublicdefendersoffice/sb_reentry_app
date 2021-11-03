@@ -84,7 +84,7 @@ export interface IsThisUsefulModel extends Model {
   language: string
   comment: string
 }
-export interface AdminModel extends Model {
+export interface CBOModel extends Model {
   id?: number
   created_at: string
   email: boolean
@@ -104,7 +104,7 @@ export type ScheduleOrganization = ModelCtor<SchedulesOrganizationsModel>
 export type ServiceLocation = ModelCtor<ServicesLocationsModel>
 export type ServiceOrganization = ModelCtor<ServicesOrganizationsModel>
 export type IsThisUseful = ModelCtor<IsThisUsefulModel>
-export type Admin = ModelCtor<AdminModel>
+export type CBO = ModelCtor<CBOModel>
 
 export interface AllModels {
   orgObj: Organization
@@ -112,5 +112,5 @@ export interface AllModels {
   servObj: Service
   schObj: Schedule
   useObj: IsThisUseful
-  adminObj: Admin
+  cboObj: CBO
 }

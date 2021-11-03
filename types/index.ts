@@ -33,7 +33,7 @@ export type {
   ScheduleRecord,
   SortedRecord,
   Feedback,
-  User,
+  CBO,
   CardInfo,
 } from './records'
 export type { RouteInfo, InfoWithDescription } from './routes'
@@ -42,6 +42,7 @@ export type {
   LocationsModel,
   ServiceModel,
   SchedulesModel,
+  CBOModel,
   LocationsOrganizationsModel,
   SchedulesLocationsModel,
   SchedulesOrganizationsModel,

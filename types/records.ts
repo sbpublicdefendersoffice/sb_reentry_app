@@ -116,7 +116,7 @@ export interface Feedback {
   language: Language
   comment: string
 }
-export interface User {
+export interface CBO {
   org: string
   email: string
   pwd: string
