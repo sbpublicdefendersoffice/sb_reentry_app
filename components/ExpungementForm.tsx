@@ -74,6 +74,13 @@ const copy: CopyHolder = {
     separated: 'I am separated',
     divorced: 'I am divorced',
     commonlaw: 'I have a common-law partner',
+    case_felony: 'My Case Was A Felony',
+    case_misdemeanor: 'My Case Was A Misdemeanor',
+    dont_know: "I Don't Know",
+    case_type: 'Do you know what kind of legal case you had?',
+    marijuana: 'Was your case marijuana related?',
+    numbers: 'What were your case numbers, if you know?',
+    county: 'Were You Convicted in Santa Barbara County?',
   },
   spanish: {
     title: 'Solicite la eliminación de antecedentes penales',
@@ -119,6 +126,13 @@ const copy: CopyHolder = {
     separated: 'Estoy separado',
     divorced: 'Estoy divorciado',
     commonlaw: 'Tengo un socio de hecho',
+    case_felony: 'Mi caso fue un delito grave',
+    case_misdemeanor: 'Mi caso fue un delito menor',
+    dont_know: 'No sé',
+    case_type: '¿Sabes qué tipo de caso legal tuviste?',
+    marijuana: '¿Estuvo relacionado tu caso con la marihuana?',
+    numbers: '¿Cuáles fueron sus números de caso, si lo sabe?',
+    county: '¿Fue condenado en el condado de Santa Bárbara?',
   },
 }
 
@@ -173,6 +187,13 @@ const ExpungementForm = () => {
     separated,
     divorced,
     commonlaw,
+    case_felony,
+    case_misdemeanor,
+    dont_know,
+    case_type,
+    marijuana,
+    numbers,
+    county,
   } = copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
@@ -428,6 +449,67 @@ const ExpungementForm = () => {
               name="Marital Status"
               value="Marital Status_CommonLaw_On"
               id="marital_status_commonlaw"
+            />
+          </Card>
+        </section>
+        <section className={Field}>
+          <label>{case_type}</label>
+          <Card className={RadioCard}>
+            <label htmlFor="Felony">{case_felony}</label>
+            <Input onChange={handleChange} type="checkbox" id="Felony" />
+            <label htmlFor="Misdemeanor">{case_misdemeanor}</label>
+            <Input onChange={handleChange} type="checkbox" id="Misdemeanor" />
+            <label htmlFor="Unsure">{dont_know}</label>
+            <Input onChange={handleChange} type="checkbox" id="Unsure" />
+          </Card>
+        </section>
+        <section className={Field}>
+          <label>{marijuana}</label>
+          <Card className={RadioCard}>
+            <label htmlFor="marijuana_related_yes">{yes}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Was it marijuana related"
+              value="Was it marijuana related_yes_On"
+              id="marijuana_related_yes"
+            />
+            <label htmlFor="marijuana_related_no">No</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Was it marijuana related"
+              value="Was it marijuana related_no_On"
+              id="marijuana_related_no"
+            />
+          </Card>
+        </section>
+        <section className={Field}>
+          <label htmlFor="Case Numbers if known">{numbers}</label>
+          <Input
+            onChange={handleChange}
+            type="text"
+            id="Case Numbers if known"
+          />
+        </section>
+        <section className={Field}>
+          <label>{county}</label>
+          <Card className={RadioCard}>
+            <label htmlFor="convicted_in_sb_yes">{yes}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Convicted in Santa Barbara County"
+              value="Convicted in Santa Barbara County_yes_On"
+              id="convicted_in_sb_yes"
+            />
+            <label htmlFor="convicted_in_sb_no">No</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Convicted in Santa Barbara County"
+              value="Convicted in Santa Barbara County_no If yes_On"
+              id="convicted_in_sb_no"
             />
           </Card>
         </section>
