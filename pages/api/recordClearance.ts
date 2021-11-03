@@ -20,11 +20,12 @@ const recordClearance = async (
   try {
     const body: ExpungeFormInfo = JSON.parse(req.body)
     const { language } = body
+    const name: string = body['Full Name']
 
-    validations.forEach((v: Validation): void => {
-      const { error, field, id } = v
-      if (!body[field]) throw new Error(`${error[language]}&&#${id}`)
-    })
+    // validations.forEach((v: Validation): void => {
+    //   const { error, field, id } = v
+    //   if (!body[field]) throw new Error(`${error[language]}&&#${id}`)
+    // })
 
     const filledOutApp = await fillOutPDFForm(
       readFileSync(applicationPath),
@@ -37,7 +38,6 @@ const recordClearance = async (
     )
 
     sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
-    const name: string = body['Full Name']
 
     const message: MailDataRequired = {
       to: process.env.SBPD_RECORDS_EXPUNGEMENT_EMAIL,

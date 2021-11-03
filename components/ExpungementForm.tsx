@@ -239,10 +239,10 @@ const ExpungementForm = () => {
   ): Promise<void> => {
     e.preventDefault()
     try {
-      validations.forEach((v: Validation): void => {
-        const { error, field, id } = v
-        if (!expungeInfo[field]) throw new Error(`${error[language]}&&#${id}`)
-      })
+      // validations.forEach((v: Validation): void => {
+      //   const { error, field, id } = v
+      //   if (!expungeInfo[field]) throw new Error(`${error[language]}&&#${id}`)
+      // })
 
       const { Address, City, state, zip } = expungeInfo
       const stateAndZip = `${state || 'CA'}, ${zip}`
@@ -599,10 +599,14 @@ const ExpungementForm = () => {
         <section className={Field}>
           <label>{frequency}</label>
           <Card className={RadioCard}>
-            <label htmlFor="Weekly">{week}</label>
-            <Input onChange={handleChange} type="checkbox" id="Weekly" />
-            <label htmlFor="Monthly-0">{month}</label>
-            <Input onChange={handleChange} type="checkbox" id="Monthly-0" />
+            <label htmlFor="Weekly Take Home Pay">{week}</label>
+            <Input
+              onChange={handleChange}
+              type="checkbox"
+              id="Weekly Take Home Pay"
+            />
+            <label htmlFor="Monthly">{month}</label>
+            <Input onChange={handleChange} type="checkbox" id="Monthly" />
           </Card>
         </section>
         <section className={Field}>
