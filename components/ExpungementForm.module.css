@@ -5,6 +5,40 @@
   text-align: center;
 }
 
+.Card {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  margin: var(--margin-lg) auto;
+  padding-left: var(--pad-std);
+  padding-right: var(--pad-std);
+}
+
+.Field {
+  display: inherit;
+  flex-direction: inherit;
+}
+
+.Field > label,
+.Field > select {
+  font-size: var(--med-text);
+  margin-left: var(--margin-sm);
+  margin-right: var(--margin-sm);
+}
+
+.Field > select {
+  margin-top: var(--margin-std);
+  margin-bottom: var(--margin-std);
+}
+
+.RadioCard {
+  width: fit-content;
+  padding: 0 var(--pad-std);
+  margin-left: var(--margin-sm);
+  margin-right: var(--margin-sm);
+}
+
+/* 
 .ExpungementForm > div {
   padding-left: var(--pad-lg);
   padding-right: var(--pad-lg);
@@ -34,7 +68,7 @@
 
 .ExpungementForm > div > section > input[type='radio'] {
   flex: 0;
-}
+} */
 
 .Load {
   animation: load 1s;
@@ -46,7 +80,6 @@
 
 .TitleLabel {
   font-size: var(--med-text);
-  color: var(--highlight);
 }
 
 .VertMargin {
@@ -54,7 +87,15 @@
 }
 
 @media (max-width: 700px) {
-  .ExpungementForm label {
+  .Card {
+    width: 100%;
+  }
+
+  .RadioCard {
+    align-self: center;
+  }
+
+  /* .ExpungementForm label {
     margin: var(--margin-sm) 0;
   }
 
@@ -80,7 +121,7 @@
   .ExpungementForm > div > section > input[type='tel'],
   .ExpungementForm > div > section > input[type='email'] {
     width: 100%;
-  }
+  } */
 }
 
 @keyframes load {
