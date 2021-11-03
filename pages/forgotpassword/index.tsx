@@ -68,14 +68,14 @@ const ForgotPasswordPage = () => {
   const { email } = state
   const onSubmitClicked = async e => {
     e.preventDefault()
-    const postUserToPostgres: Response = await fetch(
+    const postCBOToPostgres: Response = await fetch(
       `/api/postForgotPassword/`,
       {
         method: POST,
         body: email,
       },
     )
-    const apiResponse = await postUserToPostgres.json()
+    const apiResponse = await postCBOToPostgres.json()
 
     if (apiResponse.message == 'error') {
       setToast(doesNotExist)
