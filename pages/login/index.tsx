@@ -81,11 +81,11 @@ const LoginPage = () => {
   const handleSubmit = async e => {
     e.preventDefault()
 
-    const postUserToPostgres: Response = await fetch('/api/postLogin', {
+    const postCBOsToPostgres: Response = await fetch('/api/postLogin', {
       method: POST,
       body: JSON.stringify(state),
     })
-    const apiResponse = await postUserToPostgres.json()
+    const apiResponse = await postCBOsToPostgres.json()
     if (apiResponse.error) {
       setToast(tryAgain)
     } else {
@@ -134,6 +134,7 @@ const LoginPage = () => {
             variant="outlined"
             title={mustContain}
             value={pwd}
+            style={{ margin: '1rem 0' }}
             name="pwd"
             onChange={handleChange}
             placeholder={password}
