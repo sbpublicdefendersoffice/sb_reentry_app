@@ -7,17 +7,17 @@ const postForgotPassword = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { adminObj } = initDb()
+    const { cboObj } = initDb()
     const passwordResetCode = uuid()
-    const user = await adminObj.update(
+    const cbo = await cboObj.update(
       { passwordResetCode: passwordResetCode },
       { where: { email: req.body } },
     )
-    if (user[0] !== 1) {
+    if (cbo[0] !== 1) {
       res.status(401).json({ message: 'error' })
       return
     }
-    if (user) {
+    if (cbo) {
       //@ts-ignore
       await sendEmail({
         to: req.body,
