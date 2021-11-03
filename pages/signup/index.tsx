@@ -112,7 +112,7 @@ const SignupPage = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            marginTop: '4rem',
+            margin: '4rem 2rem',
           }}
         >
           <h1>{signup}</h1>
