@@ -1,35 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useLanguage } from '../../../hooks'
 import { POST } from '../../../helpers/'
-import { EmailSuccess, EmailFail } from '../../../components'
-import { LeafLoader } from '../../../components'
-import { useStyles, ENGLISH } from '../../../constants'
+import EmailSuccess from '../../../components/EmailSuccess'
+import EmailFail from '../../../components/EmailFail'
+import LeafLoader from '../../../components/LeafLoader'
+import { useStyles } from '../../../constants/materialStyles'
 const EmailLandingPage = () => {
   const { asPath } = useRouter()
   const verificationString = asPath.split('/')[2]
-  const { language } = useLanguage()
   const [isLoading, setIsLoading] = useState(true)
   const classes = useStyles()
   const [isSuccess, setIsSuccess] = useState(false)
-
   useEffect(() => {
     const loadVerification = async () => {
       try {
-        const postUserToPostgres: Response = await fetch(
+        const postCBOToPostgres: Response = await fetch(
           '/api/postVerifyEmail',
           {
             method: POST,
             body: JSON.stringify(verificationString),
           },
         )
-
-        const apiResponse = await postUserToPostgres.json()
-
-        const { token } = apiResponse
-
-        //@ts-ignore
-        // setToken(token)
         setIsSuccess(true)
         setIsLoading(false)
       } catch (err) {
@@ -39,7 +30,6 @@ const EmailLandingPage = () => {
     }
     loadVerification()
   }, [verificationString])
-
   if (isLoading)
     return (
       <div className={classes.root}>
@@ -47,8 +37,6 @@ const EmailLandingPage = () => {
       </div>
     )
   if (!isSuccess) return <EmailFail />
-
   return <EmailSuccess />
 }
-
 export default EmailLandingPage
