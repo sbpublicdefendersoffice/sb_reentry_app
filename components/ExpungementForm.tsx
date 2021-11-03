@@ -239,12 +239,17 @@ const ExpungementForm = () => {
   ): Promise<void> => {
     e.preventDefault()
     try {
-      // validations.forEach((v: Validation): void => {
-      //   const { error, field, id } = v
-      //   if (!expungeInfo[field]) throw new Error(`${error[language]}&&#${id}`)
-      // })
+      validations.forEach((v: Validation): void => {
+        const { error, field, id } = v
+        if (!expungeInfo[field]) throw new Error(`${error[language]}&&#${id}`)
+      })
 
-      const { Address, City, state, zip } = expungeInfo
+      let tempInfo: ExpungementInfo = expungeInfo
+
+      if (tempInfo?.['Textfield-13'] !== total)
+        tempInfo = { ...tempInfo, 'Textfield-13': total }
+
+      const { Address, City, state, zip } = tempInfo
       const stateAndZip = `${state || 'CA'}, ${zip}`
 
       const sendForm: Response = await fetch('/api/recordClearance', {
@@ -253,7 +258,7 @@ const ExpungementForm = () => {
           'Mailing Address': `${Address} ${City} ${stateAndZip}`,
           'State  Zip': stateAndZip,
           language,
-          ...expungeInfo,
+          ...tempInfo,
         }),
       })
 
@@ -297,7 +302,9 @@ const ExpungementForm = () => {
       <Paragraph size="med-text">4) {four}</Paragraph>
       <Card ref={formRef} className={styles.Card}>
         <section className={Field}>
-          <label htmlFor="Full Name">{name}</label>
+          <label id="name-label" htmlFor="Full Name">
+            {name}
+          </label>
           <Input onChange={handleChange} type="text" id="Full Name" />
         </section>
         <section className={Field}>
@@ -320,7 +327,9 @@ const ExpungementForm = () => {
           />
         </section>
         <section className={Field}>
-          <label htmlFor="Date of Birth">{dob}</label>
+          <label id="dob-label" htmlFor="Date of Birth">
+            {dob}
+          </label>
           <Input onChange={handleChange} type="date" id="Date of Birth" />
         </section>
         <section className={Field}>
@@ -372,11 +381,15 @@ const ExpungementForm = () => {
           </Card>
         </section>
         <section className={Field}>
-          <label htmlFor="Address">{address}</label>
+          <label id="address-label" htmlFor="Address">
+            {address}
+          </label>
           <Input onChange={handleChange} type="text" id="Address" />
         </section>
         <section className={Field}>
-          <label htmlFor="City">{city}</label>
+          <label id="city-label" htmlFor="City">
+            {city}
+          </label>
           <Input onChange={handleChange} type="text" id="City" />
         </section>
         <section className={Field}>
@@ -390,7 +403,9 @@ const ExpungementForm = () => {
           </select>
         </section>
         <section className={Field}>
-          <label htmlFor="zip">{zip}</label>
+          <label id="zip-label" htmlFor="zip">
+            {zip}
+          </label>
           <Input
             onChange={handleChange}
             id="zip"

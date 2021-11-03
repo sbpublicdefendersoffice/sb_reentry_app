@@ -7,7 +7,7 @@ export const validations: Validation[] = [
       english: "Applicant's full name is required",
       spanish: 'Se requiere el nombre completo del solicitante',
     },
-    id: 'ident',
+    id: 'name-label',
   },
   {
     field: 'Date of Birth',
@@ -16,7 +16,7 @@ export const validations: Validation[] = [
       spanish:
         'Se debe ingresar la fecha de nacimiento para fines de mantenimiento de registros',
     },
-    id: 'ident',
+    id: 'dob-label',
   },
   {
     field: 'Address',
@@ -24,7 +24,7 @@ export const validations: Validation[] = [
       english: 'An address is required',
       spanish: 'Se requiere una dirección',
     },
-    id: 'ident',
+    id: 'address-label',
   },
   {
     field: 'City',
@@ -32,7 +32,7 @@ export const validations: Validation[] = [
       english: 'Enter your city of residence',
       spanish: 'Ingrese su ciudad de residencia',
     },
-    id: 'ident',
+    id: 'city-label',
   },
   {
     field: 'zip',
@@ -40,7 +40,7 @@ export const validations: Validation[] = [
       english: 'Please enter the zip code in which you reside',
       spanish: 'Ingrese el código postal en el que reside',
     },
-    id: 'ident',
+    id: 'zip-label',
   },
   {
     field: 'Date',
@@ -48,7 +48,7 @@ export const validations: Validation[] = [
       english: "You must enter today's date",
       spanish: 'Debes ingresar la fecha de hoy',
     },
-    id: 'sign',
+    id: 'date-label',
   },
   {
     field: 'Signature',
@@ -56,7 +56,7 @@ export const validations: Validation[] = [
       english: 'A signature is required',
       spanish: 'Se requiere una firma',
     },
-    id: 'sign',
+    id: 'sign-label',
   },
   {
     field: 'certified',
@@ -66,7 +66,7 @@ export const validations: Validation[] = [
       spanish:
         'Debe hacer clic para indicar que comprende los términos y condiciones de la eliminación de antecedentes penales.',
     },
-    id: 'sign',
+    id: 'cert-label',
   },
 ]
 

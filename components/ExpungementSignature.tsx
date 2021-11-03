@@ -78,7 +78,9 @@ const ExpungementSignature = ({
       </section>
       <section className={Field}></section>
       <section className={Field}>
-        <label htmlFor="Date">{date}</label>
+        <label id="date-label" htmlFor="Date">
+          {date}
+        </label>
         <Input
           onChange={handleChange}
           type="date"
@@ -87,11 +89,17 @@ const ExpungementSignature = ({
         />
       </section>
       <section className={Field}>
-        <label htmlFor="Signature">{signature}</label>
+        <label id="sign-label" htmlFor="Signature">
+          {signature}
+        </label>
         <Input onChange={handleChange} type="text" id="Signature" />
       </section>
       <section className={Field}>
-        <label htmlFor="certified" style={{ textAlign: 'center' }}>
+        <label
+          id="cert-label"
+          htmlFor="certified"
+          style={{ textAlign: 'center' }}
+        >
           {certify}
           <Input onChange={handleChange} type="checkbox" id="certified" />
         </label>
