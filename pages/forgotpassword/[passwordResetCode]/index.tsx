@@ -12,7 +12,7 @@ export const copy: CopyHolder = {
   english: {
     resetPwd: `Reset Password`,
     enterNew: 'Please enter a new password',
-    pwdText: `Password'`,
+    pwdText: `Password`,
     checkMarks: 'All check marks must turn green, the password must have:',
     characters: 'At least 8 characters',
     upperCase: 'At least 1 uppercase letter',
@@ -77,14 +77,14 @@ const PasswordResetLandingPage = () => {
   const { pwd, confirmPwd } = state
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
-    const postUserToPostgres: Response = await fetch(`/api/postResetPassword`, {
+    const postCBOToPostgres: Response = await fetch(`/api/postResetPassword`, {
       method: POST,
       body: JSON.stringify({
         passwordResetCode: passwordResetCode,
         pwd: pwd,
       }),
     })
-    const apiResponse = await postUserToPostgres.json()
+    const apiResponse = await postCBOToPostgres.json()
     if (apiResponse.message == 'error') {
       await setIsFailure(true)
     } else {
@@ -98,17 +98,18 @@ const PasswordResetLandingPage = () => {
       {isFailure && <PasswordResetFail />}
       {isSuccess && <PasswordResetSuccess />}
       {!isSuccess && !isFailure && (
-        <div className={classes.root}>
+        <div className={classes.root} style={{ margin: '4rem 0 4rem 1rem' }}>
           <h1>{resetPwd}</h1>
           <p className={classes.fontSize} style={{ margin: '2rem' }}>
             {enterNew}
           </p>
           <form role="form" onSubmit={handleSubmit}>
-            <div className={classes.root}>
+            <div className={classes.root} style={{ width: '20rem !important' }}>
               <TextField
                 type="password"
                 name="pwd"
                 value={pwd}
+                style={{ width: '20rem' }}
                 onChange={handleChange}
                 //@ts-ignore
                 error={errors.pwd ? true : false}
@@ -121,7 +122,7 @@ const PasswordResetLandingPage = () => {
               <TextField
                 type="password"
                 name="confirmPwd"
-                style={{ margin: '1rem 0 2rem 0' }}
+                style={{ margin: '1rem 0 2rem 0', width: '20rem' }}
                 value={confirmPwd}
                 onChange={handleChange}
                 //@ts-ignore
