@@ -2,29 +2,25 @@ import {
   useState,
   FormEvent,
   ChangeEvent,
-  // MutableRefObject,
-  // useRef,
+  MutableRefObject,
+  useRef,
 } from 'react'
 import { useRouter } from 'next/router'
 
-import {
-  useLanguage,
-  // useIntersectionStyle,
-  useToast,
-} from '../hooks'
+import { useLanguage, useIntersectionStyle, useToast } from '../hooks'
 import { validations, states } from '../constants'
 import { ExpungementInfo, CopyHolder, Validation } from '../types'
-// import {
-//   ExpungementMainInfo,
-//   ExpungementProbationInfo,
-//   ExpungementMaritalAndVeteranStatus,
-//   ExpungementDependents,
-//   ExpungementCaseInfo,
-//   ExpungementEmploymentAndIncome,
-//   ExpungementMonthlyExpenses,
-//   ExpungementOtherIncomeAssets,
-//   ExpungementSignature,
-// } from './'
+import {
+  //   ExpungementMainInfo,
+  //   ExpungementProbationInfo,
+  //   ExpungementMaritalAndVeteranStatus,
+  //   ExpungementDependents,
+  //   ExpungementCaseInfo,
+  //   ExpungementEmploymentAndIncome,
+  //   ExpungementMonthlyExpenses,
+  //   ExpungementOtherIncomeAssets,
+  ExpungementSignature,
+} from './'
 
 import styles from './ExpungementForm.module.css'
 
@@ -92,6 +88,9 @@ const copy: CopyHolder = {
     income_source: 'Where does your income come from?',
     savings: 'How much money do you have saved?',
     unemployment_benefits: 'Do you collect unemployment benefits?',
+    expenses:
+      'About how much do you spend each month on things like rent, groceries, utilities, medical expenses, or childcare expenses?',
+    total: 'Total expenses',
   },
   spanish: {
     title: 'Solicite la eliminación de antecedentes penales',
@@ -157,19 +156,18 @@ const copy: CopyHolder = {
     income_source: '¿De dónde provienen sus ingresos?',
     savings: '¿Cuánto dinero has ahorrado?',
     unemployment_benefits: '¿Cobran prestaciones por desempleo?',
+    expenses:
+      '¿Aproximadamente cuánto gasta cada mes en cosas como alquiler, comestibles, servicios públicos, gastos médicos o gastos de cuidado de niños?',
+    total: 'Gastos totales',
   },
 }
 
-const {
-  // Load,
-  Field,
-  RadioCard,
-} = styles
+const { Load, Field, RadioCard } = styles
 
 const ExpungementForm = () => {
   const { push } = useRouter()
   const { setToast } = useToast()
-  // const uptrustRef: MutableRefObject<HTMLDivElement> = useRef()
+  const formRef: MutableRefObject<HTMLDivElement> = useRef()
   const { language } = useLanguage()
   const {
     title,
@@ -228,11 +226,13 @@ const ExpungementForm = () => {
     income_source,
     savings,
     unemployment_benefits,
+    expenses,
+    total,
   } = copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
 
-  // useIntersectionStyle(uptrustRef, Load)
+  useIntersectionStyle(formRef, Load)
 
   const submitExpungementForm = async (
     e: FormEvent<HTMLFormElement>,
@@ -278,7 +278,11 @@ const ExpungementForm = () => {
         ...val,
         [id]: !Boolean(val?.[id]),
       }))
-    else setExpungeInfo(val => ({ ...val, [id]: value }))
+    else {
+      if (id === 'Textfield-14')
+        setExpungeInfo(val => ({ ...val, 'Textfield-13': total, [id]: value }))
+      else setExpungeInfo(val => ({ ...val, [id]: value }))
+    }
   }
 
   return (
@@ -291,7 +295,7 @@ const ExpungementForm = () => {
       <Paragraph size="med-text">2) {two}</Paragraph>
       <Paragraph size="med-text">3) {three}</Paragraph>
       <Paragraph size="med-text">4) {four}</Paragraph>
-      <Card className={styles.Card}>
+      <Card ref={formRef} className={styles.Card}>
         <section className={Field}>
           <label htmlFor="Full Name">{name}</label>
           <Input onChange={handleChange} type="text" id="Full Name" />
@@ -630,8 +634,10 @@ const ExpungementForm = () => {
             />
           </Card>
         </section>
-        <section className={Field}></section>
-        <section className={Field}></section>
+        <section className={Field}>
+          <label htmlFor="Textfield-14">{expenses}</label>
+          <Input onChange={handleChange} type="number" id="Textfield-14" />
+        </section>
       </Card>
       {/* <ExpungementMainInfo
         otherLang={expungeInfo?.Other}
@@ -709,17 +715,13 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       /> */}
-      {/* <ExpungementSignature
+      <ExpungementSignature
         setExpungeInfo={setExpungeInfo}
         expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
-      /> */}
-      <Button
-        disabled={!expungeInfo?.['certified']}
-        role="button"
-        type="submit"
-      >
+      />
+      <Button disabled={!expungeInfo?.certified} role="button" type="submit">
         {submit}
       </Button>
     </form>

@@ -12,7 +12,7 @@ import { Card, Paragraph, Input } from '../ui'
 import { useLanguage, useIntersectionStyle } from '../hooks'
 
 import styles from './ExpungementForm.module.css'
-const { VertMargin, LabelMargin, TitleLabel } = styles
+const { Field } = styles
 
 const copy: CopyHolder = {
   english: {
@@ -21,7 +21,7 @@ const copy: CopyHolder = {
       'I am submitting this form to apply for the services of appointed counsel. When this case ends, this information can also be used to decide, after a hearing, whether and how much I can be ordered to pay for the legal services provided. An order to pay for legal services can be enforced as a civil judgement against my property. (Penal Code Section 987.8)',
     fees: 'It will not violate your probation or any law if you fail to pay any ordered Public Defender fees. However, the order has the same effect as a judgement in a civil action. It can be enforced by the County against you and your property like any other money judgement.',
     certify:
-      'I certify under penalty of perjury under the laws of the state of California that all of the above is true and correct. I have read and understand all of the above',
+      'I certify under penalty of perjury under the laws of the state of California that all of the above is true and correct. I have read and understand all of the above.',
     date: 'Date',
     signature: 'Signature (Please type your full name)',
   },
@@ -68,16 +68,17 @@ const ExpungementSignature = ({
   useIntersectionStyle(signRef, animationClass)
 
   return (
-    <Card ref={signRef} id="sign">
+    <Card ref={signRef} className={styles.Card} id="sign">
       <Paragraph size="med-text" color="highlight">
         {sign}
       </Paragraph>
-      <Paragraph className={VertMargin}>{disclaimer}</Paragraph>
-      <Paragraph className={VertMargin}>{fees}</Paragraph>
-      <section>
-        <label className={TitleLabel} htmlFor="Date">
-          {date}
-        </label>
+      <section className={Field}>
+        <Paragraph>{disclaimer}</Paragraph>
+        <Paragraph>{fees}</Paragraph>
+      </section>
+      <section className={Field}></section>
+      <section className={Field}>
+        <label htmlFor="Date">{date}</label>
         <Input
           onChange={handleChange}
           type="date"
@@ -85,16 +86,16 @@ const ExpungementSignature = ({
           value={expungeInfo?.Date}
         />
       </section>
-      <section>
-        <label className={TitleLabel} htmlFor="Signature">
-          {signature}
-        </label>
+      <section className={Field}>
+        <label htmlFor="Signature">{signature}</label>
         <Input onChange={handleChange} type="text" id="Signature" />
       </section>
-      <label className={LabelMargin} htmlFor="certified">
-        {certify}
-      </label>
-      <Input onChange={handleChange} type="checkbox" id="certified" />
+      <section className={Field}>
+        <label htmlFor="certified" style={{ textAlign: 'center' }}>
+          {certify}
+          <Input onChange={handleChange} type="checkbox" id="certified" />
+        </label>
+      </section>
     </Card>
   )
 }
