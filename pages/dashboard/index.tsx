@@ -24,8 +24,15 @@ const Dashboard = ({ userId, isVerified }: DashboardProps) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const [showErrorMessage, setShowErrorMessage] = useState(false)
 
-  const logOut = () => {
-    push('/')
+  const logOut = async () => {
+    const loggingOut: Response = await fetch('/api/logout')
+    const logoutMessage = await loggingOut.json()
+
+    if (logoutMessage.error) console.log('oh no!')
+    else {
+      console.log('oh yeah')
+      push('/')
+    }
   }
 
   return (
@@ -110,6 +117,9 @@ export const getServerSideProps: GetServerSideProps = async (
   }
 
   return {
-    props: { isVerified: !!token.isVerified, userId: Number(token.id) },
+    props: {
+      userId: Number(token?.id),
+      isVerified: Boolean(token?.isVerified),
+    },
   }
 }
