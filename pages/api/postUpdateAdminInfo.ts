@@ -8,7 +8,7 @@ const updateAdminInfoRoute = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { adminObj } = initDb()
+    // const { adminObj } = initDb()
     const { authorization } = req.headers
 
     //@ts-ignore
@@ -40,10 +40,10 @@ const updateAdminInfoRoute = async (
           message:
             'You need to verify your email before you can update your data',
         })
-      const updateAdminInfo = await adminObj.update(
-        { org: updates.org },
-        { where: { id: id } },
-      )
+      // const updateAdminInfo = await adminObj.update(
+      //   { org: updates.org },
+      //   { where: { id: id } },
+      // )
 
       // const { org, info } = updateAdminInfo
       // something not right here

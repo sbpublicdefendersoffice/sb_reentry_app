@@ -3,8 +3,7 @@ import initDb from '../../helpers/sequelize'
 import bcrypt from 'bcrypt'
 import { v4 as uuid } from 'uuid'
 import { sendEmail } from '../../helpers'
-import { sign } from 'jsonwebtoken'
-const oneWeekInSeconds: number = 604800
+
 const postCBO = async (
   req: NextApiRequest,
   res: NextApiResponse,
@@ -15,9 +14,11 @@ const postCBO = async (
       const { cboObj } = initDb()
       // @ts-ignore
       const cbo = await cboObj.findOne({ where: { email: email } })
+
       if (cbo) {
         throw new Error('Email Already Exists')
       }
+
       const saltRounds = 10
       let hashedPassword: string
       await bcrypt
@@ -28,6 +29,7 @@ const postCBO = async (
         .catch(err => {
           console.log(err)
         })
+
       const verificationString = uuid()
       const addCBO = await cboObj.create({
         created_at: new Date(Date.now()),
@@ -37,13 +39,7 @@ const postCBO = async (
         verificationString,
         isVerified: false,
       })
-      const { id } = addCBO
-      res.setHeader(
-        'Set-Cookie',
-        `Auth-Token=${sign({ userLoggedIn: true }, process.env.JWT_SIGNATURE, {
-          expiresIn: `${oneWeekInSeconds}s`,
-        })}; Max-Age=${oneWeekInSeconds}; Path=/; HttpOnly; Secure; SameSite=Strict`,
-      )
+
       res.json(addCBO)
       try {
         //@ts-ignore

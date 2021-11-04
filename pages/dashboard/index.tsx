@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 // import NextLink from 'next/link'
 
@@ -8,9 +8,14 @@ import { verify } from 'jsonwebtoken'
 import { Button, TextField } from '@mui/material'
 import { useStyles } from '../../constants'
 interface DashboardProps {
-  userLoggedIn: boolean
+  userId: number
+  isVerified: boolean
 }
-const Dashboard = ({ userLoggedIn }: DashboardProps) => {
+const Dashboard = ({ userId, isVerified }: DashboardProps) => {
+  // if !isVerified we could present info showing that you have not been verified yet, please wait
+  // if !isVerfied and userId === 0 we could tell them to sign up
+  // if there is both we could institute a request to fetch all the info
+  console.log(userId, isVerified)
   const admin = null
 
   const { push } = useRouter()
@@ -84,6 +89,7 @@ const Dashboard = ({ userLoggedIn }: DashboardProps) => {
 }
 
 export default Dashboard
+
 export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext,
 ) => {
@@ -104,6 +110,6 @@ export const getServerSideProps: GetServerSideProps = async (
   }
 
   return {
-    props: token === undefined ? {} : { userLoggedIn: token?.userLoggedIn },
+    props: { isVerified: !!token.isVerified, userId: Number(token.id) },
   }
 }
