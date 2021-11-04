@@ -1,6 +1,5 @@
 # Build image and add bash for remote sessions
-FROM node:12.18.4-alpine
-RUN apk add --no-cache bash
+FROM node:14.18.1
 
 # Create and set app directory
 ENV dir=/usr/src/app
