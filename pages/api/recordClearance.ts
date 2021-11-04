@@ -39,11 +39,14 @@ const recordClearance = async (
 
     sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
 
+    const text: string = `${name} has applied for criminal record expungement via ThriveSBC`
+
     const message: MailDataRequired = {
       to: process.env.SBPD_RECORDS_EXPUNGEMENT_EMAIL,
       from: process.env.SENDGRID_RECORDS_EXPUNGEMENT_EMAIL,
-      subject: `Expungement forms for ${name}`,
-      text: `Here's the forms for ${name}`,
+      subject: `${name} ThriveSBC Record Expungement`,
+      text,
+      html: `<span>${text}</span>`,
       attachments: [
         {
           content: filledOutFinance,
@@ -61,6 +64,10 @@ const recordClearance = async (
     }
 
     const sendMsg = await sendGrid.send(message)
+
+    // if sendMsg[0].statusCode === 202
+    // save sendMsg[0].headers?.['x-message-id']) to database
+    // send a msg back to client
 
     res.json({ sendMsg })
   } catch (error) {

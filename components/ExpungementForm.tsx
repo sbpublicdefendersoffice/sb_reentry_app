@@ -40,7 +40,7 @@ const copy: CopyHolder = {
     enroll:
       'I would like to be enrolled in Uptrust to receive text messages about upcoming court hearings and office appointments',
     success:
-      "Form has been submitted to be sent to the Public Defender's office",
+      "Your application has been submitted to the Public Defender's office",
     name: 'What is your full name?',
     alias: 'Are there any other names that might be on your record?',
     ssn: "If you have one, what's your Social Security number?",
@@ -91,6 +91,8 @@ const copy: CopyHolder = {
     expenses:
       'About how much do you spend each month on things like rent, groceries, utilities, medical expenses, or childcare expenses?',
     total: 'Total expenses',
+    disclaimer:
+      "Please ensure that all of the information you have filled out is correct before submitting, once submitted you will not be able to alter it without contacting the Public Defender's office directly",
   },
   spanish: {
     title: 'Solicite la eliminación de antecedentes penales',
@@ -104,8 +106,7 @@ const copy: CopyHolder = {
     uptrust: 'Inscripción Uptrust',
     enroll:
       'Yo quisiera inscribirme en Uptrust para recibir mensajes de texto acerca de la proxima audiencias judiciales y citas en la oficina',
-    success:
-      'El formulario ha sido enviado para ser enviado a la oficina del Defensor Público.',
+    success: 'Su solicitud ha sido enviada a la oficina del Defensor Público',
     name: '¿Cuál es su nombre completo?',
     alias: '¿Hay otros nombres que podrían estar en su registro?',
     ssn: 'Si tiene uno, ¿cuál es su número de seguro social?',
@@ -159,6 +160,8 @@ const copy: CopyHolder = {
     expenses:
       '¿Aproximadamente cuánto gasta cada mes en cosas como alquiler, comestibles, servicios públicos, gastos médicos o gastos de cuidado de niños?',
     total: 'Gastos totales',
+    disclaimer:
+      'Asegúrese de que toda la información que haya completado sea correcta antes de enviarla; una vez enviada, no podrá modificarla sin comunicarse directamente con la oficina del Defensor Público.',
   },
 }
 
@@ -228,6 +231,7 @@ const ExpungementForm = () => {
     unemployment_benefits,
     expenses,
     total,
+    disclaimer,
   } = copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
@@ -265,6 +269,7 @@ const ExpungementForm = () => {
       const res = await sendForm.json()
       if (res.error) throw new Error(res.error)
       else setToast(success)
+      // wipe out state info and set to a screen where they can't apply again
     } catch (err) {
       const [msg, id] = err.message.split('&&')
       setToast(msg)
@@ -740,6 +745,7 @@ const ExpungementForm = () => {
         handleChange={handleChange}
         animationClass={Load}
       />
+      <Paragraph className={styles.VertMargin}>{disclaimer}</Paragraph>
       <Button disabled={!expungeInfo?.certified} role="button" type="submit">
         {submit}
       </Button>
