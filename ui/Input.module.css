@@ -1,7 +1,22 @@
 .Input {
-  outline: none;
   border: var(--border-width) solid var(--primary);
   border-radius: var(--radius-small);
   margin: var(--margin-std) var(--margin-sm);
   font-size: var(--med-text);
+  min-width: 3rem;
+}
+
+.Input[type='date'] {
+  font-family: 'Roboto', sans-serif;
+}
+
+.Input[type='checkbox'],
+.Input[type='radio'] {
+  transform: scale(2);
+  cursor: pointer;
+}
+
+.Input:disabled {
+  background-color: var(--light-grey);
+  cursor: not-allowed;
 }

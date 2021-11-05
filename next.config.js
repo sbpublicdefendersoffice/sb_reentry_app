@@ -46,6 +46,8 @@ const nextConfigOptions = {
         twilio: false,
         jsonwebtoken: false,
         bcrypt: false,
+        '@sendgrid/mail': false,
+        'pdf-lib': false,
       }
 
       config.resolve.alias = {

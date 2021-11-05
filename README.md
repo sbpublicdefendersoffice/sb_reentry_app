@@ -198,7 +198,7 @@ The check will run automatically when you add a local commit, and there is no ne
 
 If there are errors in your staged code, please fix or comment them out and then run the checks again.
 
-If there is something that you feel you _must_ commit that is not passing the code formatting standards, you can commit using a `--no-verify` flag. Please keep this to a minimum and only use it when absolutely necessary. Linting, testing and formatting tools can be annoying, but in the end they are helping us write a better application.
+If there is something that you feel you _must_ commit that is not passing the code formatting standards, you can commit using a `--no-verify` flag. Please keep this to a minimum and only use it when absolutely necessary. Linting, testing and formatting tools can be annoying, but in the end they are helping us write a better application. We appreciate your help!
 
 ## Source Maps
 

@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
-import { LeafLoader, OrgRecordCard } from './'
+import LeafLoader from './LeafLoader'
+import OrgRecordCard from './OrgRecordCard'
 import { Details } from '../ui'
 import { PGOrganizationResponse } from '../types/postgresRecords'
 import { ENGLISH } from '../constants/language'

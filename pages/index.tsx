@@ -7,7 +7,7 @@ import {
   ResourceHub,
   HeadTags,
   Newsfeed,
-  Quotes,
+  // Quotes,
 } from '../components'
 import { useResizeEvent } from '../hooks/'
 

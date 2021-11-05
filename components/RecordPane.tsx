@@ -1,13 +1,14 @@
 import { Fragment, useState } from 'react'
 import { useRouter } from 'next/router'
-import { LeafLoader, OrgRecordCard } from './'
+import LeafLoader from './LeafLoader'
+import OrgRecordCard from './OrgRecordCard'
 import { Details, Paragraph } from '../ui'
 import { useLanguage, useView, useResizeEvent } from '../hooks/'
 import withWidth from '@material-ui/core/withWidth'
 import { PGOrganizationResponse, WindowSize } from '../types/'
 import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
-import { DesktopFilterView } from '../components'
+import DesktopFilterView from './DesktopFilterView'
 import { Hidden } from '@material-ui/core'
 
 export interface RecordPaneProps {
