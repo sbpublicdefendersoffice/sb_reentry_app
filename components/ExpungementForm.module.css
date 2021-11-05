@@ -29,10 +29,11 @@
 .Field > select {
   margin-top: var(--margin-std);
   margin-bottom: var(--margin-std);
+  padding: var(--pad-std);
 }
 
 .Field > p {
-  margin: var(--margin-sm) 0;
+  margin: 0 0 var(--margin-sm) var(--margin-sm);
 }
 
 .RadioCard {
@@ -41,38 +42,6 @@
   margin-left: var(--margin-sm);
   margin-right: var(--margin-sm);
 }
-
-/* 
-.ExpungementForm > div {
-  padding-left: var(--pad-lg);
-  padding-right: var(--pad-lg);
-}
-
-.ExpungementForm > div:focus-within {
-  background-color: var(--light-grey);
-}
-
-.ExpungementForm > div > section {
-  display: flex;
-  align-items: center;
-}
-
-.ExpungementForm > div > section > input[type='text'],
-.ExpungementForm > div > section > input[type='number'],
-.ExpungementForm > div > section > input[type='date'],
-.ExpungementForm > div > section > input[type='tel'],
-.ExpungementForm > div > section > input[type='email'] {
-  flex: 1;
-}
-
-.ExpungementForm > div > section > select {
-  margin: 0 var(--margin-sm);
-  font-size: var(--med-text);
-}
-
-.ExpungementForm > div > section > input[type='radio'] {
-  flex: 0;
-} */
 
 .Load {
   animation: load 1s;
@@ -98,34 +67,6 @@
   .RadioCard {
     align-self: center;
   }
-
-  /* .ExpungementForm label {
-    margin: var(--margin-sm) 0;
-  }
-
-  .ExpungementForm > div > section {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ExpungementForm > div > section > input,
-  .ExpungementForm > div > section > select {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .ExpungementForm > div > section > select {
-    margin: var(--margin-std) 0;
-    width: 100%;
-  }
-
-  .ExpungementForm > div > section > input[type='text'],
-  .ExpungementForm > div > section > input[type='number'],
-  .ExpungementForm > div > section > input[type='date'],
-  .ExpungementForm > div > section > input[type='tel'],
-  .ExpungementForm > div > section > input[type='email'] {
-    width: 100%;
-  } */
 }
 
 @keyframes load {
