@@ -1,30 +1,57 @@
-# Build image and add bash for remote sessions
-FROM node:14.18.1
+# dependency image
+FROM node:14.18.1-alpine AS DEPS
+
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed
+RUN apk add --no-cache libc6-compat
+RUN for word in $(cat .dockerenv); do echo $word; done
 
 # Create and set app directory
-ENV dir=/usr/src/app
-RUN mkdir -p $dir
-WORKDIR $dir
+WORKDIR /app
+
+# Copy stuff for deps
+COPY package.json yarn.lock .aptible.env ./
+RUN grep '^NEXT_PUBLIC_.*$\|^POSTGRES_.*$' .aptible.env > .env.production
+
+# Install deps
+RUN yarn install --frozen-lockfile --network-timeout 100000
+
+# =========
+# build image
+FROM node:14.18.1-alpine AS BUILDER
+
+WORKDIR /app
 
 # Copy source files
-COPY . $dir
+COPY . .
 
-# Install dependencies
-
-RUN yarn install --prod --frozen-lockfile --network-timeout 100000
-RUN yarn add -D typescript @types/node --network-timeout 100000
+COPY --from=DEPS /app/node_modules ./node_modules
+COPY --from=DEPS /app/.env.production ./
 
 # .babelrc is necessary for local tests but not for deployment
-RUN rm .babelrc
+# NextJs public variables need to be loaded in client at build time
+RUN rm .babelrc 
 
-# NextJs public variables need to be loaded in client at build time, and postgres variables are needed to pre-render the html at build time
-RUN grep '^NEXT_PUBLIC_.*$\|^POSTGRES_.*$' $dir/.aptible.env > .env.production
+RUN yarn build && yarn install --prod --prefer-offline
+# =========
+# runtime image
+FROM node:14.18.1-alpine AS RUNNER
 
-# Build
-RUN yarn docker-build
+RUN apk add --no-cache bash
+
+WORKDIR /app
+
+ENV NODE_ENV production
+
+# Copy files for runtime
+COPY --from=BUILDER app/next.config.js ./
+COPY --from=BUILDER app/public ./public
+COPY --from=BUILDER app/.next ./.next
+COPY --from=BUILDER app/node_modules ./node_modules
+COPY --from=BUILDER app/package.json ./
 
 # Expose port
 EXPOSE 3000
 
 # Start app
 CMD ["yarn", "start"]
+
