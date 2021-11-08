@@ -4,6 +4,8 @@ import {
   ChangeEvent,
   MutableRefObject,
   useRef,
+  Dispatch,
+  SetStateAction,
 } from 'react'
 import { useRouter } from 'next/router'
 
@@ -31,7 +33,6 @@ const copy: CopyHolder = {
       "Your application has been submitted to the Public Defender's office",
     name: 'What is your full name?',
     alias: 'Are there any other names that might be on your record?',
-    ssn: "If you have one, what's your Social Security number?",
     dob: 'What is your Date of Birth?',
     primary_phone: 'What is your phone number?',
     leave_message: 'May we leave a message at this number?',
@@ -104,6 +105,11 @@ const copy: CopyHolder = {
     realEstateExplain:
       'The amount of equity in your property may affect your eligibility for expungement',
     value: 'Value',
+    homeless: 'Are you currently experiencing homelessness?',
+    primaryLang: 'Is English your primary Language?',
+    whatIsPrimaryLang: 'If not, what is your primary language?',
+    biWeekly: 'Bi-Weekly',
+    annually: 'Annually',
   },
   spanish: {
     title: 'Solicite la eliminación de antecedentes penales',
@@ -118,7 +124,6 @@ const copy: CopyHolder = {
     success: 'Su solicitud ha sido enviada a la oficina del Defensor Público',
     name: '¿Cuál es su nombre completo?',
     alias: '¿Hay otros nombres que podrían estar en su registro?',
-    ssn: 'Si tiene uno, ¿cuál es su número de seguro social?',
     dob: '¿Cuál es tu fecha de nacimiento?',
     primary_phone: '¿Cuál es tu número de teléfono?',
     leave_message: '¿Podemos dejar un mensaje en este número?',
@@ -194,12 +199,21 @@ const copy: CopyHolder = {
     realEstateExplain:
       'La cantidad de equidad en su propiedad puede afectar su elegibilidad para la eliminación de antecedentes penales',
     value: 'Valor',
+    homeless: '¿Está experimentando actualmente la falta de vivienda?',
+    primaryLang: '¿Es el inglés su idioma principal?',
+    whatIsPrimaryLang: 'Si no es así, ¿cuál es su idioma principal?',
+    biWeekly: 'Quincenal',
+    annually: 'Anualmente',
   },
 }
 
 const { Load, Field, RadioCard } = styles
 
-const ExpungementForm = () => {
+interface ExpungementFormProps {
+  setHasClientApplied: Dispatch<SetStateAction<boolean>>
+}
+
+const ExpungementForm = ({ setHasClientApplied }: ExpungementFormProps) => {
   const { push } = useRouter()
   const { setToast } = useToast()
   const formRef: MutableRefObject<HTMLDivElement> = useRef()
@@ -216,7 +230,6 @@ const ExpungementForm = () => {
     success,
     name,
     alias,
-    ssn,
     dob,
     primary_phone,
     yes,
@@ -277,6 +290,11 @@ const ExpungementForm = () => {
     realEstate,
     realEstateExplain,
     value,
+    homeless,
+    primaryLang,
+    whatIsPrimaryLang,
+    biWeekly,
+    annually,
   } = copy[language]
 
   const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
@@ -295,17 +313,35 @@ const ExpungementForm = () => {
         if (!tempInfo[field]) throw new Error(`${error[language]}&&#${id}`)
       })
 
-      if (tempInfo?.['Textfield-13'] !== total)
-        tempInfo = { ...tempInfo, 'Textfield-13': total }
+      if (tempInfo?.['Textfield-17']) tempInfo = { ...tempInfo, Expense: total }
+
+      if (
+        tempInfo?.['Is English your primary language'] ===
+        'Is English your primary language_Yes_On'
+      ) {
+        tempInfo.English = true
+        tempInfo.Other = false
+        tempInfo['Other-0'] = ''
+        tempInfo['If no what is your primary language'] = ''
+      } else if (
+        tempInfo?.['Is English your primary language'] ===
+        'Is English your primary language_No_On'
+      ) {
+        tempInfo.Other = true
+        tempInfo['Other-0'] =
+          tempInfo['If no what is your primary language'] || ''
+      }
 
       const { Address, City, state, zip } = tempInfo
       const stateAndZip = `${state || 'CA'}, ${zip}`
+      const primaryPhone = tempInfo?.['Phone Number']
 
       const sendForm: Response = await fetch('/api/recordClearance', {
         method: 'POST',
         body: JSON.stringify({
           'Mailing Address': `${Address} ${City} ${stateAndZip}`,
           'State  Zip': stateAndZip,
+          'Home Phone': primaryPhone || '',
           language,
           ...tempInfo,
         }),
@@ -314,7 +350,10 @@ const ExpungementForm = () => {
       const res = await sendForm.json()
       if (res.error) throw new Error(res.error)
       else setToast(success)
-      // wipe out state info and set to a screen where they can't apply again
+      if (res?.[0]?.statusCode === 202) {
+        setExpungeInfo(null)
+        setHasClientApplied(true)
+      }
     } catch (err) {
       const [msg, id] = err.message.split('&&')
       setToast(msg)
@@ -327,17 +366,28 @@ const ExpungementForm = () => {
   }: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { id, value, type, name } = target
     if (type === 'radio') {
-      setExpungeInfo(val => ({ ...val, [name]: value }))
+      // the below conditional block is for the most recent version of the financial declaration form where all the fields that SHOULD be radio fields are checkboxes instead
+      if (value.includes(';')) {
+        const vals: string[] = value.split(';')
+        const negs: { [key: string]: false } = vals
+          .slice(1)
+          .reduce((obj, key: string) => {
+            obj[key] = false
+            return obj
+          }, {})
+
+        setExpungeInfo(val => ({
+          ...val,
+          ...negs,
+          [vals[0]]: true,
+        }))
+      } else setExpungeInfo(val => ({ ...val, [name]: value }))
     } else if (type === 'checkbox')
       setExpungeInfo(val => ({
         ...val,
         [id]: !Boolean(val?.[id]),
       }))
-    else {
-      if (id === 'Textfield-14')
-        setExpungeInfo(val => ({ ...val, 'Textfield-13': total, [id]: value }))
-      else setExpungeInfo(val => ({ ...val, [id]: value }))
-    }
+    else setExpungeInfo(val => ({ ...val, [id]: value }))
   }
 
   return (
@@ -372,15 +422,6 @@ const ExpungementForm = () => {
             onChange={handleChange}
             type="text"
             id="Any other names that might be on your record"
-          />
-        </section>
-        <section className={Field}>
-          <label htmlFor="Social Security No">{ssn}</label>
-          <Input
-            onChange={handleChange}
-            type="text"
-            id="Social Security No"
-            placeholder="555-55-5555"
           />
         </section>
         <section className={Field}>
@@ -552,6 +593,61 @@ const ExpungementForm = () => {
           </Card>
         </section>
         <section className={Field}>
+          <label>{homeless}</label>
+          <Card className={RadioCard}>
+            <label htmlFor="homeless_yes">{yes}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Are you currently experiencing homelessness"
+              value="Are you currently experiencing homelessness_Yes_On"
+              id="homeless_yes"
+            />
+            <label htmlFor="homeless_no">No</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Are you currently experiencing homelessness"
+              value="Are you currently experiencing homelessness_No_On"
+              id="homeless_no"
+            />
+          </Card>
+        </section>
+        <section className={Field}>
+          <label>{primaryLang}</label>
+          <Card className={RadioCard}>
+            <label htmlFor="english_primary_yes">{yes}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Is English your primary language"
+              value="Is English your primary language_Yes_On"
+              id="english_primary_yes"
+            />
+            <label htmlFor="english_primary_no">No</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="Is English your primary language"
+              value="Is English your primary language_No_On"
+              id="english_primary_no"
+            />
+            {expungeInfo?.['Is English your primary language'] ===
+              'Is English your primary language_No_On' && (
+              <>
+                <label htmlFor="If no what is your primary language">
+                  {whatIsPrimaryLang}
+                </label>
+                <Input
+                  onChange={handleChange}
+                  type="text"
+                  id="If no what is your primary language"
+                />
+              </>
+            )}
+          </Card>
+        </section>
+        <section className={Field}>
           <label>{marital}</label>
           <Paragraph color="deselected">{maritalExplain}</Paragraph>
           <Card className={RadioCard}>
@@ -676,25 +772,45 @@ const ExpungementForm = () => {
         <section className={Field}>
           <label>{frequency}</label>
           <Card className={RadioCard}>
+            <label htmlFor="Monthly">{month}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="pay-freq"
+              value="Monthly;Weekly;BiWeekly;Annually"
+              id="Monthly"
+            />
             <label htmlFor="Weekly Take Home Pay">{week}</label>
             <Input
               onChange={handleChange}
-              type="checkbox"
+              type="radio"
+              name="pay-freq"
+              value="Weekly;Monthly;BiWeekly;Annually"
               id="Weekly Take Home Pay"
             />
-            <label htmlFor="Monthly">{month}</label>
-            <Input onChange={handleChange} type="checkbox" id="Monthly" />
+            <label htmlFor="Bi-Weekly Take Home Pay">{biWeekly}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="pay-freq"
+              value="BiWeekly;Monthly;Weekly;Annually"
+              id="Bi-Weekly Take Home Pay"
+            />
+            <label htmlFor="Annual Take Home Pay">{annually}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="pay-freq"
+              value="Annually;Monthly;Weekly;BiWeekly"
+              id="Annual Take Home Pay"
+            />
           </Card>
         </section>
-        {/* <section className={Field}>
-          <label htmlFor="Employer Name">{income_source}</label>
-          <Input onChange={handleChange} type="text" id="Employer Name" />
-        </section> */}
         <section className={Field}>
-          <label htmlFor="Textfield-12">{savings}</label>
+          <label htmlFor="Textfield-18">{savings}</label>
           <Paragraph color="deselected">{saveExplain}</Paragraph>
           <Paragraph color="deselected">{exact}</Paragraph>
-          <Input onChange={handleChange} type="number" id="Textfield-12" />
+          <Input onChange={handleChange} type="number" id="Textfield-18" />
         </section>
         {/* <section className={Field}>
           <label>{unemployment_benefits}</label>
@@ -727,24 +843,34 @@ const ExpungementForm = () => {
               onChange={handleChange}
               type="radio"
               id="real_estate_yes"
-              name="Real Estate"
               value="Real Estate_Yes_On"
+              name="Real Estate"
             />
             <label htmlFor="real_estate_no">No</label>
-            <Input type="radio" id="real_estate_no" name="Real Estate" />
+            <Input
+              onChange={handleChange}
+              type="radio"
+              id="real_estate_no"
+              value="Real Estate_No_On"
+              name="Real Estate"
+            />
             {expungeInfo?.['Real Estate'] === 'Real Estate_Yes_On' && (
               <>
-                <label htmlFor="Textfield-9">{value}</label>
-                <Input onChange={handleChange} type="number" id="Textfield-9" />
+                <label htmlFor="Textfield-13">{value}</label>
+                <Input
+                  onChange={handleChange}
+                  type="number"
+                  id="Textfield-13"
+                />
               </>
             )}
           </Card>
         </section>
         <section className={Field}>
-          <label htmlFor="Textfield-14">{expenses}</label>
+          <label htmlFor="Textfield-17">{expenses}</label>
           <Paragraph color="deselected">{expenseExplain}</Paragraph>
           <Paragraph color="deselected">{exact}</Paragraph>
-          <Input onChange={handleChange} type="number" id="Textfield-14" />
+          <Input onChange={handleChange} type="number" id="Textfield-17" />
         </section>
       </Card>
       <ExpungementSignature

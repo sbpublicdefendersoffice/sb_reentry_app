@@ -1,18 +1,27 @@
 import { GetServerSideProps } from 'next'
+import { useState } from 'react'
 
 import { HeadTags, ExpungementForm } from '../../components'
 import { siteTitle, isDev } from '../../constants'
 
-const ExpungementPage = () => (
-  <>
-    <HeadTags
-      title={`${siteTitle} | Record Expungement`}
-      href={`/expungement`}
-      description={`Thrive SBC Record Expungement`}
-    />
-    <ExpungementForm />
-  </>
-)
+const ExpungementPage = () => {
+  const [hasClientApplied, setHasClientApplied] = useState<boolean>(false)
+
+  return (
+    <>
+      <HeadTags
+        title={`${siteTitle} | Record Expungement`}
+        href={`/expungement`}
+        description={`Thrive SBC Record Expungement`}
+      />
+      {hasClientApplied ? (
+        <span>You have applied</span>
+      ) : (
+        <ExpungementForm setHasClientApplied={setHasClientApplied} />
+      )}
+    </>
+  )
+}
 
 export default ExpungementPage
 

@@ -69,7 +69,7 @@ const recordClearance = async (
     // save sendMsg[0].headers?.['x-message-id']) to database
     // send a msg back to client
 
-    res.json({ sendMsg })
+    res.json({ ...sendMsg })
   } catch (error) {
     console.error(error)
     res.json({ error: error.message })
