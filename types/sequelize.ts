@@ -93,6 +93,7 @@ export interface CBOModel extends Model {
   verificationString: string
   passwordResetCode: string
   isVerified: boolean
+  orgId: number
 }
 export type Organization = ModelCtor<OrganizationModel>
 export type Location = ModelCtor<LocationsModel>
