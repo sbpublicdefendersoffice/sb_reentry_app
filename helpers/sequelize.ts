@@ -109,6 +109,7 @@ const initDb = (): AllModels => {
             type: DATE,
           },
           org: { type: TEXT },
+          orgId: { type: INTEGER },
           email: { type: TEXT },
           hashedPassword: { type: TEXT },
           verificationString: { type: TEXT },
@@ -117,7 +118,6 @@ const initDb = (): AllModels => {
         },
         opt,
       )
-
       const locOrgObj = sql.define(
         'locations_organizations',
         {
@@ -181,7 +181,6 @@ const initDb = (): AllModels => {
         through: 'schedules_organizations',
         foreignKey: 'organizations_id',
       })
-
       locObj.belongsToMany(orgObj, {
         through: 'locations_organizations',
         foreignKey: 'locations_id',
