@@ -20,7 +20,7 @@ const postLogin = async (
         throw new Error('Email does not exist')
       }
 
-      const { id, isVerified, hashedPassword } = cbo
+      const { id, isVerified, hashedPassword, orgId } = cbo
 
       const isCorrect: boolean = await bcrypt.compare(pwd, hashedPassword)
       if (!isCorrect) {
@@ -30,7 +30,7 @@ const postLogin = async (
         res.setHeader(
           'Set-Cookie',
           `Auth-Token=${jwt.sign(
-            { id, isVerified },
+            { id, isVerified, orgId },
             process.env.JWT_SIGNATURE,
             {
               expiresIn: `${oneWeekInSeconds}s`,
@@ -39,23 +39,7 @@ const postLogin = async (
         )
 
         res.status(200).send({})
-
-        // jwt.sign(
-        //   { id, email, isVerified },
-        //   process.env.JWT_SECRET,
-        //   { expiresIn: '2d' },
-        //   (err, token) => {
-        //     if (err) {
-        //       res.status(500).json(err)
-        //     }
-        //     res.status(200).json({ token })
-        //   },
-        // )
       }
-      // else {
-      //   res.status(401).end()
-      //   return
-      // }
     }
   } catch (err) {
     const error: string = err.message
