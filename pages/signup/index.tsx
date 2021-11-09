@@ -1,7 +1,6 @@
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import { HeadTags } from '../../components'
-import { siteTitle, isDev, useStyles } from '../../constants'
+import { siteTitle, useStyles } from '../../constants'
 import { validator } from '../../helpers/formValidator'
 import { CopyHolder } from '../../types'
 import { useLanguage } from '../../hooks'

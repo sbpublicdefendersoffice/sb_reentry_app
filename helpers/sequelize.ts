@@ -103,7 +103,7 @@ const initDb = (): AllModels => {
         opt,
       )
       cboObj = sql.define(
-        'cbo',
+        'cbos',
         {
           created_at: {
             type: DATE,

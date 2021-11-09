@@ -3,6 +3,7 @@ import initDb from '../../helpers/sequelize'
 import bcrypt from 'bcrypt'
 import { v4 as uuid } from 'uuid'
 import { sendEmail } from '../../helpers'
+import { isProd } from '../../constants'
 
 const postCBO = async (
   req: NextApiRequest,
@@ -48,7 +49,9 @@ const postCBO = async (
           from: 'verification@thrivesbc.com',
           subject: 'Please verify for your email',
           text: `Thanks for signing up! To verify your email, click here:
-             http://localhost:3000/verifyemail/${verificationString}`,
+             ${
+               isProd ? 'https://www.thrivesbc.com' : 'http://localhost:3000'
+             }/verifyemail/${verificationString}`,
         })
       } catch (err) {
         console.log(err)

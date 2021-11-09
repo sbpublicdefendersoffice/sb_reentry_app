@@ -2,6 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { v4 as uuid } from 'uuid'
 import { sendEmail } from '../../helpers'
 import initDb from '../../helpers/sequelize'
+import { isProd } from '../../constants'
+
 const postForgotPassword = async (
   req: NextApiRequest,
   res: NextApiResponse,
@@ -25,7 +27,9 @@ const postForgotPassword = async (
         subject: 'Password Reset',
         text: `
           To reset your password, click this link:
-          http://localhost:3000/forgotpassword/${passwordResetCode}
+          ${
+            isProd ? 'https://www.thrivesbc.com' : 'http://localhost:3000'
+          }/forgotpassword/${passwordResetCode}
           `,
       })
       return res.status(200).json({ message: 'Email was sent to your inbox' })

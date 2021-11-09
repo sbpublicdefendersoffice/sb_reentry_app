@@ -6,13 +6,13 @@ const postOrg = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const orgId = JSON.parse(req.body)
+    const id = JSON.parse(req.body)
 
     const { orgObj, schObj, locObj, servObj } = initDb()
 
     const org = await orgObj.findOne({
       nest: true,
-      where: { id: orgId },
+      where: { id },
       attributes: [
         'id',
         `name_english`,
