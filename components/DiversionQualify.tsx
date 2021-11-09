@@ -5,7 +5,6 @@ import useLanguage from '../hooks/useLanguage'
 import styles from './DiversionQualify.module.css'
 
 export const iconsList: string[] = [
-  '/icons/markericon.svg',
   '/icons/mentalhealth.svg',
   '/icons/treatmentheart.svg',
   '/icons/documents_smaller.svg',
@@ -15,7 +14,6 @@ export const copy: CopyHolder = {
   english: {
     qualify: 'How can I qualify?',
     youMust: 'In order to qualify for screening you must:',
-    resident: 'Be a resident of Santa Barbara County',
     problem: 'Have a substance use or mental health problem',
     treatment: 'Be willing to participate in treatment',
     caseStatus:
@@ -24,7 +22,6 @@ export const copy: CopyHolder = {
   spanish: {
     qualify: '¿Cómo puedo calificar?',
     youMust: 'Para calificar para la evaluación, debe:',
-    resident: 'Ser residente del condado de Santa Bárbara',
     problem: 'Tiene un problema de salud mental o de uso de sustancias',
     treatment: 'Estar dispuesto a participar en el tratamiento',
     caseStatus:
