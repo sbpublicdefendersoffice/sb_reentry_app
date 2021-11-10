@@ -1,12 +1,14 @@
 import { useRouter } from 'next/router'
+import { Button, TextField } from '@mui/material'
+import { Check, Close } from '@mui/icons-material'
+
 import { HeadTags } from '../../components'
 import { siteTitle, useStyles } from '../../constants'
 import { validator } from '../../helpers/formValidator'
 import { CopyHolder } from '../../types'
 import { useLanguage } from '../../hooks'
 import { useFormFields } from '../../hooks/'
-import { Button, TextField } from '@mui/material'
-import { Check, Close } from '@mui/icons-material'
+
 export const copy: CopyHolder = {
   english: {
     signup: `Sign Up`,
@@ -63,6 +65,7 @@ const initState = {
   pwd: '',
   confirmPwd: '',
 }
+
 const SignupPage = () => {
   const { push } = useRouter()
   const classes = useStyles()
@@ -70,15 +73,18 @@ const SignupPage = () => {
   const submit = () => {
     console.log(' Submited')
   }
+
   const { handleChange, handleBlur, state, errors, handleSubmit } =
     useFormFields({
       initState,
       callback: submit,
       validator,
     })
+
   let isValidForm =
     Object.values(errors).filter(error => typeof error !== 'undefined')
       .length === 0
+
   const {
     confirmPasswordMessage,
     passwordMessage,
@@ -97,7 +103,9 @@ const SignupPage = () => {
     confirmPasswordMatch,
     passwordRequired,
   } = copy[language]
+
   const { email, org, pwd, confirmPwd } = state
+
   return (
     <div style={{ margin: 'auto', textAlign: 'center' }}>
       <HeadTags
@@ -243,4 +251,5 @@ const SignupPage = () => {
     </div>
   )
 }
+
 export default SignupPage

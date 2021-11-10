@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import initDb from '../../helpers/sequelize'
-import bcrypt from 'bcrypt'
 import { v4 as uuid } from 'uuid'
+import bcrypt from 'bcrypt'
+
 import { sendEmail } from '../../helpers'
+import initDb from '../../helpers/sequelize'
 import { isProd } from '../../constants'
 
-const postCBO = async (
+const postSignupCBO = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
@@ -13,14 +14,13 @@ const postCBO = async (
     let { email, pwd, org } = JSON.parse(req.body)
     if (email && pwd && org) {
       const { cboObj } = initDb()
-      // @ts-ignore
       const cbo = await cboObj.findOne({ where: { email: email } })
 
       if (cbo) {
         throw new Error('Email Already Exists')
       }
 
-      const saltRounds = 10
+      const saltRounds: number = 10
       let hashedPassword: string
       await bcrypt
         .hash(pwd, saltRounds)
@@ -28,7 +28,7 @@ const postCBO = async (
           hashedPassword = hash
         })
         .catch(err => {
-          console.log(err)
+          console.error(err)
         })
 
       const verificationString = uuid()
@@ -54,7 +54,7 @@ const postCBO = async (
              }/verifyemail/${verificationString}`,
         })
       } catch (err) {
-        console.log(err)
+        console.error(err)
         res.status(500)
       }
     }
@@ -75,7 +75,7 @@ const postCBO = async (
          `,
       })
     } catch (err) {
-      console.log(err)
+      console.error(err)
       res.status(500)
     }
   } catch (err) {
@@ -84,4 +84,4 @@ const postCBO = async (
     res.json({ error })
   }
 }
-export default postCBO
+export default postSignupCBO

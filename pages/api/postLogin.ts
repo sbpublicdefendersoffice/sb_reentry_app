@@ -13,33 +13,28 @@ const postLogin = async (
 
     if (email && pwd) {
       const { cboObj } = initDb()
-      //@ts-ignore
       const cbo = await cboObj.findOne({ where: { email } })
 
-      if (!cbo) {
-        throw new Error('Email does not exist')
-      }
+      if (!cbo) throw new Error('Email does not exist')
 
-      const { id, isVerified, hashedPassword, orgId } = cbo
+      const isCorrect: boolean = await bcrypt.compare(pwd, cbo.hashedPassword)
 
-      const isCorrect: boolean = await bcrypt.compare(pwd, hashedPassword)
-      if (!isCorrect) {
-        throw new Error('Email or password is incorrect. Please try again')
-      }
       if (isCorrect) {
+        const { id, isVerified, orgId } = cbo
+
         res.setHeader(
           'Set-Cookie',
           `Auth-Token=${jwt.sign(
             { id, isVerified, orgId },
             process.env.JWT_SIGNATURE,
             {
-              expiresIn: `${oneWeekInSeconds}s`,
+              expiresIn: '7d',
             },
           )}; Max-Age=${oneWeekInSeconds}; Path=/; HttpOnly; Secure; SameSite=Strict`,
         )
 
         res.status(200).send({})
-      }
+      } else throw new Error('Email or password is incorrect. Please try again')
     }
   } catch (err) {
     const error: string = err.message

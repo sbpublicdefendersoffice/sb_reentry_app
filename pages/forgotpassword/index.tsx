@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { Button, TextField } from '@mui/material'
-import { POST } from '../../helpers/'
+
+import { useLanguage, useToast, useFormFields } from '../../hooks'
+import { POST, validator } from '../../helpers/'
 import { useStyles } from '../../constants'
 import { CopyHolder } from '../../types'
-import { useLanguage, useToast, useFormFields } from '../../hooks'
-import { validator } from '../../helpers/formValidator'
+
 export const copy: CopyHolder = {
   english: {
     successText: `Success`,

@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
+import { Button, TextField } from '@mui/material'
+
 import { HeadTags } from '../../components'
 import { siteTitle, useStyles } from '../../constants'
 import { CopyHolder } from '../../types'
-import { validator } from '../../helpers/formValidator'
 import { useLanguage, useToast, useFormFields } from '../../hooks'
-import { POST } from '../../helpers/'
-import { Button, TextField } from '@mui/material'
+import { POST, validator } from '../../helpers/'
+
 export const copy: CopyHolder = {
   english: {
     login: `Login`,
@@ -92,8 +93,6 @@ const LoginPage = () => {
       push('/dashboard')
       setToast(successfulLogin)
 
-      //@ts-ignore
-
       state.email = ''
       state.pwd = ''
     }
@@ -167,7 +166,6 @@ const LoginPage = () => {
           >
             <h4 style={{ padding: '1rem' }}> {signup}</h4>
           </Button>
-          {/* <Button onClick={getCookie}>Log In To Thrive</Button> */}
         </div>
       </form>
     </div>

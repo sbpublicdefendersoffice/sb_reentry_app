@@ -1,13 +1,14 @@
-import React, { useState, FormEvent } from 'react'
+import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/router'
-import { useLanguage, useFormFields } from '../../../hooks'
-import { POST } from '../../../helpers/'
-import { useStyles } from '../../../constants'
-import { PasswordResetSuccess, PasswordResetFail } from '../../../components'
 import { Button, TextField } from '@mui/material'
 import { Check, Close } from '@mui/icons-material'
+
+import { useLanguage, useFormFields } from '../../../hooks'
+import { POST, validator } from '../../../helpers/'
+import { useStyles } from '../../../constants'
+import { PasswordResetSuccess, PasswordResetFail } from '../../../components'
 import { CopyHolder } from '../../../types'
-import { validator } from '../../../helpers/formValidator'
+
 export const copy: CopyHolder = {
   english: {
     resetPwd: `Reset Password`,
@@ -48,11 +49,14 @@ const PasswordResetLandingPage = () => {
   const { asPath } = useRouter()
   const classes = useStyles()
   const passwordResetCode = asPath.split('/')[2]
+
   const { language } = useLanguage()
+
   const [isFailure, setIsFailure] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+
   const submit = () => {
-    console.log(' Submited')
+    console.log(' Submitted')
   }
   const { handleChange, handleBlur, state, errors } = useFormFields({
     initState,
@@ -80,17 +84,19 @@ const PasswordResetLandingPage = () => {
     const postCBOToPostgres: Response = await fetch(`/api/postResetPassword`, {
       method: POST,
       body: JSON.stringify({
-        passwordResetCode: passwordResetCode,
-        pwd: pwd,
+        passwordResetCode,
+        pwd,
       }),
     })
     const apiResponse = await postCBOToPostgres.json()
+
     if (apiResponse.message == 'error') {
       await setIsFailure(true)
     } else {
       await setIsSuccess(true)
     }
   }
+
   if (isFailure) return <PasswordResetFail />
   if (isSuccess) return <PasswordResetSuccess />
   return (

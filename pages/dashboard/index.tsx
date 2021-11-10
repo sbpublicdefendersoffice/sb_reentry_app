@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { useState } from 'react'
-import { POST } from '../../helpers/'
 import { FormEvent, Fragment, ChangeEvent } from 'react'
 import { JwtPayload, verify } from 'jsonwebtoken'
 import { Button, TextField } from '@mui/material'
+
+import { POST } from '../../helpers/'
 import { useStyles } from '../../constants'
 
 interface DashboardProps {
@@ -12,11 +13,13 @@ interface DashboardProps {
   orgId: number
   isVerified: boolean
 }
+
 const Dashboard = ({ userId, isVerified, orgId }: DashboardProps) => {
   const { push } = useRouter()
   const classes = useStyles()
   const [orgInfo, setOrgInfo] = useState(null)
   const [dashboardButtonClicked, setDashboardButtonClicked] = useState(false)
+
   const logOut = async () => {
     const loggingOut: Response = await fetch('/api/logout')
     const logoutMessage = await loggingOut.json()
@@ -50,6 +53,7 @@ const Dashboard = ({ userId, isVerified, orgId }: DashboardProps) => {
       console.log('successful update')
     }
   }
+
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>): void => {
     const { name, value, id } = target
 
@@ -281,7 +285,9 @@ export const getServerSideProps: GetServerSideProps = async (
       const temp = verify(headers['Auth-Token'], process.env.JWT_SIGNATURE)
       const { exp } = temp as JwtPayload
 
-      if (Date.now() > exp) token = temp
+      const expiryTime = exp * 1000
+
+      if (expiryTime > Date.now()) token = temp
     }
   }
 

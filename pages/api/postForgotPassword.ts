@@ -17,7 +17,6 @@ const postForgotPassword = async (
     )
     if (cbo[0] !== 1) {
       res.status(401).json({ message: 'error' })
-      return
     }
     if (cbo) {
       //@ts-ignore
@@ -32,15 +31,13 @@ const postForgotPassword = async (
           }/forgotpassword/${passwordResetCode}
           `,
       })
-      return res.status(200).json({ message: 'Email was sent to your inbox' })
+      res.status(200).json({ message: 'Email was sent to your inbox' })
     }
   } catch (err) {
     console.error(err)
     res
       .status(500)
       .json({ message: 'We did not find this email in our system' })
-    return
   }
-  res.status(200)
 }
 export default postForgotPassword

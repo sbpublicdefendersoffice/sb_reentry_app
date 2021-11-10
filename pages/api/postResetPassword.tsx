@@ -1,6 +1,8 @@
-import bcrypt from 'bcrypt'
-import initDb from '../../helpers/sequelize'
 import { NextApiRequest, NextApiResponse } from 'next'
+import bcrypt from 'bcrypt'
+
+import initDb from '../../helpers/sequelize'
+
 const resetPasswordRoute = async (
   req: NextApiRequest,
   res: NextApiResponse,
@@ -8,19 +10,23 @@ const resetPasswordRoute = async (
   try {
     const { cboObj } = initDb()
     const { pwd, passwordResetCode } = JSON.parse(req.body)
+
     const saltRounds: number = 10
+
     let hashedPassword: string
+
     await bcrypt
       .hash(pwd, saltRounds)
       .then(hash => {
         hashedPassword = hash
       })
       .catch(err => {
-        console.log(err)
+        console.error(err)
       })
+
     const cbo = await cboObj.update(
-      { hashedPassword: hashedPassword, passwordResetCode: '' },
-      { where: { passwordResetCode: passwordResetCode } },
+      { hashedPassword, passwordResetCode: '' },
+      { where: { passwordResetCode } },
     )
     if (cbo[0] !== 1) {
       return res.status(401).json({ message: 'error' })
