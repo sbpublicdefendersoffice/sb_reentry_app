@@ -4,4 +4,5 @@
 .git
 .vscode
 
+# Include .env.local when you are doing a local build
 .env.local
