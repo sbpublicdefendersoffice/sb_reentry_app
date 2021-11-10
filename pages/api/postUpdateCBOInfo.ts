@@ -5,17 +5,22 @@ const updateCBOInfoRoute = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { orgObj } = initDb()
+    const { orgObj, locObj, schObj, servObj } = initDb()
     // const { authorization } = req.headers
 
-    const { id, name_english, website, languages_spoken_english } = JSON.parse(
-      req.body,
-    )
-    const updates = (({ name_english, website }) => ({
+    const {
+      id,
       name_english,
+      name_spanish,
       website,
       languages_spoken_english,
-    }))(req.body)
+      languages_spoken_spanish,
+      customers_served_english,
+      customers_served_spanish,
+      notes_english,
+      notes_spanish,
+      locations,
+    } = JSON.parse(req.body)
 
     // if (!authorization) {
     //   return res.status(401).json({ message: 'No authorization header sent' })
@@ -38,18 +43,78 @@ const updateCBOInfoRoute = async (
     //         'You need to verify your email before you can update your data',
     //     })
     //   }
-    const updateCBOInfo = await orgObj.update(
+    await orgObj.update(
       {
         name_english: name_english,
+        name_spanish: name_spanish,
         website: website,
         languages_spoken_english: languages_spoken_english,
+        languages_spoken_spanish: languages_spoken_spanish,
+        customers_served_english: customers_served_english,
+        customers_served_spanish: customers_served_spanish,
+        notes_english: notes_english,
+        notes_spanish: notes_spanish,
       },
       { where: { id: id } },
     )
+    locations.map(location => {
+      const {
+        id,
+        zip,
+        city,
+        name,
+        website,
+        address,
+        address_2,
+        state,
+        phone,
+        email,
+        notes,
+        schedules,
+        services,
+      } = location
+      schedules.map(schedule => {
+        const { id, open_time, close_time, days, notes } = schedule
+        schObj.update(
+          {
+            open_time: open_time,
+            close_time: close_time,
+            days: days,
+            notes: notes,
+          },
+          { where: { id: id } },
+        )
+      })
+      services.map(service => {
+        const { id, name_english, name_spanish } = service
+        servObj.update(
+          {
+            name_english: name_english,
+            name_spanish: name_spanish,
+          },
+          { where: { id: id } },
+        )
+      })
+
+      locObj.update(
+        {
+          zip: zip,
+          city: city,
+          name: name,
+          website: website,
+          address: address,
+          address2: address_2,
+          state: state,
+          phone: phone,
+          email: email,
+          notes: notes,
+        },
+        { where: { id: id } },
+      )
+    })
 
     res.status(200)
     res.send(updateCBOInfoRoute)
-    // })
   } catch (err) {
     const error: string = err.message
     console.error(error)
