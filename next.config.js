@@ -51,7 +51,7 @@ const nextConfigOptions = {
         twilio: false,
         jsonwebtoken: false,
         bcrypt: false,
-        '@sendgrid/mail': false,
+        // '@sendgrid/mail': false, with this set to false I get a chunking error in production
         'pdf-lib': false,
       }
 
