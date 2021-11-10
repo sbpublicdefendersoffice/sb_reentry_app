@@ -210,10 +210,14 @@ const copy: CopyHolder = {
 const { Load, Field, RadioCard } = styles
 
 interface ExpungementFormProps {
+  clientId: number
   setHasClientApplied: Dispatch<SetStateAction<boolean>>
 }
 
-const ExpungementForm = ({ setHasClientApplied }: ExpungementFormProps) => {
+const ExpungementForm = ({
+  clientId,
+  setHasClientApplied,
+}: ExpungementFormProps) => {
   const { push } = useRouter()
   const { setToast } = useToast()
   const formRef: MutableRefObject<HTMLDivElement> = useRef()
@@ -343,6 +347,7 @@ const ExpungementForm = ({ setHasClientApplied }: ExpungementFormProps) => {
           'State  Zip': stateAndZip,
           'Home Phone': primaryPhone || '',
           language,
+          clientId,
           ...tempInfo,
         }),
       })

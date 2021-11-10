@@ -137,4 +137,5 @@ export interface ExpungeFormInfo extends ExpungementInfo {
   'Mailing Address': string
   language: Language
   'Home Phone': string
+  clientId: number
 }

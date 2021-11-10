@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { sign } from 'jsonwebtoken'
-
-const oneWeekInSeconds: number = 604800
+import { oneWeekInSeconds } from '../../constants'
 
 const jwt = async (
   req: NextApiRequest,
@@ -16,9 +15,13 @@ const jwt = async (
   // will probably want to adjust Path parameter in header once the secure routes have been figured out
   res.setHeader(
     'Set-Cookie',
-    `Auth-Token=${sign({ userLoggedIn: true }, process.env.JWT_SIGNATURE, {
-      expiresIn: `${oneWeekInSeconds}s`,
-    })}; Max-Age=${oneWeekInSeconds}; Path=/; HttpOnly; Secure; SameSite=Strict`,
+    `Auth-Token=${sign(
+      { id: 1, hasAppliedForExpungement: false },
+      process.env.JWT_SIGNATURE,
+      {
+        expiresIn: '7d',
+      },
+    )}; Max-Age=${oneWeekInSeconds}; Path=/; HttpOnly; Secure; SameSite=Strict`,
   )
   res.send({})
   try {

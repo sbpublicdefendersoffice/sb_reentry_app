@@ -6,7 +6,7 @@ import { AllModels } from '../types/sequelize'
 const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY } = DataTypes
 const opt: ModelOptions = { timestamps: false }
 
-let sql, orgObj, locObj, servObj, schObj, useObj
+let sql, orgObj, locObj, servObj, schObj, useObj, clientObj
 
 const initDb = (): AllModels => {
   try {
@@ -99,6 +99,24 @@ const initDb = (): AllModels => {
           route: { type: TEXT },
           language: { type: TEXT },
           comment: { type: TEXT },
+        },
+        opt,
+      )
+
+      clientObj = sql.define(
+        'clients',
+        {
+          // id: {
+          //   primaryKey: true,
+          //   type: INTEGER,
+          // },
+          created_at: {
+            type: DATE,
+          },
+          hasAppliedForExpungement: { type: BOOLEAN },
+          email: { type: TEXT },
+          xMessageId: { type: TEXT },
+          commPrefs: { type: ARRAY(TEXT) },
         },
         opt,
       )
@@ -207,7 +225,7 @@ const initDb = (): AllModels => {
         .then(() => console.log('Database models created'))
     }
 
-    return { orgObj, locObj, servObj, schObj, useObj }
+    return { orgObj, locObj, servObj, schObj, useObj, clientObj }
   } catch (err) {
     console.error(`Error setting up database: ${err}`)
   }

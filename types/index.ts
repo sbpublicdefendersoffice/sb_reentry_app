@@ -47,6 +47,7 @@ export type {
   ServicesLocationsModel,
   ServicesOrganizationsModel,
   IsThisUsefulModel,
+  ClientModel,
   Organization,
   Location,
   Service,
@@ -57,6 +58,7 @@ export type {
   ServiceLocation,
   ServiceOrganization,
   IsThisUseful,
+  Client,
   AllModels,
 } from './sequelize'
 export type { Color, TextSize, UseToastProps, WindowSize } from './ui'

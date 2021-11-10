@@ -85,6 +85,15 @@ export interface IsThisUsefulModel extends Model {
   comment: string
 }
 
+export interface ClientModel extends Model {
+  id: number
+  created_at: string
+  email: string
+  hasAppliedForExpungement: boolean
+  xMessageId: string
+  commPrefs: string[]
+}
+
 export type Organization = ModelCtor<OrganizationModel>
 export type Location = ModelCtor<LocationsModel>
 export type Service = ModelCtor<ServiceModel>
@@ -95,6 +104,7 @@ export type ScheduleOrganization = ModelCtor<SchedulesOrganizationsModel>
 export type ServiceLocation = ModelCtor<ServicesLocationsModel>
 export type ServiceOrganization = ModelCtor<ServicesOrganizationsModel>
 export type IsThisUseful = ModelCtor<IsThisUsefulModel>
+export type Client = ModelCtor<ClientModel>
 
 export interface AllModels {
   orgObj: Organization
@@ -102,4 +112,5 @@ export interface AllModels {
   servObj: Service
   schObj: Schedule
   useObj: IsThisUseful
+  clientObj: Client
 }
