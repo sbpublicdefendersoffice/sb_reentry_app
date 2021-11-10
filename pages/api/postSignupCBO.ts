@@ -61,7 +61,7 @@ const postSignupCBO = async (
     try {
       //@ts-ignore
       await sendEmail({
-        to: 'vsauceda@codeforamerica.org',
+        to: process.env.SBPD_MAINTAINER,
         from: 'verification@thrivesbc.com',
         subject: 'Verify Account',
         text: `
