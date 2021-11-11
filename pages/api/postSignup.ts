@@ -6,12 +6,13 @@ import { sendEmail } from '../../helpers'
 import initDb from '../../helpers/sequelize'
 import { isProd } from '../../constants'
 
-const postSignupCBO = async (
+const postSignup = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
   try {
     let { email, pwd, org } = JSON.parse(req.body)
+
     if (email && pwd && org) {
       const { cboObj } = initDb()
       const cbo = await cboObj.findOne({ where: { email: email } })
@@ -76,4 +77,4 @@ const postSignupCBO = async (
     res.json({ error })
   }
 }
-export default postSignupCBO
+export default postSignup

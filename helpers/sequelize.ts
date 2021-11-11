@@ -113,10 +113,14 @@ const initDb = (): AllModels => {
           created_at: {
             type: DATE,
           },
-          hasAppliedForExpungement: { type: BOOLEAN },
           email: { type: TEXT },
-          xMessageId: { type: TEXT },
+          hasAppliedForExpungement: { type: BOOLEAN },
+          expungementXMessageId: { type: TEXT },
           commPrefs: { type: ARRAY(TEXT) },
+          hashedPassword: { type: TEXT },
+          verificationString: { type: TEXT },
+          passwordResetCode: { type: TEXT },
+          isVerified: { type: BOOLEAN },
         },
         opt,
       )

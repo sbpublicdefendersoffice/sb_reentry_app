@@ -29,11 +29,24 @@ const useForm = ({ initState, callback, validator }) => {
     if (isSubmited && !isValidErrors()) callback()
   }, [errors])
   const handleChange = e => {
-    const { name, value } = e.target
-    setState(() => ({
-      ...state,
-      [name]: value,
-    }))
+    const { name, value, type } = e.target
+    if (type === 'checkbox')
+      setState(val => ({ ...val, [name]: !Boolean(val[name]) }))
+    else {
+      if (name === 'signupType' && value === 'cbo')
+        setState(() => ({
+          ...state,
+          commByEmail: false,
+          commByText: false,
+          commByPhone: false,
+          [name]: value,
+        }))
+      else
+        setState(() => ({
+          ...state,
+          [name]: value,
+        }))
+    }
   }
   const handleBlur = e => {
     const { name: fieldName } = e.target
@@ -53,7 +66,7 @@ const useForm = ({ initState, callback, validator }) => {
     }))
     setIsSubmited(true)
     if (state) {
-      const signupCBO: Response = await fetch('/api/postSignupCBO', {
+      const signupCBO: Response = await fetch('/api/postSignup', {
         method: POST,
         body: JSON.stringify(state),
       })

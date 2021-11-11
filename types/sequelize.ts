@@ -89,9 +89,13 @@ export interface ClientModel extends Model {
   id: number
   created_at: string
   email: string
-  hasAppliedForExpungement: boolean
   xMessageId: string
   commPrefs: string[]
+  hasAppliedForExpungement: boolean
+  hashedPassword: string
+  verificationString: string
+  passwordResetCode: string
+  isVerified: boolean
 }
 
 export interface CBOModel extends Model {
