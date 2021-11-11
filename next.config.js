@@ -1,4 +1,4 @@
-const CircularDependencyPlugin = require('circular-dependency-plugin')
+// const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 // watch out with adding external sources and apis in production mode, make sure to add them to CSP below
 const nextConfigOptions = {
@@ -92,18 +92,18 @@ const nextConfigOptions = {
     )
       config.devtool = 'source-map'
 
-    config.plugins.push(
-      new CircularDependencyPlugin({
-        // exclude detection of files based on a RegExp
-        exclude: /node_modules/,
-        // add errors to webpack instead of warnings
-        failOnError: true,
-        // allow import cycles that include an asyncronous import,
-        // e.g. via import(/* webpackMode: "weak" */ './file.js')
-        allowAsyncCycles: false,
-        cwd: process.cwd(),
-      }),
-    )
+    // config.plugins.push(
+    //   new CircularDependencyPlugin({
+    //     // exclude detection of files based on a RegExp
+    //     exclude: /node_modules/,
+    //     // add errors to webpack instead of warnings
+    //     failOnError: true,
+    //     // allow import cycles that include an asyncronous import,
+    //     // e.g. via import(/* webpackMode: "weak" */ './file.js')
+    //     allowAsyncCycles: false,
+    //     cwd: process.cwd(),
+    //   }),
+    // )
 
     return config
   },
