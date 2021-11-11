@@ -12,8 +12,6 @@ const postLogin = async (
     const body = JSON.parse(req.body)
     const { email, pwd, signupType } = body
 
-    console.log(body)
-
     if (email && pwd) {
       if (signupType && signupType === 'client') {
         const { clientObj } = initDb()
