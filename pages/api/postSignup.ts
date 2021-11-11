@@ -6,35 +6,69 @@ import { sendEmail } from '../../helpers'
 import initDb from '../../helpers/sequelize'
 import { isProd } from '../../constants'
 
+const saltRounds: number = 10
+let verificationString: string
+
 const postSignup = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    let { email, pwd, org } = JSON.parse(req.body)
+    const body = JSON.parse(req.body)
+    let { email, pwd, org, signupType } = body
 
-    if (email && pwd && org) {
-      const { cboObj } = initDb()
-      const cbo = await cboObj.findOne({ where: { email: email } })
+    if (email && pwd) {
+      if (signupType && signupType === 'client') {
+        const { clientObj } = initDb()
+        const client = await clientObj.findOne({ where: { email: email } })
 
-      if (cbo) {
-        throw new Error('Email Already Exists')
+        if (client) {
+          throw new Error('Email Already Exists')
+        }
+
+        const hashedPassword: string = hashSync(pwd, saltRounds)
+        verificationString = uuid()
+
+        const commPrefs: string[] = Object.entries(body)
+          .filter(([_, value]) => value === true)
+          .map(arr => arr[0])
+
+        const addClient = await clientObj.create({
+          created_at: new Date(Date.now()),
+          email,
+          hashedPassword,
+          verificationString,
+          isVerified: false,
+          hasAppliedForExpungement: false,
+          commPrefs,
+        })
+
+        res.json(addClient)
+      } else {
+        if (org) {
+          const { cboObj } = initDb()
+
+          const cbo = await cboObj.findOne({ where: { email: email } })
+
+          if (cbo) {
+            throw new Error('Email Already Exists')
+          }
+
+          const hashedPassword: string = hashSync(pwd, saltRounds)
+
+          verificationString = uuid()
+          const addCBO = await cboObj.create({
+            created_at: new Date(Date.now()),
+            email,
+            hashedPassword,
+            org,
+            verificationString,
+            isVerified: false,
+          })
+
+          res.json(addCBO)
+        }
       }
-
-      const saltRounds: number = 10
-      const hashedPassword: string = hashSync(pwd, saltRounds)
-
-      const verificationString = uuid()
-      const addCBO = await cboObj.create({
-        created_at: new Date(Date.now()),
-        email,
-        hashedPassword,
-        org,
-        verificationString,
-        isVerified: false,
-      })
-
-      res.json(addCBO)
       try {
         //@ts-ignore
         await sendEmail({
