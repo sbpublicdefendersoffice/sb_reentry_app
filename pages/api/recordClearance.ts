@@ -46,7 +46,7 @@ const recordClearance = async (
     const text: string = `${name} has applied for criminal record expungement via ThriveSBC`
 
     const message: MailDataRequired = {
-      to: process.env.SBPD_RECORDS_EXPUNGEMENT_EMAIL,
+      to: 'fabikar@codeforamerica.org',
       from: process.env.SENDGRID_RECORDS_EXPUNGEMENT_EMAIL,
       subject: `${name} ThriveSBC Record Expungement`,
       text,
