@@ -291,7 +291,7 @@ export const getServerSideProps: GetServerSideProps = async (
     }
   }
 
-  if (!token)
+  if (!token || token?.type !== 'cbo')
     return {
       redirect: {
         destination: '/login',

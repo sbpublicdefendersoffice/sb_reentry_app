@@ -1,9 +1,10 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { JwtPayload, verify } from 'jsonwebtoken'
 
 import { HeadTags, ExpungementForm } from '../../components'
-import { CallToAction, Title } from '../../ui'
+import { CallToAction, Title, Button } from '../../ui'
 import { siteTitle } from '../../constants'
 import { CopyHolder } from '../../types'
 import { useLanguage } from '../../hooks'
@@ -11,27 +12,42 @@ import { useLanguage } from '../../hooks'
 interface ExpungementPageProps {
   id: number
   hasAppliedForExpungement: boolean
+  isVerified: boolean
 }
 
 const copy: CopyHolder = {
   english: {
     applied: 'You have successfully applied for record expungement',
+    notVerified: 'You have not yet been verified',
   },
   spanish: {
     applied: 'Ha solicitado con éxito la eliminación de antecedentes penales',
+    notVerified: 'Aún no has sido verificado',
   },
 }
 
 const ExpungementPage = ({
   id,
   hasAppliedForExpungement,
+  isVerified,
 }: ExpungementPageProps) => {
+  const { push } = useRouter()
   const [hasClientApplied, setHasClientApplied] = useState<boolean>(
     hasAppliedForExpungement,
   )
   const { language } = useLanguage()
 
-  const { applied } = copy[language]
+  const { applied, notVerified } = copy[language]
+
+  const logOut = async (): Promise<void> => {
+    const loggingOut: Response = await fetch('/api/logout')
+    const logoutMessage = await loggingOut.json()
+    if (logoutMessage.error) console.log('oh no!')
+    else {
+      console.log('oh yeah')
+      push('/')
+    }
+  }
 
   return (
     <>
@@ -40,7 +56,11 @@ const ExpungementPage = ({
         href={`/expungement`}
         description={`Thrive SBC Record Expungement`}
       />
-      {hasClientApplied ? (
+      {!isVerified ? (
+        <CallToAction>
+          <Title>{notVerified}</Title>
+        </CallToAction>
+      ) : hasClientApplied ? (
         <CallToAction>
           <Title>{applied}</Title>
         </CallToAction>
@@ -50,6 +70,7 @@ const ExpungementPage = ({
           setHasClientApplied={setHasClientApplied}
         />
       )}
+      <Button onClick={logOut}>Logout</Button>
     </>
   )
 }
@@ -80,7 +101,7 @@ export const getServerSideProps: GetServerSideProps = async (
     }
   }
 
-  if (!token)
+  if (!token || token?.type !== 'client')
     return {
       redirect: {
         destination: '/',
@@ -88,9 +109,9 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     }
   else {
-    const { id, hasAppliedForExpungement } = token
+    const { id, hasAppliedForExpungement, isVerified } = token
     return {
-      props: { id, hasAppliedForExpungement },
+      props: { id, hasAppliedForExpungement, isVerified },
     }
   }
 }

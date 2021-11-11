@@ -7,6 +7,7 @@ import { siteTitle, useStyles } from '../../constants'
 import { CopyHolder } from '../../types'
 import { useLanguage, useToast, useFormFields } from '../../hooks'
 import { POST, validator } from '../../helpers/'
+import { Input, Paragraph } from '../../ui'
 
 export const copy: CopyHolder = {
   english: {
@@ -22,6 +23,9 @@ export const copy: CopyHolder = {
       'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
     tryAgain: 'Email or password is incorrect, try again',
     successfulLogin: 'You have successfully logged in',
+    iAm: 'I am an',
+    cbo: 'Community Based Orgaization',
+    client: 'Client',
   },
   spanish: {
     login: `Acceso`,
@@ -38,11 +42,15 @@ export const copy: CopyHolder = {
     tryAgain:
       'El correo electrónico o la contraseña son incorrectos, inténtalo de nuevo.',
     successfulLogin: 'Has iniciado sesión correctamente',
+    iAm: 'Soy un',
+    cbo: 'Organización basada en la comunidad',
+    client: 'Cliente',
   },
 }
 const initState = {
   email: '',
   pwd: '',
+  signupType: '',
 }
 const LoginPage = () => {
   const { push } = useRouter()
@@ -61,6 +69,9 @@ const LoginPage = () => {
     mustContain,
     tryAgain,
     successfulLogin,
+    iAm,
+    cbo,
+    client,
   } = copy[language]
   const submit = () => {
     console.log(' Submited')
@@ -90,11 +101,13 @@ const LoginPage = () => {
     if (apiResponse.error) {
       setToast(tryAgain)
     } else {
-      push('/dashboard')
+      if (apiResponse.type === 'cbo') push('/dashboard')
+      else push('/expungement')
       setToast(successfulLogin)
 
       state.email = ''
       state.pwd = ''
+      state.signupType = ''
     }
   }
   return (
@@ -143,6 +156,28 @@ const LoginPage = () => {
             helperText={errors.pwd}
             onBlur={handleBlur}
           />
+
+          <div>
+            <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
+              {iAm}
+            </Paragraph>
+            <label htmlFor="cbo">{cbo}</label>
+            <Input
+              type="radio"
+              name="signupType"
+              value="cbo"
+              id="cbo"
+              onChange={handleChange}
+            />
+            <label htmlFor="client">{client}</label>
+            <Input
+              type="radio"
+              name="signupType"
+              value="client"
+              id="client"
+              onChange={handleChange}
+            />
+          </div>
           <hr style={{ margin: '2rem' }} />
           <Button
             className={
@@ -150,7 +185,7 @@ const LoginPage = () => {
             }
             style={{ marginTop: '1rem' }}
             type="submit"
-            disabled={!isValidForm}
+            disabled={!isValidForm || !state?.signupType}
           >
             <h4 style={{ padding: '1rem' }}> {login}</h4>
           </Button>

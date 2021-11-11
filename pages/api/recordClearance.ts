@@ -22,14 +22,6 @@ const recordClearance = async (
   try {
     const { clientObj } = initDb()
 
-    // const newUser = await clientObj.create({
-    //   created_at: new Date(Date.now()),
-    //   email: 'tmalstead@codeforamerica.org',
-    //   hasAppliedForExpungement: false,
-    //   xMessageId: '',
-    //   commPrefs: ['email,text'],
-    // })
-
     const body: ExpungeFormInfo = JSON.parse(req.body)
     const { language, clientId } = body
     const name: string = body['Full Name']
@@ -92,7 +84,7 @@ const recordClearance = async (
       res.setHeader(
         'Set-Cookie',
         `Auth-Token=${sign(
-          { id: clientId, hasAppliedForExpungement: true },
+          { id: clientId, hasAppliedForExpungement: true, isVerified: true },
           process.env.JWT_SIGNATURE,
           {
             expiresIn: '7d',

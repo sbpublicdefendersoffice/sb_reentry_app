@@ -9,32 +9,67 @@ const postLogin = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { email, pwd } = JSON.parse(req.body)
+    const body = JSON.parse(req.body)
+    const { email, pwd, signupType } = body
+
+    console.log(body)
 
     if (email && pwd) {
-      const { cboObj } = initDb()
-      const cbo = await cboObj.findOne({ where: { email } })
+      if (signupType && signupType === 'client') {
+        const { clientObj } = initDb()
+        const client = await clientObj.findOne({ where: { email } })
 
-      if (!cbo) throw new Error('Email does not exist')
+        if (!client) throw new Error('Email does not exist')
 
-      const isCorrect: boolean = await compare(pwd, cbo.hashedPassword)
+        const isCorrect: boolean = await compare(pwd, client.hashedPassword)
 
-      if (isCorrect) {
-        const { id, isVerified, orgId } = cbo
+        if (isCorrect) {
+          const { id, isVerified, hasAppliedForExpungement } = client
 
-        res.setHeader(
-          'Set-Cookie',
-          `Auth-Token=${jwt.sign(
-            { id, isVerified, orgId },
-            process.env.JWT_SIGNATURE,
-            {
-              expiresIn: '7d',
-            },
-          )}; Max-Age=${oneWeekInSeconds}; Path=/; HttpOnly; Secure; SameSite=Strict`,
-        )
+          const type = { type: 'client' }
 
-        res.status(200).send({})
-      } else throw new Error('Email or password is incorrect. Please try again')
+          res.setHeader(
+            'Set-Cookie',
+            `Auth-Token=${jwt.sign(
+              { id, isVerified, hasAppliedForExpungement, ...type },
+              process.env.JWT_SIGNATURE,
+              {
+                expiresIn: '7d',
+              },
+            )}; Max-Age=${oneWeekInSeconds}; Path=/; HttpOnly; Secure; SameSite=Strict`,
+          )
+
+          res.status(200).json(type)
+        } else
+          throw new Error('Email or password is incorrect. Please try again')
+      } else {
+        const { cboObj } = initDb()
+        const cbo = await cboObj.findOne({ where: { email } })
+
+        if (!cbo) throw new Error('Email does not exist')
+
+        const isCorrect: boolean = await compare(pwd, cbo.hashedPassword)
+
+        if (isCorrect) {
+          const { id, isVerified, orgId } = cbo
+
+          const type = { type: 'cbo' }
+
+          res.setHeader(
+            'Set-Cookie',
+            `Auth-Token=${jwt.sign(
+              { id, isVerified, orgId, ...type },
+              process.env.JWT_SIGNATURE,
+              {
+                expiresIn: '7d',
+              },
+            )}; Max-Age=${oneWeekInSeconds}; Path=/; HttpOnly; Secure; SameSite=Strict`,
+          )
+
+          res.status(200).json(type)
+        } else
+          throw new Error('Email or password is incorrect. Please try again')
+      }
     }
   } catch (err) {
     const error: string = err.message
