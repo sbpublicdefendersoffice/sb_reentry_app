@@ -4,8 +4,8 @@ import {
   AccordionDetails,
   Typography,
   Grid,
-} from '@material-ui/core/'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+} from '@mui/material'
+import { ExpandMore } from '@mui/icons-material'
 import { LegalTerms, legaltermsCopy } from '../../../types/legalterms'
 import {
   AppellateCourts,
@@ -88,7 +88,7 @@ const LegalTermsPage = () => {
               <Accordion key={key}>
                 <AccordionSummary
                   data-testid="accordion"
-                  expandIcon={<ExpandMoreIcon />}
+                  expandIcon={<ExpandMore />}
                   aria-controls="panel3a-content"
                   id="panel3a-header"
                 >

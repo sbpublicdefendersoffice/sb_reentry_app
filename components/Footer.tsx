@@ -1,10 +1,10 @@
 import NextLink from 'next/link'
 import { ReactElement, useState, Fragment } from 'react'
-import { Grid, Hidden, Button } from '@material-ui/core'
+import { Grid, Hidden, Button } from '@mui/material'
 import { RouteInfo, CopyHolder } from '../types/'
 import useLanguage from '../hooks/useLanguage'
 import { ENGLISH } from '../constants/language'
-import { ArrowDropDown } from '@material-ui/icons/'
+import { ArrowDropDown } from '@mui/icons-material'
 import { ThriveLogo, Paragraph } from '../ui'
 import {
   staticPageRoutes,
@@ -52,7 +52,7 @@ const Footer = () => {
           </NextLink>
         </Grid>
       )
-      if (i === lastStaticRouteIndex - 1)
+      if (i === lastStaticRouteIndex - 1) {
         return (
           <>
             <Grid item xs={12} md={2} sm={4} className={styles.Grid}>
@@ -233,6 +233,7 @@ const Footer = () => {
             <div className={styles.About}>{link}</div>
           </>
         )
+      }
       if (i === lastStaticRouteIndex) return null
       else return <Fragment key={i}>{link}</Fragment>
     },

@@ -3,7 +3,7 @@ import Error from 'next/error'
 import { useRouter } from 'next/router'
 import { Op } from 'sequelize'
 import { useState } from 'react'
-import { Modal, Hidden, Grid, withWidth } from '@material-ui/core/'
+import { Modal, Hidden, Grid } from '@mui/material'
 
 import {
   useConvertedLocationRecords,
@@ -107,7 +107,7 @@ const LandingPage = ({ preFetchedOrgs }: LandingPageProps) => {
   )
 }
 
-export default withWidth()(LandingPage)
+export default LandingPage
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = Object.keys(categories).map((route: string) => ({

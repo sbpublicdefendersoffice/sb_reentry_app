@@ -1,12 +1,10 @@
 import { useRef, useState } from 'react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { AppBar, Toolbar } from '@material-ui/core/'
+import { AppBar, Toolbar } from '@mui/material'
+import { Search, ArrowBack, Home } from '@mui/icons-material'
 
-import SearchIcon from '@material-ui/icons/Search'
 import { useOnClickOutside } from '../hooks'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
-import HomeIcon from '@material-ui/icons/Home'
 
 import { useStyles } from '../constants'
 import LiveDataSearch from './LiveDataSearch'
@@ -28,17 +26,17 @@ const MobileAppBar = () => {
       <Toolbar>
         {!showSearchBar ? (
           <>
-            <ArrowBackIcon
+            <ArrowBack
               data-testid="back-button"
               className={classes.footerIcons}
               fontSize="large"
               onClick={() => back()}
             />
             <NextLink href="/" as="/">
-              <HomeIcon className={classes.footerIcons} fontSize="large" />
+              <Home className={classes.footerIcons} fontSize="large" />
             </NextLink>
 
-            <SearchIcon
+            <Search
               data-testid="show-search-button"
               className={classes.footerIcons}
               fontSize="large"

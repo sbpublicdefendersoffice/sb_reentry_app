@@ -4,8 +4,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   Grid,
-} from '@material-ui/core/'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+} from '@mui/material'
+import { ExpandMore } from '@mui/icons-material'
 import { CopyHolder } from '../types/'
 import {
   ImportantDocumentsAccord,
@@ -30,7 +30,7 @@ const HrefAccordian = () => {
         return (
           <Accordion key={key} style={{ margin: '1rem' }}>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={<ExpandMore />}
               aria-controls="panel3a-content"
               data-testid="accordion"
               id="panel3a-header"

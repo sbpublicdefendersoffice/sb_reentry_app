@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Grid,
-} from '@material-ui/core/'
+import { Card, CardContent, CardMedia, Typography, Grid } from '@mui/material'
 import { SuccessStory } from '../../types/successStory'
 import useLanguage from '../../hooks/useLanguage'
 import {

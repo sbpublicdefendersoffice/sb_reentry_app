@@ -10,7 +10,7 @@ import {
   MenuItem,
   ListItemText,
   Typography,
-} from '@material-ui/core/'
+} from '@mui/material'
 import { useStyles, ENGLISH, languageCopy } from '../constants/'
 import { useLanguage } from '../hooks/'
 const FilterLanguage = ({ fields, handleFieldsSelected }) => {
