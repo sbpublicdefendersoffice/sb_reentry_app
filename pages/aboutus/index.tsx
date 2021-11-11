@@ -1,5 +1,5 @@
-import { Paper, Typography, Grid } from '@material-ui/core/'
-import { BusinessCenter, VerifiedUser, Forum } from '@material-ui/icons/'
+import { Paper, Typography, Grid } from '@mui/material'
+import { BusinessCenter, VerifiedUser, Forum } from '@mui/icons-material'
 import useLanguage from '../../hooks/useLanguage'
 import { useStyles, siteTitle, aboutCopy } from '../../constants/'
 import { HeadTags } from '../../components'
@@ -17,18 +17,17 @@ const AboutUs = () => {
       />
       <Typography
         align="center"
-        style={{ marginTop: '3rem' }}
+        style={{ marginTop: '3rem', margin: 'auto', justifyContent: 'center' }}
         gutterBottom
         variant="h2"
         component="h1"
       >
         {activeCopy.title}
       </Typography>
-      ``
+
       <Grid
         container
-        style={{ marginTop: '10rem' }}
-        justify="center"
+        style={{ marginTop: '10rem', justifyContent: 'center' }}
         spacing={4}
       >
         <Grid style={{ display: 'flex' }} item xs={12} sm={3}>

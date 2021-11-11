@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 import { useState, Fragment, ReactElement } from 'react'
 import { bool, func } from 'prop-types'
-import { Button, MenuItem } from '@material-ui/core'
+import { Button, MenuItem } from '@mui/material'
 import { StyledBurgerItems } from './BurgerItems.module'
 import {
   useStyles,

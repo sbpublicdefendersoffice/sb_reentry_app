@@ -1,4 +1,4 @@
-import { Fab, Grid } from '@material-ui/core/'
+import { Fab, Grid } from '@mui/material'
 import { useStyles } from '../constants'
 import CategoryFilters from './Filters'
 import { Filter } from '../types/filter'

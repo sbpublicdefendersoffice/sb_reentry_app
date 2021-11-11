@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 import { useLanguage, useIntersectionStyle, useToast } from '../hooks'
 import { validations, states } from '../constants'
 import { ExpungementInfo, CopyHolder, Validation } from '../types'
-import { ExpungementSignature } from './'
+import ExpungementSignature from './ExpungementSignature'
 
 import styles from './ExpungementForm.module.css'
 

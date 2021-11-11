@@ -1,9 +1,9 @@
 import LocationRecordDisplay from './LocationRecordDisplay'
 import Disclaimer from './Disclaimer'
 import { Details, Title, Paragraph } from '../ui'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
-import { Grid } from '@material-ui/core'
+import { Favorite, FavoriteBorder } from '@mui/icons-material'
+
+import { Grid } from '@mui/material'
 import { useLanguage, useFavorite } from '../hooks/'
 import { CopyHolder, PGOrganizationResponse } from '../types'
 import styles from './OrgRecordDisplay.module.css'
@@ -39,11 +39,9 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
     sortedRecord[`notes_${language}`],
   ]
   const { website, locations, id } = sortedRecord
-  const isFavIcon = (
-    <FavoriteIcon style={{ color: '#13385E', fontSize: '3rem' }} />
-  )
+  const isFavIcon = <Favorite style={{ color: '#13385E', fontSize: '3rem' }} />
   const isNotFavIcon = (
-    <FavoriteBorderIcon style={{ color: '#13385E', fontSize: '3rem' }} />
+    <FavoriteBorder style={{ color: '#13385E', fontSize: '3rem' }} />
   )
   const heart = favoriteResources.some(item => item.id === id)
     ? isFavIcon
@@ -60,17 +58,38 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
   }
   return (
     <div role="menu" className={styles.OrgRecordDisplay}>
-      <Title role="heading" className={styles.DisplayTitle}>
-        {org_name}
-      </Title>
-      <Grid container justify="flex-end">
-        <button
-          style={{ background: 'none', border: 'none', marginTop: '-8rem' }}
-          id={String(id)}
-          onClick={clickHeart}
+      <Grid container>
+        <Grid item md={7}>
+          <Title role="heading" className={styles.DisplayTitle}>
+            {org_name}
+          </Title>
+        </Grid>
+
+        <Grid
+          item
+          md={5}
+          style={{
+            display: 'flex',
+
+            flexDirection: 'row-reverse',
+          }}
         >
-          <div className="resource-favorite">{heart}</div>
-        </button>
+          <button
+            style={{
+              background: 'none',
+              border: 'none',
+              display: 'flex',
+              // margin: 'auto',
+              flexDirection: 'row-reverse',
+              margin: '10%',
+            }}
+            id={String(id)}
+            onClick={clickHeart}
+          >
+            <div>{heart}</div>
+          </button>
+        </Grid>
+        {/* </div> */}
       </Grid>
       <Details open summary={activeCopy.orgInfo} className={styles.listing}>
         {notes && (

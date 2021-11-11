@@ -4,13 +4,12 @@ import LeafLoader from './LeafLoader'
 import OrgRecordCard from './OrgRecordCard'
 import { Details, Paragraph } from '../ui'
 import { useLanguage, useView, useResizeEvent } from '../hooks/'
-import withWidth from '@material-ui/core/withWidth'
+import withWidth from '@mui/material'
 import { PGOrganizationResponse, WindowSize } from '../types/'
 import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
-import DesktopFilterView from './DesktopFilterView'
-import { Hidden } from '@material-ui/core'
-
+import DesktopFilterView from './Filters'
+import { Hidden } from '@mui/material'
 export interface RecordPaneProps {
   displayCategory: string
   routeCategory: string
@@ -101,4 +100,4 @@ const RecordPane = ({
     </div>
   )
 }
-export default withWidth()(RecordPane)
+export default RecordPane

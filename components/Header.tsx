@@ -21,8 +21,8 @@ import {
   ENGLISH,
 } from '../constants'
 import { ThriveLogo } from '../ui'
-import { Hidden, Badge, Button, Menu, MenuItem, Grid } from '@material-ui/core'
-import { Favorite, ArrowDropDown } from '@material-ui/icons/'
+import { Hidden, Badge, Button, Menu, MenuItem, Grid } from '@mui/material'
+import { Favorite, ArrowDropDown } from '@mui/icons-material'
 
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 const copy: CopyHolder = {
@@ -204,7 +204,7 @@ const Header = () => {
           )}
         </div>
 
-        <Hidden mdDown>
+        <Hidden lgDown>
           <Grid container style={{ width: '36%' }}>
             <Grid item md={12} sm={4}>
               <LiveDataSearch />

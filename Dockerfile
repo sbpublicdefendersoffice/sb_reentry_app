@@ -3,7 +3,6 @@ FROM node:14.18.1-alpine AS DEPS
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed
 RUN apk add --no-cache libc6-compat
-RUN for word in $(cat .dockerenv); do echo $word; done
 
 # Create and set app directory
 WORKDIR /app
@@ -31,7 +30,7 @@ COPY --from=DEPS /app/.env.production ./
 # NextJs public variables need to be loaded in client at build time
 RUN rm .babelrc 
 
-RUN yarn build && yarn install --prod --prefer-offline
+RUN yarn docker-build && yarn install --prod --prefer-offline --network-timeout 100000
 # =========
 # runtime image
 FROM node:14.18.1-alpine AS RUNNER

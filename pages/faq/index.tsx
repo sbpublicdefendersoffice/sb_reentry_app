@@ -4,8 +4,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   Grid,
-} from '@material-ui/core/'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+} from '@mui/material'
+import { ExpandMore } from '@mui/icons-material'
 
 import { PictureWithOval, LetUsHelpHeading, HeadTags } from '../../components'
 import { Title, Paragraph } from '../../ui'
@@ -38,7 +38,6 @@ const FaqPage = () => {
   const classes = useStyles()
 
   const faqs: CopyHolder[] = [
-    clearMyRecord,
     resumeTemplate,
     whereToStart,
     covid,
@@ -53,6 +52,7 @@ const FaqPage = () => {
     documents,
     edits,
     feedback,
+    clearMyRecord,
   ]
   const activeCopyFAQ = faqCopy[language]
   return (
@@ -79,12 +79,12 @@ const FaqPage = () => {
             return (
               <Accordion key={key} style={{ margin: '1rem' }}>
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
+                  expandIcon={<ExpandMore />}
                   aria-controls="panel3a-content"
                   data-testid="accordion"
                   id="panel3a-header"
                 >
-                  <Typography component="span">
+                  <Typography>
                     {' '}
                     <p className={classes.heading}>{activeCopy.listItem}</p>
                   </Typography>
@@ -92,42 +92,90 @@ const FaqPage = () => {
                 <AccordionDetails>
                   <Grid container spacing={3}>
                     <Grid item xs={12}>
-                      <Typography component="span">
-                        {
+                      <Typography>
+                        {activeCopy && activeCopy.href1 && (
                           <span style={{ display: 'inline !important' }}>
                             <p
                               className={classes.accordDescription}
                               style={{
                                 wordBreak: 'break-word',
+                                padding: '1rem',
+                                textAlign: 'center',
+                                display: 'inline',
+                              }}
+                            >
+                              {' '}
+                              {activeCopy.description}
+                              <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href={activeCopy.href1}
+                                style={{ wordBreak: 'break-word' }}
+                              >
+                                {activeCopyFAQ.clickHere}
+                              </a>
+                            </p>
+                          </span>
+                        )}
+                        {activeCopy && activeCopy.nextLink && (
+                          <p
+                            className={classes.accordDescription}
+                            style={{
+                              wordBreak: 'break-word',
+                              padding: '1rem',
+                              textAlign: 'center',
+                              display: 'inline',
+                            }}
+                          >
+                            {' '}
+                            {activeCopy.description}
+                            <a href={activeCopy.nextLink}>
+                              <p
+                                className={classes.accordDescription}
+                                style={{
+                                  wordBreak: 'break-word',
+                                  padding: '2rem',
+                                  textAlign: 'center',
+                                  display: 'inline',
+                                }}
+                              >
+                                {activeCopyFAQ.clickHere}
+                              </p>
+                            </a>
+                          </p>
+                        )}
+                        {activeCopy && activeCopy.nextLinkTwo && (
+                          <p
+                            className={classes.accordDescription}
+                            style={{
+                              wordBreak: 'break-word',
+                              padding: '1rem',
+                              textAlign: 'center',
+                              display: 'inline',
+                            }}
+                          >
+                            {activeCopy.description2}
+                            <a href={activeCopy.nextLinkTwo}>
+                              <p>{activeCopyFAQ.clickHere}</p>
+                            </a>
+                          </p>
+                        )}
+                        {activeCopy &&
+                          !activeCopy.href1 &&
+                          !activeCopy.nextLink &&
+                          !activeCopy.nextLinkTwo && (
+                            <p
+                              className={classes.accordDescription}
+                              style={{
+                                wordBreak: 'break-word',
+                                padding: '1rem',
+                                textAlign: 'center',
                                 display: 'inline',
                               }}
                             >
                               {activeCopy.description}
-                              {activeCopy.href1 && (
-                                <a
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  href={activeCopy.href1}
-                                  style={{}}
-                                >
-                                  {activeCopyFAQ.clickHere}
-                                </a>
-                              )}
-                              {activeCopy.nextLink && (
-                                <a href={activeCopy.nextLink}>
-                                  {activeCopyFAQ.clickHere}
-                                </a>
-                              )}
-                              {activeCopy.description2 &&
-                                ' ' + activeCopy.description2}
-                              {activeCopy.nextLink2 && (
-                                <a href={activeCopy.nextLink2}>
-                                  {activeCopyFAQ.clickHere}
-                                </a>
-                              )}
                             </p>
-                          </span>
-                        }
+                          )}
                       </Typography>
                     </Grid>
                   </Grid>

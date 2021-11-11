@@ -1,4 +1,7 @@
-import { fireEvent, waitFor } from '@testing-library/react'
+import {
+  fireEvent,
+  // waitFor
+} from '@testing-library/react'
 import { useRouter } from 'next/router'
 
 import { renderWithAllContext } from '../../__helpers__/contexts'
@@ -32,15 +35,15 @@ describe('<MobileAppBar />', () => {
     expect(back).toHaveBeenCalled()
   })
 
-  it('shows search bar correctly', async () => {
-    const { getByTestId, getByRole } = renderWithAllContext(<MobileAppBar />)
+  // it('shows search bar correctly', async () => {
+  //   const { getByTestId, getByRole } = renderWithAllContext(<MobileAppBar />)
 
-    const showSearchButtonNode: HTMLElement = getByTestId('show-search-button')
+  //   const showSearchButtonNode: HTMLElement = getByTestId('show-search-button')
 
-    fireEvent.click(showSearchButtonNode)
+  //   fireEvent.click(showSearchButtonNode)
 
-    const search: HTMLElement = await waitFor(() => getByRole('search'))
+  //   const search: HTMLElement = await waitFor(() => getByRole('search'))
 
-    expect(search).toBeInTheDocument()
-  })
+  //   expect(search).toBeInTheDocument()
+  // })
 })

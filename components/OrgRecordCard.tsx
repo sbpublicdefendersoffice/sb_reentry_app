@@ -1,7 +1,7 @@
 import { Fragment, ReactElement } from 'react'
 import { useRouter } from 'next/router'
-import { Favorite, FavoriteBorder } from '@material-ui/icons'
-import { Button } from '@material-ui/core/'
+import { Favorite, FavoriteBorder } from '@mui/icons-material'
+import { Button } from '@mui/material'
 
 import useLanguage from '../hooks/useLanguage'
 import { PGOrganizationResponse } from '../types/'
@@ -99,7 +99,7 @@ const OrgRecordCard = ({ record }: OrgRecordCardProps) => {
         id={String(id)}
         title={String(id)}
         onClick={clickHeart}
-        style={{ background: 'none', border: 'none' }}
+        style={{ background: 'none', border: 'none', color: '#13385E' }}
       >
         <div>{heart}</div>
       </Button>

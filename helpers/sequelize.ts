@@ -6,7 +6,7 @@ import { AllModels } from '../types/sequelize'
 const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY } = DataTypes
 const opt: ModelOptions = { timestamps: false }
 
-let sql, orgObj, locObj, servObj, schObj, useObj, clientObj
+let sql, orgObj, locObj, servObj, schObj, useObj, clientObj, cboObj
 
 const initDb = (): AllModels => {
   try {
@@ -121,6 +121,22 @@ const initDb = (): AllModels => {
         opt,
       )
 
+      cboObj = sql.define(
+        'cbos',
+        {
+          created_at: {
+            type: DATE,
+          },
+          org: { type: TEXT },
+          orgId: { type: INTEGER },
+          email: { type: TEXT },
+          hashedPassword: { type: TEXT },
+          verificationString: { type: TEXT },
+          passwordResetCode: { type: TEXT },
+          isVerified: { type: BOOLEAN },
+        },
+        opt,
+      )
       const locOrgObj = sql.define(
         'locations_organizations',
         {
@@ -184,7 +200,6 @@ const initDb = (): AllModels => {
         through: 'schedules_organizations',
         foreignKey: 'organizations_id',
       })
-
       locObj.belongsToMany(orgObj, {
         through: 'locations_organizations',
         foreignKey: 'locations_id',
@@ -225,7 +240,7 @@ const initDb = (): AllModels => {
         .then(() => console.log('Database models created'))
     }
 
-    return { orgObj, locObj, servObj, schObj, useObj, clientObj }
+    return { orgObj, locObj, servObj, schObj, useObj, clientObj, cboObj }
   } catch (err) {
     console.error(`Error setting up database: ${err}`)
   }

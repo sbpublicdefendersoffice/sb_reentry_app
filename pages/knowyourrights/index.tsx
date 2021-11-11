@@ -9,10 +9,10 @@ import {
   Typography,
   Modal,
   Button,
-} from '@material-ui/core/'
+} from '@mui/material'
 import { FlyerPDF, Item, RightsLinks } from '../../types/flyerPDF'
 import { siteTitle, useStyles } from '../../constants/'
-import { GetApp, Pageview, HighlightOff } from '@material-ui/icons/'
+import { GetApp, Pageview, HighlightOff } from '@mui/icons-material'
 import { useOnClickOutside, useLanguage } from '../../hooks/'
 import {
   InformedImmigrant,
