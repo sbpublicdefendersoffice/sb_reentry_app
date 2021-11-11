@@ -1,5 +1,3 @@
-// const CircularDependencyPlugin = require('circular-dependency-plugin')
-
 // watch out with adding external sources and apis in production mode, make sure to add them to CSP below
 const nextConfigOptions = {
   headers: async () =>
@@ -19,7 +17,7 @@ const nextConfigOptions = {
         ]
       : [],
   target: 'serverless',
-  webpack: (config, { isServer, webpack }) => {
+  webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.pdf/,
       type: 'asset/inline',
@@ -92,18 +90,25 @@ const nextConfigOptions = {
     )
       config.devtool = 'source-map'
 
-    // config.plugins.push(
-    //   new CircularDependencyPlugin({
-    //     // exclude detection of files based on a RegExp
-    //     exclude: /node_modules/,
-    //     // add errors to webpack instead of warnings
-    //     failOnError: true,
-    //     // allow import cycles that include an asyncronous import,
-    //     // e.g. via import(/* webpackMode: "weak" */ './file.js')
-    //     allowAsyncCycles: false,
-    //     cwd: process.cwd(),
-    //   }),
-    // )
+    if (
+      process.env.NODE_ENV === 'production' &&
+      process.env.DEP_CHECK === 'true'
+    ) {
+      const CircularDependencyPlugin = require('circular-dependency-plugin')
+
+      config.plugins.push(
+        new CircularDependencyPlugin({
+          // exclude detection of files based on a RegExp
+          exclude: /node_modules/,
+          // add errors to webpack instead of warnings
+          failOnError: true,
+          // allow import cycles that include an asyncronous import,
+          // e.g. via import(/* webpackMode: "weak" */ './file.js')
+          allowAsyncCycles: false,
+          cwd: process.cwd(),
+        }),
+      )
+    }
 
     return config
   },
