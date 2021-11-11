@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { v4 as uuid } from 'uuid'
-import bcrypt from 'bcrypt'
+import { hashSync } from 'bcryptjs'
 
 import { sendEmail } from '../../helpers'
 import initDb from '../../helpers/sequelize'
@@ -21,15 +21,7 @@ const postSignupCBO = async (
       }
 
       const saltRounds: number = 10
-      let hashedPassword: string
-      await bcrypt
-        .hash(pwd, saltRounds)
-        .then(hash => {
-          hashedPassword = hash
-        })
-        .catch(err => {
-          console.error(err)
-        })
+      const hashedPassword: string = hashSync(pwd, saltRounds)
 
       const verificationString = uuid()
       const addCBO = await cboObj.create({

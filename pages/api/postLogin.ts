@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import initDb from '../../helpers/sequelize'
-import bcrypt from 'bcrypt'
+import { compare } from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 const oneWeekInSeconds: number = 604800
 
@@ -17,7 +17,7 @@ const postLogin = async (
 
       if (!cbo) throw new Error('Email does not exist')
 
-      const isCorrect: boolean = await bcrypt.compare(pwd, cbo.hashedPassword)
+      const isCorrect: boolean = await compare(pwd, cbo.hashedPassword)
 
       if (isCorrect) {
         const { id, isVerified, orgId } = cbo
