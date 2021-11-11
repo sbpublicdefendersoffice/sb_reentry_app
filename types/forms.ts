@@ -56,7 +56,9 @@ export interface ExpungementInfo {
   'Government Benefits'?: boolean
   Licensing?: boolean
   'Other-1'?: string
-  'I would like to be enrolled in Uptrust to receive'?: boolean
+  3?: boolean // this is the current checkbox form value for uptrust enrollment
+  4?: boolean // this is the current checkbox form value for experienceing homelessness
+  5?: boolean // this is the current checkbox form value for not experienceing homelessness
   'Marital Status'?: string
   'Are you a veteran'?: string
   'If yes which branch'?: string
@@ -69,6 +71,7 @@ export interface ExpungementInfo {
   'Convicted in Santa Barbara County'?: string
   'City Convicted In'?: string
   'Are you currently on probation or parole'?: string
+  'Are you currently experiencing homelessness'?: string
   'unsure If yes where'?: string
   'Granted probation'?: string
   'Completed probation with no violations'?: string
@@ -115,6 +118,15 @@ export interface ExpungementInfo {
   'Textfield-12'?: string
   'Textfield-15'?: string
   'Other Income or assets valued at'?: string
+  37?: boolean //new form value for monthly pay checkbox
+  38?: boolean //new form value for weekly pay checkbox
+  39?: boolean //new form value for bi-weekly pay checkbox
+  40?: boolean //new form value for annually pay checkbox
+  45?: boolean //new form value for real estate yes
+  46?: boolean //new form value for real estate no
+  'I would like to be enrolled in Uptrust to receive'?: boolean
+  'Is English your primary language'?: string
+  Expense?: string
   Date: string
   Signature: string
   certified: boolean
@@ -124,4 +136,6 @@ export interface ExpungeFormInfo extends ExpungementInfo {
   'State  Zip': string
   'Mailing Address': string
   language: Language
+  'Home Phone': string
+  clientId: number
 }

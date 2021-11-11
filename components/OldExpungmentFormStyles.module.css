@@ -1,0 +1,39 @@
+.ExpungementForm label {
+  margin: var(--margin-sm) 0;
+}
+
+.ExpungementForm > div > section {
+  flex-direction: column;
+  align-items: center;
+}
+
+.ExpungementForm > div > section > input,
+.ExpungementForm > div > section > select {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.ExpungementForm > div > section > select {
+  margin: var(--margin-std) 0;
+  width: 100%;
+}
+
+.ExpungementForm > div > section > input[type='text'],
+.ExpungementForm > div > section > input[type='number'],
+.ExpungementForm > div > section > input[type='date'],
+.ExpungementForm > div > section > input[type='tel'],
+.ExpungementForm > div > section > input[type='email'] {
+  width: 100%;
+}
+
+@keyframes load {
+  0% {
+    transform: translateY(3rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

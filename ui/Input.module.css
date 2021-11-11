@@ -6,8 +6,13 @@
   min-width: 3rem;
 }
 
-.Input[type='date'] {
+.Input[type='date'],
+.Input[type='text'],
+.Input[type='tel'],
+.Input[type='number'],
+.Input[type='email'] {
   font-family: 'Roboto', sans-serif;
+  padding: var(--pad-std);
 }
 
 .Input[type='checkbox'],

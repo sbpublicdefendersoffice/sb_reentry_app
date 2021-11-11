@@ -8,6 +8,7 @@ import { validator } from '../../helpers/formValidator'
 import { CopyHolder } from '../../types'
 import { useLanguage } from '../../hooks'
 import { useFormFields } from '../../hooks/'
+import { Input, Paragraph } from '../../ui'
 
 export const copy: CopyHolder = {
   english: {
@@ -32,6 +33,12 @@ export const copy: CopyHolder = {
     someone: 'someone',
     mustContain:
       'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
+    iAm: 'I am an',
+    cbo: 'Community Based Orgaization',
+    client: 'Client',
+    commPref: 'How would you like us to contact you?',
+    text: 'Text',
+    phone: 'Phone',
   },
   spanish: {
     signup: 'Inscribirse',
@@ -57,6 +64,12 @@ export const copy: CopyHolder = {
       'Debe contener al menos un número y una letra mayúscula y minúscula, y al menos 8 caracteres o más',
     confirmPasswordMatch:
       'Asegúrese de confirmar que la contraseña y la contraseña sean exactamente iguales',
+    iAm: 'Soy un',
+    cbo: 'Organización basada en la comunidad',
+    client: 'Cliente',
+    commPref: '¿Cómo desea que nos comuniquemos con usted?',
+    text: 'Texto',
+    phone: 'Teléfono',
   },
 }
 const initState = {
@@ -64,6 +77,7 @@ const initState = {
   email: '',
   pwd: '',
   confirmPwd: '',
+  signupType: '',
 }
 
 const SignupPage = () => {
@@ -102,6 +116,12 @@ const SignupPage = () => {
     invalidOrg,
     confirmPasswordMatch,
     passwordRequired,
+    iAm,
+    cbo,
+    client,
+    commPref,
+    text,
+    phone,
   } = copy[language]
 
   const { email, org, pwd, confirmPwd } = state
@@ -123,6 +143,7 @@ const SignupPage = () => {
           }}
         >
           <h1>{signup}</h1>
+
           <TextField
             value={org}
             name="org"
@@ -179,6 +200,55 @@ const SignupPage = () => {
             placeholder={confirmPasswordMessage}
             required
           />
+          <div>
+            <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
+              {iAm}
+            </Paragraph>
+            <label htmlFor="cbo">{cbo}</label>
+            <Input
+              type="radio"
+              name="signupType"
+              value="cbo"
+              id="cbo"
+              onChange={handleChange}
+            />
+            <label htmlFor="client">{client}</label>
+            <Input
+              type="radio"
+              name="signupType"
+              value="client"
+              id="client"
+              onChange={handleChange}
+            />
+          </div>
+          {state?.signupType === 'client' && (
+            <div>
+              <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
+                {commPref}
+              </Paragraph>
+              <label htmlFor="commByEmail">Email</label>
+              <Input
+                type="checkbox"
+                name="commByEmail"
+                id="commByEmail"
+                onChange={handleChange}
+              />
+              <label htmlFor="commByText">{text}</label>
+              <Input
+                type="checkbox"
+                name="commByText"
+                id="commByText"
+                onChange={handleChange}
+              />
+              <label htmlFor="commByPhone">{phone}</label>
+              <Input
+                type="checkbox"
+                name="commByPhone"
+                id="commByPhone"
+                onChange={handleChange}
+              />
+            </div>
+          )}
           <hr style={{ margin: '2rem' }} />
           <Button
             className={
@@ -189,7 +259,7 @@ const SignupPage = () => {
                 : classes.greenButton
             }
             type="submit"
-            disabled={!isValidForm || pwd !== confirmPwd}
+            disabled={!isValidForm || pwd !== confirmPwd || !state?.signupType}
           >
             <h4 style={{ padding: '1rem' }}>{signup}</h4>
           </Button>
