@@ -52,9 +52,9 @@ const ExpungementPage = ({
   return (
     <>
       <HeadTags
-        title={`${siteTitle} | Record Expungement`}
-        href={`/expungement`}
-        description={`Thrive SBC Record Expungement`}
+        title={`${siteTitle} | Fresh Start Record Expungement`}
+        href={`/freshstart`}
+        description={`Thrive SBC | Fresh Start Record Expungement`}
       />
       {!isVerified ? (
         <CallToAction>
@@ -96,8 +96,7 @@ export const getServerSideProps: GetServerSideProps = async (
       const temp = verify(headers['Auth-Token'], process.env.JWT_SIGNATURE)
       const { exp } = temp as JwtPayload
       const expiresAt = exp * 1000
-      if (expiresAt > Date.now())
-        token = verify(headers['Auth-Token'], process.env.JWT_SIGNATURE)
+      if (expiresAt > Date.now()) token = temp
     }
   }
 

@@ -102,7 +102,7 @@ const LoginPage = () => {
       setToast(tryAgain)
     } else {
       if (apiResponse.type === 'cbo') push('/dashboard')
-      else push('/expungement')
+      else push('/freshstart')
       setToast(successfulLogin)
 
       state.email = ''
