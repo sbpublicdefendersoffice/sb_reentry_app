@@ -26,8 +26,6 @@ const EmailLandingPage = () => {
         )
         const res = await postCBOToPostgres.json()
 
-        console.log(res)
-
         if (res.error) throw new Error(res.error)
         else setLoadStatus('success')
       } catch (err) {
