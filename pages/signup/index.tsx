@@ -95,10 +95,6 @@ const SignupPage = () => {
       validator,
     })
 
-  let isValidForm =
-    Object.values(errors).filter(error => typeof error !== 'undefined')
-      .length === 0
-
   const {
     confirmPasswordMessage,
     passwordMessage,
@@ -124,7 +120,12 @@ const SignupPage = () => {
     phone,
   } = copy[language]
 
-  const { email, org, pwd, confirmPwd } = state
+  const { email, org, pwd, confirmPwd, signupType } = state
+
+  const isValidForm: boolean =
+    signupType &&
+    Object.values(errors).filter(error => typeof error !== 'undefined')
+      .length === 0
 
   return (
     <div style={{ margin: 'auto', textAlign: 'center' }}>
@@ -252,18 +253,15 @@ const SignupPage = () => {
           <hr style={{ margin: '2rem' }} />
           <Button
             className={
-              confirmPwd !== pwd
-                ? classes.disabledButton
-                : pwd.length == 0
-                ? classes.disabledButton
-                : classes.greenButton
+              isValidForm && pwd === confirmPwd
+                ? classes.greenButton
+                : classes.disabledButton
             }
             type="submit"
-            disabled={!isValidForm || pwd !== confirmPwd || !state?.signupType}
+            disabled={!isValidForm || pwd !== confirmPwd}
           >
             <h4 style={{ padding: '1rem' }}>{signup}</h4>
           </Button>
-          {/* <Button onClick={getCookie}>Log In To Thrive</Button> */}
           <Button
             style={{
               margin: '1rem 0 1rem 0',
