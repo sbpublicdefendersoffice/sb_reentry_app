@@ -33,6 +33,7 @@ export type {
   ScheduleRecord,
   SortedRecord,
   Feedback,
+  CBO,
   CardInfo,
 } from './records'
 export type { RouteInfo, InfoWithDescription } from './routes'
@@ -41,12 +42,14 @@ export type {
   LocationsModel,
   ServiceModel,
   SchedulesModel,
+  CBOModel,
   LocationsOrganizationsModel,
   SchedulesLocationsModel,
   SchedulesOrganizationsModel,
   ServicesLocationsModel,
   ServicesOrganizationsModel,
   IsThisUsefulModel,
+  ClientModel,
   Organization,
   Location,
   Service,
@@ -57,6 +60,7 @@ export type {
   ServiceLocation,
   ServiceOrganization,
   IsThisUseful,
+  Client,
   AllModels,
 } from './sequelize'
 export type { Color, TextSize, UseToastProps, WindowSize } from './ui'

@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react'
 import { copy } from '../../../constants/prearraignment-data'
 import { siteTitle } from '../../../constants/copy'
-import Grid from '@material-ui/core/Grid'
+import { Grid } from '@mui/material'
 import useLanguage from '../../../hooks/useLanguage'
 import { Title, Paragraph } from '../../../ui'
 import { useStyles } from '../../../constants/materialStyles'

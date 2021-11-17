@@ -85,6 +85,30 @@ export interface IsThisUsefulModel extends Model {
   comment: string
 }
 
+export interface ClientModel extends Model {
+  id: number
+  created_at: string
+  email: string
+  hasAppliedForExpungement: boolean
+  expungementXMessageId: string
+  commPrefs: string[]
+  hashedPassword: string
+  verificationString: string
+  passwordResetCode: string
+  isVerified: boolean
+}
+
+export interface CBOModel extends Model {
+  id?: number
+  created_at: string
+  email: boolean
+  org: string
+  hashedPassword: string
+  verificationString: string
+  passwordResetCode: string
+  isVerified: boolean
+  orgId: number
+}
 export type Organization = ModelCtor<OrganizationModel>
 export type Location = ModelCtor<LocationsModel>
 export type Service = ModelCtor<ServiceModel>
@@ -95,6 +119,8 @@ export type ScheduleOrganization = ModelCtor<SchedulesOrganizationsModel>
 export type ServiceLocation = ModelCtor<ServicesLocationsModel>
 export type ServiceOrganization = ModelCtor<ServicesOrganizationsModel>
 export type IsThisUseful = ModelCtor<IsThisUsefulModel>
+export type Client = ModelCtor<ClientModel>
+export type CBO = ModelCtor<CBOModel>
 
 export interface AllModels {
   orgObj: Organization
@@ -102,4 +128,6 @@ export interface AllModels {
   servObj: Service
   schObj: Schedule
   useObj: IsThisUseful
+  clientObj: Client
+  cboObj: CBO
 }

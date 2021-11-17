@@ -6,7 +6,7 @@ import { AllModels } from '../types/sequelize'
 const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY } = DataTypes
 const opt: ModelOptions = { timestamps: false }
 
-let sql, orgObj, locObj, servObj, schObj, useObj
+let sql, orgObj, locObj, servObj, schObj, useObj, clientObj, cboObj
 
 const initDb = (): AllModels => {
   try {
@@ -103,6 +103,44 @@ const initDb = (): AllModels => {
         opt,
       )
 
+      clientObj = sql.define(
+        'clients',
+        {
+          // id: {
+          //   primaryKey: true,
+          //   type: INTEGER,
+          // },
+          created_at: {
+            type: DATE,
+          },
+          email: { type: TEXT },
+          hasAppliedForExpungement: { type: BOOLEAN },
+          expungementXMessageId: { type: TEXT },
+          commPrefs: { type: ARRAY(TEXT) },
+          hashedPassword: { type: TEXT },
+          verificationString: { type: TEXT },
+          passwordResetCode: { type: TEXT },
+          isVerified: { type: BOOLEAN },
+        },
+        opt,
+      )
+
+      cboObj = sql.define(
+        'cbos',
+        {
+          created_at: {
+            type: DATE,
+          },
+          org: { type: TEXT },
+          orgId: { type: INTEGER },
+          email: { type: TEXT },
+          hashedPassword: { type: TEXT },
+          verificationString: { type: TEXT },
+          passwordResetCode: { type: TEXT },
+          isVerified: { type: BOOLEAN },
+        },
+        opt,
+      )
       const locOrgObj = sql.define(
         'locations_organizations',
         {
@@ -166,7 +204,6 @@ const initDb = (): AllModels => {
         through: 'schedules_organizations',
         foreignKey: 'organizations_id',
       })
-
       locObj.belongsToMany(orgObj, {
         through: 'locations_organizations',
         foreignKey: 'locations_id',
@@ -207,7 +244,7 @@ const initDb = (): AllModels => {
         .then(() => console.log('Database models created'))
     }
 
-    return { orgObj, locObj, servObj, schObj, useObj }
+    return { orgObj, locObj, servObj, schObj, useObj, clientObj, cboObj }
   } catch (err) {
     console.error(`Error setting up database: ${err}`)
   }

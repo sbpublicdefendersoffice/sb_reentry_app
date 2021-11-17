@@ -260,3 +260,38 @@ export const ResourcesSupportRoutes: RouteInfo[] = [
     route: '/faq',
   },
 ]
+export const LoginRoute: RouteInfo[] = [
+  {
+    title_english: 'Login',
+    title_spanish: 'Acceso',
+    route: '/login',
+  },
+]
+export const SignupRoute: RouteInfo[] = [
+  {
+    title_english: 'Sign Up',
+    title_spanish: 'Inscribirse',
+    route: '/signup',
+  },
+]
+export const VerifyEmailRoute: RouteInfo[] = [
+  {
+    title_english: 'Verify Email',
+    title_spanish: 'Verify Email',
+    route: '/verifyemail',
+  },
+]
+export const VerifyEmailWithIDRoute: RouteInfo[] = [
+  {
+    title_english: 'Verify Email',
+    title_spanish: 'Verify Email',
+    route: '/verifyemail/:verificationString',
+  },
+]
+export const ResetPasswordWithIDRoute: RouteInfo[] = [
+  {
+    title_english: 'Verify Email',
+    title_spanish: 'Verify Email',
+    route: '/forgotpassword/:passwordResetCode',
+  },
+]

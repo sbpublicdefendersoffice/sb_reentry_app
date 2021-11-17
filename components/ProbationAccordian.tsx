@@ -8,9 +8,9 @@ import {
   AccordionDetails,
   Grid,
   Typography,
-} from '@material-ui/core/'
+} from '@mui/material'
 import useLanguage from '../hooks/useLanguage'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { ExpandMore } from '@mui/icons-material'
 import { useStyles, probationsCopy, ProbationAccord } from '../constants/'
 
 const ProbationAccordian = () => {
@@ -21,7 +21,7 @@ const ProbationAccordian = () => {
     <>
       <Accordion style={{ margin: '1rem' }}>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMore />}
           aria-controls="panel3a-content"
           id="panel3a-header"
         >
