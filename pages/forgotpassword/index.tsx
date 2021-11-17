@@ -6,6 +6,7 @@ import { useLanguage, useToast, useFormFields } from '../../hooks'
 import { POST, validator } from '../../helpers/'
 import { useStyles } from '../../constants'
 import { CopyHolder } from '../../types'
+import { Input, Paragraph } from '../../ui'
 
 export const copy: CopyHolder = {
   english: {
@@ -18,6 +19,9 @@ export const copy: CopyHolder = {
     validEmail: 'Please enter a valid email address',
     doesNotExist: 'User does not exist in our system',
     emailSent: 'An email was sent to the email provided',
+    iAm: 'I am an',
+    cbo: 'Community Based Orgaization',
+    client: 'Client',
   },
   spanish: {
     successText: `Éxito`,
@@ -33,6 +37,9 @@ export const copy: CopyHolder = {
     userDoesNotExist: 'La usuario no existe en nuestro sistema',
     emailSent:
       'El correo electrónico se envió al correo electrónico proporcionado',
+    iAm: 'Soy un',
+    cbo: 'Organización basada en la comunidad',
+    client: 'Cliente',
   },
 }
 const initState = {
@@ -55,6 +62,9 @@ const ForgotPasswordPage = () => {
     sendReset,
     doesNotExist,
     emailSent,
+    iAm,
+    cbo,
+    client,
   } = copy[language]
   const submit = () => {}
   const { handleChange, handleBlur, state, errors, handleSubmit } =
@@ -63,17 +73,20 @@ const ForgotPasswordPage = () => {
       callback: submit,
       validator,
     })
-  let isValidForm =
+  const { email, signupType } = state
+
+  const isValidForm: boolean =
+    signupType &&
     Object.values(errors).filter(error => typeof error !== 'undefined')
       .length === 0
-  const { email } = state
+
   const onSubmitClicked = async e => {
     e.preventDefault()
     const postCBOToPostgres: Response = await fetch(
       `/api/postForgotPassword/`,
       {
         method: POST,
-        body: email,
+        body: JSON.stringify({ email, signupType }),
       },
     )
     const apiResponse = await postCBOToPostgres.json()
@@ -123,10 +136,30 @@ const ForgotPasswordPage = () => {
             onBlur={handleBlur}
             style={{ marginBottom: '1.5rem' }}
           />
+          <div>
+            <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
+              {iAm}
+            </Paragraph>
+            <label htmlFor="cbo">{cbo}</label>
+            <Input
+              type="radio"
+              name="signupType"
+              value="cbo"
+              id="cbo"
+              onChange={handleChange}
+            />
+            <label htmlFor="client">{client}</label>
+            <Input
+              type="radio"
+              name="signupType"
+              value="client"
+              id="client"
+              onChange={handleChange}
+            />
+          </div>
           <Button
             className={
-              //@ts-ignore
-              errors.email ? classes.disabledButton : classes.greenButton
+              isValidForm ? classes.greenButton : classes.disabledButton
             }
             disabled={!isValidForm}
             type="submit"
