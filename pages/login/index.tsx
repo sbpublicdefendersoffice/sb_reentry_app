@@ -81,11 +81,13 @@ const LoginPage = () => {
     callback: submit,
     validator,
   })
-  let isValidForm =
+  const { email, pwd, signupType } = state
+
+  const isValidForm: boolean =
+    signupType &&
     Object.values(errors).filter(error => typeof error !== 'undefined')
       .length === 0
 
-  const { email, pwd } = state
   useEffect(() => {
     if (successful) setSuccessful(successful)
   }, [successful])
@@ -181,11 +183,11 @@ const LoginPage = () => {
           <hr style={{ margin: '2rem' }} />
           <Button
             className={
-              !isValidForm ? classes.disabledButton : classes.greenButton
+              isValidForm ? classes.greenButton : classes.disabledButton
             }
             style={{ marginTop: '1rem' }}
             type="submit"
-            disabled={!isValidForm || !state?.signupType}
+            disabled={!isValidForm}
           >
             <h4 style={{ padding: '1rem' }}> {login}</h4>
           </Button>

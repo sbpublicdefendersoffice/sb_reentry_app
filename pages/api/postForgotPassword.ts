@@ -4,24 +4,44 @@ import { sendEmail } from '../../helpers'
 import initDb from '../../helpers/sequelize'
 import { isProd } from '../../constants'
 
+let updated: boolean = false
+let passwordResetCode: string
+
 const postForgotPassword = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { cboObj } = initDb()
-    const passwordResetCode = uuid()
-    const cbo = await cboObj.update(
-      { passwordResetCode: passwordResetCode },
-      { where: { email: req.body } },
-    )
-    if (cbo[0] !== 1) {
-      res.status(401).json({ message: 'error' })
+    const { email, signupType } = JSON.parse(req.body)
+
+    if (signupType === 'cbo') {
+      const { cboObj } = initDb()
+      passwordResetCode = uuid()
+
+      const cbo = await cboObj.update(
+        { passwordResetCode },
+        { where: { email } },
+      )
+      if (cbo[0] !== 1) {
+        res.status(401).json({ message: 'error' })
+      } else updated = true
+    } else {
+      const { clientObj } = initDb()
+      passwordResetCode = `cli${uuid().slice(3)}`
+
+      const client = await clientObj.update(
+        { passwordResetCode },
+        { where: { email } },
+      )
+      if (client[0] !== 1) {
+        res.status(401).json({ message: 'error' })
+      } else updated = true
     }
-    if (cbo) {
+
+    if (updated) {
       //@ts-ignore
       await sendEmail({
-        to: req.body,
+        to: email,
         from: 'verification@thrivesbc.com',
         subject: 'Password Reset',
         text: `

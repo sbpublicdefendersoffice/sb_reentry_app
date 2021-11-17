@@ -1,6 +1,10 @@
 import NextLink from 'next/link'
 
-import { Button, Title, Paragraph } from '../ui'
+import {
+  // Button,
+  Title,
+  Paragraph,
+} from '../ui'
 import FullPageDecision from './FullPageDecision'
 import { CopyHolder } from '../types/language'
 import useLanguage from '../hooks/useLanguage'
@@ -27,7 +31,11 @@ interface ApplyForServiceProps {
 
 const ApplyForService = ({ parentCopy, route }: ApplyForServiceProps) => {
   const { language } = useLanguage()
-  const { submit, click, disclaimer } = copy[language]
+  const {
+    // submit,
+    click,
+    disclaimer,
+  } = copy[language]
 
   const { apply, learn } = parentCopy
   const finalRoute: string = `/letushelp/${route}`
@@ -35,7 +43,7 @@ const ApplyForService = ({ parentCopy, route }: ApplyForServiceProps) => {
   return (
     <FullPageDecision>
       <Title role="heading">{apply}</Title>
-      <a
+      {/* <a
         className="not-text-link"
         href={
           'https://www.countyofsb.org/uploadedFiles/defender/Content/Documents/Financial%20Declaration%20Modifications.pdf'
@@ -44,7 +52,7 @@ const ApplyForService = ({ parentCopy, route }: ApplyForServiceProps) => {
         rel="noopener noreferrer"
       >
         <Button role="button">{submit}</Button>
-      </a>
+      </a> */}
       <Paragraph role="article" size="med-text">
         {learn}{' '}
         <NextLink href={finalRoute} as={finalRoute}>

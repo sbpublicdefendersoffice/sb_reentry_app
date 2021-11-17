@@ -52,8 +52,9 @@ const PasswordResetLandingPage = () => {
 
   const { language } = useLanguage()
 
-  const [isFailure, setIsFailure] = useState(false)
-  const [isSuccess, setIsSuccess] = useState(false)
+  const [loadStatus, setLoadStatus] = useState<
+    'unsubmitted' | 'failed' | 'success'
+  >('unsubmitted')
 
   const submit = () => {
     console.log(' Submitted')
@@ -78,7 +79,9 @@ const PasswordResetLandingPage = () => {
     validPassword,
     validConfirmPassword,
   } = copy[language]
+
   const { pwd, confirmPwd } = state
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     const postCBOToPostgres: Response = await fetch(`/api/postResetPassword`, {
@@ -90,122 +93,114 @@ const PasswordResetLandingPage = () => {
     })
     const apiResponse = await postCBOToPostgres.json()
 
-    if (apiResponse.message == 'error') {
-      await setIsFailure(true)
-    } else {
-      await setIsSuccess(true)
-    }
+    if (apiResponse.error) setLoadStatus('failed')
+    else setLoadStatus('success')
   }
 
-  if (isFailure) return <PasswordResetFail />
-  if (isSuccess) return <PasswordResetSuccess />
-  return (
-    <>
-      {isFailure && <PasswordResetFail />}
-      {isSuccess && <PasswordResetSuccess />}
-      {!isSuccess && !isFailure && (
-        <div className={classes.root} style={{ margin: '4rem 0 4rem 1rem' }}>
-          <h1>{resetPwd}</h1>
-          <p className={classes.fontSize} style={{ margin: '2rem' }}>
-            {enterNew}
-          </p>
-          <form role="form" onSubmit={handleSubmit}>
-            <div className={classes.root} style={{ width: '20rem !important' }}>
-              <TextField
-                type="password"
-                name="pwd"
-                value={pwd}
-                style={{ width: '20rem' }}
-                onChange={handleChange}
-                //@ts-ignore
-                error={errors.pwd ? true : false}
-                //@ts-ignore
-                helperText={errors.pwd ? validPassword : false}
-                onBlur={handleBlur}
-                placeholder={pwdText}
-              />
-              <br />
-              <TextField
-                type="password"
-                name="confirmPwd"
-                style={{ margin: '1rem 0 2rem 0', width: '20rem' }}
-                value={confirmPwd}
-                onChange={handleChange}
-                //@ts-ignore
-                error={errors.pwd ? true : false}
-                //@ts-ignore
-                helperText={errors.pwd ? validConfirmPassword : false}
-                onBlur={handleBlur}
-                placeholder={confirm}
-              />
-              <br />
-              <Button
-                className={
-                  confirmPwd !== pwd
-                    ? classes.disabledButton
-                    : pwd.length == 0
-                    ? classes.disabledButton
-                    : classes.greenButton
-                }
-                type="submit"
-                disabled={!pwd || !confirmPwd || pwd !== confirmPwd}
+  if (loadStatus === 'failed') return <PasswordResetFail />
+  if (loadStatus === 'success') return <PasswordResetSuccess />
+  else
+    return (
+      <div className={classes.root} style={{ margin: '4rem 0 4rem 1rem' }}>
+        <h1>{resetPwd}</h1>
+        <p className={classes.fontSize} style={{ margin: '2rem' }}>
+          {enterNew}
+        </p>
+        <form role="form" onSubmit={handleSubmit}>
+          <div className={classes.root} style={{ width: '20rem !important' }}>
+            <TextField
+              type="password"
+              name="pwd"
+              value={pwd}
+              style={{ width: '20rem' }}
+              onChange={handleChange}
+              //@ts-ignore
+              error={errors.pwd ? true : false}
+              //@ts-ignore
+              helperText={errors.pwd ? validPassword : false}
+              onBlur={handleBlur}
+              placeholder={pwdText}
+            />
+            <br />
+            <TextField
+              type="password"
+              name="confirmPwd"
+              style={{ margin: '1rem 0 2rem 0', width: '20rem' }}
+              value={confirmPwd}
+              onChange={handleChange}
+              //@ts-ignore
+              error={errors.pwd ? true : false}
+              //@ts-ignore
+              helperText={errors.pwd ? validConfirmPassword : false}
+              onBlur={handleBlur}
+              placeholder={confirm}
+            />
+            <br />
+            <Button
+              className={
+                confirmPwd !== pwd
+                  ? classes.disabledButton
+                  : pwd.length == 0
+                  ? classes.disabledButton
+                  : classes.greenButton
+              }
+              type="submit"
+              disabled={!pwd || !confirmPwd || pwd !== confirmPwd}
+            >
+              <h4 style={{ padding: '1rem' }}>{resetPwd}</h4>
+            </Button>
+            <hr style={{ width: '20%', margin: 'auto' }} />
+            <div style={{ marginTop: '3rem !important' }}>
+              <p
+                className={classes.checkMarks}
+                style={{ fontWeight: 'bold', margin: '2rem' }}
               >
-                <h4 style={{ padding: '1rem' }}>{resetPwd}</h4>
-              </Button>
-              <hr style={{ width: '20%', margin: 'auto' }} />
-              <div style={{ marginTop: '3rem !important' }}>
-                <p
-                  className={classes.checkMarks}
-                  style={{ fontWeight: 'bold', margin: '2rem' }}
-                >
-                  {checkMarks}
-                </p>
-                <p className={classes.checkMarks}>
-                  {pwd.length >= 8 ? (
-                    <Check style={{ color: 'green' }} />
-                  ) : (
-                    <Close style={{ color: 'red' }} />
-                  )}
-                  {characters}
-                </p>
-                <p className={classes.checkMarks}>
-                  {pwd.match(/[A-Z]/g) ? (
-                    <Check style={{ color: 'green' }} />
-                  ) : (
-                    <Close style={{ color: 'red' }} />
-                  )}
-                  {upperCase}
-                </p>
-                <p className={classes.checkMarks}>
-                  {pwd.match(/[a-z]/g) ? (
-                    <Check style={{ color: 'green' }} />
-                  ) : (
-                    <Close style={{ color: 'red' }} />
-                  )}
-                  {lowerCase}
-                </p>
-                <p className={classes.checkMarks}>
-                  {pwd.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/) ? (
-                    <Check style={{ color: 'green' }} />
-                  ) : (
-                    <Close style={{ color: 'red' }} />
-                  )}
-                  {number}
-                </p>
-                <p className={classes.checkMarks}>
-                  {pwd === confirmPwd && pwd !== '' ? (
-                    <Check style={{ color: 'green' }} />
-                  ) : (
-                    <Close style={{ color: 'red' }} />
-                  )}
-                  {match}
-                </p>
-              </div>
+                {checkMarks}
+              </p>
+              <p className={classes.checkMarks}>
+                {pwd.length >= 8 ? (
+                  <Check style={{ color: 'green' }} />
+                ) : (
+                  <Close style={{ color: 'red' }} />
+                )}
+                {characters}
+              </p>
+              <p className={classes.checkMarks}>
+                {pwd.match(/[A-Z]/g) ? (
+                  <Check style={{ color: 'green' }} />
+                ) : (
+                  <Close style={{ color: 'red' }} />
+                )}
+                {upperCase}
+              </p>
+              <p className={classes.checkMarks}>
+                {pwd.match(/[a-z]/g) ? (
+                  <Check style={{ color: 'green' }} />
+                ) : (
+                  <Close style={{ color: 'red' }} />
+                )}
+                {lowerCase}
+              </p>
+              <p className={classes.checkMarks}>
+                {pwd.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/) ? (
+                  <Check style={{ color: 'green' }} />
+                ) : (
+                  <Close style={{ color: 'red' }} />
+                )}
+                {number}
+              </p>
+              <p className={classes.checkMarks}>
+                {pwd === confirmPwd && pwd !== '' ? (
+                  <Check style={{ color: 'green' }} />
+                ) : (
+                  <Close style={{ color: 'red' }} />
+                )}
+                {match}
+              </p>
             </div>
-          </form>
-        </div>
-      )}
-    </>
-  )
+          </div>
+        </form>
+      </div>
+    )
 }
 export default PasswordResetLandingPage

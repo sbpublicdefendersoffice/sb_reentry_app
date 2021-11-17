@@ -14,14 +14,24 @@ describe('<ApplyForService />', () => {
       <ApplyForService parentCopy={testCopy.english} route={route} />,
     )
 
-    const { submit, click, disclaimer } = copy.english
+    const {
+      // submit,
+      click,
+      disclaimer,
+    } = copy.english
     const { apply, learn } = testCopy.english
 
-    const [titleNode, buttonNode] = [getByRole('heading'), getByRole('button')]
+    const [
+      titleNode,
+      // buttonNode
+    ] = [
+      getByRole('heading'),
+      // getByRole('button')
+    ]
     const [clickHereNode, disclaimerNode] = getAllByRole('article')
 
     expect(titleNode).toHaveTextContent(apply)
-    expect(buttonNode).toHaveTextContent(submit)
+    // expect(buttonNode).toHaveTextContent(submit)
     expect(clickHereNode).toHaveTextContent(`${learn} ${click}`)
     expect(disclaimerNode).toHaveTextContent(disclaimer)
   })
@@ -32,14 +42,24 @@ describe('<ApplyForService />', () => {
       SPANISH,
     )
 
-    const { submit, click, disclaimer } = copy.spanish
+    const {
+      // submit,
+      click,
+      disclaimer,
+    } = copy.spanish
     const { apply, learn } = testCopy.spanish
 
-    const [titleNode, buttonNode] = [getByRole('heading'), getByRole('button')]
+    const [
+      titleNode,
+      //  buttonNode
+    ] = [
+      getByRole('heading'),
+      // getByRole('button')
+    ]
     const [clickHereNode, disclaimerNode] = getAllByRole('article')
 
     expect(titleNode).toHaveTextContent(apply)
-    expect(buttonNode).toHaveTextContent(submit)
+    // expect(buttonNode).toHaveTextContent(submit)
     expect(clickHereNode).toHaveTextContent(`${learn} ${click}`)
     expect(disclaimerNode).toHaveTextContent(disclaimer)
   })

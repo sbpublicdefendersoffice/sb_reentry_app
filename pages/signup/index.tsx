@@ -39,6 +39,7 @@ export const copy: CopyHolder = {
     commPref: 'How would you like us to contact you?',
     text: 'Text',
     phone: 'Phone',
+    orgName: "Your organization's name",
   },
   spanish: {
     signup: 'Inscribirse',
@@ -70,6 +71,7 @@ export const copy: CopyHolder = {
     commPref: '¿Cómo desea que nos comuniquemos con usted?',
     text: 'Texto',
     phone: 'Teléfono',
+    orgName: 'El nombre de su organización',
   },
 }
 const initState = {
@@ -95,10 +97,6 @@ const SignupPage = () => {
       validator,
     })
 
-  let isValidForm =
-    Object.values(errors).filter(error => typeof error !== 'undefined')
-      .length === 0
-
   const {
     confirmPasswordMessage,
     passwordMessage,
@@ -122,9 +120,15 @@ const SignupPage = () => {
     commPref,
     text,
     phone,
+    orgName,
   } = copy[language]
 
-  const { email, org, pwd, confirmPwd } = state
+  const { email, org, pwd, confirmPwd, signupType } = state
+
+  const isValidForm: boolean =
+    signupType &&
+    Object.values(errors).filter(error => typeof error !== 'undefined')
+      .length === 0
 
   return (
     <div style={{ margin: 'auto', textAlign: 'center' }}>
@@ -144,18 +148,20 @@ const SignupPage = () => {
         >
           <h1>{signup}</h1>
 
-          <TextField
-            value={org}
-            name="org"
-            onChange={handleChange}
-            //@ts-ignore
-            error={errors.org ? true : false}
-            //@ts-ignore
-            helperText={errors.org ? invalidOrg : false}
-            style={{ marginTop: '1rem' }}
-            onBlur={handleBlur}
-            placeholder="Thrive SBC"
-          />
+          {state?.signupType !== 'client' && (
+            <TextField
+              value={org}
+              name="org"
+              onChange={handleChange}
+              //@ts-ignore
+              error={errors.org ? true : false}
+              //@ts-ignore
+              helperText={errors.org ? invalidOrg : false}
+              style={{ marginTop: '1rem' }}
+              onBlur={handleBlur}
+              placeholder={orgName}
+            />
+          )}
           <TextField
             value={email}
             name="email"
@@ -252,18 +258,15 @@ const SignupPage = () => {
           <hr style={{ margin: '2rem' }} />
           <Button
             className={
-              confirmPwd !== pwd
-                ? classes.disabledButton
-                : pwd.length == 0
-                ? classes.disabledButton
-                : classes.greenButton
+              isValidForm && pwd === confirmPwd
+                ? classes.greenButton
+                : classes.disabledButton
             }
             type="submit"
-            disabled={!isValidForm || pwd !== confirmPwd || !state?.signupType}
+            disabled={!isValidForm || pwd !== confirmPwd}
           >
             <h4 style={{ padding: '1rem' }}>{signup}</h4>
           </Button>
-          {/* <Button onClick={getCookie}>Log In To Thrive</Button> */}
           <Button
             style={{
               margin: '1rem 0 1rem 0',
