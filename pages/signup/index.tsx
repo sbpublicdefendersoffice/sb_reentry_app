@@ -39,6 +39,7 @@ export const copy: CopyHolder = {
     commPref: 'How would you like us to contact you?',
     text: 'Text',
     phone: 'Phone',
+    orgName: "Your organization's name",
   },
   spanish: {
     signup: 'Inscribirse',
@@ -70,6 +71,7 @@ export const copy: CopyHolder = {
     commPref: '¿Cómo desea que nos comuniquemos con usted?',
     text: 'Texto',
     phone: 'Teléfono',
+    orgName: 'El nombre de su organización',
   },
 }
 const initState = {
@@ -118,6 +120,7 @@ const SignupPage = () => {
     commPref,
     text,
     phone,
+    orgName,
   } = copy[language]
 
   const { email, org, pwd, confirmPwd, signupType } = state
@@ -155,7 +158,7 @@ const SignupPage = () => {
             helperText={errors.org ? invalidOrg : false}
             style={{ marginTop: '1rem' }}
             onBlur={handleBlur}
-            placeholder="Thrive SBC"
+            placeholder={orgName}
           />
           <TextField
             value={email}

@@ -6,20 +6,34 @@ const postVerifyEmail = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { cboObj } = initDb()
-    const verificationString = JSON.parse(req.body)
+    const verificationString: string = JSON.parse(req.body)
 
-    const cbo = await cboObj.update(
-      { isVerified: true },
-      { where: { verificationString } },
-    )
+    if (verificationString.startsWith('cli')) {
+      const { clientObj } = initDb()
 
-    const cboIsVerified: boolean = Boolean(cbo[0])
+      const client = await clientObj.update(
+        { isVerified: true },
+        { where: { verificationString } },
+      )
 
-    if (!cboIsVerified)
-      res
-        .status(401)
-        .json({ message: 'The email verification code is incorrect' })
+      const clientIsVerified: boolean = Boolean(client[0])
+
+      if (!clientIsVerified)
+        throw new Error('The email verification code is incorrect')
+      else res.json({ ...client })
+    } else {
+      const { cboObj } = initDb()
+      const cbo = await cboObj.update(
+        { isVerified: true },
+        { where: { verificationString } },
+      )
+
+      const cboIsVerified: boolean = Boolean(cbo[0])
+
+      if (!cboIsVerified)
+        throw new Error('The email verification code is incorrect')
+      else res.json({ ...cbo })
+    }
   } catch (err) {
     const error: string = err.message
     console.error(error)

@@ -27,10 +27,10 @@ const postSignup = async (
         }
 
         const hashedPassword: string = hashSync(pwd, saltRounds)
-        verificationString = uuid()
+        verificationString = `cli${uuid().slice(3)}`
 
         const commPrefs: string[] = Object.entries(body)
-          .filter(([_, value]) => value === true)
+          .filter(([_, value]) => value === true) // eslint-disable-line no-unused-vars
           .map(arr => arr[0])
 
         const addClient = await clientObj.create({

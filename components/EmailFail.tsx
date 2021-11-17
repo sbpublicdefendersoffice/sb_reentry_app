@@ -21,7 +21,6 @@ const EmailFail = () => {
 
   return (
     <div className={classes.root}>
-      <h1>Uh oh...</h1>
       <p className={classes.fontSize}>{wentWrong}</p>
       <Button className={classes.greenButton} onClick={() => push('/signup')}>
         <h3 style={{ padding: '2rem' }}>{backToSignup}</h3>
