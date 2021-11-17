@@ -148,18 +148,20 @@ const SignupPage = () => {
         >
           <h1>{signup}</h1>
 
-          <TextField
-            value={org}
-            name="org"
-            onChange={handleChange}
-            //@ts-ignore
-            error={errors.org ? true : false}
-            //@ts-ignore
-            helperText={errors.org ? invalidOrg : false}
-            style={{ marginTop: '1rem' }}
-            onBlur={handleBlur}
-            placeholder={orgName}
-          />
+          {state?.signupType !== 'client' && (
+            <TextField
+              value={org}
+              name="org"
+              onChange={handleChange}
+              //@ts-ignore
+              error={errors.org ? true : false}
+              //@ts-ignore
+              helperText={errors.org ? invalidOrg : false}
+              style={{ marginTop: '1rem' }}
+              onBlur={handleBlur}
+              placeholder={orgName}
+            />
+          )}
           <TextField
             value={email}
             name="email"
