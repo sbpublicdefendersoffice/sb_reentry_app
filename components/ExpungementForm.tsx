@@ -214,11 +214,15 @@ const { Load, Field, RadioCard } = styles
 interface ExpungementFormProps {
   clientId: number
   setHasClientApplied: Dispatch<SetStateAction<boolean>>
+  savedEmail: string
+  commPrefs: string[]
 }
 
 const ExpungementForm = ({
   clientId,
   setHasClientApplied,
+  savedEmail,
+  commPrefs,
 }: ExpungementFormProps) => {
   const { push } = useRouter()
   const { setToast } = useToast()
@@ -303,7 +307,14 @@ const ExpungementForm = ({
     annually,
   } = copy[language]
 
-  const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
+  // @ts-ignore
+  const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>({
+    Date: new Date().toISOString().substring(0, 10),
+    'Email Address': savedEmail || '',
+    Email: commPrefs?.includes('commByEmail') || false,
+    Phone: commPrefs?.includes('commByPhone') || false,
+    Text: commPrefs?.includes('commByText') || false,
+  })
 
   useIntersectionStyle(formRef, Load)
 
@@ -520,18 +531,38 @@ const ExpungementForm = ({
         </section>
         <section className={Field}>
           <label htmlFor="Email Address">{email}</label>
-          <Input onChange={handleChange} type="email" id="Email Address" />
+          <Input
+            value={expungeInfo?.['Email Address']}
+            onChange={handleChange}
+            type="email"
+            id="Email Address"
+          />
         </section>
         <section className={Field}>
           <label>{communicate}</label>
           <Paragraph color="deselected">{multiple}</Paragraph>
           <Card className={RadioCard}>
             <label htmlFor="Email">E-mail</label>
-            <Input onChange={handleChange} type="checkbox" id="Email" />
+            <Input
+              checked={expungeInfo.Email}
+              onChange={handleChange}
+              type="checkbox"
+              id="Email"
+            />
             <label htmlFor="Phone">{phone}</label>
-            <Input onChange={handleChange} type="checkbox" id="Phone" />
+            <Input
+              checked={expungeInfo.Phone}
+              onChange={handleChange}
+              type="checkbox"
+              id="Phone"
+            />
             <label htmlFor="Text">{text}</label>
-            <Input onChange={handleChange} type="checkbox" id="Text" />
+            <Input
+              checked={expungeInfo.Text}
+              onChange={handleChange}
+              type="checkbox"
+              id="Text"
+            />
           </Card>
         </section>
         <section className={Field}>
@@ -888,7 +919,6 @@ const ExpungementForm = ({
         <ExpungementAdditionalInfoForm setExpungeInfo={setExpungeInfo} />
       </Card>
       <ExpungementSignature
-        setExpungeInfo={setExpungeInfo}
         expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}

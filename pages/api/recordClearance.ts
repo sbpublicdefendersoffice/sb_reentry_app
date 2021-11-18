@@ -16,6 +16,8 @@ const [type, disposition, financialFormPath, applicationPath]: string[] = [
   'documents/Expungements_Intake.pdf',
 ]
 
+//gotta change communication preferences if they are different
+
 const recordClearance = async (
   req: NextApiRequest,
   res: NextApiResponse,
@@ -98,11 +100,11 @@ const recordClearance = async (
     const sgResponse = sendMsg[0]
 
     if (sgResponse.statusCode === 202) {
-      const xMessageId = sgResponse.headers['x-message-id']
+      const expungementXMessageId = sgResponse.headers['x-message-id']
 
       await clientObj.update(
         {
-          xMessageId,
+          expungementXMessageId,
           hasAppliedForExpungement: true,
         },
         { where: { id: clientId } },

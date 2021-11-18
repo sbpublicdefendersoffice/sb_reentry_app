@@ -13,6 +13,8 @@ interface ExpungementPageProps {
   id: number
   hasAppliedForExpungement: boolean
   isVerified: boolean
+  email: string
+  commPrefs: string[]
 }
 
 const copy: CopyHolder = {
@@ -30,6 +32,8 @@ const ExpungementPage = ({
   id,
   hasAppliedForExpungement,
   isVerified,
+  email,
+  commPrefs,
 }: ExpungementPageProps) => {
   const { push } = useRouter()
   const [hasClientApplied, setHasClientApplied] = useState<boolean>(
@@ -68,6 +72,8 @@ const ExpungementPage = ({
         <ExpungementForm
           clientId={id}
           setHasClientApplied={setHasClientApplied}
+          savedEmail={email}
+          commPrefs={commPrefs}
         />
       )}
       <Button style={{ height: 'min-content' }} onClick={logOut}>
@@ -110,9 +116,9 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     }
   else {
-    const { id, hasAppliedForExpungement, isVerified } = token
+    const { id, hasAppliedForExpungement, isVerified, email, commPrefs } = token
     return {
-      props: { id, hasAppliedForExpungement, isVerified },
+      props: { id, hasAppliedForExpungement, isVerified, email, commPrefs },
     }
   }
 }

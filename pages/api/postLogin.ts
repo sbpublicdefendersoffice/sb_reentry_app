@@ -22,14 +22,22 @@ const postLogin = async (
         const isCorrect: boolean = await compare(pwd, client.hashedPassword)
 
         if (isCorrect) {
-          const { id, isVerified, hasAppliedForExpungement } = client
+          const { id, isVerified, hasAppliedForExpungement, email, commPrefs } =
+            client
 
           const type = { type: 'client' }
 
           res.setHeader(
             'Set-Cookie',
             `Auth-Token=${jwt.sign(
-              { id, isVerified, hasAppliedForExpungement, ...type },
+              {
+                id,
+                isVerified,
+                hasAppliedForExpungement,
+                email,
+                commPrefs,
+                ...type,
+              },
               process.env.JWT_SIGNATURE,
               {
                 expiresIn: '7d',
