@@ -13,6 +13,7 @@ import { useLanguage, useIntersectionStyle, useToast } from '../hooks'
 import { validations, states } from '../constants'
 import { ExpungementInfo, CopyHolder, Validation } from '../types'
 import ExpungementSignature from './ExpungementSignature'
+import ExpungementDisclaimer from './ExpungementDisclaimer'
 
 import styles from './ExpungementForm.module.css'
 
@@ -20,7 +21,7 @@ import { Title, Button, Card, Paragraph, Input } from '../ui'
 
 const copy: CopyHolder = {
   english: {
-    title: 'Apply for Criminal Record Expungement',
+    title: 'Apply for Fresh Start Record Expungement',
     elgible: 'You are not eligible for this relief if',
     one: 'You are currently involved in an active prosecution',
     two: 'You are currently serving a sentence in jail or prison',
@@ -112,7 +113,7 @@ const copy: CopyHolder = {
     annually: 'Annually',
   },
   spanish: {
-    title: 'Solicite la eliminación de antecedentes penales',
+    title: 'Solicite la cancelación de antecedentes penales',
     elgible: 'No es elegible para este alivio si',
     one: 'Actualmente está involucrado en un enjuiciamiento activo',
     two: 'Actualmente está cumpliendo una sentencia en la cárcel o prisión',
@@ -561,6 +562,12 @@ const ExpungementForm = ({
             />
           </Card>
         </section>
+        {(expungeInfo?.['Are you currently on probation or parole'] ===
+          'Are you currently on probation or parole_yes_On' ||
+          expungeInfo?.['Are you currently on probation or parole'] ===
+            'Are you currently on probation or parole_unsure If yes where_On') && (
+          <ExpungementDisclaimer />
+        )}
         <section className={Field}>
           <label htmlFor="unsure If yes where">{where}</label>
           <Input onChange={handleChange} type="text" id="unsure If yes where" />
