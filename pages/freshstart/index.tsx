@@ -70,7 +70,9 @@ const ExpungementPage = ({
           setHasClientApplied={setHasClientApplied}
         />
       )}
-      <Button onClick={logOut}>Logout</Button>
+      <Button style={{ height: 'min-content' }} onClick={logOut}>
+        Logout
+      </Button>
     </>
   )
 }
