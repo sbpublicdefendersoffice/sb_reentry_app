@@ -60,6 +60,16 @@
   margin: var(--margin-lg) 0;
 }
 
+.TextField {
+  --txtarea-width: calc(100% - var(--margin-std));
+  max-width: var(--txtarea-width);
+  min-width: var(--txtarea-width);
+  padding: var(--pad-std);
+  font-size: var(--med-text);
+  font-family: 'Roboto', sans-serif;
+  border-radius: var(--radius-small);
+}
+
 @media (max-width: 700px) {
   .Card {
     width: 100%;

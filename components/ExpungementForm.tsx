@@ -14,6 +14,7 @@ import { validations, states } from '../constants'
 import { ExpungementInfo, CopyHolder, Validation } from '../types'
 import ExpungementSignature from './ExpungementSignature'
 import ExpungementDisclaimer from './ExpungementDisclaimer'
+import ExpungementAdditionalInfoForm from './ExpungementAdditionalInfoForm'
 
 import styles from './ExpungementForm.module.css'
 
@@ -884,6 +885,7 @@ const ExpungementForm = ({
           <Paragraph color="deselected">{exact}</Paragraph>
           <Input onChange={handleChange} type="number" id="Textfield-17" />
         </section>
+        <ExpungementAdditionalInfoForm setExpungeInfo={setExpungeInfo} />
       </Card>
       <ExpungementSignature
         setExpungeInfo={setExpungeInfo}

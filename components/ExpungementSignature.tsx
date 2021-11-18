@@ -69,10 +69,10 @@ const ExpungementSignature = ({
 
   return (
     <Card ref={signRef} className={styles.Card} id="sign">
-      <Paragraph size="med-text" color="highlight">
-        {sign}
-      </Paragraph>
       <section className={Field}>
+        <Paragraph size="med-text" color="highlight">
+          {sign}
+        </Paragraph>
         <Paragraph>{disclaimer}</Paragraph>
         <Paragraph>{fees}</Paragraph>
       </section>
