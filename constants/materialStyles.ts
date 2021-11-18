@@ -35,6 +35,25 @@ export const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: '#13385e !important',
       marginLeft: '1.2rem !important',
     },
+    socialMediaIcons: {
+      position: 'relative',
+      top: '13rem',
+      left: '0rem',
+      padding: '1rem',
+      '@media (max-width: 1275px)': {
+        top: '2rem',
+        right: '14rem',
+        margin: '1rem 0',
+      },
+    },
+    socialMediaIconsHeader: {
+      marginLeft: '3rem',
+      marginBottom: '1rem',
+      fontFamily: 'Roboto, sans-serif ',
+      '@media (max-width: 1275px)': {
+        margin: '2rem 2rem 1rem 2rem',
+      },
+    },
     subMenuItem: {
       wordWrap: 'break-word',
       color: 'var(--light)',
