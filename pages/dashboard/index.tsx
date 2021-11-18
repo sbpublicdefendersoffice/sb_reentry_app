@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { FormEvent, Fragment, ChangeEvent } from 'react'
 import { JwtPayload, verify } from 'jsonwebtoken'
 import { Button, TextField } from '@mui/material'
-
 import { POST } from '../../helpers/'
 import { useStyles } from '../../constants'
 
@@ -14,12 +13,11 @@ interface DashboardProps {
   isVerified: boolean
 }
 
-const Dashboard = ({ userId, isVerified, orgId }: DashboardProps) => {
+const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const { push } = useRouter()
   const classes = useStyles()
   const [orgInfo, setOrgInfo] = useState(null)
   const [dashboardButtonClicked, setDashboardButtonClicked] = useState(false)
-
   const logOut = async () => {
     const loggingOut: Response = await fetch('/api/logout')
     const logoutMessage = await loggingOut.json()
@@ -40,6 +38,48 @@ const Dashboard = ({ userId, isVerified, orgId }: DashboardProps) => {
     setDashboardButtonClicked(!dashboardButtonClicked)
     setOrgInfo(apiResponse.org)
   }
+  const translateInfo = async (q, id, name): Promise<void> => {
+    let splicer = id.slice(0, -7)
+    const postTranslate: Response = await fetch(
+      'https://libretranslate.de/translate',
+      {
+        method: POST,
+        body: JSON.stringify({ q: q, source: 'en', target: 'es' }),
+        headers: { 'Content-Type': 'application/json' },
+      },
+    )
+
+    const apiResponse = await postTranslate.json()
+    if (name == 'org') {
+      setOrgInfo(info => ({
+        ...info,
+        //@ts-ignore
+        [`${splicer}spanish`]: apiResponse.translatedText,
+      }))
+    }
+    if (name == 'other') {
+      const [finalKey, finalIdx, locProperty, locIdx] = id.split(';')
+      let serviceSplicer = finalKey.slice(0, -7)
+      const temp = orgInfo
+      temp.locations[locIdx][locProperty][finalIdx][
+        `${serviceSplicer}spanish`
+      ] = apiResponse.translatedText
+      setOrgInfo({ ...temp })
+    }
+
+    return apiResponse
+  }
+  const handleBlur = e => {
+    const { name, value, id } = e.target
+    let isEnglishKey = id.includes('english')
+    if (isEnglishKey) {
+      if (name === 'org') {
+        translateInfo(value, id, name)
+      } else if (name === 'other') {
+        translateInfo(value, id, name)
+      }
+    }
+  }
   const saveChanges = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     const postCBOToPostgres: Response = await fetch(`/api/postUpdateCBOInfo`, {
@@ -53,12 +93,11 @@ const Dashboard = ({ userId, isVerified, orgId }: DashboardProps) => {
       console.log('successful update')
     }
   }
-
-  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = async ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { name, value, id } = target
-
-    if (name === 'org') setOrgInfo(info => ({ ...info, [id]: value }))
-    else if (name === 'org-tags') {
+    if (name === 'org') {
+      setOrgInfo(info => ({ ...info, [id]: value }))
+    } else if (name === 'org-tags') {
       const temp = value.split(',')
       setOrgInfo(info => ({ ...info, [id]: [...temp] }))
     } else if (name === 'loc') {
@@ -151,6 +190,7 @@ const Dashboard = ({ userId, isVerified, orgId }: DashboardProps) => {
                           }}
                           value={value as string}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                         />
                       </Fragment>
                     </div>
@@ -191,8 +231,6 @@ const Dashboard = ({ userId, isVerified, orgId }: DashboardProps) => {
                               <>
                                 <h3>{locKey}</h3>
                                 {Object.values(locVal).map((srvOrSchVal, i) => {
-                                  console.log('ser', srvOrSchVal)
-
                                   const finalVals = Object.entries(srvOrSchVal)
 
                                   return finalVals.map(([fKey, fVal], fI) => {
@@ -209,6 +247,7 @@ const Dashboard = ({ userId, isVerified, orgId }: DashboardProps) => {
                                           }}
                                           value={fVal as string}
                                           onChange={handleChange}
+                                          onBlur={handleBlur}
                                         />
                                       </Fragment>
                                     )
