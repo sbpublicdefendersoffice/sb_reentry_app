@@ -1,11 +1,4 @@
-import {
-  useRef,
-  useEffect,
-  MutableRefObject,
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-} from 'react'
+import { useRef, MutableRefObject, ChangeEvent } from 'react'
 
 import { CopyHolder, ExpungementInfo } from '../types'
 import { Card, Paragraph, Input } from '../ui'
@@ -38,7 +31,6 @@ const copy: CopyHolder = {
 }
 
 interface ExpungementSignatureProps {
-  setExpungeInfo: Dispatch<SetStateAction<ExpungementInfo>>
   expungeInfo: ExpungementInfo
   handleChange: ({
     target, // eslint-disable-line no-unused-vars
@@ -47,7 +39,6 @@ interface ExpungementSignatureProps {
 }
 
 const ExpungementSignature = ({
-  setExpungeInfo,
   expungeInfo,
   handleChange,
   animationClass,
@@ -56,23 +47,15 @@ const ExpungementSignature = ({
   const { language } = useLanguage()
 
   const { sign, disclaimer, fees, certify, date, signature } = copy[language]
-  useEffect(
-    () =>
-      setExpungeInfo(val => ({
-        ...val,
-        Date: new Date().toISOString().substring(0, 10),
-      })),
-    [],
-  )
 
   useIntersectionStyle(signRef, animationClass)
 
   return (
     <Card ref={signRef} className={styles.Card} id="sign">
-      <Paragraph size="med-text" color="highlight">
-        {sign}
-      </Paragraph>
       <section className={Field}>
+        <Paragraph size="med-text" color="highlight">
+          {sign}
+        </Paragraph>
         <Paragraph>{disclaimer}</Paragraph>
         <Paragraph>{fees}</Paragraph>
       </section>

@@ -40,6 +40,7 @@ const postSignup = async (
           verificationString,
           isVerified: false,
           hasAppliedForExpungement: false,
+          hasBeenNotifiedOfExpungement: false,
           commPrefs,
         })
 

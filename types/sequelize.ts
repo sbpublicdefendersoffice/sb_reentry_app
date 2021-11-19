@@ -90,7 +90,9 @@ export interface ClientModel extends Model {
   created_at: string
   email: string
   hasAppliedForExpungement: boolean
+  expungementEmail: string
   expungementXMessageId: string
+  hasBeenNotifiedOfExpungement: boolean
   commPrefs: string[]
   hashedPassword: string
   verificationString: string
