@@ -3,10 +3,16 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { useState } from 'react'
 import { FormEvent, Fragment, ChangeEvent } from 'react'
 import { JwtPayload, verify } from 'jsonwebtoken'
-import { Button, TextField } from '@mui/material'
+import {
+  Button,
+  TextField,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from '@mui/material'
 import { POST } from '../../helpers/'
 import { useStyles } from '../../constants'
-
+import { ExpandMore } from '@mui/icons-material'
 interface DashboardProps {
   userId: number
   orgId: number
@@ -161,10 +167,10 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
         >
           <div
             style={{
-              marginTop: '6rem',
+              margin: '6rem',
             }}
           >
-            {orgInfo && <h3>Welcome to your dashboard</h3>}
+            {orgInfo && <h2>Welcome to your dashboard</h2>}
 
             {orgInfo &&
               Object.entries(orgInfo).map(([key, value], i) => {
@@ -199,104 +205,165 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                   return (
                     <div
                       style={{
-                        display: 'inline-flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
+                        width: '47rem',
+                        margin: 'auto',
                       }}
                     >
-                      <h3>{key}</h3>
-                      {value.map((lVal, lkey) =>
-                        Object.entries(lVal).map(([locKey, locVal], i) => {
-                          if (locKey.includes('id')) return
-                          if (typeof locVal !== 'object')
-                            return (
-                              <Fragment key={i}>
-                                <TextField
-                                  style={{
-                                    margin: '2rem 0 1rem 0',
-                                    width: '45rem',
-                                  }}
-                                  name="loc"
-                                  id={`${locKey};${lkey}`}
-                                  helperText={locKey}
-                                  inputProps={{ style: { fontSize: '1.6rem' } }}
-                                  value={locVal as string}
-                                  onChange={handleChange}
-                                />
-                              </Fragment>
-                            )
-                          else if (locVal !== null && locVal !== undefined)
-                            //@ts-ignore
-                            return (
-                              <>
-                                <h3>{locKey}</h3>
-                                {Object.values(locVal).map((srvOrSchVal, i) => {
-                                  const finalVals = Object.entries(srvOrSchVal)
+                      {/* <Button>Add a location</Button>
+                      <Button>Delete this location</Button> */}
+                      <h3 style={{ margin: '2rem' }}>Locations</h3>
+                      {value.map((lVal, lkey) => {
+                        return (
+                          <Accordion
+                            style={{
+                              margin: '1.5rem 0',
+                              padding: '1rem',
+                            }}
+                          >
+                            <AccordionSummary
+                              expandIcon={<ExpandMore />}
+                              aria-controls="panel3a-content"
+                              data-testid="accordion"
+                              id="panel3a-header"
+                            >
+                              <h3>{`Location: ${lVal.name}`}</h3>
+                            </AccordionSummary>
 
-                                  return finalVals.map(([fKey, fVal], fI) => {
-                                    if (fKey === 'id') return
-                                    return (
-                                      <Fragment key={fI}>
+                            {Object.entries(lVal)
+                            .map(([locKey, locVal], i) => {
+                              if (
+                                locKey.includes('id') ||
+                                locKey.includes('tude')
+                              )
+                                return
+                              if (typeof locVal !== 'object')
+                                return (
+                                  <>
+                                    <AccordionDetails>
+                                      <Fragment key={i}>
                                         <TextField
-                                          style={{ margin: '2rem 0 1rem 0' }}
-                                          name="other"
-                                          id={`${fKey};${i};${locKey};${lkey}`}
-                                          helperText={fKey as string}
+                                          style={{
+                                            margin: '2rem 0 1rem 0',
+                                            width: '45rem',
+                                          }}
+                                          name="loc"
+                                          id={`${locKey};${lkey}`}
+                                          helperText={locKey}
                                           inputProps={{
                                             style: { fontSize: '1.6rem' },
                                           }}
-                                          value={fVal as string}
+                                          value={locVal as string}
                                           onChange={handleChange}
-                                          onBlur={handleBlur}
                                         />
                                       </Fragment>
-                                    )
-                                  })
-                                })}
-                              </>
-                            )
-                        }),
-                      )}
+                                    </AccordionDetails>
+                                  </>
+                                )
+                              else if (locVal !== null && locVal !== undefined)
+                                //@ts-ignore
+                                return (
+                                  <Accordion
+                                    style={{
+                                      display: 'block',
+                                      flexDirection: 'column',
+                                      justifyContent: 'center',
+                                      margin: '1.5rem',
+                                      padding: '1rem',
+                                    }}
+                                  >
+                                    <AccordionSummary
+                                      expandIcon={<ExpandMore />}
+                                      aria-controls="panel3a-content"
+                                      data-testid="accordion"
+                                      id="panel3a-header"
+                                    >
+                                      <h3>
+                                        {locKey == 'services'
+                                          ? 'Services'
+                                          : 'Schedules'}
+                                      </h3>
+                                    </AccordionSummary>
+                                    {Object.values(locVal).map(
+                                      (srvOrSchVal, i) => {
+                                        const finalVals =
+                                          Object.entries(srvOrSchVal)
+
+                                        return finalVals.map(
+                                          ([fKey, fVal], fI) => {
+                                            if (fKey === 'id') return
+                                            return (
+                                              <AccordionDetails>
+                                                <Fragment key={fI}>
+                                                  <TextField
+                                                    style={{
+                                                      margin: '2rem 0 1rem 0',
+                                                      width: '41rem',
+                                                    }}
+                                                    name="other"
+                                                    id={`${fKey};${i};${locKey};${lkey}`}
+                                                    helperText={fKey as string}
+                                                    inputProps={{
+                                                      style: {
+                                                        fontSize: '1.6rem',
+                                                      },
+                                                    }}
+                                                    value={fVal as string}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                  />
+                                                </Fragment>
+                                              </AccordionDetails>
+                                            )
+                                          },
+                                        )
+                                      },
+                                    )}
+                                  </Accordion>
+                                )
+                            })}
+                          </Accordion>
+                        )
+                      })}
                     </div>
                   )
                 }
               })}
           </div>
-        </div>
-        <div>
-          {orgInfo && (
-            <>
-              {' '}
-              <Button
-                style={{
-                  display: 'block',
-                  width: '45rem',
-                  margin: 'auto',
-                }}
-                className={classes.greenButton}
-                type="submit"
-                //  disabled={!org || !website}
-              >
-                <h3 style={{ padding: '1rem' }}>Save Changes</h3>
-              </Button>
-              <br />
-              <Button
-                style={{ display: 'block', width: '45rem', margin: 'auto' }}
-                className={classes.greenButton}
-                //  onClick={resetValues}
-              >
-                <h3 style={{ padding: '1rem' }}> Reset Values</h3>
-              </Button>
-            </>
-          )}
+          <div>
+            {orgInfo && (
+              <>
+                {' '}
+                <Button
+                  style={{
+                    display: 'block',
+                    width: '45rem',
+                    margin: 'auto',
+                  }}
+                  className={classes.greenButton}
+                  type="submit"
+                  //  disabled={!org || !website}
+                >
+                  <h3 style={{ padding: '1rem' }}>Save Changes</h3>
+                </Button>
+                <br />
+                <Button
+                  style={{ display: 'block', width: '45rem', margin: 'auto' }}
+                  className={classes.greenButton}
+                  //  onClick={resetValues}
+                >
+                  <h3 style={{ padding: '1rem' }}> Reset Values</h3>
+                </Button>
+              </>
+            )}
 
-          <Button
-            style={{ display: 'block', width: '45rem', margin: 'auto' }}
-            className={classes.greenButton}
-            onClick={logOut}
-          >
-            <h3 style={{ padding: '1rem' }}>Logout</h3>
-          </Button>
+            <Button
+              style={{ display: 'block', width: '45rem', margin: 'auto' }}
+              className={classes.greenButton}
+              onClick={logOut}
+            >
+              <h3 style={{ padding: '1rem' }}>Logout</h3>
+            </Button>
+          </div>
         </div>
       </form>
     </div>
