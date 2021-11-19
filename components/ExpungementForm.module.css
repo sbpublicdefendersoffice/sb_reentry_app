@@ -62,6 +62,7 @@
 
 .TextField {
   --txtarea-width: calc(100% - var(--margin-std));
+
   max-width: var(--txtarea-width);
   min-width: var(--txtarea-width);
   padding: var(--pad-std);
