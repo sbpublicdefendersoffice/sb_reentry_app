@@ -38,6 +38,9 @@ main {
 .MuiListItem-gutters {
   padding-left: 0 !important;
 }
+.MuiAccordionSummary-content {
+  justify-content: center;
+}
 .MuiMenuItem-root {
   padding-top: 0 !important;
 }
