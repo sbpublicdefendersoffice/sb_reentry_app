@@ -544,21 +544,21 @@ const ExpungementForm = ({
           <Card className={RadioCard}>
             <label htmlFor="Email">E-mail</label>
             <Input
-              checked={expungeInfo.Email}
+              checked={expungeInfo?.Email}
               onChange={handleChange}
               type="checkbox"
               id="Email"
             />
             <label htmlFor="Phone">{phone}</label>
             <Input
-              checked={expungeInfo.Phone}
+              checked={expungeInfo?.Phone}
               onChange={handleChange}
               type="checkbox"
               id="Phone"
             />
             <label htmlFor="Text">{text}</label>
             <Input
-              checked={expungeInfo.Text}
+              checked={expungeInfo?.Text}
               onChange={handleChange}
               type="checkbox"
               id="Text"

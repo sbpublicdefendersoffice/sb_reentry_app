@@ -115,6 +115,8 @@ const initDb = (): AllModels => {
           },
           email: { type: TEXT },
           hasAppliedForExpungement: { type: BOOLEAN },
+          hasBeenNotifiedOfExpungement: { type: BOOLEAN },
+          expungementEmail: { type: TEXT },
           expungementXMessageId: { type: TEXT },
           commPrefs: { type: ARRAY(TEXT) },
           hashedPassword: { type: TEXT },

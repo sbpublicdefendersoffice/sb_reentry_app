@@ -19,11 +19,13 @@ interface ExpungementPageProps {
 
 const copy: CopyHolder = {
   english: {
-    applied: 'You have successfully applied for record expungement',
+    applied:
+      'You have successfully applied for record expungement. The Public Defender should reach out to you within 5-7 business days',
     notVerified: 'You have not yet been verified',
   },
   spanish: {
-    applied: 'Ha solicitado con éxito la eliminación de antecedentes penales',
+    applied:
+      'Ha solicitado con éxito la eliminación de antecedentes penales. El Defensor Público debe comunicarse con usted en un plazo de 5 a 7 días hábiles',
     notVerified: 'Aún no has sido verificado',
   },
 }
@@ -49,7 +51,7 @@ const ExpungementPage = ({
     if (logoutMessage.error) console.log('oh no!')
     else {
       console.log('oh yeah')
-      push('/')
+      push('/login')
     }
   }
 
@@ -76,7 +78,10 @@ const ExpungementPage = ({
           commPrefs={commPrefs}
         />
       )}
-      <Button style={{ height: 'min-content' }} onClick={logOut}>
+      <Button
+        style={{ height: 'min-content', marginTop: 'var(--pad-std)' }}
+        onClick={logOut}
+      >
         Logout
       </Button>
     </>
@@ -118,7 +123,13 @@ export const getServerSideProps: GetServerSideProps = async (
   else {
     const { id, hasAppliedForExpungement, isVerified, email, commPrefs } = token
     return {
-      props: { id, hasAppliedForExpungement, isVerified, email, commPrefs },
+      props: {
+        id,
+        hasAppliedForExpungement,
+        isVerified,
+        email: email || null,
+        commPrefs: commPrefs || null,
+      },
     }
   }
 }

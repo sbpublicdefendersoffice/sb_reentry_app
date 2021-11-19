@@ -26,7 +26,7 @@ const recordClearance = async (
     const { clientObj } = initDb()
 
     const body: ExpungeFormInfo = JSON.parse(req.body)
-    const { language, clientId, additionalInfo } = body
+    const { language, clientId, additionalInfo, Email, Phone, Text } = body
     const name: string = body['Full Name']
 
     validations.forEach((v: Validation): void => {
@@ -102,10 +102,20 @@ const recordClearance = async (
     if (sgResponse.statusCode === 202) {
       const expungementXMessageId = sgResponse.headers['x-message-id']
 
+      const commPrefs: string[] = []
+
+      if (Email) commPrefs.push('commByEmail')
+      if (Phone) commPrefs.push('commByPhone')
+      if (Text) commPrefs.push('commByText')
+
+      const expungementEmail = body['Email Address']
+
       await clientObj.update(
         {
           expungementXMessageId,
           hasAppliedForExpungement: true,
+          commPrefs,
+          expungementEmail: expungementEmail || null,
         },
         { where: { id: clientId } },
       )
