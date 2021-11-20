@@ -30,7 +30,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     if (logoutMessage.error) console.log('oh no!')
     else {
       console.log('oh yeah')
-      push('/')
+      push('/login')
     }
   }
 

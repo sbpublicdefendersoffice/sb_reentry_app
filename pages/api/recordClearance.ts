@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import sendGrid, { MailDataRequired } from '@sendgrid/mail'
+import { PDFDocument } from 'pdf-lib'
 import { readFileSync } from 'fs'
 import { sign } from 'jsonwebtoken'
 
@@ -15,6 +16,8 @@ const [type, disposition, financialFormPath, applicationPath]: string[] = [
   'documents/Expungements_Intake.pdf',
 ]
 
+//gotta change communication preferences if they are different
+
 const recordClearance = async (
   req: NextApiRequest,
   res: NextApiResponse,
@@ -23,7 +26,7 @@ const recordClearance = async (
     const { clientObj } = initDb()
 
     const body: ExpungeFormInfo = JSON.parse(req.body)
-    const { language, clientId } = body
+    const { language, clientId, additionalInfo, Email, Phone, Text } = body
     const name: string = body['Full Name']
 
     validations.forEach((v: Validation): void => {
@@ -41,9 +44,48 @@ const recordClearance = async (
       body,
     )
 
-    sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
+    const attachments = [
+      {
+        content: filledOutFinance,
+        filename: `${name} Financial Declaration.pdf`,
+        type,
+        disposition,
+      },
+      {
+        content: filledOutApp,
+        filename: `${name} Expungement Application.pdf`,
+        type,
+        disposition,
+      },
+    ]
+
+    if (additionalInfo) {
+      const infoDoc = await PDFDocument.create()
+      const page = infoDoc.addPage()
+
+      const { height } = page.getSize()
+
+      page.drawText(additionalInfo, {
+        x: 25,
+        y: height - 20,
+        size: 14,
+      })
+
+      const finalInfoPdf: string = await infoDoc.saveAsBase64()
+
+      const infoDocAttachment = {
+        content: finalInfoPdf,
+        filename: `${name} Additional Info.pdf`,
+        type,
+        disposition,
+      }
+
+      attachments.push(infoDocAttachment)
+    }
 
     const text: string = `${name} has applied for criminal record expungement via ThriveSBC`
+
+    sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
 
     const message: MailDataRequired = {
       to: process.env.SBPD_RECORDS_EXPUNGEMENT_EMAIL,
@@ -51,32 +93,29 @@ const recordClearance = async (
       subject: `${name} ThriveSBC Record Expungement`,
       text,
       html: `<span>${text}</span>`,
-      attachments: [
-        {
-          content: filledOutFinance,
-          filename: `${name} Financial Declaration.pdf`,
-          type,
-          disposition,
-        },
-        {
-          content: filledOutApp,
-          filename: `${name} Expungement Application.pdf`,
-          type,
-          disposition,
-        },
-      ],
+      attachments,
     }
 
     const sendMsg = await sendGrid.send(message)
     const sgResponse = sendMsg[0]
 
     if (sgResponse.statusCode === 202) {
-      const xMessageId = sgResponse.headers['x-message-id']
+      const expungementXMessageId = sgResponse.headers['x-message-id']
+
+      const commPrefs: string[] = []
+
+      if (Email) commPrefs.push('commByEmail')
+      if (Phone) commPrefs.push('commByPhone')
+      if (Text) commPrefs.push('commByText')
+
+      const expungementEmail = body['Email Address']
 
       await clientObj.update(
         {
-          xMessageId,
+          expungementXMessageId,
           hasAppliedForExpungement: true,
+          commPrefs,
+          expungementEmail: expungementEmail || null,
         },
         { where: { id: clientId } },
       )
@@ -84,7 +123,12 @@ const recordClearance = async (
       res.setHeader(
         'Set-Cookie',
         `Auth-Token=${sign(
-          { id: clientId, hasAppliedForExpungement: true, isVerified: true },
+          {
+            id: clientId,
+            hasAppliedForExpungement: true,
+            isVerified: true,
+            type: 'client',
+          },
           process.env.JWT_SIGNATURE,
           {
             expiresIn: '7d',

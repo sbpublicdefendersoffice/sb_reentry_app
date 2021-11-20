@@ -9,6 +9,7 @@ WORKDIR /app
 
 # Copy stuff for deps
 COPY package.json yarn.lock .aptible.env ./
+COPY /documents ./documents
 RUN grep '^NEXT_PUBLIC_.*$\|^POSTGRES_.*$' .aptible.env > .env.production
 
 # Install deps
@@ -24,6 +25,7 @@ WORKDIR /app
 COPY . .
 
 COPY --from=DEPS /app/node_modules ./node_modules
+COPY --from=DEPS /app/documents ./documents
 COPY --from=DEPS /app/.env.production ./
 
 # .babelrc is necessary for local tests but not for deployment
@@ -43,6 +45,7 @@ ENV NODE_ENV production
 
 # Copy files for runtime
 COPY --from=BUILDER app/next.config.js ./
+COPY --from=BUILDER app/documents ./documents
 COPY --from=BUILDER app/public ./public
 COPY --from=BUILDER app/.next ./.next
 COPY --from=BUILDER app/node_modules ./node_modules

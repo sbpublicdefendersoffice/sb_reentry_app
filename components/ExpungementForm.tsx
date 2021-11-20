@@ -13,6 +13,8 @@ import { useLanguage, useIntersectionStyle, useToast } from '../hooks'
 import { validations, states } from '../constants'
 import { ExpungementInfo, CopyHolder, Validation } from '../types'
 import ExpungementSignature from './ExpungementSignature'
+import ExpungementDisclaimer from './ExpungementDisclaimer'
+import ExpungementAdditionalInfoForm from './ExpungementAdditionalInfoForm'
 
 import styles from './ExpungementForm.module.css'
 
@@ -20,7 +22,7 @@ import { Title, Button, Card, Paragraph, Input } from '../ui'
 
 const copy: CopyHolder = {
   english: {
-    title: 'Apply for Criminal Record Expungement',
+    title: 'Apply for Fresh Start Record Expungement',
     elgible: 'You are not eligible for this relief if',
     one: 'You are currently involved in an active prosecution',
     two: 'You are currently serving a sentence in jail or prison',
@@ -112,7 +114,7 @@ const copy: CopyHolder = {
     annually: 'Annually',
   },
   spanish: {
-    title: 'Solicite la eliminación de antecedentes penales',
+    title: 'Solicite la cancelación de antecedentes penales',
     elgible: 'No es elegible para este alivio si',
     one: 'Actualmente está involucrado en un enjuiciamiento activo',
     two: 'Actualmente está cumpliendo una sentencia en la cárcel o prisión',
@@ -212,11 +214,15 @@ const { Load, Field, RadioCard } = styles
 interface ExpungementFormProps {
   clientId: number
   setHasClientApplied: Dispatch<SetStateAction<boolean>>
+  savedEmail: string
+  commPrefs: string[]
 }
 
 const ExpungementForm = ({
   clientId,
   setHasClientApplied,
+  savedEmail,
+  commPrefs,
 }: ExpungementFormProps) => {
   const { push } = useRouter()
   const { setToast } = useToast()
@@ -301,7 +307,14 @@ const ExpungementForm = ({
     annually,
   } = copy[language]
 
-  const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>(null)
+  // @ts-ignore
+  const [expungeInfo, setExpungeInfo] = useState<ExpungementInfo | null>({
+    Date: new Date().toISOString().substring(0, 10),
+    'Email Address': savedEmail || '',
+    Email: commPrefs?.includes('commByEmail') || false,
+    Phone: commPrefs?.includes('commByPhone') || false,
+    Text: commPrefs?.includes('commByText') || false,
+  })
 
   useIntersectionStyle(formRef, Load)
 
@@ -518,18 +531,38 @@ const ExpungementForm = ({
         </section>
         <section className={Field}>
           <label htmlFor="Email Address">{email}</label>
-          <Input onChange={handleChange} type="email" id="Email Address" />
+          <Input
+            value={expungeInfo?.['Email Address']}
+            onChange={handleChange}
+            type="email"
+            id="Email Address"
+          />
         </section>
         <section className={Field}>
           <label>{communicate}</label>
           <Paragraph color="deselected">{multiple}</Paragraph>
           <Card className={RadioCard}>
             <label htmlFor="Email">E-mail</label>
-            <Input onChange={handleChange} type="checkbox" id="Email" />
+            <Input
+              checked={expungeInfo?.Email}
+              onChange={handleChange}
+              type="checkbox"
+              id="Email"
+            />
             <label htmlFor="Phone">{phone}</label>
-            <Input onChange={handleChange} type="checkbox" id="Phone" />
+            <Input
+              checked={expungeInfo?.Phone}
+              onChange={handleChange}
+              type="checkbox"
+              id="Phone"
+            />
             <label htmlFor="Text">{text}</label>
-            <Input onChange={handleChange} type="checkbox" id="Text" />
+            <Input
+              checked={expungeInfo?.Text}
+              onChange={handleChange}
+              type="checkbox"
+              id="Text"
+            />
           </Card>
         </section>
         <section className={Field}>
@@ -561,6 +594,12 @@ const ExpungementForm = ({
             />
           </Card>
         </section>
+        {(expungeInfo?.['Are you currently on probation or parole'] ===
+          'Are you currently on probation or parole_yes_On' ||
+          expungeInfo?.['Are you currently on probation or parole'] ===
+            'Are you currently on probation or parole_unsure If yes where_On') && (
+          <ExpungementDisclaimer />
+        )}
         <section className={Field}>
           <label htmlFor="unsure If yes where">{where}</label>
           <Input onChange={handleChange} type="text" id="unsure If yes where" />
@@ -877,9 +916,9 @@ const ExpungementForm = ({
           <Paragraph color="deselected">{exact}</Paragraph>
           <Input onChange={handleChange} type="number" id="Textfield-17" />
         </section>
+        <ExpungementAdditionalInfoForm setExpungeInfo={setExpungeInfo} />
       </Card>
       <ExpungementSignature
-        setExpungeInfo={setExpungeInfo}
         expungeInfo={expungeInfo}
         handleChange={handleChange}
         animationClass={Load}
