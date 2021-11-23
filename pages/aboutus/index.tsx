@@ -15,21 +15,33 @@ const AboutUs = () => {
         href="/aboutus"
         description="Learn all about the organizations and people that made ThriveSBC"
       />
-      <Typography
-        align="center"
-        style={{ marginTop: '3rem', margin: 'auto', justifyContent: 'center' }}
-        gutterBottom
-        variant="h2"
-        component="h1"
-      >
-        {activeCopy.title}
-      </Typography>
-
       <Grid
         container
-        style={{ marginTop: '10rem', justifyContent: 'center' }}
+        style={{
+          marginTop: '2rem',
+          justifyContent: 'center',
+          whiteSpace: 'pre-line',
+        }}
         spacing={4}
       >
+        <Grid item>
+          <Typography
+            align="center"
+            style={{ margin: 'auto', justifyContent: 'center' }}
+            gutterBottom
+            variant="h2"
+            component="h1"
+          >
+            {activeCopy.title}
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Paper className={classes.aboutPaper}>
+            <div>
+              <p className={classes.aboutP}>{activeCopy.appPurpose}</p>
+            </div>
+          </Paper>
+        </Grid>
         <Grid style={{ display: 'flex' }} item xs={12} sm={3}>
           <Paper className={classes.aboutPaperIconCards}>
             <VerifiedUser className={classes.icons} />
