@@ -1,4 +1,4 @@
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument, PDFPage } from 'pdf-lib'
 import { ExpungeFormInfo } from '../types'
 
 const dateTitles = new Set<string>([
@@ -45,6 +45,18 @@ export const fillOutPDFForm = async (
         form.getRadioGroup(fieldName).select(data)
     }
   })
+
+  const { additionalInfo } = body
+  if (additionalInfo && title === 'Financial English') {
+    const page2: PDFPage = pdf.getPage(1)
+
+    page2.drawText(`Additional Information:\n${additionalInfo}`, {
+      x: 20,
+      y: 275,
+      maxWidth: 580,
+      size: 14,
+    })
+  }
 
   const finalPdf: string = await pdf.saveAsBase64()
 
