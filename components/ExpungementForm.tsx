@@ -112,6 +112,7 @@ const copy: CopyHolder = {
     whatIsPrimaryLang: 'If not, what is your primary language?',
     biWeekly: 'Bi-Weekly',
     annually: 'Annually',
+    immigration: 'Immigration',
   },
   spanish: {
     title: 'Solicite la cancelación de antecedentes penales',
@@ -206,6 +207,7 @@ const copy: CopyHolder = {
     whatIsPrimaryLang: 'Si no es así, ¿cuál es su idioma principal?',
     biWeekly: 'Quincenal',
     annually: 'Anualmente',
+    immigration: 'Inmigración',
   },
 }
 
@@ -305,6 +307,7 @@ const ExpungementForm = ({
     whatIsPrimaryLang,
     biWeekly,
     annually,
+    immigration,
   } = copy[language]
 
   // @ts-ignore
@@ -617,6 +620,8 @@ const ExpungementForm = ({
           <Card className={RadioCard}>
             <label htmlFor="Employment">{employment}</label>
             <Input onChange={handleChange} type="checkbox" id="Employment" />
+            <label htmlFor="immigration">{immigration}</label>
+            <Input onChange={handleChange} type="checkbox" id="immigration" />
             <label htmlFor="Housing">{housing}</label>
             <Input onChange={handleChange} type="checkbox" id="Housing" />
             <label htmlFor="Government Benefits">{benefits}</label>
@@ -627,8 +632,11 @@ const ExpungementForm = ({
             />
             <label htmlFor="Licensing">{licensing}</label>
             <Input onChange={handleChange} type="checkbox" id="Licensing" />
-            <label htmlFor="Other-1">{other}</label>
-            <Input onChange={handleChange} id="Other-1" type="text" />
+            <label htmlFor="show-other">{other}</label>
+            <Input onChange={handleChange} type="checkbox" id="show-other" />
+            {expungeInfo?.['show-other'] && (
+              <Input onChange={handleChange} id="Other-1" type="text" />
+            )}
           </Card>
         </section>
         <section className={Field}>

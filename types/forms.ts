@@ -126,7 +126,9 @@ export interface ExpungementInfo {
   45?: boolean //new form value for real estate yes
   46?: boolean //new form value for real estate no
   'I would like to be enrolled in Uptrust to receive'?: boolean
+  'show-other'?: boolean
   'Is English your primary language'?: string
+  immigration?: boolean
   additionalInfo?: string
   Expense?: string
   Date: string

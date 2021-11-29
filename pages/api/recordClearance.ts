@@ -16,8 +16,6 @@ const [type, disposition, financialFormPath, applicationPath]: string[] = [
   'documents/Expungements_Intake.pdf',
 ]
 
-//gotta change communication preferences if they are different
-
 const recordClearance = async (
   req: NextApiRequest,
   res: NextApiResponse,
