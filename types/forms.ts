@@ -26,6 +26,7 @@ export interface Validation {
     spanish: string
   }
   id: string
+  inputId: string
 }
 
 export interface ExpungementInfo {

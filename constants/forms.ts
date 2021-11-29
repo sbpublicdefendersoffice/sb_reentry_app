@@ -8,6 +8,7 @@ export const validations: Validation[] = [
       spanish: 'Se requiere el nombre completo del solicitante',
     },
     id: 'name-label',
+    inputId: 'Full Name',
   },
   {
     field: 'Date of Birth',
@@ -17,6 +18,7 @@ export const validations: Validation[] = [
         'Se debe ingresar la fecha de nacimiento para fines de mantenimiento de registros',
     },
     id: 'dob-label',
+    inputId: 'Date of Birth',
   },
   {
     field: 'Address',
@@ -25,6 +27,7 @@ export const validations: Validation[] = [
       spanish: 'Se requiere una dirección',
     },
     id: 'address-label',
+    inputId: 'Address',
   },
   {
     field: 'City',
@@ -33,6 +36,7 @@ export const validations: Validation[] = [
       spanish: 'Ingrese su ciudad de residencia',
     },
     id: 'city-label',
+    inputId: 'City',
   },
   {
     field: 'zip',
@@ -41,6 +45,7 @@ export const validations: Validation[] = [
       spanish: 'Ingrese el código postal en el que reside',
     },
     id: 'zip-label',
+    inputId: 'zip',
   },
   {
     field: 'Date',
@@ -49,6 +54,7 @@ export const validations: Validation[] = [
       spanish: 'Debes ingresar la fecha de hoy',
     },
     id: 'date-label',
+    inputId: 'Date',
   },
   {
     field: 'Signature',
@@ -57,6 +63,7 @@ export const validations: Validation[] = [
       spanish: 'Se requiere una firma',
     },
     id: 'sign-label',
+    inputId: 'Signature',
   },
   {
     field: 'certified',
@@ -67,6 +74,7 @@ export const validations: Validation[] = [
         'Debe hacer clic para indicar que comprende los términos y condiciones de la eliminación de antecedentes penales.',
     },
     id: 'cert-label',
+    inputId: 'certified',
   },
 ]
 

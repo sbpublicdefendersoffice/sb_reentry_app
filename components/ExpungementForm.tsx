@@ -326,8 +326,9 @@ const ExpungementForm = ({
       let tempInfo: ExpungementInfo = expungeInfo
 
       validations.forEach((v: Validation): void => {
-        const { error, field, id } = v
-        if (!tempInfo[field]) throw new Error(`${error[language]}&&#${id}`)
+        const { error, field, id, inputId } = v
+        if (!tempInfo[field])
+          throw new Error(`${error[language]}&&#${id}&&${inputId}`)
       })
 
       if (tempInfo?.['Textfield-17']) tempInfo = { ...tempInfo, Expense: total }
@@ -373,9 +374,16 @@ const ExpungementForm = ({
         setHasClientApplied(true)
       }
     } catch (err) {
-      const [msg, id] = err.message.split('&&')
+      const [msg, id, inputId] = err.message.split('&&')
       setToast(msg)
+
+      const targInput = document.getElementById(inputId)
       push(id, id, { shallow: true })
+
+      targInput.style.border = '.25rem solid red'
+      setTimeout((): void => {
+        targInput.style.border = 'var(--border-width) solid var(--primary)'
+      }, 5000)
     }
   }
 

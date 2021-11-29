@@ -30,8 +30,9 @@ const recordClearance = async (
     const name: string = body['Full Name']
 
     validations.forEach((v: Validation): void => {
-      const { error, field, id } = v
-      if (!body[field]) throw new Error(`${error[language]}&&#${id}`)
+      const { error, field, id, inputId } = v
+      if (!body[field])
+        throw new Error(`${error[language]}&&#${id}&&${inputId}`)
     })
 
     const filledOutApp = await fillOutPDFForm(
