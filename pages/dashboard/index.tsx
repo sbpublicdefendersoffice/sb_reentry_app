@@ -219,6 +219,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                               margin: '1.5rem 0',
                               padding: '1rem',
                             }}
+                            key={lkey}
                           >
                             <AccordionSummary
                               expandIcon={<ExpandMore />}
@@ -228,9 +229,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                             >
                               <h3>{`Location: ${lVal.name}`}</h3>
                             </AccordionSummary>
-
-                            {Object.entries(lVal)
-                            .map(([locKey, locVal], i) => {
+                            {Object.entries(lVal).map(([locKey, locVal], i) => {
                               if (
                                 locKey.includes('id') ||
                                 locKey.includes('tude')
@@ -292,7 +291,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                           ([fKey, fVal], fI) => {
                                             if (fKey === 'id') return
                                             return (
-                                              <AccordionDetails>
+                                              <AccordionDetails key={fI}>
                                                 <Fragment key={fI}>
                                                   <TextField
                                                     style={{
