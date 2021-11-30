@@ -78,7 +78,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
   useEffect((): (() => void) => {
     delayedQuery()
     return delayedQuery.cancel
-  }, [searchQuery, delayedQuery])
+  }, [delayedQuery])
 
   const tagsReady: boolean =
     searchResults?.some(
