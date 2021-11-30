@@ -6,6 +6,7 @@
   display: flex;
   justify-content: center;
 }
+
 .HeaderContainer {
   width: 90%;
   height: 100%;
@@ -14,6 +15,7 @@
   list-style-type: none;
   flex: 1 1;
 }
+
 .ThriveLogo {
   width: 18rem;
   margin-left: 3rem;
@@ -56,6 +58,7 @@
   margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
 }
+
 .Favorites {
   margin: 0.3rem 3rem 0 5rem;
   align-items: flex-end;
@@ -63,6 +66,7 @@
   color: white;
   cursor: pointer;
 }
+
 .Tagline {
   word-wrap: break-word;
   color: var(--light);
@@ -75,6 +79,7 @@
   right: 2.3rem;
   display: 'block';
 }
+
 .SubMenuItem {
   word-wrap: break-word;
   color: var(--light);
@@ -83,11 +88,13 @@
   margin: 0 var(--margin-std);
   border-bottom: 0.25rem solid transparent;
 }
+
 .MuiMenu-list {
   padding-top: 0;
   padding-bottom: 0;
   color: pink;
 }
+
 .MuiMenuItem-root {
   border-bottom: 0.25rem solid var(--green) !important;
 }

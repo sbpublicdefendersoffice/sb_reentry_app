@@ -3,12 +3,15 @@
   display: flex;
   padding-bottom: 3rem;
 }
+
 .Footer * {
   color: var(--light-grey);
 }
+
 .ThriveLogo {
   width: 18rem;
 }
+
 .SubMenuItem {
   word-wrap: break-word;
   color: var(--light);
@@ -17,6 +20,7 @@
   justify-content: flex-start;
   border-bottom: 0.25rem solid transparent;
 }
+
 .Title {
   word-wrap: break-word;
   color: var(--light);
@@ -26,6 +30,7 @@
   white-space: nowrap !important;
   box-sizing: border-box;
 }
+
 .TitleWrap {
   word-wrap: break-word;
   color: var(--light);
@@ -35,11 +40,13 @@
   border-bottom: 0.25rem solid transparent;
   white-space: nowrap !important;
 }
+
 .Button {
   text-transform: inherit !important;
   line-height: inherit !important;
   box-sizing: border-box;
 }
+
 .ButtonTitle {
   color: var(--light);
   font-size: var(--med-text);
@@ -48,11 +55,13 @@
   white-space: nowrap !important;
   text-align: left;
 }
+
 .About {
   margin-left: 0;
   display: inline;
   padding-top: 1rem;
 }
+
 .ButtonTitleNoHover {
   color: var(--light);
   font-size: var(--med-text);
@@ -61,14 +70,17 @@
   white-space: nowrap !important;
   text-align: left;
 }
+
 .DisplayInline {
   display: inline-flex;
 }
+
 .Grid {
   display: inline-flex !important;
   margin-top: 3rem !important;
   margin-left: 3rem !important;
 }
+
 .GridRight {
   text-align: right !important;
   max-width: 30.833%;
@@ -79,15 +91,18 @@
 .ButtonStyle {
   margin-left: 3rem !important;
 }
+
 .Title,
 .ThriveLogo,
 .SubMenuItem {
   cursor: pointer;
 }
+
 .Margins {
-  margin: 1rem 0 0 0;
+  margin: 1rem 0 0;
   word-break: break-word;
 }
+
 .Title:hover,
 .ButtonTitle:hover,
 .TitleWrap:hover,
@@ -99,25 +114,32 @@
     margin-bottom: 4rem;
     padding-bottom: 0;
   }
+
   .About {
     margin-left: 4.6rem !important;
   }
+
   .Grid {
     margin-left: 2rem !important;
   }
+
   .GridRight {
     padding-bottom: 2rem;
   }
+
   .ButtonStyle {
     margin-left: 3rem !important;
   }
+
   .DisplayInline {
     display: block;
   }
+
   .Title {
     word-wrap: break-word !important;
     white-space: normal !important;
   }
+
   .TitleWrap {
     white-space: normal !important;
     display: flex;
@@ -134,6 +156,7 @@
     margin: auto !important;
     margin-bottom: 4rem !important;
   }
+
   .ButtonTitle {
     color: var(--light);
     font-size: var(--med-text);
@@ -142,10 +165,12 @@
     border-bottom: 0.25rem solid transparent;
     cursor: pointer;
   }
+
   .ThriveLogo {
     text-align: center !important;
     margin-left: 0;
   }
+
   .Grid {
     display: block !important;
     text-align: center !important;
@@ -153,6 +178,7 @@
     margin-top: 1rem !important;
     max-width: 79.33% !important;
   }
+
   .About {
     display: block !important;
     text-align: center !important;
@@ -160,6 +186,7 @@
     margin-top: -0.8rem;
     margin-left: 2.5rem !important;
   }
+
   .GridRight {
     text-align: center !important;
     max-width: 95%;
@@ -168,14 +195,17 @@
     padding-bottom: 1rem;
     margin-top: 1rem !important;
   }
+
   .Margins {
-    margin: 0.5rem 0 0 0;
+    margin: 0.5rem 0 0;
   }
+
   .Title {
     text-align: center;
     padding-top: 1rem;
     white-space: initial !important;
   }
+
   .ButtonStyle {
     margin: auto !important;
   }
@@ -184,6 +214,7 @@
   .Grid {
     margin-left: 3rem !important;
   }
+
   .About {
     margin-left: 1.5rem !important;
   }
