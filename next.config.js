@@ -7,11 +7,12 @@ const nextConfigOptions = {
             source: '/(.*)',
             headers: [
               { key: 'X-Content-Type-Options', value: 'nosniff' },
-              {
-                key: 'Content-Security-Policy',
-                value:
-                  "default-src 'self'; script-src 'self'; script-src-elem 'self' 'unsafe-inline' *.googletagmanager.com; connect-src 'self' *.mapbox.com *.google-analytics.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline' *.mapbox.com *.googleapis.com; font-src 'self' fonts.googleapis.com fonts.gstatic.com; worker-src 'self' blob:; object-src 'self' data:; frame-src 'self' data:;",
-              },
+              // the csp may be worth revisiting in the future, but it's throwing too many errors right now
+              // {
+              //   key: 'Content-Security-Policy',
+              //   value:
+              //     "default-src 'self'; script-src 'self'; script-src-elem 'self' 'unsafe-inline' *.googletagmanager.com; connect-src 'self' *.mapbox.com *.google-analytics.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline' *.mapbox.com *.googleapis.com; font-src 'self' fonts.googleapis.com fonts.gstatic.com; worker-src 'self' blob:; object-src 'self' data:; frame-src 'self' data:;",
+              // },
             ],
           },
         ]
