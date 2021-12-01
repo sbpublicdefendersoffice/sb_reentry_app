@@ -31,3 +31,9 @@
     transform: translateX(0);
   }
 }
+
+@media (max-width: 1275px) {
+  .SearchTermsMarquee {
+    display: none;
+  }
+}

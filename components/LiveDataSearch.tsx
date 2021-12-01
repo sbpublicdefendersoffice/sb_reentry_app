@@ -98,6 +98,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
           ref={formRef}
           className={styles.SearchForm}
           onSubmit={handleSubmit}
+          autoComplete="off"
         >
           <label className={styles.Label} htmlFor="global-search">
             Global data search
@@ -110,6 +111,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
             value={searchQuery}
             onChange={handleChange}
             placeholder={`${activeCopy.search}...`}
+            autoComplete="off"
           />
           <span className={styles.SearchIcon} onClick={handleSubmit}>
             &#128269;

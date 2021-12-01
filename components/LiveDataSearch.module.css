@@ -63,9 +63,9 @@
     padding: var(--pad-lg) var(--pad-lg) 0 var(--pad-lg);
     width: 100%;
     position: fixed;
+    top: 0;
+    max-height: none;
     bottom: 64px;
-    top: auto;
-    max-height: 30rem;
     background-color: white;
   }
 }
