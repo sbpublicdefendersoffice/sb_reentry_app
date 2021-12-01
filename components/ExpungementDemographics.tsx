@@ -112,9 +112,9 @@ const ExpungementDemographics = ({
   return (
     <>
       <section className={styles.Field}>
-        <label>{race}</label>
+        <label id="race-label">{race}</label>
         <Paragraph color="deselected">{ethnicCollect}</Paragraph>
-        <Card className={styles.RadioCard}>
+        <Card id="race-card" className={styles.RadioCard}>
           <label htmlFor="indianOrAlaskan">{indOrAl}</label>
           <Input
             onChange={handleChange}
@@ -205,9 +205,9 @@ const ExpungementDemographics = ({
         </Card>
       </section>
       <section className={styles.Field}>
-        <label>{gender}</label>
+        <label id="gender-label">{gender}</label>
         <Paragraph color="deselected">{genderCollect}</Paragraph>
-        <Card className={styles.RadioCard}>
+        <Card id="gender-card" className={styles.RadioCard}>
           <label htmlFor="female">{female}</label>
           <Input
             onChange={handleChange}
@@ -274,9 +274,9 @@ const ExpungementDemographics = ({
         </Card>
       </section>
       <section className={styles.Field}>
-        <label>{pronouns}</label>
+        <label id="pronouns-label">{pronouns}</label>
         <Paragraph color="deselected">{pronounCollect}</Paragraph>
-        <Card className={styles.RadioCard}>
+        <Card id="pronouns-card" className={styles.RadioCard}>
           <label htmlFor="she">{she}</label>
           <Input
             onChange={handleChange}

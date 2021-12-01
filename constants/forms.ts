@@ -48,6 +48,33 @@ export const validations: Validation[] = [
     inputId: 'zip',
   },
   {
+    field: 'Race',
+    error: {
+      english: 'Please select your racial/ethnic identity',
+      spanish: 'Seleccione su identidad racial / étnica',
+    },
+    id: 'race-label',
+    inputId: 'race-card',
+  },
+  {
+    field: 'Gender',
+    error: {
+      english: 'Please indicate your gender identity',
+      spanish: 'Indique su identidad de género',
+    },
+    id: 'gender-label',
+    inputId: 'gender-card',
+  },
+  {
+    field: 'Pronouns',
+    error: {
+      english: 'Please tell us your preferred pronouns',
+      spanish: 'Por favor díganos sus pronombres preferidos',
+    },
+    id: 'pronouns-label',
+    inputId: 'pronouns-card',
+  },
+  {
     field: 'Date',
     error: {
       english: "You must enter today's date",
