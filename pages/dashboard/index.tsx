@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { FormEvent, Fragment, ChangeEvent } from 'react'
 import { JwtPayload, verify } from 'jsonwebtoken'
 import {
@@ -18,6 +18,15 @@ interface DashboardProps {
   orgId: number
   isVerified: boolean
 }
+function debounce(func, timeout = 1000) {
+  let timer
+  return (...args) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      func.apply(this, args)
+    }, timeout)
+  }
+}
 
 const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const { push } = useRouter()
@@ -33,13 +42,11 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       push('/login')
     }
   }
-
   const fetchOrgInfo = async (): Promise<void> => {
     const postCBOsToPostgres: Response = await fetch('/api/postOrg', {
       method: POST,
       body: JSON.stringify(orgId),
     })
-
     const apiResponse = await postCBOsToPostgres.json()
     setDashboardButtonClicked(!dashboardButtonClicked)
     setOrgInfo(apiResponse.org)
@@ -54,7 +61,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
         headers: { 'Content-Type': 'application/json' },
       },
     )
-
     const apiResponse = await postTranslate.json()
     if (name == 'org') {
       setOrgInfo(info => ({
@@ -72,7 +78,28 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       ] = apiResponse.translatedText
       setOrgInfo({ ...temp })
     }
-
+    return apiResponse
+  }
+  const latLongConverter = async (query, id): Promise<void> => {
+    const postLatLongConverter: Response = await fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?proximity=-119.71157,34.41503&access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`,
+    )
+    const apiResponse = await postLatLongConverter.json()
+    const [locProperty, locIdx] = id.split(';')
+    const latitude = apiResponse.features[0].center[1]
+    const longitude = apiResponse.features[0].center[0]
+    setOrgInfo(info => {
+      const tempLocValues = [...info.locations]
+      tempLocValues[locIdx] = {
+        ...tempLocValues[locIdx],
+        ['latitude']: latitude,
+        ['longitude']: longitude,
+      }
+      return {
+        ...info,
+        locations: [...tempLocValues],
+      }
+    })
     return apiResponse
   }
   const handleBlur = e => {
@@ -84,6 +111,13 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       } else if (name === 'other') {
         translateInfo(value, id, name)
       }
+    }
+  }
+  const handleAddressChange = async e => {
+    const { value, id } = e.target
+    const [locProperty, locIdx] = id.split(';')
+    if (locProperty === 'address') {
+      latLongConverter(value, id)
     }
   }
   const saveChanges = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -101,6 +135,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   }
   const handleChange = async ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { name, value, id } = target
+    let isEnglishKey = id.includes('english')
     if (name === 'org') {
       setOrgInfo(info => ({ ...info, [id]: value }))
     } else if (name === 'org-tags') {
@@ -108,35 +143,27 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       setOrgInfo(info => ({ ...info, [id]: [...temp] }))
     } else if (name === 'loc') {
       const [locProperty, locIdx] = id.split(';')
-
       setOrgInfo(info => {
         const tempLocValues = [...info.locations]
-
         tempLocValues[locIdx] = {
           ...tempLocValues[locIdx],
           [locProperty]: value,
         }
-
         return { ...info, locations: [...tempLocValues] }
       })
     } else if (name === 'other') {
       const [finalKey, finalIdx, locProperty, locIdx] = id.split(';')
-
       const temp = orgInfo
-
       temp.locations[locIdx][locProperty][finalIdx][finalKey] = value
-
       setOrgInfo({ ...temp })
     }
   }
-
   if (!isVerified)
     return (
       <span>
         You have not clicked on the verification email we sent you, please do so
       </span>
     )
-
   if (!orgId)
     return (
       <span>
@@ -144,7 +171,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
         org
       </span>
     )
-
   return (
     <div style={{ margin: 'auto', textAlign: 'center', width: '100%' }}>
       {!orgInfo && (
@@ -156,7 +182,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
           <h3 style={{ padding: '1rem' }}>View Dashboard</h3>
         </Button>
       )}
-
       <form role="form" onSubmit={saveChanges}>
         <div
           style={{
@@ -171,7 +196,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
             }}
           >
             {orgInfo && <h2>Welcome to your dashboard</h2>}
-
             {orgInfo &&
               Object.entries(orgInfo).map(([key, value], i) => {
                 if (
@@ -196,7 +220,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                           }}
                           value={value as string}
                           onChange={handleChange}
-                          onBlur={handleBlur}
+                          onKeyUp={handleBlur}
                         />
                       </Fragment>
                     </div>
@@ -253,6 +277,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                           }}
                                           value={locVal as string}
                                           onChange={handleChange}
+                                          onBlur={handleAddressChange}
                                         />
                                       </Fragment>
                                     </AccordionDetails>
@@ -286,7 +311,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                       (srvOrSchVal, i) => {
                                         const finalVals =
                                           Object.entries(srvOrSchVal)
-
                                         return finalVals.map(
                                           ([fKey, fVal], fI) => {
                                             if (fKey === 'id') return
@@ -354,7 +378,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                 </Button>
               </>
             )}
-
             <Button
               style={{ display: 'block', width: '45rem', margin: 'auto' }}
               className={classes.greenButton}
@@ -368,34 +391,26 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     </div>
   )
 }
-
 export default Dashboard
-
 export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext,
 ) => {
   let token: any
-
   if (ctx.req.headers.cookie) {
     const headers: { [name: string]: string } = ctx.req.headers.cookie
       .split(';')
       .reduce((obj, str) => {
         const split: string[] = str.split('=')
         obj[split[0].trim()] = split[1].trim()
-
         return obj
       }, {})
-
     if (headers['Auth-Token']) {
       const temp = verify(headers['Auth-Token'], process.env.JWT_SIGNATURE)
       const { exp } = temp as JwtPayload
-
       const expiryTime = exp * 1000
-
       if (expiryTime > Date.now()) token = temp
     }
   }
-
   if (!token || token?.type !== 'cbo')
     return {
       redirect: {
