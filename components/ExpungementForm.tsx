@@ -15,6 +15,7 @@ import { ExpungementInfo, CopyHolder, Validation } from '../types'
 import ExpungementSignature from './ExpungementSignature'
 import ExpungementDisclaimer from './ExpungementDisclaimer'
 import ExpungementAdditionalInfoForm from './ExpungementAdditionalInfoForm'
+import ExpungementDemographics from './ExpungementDemographics'
 
 import styles from './ExpungementForm.module.css'
 
@@ -707,6 +708,10 @@ const ExpungementForm = ({
             )}
           </Card>
         </section>
+        <ExpungementDemographics
+          expungeInfo={expungeInfo}
+          handleChange={handleChange}
+        />
         <section className={Field}>
           <label>{marital}</label>
           <Paragraph color="deselected">{maritalExplain}</Paragraph>

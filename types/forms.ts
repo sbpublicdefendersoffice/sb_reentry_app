@@ -134,6 +134,12 @@ export interface ExpungementInfo {
   Date: string
   Signature: string
   certified: boolean
+  Race?: string
+  Gender?: string
+  Pronouns?: string
+  'Different Race Please State-0'?: 'string'
+  'Different Identity Please State-0'?: 'string'
+  'Different Pronouns Please State-0'?: 'string'
 }
 
 export interface ExpungeFormInfo extends ExpungementInfo {
