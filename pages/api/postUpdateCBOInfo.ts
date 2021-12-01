@@ -49,6 +49,8 @@ const updateCBOInfoRoute = async (
         notes,
         schedules,
         services,
+        latitude,
+        longitude,
       } = location
       schedules.map(schedule => {
         const { id, open_time, close_time, days, notes } = schedule
@@ -85,6 +87,8 @@ const updateCBOInfoRoute = async (
           phone: phone,
           email: email,
           notes: notes,
+          latitude: latitude,
+          longitude: longitude,
         },
         { where: { id: id } },
       )
