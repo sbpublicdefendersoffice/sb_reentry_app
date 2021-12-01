@@ -38,6 +38,7 @@
   display: flex;
   justify-content: space-evenly;
 }
+
 .Link {
   margin: 0 var(--margin-std);
   cursor: pointer;

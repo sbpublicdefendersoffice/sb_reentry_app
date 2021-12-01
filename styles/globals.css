@@ -27,20 +27,25 @@ main {
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .MuiList-padding {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
+
 .MuiButton-text {
   padding: 0 !important;
   margin-top: -0.2rem !important;
 }
+
 .MuiListItem-gutters {
   padding-left: 0 !important;
 }
+
 .MuiMenuItem-root {
   padding-top: 0 !important;
 }
+
 a {
   text-decoration: none !important;
   color: var(--dark);
@@ -72,5 +77,5 @@ a:hover {
 }
 
 .MuiTypography-body1 {
-  width: -webkit-fill-available !important;
+  width: stretch !important;
 }

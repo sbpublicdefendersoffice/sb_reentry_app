@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import sendGrid, { MailDataRequired } from '@sendgrid/mail'
-import { PDFDocument } from 'pdf-lib'
 import { readFileSync } from 'fs'
 import { sign } from 'jsonwebtoken'
 
@@ -16,8 +15,6 @@ const [type, disposition, financialFormPath, applicationPath]: string[] = [
   'documents/Expungements_Intake.pdf',
 ]
 
-//gotta change communication preferences if they are different
-
 const recordClearance = async (
   req: NextApiRequest,
   res: NextApiResponse,
@@ -26,12 +23,13 @@ const recordClearance = async (
     const { clientObj } = initDb()
 
     const body: ExpungeFormInfo = JSON.parse(req.body)
-    const { language, clientId, additionalInfo, Email, Phone, Text } = body
+    const { language, clientId, Email, Phone, Text } = body
     const name: string = body['Full Name']
 
     validations.forEach((v: Validation): void => {
-      const { error, field, id } = v
-      if (!body[field]) throw new Error(`${error[language]}&&#${id}`)
+      const { error, field, id, inputId } = v
+      if (!body[field])
+        throw new Error(`${error[language]}&&#${id}&&${inputId}`)
     })
 
     const filledOutApp = await fillOutPDFForm(
@@ -58,30 +56,6 @@ const recordClearance = async (
         disposition,
       },
     ]
-
-    if (additionalInfo) {
-      const infoDoc = await PDFDocument.create()
-      const page = infoDoc.addPage()
-
-      const { height } = page.getSize()
-
-      page.drawText(additionalInfo, {
-        x: 25,
-        y: height - 20,
-        size: 14,
-      })
-
-      const finalInfoPdf: string = await infoDoc.saveAsBase64()
-
-      const infoDocAttachment = {
-        content: finalInfoPdf,
-        filename: `${name} Additional Info.pdf`,
-        type,
-        disposition,
-      }
-
-      attachments.push(infoDocAttachment)
-    }
 
     const text: string = `${name} has applied for criminal record expungement via ThriveSBC`
 
