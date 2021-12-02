@@ -15,6 +15,7 @@ import { ExpungementInfo, CopyHolder, Validation } from '../types'
 import ExpungementSignature from './ExpungementSignature'
 import ExpungementDisclaimer from './ExpungementDisclaimer'
 import ExpungementAdditionalInfoForm from './ExpungementAdditionalInfoForm'
+import ExpungementDemographics from './ExpungementDemographics'
 
 import styles from './ExpungementForm.module.css'
 
@@ -112,6 +113,7 @@ const copy: CopyHolder = {
     whatIsPrimaryLang: 'If not, what is your primary language?',
     biWeekly: 'Bi-Weekly',
     annually: 'Annually',
+    immigration: 'Immigration',
   },
   spanish: {
     title: 'Solicite la cancelación de antecedentes penales',
@@ -206,6 +208,7 @@ const copy: CopyHolder = {
     whatIsPrimaryLang: 'Si no es así, ¿cuál es su idioma principal?',
     biWeekly: 'Quincenal',
     annually: 'Anualmente',
+    immigration: 'Inmigración',
   },
 }
 
@@ -305,6 +308,7 @@ const ExpungementForm = ({
     whatIsPrimaryLang,
     biWeekly,
     annually,
+    immigration,
   } = copy[language]
 
   // @ts-ignore
@@ -326,8 +330,9 @@ const ExpungementForm = ({
       let tempInfo: ExpungementInfo = expungeInfo
 
       validations.forEach((v: Validation): void => {
-        const { error, field, id } = v
-        if (!tempInfo[field]) throw new Error(`${error[language]}&&#${id}`)
+        const { error, field, id, inputId } = v
+        if (!tempInfo[field])
+          throw new Error(`${error[language]}&&#${id}&&${inputId}`)
       })
 
       if (tempInfo?.['Textfield-17']) tempInfo = { ...tempInfo, Expense: total }
@@ -373,9 +378,16 @@ const ExpungementForm = ({
         setHasClientApplied(true)
       }
     } catch (err) {
-      const [msg, id] = err.message.split('&&')
+      const [msg, id, inputId] = err.message.split('&&')
       setToast(msg)
+
+      const targInput = document.getElementById(inputId)
       push(id, id, { shallow: true })
+
+      targInput.style.border = '.25rem solid red'
+      setTimeout((): void => {
+        targInput.style.border = 'var(--border-width) solid var(--primary)'
+      }, 5000)
     }
   }
 
@@ -609,6 +621,8 @@ const ExpungementForm = ({
           <Card className={RadioCard}>
             <label htmlFor="Employment">{employment}</label>
             <Input onChange={handleChange} type="checkbox" id="Employment" />
+            <label htmlFor="immigration">{immigration}</label>
+            <Input onChange={handleChange} type="checkbox" id="immigration" />
             <label htmlFor="Housing">{housing}</label>
             <Input onChange={handleChange} type="checkbox" id="Housing" />
             <label htmlFor="Government Benefits">{benefits}</label>
@@ -619,8 +633,11 @@ const ExpungementForm = ({
             />
             <label htmlFor="Licensing">{licensing}</label>
             <Input onChange={handleChange} type="checkbox" id="Licensing" />
-            <label htmlFor="Other-1">{other}</label>
-            <Input onChange={handleChange} id="Other-1" type="text" />
+            <label htmlFor="show-other">{other}</label>
+            <Input onChange={handleChange} type="checkbox" id="show-other" />
+            {expungeInfo?.['show-other'] && (
+              <Input onChange={handleChange} id="Other-1" type="text" />
+            )}
           </Card>
         </section>
         <section className={Field}>
@@ -691,6 +708,10 @@ const ExpungementForm = ({
             )}
           </Card>
         </section>
+        <ExpungementDemographics
+          expungeInfo={expungeInfo}
+          handleChange={handleChange}
+        />
         <section className={Field}>
           <label>{marital}</label>
           <Paragraph color="deselected">{maritalExplain}</Paragraph>

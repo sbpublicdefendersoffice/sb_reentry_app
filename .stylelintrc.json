@@ -1,4 +1,9 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-prettier"],
-  "ignoreFiles": ["./coverage/**/*.css"]
+  "ignoreFiles": ["./coverage/**/*.css"],
+  "rules": {
+    "font-family-name-quotes": null,
+    "keyframes-name-pattern": null,
+    "selector-class-pattern": null
+  }
 }

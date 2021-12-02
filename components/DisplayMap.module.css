@@ -4,6 +4,7 @@
   width: 50%;
   height: var(--screen-minus-header) !important;
 }
+
 .DisplayMapMobile {
   width: 58%;
 }
