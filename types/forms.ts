@@ -26,6 +26,7 @@ export interface Validation {
     spanish: string
   }
   id: string
+  inputId: string
 }
 
 export interface ExpungementInfo {
@@ -125,12 +126,20 @@ export interface ExpungementInfo {
   45?: boolean //new form value for real estate yes
   46?: boolean //new form value for real estate no
   'I would like to be enrolled in Uptrust to receive'?: boolean
+  'show-other'?: boolean
   'Is English your primary language'?: string
+  immigration?: boolean
   additionalInfo?: string
   Expense?: string
   Date: string
   Signature: string
   certified: boolean
+  Race?: string
+  Gender?: string
+  Pronouns?: string
+  'Different Race Please State-0'?: 'string'
+  'Different Identity Please State-0'?: 'string'
+  'Different Pronouns Please State-0'?: 'string'
 }
 
 export interface ExpungeFormInfo extends ExpungementInfo {
