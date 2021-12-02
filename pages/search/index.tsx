@@ -61,7 +61,7 @@ const GlobalSearchLanding = () => {
             <MobileButtonsLandingPage
               activeCopy={activeCopy}
               setOpen={setOpen}
-              showFilter={'false'}
+              showFilter={false}
             />
           </Hidden>
         </div>
