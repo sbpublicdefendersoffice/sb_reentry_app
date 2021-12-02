@@ -134,20 +134,18 @@ const DisplayMap = ({ latLongInfo }: DisplayMapProps) => {
           <LeafLoader />
         ) : (
           <>
-            {showFilters && (
+            {showFilters && isInSBCounty && (
               <CityFilter
                 locationsToFilter={latLongInfo}
                 regionVisibility={locRecordsToFilter.visibility}
                 setLocRecordsToFilter={setLocRecordsToFilter}
               >
-                {isInSBCounty && (
-                  <ProximityFilter
-                    coords={coords}
-                    locationsToFilter={latLongInfo}
-                    setLocRecordsToFilter={setLocRecordsToFilter}
-                    radiusDistance={locRecordsToFilter.radiusDistance}
-                  />
-                )}
+                <ProximityFilter
+                  coords={coords}
+                  locationsToFilter={latLongInfo}
+                  setLocRecordsToFilter={setLocRecordsToFilter}
+                  radiusDistance={locRecordsToFilter.radiusDistance}
+                />
               </CityFilter>
             )}
             {isInSBCounty && (
