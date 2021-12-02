@@ -3,7 +3,7 @@ import { Fab } from '@mui/material'
 import { FilterList, List, Room } from '@mui/icons-material'
 import { useView } from '../hooks/'
 
-const MobileButtonsLandingPage = ({ activeCopy, setOpen }) => {
+const MobileButtonsLandingPage = ({ activeCopy, setOpen, showFilter }) => {
   const { setIsMapView } = useView()
   return (
     <>
@@ -38,15 +38,16 @@ const MobileButtonsLandingPage = ({ activeCopy, setOpen }) => {
           <Room />
           {activeCopy.map}
         </Fab>
-
-        <Fab
-          variant="extended"
-          style={{ margin: '1rem' }}
-          onClick={() => setOpen(true)}
-        >
-          <FilterList />
-          {activeCopy.filter}
-        </Fab>
+        {showFilter === 'true' && (
+          <Fab
+            variant="extended"
+            style={{ margin: '1rem' }}
+            onClick={() => setOpen(true)}
+          >
+            <FilterList />
+            {activeCopy.filter}
+          </Fab>
+        )}
       </div>
     </>
   )

@@ -9,6 +9,7 @@
   margin: none;
   padding: var(--pad-std) var(--pad-lg);
 }
+
 .RecordPaneMobile {
   display: none;
 }
@@ -17,6 +18,7 @@
   cursor: pointer;
   display: contents;
 }
+
 .titleMobile {
   display: none;
 }
@@ -28,6 +30,7 @@
   overflow: inherit;
   display: contents; /* stylelint-disable-line declaration-block-no-duplicate-properties */
 }
+
 .detailsMobile {
   display: none;
 }

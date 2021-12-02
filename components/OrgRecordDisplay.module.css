@@ -4,10 +4,12 @@
   width: 33%;
   padding: var(--pad-sm) var(--pad-lg);
 }
+
 .DisplayTitle {
   margin-top: 1.5rem !important;
   margin-bottom: 2rem;
 }
+
 .listing > :not(summary) {
   margin-bottom: var(--margin-lg);
   text-align: start;

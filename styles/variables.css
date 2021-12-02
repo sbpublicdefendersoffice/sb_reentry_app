@@ -1,7 +1,7 @@
 :root {
   /* Color Variables */
   --light: #fff;
-  --light-transparent: rgba(255, 255, 255, 0.85);
+  --light-transparent: rgb(255 255 255 / 85%);
   --dark: #292929;
   --primary: #12385e;
   --secondary: #4c7fa1;
@@ -13,7 +13,7 @@
   --med-grey: #b0b0b0;
   --light-grey: #ebebeb;
   --green: #00a968;
-  --green-transparent: rgba(0, 169, 104, 0.3);
+  --green-transparent: rgb(0 169 104 / 30%);
   --peri: #9fb3de;
 
   /* Spacing Variables */

@@ -54,7 +54,7 @@ const Footer = () => {
       const [resourceButtonClicked, setResourceButtonClicked] = useState(false)
       const { route } = routeData
       const link: ReactElement = (
-        <Grid item xs={12} md={3} sm={1} className={styles.Grid}>
+        <Grid key={i} item xs={12} md={3} sm={1} className={styles.Grid}>
           <NextLink href={route} as={route}>
             <h2 className={styles.Title}>{title}</h2>
           </NextLink>
@@ -62,7 +62,7 @@ const Footer = () => {
       )
       if (i === lastStaticRouteIndex - 1) {
         return (
-          <>
+          <Fragment key={i}>
             <Grid item xs={12} md={2} sm={4} className={styles.Grid}>
               <Hidden smDown>
                 <div style={{ width: '10rem' }}>
@@ -86,8 +86,8 @@ const Footer = () => {
                       const title = routeData[`title_${language}`]
                       const { route } = routeData
                       return (
-                        <>
-                          <NextLink key={i} href={route} as={route}>
+                        <Fragment key={i}>
+                          <NextLink href={route} as={route}>
                             <h2
                               className={styles.TitleWrap}
                               onClick={() => setCourtButtonClicked(false)}
@@ -101,7 +101,7 @@ const Footer = () => {
                             </h2>
                           </NextLink>
                           <br />
-                        </>
+                        </Fragment>
                       )
                     })}
                 </div>
@@ -239,7 +239,7 @@ const Footer = () => {
               </Hidden>
             </Grid>
             <div className={styles.About}>{link}</div>
-          </>
+          </Fragment>
         )
       }
       if (i === lastStaticRouteIndex) return null

@@ -9,10 +9,14 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Modal,
+  Box,
 } from '@mui/material'
+import LocationModal from './locationModal'
 import { POST } from '../../helpers/'
 import { useStyles } from '../../constants'
 import { ExpandMore } from '@mui/icons-material'
+import AddIcon from '@mui/icons-material/Add'
 interface DashboardProps {
   userId: number
   orgId: number
@@ -32,6 +36,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const { push } = useRouter()
   const classes = useStyles()
   const [orgInfo, setOrgInfo] = useState(null)
+  const [openLocationModal, setOpenLocationModal] = useState(false)
   const [dashboardButtonClicked, setDashboardButtonClicked] = useState(false)
   const logOut = async () => {
     const loggingOut: Response = await fetch('/api/logout')
@@ -233,9 +238,41 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                         margin: 'auto',
                       }}
                     >
-                      {/* <Button>Add a location</Button>
-                      <Button>Delete this location</Button> */}
-                      <h3 style={{ margin: '2rem' }}>Locations</h3>
+                      {/*   <Button>Delete this location</Button> */}
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          marginTop: '2rem',
+                        }}
+                      >
+                        <h3>Locations </h3>
+                        <Button
+                          style={{
+                            alignSelf: 'flex-end',
+                            alignItems: 'center',
+                            // backgroundColor: '#07A767',
+                            // color: 'white',
+                            // padding: '1rem',
+                          }}
+                          className={classes.greenButton}
+                          onClick={() =>
+                            setOpenLocationModal(!openLocationModal)
+                          }
+                        >
+                          <h4 style={{ padding: '1rem' }}>
+                            {' '}
+                            <AddIcon
+                              style={{
+                                paddingTop: '.5rem',
+                                alignSelf: 'center',
+                              }}
+                            />
+                            Add a location
+                          </h4>
+                        </Button>{' '}
+                      </div>
                       {value.map((lVal, lkey) => {
                         return (
                           <Accordion
@@ -388,6 +425,12 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
           </div>
         </div>
       </form>
+      {openLocationModal && (
+        <LocationModal
+          setOpenLocationModal={setOpenLocationModal}
+          openValue={openLocationModal}
+        />
+      )}
     </div>
   )
 }

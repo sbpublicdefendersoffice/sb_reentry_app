@@ -59,7 +59,7 @@ const PasswordResetLandingPage = () => {
   const submit = () => {
     console.log(' Submitted')
   }
-  const { handleChange, handleBlur, state, errors } = useFormFields({
+  const { handleChange, handleBlur, stateValue, errors } = useFormFields({
     initState,
     callback: submit,
     validator,
@@ -80,7 +80,7 @@ const PasswordResetLandingPage = () => {
     validConfirmPassword,
   } = copy[language]
 
-  const { pwd, confirmPwd } = state
+  const { pwd, confirmPwd } = stateValue
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()

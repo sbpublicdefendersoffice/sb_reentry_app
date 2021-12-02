@@ -90,7 +90,7 @@ const SignupPage = () => {
     console.log(' Submited')
   }
 
-  const { handleChange, handleBlur, state, errors, handleSubmit } =
+  const { handleChange, handleBlur, stateValue, errors, handleSubmit } =
     useFormFields({
       initState,
       callback: submit,
@@ -123,7 +123,7 @@ const SignupPage = () => {
     orgName,
   } = copy[language]
 
-  const { email, org, pwd, confirmPwd, signupType } = state
+  const { email, org, pwd, confirmPwd, signupType } = stateValue
 
   const isValidForm: boolean =
     signupType &&

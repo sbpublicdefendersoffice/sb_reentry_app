@@ -67,13 +67,13 @@ const ForgotPasswordPage = () => {
     client,
   } = copy[language]
   const submit = () => {}
-  const { handleChange, handleBlur, state, errors, handleSubmit } =
+  const { handleChange, handleBlur, stateValue, errors, handleSubmit } =
     useFormFields({
       initState,
       callback: submit,
       validator,
     })
-  const { email, signupType } = state
+  const { email, signupType } = stateValue
 
   const isValidForm: boolean =
     signupType &&
@@ -100,7 +100,7 @@ const ForgotPasswordPage = () => {
       }, 3000)
       setToast(emailSent)
 
-      state.email = ''
+      stateValue.email = ''
     }
   }
   return success ? (

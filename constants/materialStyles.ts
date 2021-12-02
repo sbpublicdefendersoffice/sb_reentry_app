@@ -26,6 +26,21 @@ export const useStyles = makeStyles((theme: Theme) =>
       paddingTop: '0 !important',
       color: 'pink',
     },
+    modalStyle: {
+      position: 'absolute' as 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: 400,
+      backgroundColor: 'white',
+      padding: '2rem',
+      border: '2px solid #000',
+      boxShadow: '24',
+      pt: 2,
+      px: 4,
+      pb: 3,
+    },
+
     dropDownItems: {
       color: 'white !important',
       backgroundColor: '#13385e !important',
@@ -266,7 +281,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     paperFilter: {
       position: 'absolute',
       width: 400,
-      backgroundColor: '#12385E !important',
+      backgroundColor: 'white',
       border: '2px solid #000',
       boxShadow: 'initial',
       padding: '1.4rem',
