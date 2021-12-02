@@ -12,6 +12,7 @@ import MobileButtonsLandingPage from '../../components/MobileButtonsLandingPage'
 import { isProd, siteTitle } from '../../constants/'
 import { PGOrganizationResponse, CopyHolder } from '../../types'
 import { TagPane, DisplayMap, HeadTags } from '../../components/'
+
 const copy: CopyHolder = {
   english: { search: 'Search' },
   spanish: { search: 'Buscar' },
@@ -25,6 +26,7 @@ const GlobalSearchLanding = () => {
   const activeCopy = categoryCopy[language]
   const [open, setOpen] = useState<boolean>(false)
   const { search } = copy[language]
+
   useEffect((): void => {
     const captureQuery: RegExp = /^.*=(.*)$/
     const capturedQueryReference: string = '$1'

@@ -40,7 +40,7 @@ const ExpungementSignature = ({
   const signRef: MutableRefObject<HTMLDivElement> = useRef()
   const { language } = useLanguage()
 
-  const { sign, disclaimer, fees, certify, date, signature } = copy[language]
+  const { sign, certify, date, signature } = copy[language]
 
   useIntersectionStyle(signRef, animationClass)
 
