@@ -33,7 +33,7 @@ export default function NestedModal(openValue, setOpenLocationModal) {
   const submit = () => {
     console.log(' Submited')
   }
-  const { handleChange, handleBlur, state, errors } = useFormFields({
+  const { handleChange, handleBlur, stateValue, errors } = useFormFields({
     initState,
     callback: submit,
     validator,
@@ -43,13 +43,13 @@ export default function NestedModal(openValue, setOpenLocationModal) {
     address,
     address2,
     city,
-
+    state,
     zip,
     phone,
     website,
     email,
     notes,
-  } = state
+  } = stateValue
   return (
     <div>
       <Modal
@@ -58,7 +58,7 @@ export default function NestedModal(openValue, setOpenLocationModal) {
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-        <Box sx={{ width: 400 }}>
+        <Box className={classes.modalStyle} sx={{ width: 400 }}>
           <>
             <form
               role="form"
@@ -256,7 +256,7 @@ export default function NestedModal(openValue, setOpenLocationModal) {
             aria-describedby="child-modal-description"
           >
             <Box
-              // className={classes.modalStyle}
+              className={classes.modalStyle}
               sx={{
                 display: 'block',
                 width: 200,
