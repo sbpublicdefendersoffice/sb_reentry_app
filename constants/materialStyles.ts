@@ -247,7 +247,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     paperFilter: {
       position: 'absolute',
       width: 400,
-      backgroundColor: '#12385E !important',
+      backgroundColor: 'white',
       border: '2px solid #000',
       boxShadow: 'initial',
       padding: '1.4rem',
