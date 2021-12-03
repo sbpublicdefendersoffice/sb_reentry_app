@@ -1,4 +1,5 @@
-import { useStyles } from '../../constants'
+import { HeadTags } from '../../components'
+import { useStyles, siteTitle } from '../../constants'
 import { useLanguage } from '../../hooks'
 import { CopyHolder } from '../../types'
 
@@ -19,10 +20,17 @@ const VerifyEmailPage = () => {
   const { thanks, verifyAccount } = copy[language]
 
   return (
-    <div className={classes.root}>
-      <h1 style={{ marginBottom: '2rem' }}>{thanks}</h1>
-      <p className={classes.fontSize}>{verifyAccount}</p>
-    </div>
+    <>
+      <HeadTags
+        title={`${siteTitle} | Please Verify Your Email`}
+        href="/verifyemail"
+        description="Please verify your email to take advantage of all that ThriveSBC has to offer"
+      />
+      <div className={classes.root}>
+        <h1 style={{ marginBottom: '2rem' }}>{thanks}</h1>
+        <p className={classes.fontSize}>{verifyAccount}</p>
+      </div>
+    </>
   )
 }
 export default VerifyEmailPage

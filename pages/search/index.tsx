@@ -53,7 +53,11 @@ const GlobalSearchLanding = () => {
   return (
     convertedLocRecords && (
       <>
-        <HeadTags title={`${siteTitle} | ${search}`} href="/search" />
+        <HeadTags
+          title={`${siteTitle} | ${search}`}
+          href="/search"
+          description="Search for organizations to help you on ThriveSBC"
+        />
         <div
           style={{ display: 'flex', textAlign: 'center', marginTop: '1rem' }}
         >

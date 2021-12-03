@@ -4,8 +4,9 @@ import { Button, TextField } from '@mui/material'
 
 import { useLanguage, useToast, useFormFields } from '../../hooks'
 import { POST, validator } from '../../helpers/'
-import { useStyles } from '../../constants'
+import { useStyles, siteTitle } from '../../constants'
 import { CopyHolder } from '../../types'
+import { HeadTags } from '../../components'
 import { Input, Paragraph } from '../../ui'
 
 export const copy: CopyHolder = {
@@ -103,72 +104,81 @@ const ForgotPasswordPage = () => {
       state.email = ''
     }
   }
-  return success ? (
-    <div className={classes.root}>
-      <h1>{successText}</h1>
-      <p className={classes.fontSize} style={{ marginTop: '2rem' }}>
-        {checkEmail}
-      </p>
-    </div>
-  ) : (
-    <div style={{ margin: 'auto', textAlign: 'center' }}>
-      <form role="form" onSubmit={onSubmitClicked}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-          }}
-        >
-          <h1>{forgotPwd}</h1>
-          <p style={{ margin: '1rem' }}>{enterEmail} </p>
-          {errorMessage && <div className="fail">{errorMessage}</div>}
-          <TextField
-            value={email}
-            name="email"
-            onChange={handleChange}
-            title={validEmail}
-            placeholder={`${someone}@gmail.com`}
-            //@ts-ignore
-            error={errors.email ? true : false}
-            //@ts-ignore
-            helperText={errors.email ? validEmail : false}
-            onBlur={handleBlur}
-            style={{ marginBottom: '1.5rem' }}
-          />
-          <div>
-            <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
-              {iAm}
-            </Paragraph>
-            <label htmlFor="cbo">{cbo}</label>
-            <Input
-              type="radio"
-              name="signupType"
-              value="cbo"
-              id="cbo"
-              onChange={handleChange}
-            />
-            <label htmlFor="client">{client}</label>
-            <Input
-              type="radio"
-              name="signupType"
-              value="client"
-              id="client"
-              onChange={handleChange}
-            />
-          </div>
-          <Button
-            className={
-              isValidForm ? classes.greenButton : classes.disabledButton
-            }
-            disabled={!isValidForm}
-            type="submit"
-          >
-            <h4 style={{ padding: '1rem' }}> {sendReset}</h4>
-          </Button>
+  return (
+    <>
+      <HeadTags
+        title={`${siteTitle} | Forgot Password`}
+        href="/forgotpassword"
+        description="Reset your forgotten password for ThriveSBC"
+      />
+      {success ? (
+        <div className={classes.root}>
+          <h1>{successText}</h1>
+          <p className={classes.fontSize} style={{ marginTop: '2rem' }}>
+            {checkEmail}
+          </p>
         </div>
-      </form>
-    </div>
+      ) : (
+        <div style={{ margin: 'auto', textAlign: 'center' }}>
+          <form role="form" onSubmit={onSubmitClicked}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+              }}
+            >
+              <h1>{forgotPwd}</h1>
+              <p style={{ margin: '1rem' }}>{enterEmail} </p>
+              {errorMessage && <div className="fail">{errorMessage}</div>}
+              <TextField
+                value={email}
+                name="email"
+                onChange={handleChange}
+                title={validEmail}
+                placeholder={`${someone}@gmail.com`}
+                //@ts-ignore
+                error={errors.email ? true : false}
+                //@ts-ignore
+                helperText={errors.email ? validEmail : false}
+                onBlur={handleBlur}
+                style={{ marginBottom: '1.5rem' }}
+              />
+              <div>
+                <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
+                  {iAm}
+                </Paragraph>
+                <label htmlFor="cbo">{cbo}</label>
+                <Input
+                  type="radio"
+                  name="signupType"
+                  value="cbo"
+                  id="cbo"
+                  onChange={handleChange}
+                />
+                <label htmlFor="client">{client}</label>
+                <Input
+                  type="radio"
+                  name="signupType"
+                  value="client"
+                  id="client"
+                  onChange={handleChange}
+                />
+              </div>
+              <Button
+                className={
+                  isValidForm ? classes.greenButton : classes.disabledButton
+                }
+                disabled={!isValidForm}
+                type="submit"
+              >
+                <h4 style={{ padding: '1rem' }}> {sendReset}</h4>
+              </Button>
+            </div>
+          </form>
+        </div>
+      )}
+    </>
   )
 }
 export default ForgotPasswordPage
