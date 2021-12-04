@@ -1,49 +1,53 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { ReactNode, CSSProperties } from 'react'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
 import { JwtPayload, verify } from 'jsonwebtoken'
 
-import { HeadTags, ExpungementForm } from '../../components'
+import { HeadTags } from '../../components'
 import { CallToAction, Title, Button } from '../../ui'
 import { siteTitle } from '../../constants'
 import { CopyHolder } from '../../types'
 import { useLanguage } from '../../hooks'
 
-interface ExpungementPageProps {
-  id: number
+interface FreshStartLandingPageProps {
+  isLoggedIn: boolean
   hasAppliedForExpungement: boolean
   isVerified: boolean
-  email: string
-  commPrefs: string[]
 }
 
 const copy: CopyHolder = {
   english: {
-    applied:
-      'You have successfully applied for record expungement. The Public Defender should reach out to you within 5-7 business days',
-    notVerified: 'You have not yet been verified',
+    notLoggedIn: 'You are not logged in',
+    notVerified: 'You have not verified your email address with ThriveSBC',
+    verifiedNotApplied:
+      'You have been verified but have not applied for expungement',
+    applied: 'You have applied for expungement',
   },
   spanish: {
-    applied:
-      'Ha solicitado con éxito la eliminación de antecedentes penales. El Defensor Público debe comunicarse con usted en un plazo de 5 a 7 días hábiles',
-    notVerified: 'Aún no has sido verificado',
+    notLoggedIn: 'Usted no se ha identificado',
+    notVerified:
+      'No ha verificado su dirección de correo electrónico con ThriveSBC',
+    verifiedNotApplied:
+      'Ha sido verificado, pero no ha solicitado la eliminación.',
+    applied: 'Ha solicitado la eliminación de antecedentes penales',
   },
 }
 
-const ExpungementPage = ({
-  id,
+const buttonStyle: CSSProperties = {
+  height: 'min-content',
+  marginTop: 'var(--pad-std)',
+}
+
+const FreshStartLandingPage = ({
+  isLoggedIn,
   hasAppliedForExpungement,
   isVerified,
-  email,
-  commPrefs,
-}: ExpungementPageProps) => {
+}: FreshStartLandingPageProps) => {
   const { push } = useRouter()
-  const [hasClientApplied, setHasClientApplied] = useState<boolean>(
-    hasAppliedForExpungement,
-  )
   const { language } = useLanguage()
 
-  const { applied, notVerified } = copy[language]
+  const { notLoggedIn, notVerified, verifiedNotApplied, applied } =
+    copy[language]
 
   const logOut = async (): Promise<void> => {
     const loggingOut: Response = await fetch('/api/logout')
@@ -55,40 +59,50 @@ const ExpungementPage = ({
     }
   }
 
+  const logOutButton: ReactNode = (
+    <Button style={buttonStyle} onClick={logOut}>
+      Logout
+    </Button>
+  )
+
   return (
     <>
       <HeadTags
-        title={`${siteTitle} | Fresh Start Record Expungement`}
+        title={`${siteTitle} | Fresh Start Information`}
         href={`/freshstart`}
-        description={`Thrive SBC | Fresh Start Record Expungement`}
+        description={`Thrive SBC | Fresh Start Information`}
       />
-      {!isVerified ? (
-        <CallToAction>
-          <Title>{notVerified}</Title>
-        </CallToAction>
-      ) : hasClientApplied ? (
-        <CallToAction>
-          <Title>{applied}</Title>
-        </CallToAction>
-      ) : (
-        <ExpungementForm
-          clientId={id}
-          setHasClientApplied={setHasClientApplied}
-          savedEmail={email}
-          commPrefs={commPrefs}
-        />
-      )}
-      <Button
-        style={{ height: 'min-content', marginTop: 'var(--pad-std)' }}
-        onClick={logOut}
-      >
-        Logout
-      </Button>
+      <CallToAction>
+        {!isLoggedIn ? (
+          <Title>{notLoggedIn}</Title>
+        ) : !isVerified ? (
+          <>
+            <Title>{notVerified}</Title>
+            {logOutButton}
+          </>
+        ) : isVerified && hasAppliedForExpungement ? (
+          <>
+            <Title>{applied}</Title>
+            {logOutButton}
+          </>
+        ) : (
+          <>
+            <Title>{verifiedNotApplied}</Title>
+            <Button
+              style={buttonStyle}
+              onClick={() => push('/freshstart/apply')}
+            >
+              Apply for Expungement
+            </Button>
+            {logOutButton}
+          </>
+        )}
+      </CallToAction>
     </>
   )
 }
 
-export default ExpungementPage
+export default FreshStartLandingPage
 
 export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext,
@@ -113,23 +127,11 @@ export const getServerSideProps: GetServerSideProps = async (
     }
   }
 
-  if (!token || token?.type !== 'client')
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  else {
-    const { id, hasAppliedForExpungement, isVerified, email, commPrefs } = token
-    return {
-      props: {
-        id,
-        hasAppliedForExpungement,
-        isVerified,
-        email: email || null,
-        commPrefs: commPrefs || null,
-      },
-    }
+  return {
+    props: {
+      isLoggedIn: !!token,
+      hasAppliedForExpungement: !!token?.hasAppliedForExpungement,
+      isVerified: !!token?.isVerified,
+    },
   }
 }
