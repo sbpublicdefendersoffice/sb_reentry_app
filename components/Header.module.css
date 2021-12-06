@@ -13,12 +13,12 @@
   display: flex;
   align-items: center;
   list-style-type: none;
-  flex: 1 1;
 }
 
 .ThriveLogo {
-  width: 18rem;
-  margin-left: 3rem;
+  width: 15rem;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .Nav {
@@ -27,11 +27,11 @@
 }
 
 .NavContainer {
-  min-width: 60%;
+  width: 75%;
   display: inherit;
   justify-content: space-between;
+  flex-wrap: wrap;
   align-items: center;
-  margin-left: 3rem;
 }
 
 .Separators {
@@ -60,9 +60,8 @@
 }
 
 .Favorites {
-  margin: 0.3rem 3rem 0 5rem;
-  align-items: flex-end;
-  display: flex;
+  position: absolute;
+  right: 1.5rem;
   color: white;
   cursor: pointer;
 }
@@ -120,17 +119,10 @@
     font-size: 3rem;
   }
 }
-@media (max-width: 1275px) {
-  .Favorites {
-    position: absolute;
-    top: 6rem;
-    right: -2rem;
-  }
-}
+
 @media (max-width: 1275px) {
   .ThriveLogo {
-    width: 15rem;
-    margin-left: 3rem;
+    width: 12rem;
   }
 
   .Burger {
@@ -144,5 +136,9 @@
 
   .DataSearch {
     display: none;
+  }
+
+  .Favorites {
+    top: 7rem;
   }
 }

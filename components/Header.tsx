@@ -25,6 +25,7 @@ import { Hidden, Badge, Button, Menu, MenuItem, Grid } from '@mui/material'
 import { Favorite, ArrowDropDown } from '@mui/icons-material'
 
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
+
 const copy: CopyHolder = {
   english: {
     tagline: 'A Santa Barbara County tool for the justice-impacted community',
@@ -188,6 +189,7 @@ const Header = () => {
       else return null
     },
   )
+
   return (
     <header role="banner" className={styles.Header}>
       <div className={styles.HeaderContainer}>
@@ -221,11 +223,9 @@ const Header = () => {
 
         <div role="term" className={styles.Favorites}>
           <NextLink href="/favorites" as="/favorites">
-            <div className={classes.badge}>
-              <Badge badgeContent={favoriteResources.length} color="primary">
-                <Favorite style={{ color: 'white', fontSize: '3rem' }} />
-              </Badge>
-            </div>
+            <Badge badgeContent={favoriteResources.length} color="primary">
+              <Favorite style={{ color: 'white', fontSize: '3rem' }} />
+            </Badge>
           </NextLink>
         </div>
       </div>
