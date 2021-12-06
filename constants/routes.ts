@@ -98,6 +98,11 @@ export const staticPageRoutes: RouteInfo[] = [
     route: '/favorites',
   },
   {
+    title_english: 'Fresh Start',
+    title_spanish: 'Fresh Start',
+    route: '/freshstart',
+  },
+  {
     title_english: 'Login',
     title_spanish: 'Acceso',
     route: '/login',

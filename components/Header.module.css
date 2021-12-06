@@ -27,7 +27,7 @@
 }
 
 .NavContainer {
-  width: 75%;
+  width: 80%;
   display: inherit;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -130,7 +130,8 @@
   }
 
   .Title,
-  .Separators {
+  .Separators,
+  .Tagline {
     display: none;
   }
 

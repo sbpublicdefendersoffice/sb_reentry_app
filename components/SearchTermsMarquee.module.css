@@ -1,10 +1,8 @@
 .SearchTermsMarquee {
   width: 100%;
-  position: absolute;
   background-color: var(--light);
   box-shadow: -0.75rem 0.3rem 0.4rem var(--light);
   z-index: 5;
-  overflow: hidden;
 }
 
 .Tags {

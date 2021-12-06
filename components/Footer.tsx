@@ -233,9 +233,7 @@ const Footer = () => {
             <div className={styles.About}>{link}</div>
           </Fragment>
         )
-      }
-      if (i === lastStaticRouteIndex) return null
-      else return <Fragment key={i}>{link}</Fragment>
+      } else return <Fragment key={i}>{link}</Fragment>
     },
   )
   return (
