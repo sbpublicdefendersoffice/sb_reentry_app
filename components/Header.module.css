@@ -141,4 +141,8 @@
   .Separators {
     display: none;
   }
+
+  .DataSearch {
+    display: none;
+  }
 }

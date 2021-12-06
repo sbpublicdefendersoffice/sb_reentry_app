@@ -77,7 +77,11 @@ const Header = () => {
           </h2>
         </NextLink>
       )
-      if (i === lastStaticRouteIndex - 2 || i === lastStaticRouteIndex - 3)
+      if (
+        i === lastStaticRouteIndex - 2 ||
+        i === lastStaticRouteIndex - 3 ||
+        i === lastStaticRouteIndex
+      )
         return <Fragment key={i}>{link}</Fragment>
       if (i === lastStaticRouteIndex - 1)
         return (
@@ -207,7 +211,9 @@ const Header = () => {
         <Hidden lgDown>
           <Grid container style={{ width: '36%' }}>
             <Grid item md={12} sm={4}>
-              <LiveDataSearch />
+              <div className={styles.DataSearch}>
+                <LiveDataSearch />
+              </div>
             </Grid>
           </Grid>
           <h4 className={styles.Tagline}>{activeCopy.tagline}</h4>

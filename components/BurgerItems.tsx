@@ -59,7 +59,11 @@ const BurgerItems = ({ open, setOpen }) => {
           </NextLink>
         </MenuItem>
       )
-      if (i === lastStaticRouteIndex - 2 || i === lastStaticRouteIndex - 3)
+      if (
+        i === lastStaticRouteIndex - 2 ||
+        i === lastStaticRouteIndex - 3 ||
+        i === lastStaticRouteIndex
+      )
         return <Fragment key={i}>{link}</Fragment>
       if (i === lastStaticRouteIndex - 1)
         return (

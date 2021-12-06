@@ -32,7 +32,7 @@ describe('<Header />', () => {
 
     const routeNodes: HTMLElement[] = getAllByRole('term')
 
-    expect(routeNodes).toHaveLength(9)
+    expect(routeNodes).toHaveLength(11)
   })
 
   it('does render burger at or below 700px screen width', () => {
@@ -50,6 +50,6 @@ describe('<Header />', () => {
 
     const routeNodes: HTMLElement[] = getAllByRole('term')
 
-    expect(routeNodes).toHaveLength(9)
+    expect(routeNodes).toHaveLength(11)
   })
 })
