@@ -110,8 +110,8 @@ const App = ({ Component, pageProps }: AppProps) => {
               <LocationProvider value={{ coords, setCoords }}>
                 <ToastProvider value={{ toast, setToast }}>
                   <GlobalSearchProvider>
-                    <Header />
                     <LangSwitcher />
+                    <Header />
                     <main>
                       <Component {...pageProps} />
                     </main>
