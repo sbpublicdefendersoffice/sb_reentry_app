@@ -27,6 +27,8 @@ export const useStyles = makeStyles((theme: Theme) =>
       color: 'pink',
     },
     modalStyle: {
+      maxHeight: 'calc(100vh - 210px)',
+      overflowY: 'auto',
       position: 'absolute' as 'absolute',
       top: '50%',
       left: '50%',
