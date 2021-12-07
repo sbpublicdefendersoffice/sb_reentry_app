@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import { useState, useCallback, useEffect } from 'react'
-import { FormEvent, Fragment, ChangeEvent } from 'react'
+import { FormEvent, Fragment, ChangeEvent, useState } from 'react'
 import { JwtPayload, verify } from 'jsonwebtoken'
 import {
   Button,
@@ -9,14 +8,16 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Modal,
-  Box,
+
 } from '@mui/material'
 import LocationModal from './locationModal'
 import { POST } from '../../helpers/'
 import { useStyles } from '../../constants'
 import { ExpandMore } from '@mui/icons-material'
 import AddIcon from '@mui/icons-material/Add'
+import { HeadTags } from '../../components'
+import { useLanguage } from '../../hooks'
+import { siteTitle } from '../../constants/'
 interface DashboardProps {
   userId: number
   orgId: number
@@ -35,6 +36,7 @@ function debounce(func, timeout = 1000) {
 const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const { push } = useRouter()
   const classes = useStyles()
+  const { language } = useLanguage()
   const [orgInfo, setOrgInfo] = useState(null)
   const [openLocationModal, setOpenLocationModal] = useState(false)
   const [dashboardButtonClicked, setDashboardButtonClicked] = useState(false)
@@ -165,18 +167,39 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   }
   if (!isVerified)
     return (
-      <span>
-        You have not clicked on the verification email we sent you, please do so
-      </span>
+      <>
+        <HeadTags
+          title={`${siteTitle} | Organization Not Yet Verified`}
+          href="/dashboard"
+          description="A handy little place for you to manage your organization's information."
+        />
+        <span>
+          You have not clicked on the verification email we sent you, please do
+          so
+        </span>
+      </>
     )
   if (!orgId)
     return (
-      <span>
-        You have verified your email, but we have not yet connected you to your
-        org
-      </span>
+      <>
+        <HeadTags
+          title={`${siteTitle} | Organization Not Yet Connected`}
+          href="/dashboard"
+          description="A handy little place for you to manage your organization's information."
+        />
+        <span>
+          You have verified your email, but we have not yet connected you to
+          your org
+        </span>
+      </>
     )
   return (
+    <>
+    <HeadTags
+    title={`${siteTitle} | Organization Dashboard`}
+    href="/dashboard"
+    description="A handy little place for you to manage your organization's information."
+  />
     <div style={{ margin: 'auto', textAlign: 'center', width: '100%' }}>
       {!orgInfo && (
         <Button
@@ -432,7 +455,9 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
         />
       )}
     </div>
+    </>
   )
+
 }
 export default Dashboard
 export const getServerSideProps: GetServerSideProps = async (

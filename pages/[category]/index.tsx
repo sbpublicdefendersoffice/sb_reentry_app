@@ -71,7 +71,7 @@ const LandingPage = ({ preFetchedOrgs }: LandingPageProps) => {
             <MobileButtonsLandingPage
               activeCopy={activeCopy}
               setOpen={setOpen}
-              showFilter={'true'}
+              showFilter={true}
             />
           </Hidden>
           <Modal

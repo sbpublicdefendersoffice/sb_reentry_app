@@ -23,10 +23,10 @@ const GlobalSearchLanding = () => {
   const { searchResults, setSearchResults } = useGlobalSearch()
   const { convertedLocRecords, setLocationRecords } =
     useConvertedLocationRecords()
+
+  const { search } = copy[language]
   const activeCopy = categoryCopy[language]
   const [open, setOpen] = useState<boolean>(false)
-  const { search } = copy[language]
-
   useEffect((): void => {
     const captureQuery: RegExp = /^.*=(.*)$/
     const capturedQueryReference: string = '$1'
@@ -50,7 +50,11 @@ const GlobalSearchLanding = () => {
   return (
     convertedLocRecords && (
       <>
-        <HeadTags title={`${siteTitle} | ${search}`} href="/search" />
+        <HeadTags
+          title={`${siteTitle} | ${search}`}
+          href="/search"
+          description="Search for organizations to help you on ThriveSBC"
+        />
         <div
           style={{ display: 'flex', textAlign: 'center', marginTop: '1rem' }}
         >
@@ -58,7 +62,7 @@ const GlobalSearchLanding = () => {
             <MobileButtonsLandingPage
               activeCopy={activeCopy}
               setOpen={setOpen}
-              showFilter={'false'}
+              showFilter={false}
             />
           </Hidden>
         </div>

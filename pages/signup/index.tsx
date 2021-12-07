@@ -131,197 +131,199 @@ const SignupPage = () => {
       .length === 0
 
   return (
-    <div style={{ margin: 'auto', textAlign: 'center' }}>
+    <>
       <HeadTags
         title={`${siteTitle} | ${signup}`}
         href={`/signup`}
         description={signup}
       />
-      <form role="form" onSubmit={handleSubmit}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            margin: '4rem 2rem',
-          }}
-        >
-          <h1>{signup}</h1>
+      <div style={{ margin: 'auto', textAlign: 'center' }}>
+        <form role="form" onSubmit={handleSubmit}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              margin: '4rem 2rem',
+            }}
+          >
+            <h1>{signup}</h1>
 
-          {state?.signupType !== 'client' && (
+            {state?.signupType !== 'client' && (
+              <TextField
+                value={org}
+                name="org"
+                onChange={handleChange}
+                //@ts-ignore
+                error={errors.org ? true : false}
+                //@ts-ignore
+                helperText={errors.org ? invalidOrg : false}
+                style={{ marginTop: '1rem' }}
+                onBlur={handleBlur}
+                placeholder={orgName}
+              />
+            )}
             <TextField
-              value={org}
-              name="org"
+              value={email}
+              name="email"
+              title={validEmail}
               onChange={handleChange}
-              //@ts-ignore
-              error={errors.org ? true : false}
-              //@ts-ignore
-              helperText={errors.org ? invalidOrg : false}
               style={{ marginTop: '1rem' }}
+              placeholder={`${someone}@gmail.com`}
+              //@ts-ignore
+              error={errors.email ? true : false}
+              //@ts-ignore
+              helperText={errors.email ? validEmail : false}
               onBlur={handleBlur}
-              placeholder={orgName}
+              required
             />
-          )}
-          <TextField
-            value={email}
-            name="email"
-            title={validEmail}
-            onChange={handleChange}
-            style={{ marginTop: '1rem' }}
-            placeholder={`${someone}@gmail.com`}
-            //@ts-ignore
-            error={errors.email ? true : false}
-            //@ts-ignore
-            helperText={errors.email ? validEmail : false}
-            onBlur={handleBlur}
-            required
-          />
-          <TextField
-            type="password"
-            name="pwd"
-            value={pwd}
-            onBlur={handleBlur}
-            style={{ marginTop: '1rem' }}
-            onChange={handleChange}
-            placeholder={passwordMessage}
-            spellCheck
-            //@ts-ignore
-            error={errors.pwd ? true : false}
-            //@ts-ignore
-            helperText={errors.pwd ? passwordRequired : false}
-            title={mustContain}
-            required
-          />
-          <TextField
-            type="password"
-            value={confirmPwd}
-            name="confirmPwd"
-            //@ts-ignore
-            error={errors.confirmPwd ? true : false}
-            style={{ marginTop: '1rem' }}
-            //@ts-ignore
-            helperText={errors.confirmPwd ? confirmPasswordMatch : false}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            placeholder={confirmPasswordMessage}
-            required
-          />
-          <div>
-            <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
-              {iAm}
-            </Paragraph>
-            <label htmlFor="cbo">{cbo}</label>
-            <Input
-              type="radio"
-              name="signupType"
-              value="cbo"
-              id="cbo"
+            <TextField
+              type="password"
+              name="pwd"
+              value={pwd}
+              onBlur={handleBlur}
+              style={{ marginTop: '1rem' }}
               onChange={handleChange}
+              placeholder={passwordMessage}
+              spellCheck
+              //@ts-ignore
+              error={errors.pwd ? true : false}
+              //@ts-ignore
+              helperText={errors.pwd ? passwordRequired : false}
+              title={mustContain}
+              required
             />
-            <label htmlFor="client">{client}</label>
-            <Input
-              type="radio"
-              name="signupType"
-              value="client"
-              id="client"
+            <TextField
+              type="password"
+              value={confirmPwd}
+              name="confirmPwd"
+              //@ts-ignore
+              error={errors.confirmPwd ? true : false}
+              style={{ marginTop: '1rem' }}
+              //@ts-ignore
+              helperText={errors.confirmPwd ? confirmPasswordMatch : false}
               onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder={confirmPasswordMessage}
+              required
             />
-          </div>
-          {state?.signupType === 'client' && (
             <div>
               <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
-                {commPref}
+                {iAm}
               </Paragraph>
-              <label htmlFor="commByEmail">Email</label>
+              <label htmlFor="cbo">{cbo}</label>
               <Input
-                type="checkbox"
-                name="commByEmail"
-                id="commByEmail"
+                type="radio"
+                name="signupType"
+                value="cbo"
+                id="cbo"
                 onChange={handleChange}
               />
-              <label htmlFor="commByText">{text}</label>
+              <label htmlFor="client">{client}</label>
               <Input
-                type="checkbox"
-                name="commByText"
-                id="commByText"
-                onChange={handleChange}
-              />
-              <label htmlFor="commByPhone">{phone}</label>
-              <Input
-                type="checkbox"
-                name="commByPhone"
-                id="commByPhone"
+                type="radio"
+                name="signupType"
+                value="client"
+                id="client"
                 onChange={handleChange}
               />
             </div>
-          )}
-          <hr style={{ margin: '2rem' }} />
-          <Button
-            className={
-              isValidForm && pwd === confirmPwd
-                ? classes.greenButton
-                : classes.disabledButton
-            }
-            type="submit"
-            disabled={!isValidForm || pwd !== confirmPwd}
-          >
-            <h4 style={{ padding: '1rem' }}>{signup}</h4>
-          </Button>
-          <Button
-            style={{
-              margin: '1rem 0 1rem 0',
-            }}
-            className={classes.greenButton}
-            onClick={() => push('/login')}
-          >
-            <h4 style={{ padding: '1rem' }}>{alreadyHave}</h4>
-          </Button>
-        </div>
-        <>
-          <p style={{ fontWeight: 'bold', padding: '1rem' }}>{checkMarks}</p>
-          <p className={classes.checkMarks}>
-            {pwd.length >= 8 ? (
-              <Check style={{ color: 'green' }} />
-            ) : (
-              <Close style={{ color: 'red' }} />
+            {state?.signupType === 'client' && (
+              <div>
+                <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
+                  {commPref}
+                </Paragraph>
+                <label htmlFor="commByEmail">Email</label>
+                <Input
+                  type="checkbox"
+                  name="commByEmail"
+                  id="commByEmail"
+                  onChange={handleChange}
+                />
+                <label htmlFor="commByText">{text}</label>
+                <Input
+                  type="checkbox"
+                  name="commByText"
+                  id="commByText"
+                  onChange={handleChange}
+                />
+                <label htmlFor="commByPhone">{phone}</label>
+                <Input
+                  type="checkbox"
+                  name="commByPhone"
+                  id="commByPhone"
+                  onChange={handleChange}
+                />
+              </div>
             )}
-            {characters}
-          </p>
-          <p className={classes.checkMarks}>
-            {pwd.match(/[A-Z]/g) ? (
-              <Check style={{ color: 'green' }} />
-            ) : (
-              <Close style={{ color: 'red' }} />
-            )}
-            {upperCase}
-          </p>
-          <p className={classes.checkMarks}>
-            {pwd.match(/[a-z]/g) ? (
-              <Check style={{ color: 'green' }} />
-            ) : (
-              <Close style={{ color: 'red' }} />
-            )}
-            {lowerCase}
-          </p>
-          <p className={classes.checkMarks}>
-            {pwd.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/) ? (
-              <Check style={{ color: 'green' }} />
-            ) : (
-              <Close style={{ color: 'red' }} />
-            )}
-            {number}
-          </p>
-          <p className={classes.checkMarks}>
-            {pwd === confirmPwd && pwd !== '' ? (
-              <Check style={{ color: 'green' }} />
-            ) : (
-              <Close style={{ color: 'red' }} />
-            )}
-            {match}
-          </p>
-        </>
-      </form>
-    </div>
+            <hr style={{ margin: '2rem' }} />
+            <Button
+              className={
+                isValidForm && pwd === confirmPwd
+                  ? classes.greenButton
+                  : classes.disabledButton
+              }
+              type="submit"
+              disabled={!isValidForm || pwd !== confirmPwd}
+            >
+              <h4 style={{ padding: '1rem' }}>{signup}</h4>
+            </Button>
+            <Button
+              style={{
+                margin: '1rem 0 1rem 0',
+              }}
+              className={classes.greenButton}
+              onClick={() => push('/login')}
+            >
+              <h4 style={{ padding: '1rem' }}>{alreadyHave}</h4>
+            </Button>
+          </div>
+          <>
+            <p style={{ fontWeight: 'bold', padding: '1rem' }}>{checkMarks}</p>
+            <p className={classes.checkMarks}>
+              {pwd.length >= 8 ? (
+                <Check style={{ color: 'green' }} />
+              ) : (
+                <Close style={{ color: 'red' }} />
+              )}
+              {characters}
+            </p>
+            <p className={classes.checkMarks}>
+              {pwd.match(/[A-Z]/g) ? (
+                <Check style={{ color: 'green' }} />
+              ) : (
+                <Close style={{ color: 'red' }} />
+              )}
+              {upperCase}
+            </p>
+            <p className={classes.checkMarks}>
+              {pwd.match(/[a-z]/g) ? (
+                <Check style={{ color: 'green' }} />
+              ) : (
+                <Close style={{ color: 'red' }} />
+              )}
+              {lowerCase}
+            </p>
+            <p className={classes.checkMarks}>
+              {pwd.match(/[\d`~!@#$%\^&*()+=|;:'",.<>\/?\\\-]/) ? (
+                <Check style={{ color: 'green' }} />
+              ) : (
+                <Close style={{ color: 'red' }} />
+              )}
+              {number}
+            </p>
+            <p className={classes.checkMarks}>
+              {pwd === confirmPwd && pwd !== '' ? (
+                <Check style={{ color: 'green' }} />
+              ) : (
+                <Close style={{ color: 'red' }} />
+              )}
+              {match}
+            </p>
+          </>
+        </form>
+      </div>
+    </>
   )
 }
 

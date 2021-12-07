@@ -117,7 +117,7 @@ const LoginPage = () => {
       <HeadTags
         title={`${siteTitle} | ${login}`}
         href={`/login`}
-        description={`Login`}
+        description={`${siteTitle} Login`}
       />
       <form role="form" onSubmit={handleSubmit}>
         <div

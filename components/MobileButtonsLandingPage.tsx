@@ -38,7 +38,8 @@ const MobileButtonsLandingPage = ({ activeCopy, setOpen, showFilter }) => {
           <Room />
           {activeCopy.map}
         </Fab>
-        {showFilter === 'true' && (
+
+        {showFilter && (
           <Fab
             variant="extended"
             style={{ margin: '1rem' }}

@@ -2,8 +2,13 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { POST } from '../../../helpers/'
-import { EmailSuccess, EmailFail, LeafLoader } from '../../../components/'
-import { useStyles } from '../../../constants/materialStyles'
+import {
+  EmailSuccess,
+  EmailFail,
+  LeafLoader,
+  HeadTags,
+} from '../../../components/'
+import { useStyles, siteTitle } from '../../../constants/'
 
 const EmailLandingPage = () => {
   const { asPath } = useRouter()
@@ -40,11 +45,38 @@ const EmailLandingPage = () => {
 
   if (loadStatus === 'loading')
     return (
-      <div className={classes.root}>
-        <LeafLoader />
-      </div>
+      <>
+        <HeadTags
+          title={`${siteTitle} | Loading...`}
+          href="/verifyemail"
+          description={`${siteTitle} is loading`}
+        />
+        <div className={classes.root}>
+          <LeafLoader />
+        </div>
+      </>
     )
-  else if (loadStatus === 'failed') return <EmailFail />
-  else return <EmailSuccess isClient={verificationString.startsWith('cli')} />
+  else if (loadStatus === 'failed')
+    return (
+      <>
+        <HeadTags
+          title={`${siteTitle} | Verification Failed`}
+          href="/verifyemail"
+          description={`${siteTitle} failed to verify your email`}
+        />
+        <EmailFail />
+      </>
+    )
+  else
+    return (
+      <>
+        <HeadTags
+          title={`${siteTitle} | Verification Successful`}
+          href="/verifyemail"
+          description={`${siteTitle} verified your email`}
+        />
+        <EmailSuccess isClient={verificationString.startsWith('cli')} />
+      </>
+    )
 }
 export default EmailLandingPage
