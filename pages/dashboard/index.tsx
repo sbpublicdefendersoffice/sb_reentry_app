@@ -8,9 +8,11 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-
+  Box,
+  Modal,
 } from '@mui/material'
-import LocationModal from './locationModal'
+import FormModal from './FormModal'
+import ScheduleServiceModal from '../../components/ScheduleServiceModal'
 import { POST } from '../../helpers/'
 import { useStyles } from '../../constants'
 import { ExpandMore } from '@mui/icons-material'
@@ -18,19 +20,11 @@ import AddIcon from '@mui/icons-material/Add'
 import { HeadTags } from '../../components'
 import { useLanguage } from '../../hooks'
 import { siteTitle } from '../../constants/'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 interface DashboardProps {
   userId: number
   orgId: number
   isVerified: boolean
-}
-function debounce(func, timeout = 1000) {
-  let timer
-  return (...args) => {
-    clearTimeout(timer)
-    timer = setTimeout(() => {
-      func.apply(this, args)
-    }, timeout)
-  }
 }
 
 const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
@@ -38,7 +32,12 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const classes = useStyles()
   const { language } = useLanguage()
   const [orgInfo, setOrgInfo] = useState(null)
-  const [openLocationModal, setOpenLocationModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false)
+  const [schOrService, setSchOrService] = useState('')
+  const [openScheduleServiceModal, setOpenScheduleServiceModal] =
+    useState(false)
+  const [deletedInfo, setDeletedInfo] = useState(null)
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false)
   const [dashboardButtonClicked, setDashboardButtonClicked] = useState(false)
   const logOut = async () => {
     const loggingOut: Response = await fetch('/api/logout')
@@ -120,12 +119,21 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       }
     }
   }
+
   const handleAddressChange = async e => {
     const { value, id } = e.target
     const [locProperty, locIdx] = id.split(';')
     if (locProperty === 'address') {
       latLongConverter(value, id)
     }
+  }
+  const handleDeleteClick = info => {
+    setDeletedInfo(info)
+    setDeleteConfirmation(!deleteConfirmation)
+  }
+  const handleAddScheduleServiceClick = schOrServ => {
+    setSchOrService(schOrServ)
+    setOpenScheduleServiceModal(!openScheduleServiceModal)
   }
   const saveChanges = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
@@ -140,9 +148,27 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       console.log('successful update')
     }
   }
+  const deleteLocation = async (): Promise<void> => {
+    const postCBOToPostgres: Response = await fetch(`/api/postDeleteLocation`, {
+      method: POST,
+      body: JSON.stringify({
+        locationInfo: deletedInfo,
+        org_id: orgInfo.id,
+        org_name: orgInfo.name_english,
+      }),
+    })
+    const apiResponse = await postCBOToPostgres.json()
+    if (apiResponse.message == 'error') {
+      console.log('there was an error')
+    } else {
+      setDeleteConfirmation(!deleteConfirmation)
+      console.log('successfully deleted')
+    }
+  }
+
   const handleChange = async ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { name, value, id } = target
-    let isEnglishKey = id.includes('english')
+
     if (name === 'org') {
       setOrgInfo(info => ({ ...info, [id]: value }))
     } else if (name === 'org-tags') {
@@ -195,269 +221,365 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     )
   return (
     <>
-    <HeadTags
-    title={`${siteTitle} | Organization Dashboard`}
-    href="/dashboard"
-    description="A handy little place for you to manage your organization's information."
-  />
-    <div style={{ margin: 'auto', textAlign: 'center', width: '100%' }}>
-      {!orgInfo && (
-        <Button
-          style={{ width: '45rem', margin: 'auto' }}
-          className={classes.greenButton}
-          onClick={fetchOrgInfo}
-        >
-          <h3 style={{ padding: '1rem' }}>View Dashboard</h3>
-        </Button>
-      )}
-      <form role="form" onSubmit={saveChanges}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-          }}
-        >
+      <HeadTags
+        title={`${siteTitle} | Organization Dashboard`}
+        href="/dashboard"
+        description="A handy little place for you to manage your organization's information."
+      />
+      <div style={{ margin: 'auto', textAlign: 'center', width: '100%' }}>
+        {!orgInfo && (
+          <Button
+            style={{ width: '45rem', margin: 'auto' }}
+            className={classes.greenButton}
+            onClick={fetchOrgInfo}
+          >
+            <h3 style={{ padding: '1rem' }}>View Dashboard</h3>
+          </Button>
+        )}
+        <form role="form" onSubmit={saveChanges}>
           <div
             style={{
-              margin: '6rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
             }}
           >
-            {orgInfo && <h2>Welcome to your dashboard</h2>}
-            {orgInfo &&
-              Object.entries(orgInfo).map(([key, value], i) => {
-                if (
-                  key == 'id' ||
-                  key.includes('tags') ||
-                  key.includes('tags') ||
-                  key.includes('multiple')
-                )
-                  return
-                if (typeof value !== 'object')
-                  return (
-                    <div>
-                      <Fragment key={i}>
-                        <TextField
-                          style={{ margin: '2rem 0 1rem 0', width: '45rem' }}
-                          name="org"
-                          id={key}
-                          helperText={key}
-                          inputProps={{ style: { fontSize: '1.6rem' } }}
-                          InputLabelProps={{
-                            style: { fontSize: '1.5rem', fontWeight: 'bold' },
-                          }}
-                          value={value as string}
-                          onChange={handleChange}
-                          onKeyUp={handleBlur}
-                        />
-                      </Fragment>
-                    </div>
+            <div
+              style={{
+                margin: '6rem',
+              }}
+            >
+              {orgInfo && <h2>Welcome to your dashboard</h2>}
+              {orgInfo &&
+                Object.entries(orgInfo).map(([key, value], i) => {
+                  if (
+                    key == 'id' ||
+                    key.includes('tags') ||
+                    key.includes('tags') ||
+                    key.includes('multiple')
                   )
-                else if (value instanceof Array) {
-                  return (
-                    <div
-                      style={{
-                        width: '47rem',
-                        margin: 'auto',
-                      }}
-                    >
-                      {/*   <Button>Delete this location</Button> */}
+                    return
+                  if (typeof value !== 'object')
+                    return (
+                      <div>
+                        <Fragment key={i}>
+                          <TextField
+                            style={{ margin: '2rem 0 1rem 0', width: '45rem' }}
+                            name="org"
+                            id={key}
+                            helperText={key}
+                            inputProps={{ style: { fontSize: '1.6rem' } }}
+                            InputLabelProps={{
+                              style: { fontSize: '1.5rem', fontWeight: 'bold' },
+                            }}
+                            value={value as string}
+                            onChange={handleChange}
+                            onKeyUp={handleBlur}
+                          />
+                        </Fragment>
+                      </div>
+                    )
+                  else if (value instanceof Array) {
+                    return (
                       <div
                         style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          marginTop: '2rem',
+                          width: '47rem',
+                          margin: 'auto',
                         }}
                       >
-                        <h3>Locations </h3>
-                        <Button
+                        <div
                           style={{
-                            alignSelf: 'flex-end',
+                            display: 'flex',
+                            flexDirection: 'column',
                             alignItems: 'center',
-                            // backgroundColor: '#07A767',
-                            // color: 'white',
-                            // padding: '1rem',
+                            marginTop: '2rem',
                           }}
-                          className={classes.greenButton}
-                          onClick={() =>
-                            setOpenLocationModal(!openLocationModal)
-                          }
                         >
-                          <h4 style={{ padding: '1rem' }}>
-                            {' '}
-                            <AddIcon
-                              style={{
-                                paddingTop: '.5rem',
-                                alignSelf: 'center',
-                              }}
-                            />
-                            Add a location
-                          </h4>
-                        </Button>{' '}
-                      </div>
-                      {value.map((lVal, lkey) => {
-                        return (
-                          <Accordion
+                          <h3>Locations </h3>
+                          <Button
                             style={{
-                              margin: '1.5rem 0',
-                              padding: '1rem',
+                              alignSelf: 'flex-end',
+                              alignItems: 'center',
                             }}
-                            key={lkey}
+                            className={classes.greenButton}
+                            onClick={() => setOpenModal(!openModal)}
                           >
-                            <AccordionSummary
-                              expandIcon={<ExpandMore />}
-                              aria-controls="panel3a-content"
-                              data-testid="accordion"
-                              id="panel3a-header"
-                            >
-                              <h3>{`Location: ${lVal.name}`}</h3>
-                            </AccordionSummary>
-                            {Object.entries(lVal).map(([locKey, locVal], i) => {
-                              if (
-                                locKey.includes('id') ||
-                                locKey.includes('tude')
-                              )
-                                return
-                              if (typeof locVal !== 'object')
-                                return (
-                                  <>
-                                    <AccordionDetails>
-                                      <Fragment key={i}>
-                                        <TextField
-                                          style={{
-                                            margin: '2rem 0 1rem 0',
-                                            width: '45rem',
-                                          }}
-                                          name="loc"
-                                          id={`${locKey};${lkey}`}
-                                          helperText={locKey}
-                                          inputProps={{
-                                            style: { fontSize: '1.6rem' },
-                                          }}
-                                          value={locVal as string}
-                                          onChange={handleChange}
-                                          onBlur={handleAddressChange}
-                                        />
-                                      </Fragment>
-                                    </AccordionDetails>
-                                  </>
-                                )
-                              else if (locVal !== null && locVal !== undefined)
-                                //@ts-ignore
-                                return (
-                                  <Accordion
-                                    style={{
-                                      display: 'block',
-                                      flexDirection: 'column',
-                                      justifyContent: 'center',
-                                      margin: '1.5rem',
-                                      padding: '1rem',
-                                    }}
-                                  >
-                                    <AccordionSummary
-                                      expandIcon={<ExpandMore />}
-                                      aria-controls="panel3a-content"
-                                      data-testid="accordion"
-                                      id="panel3a-header"
-                                    >
-                                      <h3>
-                                        {locKey == 'services'
-                                          ? 'Services'
-                                          : 'Schedules'}
-                                      </h3>
-                                    </AccordionSummary>
-                                    {Object.values(locVal).map(
-                                      (srvOrSchVal, i) => {
-                                        const finalVals =
-                                          Object.entries(srvOrSchVal)
-                                        return finalVals.map(
-                                          ([fKey, fVal], fI) => {
-                                            if (fKey === 'id') return
-                                            return (
-                                              <AccordionDetails key={fI}>
-                                                <Fragment key={fI}>
-                                                  <TextField
-                                                    style={{
-                                                      margin: '2rem 0 1rem 0',
-                                                      width: '41rem',
-                                                    }}
-                                                    name="other"
-                                                    id={`${fKey};${i};${locKey};${lkey}`}
-                                                    helperText={fKey as string}
-                                                    inputProps={{
-                                                      style: {
-                                                        fontSize: '1.6rem',
-                                                      },
-                                                    }}
-                                                    value={fVal as string}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                  />
-                                                </Fragment>
-                                              </AccordionDetails>
-                                            )
-                                          },
-                                        )
-                                      },
-                                    )}
-                                  </Accordion>
-                                )
-                            })}
-                          </Accordion>
-                        )
-                      })}
-                    </div>
-                  )
-                }
-              })}
+                            <h4 style={{ padding: '1rem' }}>
+                              {' '}
+                              <AddIcon
+                                style={{
+                                  paddingTop: '.5rem',
+                                  alignSelf: 'center',
+                                }}
+                              />
+                              Add a location
+                            </h4>
+                          </Button>{' '}
+                        </div>
+                        {value.map((lVal, lkey, key) => {
+                          return (
+                            <div key={lkey} style={{ display: 'flex' }}>
+                              <Accordion
+                                style={{
+                                  margin: '1.5rem 0',
+                                  padding: '1rem',
+                                }}
+                              >
+                                <AccordionSummary
+                                  expandIcon={
+                                    <ExpandMore
+                                      style={{ marginRight: '2rem' }}
+                                    />
+                                  }
+                                  aria-controls="panel3a-content"
+                                  data-testid="accordion"
+                                  id="panel3a-header"
+                                >
+                                  <h3>{`Location: ${lVal.name}`}</h3>
+                                </AccordionSummary>
+
+                                {Object.entries(lVal).map(
+                                  ([locKey, locVal], i) => {
+                                    if (
+                                      locKey.includes('id') ||
+                                      locKey.includes('tude')
+                                    )
+                                      return
+                                    if (typeof locVal !== 'object')
+                                      return (
+                                        <>
+                                          <AccordionDetails>
+                                            <Fragment key={i}>
+                                              <TextField
+                                                style={{
+                                                  margin: '2rem 0 1rem 0',
+                                                  width: '45rem',
+                                                }}
+                                                name="loc"
+                                                id={`${locKey};${lkey}`}
+                                                helperText={locKey}
+                                                inputProps={{
+                                                  style: { fontSize: '1.6rem' },
+                                                }}
+                                                value={locVal as string}
+                                                onChange={handleChange}
+                                                onBlur={handleAddressChange}
+                                              />
+                                            </Fragment>
+                                          </AccordionDetails>
+                                        </>
+                                      )
+                                    else if (
+                                      locVal !== null &&
+                                      locVal !== undefined
+                                    )
+                                      //@ts-ignore
+                                      return (
+                                        <>
+                                          <Button
+                                            style={{
+                                              alignSelf: 'flex-end',
+                                              alignItems: 'center',
+                                            }}
+                                            className={classes.greenButton}
+                                            onClick={() =>
+                                              handleAddScheduleServiceClick(
+                                                locKey,
+                                              )
+                                            }
+                                          >
+                                            <h4 style={{ padding: '1rem' }}>
+                                              {' '}
+                                              <AddIcon
+                                                style={{
+                                                  paddingTop: '.5rem',
+                                                  alignSelf: 'center',
+                                                }}
+                                              />
+                                              {locKey == 'services'
+                                                ? 'Add a Service'
+                                                : 'Add a Schedule'}
+                                            </h4>
+                                          </Button>{' '}
+                                          <Accordion
+                                            style={{
+                                              display: 'block',
+                                              flexDirection: 'column',
+                                              justifyContent: 'center',
+                                              margin: '1.5rem',
+                                              padding: '1rem',
+                                            }}
+                                          >
+                                            <AccordionSummary
+                                              expandIcon={<ExpandMore />}
+                                              aria-controls="panel3a-content"
+                                              data-testid="accordion"
+                                              id="panel3a-header"
+                                            >
+                                              <h3>
+                                                {locKey == 'services'
+                                                  ? 'Services'
+                                                  : 'Schedules'}
+                                              </h3>
+                                            </AccordionSummary>
+                                            {Object.values(locVal).map(
+                                              (srvOrSchVal, i) => {
+                                                const finalVals =
+                                                  Object.entries(srvOrSchVal)
+                                                return finalVals.map(
+                                                  ([fKey, fVal], fI) => {
+                                                    if (fKey === 'id') return
+                                                    return (
+                                                      <AccordionDetails
+                                                        key={fI}
+                                                      >
+                                                        <Fragment key={fI}>
+                                                          <TextField
+                                                            style={{
+                                                              margin:
+                                                                '2rem 0 1rem 0',
+                                                              width: '41rem',
+                                                            }}
+                                                            name="other"
+                                                            id={`${fKey};${i};${locKey};${lkey}`}
+                                                            helperText={
+                                                              fKey as string
+                                                            }
+                                                            inputProps={{
+                                                              style: {
+                                                                fontSize:
+                                                                  '1.6rem',
+                                                              },
+                                                            }}
+                                                            value={
+                                                              fVal as string
+                                                            }
+                                                            onChange={
+                                                              handleChange
+                                                            }
+                                                            onBlur={handleBlur}
+                                                          />
+                                                        </Fragment>
+                                                      </AccordionDetails>
+                                                    )
+                                                  },
+                                                )
+                                              },
+                                            )}
+                                          </Accordion>
+                                        </>
+                                      )
+                                  },
+                                )}
+                              </Accordion>
+                              <Button onClick={() => handleDeleteClick(lVal)}>
+                                <DeleteForeverIcon
+                                  style={{
+                                    // marginTop: '1.3rem',
+                                    // marginLeft: '1rem',
+                                    color: 'red',
+                                    fontSize: '2rem',
+                                  }}
+                                />
+                              </Button>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )
+                  }
+                })}
+            </div>
+            <div>
+              {orgInfo && (
+                <>
+                  {' '}
+                  <Button
+                    style={{
+                      display: 'block',
+                      width: '45rem',
+                      margin: 'auto',
+                    }}
+                    className={classes.greenButton}
+                    type="submit"
+                    //  disabled={!org || !website}
+                  >
+                    <h3 style={{ padding: '1rem' }}>Save Changes</h3>
+                  </Button>
+                  <br />
+                  <Button
+                    style={{ display: 'block', width: '45rem', margin: 'auto' }}
+                    className={classes.greenButton}
+                    //  onClick={resetValues}
+                  >
+                    <h3 style={{ padding: '1rem' }}> Reset Values</h3>
+                  </Button>
+                </>
+              )}
+              <Button
+                style={{ display: 'block', width: '45rem', margin: 'auto' }}
+                className={classes.greenButton}
+                onClick={logOut}
+              >
+                <h3 style={{ padding: '1rem' }}>Logout</h3>
+              </Button>
+            </div>
           </div>
-          <div>
-            {orgInfo && (
-              <>
-                {' '}
-                <Button
-                  style={{
-                    display: 'block',
-                    width: '45rem',
-                    margin: 'auto',
-                  }}
-                  className={classes.greenButton}
-                  type="submit"
-                  //  disabled={!org || !website}
-                >
-                  <h3 style={{ padding: '1rem' }}>Save Changes</h3>
-                </Button>
-                <br />
-                <Button
-                  style={{ display: 'block', width: '45rem', margin: 'auto' }}
-                  className={classes.greenButton}
-                  //  onClick={resetValues}
-                >
-                  <h3 style={{ padding: '1rem' }}> Reset Values</h3>
-                </Button>
-              </>
-            )}
-            <Button
-              style={{ display: 'block', width: '45rem', margin: 'auto' }}
-              className={classes.greenButton}
-              onClick={logOut}
+        </form>
+
+        {openModal && (
+          <FormModal
+            setOpenModal={setOpenModal}
+            openModal={openModal}
+            orgInfo={orgInfo}
+            setOrgInfo={setOrgInfo}
+          />
+        )}
+        {openScheduleServiceModal && (
+          <ScheduleServiceModal
+            setOpenScheduleServiceModal={setOpenScheduleServiceModal}
+            openScheduleServiceModal={openScheduleServiceModal}
+            orgInfo={orgInfo}
+            schOrService={schOrService}
+            setOrgInfo={setOrgInfo}
+          />
+        )}
+        <>
+          <Modal
+            open={deleteConfirmation}
+            onClose={() => setDeleteConfirmation(!deleteConfirmation)}
+            aria-labelledby="parent-modal-title"
+            aria-describedby="parent-modal-description"
+          >
+            <Box
+              className={classes.modalStyle}
+              style={{ width: 400, textAlign: 'center' }}
             >
-              <h3 style={{ padding: '1rem' }}>Logout</h3>
-            </Button>
-          </div>
-        </div>
-      </form>
-      {openLocationModal && (
-        <LocationModal
-          setOpenLocationModal={setOpenLocationModal}
-          openValue={openLocationModal}
-        />
-      )}
-    </div>
+              <h1 style={{ marginBottom: '3rem' }}>
+                Are you sure you want to delete this location
+              </h1>
+              <div style={{ margin: '1rem 0' }}>
+                <Button
+                  className={classes.greenButton}
+                  style={{ width: '10rem' }}
+                  onClick={deleteLocation}
+                >
+                  <h4 style={{ padding: '1rem' }}>Yes</h4>
+                </Button>
+              </div>
+              <Button
+                className={classes.greenButton}
+                style={{ width: '10rem' }}
+                onClick={() => setDeleteConfirmation(!deleteConfirmation)}
+              >
+                <h4 style={{ padding: '1rem', display: 'block' }}>Cancel</h4>
+              </Button>
+            </Box>
+          </Modal>
+        </>
+      </div>
     </>
   )
-
 }
 export default Dashboard
 export const getServerSideProps: GetServerSideProps = async (
