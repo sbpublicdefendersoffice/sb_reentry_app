@@ -6,7 +6,15 @@ import { AllModels } from '../types/sequelize'
 const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY } = DataTypes
 const opt: ModelOptions = { timestamps: false }
 
-let sql, orgObj, locObj, servObj, schObj, useObj, clientObj, cboObj
+let sql,
+  orgObj,
+  locObj,
+  servObj,
+  schObj,
+  useObj,
+  clientObj,
+  cboObj,
+  pureLocOrgObj
 
 const initDb = (): AllModels => {
   try {
@@ -143,7 +151,7 @@ const initDb = (): AllModels => {
         },
         opt,
       )
-      const locOrgObj = sql.define(
+      let locOrgObj = sql.define(
         'locations_organizations',
         {
           locations_id: { type: INTEGER },
@@ -187,7 +195,7 @@ const initDb = (): AllModels => {
         },
         opt,
       )
-
+      pureLocOrgObj = locOrgObj
       ;[locOrgObj, schLocObj, schOrgObj, servLocObj, servOrgObj].forEach(
         model => model.removeAttribute('id'),
       )
@@ -246,7 +254,16 @@ const initDb = (): AllModels => {
         .then(() => console.log('Database models created'))
     }
 
-    return { orgObj, locObj, servObj, schObj, useObj, clientObj, cboObj }
+    return {
+      orgObj,
+      locObj,
+      servObj,
+      schObj,
+      useObj,
+      clientObj,
+      cboObj,
+      pureLocOrgObj,
+    }
   } catch (err) {
     console.error(`Error setting up database: ${err}`)
   }
