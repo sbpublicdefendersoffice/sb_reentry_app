@@ -65,12 +65,12 @@ CREATE TABLE organizations
         id SERIAL PRIMARY KEY,
         created_at DATE,
         org TEXT,
-        orgId INT,
+        "orgId" INT,
         email TEXT,
-        hashedPassword TEXT,
-        verificationString TEXT,
-        passwordResetCode TEXT,
-        isVerified BOOLEAN,
+        "hashedPassword" TEXT,
+        "verificationString" TEXT,
+        "passwordResetCode" TEXT,
+        "isVerified" BOOLEAN
     );
 
     CREATE TABLE clients
@@ -78,16 +78,16 @@ CREATE TABLE organizations
         id SERIAL PRIMARY KEY,
         created_at DATE,
         email TEXT,
-        hasAppliedForExpungement BOOLEAN,
-        hasBeenNotifiedOfExpungement BOOLEAN,
-        expungementEmail TEXT,
+        "hasAppliedForExpungement" BOOLEAN,
+        "hasBeenNotifiedOfExpungement" BOOLEAN,
+        "expungementEmail" TEXT,
         phone TEXT,
-        expungementXMessageId TEXT,
-        commPrefs TEXT[],
-        hashedPassword TEXT,
-        verificationString TEXT,
-        passwordResetCode TEXT,
-        isVerified BOOLEAN,
+        "expungementXMessageId" TEXT,
+        "commPrefs" TEXT[],
+        "hashedPassword" TEXT,
+        "verificationString" TEXT,
+        "passwordResetCode" TEXT,
+        "isVerified" BOOLEAN
     );
 
     CREATE TABLE locations_organizations
