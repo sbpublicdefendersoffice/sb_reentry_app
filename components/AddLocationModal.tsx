@@ -8,6 +8,15 @@ import { textAlign } from '@mui/system'
 
 const initState = {
   name: '',
+  address: '',
+  address_2: '',
+  city: '',
+  state: '',
+  zip: '',
+  email: '',
+  website: '',
+  phone: '',
+  notes: '',
 }
 export interface AddLocationFormProps {
   handleClose: any
@@ -30,7 +39,18 @@ const AddLocationForm = ({
     callback: submit,
     validator,
   })
-  const { name } = stateValue
+  const {
+    name,
+    address,
+    address_2,
+    city,
+    state,
+    zip,
+    email,
+    phone,
+    website,
+    notes,
+  } = stateValue
 
   const latLongConverter = async (query): Promise<void> => {
     const postLatLongConverter: Response = await fetch(
@@ -58,6 +78,8 @@ const AddLocationForm = ({
     if (confirmWindow) {
       stateValue.orgName = orgInfo?.name_english
       stateValue.id = orgInfo?.id
+      stateValue.latitude = latitudeValue
+      stateValue.longitude = longitudeValue
 
       const postAddNewInfoToPostgres: Response = await fetch(
         '/api/postAddNewInfo',
@@ -118,7 +140,7 @@ const AddLocationForm = ({
             //@ts-ignore
             // helperText={errors.address ? validAddress : false}
             helperText={'Address'}
-            // onBlur={handleAddressChange}
+            onBlur={handleAddressChange}
             required
           />
           <TextField
