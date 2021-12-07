@@ -12,6 +12,17 @@ const postAddNewInfo = async (
 
     let {
       name,
+      address,
+      address_2,
+      city,
+      state,
+      zip,
+      phone,
+      email,
+      notes,
+      website,
+      latitude,
+      longitude,
 
       orgName,
       id,
@@ -20,7 +31,18 @@ const postAddNewInfo = async (
     const { locObj, pureLocOrgObj } = initDb()
 
     const addLocation = await locObj.create({
-      name,
+      name: name,
+      address: address,
+      address_2: address_2,
+      city: city,
+      state: state,
+      zip: zip,
+      phone: phone,
+      email: email,
+      website: website,
+      notes: notes,
+      latitude: latitude,
+      longitude: longitude,
     })
     res.json(addLocation)
     // await pureLocOrgObj.create({
