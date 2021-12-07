@@ -65,3 +65,41 @@ export const MelissaSuccessStory: SuccessStory = {
     bio: `Como residente de Santa Bárbara, pasé la mayor parte de mi vida familiarizándome con las calles y me sentí cómodo viviendo una vida de adicción a las drogas, cárcel y rehabilitación. Crecí con la firme creencia de que mi verdadero destino era vivir la vida oscura que estaba viviendo y a la que me había acostumbrado tanto. Me encontré perdida y sola como una madre soltera que luchaba no solo por sobrevivir sino por alimentar mi adicción. El pensamiento más lejano de mi mente fue obtener algún tipo de educación académica. En mi punto más bajo, me encontré en la cárcel una vez más, pero esta vez mirando una sentencia de 7 años por delitos graves de drogas. Sabía que tenía que haber otra forma. Después de mi aceptación a un programa de tratamiento residencial de un año, mi perspectiva sobre mi vida cambió. Me di cuenta de que mi historia podía empoderar y motivar a otros, pero para hacer esto, tenía que darle una oportunidad a la educación. Comencé mi viaje en Santa Barbara City College sin saber realmente hasta dónde llegaría. Cuando mi tiempo en SBCC comenzó a llegar a su fin, tomé la decisión de dar un salto de fe y postularme a cuatro universidades diferentes. Para mi sorpresa, logré que me aceptaran no una, sino tres de las universidades a las que había postulado. UCSB fue la aceptación que quería y antes de darme cuenta, estaba inscribiéndome en clases y preparándome para la vida como estudiante de UC. Era como una barra luminosa, necesitaba que me rompieran antes de poder brillar y, a través de la ayuda y el apoyo de organizaciones como Underground Scholars, descubrí que puedo y ayudaré a iluminar el camino para personas que son como yo.`,
   },
 }
+
+export const RyanRisingSuccessStory: SuccessStory = {
+  english: {
+    name: 'Ryan Flaco Rising',
+    role: 'Gaucho Underground Scholars Program Coordinator',
+    organization: 'Guacho Underground Scholars',
+    profilePic: '/images/RyanRising.png',
+    alt: 'picture of Ryan Flaco Rising Ortiz',
+    bio: `Ryan Flaco Rising is a Father of 4 amazing children and a formerly incarcerated student at the University of California Santa Barbara working towards his PhD in Sociology. Ryan Flaco Rising was incarcerated for a total of 15 years as a juvenile and adult. He now works hard to show the community that incarcerated and formerly incarcerated individuals can change their lives with access to resources and community support. He quotes: "We need to get in the business of building each other up, instead of breaking each other down for profit."`,
+  },
+  spanish: {
+    name: 'Ryan Flaco Rising',
+    role: 'Coordinadora del programa Underground Scholars',
+    organization: 'Académica subterránea Gaucho',
+    profilePic: '/images/RyanRising.png',
+    alt: 'foto de Ryan Flaco Rising',
+    bio: `Ryan Flaco Rising es padre de 4 hijos increíbles y un ex estudiante encarcelado en la Universidad de California en Santa Bárbara que trabaja para obtener su doctorado en sociología. Ryan Flaco Rising estuvo encarcelado durante un total de 15 años como menor y adulto. Ahora trabaja duro para mostrarle a la comunidad que las personas encarceladas y anteriormente encarceladas pueden cambiar sus vidas con acceso a recursos y apoyo comunitario. Él cita: "Necesitamos entrar en el negocio de fortalecernos unos a otros, en lugar de dividirnos unos a otros para obtener ganancias".`,
+  },
+}
+
+export const JuanBranGudielSuccessStory: SuccessStory = {
+  english: {
+    name: 'Juan Bran Gudiel',
+    role: 'Gaucho Underground Scholars Recruitment Coordinator',
+    organization: 'Guacho Underground Scholars',
+    profilePic: '/images/JuanBranGudiel.png',
+    alt: 'picture of Juan Bran Gudiel',
+    bio: `Juan Bran-Gudiel is a fourth-year transfer student at UC Santa Barbara working to get his B.A. in Chicanx Studies, considering a minor in Counseling, Clinical, and Social Psychology. Being in the foster system and formerly incarcerated, Juan is inspired to dismantle the school-to-prison pipeline. He hopes to work with at-promised youth who are impacted by multiple systems. He hopes to be a credible messenger for these youth. Juan is doing amazing work connecting the local community to the university, outreaching to youth, and advocating in the statewide Underground Scholars Initiative. Juan is the Gaucho Underground Scholars (GUS) Recruitment Coordinator; he has worked tirelessly to help formerly incarcerated students' transition into UCSB. Recently he worked to develop the warm-handoff system to ensure a calm and safe pathway into the university. He is also a personal research assistant working with a professor investigating how resources impact students' college performance. He is also working as a mentor to incoming freshmen through the PROPEL program. Juan is part of the board of directors for a new honor society at UCSB known as the Alpha Alpha Alpha society. He is always on the go, as he is also a father to two beautiful kids while earning a 3.9 GPA. In the future, he plans to earn his PhD. in order to work towards bridging the gap of systemic impacted youth and higher education.`,
+  },
+  spanish: {
+    name: 'Juan Bran Gudiel',
+    role: 'Coordinadora de reclutamiento de becarios clandestinos',
+    organization: 'Académica subterránea Gaucho',
+    profilePic: '/images/JuanBranGudiel.png',
+    alt: 'foto de Juan Bran Gudiel',
+    bio: `Juan Bran-Gudiel es un estudiante transferido de cuarto año en UC Santa Barbara que trabaja para obtener su B.A. en Estudios Chicanx, considerando una especialización en Consejería, Psicología Clínica y Social. Al estar en el sistema de crianza y anteriormente encarcelado, Juan se siente inspirado a desmantelar la tubería de la escuela a la prisión. Espera trabajar con los jóvenes prometidos que se ven afectados por múltiples sistemas. Espera ser un mensajero creíble para estos jóvenes. Juan está haciendo un trabajo increíble conectando a la comunidad local con la universidad, llegando a los jóvenes y abogando en la Iniciativa de Becarios Subterráneos a nivel estatal. Juan es el Coordinador de Reclutamiento de Gaucho Underground Scholars (GUS); ha trabajado incansablemente para ayudar a los estudiantes anteriormente encarcelados en la transición a UCSB. Recientemente, trabajó para desarrollar el sistema de transferencia en caliente para garantizar un camino tranquilo y seguro hacia la universidad. También es un asistente de investigación personal que trabaja con un profesor que investiga cómo los recursos impactan el desempeño universitario de los estudiantes. También está trabajando como mentor para estudiantes de primer año a través del programa PROPEL. Juan es parte de la junta directiva de una nueva sociedad de honor en UCSB conocida como la sociedad Alpha Alpha Alpha. Siempre está en movimiento, ya que también es padre de dos hermosos niños mientras obtiene un GPA de 3.9. En el futuro, planea obtener su doctorado. con el fin de trabajar para cerrar la brecha entre los jóvenes y la educación superior con un impacto sistémico.`,
+  },
+}
