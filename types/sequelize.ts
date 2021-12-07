@@ -132,4 +132,5 @@ export interface AllModels {
   useObj: IsThisUseful
   clientObj: Client
   cboObj: CBO
+  pureLocOrgObj: LocationOrganization
 }
