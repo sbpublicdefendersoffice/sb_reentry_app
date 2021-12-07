@@ -117,6 +117,7 @@ const initDb = (): AllModels => {
           hasAppliedForExpungement: { type: BOOLEAN },
           hasBeenNotifiedOfExpungement: { type: BOOLEAN },
           expungementEmail: { type: TEXT },
+          phone: { type: TEXT },
           expungementXMessageId: { type: TEXT },
           commPrefs: { type: ARRAY(TEXT) },
           hashedPassword: { type: TEXT },
@@ -130,6 +131,10 @@ const initDb = (): AllModels => {
       cboObj = sql.define(
         'cbos',
         {
+          // id: {
+          //   primaryKey: true,
+          //   type: INTEGER,
+          // },
           created_at: {
             type: DATE,
           },
