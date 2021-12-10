@@ -1,18 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-
 import { sendEmail } from '../../helpers'
 import initDb from '../../helpers/sequelize'
 import { isProd } from '../../constants'
-
 const postDeleteLocation = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
   try {
     const body = JSON.parse(req.body)
-
     let { locationInfo, org_id, org_name } = body
-
     const {
       id,
       name,
@@ -25,7 +21,6 @@ const postDeleteLocation = async (
       email,
       notes,
     } = locationInfo
-
     const { locObj, pureLocOrgObj } = initDb()
     try {
       //@ts-ignore
@@ -54,14 +49,12 @@ const postDeleteLocation = async (
     const deleteLocation = await locObj.destroy({
       where: { id: id },
     })
-
     await pureLocOrgObj.destroy({
       where: {
         locations_id: id,
         organizations_id: org_id,
       },
     })
-
     res.json(deleteLocation)
   } catch (err) {
     const error: string = err.message
