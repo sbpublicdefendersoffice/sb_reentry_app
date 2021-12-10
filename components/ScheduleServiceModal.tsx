@@ -10,7 +10,6 @@ export interface ScheduleServiceModalProps {
   setOrgInfo: any
   openScheduleServiceModal: any
   locationID: any
-  locationIndex: any
 }
 export default function ScheduleServiceForm({
   setOpenScheduleServiceModal,
@@ -19,7 +18,6 @@ export default function ScheduleServiceForm({
   orgInfo,
   setOrgInfo,
   locationID,
-  locationIndex,
 }: ScheduleServiceModalProps) {
   const classes = useStyles()
   const handleClose = () => {
@@ -43,7 +41,6 @@ export default function ScheduleServiceForm({
               schOrService={schOrService}
               setOrgInfo={setOrgInfo}
               locationID={locationID}
-              locationIndex={locationIndex}
             />
           ) : (
             <AddScheduleForm
@@ -54,7 +51,6 @@ export default function ScheduleServiceForm({
               schOrService={schOrService}
               setOrgInfo={setOrgInfo}
               locationID={locationID}
-              locationIndex={locationIndex}
             />
           )}
         </Box>
