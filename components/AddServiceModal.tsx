@@ -1,7 +1,8 @@
 import React, { useState, FormEvent } from 'react'
 import { Button, TextField } from '@mui/material'
 import { POST } from '../helpers/'
-import { useFormFields } from '../hooks'
+import useForm from '../hooks/useForm'
+import useToast from '../hooks/useToast'
 import { useStyles } from '../constants'
 import { validator } from '../helpers/formValidator'
 let initState = {
@@ -20,7 +21,6 @@ export interface AddScheduleServiceFormProps {
   openScheduleServiceModal: any
   setOpenScheduleServiceModal: any
   locationID: any
-  locationIndex: number
 }
 const AddServiceForm = ({
   handleClose,
@@ -30,14 +30,14 @@ const AddServiceForm = ({
   openScheduleServiceModal,
   setOpenScheduleServiceModal,
   locationID,
-  locationIndex,
 }: AddScheduleServiceFormProps) => {
   const classes = useStyles()
   const [state, setState] = useState(initState)
+  const { setToast } = useToast()
   const submit = () => {
     console.log(' Submited')
   }
-  let { handleChange, handleBlur, stateValue, errors } = useFormFields({
+  let { handleChange, handleBlur, stateValue, errors } = useForm({
     initState,
     callback: submit,
     validator,
@@ -53,10 +53,7 @@ const AddServiceForm = ({
       },
     )
     const apiResponse = await postTranslate.json()
-    console.log(
-      '🚀 ~ file: AddServiceModal.tsx ~ line 68 ~ translateInfo ~ apiResponse',
-      apiResponse,
-    )
+
     setState({ ...state, name_spanish: apiResponse.translatedText })
   }
   const handleTranslation = e => {
@@ -81,10 +78,13 @@ const AddServiceForm = ({
         },
       )
       const apiResponse = await postAddNewInfoToPostgres.json()
+
       const temp = orgInfo
-      temp.locations[locationIndex].services.push(apiResponse)
+      const findIndex = temp.locations.findIndex(x => x.id === locationID)
+      temp.locations[findIndex].services.push(apiResponse)
       setOrgInfo({ ...temp })
       setOpenScheduleServiceModal(!openScheduleServiceModal)
+      setToast('Your service was successfully added')
     }
   }
   return (
