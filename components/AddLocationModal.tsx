@@ -1,11 +1,9 @@
 import React, { useState, FormEvent } from 'react'
-import { Button, TextField } from '@mui/material'
+import { Button, TextField, Autocomplete } from '@mui/material'
 import { POST } from '../helpers/'
 import { useFormFields } from '../hooks'
 import { useStyles } from '../constants'
 import { validator } from '../helpers/formValidator'
-import { textAlign } from '@mui/system'
-
 const initState = {
   name: '',
   address: '',
@@ -29,8 +27,9 @@ const AddLocationForm = ({
   setOrgInfo,
 }: AddLocationFormProps) => {
   const classes = useStyles()
-  const [latitudeValue, setLatitudeValue] = useState(0)
-  const [longitudeValue, setLongitudeValue] = useState(0)
+  const [addressValue, setAddressValue] = useState('')
+  const [features, setFeatures] = useState([])
+  const [addressInfo, setAddressInfo] = useState(null)
   const submit = () => {
     console.log(' Submited')
   }
@@ -39,36 +38,30 @@ const AddLocationForm = ({
     callback: submit,
     validator,
   })
-  const {
-    name,
-    address,
-    address_2,
-    city,
-    state,
-    zip,
-    email,
-    phone,
-    website,
-    notes,
-  } = stateValue
-
+  const { name, address_2, email, phone, website, notes } = stateValue
   const latLongConverter = async (query): Promise<void> => {
     const postLatLongConverter: Response = await fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?proximity=-119.71157,34.41503&access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`,
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?proximity=-119.71157,34.41503&autocomplete=${true}&access_token=${
+        process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
+      }`,
     )
     const apiResponse = await postLatLongConverter.json()
-
-    setLatitudeValue(apiResponse.features[0].center[1])
-
-    setLongitudeValue(apiResponse.features[0].center[0])
-
+    setFeatures(
+      apiResponse.features.map(feature => {
+        return { ...feature, label: feature.place_name }
+      }),
+    )
     return apiResponse
   }
   const handleAddressChange = async e => {
     const { value } = e.target
-    console.log('value:', value)
-
-    latLongConverter(value)
+    setAddressValue(value)
+    if (value.length > 2) {
+      latLongConverter(value)
+    }
+  }
+  const handleInput = (e: React.SyntheticEvent, value) => {
+    setAddressValue(value)
   }
   const addNewInfo = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
@@ -78,9 +71,14 @@ const AddLocationForm = ({
     if (confirmWindow) {
       stateValue.orgName = orgInfo?.name_english
       stateValue.id = orgInfo?.id
-      stateValue.latitude = latitudeValue
-      stateValue.longitude = longitudeValue
-
+      stateValue.latitude = addressInfo.center[1]
+      stateValue.longitude = addressInfo.center[0]
+      stateValue.address = addressInfo.place_name.split(',')[0]
+      stateValue.city = addressInfo.context[2].text
+      stateValue.zip = addressInfo.context[1].text
+      stateValue.state = addressInfo.context[4].text
+        .toUpperCase()
+        .substring(0, 2)
       const postAddNewInfoToPostgres: Response = await fetch(
         '/api/postAddNewInfo',
         {
@@ -89,19 +87,21 @@ const AddLocationForm = ({
         },
       )
       const apiResponse = await postAddNewInfoToPostgres.json()
-      console.log(
-        '🚀 ~ file: AddLocationModal.tsx ~ line 95 ~ addNewInfo ~ apiResponse',
-        apiResponse,
-      )
-
+      setOrgInfo(info => {
+        const tempLocValues = [...info.locations]
+        tempLocValues.push(apiResponse)
+        return {
+          ...info,
+          locations: [...tempLocValues],
+        }
+      })
       handleClose()
     }
   }
-
   return (
     <div>
       {' '}
-      <form role="form" onSubmit={addNewInfo}>
+      <form role="form" autoComplete="none" onSubmit={addNewInfo}>
         <div
           style={{
             display: 'flex',
@@ -113,7 +113,6 @@ const AddLocationForm = ({
           <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>
             {'Location Information'}
           </h1>
-
           <TextField
             value={name}
             name="name"
@@ -124,24 +123,29 @@ const AddLocationForm = ({
             // helperText={errors.name ? invalidOrg : false}
             style={{ marginTop: '1rem' }}
             // onBlur={handleBlur}
-            placeholder={name}
+            placeholder={'Name of Location'}
             helperText={'Name'}
           />
-
-          <TextField
-            value={address}
-            name="address"
-            // title={validAddress}
-            onChange={handleChange}
-            style={{ marginTop: '1rem' }}
-            // placeholder={`${someone}@gmail.com`}
-            //@ts-ignore
-            // error={errors.address ? true : false}
-            //@ts-ignore
-            // helperText={errors.address ? validAddress : false}
-            helperText={'Address'}
-            onBlur={handleAddressChange}
-            required
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            value={addressValue}
+            options={[addressValue, ...features]}
+            filterSelectedOptions
+            // sx={{ width: 300 }}
+            onChange={(event, selectedValue) => {
+              setAddressValue(selectedValue?.place_name)
+              setAddressInfo(selectedValue)
+            }}
+            renderInput={params => (
+              <TextField
+                autoComplete="off"
+                value={addressValue}
+                onChange={handleAddressChange}
+                {...params}
+                label="Address"
+              />
+            )}
           />
           <TextField
             value={address_2}
@@ -149,67 +153,20 @@ const AddLocationForm = ({
             // title={validAddress}
             onChange={handleChange}
             style={{ marginTop: '1rem' }}
-            // placeholder={`${someone}@gmail.com`}
+            placeholder={`i.e. suite, office or building number`}
             //@ts-ignore
             // error={errors.address_2 ? true : false}
             //@ts-ignore
             helperText={'Address 2'}
-            // helperText={errors.address2 ? validAddress2 : false}
-            // onBlur={handleBlur}
-            // required
           />
-          <TextField
-            value={city}
-            name="city"
-            // title={validCity}
-            onChange={handleChange}
-            style={{ marginTop: '1rem' }}
-            // placeholder={`${someone}@gmail.com`}
-            //@ts-ignore
-            // error={errors.city ? true : false}
-            //@ts-ignore
-            // helperText={errors.address ? validAddress : false}
-            helperText={'City'}
-            // onBlur={handleBlur}
-            required
-          />
-          <TextField
-            value={state}
-            name="state"
-            // title={validState}
-            onChange={handleChange}
-            style={{ marginTop: '1rem' }}
-            // placeholder={`${someone}@gmail.com`}
-            //@ts-ignore
-            // error={errors.state ? true : false}
-            //@ts-ignore
-            // helperText={errors.state ? validState : false}
-            helperText={'State'}
-            // onBlur={handleBlur}
-            required
-          />
-          <TextField
-            value={zip}
-            name="zip"
-            // title={validZip}
-            onChange={handleChange}
-            style={{ marginTop: '1rem' }}
-            // placeholder={`${someone}@gmail.com`}
-            //@ts-ignore
-            // error={errors.zip ? true : false}
-            //@ts-ignore
-            // helperText={errors.zip ? validZip : false}
-            helperText={'Zip'}
-            // onBlur={handleBlur}
-            // required
-          />
+
           <TextField
             value={phone}
             name="phone"
             // title={validAddress}
             onChange={handleChange}
             style={{ marginTop: '1rem' }}
-            // placeholder={`${someone}@gmail.com`}
+            placeholder={`Phone`}
             //@ts-ignore
             // error={errors.phone ? true : false}
             //@ts-ignore
@@ -224,7 +181,7 @@ const AddLocationForm = ({
             // title={validWebsite}
             onChange={handleChange}
             style={{ marginTop: '1rem' }}
-            // placeholder={`${someone}@gmail.com`}
+            placeholder={`Website`}
             //@ts-ignore
             // error={errors.website ? true : false}
             //@ts-ignore
@@ -239,7 +196,7 @@ const AddLocationForm = ({
             // title={'Email'}
             onChange={handleChange}
             style={{ marginTop: '1rem' }}
-            // placeholder={`${someone}@gmail.com`}
+            placeholder={`Email`}
             //@ts-ignore
             // error={errors.email ? true : false}
             //@ts-ignore
@@ -254,7 +211,7 @@ const AddLocationForm = ({
             // title={validNotes}
             onChange={handleChange}
             style={{ marginTop: '1rem' }}
-            // placeholder={`${someone}@gmail.com`}
+            placeholder={`Notes`}
             //@ts-ignore
             // error={errors.notes ? true : false}
             //@ts-ignore
@@ -264,7 +221,6 @@ const AddLocationForm = ({
             // required
           />
           <hr style={{ margin: '2rem' }} />
-
           <Button
             style={{
               margin: '1rem 0 1rem 0',
@@ -288,5 +244,4 @@ const AddLocationForm = ({
     </div>
   )
 }
-
 export default AddLocationForm
