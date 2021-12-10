@@ -19,9 +19,11 @@ const postAddNewInfo = async (
       name_spanish,
     } = body
     const { servObj, schObj, pureLocSchObj, pureLocServObj } = initDb()
+
     if (schOrService == 'schedules') {
+      const maxId: number = await schObj.max('id')
       const addSchedule = await schObj.create({
-        id: 5561,
+        id: maxId + 1,
         open_time: open_time,
         close_time: close_time,
         days: days,
@@ -51,24 +53,19 @@ const postAddNewInfo = async (
         res.status(500)
       }
     }
+    const maxId: number = await servObj.max('id')
     const addService = await servObj.create({
-      id: 4456,
+      id: maxId + 1,
       name_english: name_english,
       name_spanish: name_spanish,
     })
-    console.log(
-      '🚀 ~ file: postAddNewSchOrServ.tsx ~ line 70 ~ addService',
-      addService,
-    )
+
     res.json(addService)
     const addPure = await pureLocServObj.create({
       services_id: addService.id,
       locations_id: locationID,
     })
-    console.log(
-      '🚀 ~ file: postAddNewSchOrServ.tsx ~ line 80 ~ pureLocServObj',
-      addPure,
-    )
+
     try {
       //@ts-ignore
       await sendEmail({
@@ -86,8 +83,8 @@ const postAddNewInfo = async (
       res.status(500)
     }
   } catch (err) {
-    const error: string = err
-    console.error(error, 'didnt make the first one🚨')
+    const error: string = err.message
+    console.error(error)
     res.json({ error })
   }
 }
