@@ -4,7 +4,6 @@ import { POST } from '../helpers/'
 import { useFormFields } from '../hooks'
 import { useStyles } from '../constants'
 import { validator } from '../helpers/formValidator'
-
 let initState = {
   name_english: '',
   name_spanish: '',
@@ -13,7 +12,6 @@ let initState = {
   org_id: '',
   locationID: '',
 }
-
 export interface AddScheduleServiceFormProps {
   handleClose: any
   orgInfo: any
@@ -39,13 +37,11 @@ const AddServiceForm = ({
   const submit = () => {
     console.log(' Submited')
   }
-
   let { handleChange, handleBlur, stateValue, errors } = useFormFields({
     initState,
     callback: submit,
     validator,
   })
-
   let { name_english, name_spanish } = state
   const translateInfo = async (q): Promise<void> => {
     const postTranslate: Response = await fetch(
@@ -65,7 +61,6 @@ const AddServiceForm = ({
   }
   const handleTranslation = e => {
     const { value } = e.target
-
     translateInfo(value)
   }
   const addNewInfo = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -78,7 +73,6 @@ const AddServiceForm = ({
       state.org_name = orgInfo?.name_english
       state.org_id = orgInfo?.id
       state.locationID = locationID
-
       const postAddNewInfoToPostgres: Response = await fetch(
         '/api/postAddNewSchOrServ',
         {
@@ -87,17 +81,12 @@ const AddServiceForm = ({
         },
       )
       const apiResponse = await postAddNewInfoToPostgres.json()
-
       const temp = orgInfo
-
       temp.locations[locationIndex].services.push(apiResponse)
-
       setOrgInfo({ ...temp })
-
       setOpenScheduleServiceModal(!openScheduleServiceModal)
     }
   }
-
   return (
     <div>
       {' '}
@@ -113,7 +102,6 @@ const AddServiceForm = ({
           <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>
             Service Information
           </h1>
-
           <TextField
             //@ts-ignore
             value={name_english}
@@ -146,9 +134,7 @@ const AddServiceForm = ({
             // onBlur={handleBlur}
             // required
           />
-
           <hr style={{ margin: '2rem' }} />
-
           <Button
             style={{
               margin: '1rem 0 1rem 0',
@@ -172,5 +158,4 @@ const AddServiceForm = ({
     </div>
   )
 }
-
 export default AddServiceForm
