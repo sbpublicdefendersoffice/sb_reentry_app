@@ -1,10 +1,10 @@
 import React from 'react'
 import { Modal, Box } from '@mui/material'
 
-import { useStyles } from '../../constants'
+import { useStyles } from '../constants'
 
-import AddLocationForm from '../../components/AddLocationModal'
-import { POST } from '../../helpers/'
+import AddLocationForm from './AddLocationModal'
+import { POST } from '../helpers'
 
 export interface FormModalProps {
   orgInfo: any
