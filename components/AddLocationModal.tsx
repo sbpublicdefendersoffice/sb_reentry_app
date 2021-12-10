@@ -1,7 +1,8 @@
 import React, { useState, FormEvent } from 'react'
 import { Button, TextField, Autocomplete } from '@mui/material'
 import { POST } from '../helpers/'
-import { useFormFields } from '../hooks'
+import useForm from '../hooks/useForm'
+import useToast from '../hooks/useToast'
 import { useStyles } from '../constants'
 import { validator } from '../helpers/formValidator'
 const initState = {
@@ -30,10 +31,11 @@ const AddLocationForm = ({
   const [addressValue, setAddressValue] = useState('')
   const [features, setFeatures] = useState([])
   const [addressInfo, setAddressInfo] = useState(null)
+  const { setToast } = useToast()
   const submit = () => {
     console.log(' Submited')
   }
-  const { handleChange, handleBlur, stateValue, errors } = useFormFields({
+  const { handleChange, handleBlur, stateValue, errors } = useForm({
     initState,
     callback: submit,
     validator,
@@ -60,9 +62,6 @@ const AddLocationForm = ({
       latLongConverter(value)
     }
   }
-  const handleInput = (e: React.SyntheticEvent, value) => {
-    setAddressValue(value)
-  }
   const addNewInfo = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
     const confirmWindow = window.confirm(
@@ -80,7 +79,7 @@ const AddLocationForm = ({
         .toUpperCase()
         .substring(0, 2)
       const postAddNewInfoToPostgres: Response = await fetch(
-        '/api/postAddNewInfo',
+        '/api/postAddNewLocation',
         {
           method: POST,
           body: JSON.stringify(stateValue),
@@ -89,13 +88,14 @@ const AddLocationForm = ({
       const apiResponse = await postAddNewInfoToPostgres.json()
       setOrgInfo(info => {
         const tempLocValues = [...info.locations]
-        tempLocValues.push(apiResponse)
+        tempLocValues.push({ ...apiResponse, schedules: [], services: [] })
         return {
           ...info,
           locations: [...tempLocValues],
         }
       })
       handleClose()
+      setToast('You successfully added your location')
     }
   }
   return (
