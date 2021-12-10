@@ -26,18 +26,22 @@ interface DashboardProps {
   orgId: number
   isVerified: boolean
 }
-
 const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const { push } = useRouter()
   const classes = useStyles()
   const { language } = useLanguage()
   const [orgInfo, setOrgInfo] = useState(null)
+  const [locationID, setLocationID] = useState(0)
+  const [locationIndex, setLocationIndex] = useState(0)
+  const [schOrServIndex, setSchOrServIndex] = useState(0)
   const [openModal, setOpenModal] = useState(false)
   const [schOrService, setSchOrService] = useState('')
   const [openScheduleServiceModal, setOpenScheduleServiceModal] =
     useState(false)
   const [deletedInfo, setDeletedInfo] = useState(null)
   const [deleteConfirmation, setDeleteConfirmation] = useState(false)
+  const [deleteSchorServConfirmation, setDeleteSchorServConfirmation] =
+    useState(false)
   const [dashboardButtonClicked, setDashboardButtonClicked] = useState(false)
   const logOut = async () => {
     const loggingOut: Response = await fetch('/api/logout')
@@ -119,7 +123,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       }
     }
   }
-
   const handleAddressChange = async e => {
     const { value, id } = e.target
     const [locProperty, locIdx] = id.split(';')
@@ -127,11 +130,32 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       latLongConverter(value, id)
     }
   }
-  const handleDeleteClick = info => {
+  const handleDeleteClick = (info, locationIndex) => {
     setDeletedInfo(info)
+    setLocationIndex(locationIndex)
     setDeleteConfirmation(!deleteConfirmation)
   }
-  const handleAddScheduleServiceClick = schOrServ => {
+  const handleDeleteSchOrServClick = (
+    schOrServ,
+    info,
+    id,
+    locationIndex,
+    schOrServIndex,
+  ) => {
+    setDeletedInfo(info)
+    setSchOrService(schOrServ)
+    setSchOrServIndex(schOrServIndex)
+    setLocationID(id)
+    setLocationIndex(locationIndex)
+    setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
+  }
+  const handleAddScheduleServiceClick = (
+    schOrServ,
+    locationID,
+    locationIndex,
+  ) => {
+    setLocationIndex(locationIndex)
+    setLocationID(locationID)
     setSchOrService(schOrServ)
     setOpenScheduleServiceModal(!openScheduleServiceModal)
   }
@@ -161,14 +185,42 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     if (apiResponse.message == 'error') {
       console.log('there was an error')
     } else {
+      let temp = orgInfo
+      temp.locations.splice(locationIndex, 1)
       setDeleteConfirmation(!deleteConfirmation)
       console.log('successfully deleted')
     }
   }
+  const deleteScheduleOrService = async (): Promise<void> => {
+    const postCBOToPostgres: Response = await fetch(
+      `/api/postDeleteScheduleService`,
+      {
+        method: POST,
+        body: JSON.stringify({
+          info: deletedInfo,
+          schOrService: schOrService,
+          location_id: locationID,
+          org_name: orgInfo.name_english,
+        }),
+      },
+    )
+    const apiResponse = await postCBOToPostgres.json()
+    if (apiResponse.message == 'error') {
+      console.log('there was an error')
+    } else {
+      const temp = orgInfo
 
+      if (schOrService == 'services') {
+        temp.locations[locationIndex].services.splice(schOrServIndex, 1)
+      } else {
+        temp.locations[locationIndex].schedules.splice(schOrServIndex, 1)
+      }
+      setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
+      console.log('successfully deleted')
+    }
+  }
   const handleChange = async ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { name, value, id } = target
-
     if (name === 'org') {
       setOrgInfo(info => ({ ...info, [id]: value }))
     } else if (name === 'org-tags') {
@@ -337,7 +389,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                 >
                                   <h3>{`Location: ${lVal.name}`}</h3>
                                 </AccordionSummary>
-
                                 {Object.entries(lVal).map(
                                   ([locKey, locVal], i) => {
                                     if (
@@ -375,16 +426,24 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                     )
                                       //@ts-ignore
                                       return (
-                                        <>
-                                          <Button
+                                        <div style={{ display: 'inline' }}>
+                                          <h3
                                             style={{
-                                              alignSelf: 'flex-end',
-                                              alignItems: 'center',
+                                              marginBottom: '2rem',
                                             }}
+                                          >
+                                            {' '}
+                                            {locKey == 'services'
+                                              ? 'Services'
+                                              : 'Schedules'}
+                                          </h3>
+                                          <Button
                                             className={classes.greenButton}
                                             onClick={() =>
                                               handleAddScheduleServiceClick(
                                                 locKey,
+                                                lVal.id,
+                                                key,
                                               )
                                             }
                                           >
@@ -401,82 +460,129 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                                 : 'Add a Schedule'}
                                             </h4>
                                           </Button>{' '}
-                                          <Accordion
-                                            style={{
-                                              display: 'block',
-                                              flexDirection: 'column',
-                                              justifyContent: 'center',
-                                              margin: '1.5rem',
-                                              padding: '1rem',
-                                            }}
-                                          >
-                                            <AccordionSummary
-                                              expandIcon={<ExpandMore />}
-                                              aria-controls="panel3a-content"
-                                              data-testid="accordion"
-                                              id="panel3a-header"
-                                            >
-                                              <h3>
-                                                {locKey == 'services'
-                                                  ? 'Services'
-                                                  : 'Schedules'}
-                                              </h3>
-                                            </AccordionSummary>
-                                            {Object.values(locVal).map(
-                                              (srvOrSchVal, i) => {
-                                                const finalVals =
-                                                  Object.entries(srvOrSchVal)
-                                                return finalVals.map(
-                                                  ([fKey, fVal], fI) => {
-                                                    if (fKey === 'id') return
-                                                    return (
-                                                      <AccordionDetails
-                                                        key={fI}
-                                                      >
-                                                        <Fragment key={fI}>
-                                                          <TextField
+                                          {Object.values(locVal).map(
+                                            (srvOrSchVal, i) => {
+                                              return (
+                                                <div key={i}>
+                                                  <Accordion
+                                                    style={{
+                                                      display: 'block',
+                                                      flexDirection: 'column',
+                                                      justifyContent: 'center',
+                                                      margin: '1.5rem',
+                                                      padding: '1rem',
+                                                    }}
+                                                  >
+                                                    <AccordionSummary
+                                                      expandIcon={
+                                                        <ExpandMore />
+                                                      }
+                                                      aria-controls="panel3a-content"
+                                                      data-testid="accordion"
+                                                      id="panel3a-header"
+                                                    >
+                                                      <>
+                                                        <h3>
+                                                          {locKey == 'services'
+                                                            ? `Service:  ${srvOrSchVal.name_english}`
+                                                            : 'Schedules'}
+                                                        </h3>
+                                                        <Button
+                                                          onClick={() =>
+                                                            handleDeleteSchOrServClick(
+                                                              locKey,
+                                                              srvOrSchVal,
+                                                              lVal.id,
+                                                              lkey,
+                                                              i,
+                                                            )
+                                                          }
+                                                          style={{
+                                                            position:
+                                                              'absolute',
+                                                            right: '3rem',
+                                                          }}
+                                                        >
+                                                          <DeleteForeverIcon
                                                             style={{
-                                                              margin:
-                                                                '2rem 0 1rem 0',
-                                                              width: '41rem',
+                                                              color: 'red',
+                                                              fontSize: '2rem',
                                                             }}
-                                                            name="other"
-                                                            id={`${fKey};${i};${locKey};${lkey}`}
-                                                            helperText={
-                                                              fKey as string
-                                                            }
-                                                            inputProps={{
-                                                              style: {
-                                                                fontSize:
-                                                                  '1.6rem',
-                                                              },
-                                                            }}
-                                                            value={
-                                                              fVal as string
-                                                            }
-                                                            onChange={
-                                                              handleChange
-                                                            }
-                                                            onBlur={handleBlur}
                                                           />
-                                                        </Fragment>
-                                                      </AccordionDetails>
-                                                    )
-                                                  },
-                                                )
-                                              },
-                                            )}
-                                          </Accordion>
-                                        </>
+                                                        </Button>
+                                                      </>
+                                                    </AccordionSummary>
+                                                    {Object.entries(
+                                                      srvOrSchVal,
+                                                    ).map(
+                                                      ([fKey, fVal], fI) => {
+                                                        if (fKey === 'id')
+                                                          return
+                                                        return (
+                                                          <div
+                                                            style={{
+                                                              display: 'flex',
+                                                            }}
+                                                          >
+                                                            <AccordionDetails
+                                                              key={fI}
+                                                            >
+                                                              <div
+                                                                style={{
+                                                                  display:
+                                                                    'flex',
+                                                                }}
+                                                                key={fI}
+                                                              >
+                                                                <TextField
+                                                                  style={{
+                                                                    margin:
+                                                                      '2rem 0 1rem 0',
+                                                                    width:
+                                                                      '41rem',
+                                                                  }}
+                                                                  name="other"
+                                                                  id={`${fKey};${i};${locKey};${lkey}`}
+                                                                  helperText={
+                                                                    fKey as string
+                                                                  }
+                                                                  inputProps={{
+                                                                    style: {
+                                                                      fontSize:
+                                                                        '1.6rem',
+                                                                    },
+                                                                  }}
+                                                                  value={
+                                                                    fVal as string
+                                                                  }
+                                                                  onChange={
+                                                                    handleChange
+                                                                  }
+                                                                  onBlur={
+                                                                    handleBlur
+                                                                  }
+                                                                />
+                                                              </div>
+                                                            </AccordionDetails>
+                                                          </div>
+                                                        )
+                                                      },
+                                                    )}
+                                                  </Accordion>
+                                                </div>
+                                              )
+                                            },
+                                          )}
+                                        </div>
                                       )
                                   },
                                 )}
                               </Accordion>
-                              <Button onClick={() => handleDeleteClick(lVal)}>
+                              <Button
+                                onClick={() => handleDeleteClick(lVal, lkey)}
+                              >
                                 <DeleteForeverIcon
                                   style={{
-                                    // marginTop: '1.3rem',
-                                    // marginLeft: '1rem',
                                     color: 'red',
                                     fontSize: '2rem',
                                   }}
@@ -507,13 +613,13 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                     <h3 style={{ padding: '1rem' }}>Save Changes</h3>
                   </Button>
                   <br />
-                  <Button
+                  {/* <Button
                     style={{ display: 'block', width: '45rem', margin: 'auto' }}
                     className={classes.greenButton}
                     //  onClick={resetValues}
                   >
                     <h3 style={{ padding: '1rem' }}> Reset Values</h3>
-                  </Button>
+                  </Button> */}
                 </>
               )}
               <Button
@@ -526,7 +632,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
             </div>
           </div>
         </form>
-
         {openModal && (
           <FormModal
             setOpenModal={setOpenModal}
@@ -542,8 +647,45 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
             orgInfo={orgInfo}
             schOrService={schOrService}
             setOrgInfo={setOrgInfo}
+            locationID={locationID}
+            locationIndex={locationIndex}
           />
         )}
+        <>
+          <Modal
+            open={deleteSchorServConfirmation}
+            onClose={() => setDeleteConfirmation(!deleteConfirmation)}
+            aria-labelledby="parent-modal-title"
+            aria-describedby="parent-modal-description"
+          >
+            <Box
+              className={classes.modalStyle}
+              style={{ width: 400, textAlign: 'center' }}
+            >
+              <h1 style={{ marginBottom: '3rem' }}>
+                Are you sure you want to delete?
+              </h1>
+              <div style={{ margin: '1rem 0' }}>
+                <Button
+                  className={classes.greenButton}
+                  style={{ width: '10rem' }}
+                  onClick={deleteScheduleOrService}
+                >
+                  <h4 style={{ padding: '1rem' }}>Yes</h4>
+                </Button>
+              </div>
+              <Button
+                className={classes.greenButton}
+                style={{ width: '10rem' }}
+                onClick={() =>
+                  setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
+                }
+              >
+                <h4 style={{ padding: '1rem', display: 'block' }}>Cancel</h4>
+              </Button>
+            </Box>
+          </Modal>
+        </>
         <>
           <Modal
             open={deleteConfirmation}
@@ -556,7 +698,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
               style={{ width: 400, textAlign: 'center' }}
             >
               <h1 style={{ marginBottom: '3rem' }}>
-                Are you sure you want to delete this location
+                Are you sure you want to delete?
               </h1>
               <div style={{ margin: '1rem 0' }}>
                 <Button
