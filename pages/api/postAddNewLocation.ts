@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { sendEmail } from '../../helpers'
 import initDb from '../../helpers/sequelize'
-const postAddNewInfo = async (
+const postAddNewLocation = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
@@ -24,8 +24,9 @@ const postAddNewInfo = async (
       id,
     } = body
     const { locObj, pureLocOrgObj } = initDb()
+    const maxId: number = await locObj.max('id')
     const addLocation = await locObj.create({
-      id: 99996,
+      id: maxId + 1,
       name: name,
       address: address,
       address_2: address_2,
@@ -77,4 +78,4 @@ const postAddNewInfo = async (
     res.json({ error })
   }
 }
-export default postAddNewInfo
+export default postAddNewLocation
