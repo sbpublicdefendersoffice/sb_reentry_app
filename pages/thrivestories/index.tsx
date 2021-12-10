@@ -8,6 +8,9 @@ import {
   ArturoSuccessStory,
   LisaSuccessStory,
   MelissaSuccessStory,
+  RyanRisingSuccessStory,
+  JuanBranGudielSuccessStory,
+  GilbertoAnthonyMurilloSuccessStory,
 } from '../../constants/'
 import { HeadTags } from '../../components'
 const ThriveStories = () => {
@@ -16,7 +19,10 @@ const ThriveStories = () => {
   const successStories: SuccessStory[] = [
     ArturoSuccessStory,
     LisaSuccessStory,
+    RyanRisingSuccessStory,
     MelissaSuccessStory,
+    GilbertoAnthonyMurilloSuccessStory,
+    JuanBranGudielSuccessStory,
   ]
   const activeCopy = successCopy[language]
   return (
