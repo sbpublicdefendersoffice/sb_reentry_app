@@ -1,20 +1,11 @@
-import React, { useState, Fragment, FormEvent } from 'react'
-import {
-  Button,
-  TextField,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Modal,
-  Box,
-} from '@mui/material'
+import React, { FormEvent } from 'react'
+import { Button, TextField } from '@mui/material'
 import { POST } from '../helpers'
-import { useFormFields } from '../hooks'
+import useForm from '../hooks/useForm'
+import useToast from '../hooks/useToast'
 import { useStyles } from '../constants'
 import { validator } from '../helpers/formValidator'
-import { textAlign } from '@mui/system'
-import { InviteInstance } from 'twilio/lib/rest/chat/v1/service/channel/invite'
-// import AddConfirmationModal from './AddConfirmationModal'
+
 let initState = {
   open_time: '',
   close_time: '',
@@ -29,7 +20,6 @@ export interface AddScheduleServiceFormProps {
   openScheduleServiceModal: any
   setOpenScheduleServiceModal: any
   locationID: any
-  locationIndex: any
 }
 const AddScheduleForm = ({
   handleClose,
@@ -39,13 +29,13 @@ const AddScheduleForm = ({
   openScheduleServiceModal,
   setOpenScheduleServiceModal,
   locationID,
-  locationIndex,
 }: AddScheduleServiceFormProps) => {
   const classes = useStyles()
+  const { setToast } = useToast()
   const submit = () => {
     console.log(' Submited')
   }
-  let { handleChange, handleBlur, stateValue, errors } = useFormFields({
+  let { handleChange, handleBlur, stateValue, errors } = useForm({
     initState,
     callback: submit,
     validator,
@@ -70,9 +60,11 @@ const AddScheduleForm = ({
       )
       const apiResponse = await postAddNewInfoToPostgres.json()
       const temp = orgInfo
-      temp.locations[locationIndex].schedules.push(apiResponse)
+      const findIndex = temp.locations.findIndex(x => x.id === locationID)
+      temp.locations[findIndex].schedules.push(apiResponse)
       setOrgInfo({ ...temp })
       setOpenScheduleServiceModal(!openScheduleServiceModal)
+      setToast('You successfully added your schedule')
     }
   }
   return (
