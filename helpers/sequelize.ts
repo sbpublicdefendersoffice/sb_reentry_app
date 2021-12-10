@@ -1,9 +1,10 @@
 import { Sequelize, DataTypes, ModelOptions } from 'sequelize'
+import { serialize } from 'v8'
 
 import postgresEnv from '../constants/database-creds'
 import { AllModels } from '../types/sequelize'
 
-const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY } = DataTypes
+const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY, UUID } = DataTypes
 const opt: ModelOptions = { timestamps: false }
 
 let sql,
@@ -14,7 +15,9 @@ let sql,
   useObj,
   clientObj,
   cboObj,
-  pureLocOrgObj
+  pureLocOrgObj,
+  pureLocSchObj,
+  pureLocServObj
 
 const initDb = (): AllModels => {
   try {
@@ -54,7 +57,12 @@ const initDb = (): AllModels => {
       locObj = sql.define(
         'locations',
         {
-          // id: { primaryKey: true, type: INTEGER },
+          // id: {
+          //   primaryKey: true,
+          //   // type: UUID,
+          //   autoIncrement: true,
+          //   // allowNull: false,
+          // },
           latitude: { type: FLOAT },
           longitude: { type: FLOAT },
           zip: { type: INTEGER },
@@ -196,6 +204,8 @@ const initDb = (): AllModels => {
         opt,
       )
       pureLocOrgObj = locOrgObj
+      pureLocSchObj = schLocObj
+      pureLocServObj = servLocObj
       ;[locOrgObj, schLocObj, schOrgObj, servLocObj, servOrgObj].forEach(
         model => model.removeAttribute('id'),
       )
@@ -263,6 +273,8 @@ const initDb = (): AllModels => {
       clientObj,
       cboObj,
       pureLocOrgObj,
+      pureLocSchObj,
+      pureLocServObj,
     }
   } catch (err) {
     console.error(`Error setting up database: ${err}`)

@@ -133,4 +133,6 @@ export interface AllModels {
   clientObj: Client
   cboObj: CBO
   pureLocOrgObj: LocationOrganization
+  pureLocSchObj: ServiceLocation
+  pureLocServObj: ScheduleLocation
 }
