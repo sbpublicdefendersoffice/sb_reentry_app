@@ -11,14 +11,15 @@ import {
   Box,
   Modal,
 } from '@mui/material'
-import FormModal from './FormModal'
+import FormModal from '../../components/FormModal'
 import ScheduleServiceModal from '../../components/ScheduleServiceModal'
 import { POST } from '../../helpers/'
 import { useStyles } from '../../constants'
 import { ExpandMore } from '@mui/icons-material'
 import AddIcon from '@mui/icons-material/Add'
 import { HeadTags } from '../../components'
-import { useLanguage } from '../../hooks'
+import useLanguage from '../../hooks/useLanguage'
+import useToast from '../../hooks/useToast'
 import { siteTitle } from '../../constants/'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 interface DashboardProps {
@@ -30,6 +31,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const { push } = useRouter()
   const classes = useStyles()
   const { language } = useLanguage()
+  const { setToast } = useToast()
   const [orgInfo, setOrgInfo] = useState(null)
   const [locationID, setLocationID] = useState(0)
   const [locationIndex, setLocationIndex] = useState(0)
@@ -149,12 +151,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     setLocationIndex(locationIndex)
     setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
   }
-  const handleAddScheduleServiceClick = (
-    schOrServ,
-    locationID,
-    locationIndex,
-  ) => {
-    setLocationIndex(locationIndex)
+  const handleAddScheduleServiceClick = (schOrServ, locationID) => {
     setLocationID(locationID)
     setSchOrService(schOrServ)
     setOpenScheduleServiceModal(!openScheduleServiceModal)
@@ -167,9 +164,9 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     })
     const apiResponse = await postCBOToPostgres.json()
     if (apiResponse.message == 'error') {
-      console.log('there was an error')
+      setToast('Their was a problem saving your changes')
     } else {
-      console.log('successful update')
+      setToast('Your changes were saved successfully')
     }
   }
   const deleteLocation = async (): Promise<void> => {
@@ -188,7 +185,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       let temp = orgInfo
       temp.locations.splice(locationIndex, 1)
       setDeleteConfirmation(!deleteConfirmation)
-      console.log('successfully deleted')
+      setToast('You deleted a location successfully')
     }
   }
   const deleteScheduleOrService = async (): Promise<void> => {
@@ -206,7 +203,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     )
     const apiResponse = await postCBOToPostgres.json()
     if (apiResponse.message == 'error') {
-      console.log('there was an error')
+      setToast(`There was an error deleting the ${schOrService}`)
     } else {
       const temp = orgInfo
 
@@ -216,7 +213,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
         temp.locations[locationIndex].schedules.splice(schOrServIndex, 1)
       }
       setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
-      console.log('successfully deleted')
+      setToast(`You deleted the item successfully`)
     }
   }
   const handleChange = async ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -443,7 +440,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                               handleAddScheduleServiceClick(
                                                 locKey,
                                                 lVal.id,
-                                                key,
                                               )
                                             }
                                           >
@@ -648,7 +644,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
             schOrService={schOrService}
             setOrgInfo={setOrgInfo}
             locationID={locationID}
-            locationIndex={locationIndex}
           />
         )}
         <>
