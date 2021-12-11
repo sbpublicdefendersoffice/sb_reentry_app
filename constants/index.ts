@@ -41,6 +41,9 @@ export {
   ArturoSuccessStory,
   LisaSuccessStory,
   MelissaSuccessStory,
+  RyanRisingSuccessStory,
+  JuanBranGudielSuccessStory,
+  GilbertoAnthonyMurilloSuccessStory,
   successCopy,
 } from './successStory-data'
 export { aboutCopy } from './aboutus-data'
