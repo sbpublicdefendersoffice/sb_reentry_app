@@ -23,7 +23,7 @@ const postAddNewLocation = async (
       orgName,
       id,
     } = body
-    const { locObj, pureLocOrgObj } = initDb()
+    const { locObj, locOrgObj } = initDb()
     const maxId: number = await locObj.max('id')
     const addLocation = await locObj.create({
       id: maxId + 1,
@@ -41,7 +41,7 @@ const postAddNewLocation = async (
       longitude: longitude,
     })
     res.json(addLocation)
-    await pureLocOrgObj.create({
+    await locOrgObj.create({
       locations_id: addLocation.id,
       organizations_id: id,
     })
@@ -73,8 +73,8 @@ const postAddNewLocation = async (
       res.status(500)
     }
   } catch (err) {
-    const error: string = err
-    console.error(error, 'didnt make the first one🚨')
+    const error: string = err.message
+    console.error(error)
     res.json({ error })
   }
 }
