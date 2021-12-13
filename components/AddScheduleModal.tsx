@@ -103,7 +103,6 @@ const AddScheduleForm = ({
     const confirmWindow = window.confirm(
       'Are you sure you want to add this schedule?',
     )
-    stateValue.schOrService = schOrService
     if (confirmWindow) {
       checkBoxState.map((bool, index) => {
         if (bool == true && index !== 0 && index !== 1) {
@@ -120,7 +119,7 @@ const AddScheduleForm = ({
       stateValue.close_time = militaryCloseTime
       stateValue.days = finalDaysString
       const postAddNewInfoToPostgres: Response = await fetch(
-        '/api/postAddNewSchOrServ',
+        '/api/postAddNewSchedule',
         {
           method: POST,
           body: JSON.stringify(stateValue),
