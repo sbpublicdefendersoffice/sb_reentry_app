@@ -65,13 +65,12 @@ const AddServiceForm = ({
     const confirmWindow = window.confirm(
       'Are you sure you want to add this location?',
     )
-    state.schOrService = schOrService
     if (confirmWindow) {
       state.org_name = orgInfo?.name_english
       state.org_id = orgInfo?.id
       state.locationID = locationID
       const postAddNewInfoToPostgres: Response = await fetch(
-        '/api/postAddNewSchOrServ',
+        '/api/postAddNewService',
         {
           method: POST,
           body: JSON.stringify(state),
