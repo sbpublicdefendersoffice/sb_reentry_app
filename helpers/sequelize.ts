@@ -15,9 +15,11 @@ let sql,
   useObj,
   clientObj,
   cboObj,
-  pureLocOrgObj,
-  pureLocSchObj,
-  pureLocServObj
+  locOrgObj,
+  servLocObj,
+  schLocObj,
+  servOrgObj,
+  schOrgObj
 
 const initDb = (): AllModels => {
   try {
@@ -159,7 +161,7 @@ const initDb = (): AllModels => {
         },
         opt,
       )
-      let locOrgObj = sql.define(
+      locOrgObj = sql.define(
         'locations_organizations',
         {
           locations_id: { type: INTEGER },
@@ -168,7 +170,7 @@ const initDb = (): AllModels => {
         opt,
       )
 
-      const servOrgObj = sql.define(
+      servOrgObj = sql.define(
         'services_organizations',
         {
           services_id: { type: INTEGER },
@@ -177,7 +179,7 @@ const initDb = (): AllModels => {
         opt,
       )
 
-      const servLocObj = sql.define(
+      servLocObj = sql.define(
         'services_locations',
         {
           services_id: { type: INTEGER },
@@ -186,7 +188,7 @@ const initDb = (): AllModels => {
         opt,
       )
 
-      const schOrgObj = sql.define(
+      schOrgObj = sql.define(
         'schedules_organizations',
         {
           schedules_id: { type: INTEGER },
@@ -194,8 +196,7 @@ const initDb = (): AllModels => {
         },
         opt,
       )
-
-      const schLocObj = sql.define(
+      schLocObj = sql.define(
         'schedules_locations',
         {
           schedules_id: { type: INTEGER },
@@ -203,12 +204,8 @@ const initDb = (): AllModels => {
         },
         opt,
       )
-      pureLocOrgObj = locOrgObj
-      pureLocSchObj = schLocObj
-      pureLocServObj = servLocObj
-      ;[locOrgObj, schLocObj, schOrgObj, servLocObj, servOrgObj].forEach(
-        model => model.removeAttribute('id'),
-      )
+      let tempArray = [servOrgObj, locOrgObj, schLocObj, servLocObj]
+      tempArray.forEach(model => model.removeAttribute('id'))
 
       orgObj.belongsToMany(locObj, {
         through: 'locations_organizations',
@@ -272,9 +269,10 @@ const initDb = (): AllModels => {
       useObj,
       clientObj,
       cboObj,
-      pureLocOrgObj,
-      pureLocSchObj,
-      pureLocServObj,
+      servLocObj,
+      locOrgObj,
+      schLocObj,
+      servOrgObj,
     }
   } catch (err) {
     console.error(`Error setting up database: ${err}`)
