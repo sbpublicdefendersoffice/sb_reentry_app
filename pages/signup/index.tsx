@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { Button, TextField } from '@mui/material'
 import { Check, Close } from '@mui/icons-material'
-
 import { HeadTags } from '../../components'
 import { siteTitle, useStyles } from '../../constants'
 import { validator } from '../../helpers/formValidator'
@@ -148,6 +147,86 @@ const SignupPage = () => {
             }}
           >
             <h1>{signup}</h1>
+
+            {stateValue?.signupType !== 'client' && (
+              <TextField
+                value={org}
+                name="org"
+                onChange={handleChange}
+                //@ts-ignore
+                error={errors.org ? true : false}
+                //@ts-ignore
+                helperText={errors.org ? invalidOrg : false}
+                style={{ marginTop: '1rem' }}
+                onBlur={handleBlur}
+                placeholder={orgName}
+              />
+            )}
+            <TextField
+              value={email}
+              name="email"
+              title={validEmail}
+              onChange={handleChange}
+              style={{ marginTop: '1rem' }}
+              placeholder={`${someone}@gmail.com`}
+              //@ts-ignore
+              error={errors.email ? true : false}
+              //@ts-ignore
+              helperText={errors.email ? validEmail : false}
+              onBlur={handleBlur}
+              required
+            />
+            <TextField
+              type="password"
+              name="pwd"
+              value={pwd}
+              onBlur={handleBlur}
+              style={{ marginTop: '1rem' }}
+              onChange={handleChange}
+              placeholder={passwordMessage}
+              spellCheck
+              //@ts-ignore
+              error={errors.pwd ? true : false}
+              //@ts-ignore
+              helperText={errors.pwd ? passwordRequired : false}
+              title={mustContain}
+              required
+            />
+            <TextField
+              type="password"
+              value={confirmPwd}
+              name="confirmPwd"
+              //@ts-ignore
+              error={errors.confirmPwd ? true : false}
+              style={{ marginTop: '1rem' }}
+              //@ts-ignore
+              helperText={errors.confirmPwd ? confirmPasswordMatch : false}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder={confirmPasswordMessage}
+              required
+            />
+            <div>
+              <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
+                {iAm}
+              </Paragraph>
+              <label htmlFor="cbo">{cbo}</label>
+              <Input
+                type="radio"
+                name="signupType"
+                value="cbo"
+                id="cbo"
+                onChange={handleChange}
+              />
+              <label htmlFor="client">{client}</label>
+              <Input
+                type="radio"
+                name="signupType"
+                value="client"
+                id="client"
+                onChange={handleChange}
+              />
+            </div>
             {stateValue?.signupType === 'client' && (
               <div>
                 <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
