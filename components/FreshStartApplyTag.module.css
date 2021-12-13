@@ -1,0 +1,14 @@
+.FreshStartApplyTag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  padding: var(--pad-std);
+  background-color: var(--primary);
+}
+
+.Buttons {
+  width: 10rem;
+  margin-top: var(--margin-sm);
+}
