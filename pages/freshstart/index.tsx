@@ -1,7 +1,8 @@
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
+
 import { JwtPayload, verify } from 'jsonwebtoken'
 
-import { HeadTags, FreshStartApplyTag } from '../../components'
+import { HeadTags, FreshStartApplyTag, FreshStartText } from '../../components'
 import { AdaptiveFlexContainer } from '../../ui'
 import { siteTitle } from '../../constants'
 import { useLanguage } from '../../hooks'
@@ -32,6 +33,7 @@ const FreshStartLandingPage = ({
           hasAppliedForExpungement={hasAppliedForExpungement}
           isVerified={isVerified}
         />
+        <FreshStartText />
       </AdaptiveFlexContainer>
     </>
   )

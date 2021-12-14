@@ -3,7 +3,6 @@ import type { FreshStartLandingPageProps } from '../pages/freshstart'
 import { useRouter } from 'next/router'
 
 import useLanguage from '../hooks/useLanguage'
-import { ENGLISH } from '../constants/language'
 import { Paragraph, Button } from '../ui'
 
 const copy: CopyHolder = {
@@ -45,7 +44,7 @@ const FreshStartApplyTag = ({
 
   return (
     <div className={styles.FreshStartApplyTag}>
-      <Paragraph size="med-text" color="light">
+      <Paragraph color="light" className={styles.Tagline}>
         {!isLoggedIn
           ? notLoggedIn
           : !isVerified
@@ -54,15 +53,21 @@ const FreshStartApplyTag = ({
           ? applied
           : verifiedNotApplied}
       </Paragraph>
-      <Button
-        className={styles.Buttons}
-        onClick={() => push('/freshstart/apply')}
-      >
-        {apply}
-      </Button>
-      <Button className={styles.Buttons} onClick={logOut}>
-        Logout
-      </Button>
+      <div className={styles.ButtonHolder}>
+        {isLoggedIn && isVerified && !hasAppliedForExpungement && (
+          <Button
+            className={styles.Buttons}
+            onClick={() => push('/freshstart/apply')}
+          >
+            {apply}
+          </Button>
+        )}
+        {isLoggedIn && (
+          <Button className={styles.Buttons} onClick={logOut}>
+            Logout
+          </Button>
+        )}
+      </div>
     </div>
   )
 }
