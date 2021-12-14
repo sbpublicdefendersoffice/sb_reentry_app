@@ -2,8 +2,12 @@ import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
 
 import { JwtPayload, verify } from 'jsonwebtoken'
 
-import { HeadTags, FreshStartApplyTag, FreshStartText } from '../../components'
-import { AdaptiveFlexContainer } from '../../ui'
+import {
+  HeadTags,
+  FreshStartApplyTag,
+  FreshStartText,
+  FreshStartHowToApply,
+} from '../../components'
 import { siteTitle } from '../../constants'
 import { useLanguage } from '../../hooks'
 
@@ -27,14 +31,13 @@ const FreshStartLandingPage = ({
         href={`/freshstart`}
         description={`Thrive SBC | Fresh Start Information`}
       />
-      <AdaptiveFlexContainer>
-        <FreshStartApplyTag
-          isLoggedIn={isLoggedIn}
-          hasAppliedForExpungement={hasAppliedForExpungement}
-          isVerified={isVerified}
-        />
-        <FreshStartText />
-      </AdaptiveFlexContainer>
+      <FreshStartApplyTag
+        isLoggedIn={isLoggedIn}
+        hasAppliedForExpungement={hasAppliedForExpungement}
+        isVerified={isVerified}
+      />
+      <FreshStartText />
+      <FreshStartHowToApply />
     </>
   )
 }

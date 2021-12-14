@@ -2,17 +2,17 @@ import type { CopyHolder } from '../types/'
 import NextLink from 'next/link'
 
 import useLanguage from '../hooks/useLanguage'
-import { Paragraph, Button, Title } from '../ui'
+import { Paragraph, Title } from '../ui'
 
 const copy: CopyHolder = {
   english: {
-    reduce: 'Reduce or dismiss your record in Santa Barbara',
+    reduce: 'Reduce or dismiss your record in Santa Barbara county',
     fill: "Fill out one easy form and you'll be connected to the Santa Barbara Public Defender's Office to help with your petitions for record clearance",
     login: 'Login',
     apply: ' and apply today',
   },
   spanish: {
-    reduce: 'Reducir o descartar su registro en Santa Bárbara',
+    reduce: 'Reducir o descartar su registro en el condado de Santa Bárbara',
     fill: 'Complete un formulario sencillo y se lo comunicará con la Oficina del Defensor Público de Santa Bárbara para ayudarlo con sus peticiones de autorización de antecedentes.',
     login: 'Inicie sesión',
     apply: ' y aplique hoy',

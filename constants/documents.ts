@@ -5,3 +5,17 @@ export const specialCourtReqsPDF: DocumentInfo = {
   doc_title_english: 'Specialty Courts Information',
   doc_title_spanish: 'Información sobre tribunales especializados',
 }
+
+export const intakePDF: DocumentInfo = {
+  file: 'Expungements_Intake.pdf',
+  doc_title_english: 'Record expungement intake form',
+  doc_title_spanish:
+    'Formulario de admisión de cancelación de antecedentes penales',
+}
+
+export const financePDF: DocumentInfo = {
+  file: 'Financial_Declaration.pdf',
+  doc_title_english: 'Record expungement financial declaration form',
+  doc_title_spanish:
+    'Formulario de declaración financiera de eliminación de antecedentes penales',
+}
