@@ -8,6 +8,10 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+  Grid,
   Box,
   Modal,
 } from '@mui/material'
@@ -22,6 +26,7 @@ import useLanguage from '../../hooks/useLanguage'
 import useToast from '../../hooks/useToast'
 import { siteTitle } from '../../constants/'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import { initCategoriesState } from '../../constants/checkBoxState'
 interface DashboardProps {
   userId: number
   orgId: number
@@ -30,7 +35,6 @@ interface DashboardProps {
 const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const { push } = useRouter()
   const classes = useStyles()
-  const { language } = useLanguage()
   const { setToast } = useToast()
   const [orgInfo, setOrgInfo] = useState(null)
   const [locationID, setLocationID] = useState(0)
@@ -45,6 +49,9 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const [deleteSchorServConfirmation, setDeleteSchorServConfirmation] =
     useState(false)
   const [dashboardButtonClicked, setDashboardButtonClicked] = useState(false)
+  const [checkBoxState, setCheckBoxState] = useState(
+    initCategoriesState.map(i => false),
+  )
   const logOut = async () => {
     const loggingOut: Response = await fetch('/api/logout')
     const logoutMessage = await loggingOut.json()
@@ -54,14 +61,31 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       push('/login')
     }
   }
-  const fetchOrgInfo = async (): Promise<void> => {
+  const isCheckboxChecked = (index, checked) => {
+    setCheckBoxState(checkBoxState => {
+      return checkBoxState.map((c, i) => {
+        if (i === index) return checked
+        return c
+      })
+    })
+  }
+  const fetchOrgInfo = async () => {
     const postCBOsToPostgres: Response = await fetch('/api/postOrg', {
       method: POST,
       body: JSON.stringify(orgId),
     })
     const apiResponse = await postCBOsToPostgres.json()
-    setDashboardButtonClicked(!dashboardButtonClicked)
+    initCategoriesState.map((name, index) => {
+      if (
+        apiResponse.org.multiple_categories.includes(name.categories_english)
+      ) {
+        name.checked = true
+        checkBoxState[index] = true
+      }
+    }),
+      setDashboardButtonClicked(!dashboardButtonClicked)
     setOrgInfo(apiResponse.org)
+    return initCategoriesState
   }
   const translateInfo = async (q, id, name): Promise<void> => {
     let splicer = id.slice(0, -7)
@@ -158,6 +182,21 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   }
   const saveChanges = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
+    let categoryState_english = []
+    let categoryState_spanish = []
+    checkBoxState
+    checkBoxState.map((bool, index) => {
+      if (bool) {
+        categoryState_english.push(
+          initCategoriesState[index].categories_english.toLowerCase(),
+        )
+        categoryState_spanish.push(
+          initCategoriesState[index].categories_spanish.toLowerCase(),
+        )
+      }
+    })
+    orgInfo.categories_english = categoryState_english
+    orgInfo.categories_spanish = categoryState_spanish
     const postCBOToPostgres: Response = await fetch(`/api/postUpdateCBOInfo`, {
       method: POST,
       body: JSON.stringify(orgInfo),
@@ -206,7 +245,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       setToast(`There was an error deleting the ${schOrService}`)
     } else {
       const temp = orgInfo
-
       if (schOrService == 'services') {
         temp.locations[locationIndex].services.splice(schOrServIndex, 1)
       } else {
@@ -304,10 +342,61 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                   if (
                     key == 'id' ||
                     key.includes('tags') ||
-                    key.includes('tags') ||
-                    key.includes('multiple')
+                    key.includes('tags')
                   )
                     return
+                  if (key.includes('multiple')) {
+                    return (
+                      <FormGroup>
+                        <h2
+                          style={{
+                            marginTop: '1.5rem',
+                            marginBottom: '2rem',
+                            textAlign: 'center',
+                          }}
+                        >
+                          Categories
+                        </h2>
+                        <Grid container>
+                          {initCategoriesState?.map((item, index) => {
+                            const { categories_english, checked } = item
+                            return (
+                              <Grid
+                                item
+                                md={6}
+                                xs={12}
+                                style={{
+                                  width: '41%',
+                                  textAlign: 'left',
+                                  margin: 'auto',
+                                }}
+                              >
+                                <FormControlLabel
+                                  style={{
+                                    textAlign: 'left',
+                                  }}
+                                  control={
+                                    <Checkbox
+                                      name={categories_english}
+                                      value={checked}
+                                      checked={checkBoxState[index]}
+                                      onChange={e =>
+                                        isCheckboxChecked(
+                                          index,
+                                          e.target.checked,
+                                        )
+                                      }
+                                    />
+                                  }
+                                  label={categories_english}
+                                />
+                              </Grid>
+                            )
+                          })}
+                        </Grid>
+                      </FormGroup>
+                    )
+                  }
                   if (typeof value !== 'object')
                     return (
                       <div>
@@ -341,10 +430,10 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
-                            marginTop: '2rem',
+                            marginTop: '8rem',
                           }}
                         >
-                          <h3>Locations </h3>
+                          <h2>Locations </h2>
                           <Button
                             style={{
                               alignSelf: 'flex-end',
