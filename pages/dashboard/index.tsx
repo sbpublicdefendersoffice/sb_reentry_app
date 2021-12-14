@@ -61,6 +61,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       push('/login')
     }
   }
+
   const isCheckboxChecked = (index, checked) => {
     setCheckBoxState(checkBoxState => {
       return checkBoxState.map((c, i) => {
@@ -75,9 +76,12 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       body: JSON.stringify(orgId),
     })
     const apiResponse = await postCBOsToPostgres.json()
+
     initCategoriesState.map((name, index) => {
       if (
-        apiResponse.org.multiple_categories.includes(name.categories_english)
+        apiResponse.org.multiple_categories.includes(
+          name.categories_english.toLowerCase(),
+        )
       ) {
         name.checked = true
         checkBoxState[index] = true
@@ -357,7 +361,10 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                         >
                           Categories
                         </h2>
-                        <Grid container>
+                        <Grid
+                          container
+                          style={{ width: '41%', margin: 'auto' }}
+                        >
                           {initCategoriesState?.map((item, index) => {
                             const { categories_english, checked } = item
                             return (
@@ -366,15 +373,10 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                 md={6}
                                 xs={12}
                                 style={{
-                                  width: '41%',
                                   textAlign: 'left',
-                                  margin: 'auto',
                                 }}
                               >
                                 <FormControlLabel
-                                  style={{
-                                    textAlign: 'left',
-                                  }}
                                   control={
                                     <Checkbox
                                       name={categories_english}
@@ -430,10 +432,10 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
-                            marginTop: '8rem',
+                            marginTop: '4rem',
                           }}
                         >
-                          <h2>Locations </h2>
+                          <h2 style={{ marginBottom: '2rem' }}>Locations </h2>
                           <Button
                             style={{
                               alignSelf: 'flex-end',
