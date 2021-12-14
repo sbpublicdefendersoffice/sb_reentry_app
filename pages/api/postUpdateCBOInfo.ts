@@ -18,6 +18,8 @@ const updateCBOInfoRoute = async (
       notes_english,
       notes_spanish,
       locations,
+      categories_english,
+      categories_spanish,
     } = JSON.parse(req.body)
 
     await orgObj.update(
@@ -31,6 +33,8 @@ const updateCBOInfoRoute = async (
         customers_served_spanish: customers_served_spanish,
         notes_english: notes_english,
         notes_spanish: notes_spanish,
+        categories_english: categories_english,
+        categories_spanish: categories_spanish,
       },
       { where: { id: id } },
     )
