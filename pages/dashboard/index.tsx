@@ -22,7 +22,6 @@ import { useStyles } from '../../constants'
 import { ExpandMore } from '@mui/icons-material'
 import AddIcon from '@mui/icons-material/Add'
 import { HeadTags } from '../../components'
-import useLanguage from '../../hooks/useLanguage'
 import useToast from '../../hooks/useToast'
 import { siteTitle } from '../../constants/'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
@@ -120,14 +119,15 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     }
     return apiResponse
   }
-  const latLongConverter = async (query, id): Promise<void> => {
+  const latLongConverter = async (query, locIdx): Promise<void> => {
     const postLatLongConverter: Response = await fetch(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?proximity=-119.71157,34.41503&access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`,
     )
     const apiResponse = await postLatLongConverter.json()
-    const [locProperty, locIdx] = id.split(';')
+
     const latitude = apiResponse.features[0].center[1]
     const longitude = apiResponse.features[0].center[0]
+
     setOrgInfo(info => {
       const tempLocValues = [...info.locations]
       tempLocValues[locIdx] = {
@@ -157,7 +157,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     const { value, id } = e.target
     const [locProperty, locIdx] = id.split(';')
     if (locProperty === 'address') {
-      latLongConverter(value, id)
+      latLongConverter(value, locIdx)
     }
   }
   const handleDeleteClick = (info, locationIndex) => {
@@ -223,7 +223,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     })
     const apiResponse = await postCBOToPostgres.json()
     if (apiResponse.message == 'error') {
-      console.log('there was an error')
+      setToast('There was an error deleting the location')
     } else {
       let temp = orgInfo
       temp.locations.splice(locationIndex, 1)
@@ -231,33 +231,50 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       setToast('You deleted a location successfully')
     }
   }
-  const deleteScheduleOrService = async (): Promise<void> => {
-    const postCBOToPostgres: Response = await fetch(
-      `/api/postDeleteScheduleService`,
-      {
-        method: POST,
-        body: JSON.stringify({
-          info: deletedInfo,
-          schOrService: schOrService,
-          location_id: locationID,
-          org_name: orgInfo.name_english,
-        }),
-      },
-    )
+  const deleteSchedule = async (): Promise<void> => {
+    const postCBOToPostgres: Response = await fetch(`/api/postDeleteSchedule`, {
+      method: POST,
+      body: JSON.stringify({
+        info: deletedInfo,
+
+        location_id: locationID,
+        org_name: orgInfo.name_english,
+      }),
+    })
     const apiResponse = await postCBOToPostgres.json()
     if (apiResponse.message == 'error') {
-      setToast(`There was an error deleting the ${schOrService}`)
+      setToast(`There was an error deleting the schedule`)
     } else {
       const temp = orgInfo
-      if (schOrService == 'services') {
-        temp.locations[locationIndex].services.splice(schOrServIndex, 1)
-      } else {
-        temp.locations[locationIndex].schedules.splice(schOrServIndex, 1)
-      }
+
+      temp.locations[locationIndex].schedules.splice(schOrServIndex, 1)
+
       setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
       setToast(`You deleted the item successfully`)
     }
   }
+  const deleteService = async (): Promise<void> => {
+    const postCBOToPostgres: Response = await fetch(`/api/postDeleteService`, {
+      method: POST,
+      body: JSON.stringify({
+        info: deletedInfo,
+        location_id: locationID,
+        org_name: orgInfo.name_english,
+      }),
+    })
+    const apiResponse = await postCBOToPostgres.json()
+    if (apiResponse.message == 'error') {
+      setToast(`There was an error deleting the service`)
+    } else {
+      const temp = orgInfo
+
+      temp.locations[locationIndex].services.splice(schOrServIndex, 1)
+
+      setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
+      setToast(`You deleted the item successfully`)
+    }
+  }
+
   const handleChange = async ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { name, value, id } = target
     if (name === 'org') {
@@ -310,6 +327,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
         </span>
       </>
     )
+
   return (
     <>
       <HeadTags
@@ -755,7 +773,9 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                 <Button
                   className={classes.greenButton}
                   style={{ width: '10rem' }}
-                  onClick={deleteScheduleOrService}
+                  onClick={
+                    schOrService == 'services' ? deleteService : deleteSchedule
+                  }
                 >
                   <h4 style={{ padding: '1rem' }}>Yes</h4>
                 </Button>
