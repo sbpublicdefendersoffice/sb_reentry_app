@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { sendEmail } from '../../helpers'
 import initDb from '../../helpers/sequelize'
-import { isProd } from '../../constants'
 const postDeleteLocation = async (
   req: NextApiRequest,
   res: NextApiResponse,
@@ -21,7 +20,7 @@ const postDeleteLocation = async (
       email,
       notes,
     } = locationInfo
-    const { locObj, pureLocOrgObj } = initDb()
+    const { locObj, locOrgObj } = initDb()
     try {
       //@ts-ignore
       await sendEmail({
@@ -49,7 +48,7 @@ const postDeleteLocation = async (
     const deleteLocation = await locObj.destroy({
       where: { id: id },
     })
-    await pureLocOrgObj.destroy({
+    await locOrgObj.destroy({
       where: {
         locations_id: id,
         organizations_id: org_id,
