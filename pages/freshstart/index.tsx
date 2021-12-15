@@ -1,5 +1,4 @@
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
-
 import { JwtPayload, verify } from 'jsonwebtoken'
 
 import {
@@ -9,38 +8,37 @@ import {
   FreshStartHowToApply,
 } from '../../components'
 import { siteTitle } from '../../constants'
-import { useLanguage } from '../../hooks'
 
 export interface FreshStartLandingPageProps {
   isLoggedIn: boolean
   hasAppliedForExpungement: boolean
   isVerified: boolean
+  loginType?: string
 }
 
 const FreshStartLandingPage = ({
   isLoggedIn,
   hasAppliedForExpungement,
   isVerified,
-}: FreshStartLandingPageProps) => {
-  const { language } = useLanguage()
-
-  return (
-    <>
-      <HeadTags
-        title={`${siteTitle} | Fresh Start Information`}
-        href={`/freshstart`}
-        description={`Thrive SBC | Fresh Start Information`}
-      />
+  loginType,
+}: FreshStartLandingPageProps) => (
+  <>
+    <HeadTags
+      title={`${siteTitle} | Fresh Start Information`}
+      href={`/freshstart`}
+      description={`Thrive SBC | Fresh Start Information`}
+    />
+    {loginType && loginType === 'client' && (
       <FreshStartApplyTag
         isLoggedIn={isLoggedIn}
         hasAppliedForExpungement={hasAppliedForExpungement}
         isVerified={isVerified}
       />
-      <FreshStartText />
-      <FreshStartHowToApply />
-    </>
-  )
-}
+    )}
+    <FreshStartText />
+    <FreshStartHowToApply />
+  </>
+)
 
 export default FreshStartLandingPage
 
@@ -72,6 +70,7 @@ export const getServerSideProps: GetServerSideProps = async (
       isLoggedIn: !!token,
       hasAppliedForExpungement: !!token?.hasAppliedForExpungement,
       isVerified: !!token?.isVerified,
+      loginType: token?.type,
     },
   }
 }
