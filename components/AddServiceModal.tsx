@@ -17,7 +17,6 @@ export interface AddScheduleServiceFormProps {
   handleClose: any
   orgInfo: any
   setOrgInfo: any
-  schOrService: any
   openScheduleServiceModal: any
   setOpenScheduleServiceModal: any
   locationID: any
@@ -25,7 +24,6 @@ export interface AddScheduleServiceFormProps {
 const AddServiceForm = ({
   handleClose,
   orgInfo,
-  schOrService,
   setOrgInfo,
   openScheduleServiceModal,
   setOpenScheduleServiceModal,

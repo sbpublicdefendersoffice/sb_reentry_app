@@ -38,7 +38,6 @@ export default function ScheduleServiceForm({
               setOpenScheduleServiceModal={setOpenScheduleServiceModal}
               openScheduleServiceModal={openScheduleServiceModal}
               orgInfo={orgInfo}
-              schOrService={schOrService}
               setOrgInfo={setOrgInfo}
               locationID={locationID}
             />
@@ -48,7 +47,6 @@ export default function ScheduleServiceForm({
               setOpenScheduleServiceModal={setOpenScheduleServiceModal}
               openScheduleServiceModal={openScheduleServiceModal}
               orgInfo={orgInfo}
-              schOrService={schOrService}
               setOrgInfo={setOrgInfo}
               locationID={locationID}
             />
