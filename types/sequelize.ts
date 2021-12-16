@@ -17,6 +17,10 @@ export interface OrganizationModel extends Model {
   tags_spanish: string
   locations?: LocationsModel[]
   single_category?: string
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface LocationsModel extends Model {
@@ -35,12 +39,20 @@ export interface LocationsModel extends Model {
   notes: string
   services?: ServiceModel[]
   schedules?: SchedulesModel[]
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface ServiceModel extends Model {
   id: number
   name_english: string
   name_spanish: string
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface SchedulesModel extends Model {
@@ -49,31 +61,55 @@ export interface SchedulesModel extends Model {
   close_time: string
   days: string
   notes: string
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface LocationsOrganizationsModel extends Model {
   locations_id: number
   organizations_id: number
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface SchedulesLocationsModel extends Model {
   schedules_id: number
   locations_id: number
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface SchedulesOrganizationsModel extends Model {
   schedules_id: number
   organizations_id: number
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface ServicesLocationsModel extends Model {
   services_id: number
   locations_id: number
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface ServicesOrganizationsModel extends Model {
   services_id: number
   organizations_id: number
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface IsThisUsefulModel extends Model {
@@ -83,6 +119,10 @@ export interface IsThisUsefulModel extends Model {
   route: string
   language: string
   comment: string
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface ClientModel extends Model {
@@ -98,6 +138,10 @@ export interface ClientModel extends Model {
   verificationString: string
   passwordResetCode: string
   isVerified: boolean
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 
 export interface CBOModel extends Model {
@@ -110,6 +154,10 @@ export interface CBOModel extends Model {
   passwordResetCode: string
   isVerified: boolean
   orgId: number
+  createdAt: string
+  createdBy: string
+  updatedAt: string
+  updatedBy: string
 }
 export type Organization = ModelCtor<OrganizationModel>
 export type Location = ModelCtor<LocationsModel>

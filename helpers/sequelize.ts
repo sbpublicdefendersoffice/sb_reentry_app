@@ -4,8 +4,8 @@ import { serialize } from 'v8'
 import postgresEnv from '../constants/database-creds'
 import { AllModels } from '../types/sequelize'
 
-const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY, UUID } = DataTypes
-const opt: ModelOptions = { timestamps: false }
+const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY } = DataTypes
+const opt: ModelOptions = { timestamps: true }
 
 let sql,
   orgObj,
@@ -52,6 +52,10 @@ const initDb = (): AllModels => {
           categories_spanish: { type: ARRAY(TEXT) },
           tags_english: { type: ARRAY(TEXT) },
           tags_spanish: { type: ARRAY(TEXT) },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -77,6 +81,10 @@ const initDb = (): AllModels => {
           phone: { type: TEXT },
           email: { type: TEXT },
           notes: { type: TEXT },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -87,6 +95,10 @@ const initDb = (): AllModels => {
           // id: { primaryKey: true, type: INTEGER },
           name_english: { type: TEXT },
           name_spanish: { type: TEXT },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -99,6 +111,10 @@ const initDb = (): AllModels => {
           close_time: { type: TEXT },
           days: { type: TEXT },
           notes: { type: TEXT },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -117,6 +133,10 @@ const initDb = (): AllModels => {
           route: { type: TEXT },
           language: { type: TEXT },
           comment: { type: TEXT },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -141,6 +161,10 @@ const initDb = (): AllModels => {
           verificationString: { type: TEXT },
           passwordResetCode: { type: TEXT },
           isVerified: { type: BOOLEAN },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -158,6 +182,10 @@ const initDb = (): AllModels => {
           verificationString: { type: TEXT },
           passwordResetCode: { type: TEXT },
           isVerified: { type: BOOLEAN },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -166,6 +194,10 @@ const initDb = (): AllModels => {
         {
           locations_id: { type: INTEGER },
           organizations_id: { type: INTEGER },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -175,6 +207,10 @@ const initDb = (): AllModels => {
         {
           services_id: { type: INTEGER },
           organizations_id: { type: INTEGER },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -184,6 +220,10 @@ const initDb = (): AllModels => {
         {
           services_id: { type: INTEGER },
           locations_id: { type: INTEGER },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -193,6 +233,10 @@ const initDb = (): AllModels => {
         {
           schedules_id: { type: INTEGER },
           organizations_id: { type: INTEGER },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )
@@ -201,6 +245,10 @@ const initDb = (): AllModels => {
         {
           schedules_id: { type: INTEGER },
           locations_id: { type: INTEGER },
+          createdBy: { type: INTEGER },
+          createdAt: { type: DATE },
+          updatedBy: { type: INTEGER },
+          updatedAt: { type: DATE },
         },
         opt,
       )

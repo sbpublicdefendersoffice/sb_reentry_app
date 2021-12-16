@@ -19,8 +19,6 @@ const postFeedback = async (
         comment: comment || null,
       })
 
-      res.json(addFeedback)
-
       sendGrid.setApiKey(process.env.SENDGRID_API_KEY)
 
       const useful: string = `A ThriveSBC user found the content at thrivesbc.com${route} ${
@@ -44,6 +42,7 @@ const postFeedback = async (
       }
 
       await sendGrid.send(message)
+      res.json(addFeedback)
     }
   } catch (err) {
     const error: string = err.message
