@@ -70,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async (
       isLoggedIn: !!token,
       hasAppliedForExpungement: !!token?.hasAppliedForExpungement,
       isVerified: !!token?.isVerified,
-      loginType: token?.type,
+      loginType: token?.type || null,
     },
   }
 }

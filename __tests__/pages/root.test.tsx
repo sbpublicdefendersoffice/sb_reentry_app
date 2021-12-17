@@ -27,6 +27,6 @@ describe('home page', () => {
     buttonNodes.forEach((node: HTMLElement) => fireEvent.click(node))
 
     expect(doc).toBeInTheDocument()
-    expect(push).toHaveBeenCalledTimes(3)
+    expect(push).toHaveBeenCalledTimes(4)
   })
 })
