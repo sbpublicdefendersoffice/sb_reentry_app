@@ -56,3 +56,23 @@ export const initCategoriesState = [
     checked: false,
   },
 ]
+export const initDaysCheckBoxState = [
+  { name: 'Everyday', checked: false },
+  { name: 'Mon - Fri', checked: false },
+  { name: 'Sun', checked: false },
+  { name: 'Mon', checked: false },
+  { name: 'Tue', checked: false },
+  { name: 'Wed', checked: false },
+  { name: 'Thu', checked: false },
+  { name: 'Fri', checked: false },
+  { name: 'Sat', checked: false },
+]
+export const initSmallDaysCheckBoxState = [
+  { name: 'Sun', checked: false },
+  { name: 'Mon', checked: false },
+  { name: 'Tue', checked: false },
+  { name: 'Wed', checked: false },
+  { name: 'Thu', checked: false },
+  { name: 'Fri', checked: false },
+  { name: 'Sat', checked: false },
+]
