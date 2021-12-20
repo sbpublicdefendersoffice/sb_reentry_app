@@ -11,6 +11,7 @@ import {
   employmentServiceCopy,
   housingServiceCopy,
   substanceuseServiceCopy,
+  educationServiceCopy,
 } from './service-filter-data'
 import { CopyHolder } from '../types/language'
 export const categoryServiceFilter = {
@@ -26,6 +27,7 @@ export const categoryServiceFilter = {
   employment: { employmentServiceCopy },
   housing: { housingServiceCopy },
   'substance use': { substanceuseServiceCopy },
+  education: { educationServiceCopy },
 }
 
 export const categoryCopy: CopyHolder = {

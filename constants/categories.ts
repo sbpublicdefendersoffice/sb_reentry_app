@@ -97,6 +97,14 @@ const categories: { [route: string]: CopyHolder } = {
       category: 'Uso de Sustancias',
     },
   },
+  '/education': {
+    english: {
+      category: 'Education',
+    },
+    spanish: {
+      category: 'Educación',
+    },
+  },
 }
 
 export default categories
@@ -116,4 +124,5 @@ export const backendCategories: Set<string> = new Set<string>([
   'employment',
   'housing',
   'substance use',
+  'education',
 ])

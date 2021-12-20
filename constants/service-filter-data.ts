@@ -429,3 +429,8 @@ export const cityCopy = [
   'Santa Ynez',
   'Solvang',
 ]
+
+export const educationServiceCopy = {
+  english: ['Education', 'Addiction Services'],
+  spanish: ['Educación', 'Alcoholicos anonimos'],
+}

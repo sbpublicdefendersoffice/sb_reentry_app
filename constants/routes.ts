@@ -73,6 +73,13 @@ export const resourceRoutes: RouteInfo[] = [
     route: '/substanceuse',
     imgPath: './icons/substanceuse.svg',
   },
+
+  {
+    title_english: 'Education',
+    title_spanish: 'Educación',
+    route: '/education',
+    imgPath: './icons/education.svg',
+  },
 ]
 
 export const staticPageRoutes: RouteInfo[] = [
