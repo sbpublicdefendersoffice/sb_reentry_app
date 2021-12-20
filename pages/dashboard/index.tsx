@@ -7,6 +7,7 @@ import {
   TextField,
   Accordion,
   AccordionSummary,
+  Autocomplete,
   AccordionDetails,
   FormGroup,
   FormControlLabel,
@@ -25,7 +26,10 @@ import { HeadTags } from '../../components'
 import useToast from '../../hooks/useToast'
 import { siteTitle } from '../../constants/'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { initCategoriesState } from '../../constants/checkBoxState'
+import {
+  initCategoriesState,
+  initSmallDaysCheckBoxState,
+} from '../../constants/checkBoxState'
 interface DashboardProps {
   userId: number
   orgId: number
@@ -41,6 +45,10 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const [schOrServIndex, setSchOrServIndex] = useState(0)
   const [openModal, setOpenModal] = useState(false)
   const [schOrService, setSchOrService] = useState('')
+  const [changeAddress, setChangeAddress] = useState(false)
+  const [addressValue, setAddressValue] = useState('')
+  const [features, setFeatures] = useState([])
+  const [addressInfo, setAddressInfo] = useState(null)
   const [openScheduleServiceModal, setOpenScheduleServiceModal] =
     useState(false)
   const [deletedInfo, setDeletedInfo] = useState(null)
@@ -50,6 +58,9 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const [dashboardButtonClicked, setDashboardButtonClicked] = useState(false)
   const [checkBoxState, setCheckBoxState] = useState(
     initCategoriesState.map(i => false),
+  )
+  const [daysCheckBoxState, setDaysCheckBoxState] = useState(
+    initSmallDaysCheckBoxState.map(i => false),
   )
   const logOut = async () => {
     const loggingOut: Response = await fetch('/api/logout')
@@ -69,6 +80,14 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       })
     })
   }
+  const isDaysCheckboxChecked = (index, checked) => {
+    setDaysCheckBoxState(daysCheckBoxState => {
+      return daysCheckBoxState.map((c, i) => {
+        if (i === index) return checked
+        return c
+      })
+    })
+  }
   const fetchOrgInfo = async () => {
     const postCBOsToPostgres: Response = await fetch('/api/postOrg', {
       method: POST,
@@ -78,7 +97,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
 
     initCategoriesState.map((name, index) => {
       if (
-        apiResponse.org.multiple_categories.includes(
+        apiResponse.org?.multiple_categories.includes(
           name.categories_english.toLowerCase(),
         )
       ) {
@@ -86,9 +105,32 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
         checkBoxState[index] = true
       }
     }),
-      setDashboardButtonClicked(!dashboardButtonClicked)
+      apiResponse.org?.locations.map((location, locIdx) => {
+        const { schedules } = location
+        schedules.map((schedule, schIdx) => {
+          initSmallDaysCheckBoxState.map((item, index) => {
+            let tempDays = daysCheckBoxState
+            const { days } = schedule
+            console.log(
+              '🚀 ~ file: index.tsx ~ line 119 ~ schedules.map ~ days',
+              index,
+              days.includes(item.name),
+            )
+
+            if (days.includes(item.name)) {
+              tempDays[index] = true
+            } else {
+              tempDays[index] = false
+            }
+            console.log('Checked ')
+            schedule.groupedDays = tempDays
+          })
+        })
+      })
+
+    setDashboardButtonClicked(!dashboardButtonClicked)
     setOrgInfo(apiResponse.org)
-    return initCategoriesState
+    return { initCategoriesState, initSmallDaysCheckBoxState }
   }
   const translateInfo = async (q, id, name): Promise<void> => {
     let splicer = id.slice(0, -7)
@@ -119,29 +161,41 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     }
     return apiResponse
   }
-  const latLongConverter = async (query, locIdx): Promise<void> => {
+  const latLongConverter = async (query): Promise<void> => {
     const postLatLongConverter: Response = await fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?proximity=-119.71157,34.41503&access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`,
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?proximity=-119.71157,34.41503&autocomplete=${true}&access_token=${
+        process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
+      }`,
     )
     const apiResponse = await postLatLongConverter.json()
-
-    const latitude = apiResponse.features[0].center[1]
-    const longitude = apiResponse.features[0].center[0]
-
-    setOrgInfo(info => {
-      const tempLocValues = [...info.locations]
-      tempLocValues[locIdx] = {
-        ...tempLocValues[locIdx],
-        ['latitude']: latitude,
-        ['longitude']: longitude,
-      }
-      return {
-        ...info,
-        locations: [...tempLocValues],
-      }
-    })
+    setFeatures(
+      apiResponse.features.map(feature => {
+        return { ...feature, label: feature.place_name }
+      }),
+    )
     return apiResponse
   }
+  // const latLongConverter = async (query, locIdx): Promise<void> => {
+  //   const postLatLongConverter: Response = await fetch(
+  //     `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?proximity=-119.71157,34.41503&access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`,
+  //   )
+  //   const apiResponse = await postLatLongConverter.json()
+  //   const latitude = apiResponse.features[0].center[1]
+  //   const longitude = apiResponse.features[0].center[0]
+  //   setOrgInfo(info => {
+  //     const tempLocValues = [...info.locations]
+  //     tempLocValues[locIdx] = {
+  //       ...tempLocValues[locIdx],
+  //       ['latitude']: latitude,
+  //       ['longitude']: longitude,
+  //     }
+  //     return {
+  //       ...info,
+  //       locations: [...tempLocValues],
+  //     }
+  //   })
+  //   return apiResponse
+  // }
   const handleBlur = e => {
     const { name, value, id } = e.target
     let isEnglishKey = id.includes('english')
@@ -153,11 +207,15 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       }
     }
   }
+
   const handleAddressChange = async e => {
-    const { value, id } = e.target
-    const [locProperty, locIdx] = id.split(';')
-    if (locProperty === 'address') {
-      latLongConverter(value, locIdx)
+    console.log('🚀 ~ file: index.tsx ~ line 211 ~ Dashboard ~ e', e)
+
+    const { value } = e.target
+
+    setAddressValue(value)
+    if (value.length > 2) {
+      latLongConverter(value)
     }
   }
   const handleDeleteClick = (info, locationIndex) => {
@@ -178,6 +236,26 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     setLocationID(id)
     setLocationIndex(locationIndex)
     setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
+  }
+  const handleSelectedAddress = (selectedValue, locationIndex) => {
+    console.log(
+      '🚀 ~ file: index.tsx ~ line 248 ~ Dashboard ~ selectedValue',
+      selectedValue,
+      locationIndex,
+    )
+    setOrgInfo(info => {
+      const tempLocValues = [...info.locations]
+      const { center, place_name, context } = selectedValue
+      tempLocValues[locationIndex] = {
+        ...tempLocValues[locationIndex],
+        ['address']: place_name.split(',')[0],
+        ['city']: context[2].text,
+        ['zip']: context[1].text,
+      }
+      return { ...info, locations: [...tempLocValues] }
+    })
+    setChangeAddress(!changeAddress)
+    // setOrgInfo(),
   }
   const handleAddScheduleServiceClick = (schOrServ, locationID) => {
     setLocationID(locationID)
@@ -327,7 +405,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
         </span>
       </>
     )
-
+  console.log('Org Info', orgInfo)
   return (
     <>
       <HeadTags
@@ -495,33 +573,131 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                 >
                                   <h3>{`Location: ${lVal.name}`}</h3>
                                 </AccordionSummary>
-                                {Object.entries(lVal).map(
-                                  ([locKey, locVal], i) => {
+                                {Object.entries(lVal)
+                                  .sort()
+                                  .map(([locKey, locVal], i) => {
                                     if (
                                       locKey.includes('id') ||
-                                      locKey.includes('tude')
+                                      locKey.includes('tude') ||
+                                      locKey.includes('state') ||
+                                      locKey.includes('zip')
                                     )
                                       return
+
                                     if (typeof locVal !== 'object')
                                       return (
                                         <>
                                           <AccordionDetails>
                                             <Fragment key={i}>
-                                              <TextField
-                                                style={{
-                                                  margin: '2rem 0 1rem 0',
-                                                  width: '45rem',
-                                                }}
-                                                name="loc"
-                                                id={`${locKey};${lkey}`}
-                                                helperText={locKey}
-                                                inputProps={{
-                                                  style: { fontSize: '1.6rem' },
-                                                }}
-                                                value={locVal as string}
-                                                onChange={handleChange}
-                                                onBlur={handleAddressChange}
-                                              />
+                                              {locKey == 'address' ||
+                                              locKey == 'address_2' ||
+                                              locKey == 'city' ||
+                                              locKey == 'state' ||
+                                              locKey == 'zip' ? (
+                                                <>
+                                                  {locKey == 'address' && (
+                                                    <>
+                                                      {!changeAddress ? (
+                                                        <>
+                                                          <p
+                                                            style={{
+                                                              display:
+                                                                'inline-flex',
+                                                            }}
+                                                          >
+                                                            Address: {locVal}
+                                                          </p>
+                                                          <Button
+                                                            onClick={() =>
+                                                              setChangeAddress(
+                                                                !changeAddress,
+                                                              )
+                                                            }
+                                                            className={
+                                                              classes.greenButton
+                                                            }
+                                                            style={{
+                                                              marginLeft:
+                                                                '2rem',
+                                                            }}
+                                                          >
+                                                            <h4
+                                                              style={{
+                                                                padding:
+                                                                  '.5rem',
+                                                              }}
+                                                            >
+                                                              Change Address
+                                                            </h4>
+                                                          </Button>
+                                                        </>
+                                                      ) : (
+                                                        <Autocomplete
+                                                          disablePortal
+                                                          id="combo-box-demo"
+                                                          value={addressValue}
+                                                          options={[
+                                                            addressValue,
+                                                            ...features,
+                                                          ]}
+                                                          filterSelectedOptions
+                                                          onChange={(
+                                                            event,
+                                                            selectedValue,
+                                                          ) => {
+                                                            handleSelectedAddress(
+                                                              selectedValue,
+
+                                                              //@ts-ignore
+                                                              lkey,
+                                                            )
+                                                          }}
+                                                          renderInput={params => (
+                                                            <TextField
+                                                              autoComplete="off"
+                                                              value={
+                                                                addressValue
+                                                              }
+                                                              onChange={
+                                                                handleAddressChange
+                                                              }
+                                                              {...params}
+                                                              label="Address"
+                                                            />
+                                                          )}
+                                                        />
+                                                      )}
+                                                    </>
+                                                  )}
+                                                  {locKey == 'address_2' && (
+                                                    <p>Address 2: {locVal}</p>
+                                                  )}
+                                                  {locKey == 'city' &&
+                                                    !changeAddress && (
+                                                      <p>City: {locVal}</p>
+                                                    )}
+                                                </>
+                                              ) : (
+                                                <>
+                                                  {' '}
+                                                  <TextField
+                                                    style={{
+                                                      margin: '2rem 0 1rem 0',
+                                                      width: '45rem',
+                                                    }}
+                                                    name="loc"
+                                                    id={`${locKey};${lkey}`}
+                                                    helperText={locKey}
+                                                    inputProps={{
+                                                      style: {
+                                                        fontSize: '1.6rem',
+                                                      },
+                                                    }}
+                                                    value={locVal as string}
+                                                    onChange={handleChange}
+                                                  />
+                                                </>
+                                              )}
                                             </Fragment>
                                           </AccordionDetails>
                                         </>
@@ -567,121 +743,207 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                           </Button>{' '}
                                           {Object.values(locVal).map(
                                             (srvOrSchVal, i) => {
-                                              return (
-                                                <div key={i}>
-                                                  <Accordion
-                                                    style={{
-                                                      display: 'block',
-                                                      flexDirection: 'column',
-                                                      justifyContent: 'center',
-                                                      margin: '1.5rem',
-                                                      padding: '1rem',
-                                                    }}
-                                                  >
-                                                    <AccordionSummary
-                                                      expandIcon={
-                                                        <ExpandMore />
-                                                      }
-                                                      aria-controls="panel3a-content"
-                                                      data-testid="accordion"
-                                                      id="panel3a-header"
+                                              if (srvOrSchVal?.days) {
+                                                let temp =
+                                                  initSmallDaysCheckBoxState
+                                                let tempCheck =
+                                                  daysCheckBoxState
+
+                                                temp.map((item, index) => {
+                                                  if (
+                                                    srvOrSchVal?.groupedDays.find(
+                                                      dayName => {
+                                                        dayName = item.name
+                                                      },
+                                                    )
+                                                  ) {
+                                                    tempCheck[index] = true
+                                                  }
+                                                })
+
+                                                return (
+                                                  <FormGroup>
+                                                    <h2
+                                                      style={{
+                                                        marginTop: '1.5rem',
+                                                        marginBottom: '2rem',
+                                                        textAlign: 'center',
+                                                      }}
                                                     >
-                                                      <>
-                                                        <h3>
-                                                          {locKey == 'services'
-                                                            ? `Service:  ${srvOrSchVal.name_english}`
-                                                            : 'Schedules'}
-                                                        </h3>
-                                                        <Button
-                                                          onClick={() =>
-                                                            handleDeleteSchOrServClick(
-                                                              locKey,
-                                                              srvOrSchVal,
-                                                              lVal.id,
-                                                              lkey,
-                                                              i,
-                                                            )
-                                                          }
-                                                          style={{
-                                                            position:
-                                                              'absolute',
-                                                            right: '3rem',
-                                                          }}
-                                                        >
-                                                          <DeleteForeverIcon
+                                                      Days
+                                                    </h2>
+                                                    <Grid
+                                                      container
+                                                      style={{
+                                                        width: '41%',
+                                                        margin: 'auto',
+                                                      }}
+                                                    >
+                                                      {temp.map(
+                                                        (item, index) => {
+                                                          const {
+                                                            name,
+                                                            checked,
+                                                          } = item
+                                                          return (
+                                                            <Grid
+                                                              item
+                                                              md={6}
+                                                              xs={12}
+                                                              style={{
+                                                                textAlign:
+                                                                  'left',
+                                                              }}
+                                                            >
+                                                              <FormControlLabel
+                                                                control={
+                                                                  <Checkbox
+                                                                    name={name}
+                                                                    value={
+                                                                      checked
+                                                                    }
+                                                                    checked={
+                                                                      tempCheck[
+                                                                        index
+                                                                      ]
+                                                                    }
+                                                                    onChange={e =>
+                                                                      isDaysCheckboxChecked(
+                                                                        index,
+                                                                        e.target
+                                                                          .checked,
+                                                                      )
+                                                                    }
+                                                                  />
+                                                                }
+                                                                label={name}
+                                                              />
+                                                            </Grid>
+                                                          )
+                                                        },
+                                                      )}
+                                                    </Grid>
+                                                  </FormGroup>
+                                                )
+                                              } else {
+                                                return (
+                                                  <div key={i}>
+                                                    <Accordion
+                                                      style={{
+                                                        display: 'block',
+                                                        flexDirection: 'column',
+                                                        justifyContent:
+                                                          'center',
+                                                        margin: '1.5rem',
+                                                        padding: '1rem',
+                                                      }}
+                                                    >
+                                                      <AccordionSummary
+                                                        expandIcon={
+                                                          <ExpandMore />
+                                                        }
+                                                        aria-controls="panel3a-content"
+                                                        data-testid="accordion"
+                                                        id="panel3a-header"
+                                                      >
+                                                        <>
+                                                          <h3>
+                                                            {locKey ==
+                                                            'services'
+                                                              ? `Service:  ${srvOrSchVal.name_english}`
+                                                              : 'Schedules'}
+                                                          </h3>
+                                                          <Button
+                                                            onClick={() =>
+                                                              handleDeleteSchOrServClick(
+                                                                locKey,
+                                                                srvOrSchVal,
+                                                                lVal.id,
+                                                                lkey,
+                                                                i,
+                                                              )
+                                                            }
                                                             style={{
-                                                              color: 'red',
-                                                              fontSize: '2rem',
-                                                            }}
-                                                          />
-                                                        </Button>
-                                                      </>
-                                                    </AccordionSummary>
-                                                    {Object.entries(
-                                                      srvOrSchVal,
-                                                    ).map(
-                                                      ([fKey, fVal], fI) => {
-                                                        if (fKey === 'id')
-                                                          return
-                                                        return (
-                                                          <div
-                                                            style={{
-                                                              display: 'flex',
+                                                              position:
+                                                                'absolute',
+                                                              right: '3rem',
                                                             }}
                                                           >
-                                                            <AccordionDetails
-                                                              key={fI}
+                                                            <DeleteForeverIcon
+                                                              style={{
+                                                                color: 'red',
+                                                                fontSize:
+                                                                  '2rem',
+                                                              }}
+                                                            />
+                                                          </Button>
+                                                        </>
+                                                      </AccordionSummary>
+                                                      {Object.entries(
+                                                        srvOrSchVal,
+                                                      ).map(
+                                                        ([fKey, fVal], fI) => {
+                                                          if (fKey === 'id')
+                                                            return
+                                                          return (
+                                                            <div
+                                                              style={{
+                                                                display: 'flex',
+                                                              }}
                                                             >
-                                                              <div
-                                                                style={{
-                                                                  display:
-                                                                    'flex',
-                                                                }}
+                                                              <AccordionDetails
                                                                 key={fI}
                                                               >
-                                                                <TextField
+                                                                <div
                                                                   style={{
-                                                                    margin:
-                                                                      '2rem 0 1rem 0',
-                                                                    width:
-                                                                      '41rem',
+                                                                    display:
+                                                                      'flex',
                                                                   }}
-                                                                  name="other"
-                                                                  id={`${fKey};${i};${locKey};${lkey}`}
-                                                                  helperText={
-                                                                    fKey as string
-                                                                  }
-                                                                  inputProps={{
-                                                                    style: {
-                                                                      fontSize:
-                                                                        '1.6rem',
-                                                                    },
-                                                                  }}
-                                                                  value={
-                                                                    fVal as string
-                                                                  }
-                                                                  onChange={
-                                                                    handleChange
-                                                                  }
-                                                                  onBlur={
-                                                                    handleBlur
-                                                                  }
-                                                                />
-                                                              </div>
-                                                            </AccordionDetails>
-                                                          </div>
-                                                        )
-                                                      },
-                                                    )}
-                                                  </Accordion>
-                                                </div>
-                                              )
+                                                                  key={fI}
+                                                                >
+                                                                  <TextField
+                                                                    style={{
+                                                                      margin:
+                                                                        '2rem 0 1rem 0',
+                                                                      width:
+                                                                        '41rem',
+                                                                    }}
+                                                                    name="other"
+                                                                    id={`${fKey};${i};${locKey};${lkey}`}
+                                                                    helperText={
+                                                                      fKey as string
+                                                                    }
+                                                                    inputProps={{
+                                                                      style: {
+                                                                        fontSize:
+                                                                          '1.6rem',
+                                                                      },
+                                                                    }}
+                                                                    value={
+                                                                      fVal as string
+                                                                    }
+                                                                    onChange={
+                                                                      handleChange
+                                                                    }
+                                                                    onBlur={
+                                                                      handleBlur
+                                                                    }
+                                                                  />
+                                                                </div>
+                                                              </AccordionDetails>
+                                                            </div>
+                                                          )
+                                                        },
+                                                      )}
+                                                    </Accordion>
+                                                  </div>
+                                                )
+                                              }
                                             },
                                           )}
                                         </div>
                                       )
-                                  },
-                                )}
+                                  })}
                               </Accordion>
                               <Button
                                 onClick={() => handleDeleteClick(lVal, lkey)}
