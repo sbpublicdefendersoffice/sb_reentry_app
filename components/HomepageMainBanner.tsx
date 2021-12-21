@@ -1,14 +1,8 @@
 import { useRouter } from 'next/router'
 
-// import { useState } from 'react'
-
-import {
-  useLanguage,
-  // useResizeEvent
-} from '../hooks/'
+import { useLanguage } from '../hooks/'
 import { CopyHolder } from '../types/language'
 
-// import Newsfeed from './Newsfeed'
 import { Paragraph, Title, Button } from '../ui'
 
 import styles from './HomepageMainBanner.module.css'
@@ -23,6 +17,8 @@ const copy: CopyHolder = {
     loginButtonText: 'Login',
     loginCopy:
       'Or, Login to ThriveSBC to manage your info, apply for record expungement and more',
+    freshStart:
+      'Apply for criminal record expungement with via our Fresh Start tool',
   },
   spanish: {
     about: 'Sobre nosotros',
@@ -33,19 +29,25 @@ const copy: CopyHolder = {
     loginButtonText: 'Acceso',
     loginCopy:
       'O bien, inicie sesión en ThriveSBC para administrar su información, solicitar la eliminación de antecedentes penales y más.',
+    freshStart:
+      'Solicite la eliminación de antecedentes penales a través de nuestra herramienta Fresh Start',
   },
 }
 
 export const hub: string = '/#resourcehub'
-const login: string = '/login'
 
 const HomepageMainBanner = () => {
   const { push } = useRouter()
   const { language } = useLanguage()
-  // const [isAbove500px, setIsAbove500px] = useState<boolean>(innerWidth >= 500)
-  const { about, title, explainer, buttonText, loginButtonText, loginCopy } =
-    copy[language]
-  // useResizeEvent(() => setIsAbove500px(innerWidth >= 500))
+  const {
+    about,
+    title,
+    explainer,
+    buttonText,
+    loginButtonText,
+    loginCopy,
+    freshStart,
+  } = copy[language]
 
   return (
     <section className={styles.Main}>
@@ -64,16 +66,10 @@ const HomepageMainBanner = () => {
             {buttonText}
           </Button>
           <Paragraph className={styles.Paragraph}>{loginCopy}</Paragraph>
-          <Button onClick={() => push(login)}>{loginButtonText}</Button>
+          <Button onClick={() => push('/login')}>{loginButtonText}</Button>
+          <Paragraph className={styles.Paragraph}>{freshStart}</Paragraph>
+          <Button onClick={() => push('/freshstart')}>Fresh Start</Button>
         </div>
-        {/* <div
-          style={{
-            display: isAbove500px ? 'block' : 'none',
-            overflow: 'scroll',
-          }}
-        >
-          <Newsfeed />
-        </div> */}
       </article>
     </section>
   )

@@ -1,0 +1,32 @@
+.FreshStartText {
+  margin: 0 auto;
+  width: 90%;
+  padding: 4rem 0;
+}
+
+.Title {
+  letter-spacing: 0.25rem;
+  border-bottom: 0.25rem solid var(--green);
+  font-size: 5rem;
+  width: fit-content;
+}
+
+.TextBlock {
+  margin-top: var(--margin-lg);
+}
+
+@media (max-width: 900px) {
+  .Title {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .FreshStartText {
+    padding-top: 6.5rem;
+  }
+
+  .Title {
+    font-size: 3rem;
+  }
+}

@@ -25,6 +25,7 @@ import { Hidden, Badge, Button, Menu, MenuItem, Grid } from '@mui/material'
 import { Favorite, ArrowDropDown } from '@mui/icons-material'
 
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
+
 const copy: CopyHolder = {
   english: {
     tagline: 'A Santa Barbara County tool for the justice-impacted community',
@@ -77,8 +78,6 @@ const Header = () => {
           </h2>
         </NextLink>
       )
-      if (i === lastStaticRouteIndex - 2 || i === lastStaticRouteIndex - 3)
-        return <Fragment key={i}>{link}</Fragment>
       if (i === lastStaticRouteIndex - 1)
         return (
           <Fragment key={i}>
@@ -179,11 +178,10 @@ const Header = () => {
             {link}
           </Fragment>
         )
-
-      if (i === lastStaticRouteIndex) return null
-      else return null
+      else return <Fragment key={i}>{link}</Fragment>
     },
   )
+
   return (
     <header role="banner" className={styles.Header}>
       <div className={styles.HeaderContainer}>
@@ -207,7 +205,9 @@ const Header = () => {
         <Hidden lgDown>
           <Grid container style={{ width: '36%' }}>
             <Grid item md={12} sm={4}>
-              <LiveDataSearch />
+              <div className={styles.DataSearch}>
+                <LiveDataSearch />
+              </div>
             </Grid>
           </Grid>
           <h4 className={styles.Tagline}>{activeCopy.tagline}</h4>
@@ -215,11 +215,9 @@ const Header = () => {
 
         <div role="term" className={styles.Favorites}>
           <NextLink href="/favorites" as="/favorites">
-            <div className={classes.badge}>
-              <Badge badgeContent={favoriteResources.length} color="primary">
-                <Favorite style={{ color: 'white', fontSize: '3rem' }} />
-              </Badge>
-            </div>
+            <Badge badgeContent={favoriteResources.length} color="primary">
+              <Favorite style={{ color: 'white', fontSize: '3rem' }} />
+            </Badge>
           </NextLink>
         </div>
       </div>

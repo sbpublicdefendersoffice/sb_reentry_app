@@ -9,7 +9,7 @@
     "build": "NODE_OPTIONS=--max_old_space_size=4096 PROD_STATS=true DEP_CHECK=true next build",
     "build_data": "docker compose -f ./docker_postgres.yml up -d",
     "build_with_source_maps": "NODE_OPTIONS=--max_old_space_size=4096 PROD_SRC_MAPS=true next build",
-    "code-check": "yarn lint-es && yarn test && yarn type-check && yarn lint-css && yarn format",
+    "code-check": "yarn lint-es && yarn type-check && yarn lint-css && yarn format",
     "dev": "next dev",
     "format": "prettier ./**/*.{js,ts,tsx,json,css} --check --ignore-unknown",
     "lint-css": "stylelint ./**/*.css --fix --cache && echo 'All stylelint checks passed!'",
