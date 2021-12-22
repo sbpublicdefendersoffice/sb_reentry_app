@@ -5,7 +5,7 @@ const timeConverter = time => {
   militaryTime.split(':')
   let hours = Number(militaryTime[0])
   let minutes = Number(militaryTime[0])
-  let seconds = Number('00')
+
   time
   let timeValue
   if (hours > 0 && hours <= 12) {
@@ -16,8 +16,9 @@ const timeConverter = time => {
     timeValue = '12'
   }
   timeValue += minutes < 10 ? ':0' + minutes : ':' + minutes // get minutes
-  timeValue += seconds < 10 ? ':0' + seconds : ':' + seconds // get seconds
-  timeValue += hours >= 12 ? ' P.M.' : ' A.M.' // get AM/PM
-  return timeValue
+  timeValue += ':00'
+  timeValue += hours >= 12 ? ' PM' : ' AM' // get AM/PM
+  console.log(timeValue, 'in time value')
+  return `Mon Aug 18 2014 ${timeValue} GMT-0700 (Pacific Daylight Time)`
 }
 export default timeConverter
