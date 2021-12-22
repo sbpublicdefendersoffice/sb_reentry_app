@@ -56,11 +56,6 @@ export const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 100,
       marginLeft: '2rem',
     },
-    badge: {
-      '& > *': {
-        margin: '1rem',
-      },
-    },
     linkHeading: {
       fontSize: '2rem',
       fontFamily: 'Roboto',

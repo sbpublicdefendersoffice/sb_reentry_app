@@ -1,94 +1,46 @@
-import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
+import type { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { JwtPayload, verify } from 'jsonwebtoken'
 
-import { HeadTags, ExpungementForm } from '../../components'
-import { CallToAction, Title, Button } from '../../ui'
+import {
+  HeadTags,
+  FreshStartApplyTag,
+  FreshStartText,
+  FreshStartHowToApply,
+} from '../../components'
 import { siteTitle } from '../../constants'
-import { CopyHolder } from '../../types'
-import { useLanguage } from '../../hooks'
 
-interface ExpungementPageProps {
-  id: number
+export interface FreshStartLandingPageProps {
+  isLoggedIn: boolean
   hasAppliedForExpungement: boolean
   isVerified: boolean
-  email: string
-  commPrefs: string[]
+  loginType?: string
 }
 
-const copy: CopyHolder = {
-  english: {
-    applied:
-      'You have successfully applied for record expungement. The Public Defender should reach out to you within 5-7 business days',
-    notVerified: 'You have not yet been verified',
-  },
-  spanish: {
-    applied:
-      'Ha solicitado con éxito la eliminación de antecedentes penales. El Defensor Público debe comunicarse con usted en un plazo de 5 a 7 días hábiles',
-    notVerified: 'Aún no has sido verificado',
-  },
-}
-
-const ExpungementPage = ({
-  id,
+const FreshStartLandingPage = ({
+  isLoggedIn,
   hasAppliedForExpungement,
   isVerified,
-  email,
-  commPrefs,
-}: ExpungementPageProps) => {
-  const { push } = useRouter()
-  const [hasClientApplied, setHasClientApplied] = useState<boolean>(
-    hasAppliedForExpungement,
-  )
-  const { language } = useLanguage()
-
-  const { applied, notVerified } = copy[language]
-
-  const logOut = async (): Promise<void> => {
-    const loggingOut: Response = await fetch('/api/logout')
-    const logoutMessage = await loggingOut.json()
-    if (logoutMessage.error) console.log('oh no!')
-    else {
-      console.log('oh yeah')
-      push('/login')
-    }
-  }
-
-  return (
-    <>
-      <HeadTags
-        title={`${siteTitle} | Fresh Start Record Expungement`}
-        href={`/freshstart`}
-        description={`Thrive SBC | Fresh Start Record Expungement`}
+  loginType,
+}: FreshStartLandingPageProps) => (
+  <>
+    <HeadTags
+      title={`${siteTitle} | Fresh Start Information`}
+      href={`/freshstart`}
+      description={`Thrive SBC | Fresh Start Information`}
+    />
+    {loginType && loginType === 'client' && (
+      <FreshStartApplyTag
+        isLoggedIn={isLoggedIn}
+        hasAppliedForExpungement={hasAppliedForExpungement}
+        isVerified={isVerified}
       />
-      {!isVerified ? (
-        <CallToAction>
-          <Title>{notVerified}</Title>
-        </CallToAction>
-      ) : hasClientApplied ? (
-        <CallToAction>
-          <Title>{applied}</Title>
-        </CallToAction>
-      ) : (
-        <ExpungementForm
-          clientId={id}
-          setHasClientApplied={setHasClientApplied}
-          savedEmail={email}
-          commPrefs={commPrefs}
-        />
-      )}
-      <Button
-        style={{ height: 'min-content', marginTop: 'var(--pad-std)' }}
-        onClick={logOut}
-      >
-        Logout
-      </Button>
-    </>
-  )
-}
+    )}
+    <FreshStartText />
+    <FreshStartHowToApply />
+  </>
+)
 
-export default ExpungementPage
+export default FreshStartLandingPage
 
 export const getServerSideProps: GetServerSideProps = async (
   ctx: GetServerSidePropsContext,
@@ -113,23 +65,12 @@ export const getServerSideProps: GetServerSideProps = async (
     }
   }
 
-  if (!token || token?.type !== 'client')
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  else {
-    const { id, hasAppliedForExpungement, isVerified, email, commPrefs } = token
-    return {
-      props: {
-        id,
-        hasAppliedForExpungement,
-        isVerified,
-        email: email || null,
-        commPrefs: commPrefs || null,
-      },
-    }
+  return {
+    props: {
+      isLoggedIn: !!token,
+      hasAppliedForExpungement: !!token?.hasAppliedForExpungement,
+      isVerified: !!token?.isVerified,
+      loginType: token?.type || null,
+    },
   }
 }

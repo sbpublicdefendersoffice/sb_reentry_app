@@ -1,0 +1,26 @@
+.FreshStartCantLogin {
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+  margin: 0 auto;
+  width: 90%;
+  padding: var(--margin-lg) 0;
+}
+
+.Heading {
+  font-weight: bold;
+}
+
+.Paragraph,
+.Heading {
+  text-align: start;
+}
+
+.ToApply {
+  margin: var(--margin-lg) 0;
+}
+
+.ListItem {
+  padding: var(--margin-std) 0;
+  list-style: circle inside;
+}

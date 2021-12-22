@@ -90,6 +90,7 @@ const recordClearance = async (
           hasAppliedForExpungement: true,
           commPrefs,
           expungementEmail: expungementEmail || null,
+          phone: body['Phone Number'] || null,
         },
         { where: { id: clientId } },
       )

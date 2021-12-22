@@ -3,13 +3,13 @@
   right: 7.5rem;
   top: 5rem;
   background-color: var(--light);
-  width: 20%;
+  min-width: 20%;
+  max-width: 25%;
   border: var(--border-width) solid var(--primary);
   border-radius: var(--radius-small);
   z-index: 9;
   align-items: center;
   justify-content: flex-start;
-  overflow: hidden;
 }
 
 .SearchContainer {
@@ -55,7 +55,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    width: 100%;
+    min-width: 100%;
   }
 
   .ResultsContainer {
