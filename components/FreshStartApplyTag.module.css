@@ -1,0 +1,29 @@
+.FreshStartApplyTag {
+  width: fit-content;
+  position: absolute;
+  right: 0;
+  padding: var(--pad-std);
+  background-color: var(--primary);
+  border-radius: 0 0 0 var(--radius-medium);
+}
+
+.Tagline {
+  font-size: var(--med-text);
+}
+
+.Buttons {
+  width: 45%;
+  margin: 2.5%;
+}
+
+@media (max-width: 700px) {
+  .FreshStartApplyTag {
+    right: 50%;
+    transform: translateX(50%);
+    border-radius: 0 0 var(--radius-medium) var(--radius-medium);
+  }
+
+  .Tagline {
+    font-size: var(--standard-text);
+  }
+}

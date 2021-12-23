@@ -97,6 +97,16 @@ export const staticPageRoutes: RouteInfo[] = [
     title_spanish: 'Favoritas',
     route: '/favorites',
   },
+  {
+    title_english: 'Fresh Start',
+    title_spanish: 'Fresh Start',
+    route: '/freshstart',
+  },
+  {
+    title_english: 'Login',
+    title_spanish: 'Acceso',
+    route: '/login',
+  },
 ]
 
 export const letUsHelpRoutes: RouteInfo[] = [

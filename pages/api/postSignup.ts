@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { v4 as uuid } from 'uuid'
 import { hashSync } from 'bcryptjs'
 
-import { sendEmail } from '../../helpers'
+import { sendEmail } from '../../helpers/sendEmail'
 import initDb from '../../helpers/sequelize'
 import { isProd } from '../../constants'
 

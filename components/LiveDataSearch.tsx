@@ -130,7 +130,7 @@ const LiveDataSearch = ({ testWorkaround }: LiveDataSearchProps) => {
               delimiter={delimiter}
             />
           )}
-          <div style={{ marginTop: tagsReady ? '3.25rem' : 0 }}>
+          <div>
             {searchResults.map((record: PGOrganizationResponse, i: number) => (
               <Fragment key={i}>
                 <GlobalSearchResult

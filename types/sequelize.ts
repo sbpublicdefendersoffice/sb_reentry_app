@@ -131,6 +131,7 @@ export interface ClientModel extends Model {
   email: string
   hasAppliedForExpungement: boolean
   expungementEmail: string
+  phone: string
   expungementXMessageId: string
   hasBeenNotifiedOfExpungement: boolean
   commPrefs: string[]
