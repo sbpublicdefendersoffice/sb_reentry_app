@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { sendEmail } from '../../helpers'
+import { sendEmail } from '../../helpers/sendEmail'
 import initDb from '../../helpers/sequelize'
 const postAddNewInfo = async (
   req: NextApiRequest,
