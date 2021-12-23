@@ -60,7 +60,7 @@ export {
   medicalsupportServiceCopy,
   mentalhealthServiceCopy,
   peopleServedCopy,
-  resourcedirectoryServiceCopy,
+  //resourcedirectoryServiceCopy,
   socialservicesServiceCopy,
   substanceuseServiceCopy,
   transportationServiceCopy,

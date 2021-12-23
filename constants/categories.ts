@@ -49,14 +49,14 @@ const categories: { [route: string]: CopyHolder } = {
       category: 'Ropa',
     },
   },
-  '/resourcedirectory': {
-    english: {
-      category: 'Resource Directory',
-    },
-    spanish: {
-      category: 'Directorio de Recursos',
-    },
-  },
+  // '/resourcedirectory': {
+  //   english: {
+  //     category: 'Resource Directory',
+  //   },
+  //   spanish: {
+  //     category: 'Directorio de Recursos',
+  //   },
+  // },
   '/legalservices': {
     english: {
       category: 'Legal Services',

@@ -37,12 +37,12 @@ export const resourceRoutes: RouteInfo[] = [
     route: '/clothing',
     imgPath: './icons/clothing.svg',
   },
-  {
-    title_english: 'Resource Directory',
-    title_spanish: 'Directorio de Recursos',
-    route: '/resourcedirectory',
-    imgPath: './icons/resourcedirectory.svg',
-  },
+  // {
+  //   title_english: 'Resource Directory',
+  //   title_spanish: 'Directorio de Recursos',
+  //   route: '/resourcedirectory',
+  //   imgPath: './icons/resourcedirectory.svg',
+  // },
   {
     title_english: 'Legal Services',
     title_spanish: 'Servicios Jurídicos',
@@ -73,7 +73,6 @@ export const resourceRoutes: RouteInfo[] = [
     route: '/substanceuse',
     imgPath: './icons/substanceuse.svg',
   },
-
   {
     title_english: 'Education',
     title_spanish: 'Educación',
