@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { FormEvent, Fragment, ChangeEvent, useState } from 'react'
 import { JwtPayload, verify } from 'jsonwebtoken'
+import timeConverter from '../../helpers/timeConverter'
 import {
   Button,
   TextField,
@@ -16,6 +17,9 @@ import {
   Box,
   Modal,
 } from '@mui/material'
+import TimePicker from '@mui/lab/TimePicker'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import DateAdapter from '@mui/lab/AdapterMoment'
 import FormModal from '../../components/FormModal'
 import ScheduleServiceModal from '../../components/ScheduleServiceModal'
 import { POST } from '../../helpers/'
@@ -48,7 +52,8 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const [changeAddress, setChangeAddress] = useState(false)
   const [addressValue, setAddressValue] = useState('')
   const [features, setFeatures] = useState([])
-  const [addressInfo, setAddressInfo] = useState(null)
+  const [openTime, setOpenTime] = useState<any | null>('2014-08-18T12:00:00')
+  const [closeTime, setCloseTime] = useState<any | null>('2014-08-18T12:00:00')
   const [openScheduleServiceModal, setOpenScheduleServiceModal] =
     useState(false)
   const [deletedInfo, setDeletedInfo] = useState(null)
@@ -59,9 +64,20 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   const [checkBoxState, setCheckBoxState] = useState(
     initCategoriesState.map(i => false),
   )
-  const [daysCheckBoxState, setDaysCheckBoxState] = useState(
-    initSmallDaysCheckBoxState.map(i => false),
-  )
+  const handleOpenTimeChange = (newValue: Date | null, locIdx, schIdx) => {
+    let formattedTime = String(newValue).slice(16, 21)
+    setOpenTime(newValue)
+    const temp = orgInfo
+    temp.locations[locIdx].schedules[schIdx].open_time = formattedTime
+    setOrgInfo({ ...temp })
+  }
+  const handleCloseTimeChange = (newValue: Date | null, locIdx, schIdx) => {
+    let formattedTime = String(newValue).slice(16, 21)
+    setCloseTime(newValue)
+    const temp = orgInfo
+    temp.locations[locIdx].schedules[schIdx].close_time = formattedTime
+    setOrgInfo({ ...temp })
+  }
   const logOut = async () => {
     const loggingOut: Response = await fetch('/api/logout')
     const logoutMessage = await loggingOut.json()
@@ -71,7 +87,17 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       push('/login')
     }
   }
-
+  const buildDaysCheckBoxFromOrgInfo = (scheduleLocationId, scheduleId) => {
+    const stateData: string =
+      orgInfo.locations[scheduleLocationId].schedules[scheduleId].days
+    const updatedCheckBoxInfo = initSmallDaysCheckBoxState.map(
+      ({ name, checked }) => {
+        const isChecked = stateData.includes(name)
+        return { name: name, checked: isChecked }
+      },
+    )
+    return updatedCheckBoxInfo
+  }
   const isCheckboxChecked = (index, checked) => {
     setCheckBoxState(checkBoxState => {
       return checkBoxState.map((c, i) => {
@@ -80,13 +106,16 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       })
     })
   }
-  const isDaysCheckboxChecked = (index, checked) => {
-    setDaysCheckBoxState(daysCheckBoxState => {
-      return daysCheckBoxState.map((c, i) => {
-        if (i === index) return checked
-        return c
-      })
-    })
+  const isDaysCheckboxChecked = (index, wasChecked, locIdx, schIdx) => {
+    const newDaysCheckBoxState = buildDaysCheckBoxFromOrgInfo(locIdx, schIdx)
+    newDaysCheckBoxState[index].checked = wasChecked
+    let daysChecked = newDaysCheckBoxState
+      .filter(({ name, checked }) => checked)
+      .map(({ name, checked }) => name)
+    let daysCheckedToString = daysChecked.join(', ')
+    const temp = orgInfo
+    temp.locations[locIdx].schedules[schIdx].days = daysCheckedToString
+    setOrgInfo({ ...temp })
   }
   const fetchOrgInfo = async () => {
     const postCBOsToPostgres: Response = await fetch('/api/postOrg', {
@@ -94,43 +123,19 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       body: JSON.stringify(orgId),
     })
     const apiResponse = await postCBOsToPostgres.json()
-
-    initCategoriesState.map((name, index) => {
+    const newCategoryState = initCategoriesState.map((name, index) => {
       if (
         apiResponse.org?.multiple_categories.includes(
           name.categories_english.toLowerCase(),
         )
-      ) {
-        name.checked = true
-        checkBoxState[index] = true
-      }
-    }),
-      apiResponse.org?.locations.map((location, locIdx) => {
-        const { schedules } = location
-        schedules.map((schedule, schIdx) => {
-          initSmallDaysCheckBoxState.map((item, index) => {
-            let tempDays = daysCheckBoxState
-            const { days } = schedule
-            console.log(
-              '🚀 ~ file: index.tsx ~ line 119 ~ schedules.map ~ days',
-              index,
-              days.includes(item.name),
-            )
-
-            if (days.includes(item.name)) {
-              tempDays[index] = true
-            } else {
-              tempDays[index] = false
-            }
-            console.log('Checked ')
-            schedule.groupedDays = tempDays
-          })
-        })
-      })
-
+      )
+        return true
+      else return false
+    })
+    setCheckBoxState(newCategoryState)
     setDashboardButtonClicked(!dashboardButtonClicked)
     setOrgInfo(apiResponse.org)
-    return { initCategoriesState, initSmallDaysCheckBoxState }
+    return { initCategoriesState }
   }
   const translateInfo = async (q, id, name): Promise<void> => {
     let splicer = id.slice(0, -7)
@@ -175,27 +180,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     )
     return apiResponse
   }
-  // const latLongConverter = async (query, locIdx): Promise<void> => {
-  //   const postLatLongConverter: Response = await fetch(
-  //     `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?proximity=-119.71157,34.41503&access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`,
-  //   )
-  //   const apiResponse = await postLatLongConverter.json()
-  //   const latitude = apiResponse.features[0].center[1]
-  //   const longitude = apiResponse.features[0].center[0]
-  //   setOrgInfo(info => {
-  //     const tempLocValues = [...info.locations]
-  //     tempLocValues[locIdx] = {
-  //       ...tempLocValues[locIdx],
-  //       ['latitude']: latitude,
-  //       ['longitude']: longitude,
-  //     }
-  //     return {
-  //       ...info,
-  //       locations: [...tempLocValues],
-  //     }
-  //   })
-  //   return apiResponse
-  // }
   const handleBlur = e => {
     const { name, value, id } = e.target
     let isEnglishKey = id.includes('english')
@@ -207,12 +191,8 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       }
     }
   }
-
   const handleAddressChange = async e => {
-    console.log('🚀 ~ file: index.tsx ~ line 211 ~ Dashboard ~ e', e)
-
     const { value } = e.target
-
     setAddressValue(value)
     if (value.length > 2) {
       latLongConverter(value)
@@ -238,11 +218,10 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
   }
   const handleSelectedAddress = (selectedValue, locationIndex) => {
-    console.log(
-      '🚀 ~ file: index.tsx ~ line 248 ~ Dashboard ~ selectedValue',
-      selectedValue,
-      locationIndex,
-    )
+    if (selectedValue == null) {
+      setChangeAddress(!changeAddress)
+      return
+    }
     setOrgInfo(info => {
       const tempLocValues = [...info.locations]
       const { center, place_name, context } = selectedValue
@@ -255,7 +234,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       return { ...info, locations: [...tempLocValues] }
     })
     setChangeAddress(!changeAddress)
-    // setOrgInfo(),
   }
   const handleAddScheduleServiceClick = (schOrServ, locationID) => {
     setLocationID(locationID)
@@ -264,6 +242,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   }
   const saveChanges = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
+    console.log('org info 👍🏾', orgInfo)
     let categoryState_english = []
     let categoryState_spanish = []
     checkBoxState
@@ -279,6 +258,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     })
     orgInfo.categories_english = categoryState_english
     orgInfo.categories_spanish = categoryState_spanish
+    orgInfo
     const postCBOToPostgres: Response = await fetch(`/api/postUpdateCBOInfo`, {
       method: POST,
       body: JSON.stringify(orgInfo),
@@ -314,7 +294,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       method: POST,
       body: JSON.stringify({
         info: deletedInfo,
-
         location_id: locationID,
         org_name: orgInfo.name_english,
       }),
@@ -324,9 +303,7 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       setToast(`There was an error deleting the schedule`)
     } else {
       const temp = orgInfo
-
       temp.locations[locationIndex].schedules.splice(schOrServIndex, 1)
-
       setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
       setToast(`You deleted the item successfully`)
     }
@@ -345,14 +322,11 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
       setToast(`There was an error deleting the service`)
     } else {
       const temp = orgInfo
-
       temp.locations[locationIndex].services.splice(schOrServIndex, 1)
-
       setDeleteSchorServConfirmation(!deleteSchorServConfirmation)
       setToast(`You deleted the item successfully`)
     }
   }
-
   const handleChange = async ({ target }: ChangeEvent<HTMLInputElement>) => {
     const { name, value, id } = target
     if (name === 'org') {
@@ -515,7 +489,11 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                         </Fragment>
                       </div>
                     )
-                  else if (value instanceof Array) {
+                  else if (
+                    value instanceof Array &&
+                    value[0].name !== undefined
+                  ) {
+                    console.log('value', value)
                     return (
                       <div
                         style={{
@@ -580,10 +558,10 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                       locKey.includes('id') ||
                                       locKey.includes('tude') ||
                                       locKey.includes('state') ||
-                                      locKey.includes('zip')
+                                      locKey.includes('zip') ||
+                                      locKey.includes('updatedAt')
                                     )
                                       return
-
                                     if (typeof locVal !== 'object')
                                       return (
                                         <>
@@ -647,7 +625,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                                           ) => {
                                                             handleSelectedAddress(
                                                               selectedValue,
-
                                                               //@ts-ignore
                                                               lkey,
                                                             )
@@ -744,48 +721,93 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                           {Object.values(locVal).map(
                                             (srvOrSchVal, i) => {
                                               if (srvOrSchVal?.days) {
-                                                let temp =
-                                                  initSmallDaysCheckBoxState
-                                                let tempCheck =
-                                                  daysCheckBoxState
-
-                                                temp.map((item, index) => {
-                                                  if (
-                                                    srvOrSchVal?.groupedDays.find(
-                                                      dayName => {
-                                                        dayName = item.name
-                                                      },
-                                                    )
-                                                  ) {
-                                                    tempCheck[index] = true
-                                                  }
-                                                })
-
+                                                let standardTimeOpen =
+                                                  timeConverter(
+                                                    srvOrSchVal.open_time,
+                                                  )
+                                                let standardTimeClose =
+                                                  timeConverter(
+                                                    srvOrSchVal.close_time,
+                                                  )
+                                                let initState = {
+                                                  open_time: standardTimeOpen,
+                                                  close_time: standardTimeClose,
+                                                }
                                                 return (
-                                                  <FormGroup>
-                                                    <h2
-                                                      style={{
-                                                        marginTop: '1.5rem',
-                                                        marginBottom: '2rem',
-                                                        textAlign: 'center',
-                                                      }}
+                                                  <>
+                                                    <LocalizationProvider
+                                                      dateAdapter={DateAdapter}
                                                     >
-                                                      Days
-                                                    </h2>
-                                                    <Grid
-                                                      container
-                                                      style={{
-                                                        width: '41%',
-                                                        margin: 'auto',
-                                                      }}
-                                                    >
-                                                      {temp.map(
-                                                        (item, index) => {
-                                                          const {
-                                                            name,
-                                                            checked,
-                                                          } = item
-                                                          return (
+                                                      <Accordion
+                                                        style={{
+                                                          display: 'block',
+                                                          flexDirection:
+                                                            'column',
+                                                          justifyContent:
+                                                            'center',
+                                                          margin: '1.5rem',
+                                                          padding: '1rem',
+                                                        }}
+                                                      >
+                                                        <AccordionSummary
+                                                          expandIcon={
+                                                            <ExpandMore />
+                                                          }
+                                                          aria-controls="panel3a-content"
+                                                          data-testid="accordion"
+                                                          id="panel3a-header"
+                                                        >
+                                                          <>
+                                                            <h3>
+                                                              {locKey ==
+                                                              'services'
+                                                                ? `Service:  ${srvOrSchVal.name_english}`
+                                                                : 'Schedules'}
+                                                            </h3>
+                                                            <Button
+                                                              onClick={() =>
+                                                                handleDeleteSchOrServClick(
+                                                                  locKey,
+                                                                  srvOrSchVal,
+                                                                  lVal.id,
+                                                                  lkey,
+                                                                  i,
+                                                                )
+                                                              }
+                                                              style={{
+                                                                position:
+                                                                  'absolute',
+                                                                right: '3rem',
+                                                              }}
+                                                            >
+                                                              <DeleteForeverIcon
+                                                                style={{
+                                                                  color: 'red',
+                                                                  fontSize:
+                                                                    '2rem',
+                                                                }}
+                                                              />
+                                                            </Button>
+                                                          </>
+                                                        </AccordionSummary>
+                                                        <h2
+                                                          style={{
+                                                            marginTop: '1.5rem',
+                                                            marginBottom:
+                                                              '2rem',
+                                                            textAlign: 'center',
+                                                          }}
+                                                        >
+                                                          Days
+                                                        </h2>
+                                                        <Grid
+                                                          container
+                                                          style={{
+                                                            width: '41%',
+                                                            margin: 'auto',
+                                                          }}
+                                                        >
+                                                          <Grid>
                                                             <Grid
                                                               item
                                                               md={6}
@@ -795,35 +817,144 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                                                   'left',
                                                               }}
                                                             >
-                                                              <FormControlLabel
-                                                                control={
-                                                                  <Checkbox
-                                                                    name={name}
-                                                                    value={
-                                                                      checked
-                                                                    }
-                                                                    checked={
-                                                                      tempCheck[
-                                                                        index
-                                                                      ]
-                                                                    }
-                                                                    onChange={e =>
-                                                                      isDaysCheckboxChecked(
-                                                                        index,
-                                                                        e.target
-                                                                          .checked,
-                                                                      )
-                                                                    }
-                                                                  />
-                                                                }
-                                                                label={name}
-                                                              />
+                                                              <FormGroup>
+                                                                {buildDaysCheckBoxFromOrgInfo(
+                                                                  lkey,
+                                                                  i,
+                                                                ).map(
+                                                                  (
+                                                                    {
+                                                                      name,
+                                                                      checked,
+                                                                    },
+                                                                    dayIndex,
+                                                                  ) => (
+                                                                    <FormControlLabel
+                                                                      control={
+                                                                        <Checkbox
+                                                                          name={
+                                                                            name
+                                                                          }
+                                                                          value={`${name}_${checked}`}
+                                                                          checked={
+                                                                            checked
+                                                                          }
+                                                                          onChange={e =>
+                                                                            isDaysCheckboxChecked(
+                                                                              dayIndex,
+                                                                              e
+                                                                                .target
+                                                                                .checked,
+                                                                              lkey,
+                                                                              i,
+                                                                            )
+                                                                          }
+                                                                        />
+                                                                      }
+                                                                      label={
+                                                                        name
+                                                                      }
+                                                                    />
+                                                                  ),
+                                                                )}
+                                                              </FormGroup>
                                                             </Grid>
-                                                          )
-                                                        },
-                                                      )}
-                                                    </Grid>
-                                                  </FormGroup>
+                                                          </Grid>
+                                                        </Grid>
+                                                        <h2
+                                                          style={{
+                                                            marginTop: '1.5rem',
+                                                            marginBottom:
+                                                              '2rem',
+                                                            textAlign: 'center',
+                                                          }}
+                                                        >
+                                                          Time
+                                                        </h2>
+                                                        <Grid container>
+                                                          <Grid
+                                                            item
+                                                            xs={12}
+                                                            md={6}
+                                                          >
+                                                            <TimePicker
+                                                              label="Open Time"
+                                                              value={
+                                                                openTime ==
+                                                                '2014-08-18T12:00:00'
+                                                                  ? initState.open_time
+                                                                  : openTime
+                                                              }
+                                                              onChange={e =>
+                                                                handleOpenTimeChange(
+                                                                  e,
+                                                                  lkey,
+                                                                  i,
+                                                                )
+                                                              }
+                                                              renderInput={params => (
+                                                                <TextField
+                                                                  // required
+                                                                  {...params}
+                                                                />
+                                                              )}
+                                                            />
+                                                          </Grid>
+                                                          <Grid
+                                                            item
+                                                            xs={12}
+                                                            md={6}
+                                                          >
+                                                            <TimePicker
+                                                              label="Close Time"
+                                                              value={
+                                                                closeTime ==
+                                                                '2014-08-18T12:00:00'
+                                                                  ? initState.close_time
+                                                                  : closeTime
+                                                              }
+                                                              onChange={e =>
+                                                                handleCloseTimeChange(
+                                                                  e,
+                                                                  lkey,
+                                                                  i,
+                                                                )
+                                                              }
+                                                              renderInput={params => (
+                                                                <TextField
+                                                                  // required
+                                                                  {...params}
+                                                                />
+                                                              )}
+                                                            />
+                                                          </Grid>
+                                                          <TextField
+                                                            style={{
+                                                              margin:
+                                                                '2rem 0 1rem 0',
+                                                              width: '41rem',
+                                                            }}
+                                                            name="notes"
+                                                            id={`notes;${i};${locKey};${lkey}`}
+                                                            helperText={'Notes'}
+                                                            inputProps={{
+                                                              style: {
+                                                                fontSize:
+                                                                  '1.6rem',
+                                                              },
+                                                            }}
+                                                            value={
+                                                              srvOrSchVal.notes as string
+                                                            }
+                                                            onChange={
+                                                              handleChange
+                                                            }
+                                                            onBlur={handleBlur}
+                                                          />
+                                                        </Grid>
+                                                      </Accordion>
+                                                    </LocalizationProvider>
+                                                  </>
                                                 )
                                               } else {
                                                 return (
