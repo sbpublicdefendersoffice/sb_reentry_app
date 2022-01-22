@@ -83,7 +83,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     const logoutMessage = await loggingOut.json()
     if (logoutMessage.error) console.log('oh no!')
     else {
-      console.log('oh yeah')
       push('/login')
     }
   }
@@ -242,7 +241,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
   }
   const saveChanges = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
-    console.log('org info 👍🏾', orgInfo)
     let categoryState_english = []
     let categoryState_spanish = []
     checkBoxState
@@ -379,7 +377,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
         </span>
       </>
     )
-  console.log('Org Info', orgInfo)
   return (
     <>
       <HeadTags
@@ -493,7 +490,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                     value instanceof Array &&
                     value[0].name !== undefined
                   ) {
-                    console.log('value', value)
                     return (
                       <div
                         style={{
@@ -507,9 +503,10 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                             flexDirection: 'column',
                             alignItems: 'center',
                             marginTop: '4rem',
+                            // justifyContent: 'space-around',
                           }}
                         >
-                          <h2 style={{ marginBottom: '2rem' }}>Locations </h2>
+                          <h2 style={{ marginBottom: '2rem' }}>Locations</h2>
                           <Button
                             style={{
                               alignSelf: 'flex-end',
@@ -526,7 +523,26 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                   alignSelf: 'center',
                                 }}
                               />
-                              Add a location
+                              Request to delete a location
+                            </h4>
+                          </Button>
+                          <Button
+                            style={{
+                              alignSelf: 'flex-end',
+                              alignItems: 'center',
+                            }}
+                            className={classes.greenButton}
+                            onClick={() => setOpenModal(!openModal)}
+                          >
+                            <h4 style={{ padding: '1rem' }}>
+                              {' '}
+                              <AddIcon
+                                style={{
+                                  paddingTop: '.5rem',
+                                  alignSelf: 'center',
+                                }}
+                              />
+                              Request to add a new location
                             </h4>
                           </Button>{' '}
                         </div>
@@ -1076,16 +1092,6 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
                                       )
                                   })}
                               </Accordion>
-                              <Button
-                                onClick={() => handleDeleteClick(lVal, lkey)}
-                              >
-                                <DeleteForeverIcon
-                                  style={{
-                                    color: 'red',
-                                    fontSize: '2rem',
-                                  }}
-                                />
-                              </Button>
                             </div>
                           )
                         })}

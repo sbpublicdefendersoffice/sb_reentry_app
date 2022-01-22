@@ -1,3 +1,5 @@
+import sendGrid, { MailDataRequired } from '@sendgrid/mail'
+
 import React, { useState, FormEvent } from 'react'
 import { Button, TextField, Autocomplete } from '@mui/material'
 import { POST } from '../helpers/'
@@ -62,11 +64,50 @@ const AddLocationForm = ({
       latLongConverter(value)
     }
   }
-  const addNewInfo = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  // const addNewInfo = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  //   e.preventDefault()
+  //   const confirmWindow = window.confirm(
+  //     'Are you sure you want to add this location?',
+  //   )
+  //   if (confirmWindow) {
+  //     stateValue.orgName = orgInfo?.name_english
+  //     stateValue.id = orgInfo?.id
+  //     stateValue.latitude = addressInfo.center[1]
+  //     stateValue.longitude = addressInfo.center[0]
+  //     stateValue.address = addressInfo.place_name.split(',')[0]
+  //     stateValue.city = addressInfo.context[2].text
+  //     stateValue.zip = addressInfo.context[1].text
+  //     stateValue.state = addressInfo.context[4].text
+  //       .toUpperCase()
+  //       .substring(0, 2)
+  //     const postAddNewInfoToPostgres: Response = await fetch(
+  //       '/api/postAddNewLocation',
+  //       {
+  //         method: POST,
+  //         body: JSON.stringify(stateValue),
+  //       },
+  //     )
+  //     const apiResponse = await postAddNewInfoToPostgres.json()
+  //     setOrgInfo(info => {
+  //       const tempLocValues = [...info.locations]
+  //       tempLocValues.push({ ...apiResponse, schedules: [], services: [] })
+  //       return {
+  //         ...info,
+  //         locations: [...tempLocValues],
+  //       }
+  //     })
+  //     handleClose()
+  //     setToast('You successfully added your location')
+  //   }
+  // }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault()
+
     const confirmWindow = window.confirm(
       'Are you sure you want to add this location?',
     )
+
     if (confirmWindow) {
       stateValue.orgName = orgInfo?.name_english
       stateValue.id = orgInfo?.id
@@ -78,30 +119,29 @@ const AddLocationForm = ({
       stateValue.state = addressInfo.context[4].text
         .toUpperCase()
         .substring(0, 2)
-      const postAddNewInfoToPostgres: Response = await fetch(
-        '/api/postAddNewLocation',
+
+      const postLocationReqest: Response = await fetch(
+        '/api/postAddLocationRequest',
         {
           method: POST,
           body: JSON.stringify(stateValue),
         },
       )
-      const apiResponse = await postAddNewInfoToPostgres.json()
-      setOrgInfo(info => {
-        const tempLocValues = [...info.locations]
-        tempLocValues.push({ ...apiResponse, schedules: [], services: [] })
-        return {
-          ...info,
-          locations: [...tempLocValues],
-        }
-      })
-      handleClose()
-      setToast('You successfully added your location')
+
+      const requestResponse = await postLocationReqest.json()
+
+      if (requestResponse.error) setToast('error in sending request')
+      else {
+        handleClose()
+        setOrgInfo(null)
+        setToast('You successfully added your location')
+      }
     }
   }
   return (
     <div>
       {' '}
-      <form role="form" autoComplete="none" onSubmit={addNewInfo}>
+      <form role="form" autoComplete="none" onSubmit={handleSubmit}>
         <div
           style={{
             display: 'flex',
@@ -211,11 +251,11 @@ const AddLocationForm = ({
             // title={validNotes}
             onChange={handleChange}
             style={{ marginTop: '1rem' }}
-            placeholder={`Notes`}
+            placeholder={`Organizational Info`}
             //@ts-ignore
             // error={errors.notes ? true : false}
             //@ts-ignore
-            helperText={'Notes'}
+            helperText={'Organizational Info'}
             // helperText={errors.notes ? validNotes : false}
             // onBlur={handleBlur}
             // required
@@ -228,7 +268,7 @@ const AddLocationForm = ({
             className={classes.greenButton}
             type="submit"
           >
-            <h4 style={{ padding: '1rem' }}>Save Changes</h4>
+            <h4 style={{ padding: '1rem' }}>Submit Request</h4>
           </Button>
           <Button
             style={{
