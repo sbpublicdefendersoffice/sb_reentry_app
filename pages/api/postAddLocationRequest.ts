@@ -1,9 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import sendGrid, { MailDataRequired } from '@sendgrid/mail'
-import { resolve } from 'path/posix'
-import { request } from 'http'
-import { Json } from 'sequelize/dist/lib/utils'
-//mport initDb from '../../helpers/sequelize'
 
 const postAddLocationRequest = async (
   req: NextApiRequest,

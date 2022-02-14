@@ -1,0 +1,23 @@
+.Day {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5rem;
+}
+
+.Label {
+  width: 7rem;
+  text-align: center;
+  margin: 1.5rem;
+  font-size: medium;
+}
+
+.CheckBox {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+.Check {
+  align-self: center;
+}

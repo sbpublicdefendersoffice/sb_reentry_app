@@ -133,7 +133,7 @@ const AddLocationForm = ({
       if (requestResponse.error) setToast('error in sending request')
       else {
         handleClose()
-        setOrgInfo(null)
+        // setOrgInfo(null)
         setToast('You successfully added your location')
       }
     }
@@ -151,7 +151,7 @@ const AddLocationForm = ({
           }}
         >
           <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>
-            {'Location Information'}
+            {'Location Add Request Form'}
           </h1>
           <TextField
             value={name}

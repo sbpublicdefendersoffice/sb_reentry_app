@@ -1,0 +1,20 @@
+.Container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: lightcyan;
+}
+
+.LocationTile {
+  margin: 1rem;
+  width: 20rem;
+}
+
+.OrgContainer {
+  background-color: plum;
+  flex: 2;
+  height: 100%;
+}
+
+.LocationContainer {
+  flex: 5;
+}
