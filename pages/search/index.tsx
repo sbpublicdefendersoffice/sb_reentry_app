@@ -7,16 +7,16 @@ import {
   useLanguage,
   useConvertedLocationRecords,
 } from '../../hooks'
+import { categoryCopy } from '../../constants/filter'
+import MobileButtonsLandingPage from '../../components/MobileButtonsLandingPage'
 import { isProd, siteTitle } from '../../constants/'
 import { PGOrganizationResponse, CopyHolder } from '../../types'
 import { TagPane, DisplayMap, HeadTags } from '../../components/'
-import { categoryCopy } from '../../constants/filter'
-import MobileButtonsLandingPage from '../../components/MobileButtonsLandingPage'
+
 const copy: CopyHolder = {
   english: { search: 'Search' },
   spanish: { search: 'Buscar' },
 }
-
 const GlobalSearchLanding = () => {
   const { asPath } = useRouter()
   const { language } = useLanguage()
@@ -33,7 +33,6 @@ const GlobalSearchLanding = () => {
     const query: string = decodeURI(
       asPath.replace(captureQuery, capturedQueryReference),
     )
-
     const filterOrFetch = async () => {
       if (searchResults) {
         setLocationRecords(searchResults)
@@ -46,10 +45,8 @@ const GlobalSearchLanding = () => {
         setSearchResults(call)
       }
     }
-
     filterOrFetch()
   }, [searchResults])
-
   return (
     convertedLocRecords && (
       <>
@@ -75,5 +72,4 @@ const GlobalSearchLanding = () => {
     )
   )
 }
-
 export default GlobalSearchLanding

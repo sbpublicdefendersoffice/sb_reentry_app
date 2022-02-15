@@ -1,4 +1,3 @@
-import { Email } from '@mui/icons-material'
 import { useRouter } from 'next/router'
 import { Button } from '@mui/material'
 import { useStyles } from '../constants'

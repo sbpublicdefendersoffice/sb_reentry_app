@@ -6,8 +6,6 @@ const updateCBOInfoRoute = async (
 ): Promise<void> => {
   try {
     const { orgObj, locObj, schObj, servObj } = initDb()
-    // const { authorization } = req.headers
-
     const {
       id,
       name_english,
@@ -20,29 +18,10 @@ const updateCBOInfoRoute = async (
       notes_english,
       notes_spanish,
       locations,
+      categories_english,
+      categories_spanish,
     } = JSON.parse(req.body)
 
-    // if (!authorization) {
-    //   return res.status(401).json({ message: 'No authorization header sent' })
-    // }
-
-    // const token = authorization.split(' ')[1]
-
-    // jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-    //   if (err) {
-    //     return res.status(401).json({ message: 'Unable to verify token' })
-    //   }
-    //   const { isVerified, email } = decoded
-
-    //   if (decoded.id !== id) {
-    //     return res.status(403).json({ message: 'Not allowed to update data' })
-    //   }
-    //   if (!isVerified) {
-    //     return res.status(403).json({
-    //       message:
-    //         'You need to verify your email before you can update your data',
-    //     })
-    //   }
     await orgObj.update(
       {
         name_english: name_english,
@@ -54,6 +33,8 @@ const updateCBOInfoRoute = async (
         customers_served_spanish: customers_served_spanish,
         notes_english: notes_english,
         notes_spanish: notes_spanish,
+        categories_english: categories_english,
+        categories_spanish: categories_spanish,
       },
       { where: { id: id } },
     )
@@ -72,6 +53,8 @@ const updateCBOInfoRoute = async (
         notes,
         schedules,
         services,
+        latitude,
+        longitude,
       } = location
       schedules.map(schedule => {
         const { id, open_time, close_time, days, notes } = schedule
@@ -108,6 +91,8 @@ const updateCBOInfoRoute = async (
           phone: phone,
           email: email,
           notes: notes,
+          latitude: latitude,
+          longitude: longitude,
         },
         { where: { id: id } },
       )

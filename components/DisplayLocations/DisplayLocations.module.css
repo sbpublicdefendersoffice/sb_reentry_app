@@ -1,0 +1,61 @@
+.Container {
+  margin: 2rem;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 1rem;
+  align-items: center;
+}
+
+.LocationInfo {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.Label {
+  flex: 1;
+  font-size: 1.5rem;
+  text-align: right;
+  margin-right: 0.5rem;
+}
+
+.LableValue {
+  flex: 3;
+  font-size: 1.5rem;
+}
+
+.SchedulePanel {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.Day {
+  display: flex;
+}
+
+.DayLabel {
+  flex: 1;
+  text-align: right;
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.DayHours {
+  flex: 3;
+  font-size: 1.5rem;
+}
+
+.AccordionActions {
+  display: flex;
+  justify-content: space-evenly;
+  height: 4rem;
+  align-items: center;
+  align-content: center;
+  margin: 1rem;
+}

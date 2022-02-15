@@ -1,4 +1,5 @@
 import { Sequelize, DataTypes, ModelOptions } from 'sequelize'
+import { serialize } from 'v8'
 
 import postgresEnv from '../constants/database-creds'
 import { AllModels } from '../types/sequelize'
@@ -6,7 +7,19 @@ import { AllModels } from '../types/sequelize'
 const { TEXT, INTEGER, FLOAT, DATE, BOOLEAN, ARRAY } = DataTypes
 const opt: ModelOptions = { timestamps: true }
 
-let sql, orgObj, locObj, servObj, schObj, useObj, clientObj, cboObj
+let sql,
+  orgObj,
+  locObj,
+  servObj,
+  schObj,
+  useObj,
+  clientObj,
+  cboObj,
+  locOrgObj,
+  servLocObj,
+  schLocObj,
+  servOrgObj,
+  schOrgObj
 
 const initDb = (): AllModels => {
   try {
@@ -50,7 +63,12 @@ const initDb = (): AllModels => {
       locObj = sql.define(
         'locations',
         {
-          // id: { primaryKey: true, type: INTEGER },
+          // id: {
+          //   primaryKey: true,
+          //   // type: UUID,
+          //   autoIncrement: true,
+          //   // allowNull: false,
+          // },
           latitude: { type: FLOAT },
           longitude: { type: FLOAT },
           zip: { type: INTEGER },
@@ -176,7 +194,7 @@ const initDb = (): AllModels => {
         },
         opt,
       )
-      const locOrgObj = sql.define(
+      locOrgObj = sql.define(
         'locations_organizations',
         {
           locations_id: { type: INTEGER },
@@ -189,7 +207,7 @@ const initDb = (): AllModels => {
         opt,
       )
 
-      const servOrgObj = sql.define(
+      servOrgObj = sql.define(
         'services_organizations',
         {
           services_id: { type: INTEGER },
@@ -202,7 +220,7 @@ const initDb = (): AllModels => {
         opt,
       )
 
-      const servLocObj = sql.define(
+      servLocObj = sql.define(
         'services_locations',
         {
           services_id: { type: INTEGER },
@@ -215,7 +233,7 @@ const initDb = (): AllModels => {
         opt,
       )
 
-      const schOrgObj = sql.define(
+      schOrgObj = sql.define(
         'schedules_organizations',
         {
           schedules_id: { type: INTEGER },
@@ -227,8 +245,7 @@ const initDb = (): AllModels => {
         },
         opt,
       )
-
-      const schLocObj = sql.define(
+      schLocObj = sql.define(
         'schedules_locations',
         {
           schedules_id: { type: INTEGER },
@@ -240,10 +257,8 @@ const initDb = (): AllModels => {
         },
         opt,
       )
-
-      ;[locOrgObj, schLocObj, schOrgObj, servLocObj, servOrgObj].forEach(
-        model => model.removeAttribute('id'),
-      )
+      let tempArray = [servOrgObj, locOrgObj, schLocObj, servLocObj]
+      tempArray.forEach(model => model.removeAttribute('id'))
 
       orgObj.belongsToMany(locObj, {
         through: 'locations_organizations',
@@ -299,7 +314,19 @@ const initDb = (): AllModels => {
         .then(() => console.log('Database models created'))
     }
 
-    return { orgObj, locObj, servObj, schObj, useObj, clientObj, cboObj }
+    return {
+      orgObj,
+      locObj,
+      servObj,
+      schObj,
+      useObj,
+      clientObj,
+      cboObj,
+      servLocObj,
+      locOrgObj,
+      schLocObj,
+      servOrgObj,
+    }
   } catch (err) {
     console.error(`Error setting up database: ${err}`)
   }

@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { Button, TextField } from '@mui/material'
 import { Check, Close } from '@mui/icons-material'
-
 import { HeadTags } from '../../components'
 import { siteTitle, useStyles } from '../../constants'
 import { validator } from '../../helpers/formValidator'
@@ -90,7 +89,7 @@ const SignupPage = () => {
     console.log(' Submited')
   }
 
-  const { handleChange, handleBlur, state, errors, handleSubmit } =
+  const { handleChange, handleBlur, stateValue, errors, handleSubmit } =
     useFormFields({
       initState,
       callback: submit,
@@ -123,7 +122,7 @@ const SignupPage = () => {
     orgName,
   } = copy[language]
 
-  const { email, org, pwd, confirmPwd, signupType } = state
+  const { email, org, pwd, confirmPwd, signupType } = stateValue
 
   const isValidForm: boolean =
     signupType &&
@@ -149,7 +148,7 @@ const SignupPage = () => {
           >
             <h1>{signup}</h1>
 
-            {state?.signupType !== 'client' && (
+            {stateValue?.signupType !== 'client' && (
               <TextField
                 value={org}
                 name="org"
@@ -228,7 +227,7 @@ const SignupPage = () => {
                 onChange={handleChange}
               />
             </div>
-            {state?.signupType === 'client' && (
+            {stateValue?.signupType === 'client' && (
               <div>
                 <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
                   {commPref}

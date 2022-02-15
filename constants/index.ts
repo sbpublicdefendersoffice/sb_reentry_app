@@ -107,5 +107,4 @@ export {
   url,
   womensResources,
 } from './cards'
-export { weekday } from './weekday'
 export { oneWeekInSeconds } from './cookies'

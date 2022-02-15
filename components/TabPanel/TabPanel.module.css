@@ -1,0 +1,7 @@
+.Container {
+  /* background-color: pink; */
+  display: flex;
+  height: 100%;
+  align-items: stretch;
+  width: 100%;
+}

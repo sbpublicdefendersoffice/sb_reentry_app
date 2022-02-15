@@ -15,7 +15,7 @@ export const copy: CopyHolder = {
   },
 }
 const useForm = ({ initState, callback, validator }) => {
-  const [state, setState] = useState(initState)
+  const [stateValue, setStateValue] = useState(initState)
   const [errors, setErrors] = useState({})
   const { push } = useRouter()
   const { setToast } = useToast()
@@ -31,26 +31,26 @@ const useForm = ({ initState, callback, validator }) => {
   const handleChange = e => {
     const { name, value, type } = e.target
     if (type === 'checkbox')
-      setState(val => ({ ...val, [name]: !Boolean(val[name]) }))
+      setStateValue(val => ({ ...val, [name]: !Boolean(val[name]) }))
     else {
       if (name === 'signupType' && value === 'cbo')
-        setState(() => ({
-          ...state,
+        setStateValue(() => ({
+          ...stateValue,
           commByEmail: false,
           commByText: false,
           commByPhone: false,
           [name]: value,
         }))
       else
-        setState(() => ({
-          ...state,
+        setStateValue(() => ({
+          ...stateValue,
           [name]: value,
         }))
     }
   }
   const handleBlur = e => {
     const { name: fieldName } = e.target
-    const faildFiels = validator(state, fieldName)
+    const faildFiels = validator(stateValue, fieldName)
     setErrors(() => ({
       ...errors,
       [fieldName]: Object.values(faildFiels)[0],
@@ -59,16 +59,16 @@ const useForm = ({ initState, callback, validator }) => {
   const handleSubmit = async e => {
     e.preventDefault()
     const { name: fieldName } = e.target
-    const faildFiels = validator(state, fieldName)
+    const faildFiels = validator(stateValue, fieldName)
     setErrors(() => ({
       ...errors,
       [fieldName]: Object.values(faildFiels)[0],
     }))
     setIsSubmited(true)
-    if (state) {
+    if (stateValue) {
       const signupCBO: Response = await fetch('/api/postSignup', {
         method: POST,
-        body: JSON.stringify(state),
+        body: JSON.stringify(stateValue),
       })
       const apiResponse = await signupCBO.json()
       if (apiResponse.error) {
@@ -76,10 +76,10 @@ const useForm = ({ initState, callback, validator }) => {
         return
       } else {
         setToast(successMessage)
-        state.org = ''
-        state.email = ''
-        state.pwd = ''
-        state.confirmPwd = ''
+        stateValue.org = ''
+        stateValue.email = ''
+        stateValue.pwd = ''
+        stateValue.confirmPwd = ''
       }
       push('/verifyemail')
     }
@@ -88,7 +88,7 @@ const useForm = ({ initState, callback, validator }) => {
     handleChange,
     handleSubmit,
     handleBlur,
-    state,
+    stateValue,
     errors,
   }
 }

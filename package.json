@@ -21,11 +21,13 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@emotion/react": "^11.7.1",
+    "@date-io/moment": "^2.11.0",
+    "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
-    "@mui/icons-material": "^5.3.0",
-    "@mui/material": "^5.3.0",
-    "@mui/styles": "^5.3.0",
+    "@mui/icons-material": "^5.2.0",
+    "@mui/lab": "^5.0.0-alpha.59",
+    "@mui/material": "^5.2.2",
+    "@mui/styles": "^5.2.2",
     "@sendgrid/mail": "^7.5.0",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.5.1",

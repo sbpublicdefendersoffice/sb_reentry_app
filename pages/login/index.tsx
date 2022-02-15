@@ -76,12 +76,12 @@ const LoginPage = () => {
   const submit = () => {
     console.log(' Submited')
   }
-  const { handleChange, handleBlur, state, errors } = useFormFields({
+  const { handleChange, handleBlur, stateValue, errors } = useFormFields({
     initState,
     callback: submit,
     validator,
   })
-  const { email, pwd, signupType } = state
+  const { email, pwd, signupType } = stateValue
 
   const isValidForm: boolean =
     signupType &&
@@ -97,7 +97,7 @@ const LoginPage = () => {
 
     const postCBOsToPostgres: Response = await fetch('/api/postLogin', {
       method: POST,
-      body: JSON.stringify(state),
+      body: JSON.stringify(stateValue),
     })
     const apiResponse = await postCBOsToPostgres.json()
     if (apiResponse.error) {
@@ -107,9 +107,9 @@ const LoginPage = () => {
       else push('/freshstart')
       setToast(successfulLogin)
 
-      state.email = ''
-      state.pwd = ''
-      state.signupType = ''
+      stateValue.email = ''
+      stateValue.pwd = ''
+      stateValue.signupType = ''
     }
   }
   return (

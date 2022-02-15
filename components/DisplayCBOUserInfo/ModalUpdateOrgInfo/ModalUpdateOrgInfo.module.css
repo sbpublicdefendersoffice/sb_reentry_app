@@ -1,0 +1,10 @@
+.InputFields {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.Fields {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}

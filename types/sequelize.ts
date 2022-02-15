@@ -178,6 +178,10 @@ export interface AllModels {
   locObj: Location
   servObj: Service
   schObj: Schedule
+  servLocObj: ServiceLocation
+  schLocObj: ScheduleLocation
+  servOrgObj: ServiceOrganization
+  locOrgObj: LocationOrganization
   useObj: IsThisUseful
   clientObj: Client
   cboObj: CBO

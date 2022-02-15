@@ -26,6 +26,23 @@ export const useStyles = makeStyles((theme: Theme) =>
       paddingTop: '0 !important',
       color: 'pink',
     },
+    modalStyle: {
+      maxHeight: 'calc(100vh - 210px)',
+      overflowY: 'auto',
+      position: 'absolute' as 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: 400,
+      backgroundColor: 'white',
+      padding: '2rem',
+      border: '2px solid #000',
+      boxShadow: '24',
+      pt: 2,
+      px: 4,
+      pb: 3,
+    },
+
     dropDownItems: {
       color: 'white !important',
       backgroundColor: '#13385e !important',
@@ -34,6 +51,25 @@ export const useStyles = makeStyles((theme: Theme) =>
       color: 'white !important',
       backgroundColor: '#13385e !important',
       marginLeft: '1.2rem !important',
+    },
+    socialMediaIcons: {
+      position: 'relative',
+      top: '13rem',
+      left: '0rem',
+      padding: '1rem',
+      '@media (max-width: 1275px)': {
+        top: '2rem',
+        right: '14rem',
+        margin: '1rem 0',
+      },
+    },
+    socialMediaIconsHeader: {
+      marginLeft: '3rem',
+      marginBottom: '1rem',
+      fontFamily: 'Roboto, sans-serif ',
+      '@media (max-width: 1275px)': {
+        margin: '2rem 2rem 1rem 2rem',
+      },
     },
     subMenuItem: {
       wordWrap: 'break-word',
