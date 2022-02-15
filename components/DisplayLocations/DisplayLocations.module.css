@@ -12,7 +12,8 @@
 
 .LocationInfo {
   display: flex;
-  height: 4rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   align-items: center;
 }
 

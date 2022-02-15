@@ -3,7 +3,7 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { useState, useEffect } from 'react'
 import { JwtPayload, verify } from 'jsonwebtoken'
 import timeConverter from '../../helpers/timeConverter'
-import { Paper } from '@mui/material'
+import { Button, Paper } from '@mui/material'
 import { POST } from '../../helpers/'
 import { useStyles } from '../../constants'
 import { HeadTags } from '../../components'
@@ -20,6 +20,8 @@ interface DashboardProps {
   isVerified: boolean
 }
 const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
+  const { push } = useRouter()
+  const classes = useStyles()
   const [org, setOrg] = useState(null)
   const [locations, setLocations] = useState([])
 
@@ -37,6 +39,15 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     }
     fetchData()
   }, [])
+
+  const logout = async () => {
+    const loggingOut: Response = await fetch('/api/logout')
+    const logoutMessage = await loggingOut.json()
+    if (logoutMessage.error) console.log('oh no!')
+    else {
+      push('/login')
+    }
+  }
 
   if (!isVerified)
     return (
@@ -76,17 +87,28 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
         description="A handy little place for you to manage your organization's information."
       />
       <div className={styles.Container}>
-        <div className={styles.OrgContainer}>
-          <DisplayCBOOrgInfo orgInfo={org} setOrg={setOrg}></DisplayCBOOrgInfo>
+        <div className={styles.TitleHeader}>
+          <h1 className={styles.Title}>CBO Dashboard</h1>
+          <Button className={styles.GreenButton} onClick={logout}>
+            Logout
+          </Button>
         </div>
-        <Paper className={styles.LocationContainer}>
-          <DisplayLocations
-            orgInfo={org}
-            orgName={org?.name_english}
-            locations={locations}
-            setOrg={setOrg}
-          ></DisplayLocations>
-        </Paper>
+        <div className={styles.DataContainer}>
+          <div className={styles.OrgContainer}>
+            <DisplayCBOOrgInfo
+              orgInfo={org}
+              setOrg={setOrg}
+            ></DisplayCBOOrgInfo>
+          </div>
+          <Paper className={styles.LocationContainer}>
+            <DisplayLocations
+              orgInfo={org}
+              orgName={org?.name_english}
+              locations={locations}
+              setOrg={setOrg}
+            ></DisplayLocations>
+          </Paper>
+        </div>
       </div>
     </>
   )

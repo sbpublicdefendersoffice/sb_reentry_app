@@ -1,7 +1,12 @@
 .Container {
   display: flex;
+  flex-direction: column;
+}
+
+.DataContainer {
+  display: flex;
   flex-wrap: wrap;
-  background-color: lightcyan;
+  flex: 10;
 }
 
 .LocationTile {
@@ -10,11 +15,33 @@
 }
 
 .OrgContainer {
-  background-color: plum;
   flex: 2;
   height: 100%;
 }
 
 .LocationContainer {
   flex: 5;
+}
+
+.TitleHeader {
+  display: flex;
+  height: 5rem;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Title {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.GreenButton {
+  display: inline-block;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  width: 6rem;
+  height: 100%;
+  text-align: center;
+  background-color: #04a868 !important;
+  color: white !important;
 }
