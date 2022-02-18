@@ -124,7 +124,7 @@ const DisplayLocations = ({ locations, orgName, orgInfo, setOrg }) => {
                 variant="contained"
                 onClick={() => handleEdit(location, index)}
               >
-                Edit Lcation Information
+                Edit Location Information
               </Button>
               <Button
                 className={classes.greenButton}
