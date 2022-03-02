@@ -15,7 +15,8 @@ const postSignup = async (
 ): Promise<void> => {
   try {
     const body = JSON.parse(req.body)
-    let { email, pwd, org, orgWebsite, signupType, customers } = body
+    let { email, pwd, org, orgWebsite, signupType, customers, languageSpoken } =
+      body
 
     if (email && pwd) {
       if (signupType && signupType === 'client') {
@@ -100,6 +101,7 @@ const postSignup = async (
         ✅ Verify that the person is actually associated with ${org}. Through email domain, Linkedin or other research methods.
           website: ${orgWebsite}
           customers served: ${customers}
+          language spoken: ${languageSpoken}
         ✅ Make sure to assign this person to the correct organization which should be ➡️ ${org}.
         ✅ Respond to ${email} when the all three steps are completed and inform them that they are now allowed to login to their dashboard.
          `,
