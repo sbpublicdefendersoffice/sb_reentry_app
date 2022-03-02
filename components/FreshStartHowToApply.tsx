@@ -113,7 +113,7 @@ const FreshStartHowToApply = () => {
           const { href } = loc
 
           return (
-            <li className={styles.ListItem}>
+            <li key={href} className={styles.ListItem}>
               <a href={href} target="_blank">
                 {loc[`name_${language}`]}
               </a>

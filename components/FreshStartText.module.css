@@ -11,6 +11,12 @@
   width: fit-content;
 }
 
+.List {
+  margin-top: var(--margin-lg);
+  font-size: 2rem;
+  margin-left: var(--margin-lg);
+}
+
 .TextBlock {
   margin-top: var(--margin-lg);
 }
