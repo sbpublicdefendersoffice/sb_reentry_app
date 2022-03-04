@@ -8,6 +8,8 @@ import { CopyHolder } from '../../types'
 import { useLanguage } from '../../hooks'
 import { useFormFields } from '../../hooks/'
 import { Input, Paragraph } from '../../ui'
+import styles from './index.module.css'
+import { StylesContext } from '@mui/styles'
 
 export const copy: CopyHolder = {
   english: {
@@ -32,7 +34,7 @@ export const copy: CopyHolder = {
     someone: 'someone',
     mustContain:
       'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
-    iAm: 'I am an',
+    iAm: 'I am a',
     cbo: 'Community Based Orgaization',
     client: 'Fresh Start Client',
     commPref: 'How would you like us to contact you?',
@@ -174,28 +176,33 @@ const SignupPage = () => {
             }}
           >
             <h1>{signup}</h1>
-            <div>
+            <div className={styles.Client}>
               <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
                 {iAm}
               </Paragraph>
-              <label htmlFor="client">{client}</label>
-              <Input
-                type="radio"
-                name="signupType"
-                value="client"
-                id="client"
-                onChange={handleChange}
-              />
-              <label htmlFor="cbo">{cbo}</label>
-              <Input
-                type="radio"
-                name="signupType"
-                value="cbo"
-                id="cbo"
-                onChange={handleChange}
-              />
+              <div className={styles.Radios}>
+                <div>
+                  <label htmlFor="client">{client}</label>
+                  <Input
+                    type="radio"
+                    name="signupType"
+                    value="client"
+                    id="client"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="cbo">{cbo}</label>
+                  <Input
+                    type="radio"
+                    name="signupType"
+                    value="cbo"
+                    id="cbo"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
             </div>
-
             {stateValue?.signupType !== 'client' && (
               <>
                 <TextField
