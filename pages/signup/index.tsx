@@ -8,6 +8,8 @@ import { CopyHolder } from '../../types'
 import { useLanguage } from '../../hooks'
 import { useFormFields } from '../../hooks/'
 import { Input, Paragraph } from '../../ui'
+import styles from './index.module.css'
+import { StylesContext } from '@mui/styles'
 
 export const copy: CopyHolder = {
   english: {
@@ -32,13 +34,19 @@ export const copy: CopyHolder = {
     someone: 'someone',
     mustContain:
       'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
-    iAm: 'I am an',
+    iAm: 'I am a',
     cbo: 'Community Based Orgaization',
-    client: 'Client',
+    client: 'Fresh Start Client',
     commPref: 'How would you like us to contact you?',
     text: 'Text',
     phone: 'Phone',
     orgName: "Your organization's name",
+    orgWeb: "Your organization's website",
+    invalidOrgWeb: 'Please Enter a website',
+    customersServed: 'Customers you serve',
+    invlidCustersServed: 'Please enter a customer',
+    lang: 'Language spoken',
+    invalidLang: 'Please enter a language',
   },
   spanish: {
     signup: 'Inscribirse',
@@ -66,19 +74,28 @@ export const copy: CopyHolder = {
       'Asegúrese de confirmar que la contraseña y la contraseña sean exactamente iguales',
     iAm: 'Soy un',
     cbo: 'Organización basada en la comunidad',
-    client: 'Cliente',
+    client: 'Cliente de nuevo comienzo',
     commPref: '¿Cómo desea que nos comuniquemos con usted?',
     text: 'Texto',
     phone: 'Teléfono',
     orgName: 'El nombre de su organización',
+    orgWeb: 'El sitio web de su organización',
+    invalidOrgWeb: 'Ingrese un sitio web',
+    customersServed: 'Clientes a los que atiende',
+    invalidCustomersServed: 'Por favor ingrese un cliente',
+    lang: 'Lenguaje hablado.',
+    invalidLang: 'Por favor ingrese un idioma',
   },
 }
 const initState = {
   org: '',
+  orgWebsite: '',
+  customers: '',
   email: '',
   pwd: '',
   confirmPwd: '',
-  signupType: '',
+  signupType: 'client',
+  languageSpoken: '',
 }
 
 const SignupPage = () => {
@@ -120,9 +137,21 @@ const SignupPage = () => {
     text,
     phone,
     orgName,
+    orgWeb,
+    customersServed,
+    lang,
   } = copy[language]
 
-  const { email, org, pwd, confirmPwd, signupType } = stateValue
+  const {
+    email,
+    org,
+    orgWebsite,
+    pwd,
+    confirmPwd,
+    signupType,
+    customers,
+    languageSpoken,
+  } = stateValue
 
   const isValidForm: boolean =
     signupType &&
@@ -147,20 +176,84 @@ const SignupPage = () => {
             }}
           >
             <h1>{signup}</h1>
-
+            <div className={styles.Client}>
+              <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
+                {iAm}
+              </Paragraph>
+              <div className={styles.Radios}>
+                <div>
+                  <label htmlFor="client">{client}</label>
+                  <Input
+                    type="radio"
+                    name="signupType"
+                    value="client"
+                    id="client"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="cbo">{cbo}</label>
+                  <Input
+                    type="radio"
+                    name="signupType"
+                    value="cbo"
+                    id="cbo"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </div>
             {stateValue?.signupType !== 'client' && (
-              <TextField
-                value={org}
-                name="org"
-                onChange={handleChange}
-                //@ts-ignore
-                error={errors.org ? true : false}
-                //@ts-ignore
-                helperText={errors.org ? invalidOrg : false}
-                style={{ marginTop: '1rem' }}
-                onBlur={handleBlur}
-                placeholder={orgName}
-              />
+              <>
+                <TextField
+                  value={org}
+                  name="org"
+                  onChange={handleChange}
+                  //@ts-ignore
+                  error={errors.org ? true : false}
+                  //@ts-ignore
+                  helperText={errors.org ? invalidOrg : false}
+                  style={{ marginTop: '1rem' }}
+                  onBlur={handleBlur}
+                  placeholder={orgName}
+                />
+                <TextField
+                  value={orgWebsite}
+                  name="orgWebsite"
+                  onChange={handleChange}
+                  //@ts-ignore
+                  error={errors.orgWebsite ? true : false}
+                  //@ts-ignore
+                  helperText={errors.orgWebsite ? invalidOrgWebsite : false}
+                  style={{ marginTop: '1rem' }}
+                  onBlur={handleBlur}
+                  placeholder={orgWeb}
+                />
+                <TextField
+                  value={customers}
+                  name="customers"
+                  onChange={handleChange}
+                  //@ts-ignore
+                  error={errors.customers ? true : false}
+                  //@ts-ignore
+                  helperText={errors.customers ? invalidCustomers : false}
+                  style={{ marginTop: '1rem' }}
+                  onBlur={handleBlur}
+                  placeholder={customersServed}
+                />
+                <TextField
+                  value={languageSpoken}
+                  name="languageSpoken"
+                  onChange={handleChange}
+                  //@ts-ignore
+                  error={errors.languageSpoken ? true : false}
+                  //@ts-ignore
+                  helperText={errors.languageSpoken ? invalidLang : false}
+                  style={{ marginTop: '1rem' }}
+                  onBlur={handleBlur}
+                  placeholder={lang}
+                />
+              </>
             )}
             <TextField
               value={email}
@@ -206,27 +299,7 @@ const SignupPage = () => {
               placeholder={confirmPasswordMessage}
               required
             />
-            <div>
-              <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
-                {iAm}
-              </Paragraph>
-              <label htmlFor="cbo">{cbo}</label>
-              <Input
-                type="radio"
-                name="signupType"
-                value="cbo"
-                id="cbo"
-                onChange={handleChange}
-              />
-              <label htmlFor="client">{client}</label>
-              <Input
-                type="radio"
-                name="signupType"
-                value="client"
-                id="client"
-                onChange={handleChange}
-              />
-            </div>
+
             {stateValue?.signupType === 'client' && (
               <div>
                 <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
