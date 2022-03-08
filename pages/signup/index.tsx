@@ -35,7 +35,7 @@ export const copy: CopyHolder = {
     mustContain:
       'Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters',
     iAm: 'I am a',
-    cbo: 'Community Based Orgaization',
+    cbo: 'Community Based Organization',
     client: 'Fresh Start Client',
     commPref: 'How would you like us to contact you?',
     text: 'Text',
