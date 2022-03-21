@@ -51,17 +51,18 @@ const copy: CopyHolder = {
     apply: '¿Cómo me inscribo?',
     recognize:
       'Reconocemos que diferentes opciones funcionan para diferentes personas. Teniendo esto en cuenta, tenemos varias formas de solicitar la eliminación de antecedentes penales.',
-    can: 'Lo alentamos a:',
-    login: 'Acceso',
-    freshStart: ' sesión y solicite Fresh Start a través del portal web',
-    call: 'Llame a la Oficina del Defensor Público al ',
-    download: 'Descargue los formularios de ',
-    intake: 'Admisión',
+    can: 'Alentamos que usted:',
+    login: 'Inicie sesión',
+    freshStart: ' y solicite Nuevo Comienzo a través del portal web',
+    call: 'Llame a la Oficina del Defensor Publico al ',
+    download: 'Descarga los formularios de ',
+    intake: 'admisión',
     and: ' y ',
-    finance: 'Declaración Financiera',
-    forms: ', complételos y envíelos por correo electrónico a Amanda Paison a ',
-    fax: ' envíelos por fax al (805) 568-3564 ',
-    drop: 'o déjelos en:',
+    finance: 'declaración financiera',
+    forms:
+      ', complétalos y envíalos por correo electrónico a  Amanda Paison a ',
+    fax: ' enviar por fax (805) 614-6735 ',
+    drop: 'o dejarlos en:',
   },
 }
 
@@ -93,7 +94,7 @@ const FreshStartHowToApply = () => {
     </>,
     <>
       {call}
-      <a href="tel:8055683470">(805) 568-3470</a>
+      <a href="tel:8056991444">(805) 699-1444</a>
     </>,
     <>
       {download}
