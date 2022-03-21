@@ -113,13 +113,13 @@ export const letUsHelpRoutes: RouteInfo[] = [
   {
     title_english: 'Specialty Courts',
     title_spanish: 'Tribunales de especialidades',
-    route: '/specialtycourts/areyouaclient',
+    route: '/specialtycourts',
     imgPath: './icons/specialtycourts.svg',
   },
   {
     title_english: 'Do I qualify for diversion?',
     title_spanish: '¿Califico para el desvío?',
-    route: '/diversion/areyouaclient',
+    route: '/diversion',
     imgPath: './icons/diversion.svg',
   },
   {
@@ -210,12 +210,12 @@ export const CourtSupportRoutes: RouteInfo[] = [
   {
     title_english: 'Diversion Programs',
     title_spanish: 'Programas de desvío',
-    route: '/letushelp/diversion/areyouaclient',
+    route: '/letushelp/diversion',
   },
   {
     title_english: 'Specialty Courts',
     title_spanish: 'Tribunales de especialidades',
-    route: '/letushelp/specialtycourts/areyouaclient',
+    route: '/letushelp/specialtycourts',
   },
   {
     title_english: 'Odyssey Portal',
