@@ -21,7 +21,7 @@ const nextConfigOptions = {
   webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.pdf/,
-      type: 'asset/inline',
+      type: 'asset',
     })
 
     const fallbackModules = {
