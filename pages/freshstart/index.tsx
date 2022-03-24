@@ -6,8 +6,11 @@ import {
   FreshStartApplyTag,
   FreshStartText,
   FreshStartHowToApply,
+  PictureWithOval,
 } from '../../components'
+
 import { siteTitle } from '../../constants'
+import FreshStartLanding from '../../components/FreshStartLanding/FreshStartLanding'
 
 export interface FreshStartLandingPageProps {
   isLoggedIn: boolean
@@ -35,8 +38,13 @@ const FreshStartLandingPage = ({
         isVerified={isVerified}
       />
     )}
+    <FreshStartLanding />
+    {/* <div>
+      <PictureWithOval color="peri" pic="resourcesWomenPic.jpg" />
+    </div>
+
     <FreshStartText />
-    <FreshStartHowToApply />
+    <FreshStartHowToApply /> */}
   </>
 )
 
