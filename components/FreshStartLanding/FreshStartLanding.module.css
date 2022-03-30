@@ -9,4 +9,14 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  flex: 1;
+}
+
+.HeaderText {
+  display: flex;
+  justify-content: space-evenly;
+  flex: 1;
+  /* width: 100%; */
+  flex-direction: column;
+  margin: 2rem;
 }
