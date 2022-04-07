@@ -1,0 +1,41 @@
+.ApplyButton {
+  margin: 1.5rem !important;
+  background-color: yellow !important;
+  color: black !important;
+}
+
+.HowToApply {
+  padding: 2rem;
+  background-color: #e3e8ee;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.Cards {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 1.5rem;
+}
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 2rem;
+  margin: 1.5rem;
+  justify-content: center;
+}
+
+.ListItem {
+  padding: var(--margin-std) 0;
+  list-style: circle inside;
+}
+
+@media (max-width: 700px) {
+  .Cards {
+    flex-direction: column;
+  }
+}

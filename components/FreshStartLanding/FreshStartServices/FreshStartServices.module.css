@@ -1,0 +1,27 @@
+.Services {
+  display: flex;
+  /* background-color: #e3e8ee; */
+  align-items: stretch;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.List {
+  list-style: none;
+  display: flex;
+}
+
+.Column {
+  flex: 1;
+  text-align: left;
+  padding: 2rem;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .List {
+    flex-direction: column;
+  }
+}
