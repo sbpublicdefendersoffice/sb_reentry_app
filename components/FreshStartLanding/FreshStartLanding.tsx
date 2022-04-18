@@ -1,5 +1,6 @@
 import useLanguage from '../../hooks/useLanguage'
 import type { CopyHolder } from '../../types/'
+import picture from '../../public/images/Jill-Stanton.jpg'
 import { Paragraph, Title } from '../../ui'
 import LetUsHelpHeading from '../LetUsHelpHeading'
 import PictureWithOval from '../PictureWithOval'
@@ -28,15 +29,14 @@ const FreshStartLanding = () => {
   return (
     <div className={styles.Container}>
       <div className={styles.Header}>
-        <PictureWithOval color="peri" pic="familyFriendsPic.jpg" />
-        <LetUsHelpHeading>
-          <Title>{pageTitle}</Title>
-          <Paragraph size="med-text">{info1}</Paragraph>
-          <br />
-          <Paragraph size="med-text">{info2}</Paragraph>
-          <br />
-          <Paragraph size="med-text">{info3}</Paragraph>
-        </LetUsHelpHeading>
+        <Title className={styles.HeaderText}>{pageTitle}</Title>
+      </div>
+      <div className={styles.Info}>
+        <Paragraph size="med-text">{info1}</Paragraph>
+        <br />
+        <Paragraph size="med-text">{info2}</Paragraph>
+        <br />
+        <Paragraph size="med-text">{info3}</Paragraph>
       </div>
       <FreshStartHowToApply></FreshStartHowToApply>
       <FreshStartServices></FreshStartServices>

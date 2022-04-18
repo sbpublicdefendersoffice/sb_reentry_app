@@ -1,3 +1,4 @@
+import { Paper } from '@mui/material'
 import useLanguage from '../../../hooks/useLanguage'
 import type { CopyHolder } from '../../../types/'
 import { Paragraph } from '../../../ui'
@@ -65,7 +66,7 @@ const FreshStartServices = () => {
       <Paragraph size="large-text">Post Conviction Services</Paragraph>
       <br />
       <ul className={styles.List}>
-        <div className={styles.Column}>
+        <Paper className={styles.Column}>
           <li>
             <Paragraph size="med-text">{list1}</Paragraph>
           </li>
@@ -87,8 +88,8 @@ const FreshStartServices = () => {
           <li>
             <Paragraph size="med-text">{list7}</Paragraph>
           </li>
-        </div>
-        <div className={styles.Column}>
+        </Paper>
+        <Paper className={styles.Column}>
           <li>
             <Paragraph size="med-text">{list8}</Paragraph>
           </li>
@@ -107,7 +108,7 @@ const FreshStartServices = () => {
           <li>
             <Paragraph size="med-text">{list13}</Paragraph>
           </li>
-        </div>
+        </Paper>
       </ul>
       <br />
     </div>

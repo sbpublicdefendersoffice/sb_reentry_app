@@ -18,6 +18,8 @@
   text-align: left;
   padding: 2rem;
   text-align: center;
+  margin: 2rem;
+  background-color: #e3e8ee !important;
 }
 
 @media (max-width: 700px) {
