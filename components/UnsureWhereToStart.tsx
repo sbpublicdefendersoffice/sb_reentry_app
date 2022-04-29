@@ -17,8 +17,8 @@ const resourceCopy: CopyHolder[] = [
       copy: "Access the many services offered by the Public Defender's Office.",
     },
     spanish: {
-      service: 'Servicios de defensa pública',
-      copy: 'Acceda a los múltiples servicios que ofrece la Defensoría Pública.',
+      service: 'Servicios de Defensoría Publica',
+      copy: 'Accede a los múltiples servicios que se ofrecen de la oficina Defensor Público.',
     },
   },
   {
@@ -27,8 +27,8 @@ const resourceCopy: CopyHolder[] = [
       copy: 'From documents to legal terms, we can help you through!',
     },
     spanish: {
-      service: 'Ayuda para prepararse para la corte',
-      copy: 'Desde documentos hasta términos legales, ¡podemos ayudarlo!',
+      service: 'Ayuda para prepararse para el tribunal',
+      copy: '¡De los documentos a las formas legales, nosotros podemos ayudarte a través!',
     },
   },
   {
@@ -51,7 +51,7 @@ const copy: CopyHolder = {
   },
   spanish: {
     title: '¿No estás seguro por dónde empezar?',
-    title2: 'Ayudemos',
+    title2: 'Déjanos ayudarte',
     buttonText: 'Ver más temas de ayuda',
   },
 }

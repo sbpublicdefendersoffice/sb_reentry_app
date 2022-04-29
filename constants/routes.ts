@@ -99,7 +99,7 @@ export const staticPageRoutes: RouteInfo[] = [
   },
   {
     title_english: 'Fresh Start',
-    title_spanish: 'Fresh Start',
+    title_spanish: 'Nuevo Comienzo',
     route: '/freshstart',
   },
   {

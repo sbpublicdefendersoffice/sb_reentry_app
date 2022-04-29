@@ -16,7 +16,7 @@ const copy: CopyHolder = {
     info3: `In order to best advise you on your record relief options, we will obtain a copy of your California Department of Justice Criminal History Report and potentially other court records on your behalf at no cost to you.`,
   },
   spanish: {
-    pageTitle: 'Fresh Start',
+    pageTitle: 'Nuevo Comienzo',
     info1: `Un registro de antecedentes penales puede hacer encontrar empleo, obtención de vivienda, matricularse y financiar una educación, y obteniendo/conservar la residencia permanente legal o estado de ciudadanía muy difícil.`,
     info2: `Las buena noticia es que hay opciones para que sigas adelante, aunque hayas cometido errores en el pasado, y la Oficina del Defensor Público estará encantados de ayudarlo a tener un Nuevo Comienzo. Nuestro personal revisara su historial criminal y busque todos los métodos apropiados de alivio para usted.`,
     info3: `Para poder asesorarte mejor sobre sus opciones de alivio de registros, obtendremos una copia de su Informe de antecedentes penales del Departamento de Justicia de California y potencialmente otros registros judiciales en su nombre sin costo alguno para usted.`,

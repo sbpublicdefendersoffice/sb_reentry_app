@@ -22,15 +22,15 @@ const copy: CopyHolder = {
   },
   spanish: {
     about: 'Sobre nosotros',
-    title: 'Estamos aquí para ayudarlo a prosperar',
+    title: 'Estamos aquí para ayudarte prosperar',
     explainer:
-      'En ThriveSBC encontrará una variedad de recursos para ayudarlo a usted oa un ser querido que ha sido afectado por el sistema legal penal. ¡Estamos aquí para ayudar!',
-    buttonText: 'Buscar recursos',
+      'En ThriveSBC encontrara una variedad de recursos para ayudarlo a usted o a un ser querido que ha sido impactado por el sistema legal penal. ¡Estamos aquí para ayudar!',
+    buttonText: 'Buscando Recursos ',
     loginButtonText: 'Acceso',
     loginCopy:
-      'O bien, inicie sesión en ThriveSBC para administrar su información, solicitar la eliminación de antecedentes penales y más.',
+      ' O, iniciar a ThriveSBC para administrar su información, solicitar la eliminación de registros y mas',
     freshStart:
-      'Solicite la eliminación de antecedentes penales a través de nuestra herramienta Fresh Start',
+      'Solicitar la eliminación de registros por el instrumento Nuevo Comienzo',
   },
 }
 

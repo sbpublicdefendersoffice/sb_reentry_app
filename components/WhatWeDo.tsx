@@ -23,8 +23,8 @@ const whatWeDoText: CopyHolder[] = [
       copy: 'We strive to make sure our information is as up to date and helpful as possible.',
     },
     spanish: {
-      title: 'Proporcione Información Precisa',
-      copy: 'Nos esforzamos por asegurarnos de que nuestra información esté lo más actualizada y útil posible.',
+      title: 'Proporcionar Información Precisa',
+      copy: 'Nos esforzamos por hacer nuestra información esta actualizada y útil como sea posible.',
     },
   },
   {
@@ -34,7 +34,7 @@ const whatWeDoText: CopyHolder[] = [
     },
     spanish: {
       title: 'Alcance Comunitario',
-      copy: 'Mantenido por la oficina del Defensor Público de Santa Bárbara, somos una parte activa de nuestra comunidad.',
+      copy: 'Mantenido por la oficina del Defensor Público de Santa Barbara, somos parte activa de la comunidad.',
     },
   },
 ]
