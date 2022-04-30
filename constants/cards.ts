@@ -19,20 +19,20 @@ export const recommendedResourcesCopy: CopyHolder = {
 export const womensResources: CardInfo[] = [
   {
     title_english: 'CalVet Women and Minority Division',
-    title_spanish: 'División de Mujeres y Minorías de CalVet',
+    title_spanish: 'División de mujeres y minorías de CalVet',
     copy_english:
       'Provides advocacy, information, and support to women and minority veterans throughout the state of California.',
     copy_spanish:
-      'Proporciona defensa, información y apoyo a mujeres y veteranos de minorías en todo el estado de California.',
+      'Proporciona defensa, información, y apoyo a mujeres y veteranos de minorías en todo el estado de California.',
     id: '1235',
   },
   {
     title_english: 'Alcoholics Anonymous Women’s Meetings',
-    title_spanish: 'Reuniones de mujeres de Alcohólicos Anónimos',
+    title_spanish: 'Reuniones de Mujeres de Alcohólicos Anónimos',
     copy_english:
       'A list of meetings that are catered toward women in Santa Barbara County.',
     copy_spanish:
-      'Una lista de reuniones dirigidas a mujeres en el condado de Santa Bárbara.',
+      'Una lista de reuniones dirigidas a mujeres en el condado de Santa Barbara.',
     id: '968',
   },
   {
@@ -41,7 +41,7 @@ export const womensResources: CardInfo[] = [
     copy_english:
       'Transitional housing for the chronically homeless, mentally ill adults, females at risk of violent crimes and an alternative to incarceration. Must be clean and sober.',
     copy_spanish:
-      'Vivienda de transición para personas crónicamente sin hogar, adultos con enfermedades mentales, mujeres en riesgo de delitos violentos y una alternativa al encarcelamiento. Debe estar limpio y sobrio.',
+      'Vivienda de transición para personas crónicamente sin hogar, adultos mentalmente enfermos, mujeres en riesgo de crímenes violentos y una alternativa al encarcelamiento. Debe estar limpio y sobrio.',
     id: '1038',
   },
 ]
@@ -49,29 +49,29 @@ export const womensResources: CardInfo[] = [
 export const familyResources: CardInfo[] = [
   {
     title_english: 'Family Therapy Institute of Santa Barbara',
-    title_spanish: 'Instituto de Terapia Familiar de Santa Bárbara',
+    title_spanish: 'Instituto de Terapia Familiar de Santa Barbara',
     copy_english:
       'Family counseling and counseling for children with emotional and behavioral problems provided.',
     copy_spanish:
-      'Se proporciona asesoramiento y asesoramiento familiar para niños con problemas emocionales y de conducta.',
+      'Consejería familiar y consejería para niños con problemas emocionales y de conducta proporcionados.',
     id: '1256',
   },
   {
     title_english: 'County of Santa Barbara Health Care Centers',
-    title_spanish: 'Centros de atención médica del condado de Santa Bárbara',
+    title_spanish: 'Centros de atención médico del condado de Santa Barbara',
     copy_english:
-      'We provide health care services for our neighbors in Santa Barbara County. You will never be turned away for care at Santa Barbara County Health Centers for your inability to pay.',
+      'Brindamos servicios de atención medica para nuestros vecinos en el condado de Santa Barbara. Nunca se le negara la atención en los Centros de Salud del Condado de Santa Barbara por su incapacidad de pago.',
     copy_spanish:
       'Brindamos servicios de atención médica a nuestros vecinos del condado de Santa Bárbara. Nunca será rechazado para recibir atención en los Centros de Salud del Condado de Santa Bárbara por no poder pagar.',
     id: '1149',
   },
   {
     title_english: 'St. George Family and Youth Center',
-    title_spanish: 'Centro juvenil y familiar de St. George',
+    title_spanish: 'Centro para la familia y la juventud de St. George',
     copy_english:
       'Nurturing the potential of every child and teen. All kids deserve the opportunity to discover who they are and what they can achieve. That’s why, through the Y, thousands of youth in Santa Barbara and Ventura counties are cultivating the values, skills, and relationships that lead to positive behaviors, better health, and lifelong achievement.',
     copy_spanish:
-      'Fomentar el potencial de cada niño y adolescente. Todos los niños merecen la oportunidad de descubrir quiénes son y qué pueden lograr. Es por eso que, a través de la Y, miles de jóvenes en los condados de Santa Bárbara y Ventura están cultivando valores, habilidades y relaciones que conducen a comportamientos positivos, mejor salud y logros de por vida.',
+      'Fomentando el potencial de cada niño y adolescente. Todos los niños merecen la oportunidad de descubrir quienes son y que pueden lograr. Es por eso, a través de la Y, miles de jóvenes en los condados de Santa Barbara y Ventura están cultivando los valores, y relaciones que conducen a comportamientos positivos, mejor salud, y el logro de toda la vida.',
     id: '1257',
   },
 ]

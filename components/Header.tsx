@@ -93,7 +93,7 @@ const Header = () => {
               <h2 className={styles.Title}>
                 {language === ENGLISH
                   ? 'Court Resources'
-                  : 'Recursos de la corte'}
+                  : 'Recursos del Juzgado'}
                 <ArrowDropDown style={{ alignItems: 'inherit' }} />
               </h2>
             </Button>{' '}

@@ -39,8 +39,8 @@ const copy: CopyHolder = {
     art: 'Imagen de la página de inicio gentilmente proporcionada por ',
     tagline:
       'Una herramienta del condado de Santa Bárbara para la comunidad afectada por la justicia',
-    court: 'Recursos de la corte',
-    resource: 'Soporte de recursos',
+    court: 'Recursos del Juzgado',
+    resource: 'Soporte de Recursos',
   },
 }
 const Footer = () => {

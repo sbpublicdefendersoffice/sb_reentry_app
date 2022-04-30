@@ -24,10 +24,10 @@ const copy: CopyHolder = {
     heading: 'Featured Resources',
   },
   spanish: {
-    title: 'Recursos para mujeres Cis/Trans',
+    title: 'Recursos para Cris/Mujeres Trans',
     explainer:
-      'La justicia involucra a mujeres cisgénero, mujeres trans e individuos no conformes con el género a menudo se pasa por alto. Esto puede afectar en gran medida su capacidad para reingresar con éxito. A continuación, puede encontrar una lista de recursos que pueden brindar apoyo.',
-    heading: 'Recursos destacados',
+      'La justicia involucro a mujeres cisgenero, las mujeres trans y las personas no conforme con el género a menudo se pasan por alto.  Esto puede afectar en gran medida su capacidad para volver a ingresar con éxito. A continuación, puede encontrar una lista de recursos que pueden proporcionar apoyo.',
+    heading: 'Recursos Destacados',
   },
 }
 

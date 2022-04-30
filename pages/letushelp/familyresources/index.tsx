@@ -24,10 +24,10 @@ const copy: CopyHolder = {
     heading: 'Featured Resources',
   },
   spanish: {
-    title: 'Recursos para familiares y amigos',
+    title: 'Recursos para Familia y Amigos',
     explainer:
-      'Tener un familiar o un amigo involucrado en la justicia puede ser difícil. Aquí puede encontrar recursos que pueden ayudarlo a usted y a su ser querido.',
-    heading: 'Recursos destacados',
+      'Tener un familiar o un amigo implicado en la justicia puede ser difícil. Aquí puede encontrar recursos que pueden ayudarlo a usted y a su ser querido.',
+    heading: 'Recursos Destacados',
   },
 }
 
