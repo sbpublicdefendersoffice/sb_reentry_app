@@ -48,7 +48,7 @@ const copy: CopyHolder = {
       'We recognize that different options work for different people. With this is mind, we have multiple ways to apply for record expungement',
   },
   spanish: {
-    pageTitle: 'Fresh Start',
+    pageTitle: 'Nuevo Comienzo',
     fill: 'Complete un formulario fácil y se conectara con la Oficina del Defensor Publico de Santa Barbara para ayudarlo con sus peticiones de autorización de registros.',
     login: 'Inicie sesión',
     freshStart: ' y solicite Nuevo Comienzo a través del portal web',

@@ -18,8 +18,8 @@ export const copy: CopyHolder = {
     resource: 'Resource Support',
   },
   spanish: {
-    court: 'Resource Support',
-    resource: 'Soporte de recursos',
+    court: 'Recursos del Juzgado',
+    resource: 'Soporte de Recursos',
   },
 }
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
