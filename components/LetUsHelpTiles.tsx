@@ -31,7 +31,7 @@ const LetUsHelpTiles = () => {
       const { imgPath, route } = link
 
       return (
-        <NextLink href={`/letushelp${route}`} key={i}>
+        <NextLink href={`${route}`} key={i}>
           <div role="listitem" className={styles.Tile}>
             <img
               role="img"
