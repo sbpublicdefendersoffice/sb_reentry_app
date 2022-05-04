@@ -249,35 +249,6 @@ const Footer = () => {
       <Grid container className={styles.Footer}>
         <Grid item xs={12} sm={12} md={8}>
           {StaticPages}
-          <div id="12" className={classes.socialMediaIcons}>
-            <h3 className={classes.socialMediaIconsHeader}>Follow us</h3>
-            <div>
-              <a
-                href={linkInfo.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ padding: '1rem', fontSize: '2rem' }}
-              >
-                <TwitterIcon style={{ fontSize: '2rem' }} />
-              </a>
-              <a
-                href={linkInfo.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ padding: '1rem', fontSize: '2rem !important' }}
-              >
-                <InstagramIcon style={{ fontSize: '2rem' }} />
-              </a>
-              <a
-                href={linkInfo.facebook}
-                style={{ padding: '1rem', fontSize: '2rem' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FacebookIcon style={{ fontSize: '2rem' }} />
-              </a>
-            </div>
-          </div>
         </Grid>
         <Grid item xs={12} sm={12} md={4} className={styles.GridRight}>
           <div>
