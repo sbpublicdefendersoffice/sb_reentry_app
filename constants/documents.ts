@@ -19,3 +19,10 @@ export const financePDF: DocumentInfo = {
   doc_title_spanish:
     'Formulario de declaración financiera de eliminación de antecedentes penales',
 }
+
+export const financePDFSpanish: DocumentInfo = {
+  file: 'Financial_Declaration_Spanish.pdf',
+  doc_title_english: 'Record expungement financial declaration form',
+  doc_title_spanish:
+    'Formulario de declaración financiera de eliminación de antecedentes penales',
+}

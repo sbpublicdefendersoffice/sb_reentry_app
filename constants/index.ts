@@ -17,7 +17,12 @@ export {
   SobrietyAccord,
   TipsAccord,
 } from './checklist-data'
-export { specialCourtReqsPDF, intakePDF, financePDF } from './documents'
+export {
+  specialCourtReqsPDF,
+  intakePDF,
+  financePDF,
+  financePDFSpanish,
+} from './documents'
 export {
   financeFormFields,
   applicationFormFields,
