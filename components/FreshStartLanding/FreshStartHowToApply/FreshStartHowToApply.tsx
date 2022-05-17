@@ -46,6 +46,7 @@ const copy: CopyHolder = {
     drop: 'or drop them off at:',
     recognize:
       'We recognize that different options work for different people. With this is mind, we have multiple ways to apply for record expungement',
+    financialForm: '/documents/expungementfinanceform',
   },
   spanish: {
     pageTitle: 'Nuevo Comienzo',
@@ -63,6 +64,7 @@ const copy: CopyHolder = {
     drop: 'o dejarlos en:',
     recognize:
       'Reconocemos que diferentes opciones funcionan para diferentes personas. Teniendo esto en cuenta, tenemos varias formas de solicitar la eliminación de antecedentes penales.',
+    financialForm: '/documents/expungementfinanceformSpanish',
   },
 }
 
@@ -82,6 +84,7 @@ const FreshStartHowToApply = () => {
     forms,
     fax,
     drop,
+    financialForm,
   } = copy[language]
   return (
     <div className={styles.HowToApply}>
@@ -113,7 +116,7 @@ const FreshStartHowToApply = () => {
               {intake}
             </Button>
           </NextLink>
-          <NextLink href="/documents/expungementfinanceform">
+          <NextLink href={financialForm}>
             <Button
               className={styles.ApplyButton}
               variant="contained"

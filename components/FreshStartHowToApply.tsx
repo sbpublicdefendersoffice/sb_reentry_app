@@ -46,6 +46,7 @@ const copy: CopyHolder = {
     forms: ' forms, fill them out and email them to Amanda Paison at ',
     fax: ' fax them to (805) 568-3564, ',
     drop: 'or drop them off at:',
+    financialForm: '/documents/expungementfinanceform',
   },
   spanish: {
     apply: '¿Cómo me inscribo?',
@@ -63,6 +64,7 @@ const copy: CopyHolder = {
       ', complétalos y envíalos por correo electrónico a  Amanda Paison a ',
     fax: ' enviar por fax (805) 614-6735 ',
     drop: 'o dejarlos en:',
+    financialForm: '/documents/expungementfinanceformSpanish',
   },
 }
 
@@ -85,6 +87,7 @@ const FreshStartHowToApply = () => {
     forms,
     fax,
     drop,
+    financialForm,
   } = copy[language]
 
   const waysToApply: ReactNode[] = [
@@ -100,7 +103,7 @@ const FreshStartHowToApply = () => {
       {download}
       <NextLink href="/documents/expungementintakeform">{intake}</NextLink>
       {and}
-      <NextLink href="/documents/expungementfinanceform">{finance}</NextLink>
+      <NextLink href={financialForm}>{finance}</NextLink>
       {forms}
       <a href="mailto:apaison@countyofsb.org" target="_blank">
         apaison@countyofsb.org
