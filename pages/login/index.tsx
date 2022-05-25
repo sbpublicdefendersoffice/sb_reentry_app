@@ -114,8 +114,7 @@ const LoginPage = () => {
   }
   return (
     <div style={{ margin: 'auto', textAlign: 'center' }}>
-      <h1>Fresh Start/CBO Dashboard Login Under Maintenance</h1>
-      {/* <HeadTags
+      <HeadTags
         title={`${siteTitle} | ${login}`}
         href={`/login`}
         description={`${siteTitle} Login`}
@@ -205,7 +204,7 @@ const LoginPage = () => {
             <h4 style={{ padding: '1rem' }}> {signup}</h4>
           </Button>
         </div>
-      </form> */}
+      </form>
     </div>
   )
 }

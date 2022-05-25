@@ -5,6 +5,7 @@
   padding: var(--pad-std);
   background-color: var(--primary);
   border-radius: 0 0 0 var(--radius-medium);
+  z-index: 50;
 }
 
 .Tagline {
