@@ -7,7 +7,7 @@ export const specialCourtReqsPDF: DocumentInfo = {
 }
 
 export const intakePDF: DocumentInfo = {
-  file: 'Expungements_Intake.pdf',
+  file: 'FreshStartIntakeForm.pdf',
   doc_title_english: 'Record expungement intake form',
   doc_title_spanish:
     'Formulario de admisión de cancelación de antecedentes penales',

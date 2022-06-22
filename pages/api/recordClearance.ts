@@ -12,7 +12,7 @@ const [type, disposition, financialFormPath, applicationPath]: string[] = [
   'application/pdf',
   'attachment',
   'documents/Financial_Declaration.pdf',
-  'documents/Expungements_Intake.pdf',
+  'documents/FreshStartIntakeForm.pdf',
 ]
 
 const recordClearance = async (

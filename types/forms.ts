@@ -140,6 +140,7 @@ export interface ExpungementInfo {
   'Different Race Please State-0'?: 'string'
   'Different Identity Please State-0'?: 'string'
   'Different Pronouns Please State-0'?: 'string'
+  SSN: 'string'
 }
 
 export interface ExpungeFormInfo extends ExpungementInfo {

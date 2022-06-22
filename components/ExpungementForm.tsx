@@ -114,6 +114,7 @@ const copy: CopyHolder = {
     biWeekly: 'Bi-Weekly',
     annually: 'Annually',
     immigration: 'Immigration',
+    ssn: 'What is your Social Security Number?',
   },
   spanish: {
     title: 'Solicite la cancelación de antecedentes penales',
@@ -209,6 +210,7 @@ const copy: CopyHolder = {
     biWeekly: 'Quincenal',
     annually: 'Anualmente',
     immigration: 'Inmigración',
+    ssn: '¿Cuál es su número de seguro social?',
   },
 }
 
@@ -309,6 +311,7 @@ const ExpungementForm = ({
     biWeekly,
     annually,
     immigration,
+    ssn,
   } = copy[language]
 
   // @ts-ignore
@@ -353,6 +356,7 @@ const ExpungementForm = ({
         tempInfo['Other-0'] =
           tempInfo['If no what is your primary language'] || ''
       }
+      console.log(tempInfo)
 
       const { Address, City, state, zip } = tempInfo
       const stateAndZip = `${state || 'CA'}, ${zip}`
@@ -938,6 +942,12 @@ const ExpungementForm = ({
           <Input onChange={handleChange} type="number" id="Textfield-17" />
         </section>
         <ExpungementAdditionalInfoForm setExpungeInfo={setExpungeInfo} />
+        {/* <section className={Field}>
+          <label id="SSN-label" htmlFor="SSN">
+            {ssn}
+          </label>
+          <Input onChange={handleChange} type="text" id="SSN" />
+        </section> */}
       </Card>
       <ExpungementSignature
         expungeInfo={expungeInfo}
