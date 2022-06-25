@@ -26,29 +26,35 @@ const recordClearance = async (
     const { language, clientId, Email, Phone, Text } = body
     const name: string = body['Full Name']
 
+    console.log(validations)
+
     validations.forEach((v: Validation): void => {
       const { error, field, id, inputId } = v
       if (!body[field])
         throw new Error(`${error[language]}&&#${id}&&${inputId}`)
     })
 
+    console.log('\n\nbefore fillingout form\n\n')
+
     const filledOutApp = await fillOutPDFForm(
       readFileSync(applicationPath),
       body,
     )
 
-    const filledOutFinance = await fillOutPDFForm(
-      readFileSync(financialFormPath),
-      body,
-    )
+    console.log('\n\nAfter fillingout form\n\n')
+
+    // const filledOutFinance = await fillOutPDFForm(
+    //   readFileSync(financialFormPath),
+    //   body,
+    // )
 
     const attachments = [
-      {
-        content: filledOutFinance,
-        filename: `${name} Financial Declaration.pdf`,
-        type,
-        disposition,
-      },
+      // {
+      //   content: filledOutFinance,
+      //   filename: `${name} Financial Declaration.pdf`,
+      //   type,
+      //   disposition,
+      // },
       {
         content: filledOutApp,
         filename: `${name} Expungement Application.pdf`,
@@ -84,16 +90,16 @@ const recordClearance = async (
 
       const expungementEmail = body['Email Address']
 
-      await clientObj.update(
-        {
-          expungementXMessageId,
-          hasAppliedForExpungement: true,
-          commPrefs,
-          expungementEmail: expungementEmail || null,
-          phone: body['Phone Number'] || null,
-        },
-        { where: { id: clientId } },
-      )
+      // await clientObj.update(
+      //   {
+      //     expungementXMessageId,
+      //     hasAppliedForExpungement: true,
+      //     commPrefs,
+      //     expungementEmail: expungementEmail || null,
+      //     phone: body['Phone Number'] || null,
+      //   },
+      //   { where: { id: clientId } },
+      // )
 
       res.setHeader(
         'Set-Cookie',

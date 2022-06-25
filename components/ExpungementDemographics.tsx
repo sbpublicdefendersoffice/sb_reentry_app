@@ -117,89 +117,108 @@ const ExpungementDemographics = ({
         <Card id="race-card" className={styles.RadioCard}>
           <label htmlFor="indianOrAlaskan">{indOrAl}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Race Please State`] = null
+            }}
             type="radio"
-            id="indianOrAlaskan"
+            id="CheckBox38"
             name="Race"
             value="_American Indian or Alaskan_On"
           />
           <label htmlFor="black">{black}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Race Please State`] = null
+            }}
             type="radio"
-            id="black"
+            id="CheckBox39"
             name="Race"
             value="_Black or African American_On"
           />
           <label htmlFor="islander">{islander}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Race Please State`] = null
+            }}
             type="radio"
-            id="islander"
+            id="CheckBox40"
             name="Race"
             value="_Native Hawaiian or Pacific Islander_On"
           />
           <label htmlFor="asian">{asian}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Race Please State`] = null
+            }}
             type="radio"
-            id="asian"
+            id="CheckBox41"
             name="Race"
             value="_Asian_On"
           />
           <label htmlFor="hispanic">{hispanic}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Race Please State`] = null
+            }}
             type="radio"
-            id="hispanic"
+            id="CheckBox42"
             name="Race"
             value="_HispanicLatinx_On"
           />
           <label htmlFor="white">{white}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Race Please State`] = null
+            }}
             type="radio"
-            id="white"
+            id="CheckBox43"
             name="Race"
             value="_White_On"
           />
           <label htmlFor="eastOrAf">{eastOrAf}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Race Please State`] = null
+            }}
             type="radio"
-            id="eastOrAf"
-            name="Race"
-            value="_Middle EasternNorth African_On"
-          />
-          <label htmlFor="eastOrAf">{eastOrAf}</label>
-          <Input
-            onChange={handleChange}
-            type="radio"
-            id="eastOrAf"
+            id="CheckBox44"
             name="Race"
             value="_Middle EasternNorth African_On"
           />
           <label htmlFor="declineRace">{decline}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Race Please State`] = null
+            }}
             type="radio"
-            id="declineRace"
+            id="CheckBox46"
             name="Race"
             value="_Decline_Race_On"
           />
           <label htmlFor="difRace">{difRace}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Race Please State`] = null
+            }}
             type="radio"
-            id="difRace"
+            id="CheckBox45"
             name="Race"
             value="_Different race_On"
           />
-          {expungeInfo?.Race === '_Different race_On' && (
+          {expungeInfo?.CheckBox45 && (
             <Input
               onChange={handleChange}
               type="text"
-              id="Different Race Please State-0"
+              id="Different Race Please State"
             />
           )}
         </Card>
@@ -210,65 +229,86 @@ const ExpungementDemographics = ({
         <Card id="gender-card" className={styles.RadioCard}>
           <label htmlFor="female">{female}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Identity Please State`] = null
+            }}
             type="radio"
-            id="female"
+            id="CheckBox47"
             name="Gender"
             value="_Female_On"
           />
           <label htmlFor="male">{male}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Identity Please State`] = null
+            }}
             type="radio"
-            id="male"
+            id="CheckBox48"
             name="Gender"
             value="_Male_On"
           />
           <label htmlFor="transFem">{transFem}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Identity Please State`] = null
+            }}
             type="radio"
-            id="transFem"
+            id="CheckBox49"
             name="Gender"
             value="_Trans_Female_On"
           />
           <label htmlFor="transMas">{transMas}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Identity Please State`] = null
+            }}
             type="radio"
-            id="transMas"
+            id="CheckBox50"
             name="Gender"
             value="_Trans_Male_On"
           />
           <label htmlFor="nonBin">{nonBin}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Identity Please State`] = null
+            }}
             type="radio"
-            id="nonBin"
+            id="CheckBox51"
             name="Gender"
             value="_Non_Binary_On"
           />
           <label htmlFor="declineIdent">{decline}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Identity Please State`] = null
+            }}
             type="radio"
-            id="declineIdent"
+            id="CheckBox53"
             name="Gender"
             value="_Decline_Identity_On"
           />
           <label htmlFor="difIdent">{difIdent}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Identity Please State`] = null
+            }}
             type="radio"
-            id="difIdent"
+            id="CheckBox52"
             name="Gender"
             value="_Different_Identity_On"
           />
-          {expungeInfo?.Gender === '_Different_Identity_On' && (
+          {expungeInfo?.CheckBox52 && (
             <Input
               onChange={handleChange}
               type="text"
-              id="Different Identity Please State-0"
+              id="Different Identity Please State"
             />
           )}
         </Card>
@@ -279,49 +319,64 @@ const ExpungementDemographics = ({
         <Card id="pronouns-card" className={styles.RadioCard}>
           <label htmlFor="she">{she}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Pronouns Please State`] = null
+            }}
             type="radio"
-            id="she"
+            id="CheckBox54"
             name="Pronouns"
             value="_She_her_On"
           />
           <label htmlFor="he">{he}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Pronouns Please State`] = null
+            }}
             type="radio"
-            id="he"
+            id="CheckBox55"
             name="Pronouns"
             value="_He-him_On"
           />
           <label htmlFor="they">{they}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Pronouns Please State`] = null
+            }}
             type="radio"
-            id="they"
+            id="CheckBox56"
             name="Pronouns"
             value="_They_them_On"
           />
           <label htmlFor="declinePro">{decline}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Pronouns Please State`] = null
+            }}
             type="radio"
-            id="declinePro"
+            id="CheckBox58"
             name="Pronouns"
             value="_Decline_Pronouns_On"
           />
           <label htmlFor="difPro">{difPro}</label>
           <Input
-            onChange={handleChange}
+            onChange={e => {
+              handleChange(e)
+              expungeInfo[`Different Pronouns Please State`] = null
+            }}
             type="radio"
-            id="difPro"
+            id="CheckBox57"
             name="Pronouns"
             value="_Different_Pronouns_On"
           />
-          {expungeInfo?.Pronouns === '_Different_Pronouns_On' && (
+          {expungeInfo?.CheckBox57 && (
             <Input
               onChange={handleChange}
               type="text"
-              id="Different Pronouns Please State-0"
+              id="Different Pronouns Please State"
             />
           )}
         </Card>

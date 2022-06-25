@@ -137,10 +137,85 @@ export interface ExpungementInfo {
   Race?: string
   Gender?: string
   Pronouns?: string
-  'Different Race Please State-0'?: 'string'
-  'Different Identity Please State-0'?: 'string'
-  'Different Pronouns Please State-0'?: 'string'
+  'Different Race Please State'?: 'string'
+  'Different Identity Please State'?: 'string'
+  'Different Pronouns Please State'?: 'string'
   SSN: 'string'
+  'Drivers LicesnseState ID': 'string'
+  CheckBox1?: boolean //english option
+  CheckBox2?: boolean //spanish option
+  CheckBox3?: boolean //mixteco option
+  CheckBox4?: boolean //other option
+
+  CheckBox5?: boolean //yes option for primary phone voice message
+  CheckBox6?: boolean //no option for primary phone voice message
+  CheckBox7?: boolean //yes option for alt phone voice message
+  CheckBox8?: boolean //no option for alt phone voice message
+
+  CheckBox9?: boolean //email comm. option
+  CheckBox10?: boolean //phone comm. option
+  CheckBox11?: boolean //text comm. option
+
+  CheckBox12?: boolean //yes option current probation
+  CheckBox13?: boolean //no option current probation
+  CheckBox14?: boolean //unsure option current probation
+
+  CheckBox15?: boolean //employment option
+  CheckBox16?: boolean //housing option
+  CheckBox17?: boolean //goverment option
+  CheckBox18?: boolean //licensing option
+  CheckBox19?: boolean //other option
+
+  CheckBox20?: boolean //yes SB option
+  CheckBox21?: boolean //no SB option
+
+  CheckBox22?: boolean //Sb location option
+  CheckBox23?: boolean //santa maria location option
+  CheckBox24?: boolean //lompoc location option
+
+  CheckBox25?: boolean //felony conviction option
+  CheckBox26?: boolean //misdemeanor conviction option
+  CheckBox27?: boolean //unsure conviction option
+  CheckBox28?: boolean //yes marijuana option
+  CheckBox29?: boolean //no marijuana option
+
+  CheckBox38?: boolean //american indian/ alaskan native
+  CheckBox39?: boolean //Black or african american option
+  CheckBox40?: boolean //pacific islander option
+  CheckBox41?: boolean //asian option
+  CheckBox42?: boolean //hispanic option
+  CheckBox43?: boolean //white option
+  CheckBox44?: boolean //middle eastern option
+  CheckBox45?: boolean //other race option
+  CheckBox46?: boolean //decline race option
+
+  CheckBox47?: boolean //female gender option
+  CheckBox48?: boolean //male gender option
+  CheckBox49?: boolean //trans female gender option
+  CheckBox50?: boolean //trans male gender option
+  CheckBox51?: boolean //non binary gender option
+  CheckBox52?: boolean //other gender option
+  CheckBox53?: boolean //decline gender option
+
+  CheckBox54?: boolean //she pronoun option
+  CheckBox55?: boolean //he pronoun option
+  CheckBox56?: boolean //they pronoun option
+  CheckBox57?: boolean //other pronoun option
+  CheckBox58?: boolean //decline pronoun option
+
+  CheckBox59?: boolean //single marital option
+  CheckBox60?: boolean //married marital option
+  CheckBox61?: boolean //separated marital option
+  CheckBox62?: boolean //divorce marital option
+  CheckBox63?: boolean //common law marital option
+
+  Checkbox64?: boolean //monthly pay option
+  Checkbox65?: boolean //weekly pay option
+  Checkbox66?: boolean //bi-weekly pay option
+  Checkbox67?: boolean //annually pay option
+
+  CheckBox72?: boolean //
+  CheckBox73?: boolean //
 }
 
 export interface ExpungeFormInfo extends ExpungementInfo {
