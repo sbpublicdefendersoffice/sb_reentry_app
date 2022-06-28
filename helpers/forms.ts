@@ -3,10 +3,10 @@ import { PDFDocument, PDFPage } from 'pdf-lib'
 import { ExpungeFormInfo } from '../types'
 
 const dateTitles = new Set<string>([
-  'Date',
+  // 'Date',
   'Date of Birth',
   'Discharge Date',
-  'Ciudad',
+  //'Ciudad',
   'Fecha de alta',
   'Fecha',
 ])
@@ -20,13 +20,9 @@ export const fillOutPDFForm = async (
   const form = pdf.getForm()
   const fields = form.getFields()
 
-  console.log('\n\n' + 'title: ' + title + '\n\n')
-
   fields.forEach(field => {
     let fieldName = field.getName()
     let data = body[fieldName]
-
-    console.log('\n\n' + fieldName + ': ' + data + '\n\n')
 
     if (data) {
       if (typeof data === 'boolean') data = String(data)
@@ -36,15 +32,12 @@ export const fillOutPDFForm = async (
         if (dateTitles.has(fieldName)) {
           let tmp = data.slice(2).replace(/-/g, '')
 
-          console.log('\nin the pdftexfield\n')
           if (title === 'Expungement')
             data = `${tmp.slice(2)}${tmp.slice(0, 2)}`
           else data = `${tmp.slice(2, 4)}${tmp.slice(4, 6)}${tmp.slice(0, 2)}`
         }
         if (fieldName === 'Other-1' && body.immigration)
           data = `Immigration, ${data}`
-
-        console.log(data)
 
         form.getTextField(fieldName).setText(data)
       } else if (type === 'PDFCheckBox' && data === 'true')

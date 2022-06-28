@@ -214,8 +214,8 @@ export interface ExpungementInfo {
   Checkbox66?: boolean //bi-weekly pay option
   Checkbox67?: boolean //annually pay option
 
-  CheckBox72?: boolean //
-  CheckBox73?: boolean //
+  CheckBox72?: boolean //yes real estate option
+  CheckBox73?: boolean //no real estate option
 }
 
 export interface ExpungeFormInfo extends ExpungementInfo {

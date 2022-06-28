@@ -2,15 +2,6 @@ import { Fields, Validation } from '../types'
 
 export const validations: Validation[] = [
   {
-    field: 'SSN',
-    error: {
-      english: "Applicant's Social Security is required",
-      spanish: 'Se requiere el Seguro Social del solicitante',
-    },
-    id: 'SSN-label',
-    inputId: 'SSN',
-  },
-  {
     field: 'Full Name',
     error: {
       english: "Applicant's full name is required",
@@ -82,6 +73,24 @@ export const validations: Validation[] = [
     },
     id: 'pronouns-label',
     inputId: 'pronouns-card',
+  },
+  {
+    field: 'Drivers LicenseState ID',
+    error: {
+      english: "Applicant's Social Security is required",
+      spanish: 'Se requiere licencia de conducir del solicitante',
+    },
+    id: 'dl-label',
+    inputId: 'Drivers LicenseState ID',
+  },
+  {
+    field: 'SSN',
+    error: {
+      english: "Applicant's Social Security is required",
+      spanish: 'Se requiere el Seguro Social del solicitante',
+    },
+    id: 'SSN-label',
+    inputId: 'SSN',
   },
   {
     field: 'Date',

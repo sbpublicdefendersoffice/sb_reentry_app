@@ -8,10 +8,9 @@ import initDb from '../../helpers/sequelize'
 import { validations, oneWeekInSeconds } from '../../constants'
 import { Validation, ExpungeFormInfo } from '../../types'
 
-const [type, disposition, financialFormPath, applicationPath]: string[] = [
+const [type, disposition, applicationPath]: string[] = [
   'application/pdf',
   'attachment',
-  'documents/Financial_Declaration.pdf',
   'documents/FreshStartIntakeForm.pdf',
 ]
 
@@ -26,35 +25,18 @@ const recordClearance = async (
     const { language, clientId, Email, Phone, Text } = body
     const name: string = body['Full Name']
 
-    console.log(validations)
-
     validations.forEach((v: Validation): void => {
       const { error, field, id, inputId } = v
       if (!body[field])
         throw new Error(`${error[language]}&&#${id}&&${inputId}`)
     })
 
-    console.log('\n\nbefore fillingout form\n\n')
-
     const filledOutApp = await fillOutPDFForm(
       readFileSync(applicationPath),
       body,
     )
 
-    console.log('\n\nAfter fillingout form\n\n')
-
-    // const filledOutFinance = await fillOutPDFForm(
-    //   readFileSync(financialFormPath),
-    //   body,
-    // )
-
     const attachments = [
-      // {
-      //   content: filledOutFinance,
-      //   filename: `${name} Financial Declaration.pdf`,
-      //   type,
-      //   disposition,
-      // },
       {
         content: filledOutApp,
         filename: `${name} Expungement Application.pdf`,

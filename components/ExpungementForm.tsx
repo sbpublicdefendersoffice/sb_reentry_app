@@ -30,9 +30,6 @@ const copy: CopyHolder = {
     two: 'You are currently serving a sentence in jail or prison',
     three: 'You are currently on probation',
     submit: 'Submit Information',
-    uptrust: 'Uptrust Enrollment',
-    enroll:
-      'I would like to be enrolled in Uptrust to receive text messages about upcoming court hearings and office appointments',
     success:
       "Your application has been submitted to the Public Defender's office",
     name: 'What is your full name?',
@@ -78,9 +75,7 @@ const copy: CopyHolder = {
     frequency: 'How frequently do you receive income?',
     week: 'Weekly',
     month: 'Monthly',
-    income_source: 'Where does your income come from?',
     savings: 'How much money do you have saved?',
-    unemployment_benefits: 'Do you collect unemployment benefits?',
     expenses: 'About how much do you spend on your monthly expenses?',
     total: 'Total expenses',
     disclaimer:
@@ -109,11 +104,9 @@ const copy: CopyHolder = {
     realEstateExplain:
       'The amount of equity in your property may affect your eligibility for expungement',
     value: 'Value',
-    homeless: 'Are you currently experiencing homelessness?',
     whatIsPrimaryLang: 'What is your primary language?',
     biWeekly: 'Bi-Weekly',
     annually: 'Annually',
-    immigration: 'Immigration',
     ssn: 'What is your Social Security Number?',
     english: 'English',
     spanish: 'Spanish',
@@ -127,9 +120,6 @@ const copy: CopyHolder = {
     two: 'Actualmente está cumpliendo una sentencia en la cárcel o prisión',
     three: 'Actualmente estás en libertad condicional (probation)',
     submit: 'Enviar información',
-    uptrust: 'Inscripción Uptrust',
-    enroll:
-      'Yo quisiera inscribirme en Uptrust para recibir mensajes de texto acerca de la proxima audiencias judiciales y citas en la oficina',
     success: 'Su solicitud ha sido enviada a la oficina del Defensor Público',
     name: '¿Cuál es su nombre completo?',
     alias: '¿Hay otros nombres que podrían estar en su registro?',
@@ -177,9 +167,7 @@ const copy: CopyHolder = {
     frequency: '¿Con qué frecuencia recibe ingresos?',
     week: 'Semanalmente',
     month: 'Mensual',
-    income_source: '¿De dónde provienen sus ingresos?',
     savings: '¿Cuánto dinero has ahorrado?',
-    unemployment_benefits: '¿Cobran prestaciones por desempleo?',
     expenses: '¿Aproximadamente cuánto gasta en sus gastos mensuales?',
     total: 'Gastos totales',
     disclaimer:
@@ -208,11 +196,9 @@ const copy: CopyHolder = {
     realEstateExplain:
       'La cantidad de equidad en su propiedad puede afectar su elegibilidad para la eliminación de antecedentes penales',
     value: 'Valor',
-    homeless: '¿Está experimentando actualmente la falta de vivienda?',
     whatIsPrimaryLang: '¿Cuál es su idioma principal?',
     biWeekly: 'Quincenal',
     annually: 'Anualmente',
-    immigration: 'Inmigración',
     ssn: '¿Cuál es su número de seguro social?',
     english: 'Inglés',
     spanish: 'Español',
@@ -243,8 +229,6 @@ const ExpungementForm = ({
   const {
     title,
     submit,
-    uptrust,
-    enroll,
     elgible,
     one,
     two,
@@ -292,9 +276,7 @@ const ExpungementForm = ({
     frequency,
     week,
     month,
-    // income_source,
     savings,
-    // unemployment_benefits,
     expenses,
     total,
     disclaimer,
@@ -312,12 +294,10 @@ const ExpungementForm = ({
     realEstate,
     realEstateExplain,
     value,
-    homeless,
     primaryLang,
     whatIsPrimaryLang,
     biWeekly,
     annually,
-    immigration,
     ssn,
     spanish,
     english,
@@ -342,6 +322,7 @@ const ExpungementForm = ({
     CheckBox45: false,
     CheckBox52: false,
     CheckBox57: false,
+    CheckBox72: false,
   })
 
   useIntersectionStyle(formRef, Load)
@@ -353,24 +334,37 @@ const ExpungementForm = ({
     try {
       let tempInfo: ExpungementInfo = expungeInfo
 
+      let raceRadios = document.getElementsByName('Race')
+
+      raceRadios.forEach(radio => {
+        if ((radio as HTMLInputElement).checked) {
+          tempInfo['Race'] = 'Chosen'
+          return
+        }
+      })
+
+      let genderRadios = document.getElementsByName('Gender')
+
+      genderRadios.forEach(radio => {
+        if ((radio as HTMLInputElement).checked) {
+          tempInfo['Gender'] = 'Chosen'
+          return
+        }
+      })
+
+      let pronounRadios = document.getElementsByName('Pronouns')
+
+      pronounRadios.forEach(radio => {
+        if ((radio as HTMLInputElement).checked) {
+          tempInfo['Pronouns'] = 'Chosen'
+          return
+        }
+      })
+
       validations.forEach((v: Validation): void => {
         const { error, field, id, inputId } = v
 
-        if (field === 'Pronouns' || field === 'Gender' || field === 'Race') {
-          let radios = document.getElementsByName(field)
-          let isValid = false
-
-          radios.forEach(radio => {
-            if ((radio as HTMLInputElement).checked) {
-              isValid = true
-              return
-            }
-          })
-
-          if (!isValid) {
-            throw new Error(`${error[language]}&&#${id}&&${inputId}`)
-          }
-        } else if (!tempInfo[field])
+        if (!tempInfo[field])
           throw new Error(`${error[language]}&&#${id}&&${inputId}`)
       })
 
@@ -408,8 +402,6 @@ const ExpungementForm = ({
           ...tempInfo,
         }),
       })
-
-      console.log('\n\nAfter the api call\n\n')
 
       const res = await sendForm.json()
       if (res.error) throw new Error(res.error)
@@ -450,8 +442,6 @@ const ExpungementForm = ({
         [id]: !Boolean(val?.[id]),
       }))
     else setExpungeInfo(val => ({ ...val, [id]: value }))
-
-    console.log(expungeInfo)
   }
 
   return (
@@ -852,28 +842,28 @@ const ExpungementForm = ({
               onChange={handleChange}
               type="radio"
               name="pay-freq"
-              id="Checkbox64"
+              id="CheckBox64"
             />
             <label htmlFor="Weekly Take Home Pay">{week}</label>
             <Input
               onChange={handleChange}
               type="radio"
               name="pay-freq"
-              id="Checkbox65"
+              id="CheckBox65"
             />
             <label htmlFor="Bi-Weekly Take Home Pay">{biWeekly}</label>
             <Input
               onChange={handleChange}
               type="radio"
               name="pay-freq"
-              id="Checkbox66"
+              id="CheckBox66"
             />
             <label htmlFor="Annual Take Home Pay">{annually}</label>
             <Input
               onChange={handleChange}
               type="radio"
               name="pay-freq"
-              id="Checkbox67"
+              id="CheckBox67"
             />
           </Card>
         </section>
@@ -892,7 +882,7 @@ const ExpungementForm = ({
             <Input
               onChange={handleChange}
               type="radio"
-              id="real_estate_yes"
+              id="CheckBox72"
               value="Real Estate_Yes_On"
               name="Real Estate"
             />
@@ -900,11 +890,11 @@ const ExpungementForm = ({
             <Input
               onChange={handleChange}
               type="radio"
-              id="real_estate_no"
+              id="CheckBox73"
               value="Real Estate_No_On"
               name="Real Estate"
             />
-            {expungeInfo?.['Real Estate'] === 'Real Estate_Yes_On' && (
+            {expungeInfo?.CheckBox72 && (
               <>
                 <label htmlFor="Textfield-13">{value}</label>
                 <Input
