@@ -72,16 +72,16 @@ const recordClearance = async (
 
       const expungementEmail = body['Email Address']
 
-      // await clientObj.update(
-      //   {
-      //     expungementXMessageId,
-      //     hasAppliedForExpungement: true,
-      //     commPrefs,
-      //     expungementEmail: expungementEmail || null,
-      //     phone: body['Phone Number'] || null,
-      //   },
-      //   { where: { id: clientId } },
-      // )
+      await clientObj.update(
+        {
+          expungementXMessageId,
+          hasAppliedForExpungement: true,
+          commPrefs,
+          expungementEmail: expungementEmail || null,
+          phone: body['Phone Number'] || null,
+        },
+        { where: { id: clientId } },
+      )
 
       res.setHeader(
         'Set-Cookie',
