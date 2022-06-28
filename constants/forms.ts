@@ -75,6 +75,24 @@ export const validations: Validation[] = [
     inputId: 'pronouns-card',
   },
   {
+    field: 'Drivers LicenseState ID',
+    error: {
+      english: "Applicant's Social Security is required",
+      spanish: 'Se requiere licencia de conducir del solicitante',
+    },
+    id: 'dl-label',
+    inputId: 'Drivers LicenseState ID',
+  },
+  {
+    field: 'SSN',
+    error: {
+      english: "Applicant's Social Security is required",
+      spanish: 'Se requiere el Seguro Social del solicitante',
+    },
+    id: 'SSN-label',
+    inputId: 'SSN',
+  },
+  {
     field: 'Date',
     error: {
       english: "You must enter today's date",

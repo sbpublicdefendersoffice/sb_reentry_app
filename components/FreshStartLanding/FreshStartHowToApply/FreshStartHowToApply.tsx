@@ -37,7 +37,7 @@ const copy: CopyHolder = {
     freshStart: ' and apply for Fresh Start through the web portal',
     howApply: 'How do I apply?',
     call: "Call the Public Defender's Office at ",
-    download: 'Download the ',
+    download: 'Download ',
     intake: 'Intake',
     and: ' and ',
     finance: 'Financial Declaration',
@@ -105,8 +105,7 @@ const FreshStartHowToApply = () => {
           </NextLink>
         </Paper>
         <Paper className={styles.Card} elevation={3}>
-          <Typography variant="h5">{download}</Typography>
-          <Typography variant="h5">{intake + and + finance}</Typography>
+          <Typography variant="h5">{download + intake}</Typography>
           <NextLink href="/documents/expungementintakeform">
             <Button
               className={styles.ApplyButton}
@@ -114,15 +113,6 @@ const FreshStartHowToApply = () => {
               size="large"
             >
               {intake}
-            </Button>
-          </NextLink>
-          <NextLink href={financialForm}>
-            <Button
-              className={styles.ApplyButton}
-              variant="contained"
-              size="large"
-            >
-              {finance}
             </Button>
           </NextLink>
         </Paper>

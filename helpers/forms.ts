@@ -1,11 +1,12 @@
+import { css } from '@emotion/react'
 import { PDFDocument, PDFPage } from 'pdf-lib'
 import { ExpungeFormInfo } from '../types'
 
 const dateTitles = new Set<string>([
-  'Date',
+  // 'Date',
   'Date of Birth',
   'Discharge Date',
-  'Ciudad',
+  //'Ciudad',
   'Fecha de alta',
   'Fecha',
 ])
@@ -31,9 +32,9 @@ export const fillOutPDFForm = async (
         if (dateTitles.has(fieldName)) {
           let tmp = data.slice(2).replace(/-/g, '')
 
-          if (title === 'Expungements')
+          if (title === 'Expungement')
             data = `${tmp.slice(2)}${tmp.slice(0, 2)}`
-          else data = `${tmp.slice(2, 4)}/${tmp.slice(4, 6)}/${tmp.slice(0, 2)}`
+          else data = `${tmp.slice(2, 4)}${tmp.slice(4, 6)}${tmp.slice(0, 2)}`
         }
         if (fieldName === 'Other-1' && body.immigration)
           data = `Immigration, ${data}`

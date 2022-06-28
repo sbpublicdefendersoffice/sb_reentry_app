@@ -8,11 +8,10 @@ import initDb from '../../helpers/sequelize'
 import { validations, oneWeekInSeconds } from '../../constants'
 import { Validation, ExpungeFormInfo } from '../../types'
 
-const [type, disposition, financialFormPath, applicationPath]: string[] = [
+const [type, disposition, applicationPath]: string[] = [
   'application/pdf',
   'attachment',
-  'documents/Financial_Declaration.pdf',
-  'documents/Expungements_Intake.pdf',
+  'documents/FreshStartIntakeForm.pdf',
 ]
 
 const recordClearance = async (
@@ -37,18 +36,7 @@ const recordClearance = async (
       body,
     )
 
-    const filledOutFinance = await fillOutPDFForm(
-      readFileSync(financialFormPath),
-      body,
-    )
-
     const attachments = [
-      {
-        content: filledOutFinance,
-        filename: `${name} Financial Declaration.pdf`,
-        type,
-        disposition,
-      },
       {
         content: filledOutApp,
         filename: `${name} Expungement Application.pdf`,
@@ -84,16 +72,16 @@ const recordClearance = async (
 
       const expungementEmail = body['Email Address']
 
-      await clientObj.update(
-        {
-          expungementXMessageId,
-          hasAppliedForExpungement: true,
-          commPrefs,
-          expungementEmail: expungementEmail || null,
-          phone: body['Phone Number'] || null,
-        },
-        { where: { id: clientId } },
-      )
+      // await clientObj.update(
+      //   {
+      //     expungementXMessageId,
+      //     hasAppliedForExpungement: true,
+      //     commPrefs,
+      //     expungementEmail: expungementEmail || null,
+      //     phone: body['Phone Number'] || null,
+      //   },
+      //   { where: { id: clientId } },
+      // )
 
       res.setHeader(
         'Set-Cookie',
