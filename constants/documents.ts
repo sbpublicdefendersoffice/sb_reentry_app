@@ -33,3 +33,15 @@ export const financePDFSpanish: DocumentInfo = {
   doc_title_spanish:
     'Formulario de declaración financiera de eliminación de antecedentes penales',
 }
+
+export const howToApplyIntakePDF: DocumentInfo = {
+  file: 'ExpungementQuickStartGuide.pdf',
+  doc_title_english: 'Instructions on how to apply',
+  doc_title_spanish: 'Instrucciones sobre cómo aplicar',
+}
+
+export const howToApplyIntakeSpanishPDF: DocumentInfo = {
+  file: 'ExpungementQuickStartGuide.pdf',
+  doc_title_english: 'Instructions on how to apply',
+  doc_title_spanish: 'Instrucciones sobre cómo aplicar',
+}

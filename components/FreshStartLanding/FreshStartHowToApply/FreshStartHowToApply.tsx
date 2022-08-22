@@ -46,7 +46,9 @@ const copy: CopyHolder = {
     drop: 'or drop them off at:',
     recognize:
       'We recognize that different options work for different people. With this is mind, we have multiple ways to apply for record expungement',
-    financialForm: '/documents/expungementfinanceform',
+    financialForm: '/documents/expungementintakeform',
+    instruction: 'Instructions on how to apply',
+    instructionref: '/documents/expungementquickstartguide',
   },
   spanish: {
     pageTitle: 'Nuevo Comienzo',
@@ -65,6 +67,8 @@ const copy: CopyHolder = {
     recognize:
       'Reconocemos que diferentes opciones funcionan para diferentes personas. Teniendo esto en cuenta, tenemos varias formas de solicitar la eliminación de antecedentes penales.',
     financialForm: '/documents/expungementintakeformSpanish',
+    instruction: 'Instrucciones sobre cómo aplicar',
+    instructionref: '/documents/expungementquickstartguideSpanish',
   },
 }
 
@@ -85,6 +89,8 @@ const FreshStartHowToApply = () => {
     fax,
     drop,
     financialForm,
+    instruction,
+    instructionref,
   } = copy[language]
   return (
     <div className={styles.HowToApply}>
@@ -103,13 +109,13 @@ const FreshStartHowToApply = () => {
               {pageTitle + ' ' + login}
             </Button>
           </NextLink>
-          <NextLink href="/login">
+          <NextLink href={instructionref}>
             <Button
               className={styles.ApplyButton}
               variant="contained"
               size="large"
             >
-              Instruction on how to apply
+              {instruction}
             </Button>
           </NextLink>
         </Paper>
