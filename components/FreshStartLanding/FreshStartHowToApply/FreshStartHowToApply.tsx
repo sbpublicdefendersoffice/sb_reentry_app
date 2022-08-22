@@ -64,7 +64,7 @@ const copy: CopyHolder = {
     drop: 'o dejarlos en:',
     recognize:
       'Reconocemos que diferentes opciones funcionan para diferentes personas. Teniendo esto en cuenta, tenemos varias formas de solicitar la eliminación de antecedentes penales.',
-    financialForm: '/documents/expungementfinanceformSpanish',
+    financialForm: '/documents/expungementintakeformSpanish',
   },
 }
 
@@ -106,7 +106,7 @@ const FreshStartHowToApply = () => {
         </Paper>
         <Paper className={styles.Card} elevation={3}>
           <Typography variant="h5">{download + intake}</Typography>
-          <NextLink href="/documents/expungementintakeform">
+          <NextLink href={financialForm}>
             <Button
               className={styles.ApplyButton}
               variant="contained"

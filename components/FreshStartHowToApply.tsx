@@ -64,7 +64,7 @@ const copy: CopyHolder = {
       ', complétalos y envíalos por correo electrónico a  Amanda Paison a ',
     fax: ' enviar por fax (805) 614-6735 ',
     drop: 'o dejarlos en:',
-    financialForm: '/documents/expungementfinanceformSpanish',
+    financialForm: '/documents/expungementintakeSpanishform',
   },
 }
 

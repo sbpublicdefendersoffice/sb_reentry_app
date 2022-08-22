@@ -13,6 +13,13 @@ export const intakePDF: DocumentInfo = {
     'Formulario de admisión de cancelación de antecedentes penales',
 }
 
+export const intakeSpanishPDF: DocumentInfo = {
+  file: 'FreshStartIntakeFormSpanish.pdf',
+  doc_title_english: 'Record expungement intake form',
+  doc_title_spanish:
+    'Formulario de admisión de cancelación de antecedentes penales',
+}
+
 export const financePDF: DocumentInfo = {
   file: 'Financial_Declaration.pdf',
   doc_title_english: 'Record expungement financial declaration form',

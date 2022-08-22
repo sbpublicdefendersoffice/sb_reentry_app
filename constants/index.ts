@@ -20,6 +20,7 @@ export {
 export {
   specialCourtReqsPDF,
   intakePDF,
+  intakeSpanishPDF,
   financePDF,
   financePDFSpanish,
 } from './documents'
