@@ -103,6 +103,15 @@ const FreshStartHowToApply = () => {
               {pageTitle + ' ' + login}
             </Button>
           </NextLink>
+          <NextLink href="/login">
+            <Button
+              className={styles.ApplyButton}
+              variant="contained"
+              size="large"
+            >
+              Instruction on how to apply
+            </Button>
+          </NextLink>
         </Paper>
         <Paper className={styles.Card} elevation={3}>
           <Typography variant="h5">{download + intake}</Typography>
