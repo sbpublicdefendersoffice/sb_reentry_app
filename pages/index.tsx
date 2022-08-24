@@ -34,13 +34,9 @@ const Home = () => {
       <HomepageMainBanner>
         <Newsfeed />
       </HomepageMainBanner>
-      {/* <div style={{ display: 'block', overflow: 'scroll' }}>
-        <Newsfeed />
-      </div> */}
       <WhatWeDo />
       <UnsureWhereToStart />
       <ResourceHub />
-      {/* <Quotes /> */}
     </>
   )
 }
