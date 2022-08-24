@@ -20,8 +20,11 @@ export {
 export {
   specialCourtReqsPDF,
   intakePDF,
+  intakeSpanishPDF,
   financePDF,
   financePDFSpanish,
+  howToApplyIntakePDF,
+  howToApplyIntakeSpanishPDF,
 } from './documents'
 export {
   financeFormFields,
