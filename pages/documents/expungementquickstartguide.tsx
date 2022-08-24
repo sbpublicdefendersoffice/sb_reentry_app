@@ -2,7 +2,7 @@ import { howToApplyIntakePDF, siteTitle } from '../../constants/'
 import { useLanguage } from '../../hooks'
 import { PDFViewer, HeadTags } from '../../components/'
 
-const HowToApplyIntakePDFLanding = () => {
+const ExpungementQuickstartGuideLanding = () => {
   const { language } = useLanguage()
 
   return (
@@ -17,4 +17,4 @@ const HowToApplyIntakePDFLanding = () => {
   )
 }
 
-export default HowToApplyIntakePDFLanding
+export default ExpungementQuickstartGuideLanding

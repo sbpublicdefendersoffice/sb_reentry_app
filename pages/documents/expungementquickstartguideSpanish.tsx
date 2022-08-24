@@ -1,20 +1,22 @@
-import { intakeSpanishPDF, siteTitle } from '../../constants'
+import { howToApplyIntakeSpanishPDF, siteTitle } from '../../constants'
 import { useLanguage } from '../../hooks'
 import { PDFViewer, HeadTags } from '../../components'
 
-const ExpungementIntakeFormSpanishLanding = () => {
+const ExpungementQuickstartGuideSpanishLanding = () => {
   const { language } = useLanguage()
 
   return (
     <>
       <HeadTags
-        title={`${siteTitle} | ${intakeSpanishPDF[`doc_title_${language}`]}`}
+        title={`${siteTitle} | ${
+          howToApplyIntakeSpanishPDF[`doc_title_${language}`]
+        }`}
         href="/documents/expungementquickstartguideSpanish"
         description="The intake form needed to apply for criminal record expungement through the Santa Barbara County Public Defender's Office"
       />
-      <PDFViewer src={intakeSpanishPDF.file} />
+      <PDFViewer src={howToApplyIntakeSpanishPDF.file} />
     </>
   )
 }
 
-export default ExpungementIntakeFormSpanishLanding
+export default ExpungementQuickstartGuideSpanishLanding
