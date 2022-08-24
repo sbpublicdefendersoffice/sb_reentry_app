@@ -31,12 +31,12 @@ const Home = () => {
           />,
         ]}
       />
-      <HomepageMainBanner />
-      <div
-        style={{ display: isBelow500px ? 'block' : 'none', overflow: 'scroll' }}
-      >
+      <HomepageMainBanner>
         <Newsfeed />
-      </div>
+      </HomepageMainBanner>
+      {/* <div style={{ display: 'block', overflow: 'scroll' }}>
+        <Newsfeed />
+      </div> */}
       <WhatWeDo />
       <UnsureWhereToStart />
       <ResourceHub />

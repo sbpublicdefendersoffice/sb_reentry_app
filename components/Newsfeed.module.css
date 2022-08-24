@@ -64,7 +64,8 @@
 @media (max-width: 499px) {
   .Newsfeed {
     margin-top: 0;
-    background-color: var(--light-blue);
+
+    /* background-color: var(--light-blue); */
     max-height: 22rem;
     overflow: scroll;
   }

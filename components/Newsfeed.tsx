@@ -105,16 +105,16 @@ interface EventSchema {
 }
 
 const veteransStandDown2021Info: EventSchema = {
-  title_english: 'Santa Barbara County Veterans Stand Down 2021',
-  title_spanish: 'Veteranos del condado de Santa Bárbara se retiran 2021',
-  date_english: 'Saturday, October 16, 2021',
+  title_english: 'Santa Barbara County Veterans Stand Down 2022',
+  title_spanish: 'Veteranos del condado de Santa Bárbara se retiran 2022',
+  date_english: 'Saturday, October 15, 2022',
   date_spanish: 'Sábado, 16 de octubre de 2021',
   icon: '/images/2016-veterans-stand-down_2.png',
   time: '9 am - 1 pm',
   where: 'Santa Maria Fairpark',
   address: '937 S. Thornburg Street, Santa Maria, CA 93454',
   info_url:
-    'https://www.sbcountystanddown.com/uploads/3/4/4/2/34425876/2021_stand_down_flyer_add_woman_vet.pdf',
+    'http://www.sbcountystanddown.com/uploads/3/4/4/2/34425876/2022_stand_down_flyer__2_.pdf',
   register: 'http://www.sbcountystanddown.com/index.html',
 }
 
@@ -134,7 +134,7 @@ const formerlyIncarceratedResourceFair2021: EventSchema = {
     'https://www.eventbrite.com/e/formerly-incarcerated-student-day-resource-fair-tickets-178275696407',
 }
 
-const october17thInEpochTime: number = 1634454000000
+const october17thInEpochTime: number = 1665557999000
 const november13thInEpochTime: number = 1636790400000
 
 const listEvent = (event: EventSchema, language: Language): ReactNode => {
