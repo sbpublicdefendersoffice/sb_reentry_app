@@ -31,16 +31,12 @@ const Home = () => {
           />,
         ]}
       />
-      <HomepageMainBanner />
-      <div
-        style={{ display: isBelow500px ? 'block' : 'none', overflow: 'scroll' }}
-      >
+      <HomepageMainBanner>
         <Newsfeed />
-      </div>
+      </HomepageMainBanner>
       <WhatWeDo />
       <UnsureWhereToStart />
       <ResourceHub />
-      {/* <Quotes /> */}
     </>
   )
 }

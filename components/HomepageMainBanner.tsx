@@ -36,7 +36,7 @@ const copy: CopyHolder = {
 
 export const hub: string = '/#resourcehub'
 
-const HomepageMainBanner = () => {
+const HomepageMainBanner = ({ children }) => {
   const { push } = useRouter()
   const { language } = useLanguage()
   const {
@@ -69,6 +69,7 @@ const HomepageMainBanner = () => {
           <Button onClick={() => push('/login')}>{loginButtonText}</Button>
           <Paragraph className={styles.Paragraph}>{freshStart}</Paragraph>
           <Button onClick={() => push('/freshstart')}>Fresh Start</Button>
+          {children}
         </div>
       </article>
     </section>
