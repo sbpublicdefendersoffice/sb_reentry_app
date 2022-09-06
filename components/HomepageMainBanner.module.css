@@ -1,7 +1,6 @@
 .Main {
   position: relative;
   width: 100%;
-  height: var(--screen-minus-header);
   background-color: var(--light-blue);
   display: flex;
 }
