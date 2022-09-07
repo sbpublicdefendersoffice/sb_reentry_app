@@ -21,7 +21,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@date-io/moment": "^2.11.0",
+    "@date-io/moment": "^2.15.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.0",
@@ -38,7 +38,7 @@
     "pg": "^8.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "sequelize": "^6.17.0",
+    "sequelize": "^6.21.4",
     "styled-components": "^5.3.0",
     "twilio": "^3.75.1",
     "uuid": "^8.3.2"
@@ -55,10 +55,10 @@
     "@types/jsonwebtoken": "^8.5.8",
     "@types/lodash": "^4.14.179",
     "@types/mapbox-gl": "^2.6.3",
-    "@types/node": "^16.11.11",
+    "@types/node": "^18.7.16",
     "@types/qs": "6.9.7",
     "@types/react": "^17.0.40",
-    "@types/sequelize": "^4.28.11",
+    "@types/sequelize": "^4.28.14",
     "@types/styled-components": "^5.1.24",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
