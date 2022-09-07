@@ -3,6 +3,7 @@
   width: 100%;
   background-color: var(--light-blue);
   display: flex;
+  overflow: hidden;
 }
 
 .BGPic {
