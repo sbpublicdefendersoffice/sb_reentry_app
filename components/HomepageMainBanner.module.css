@@ -1,7 +1,6 @@
 .Main {
   position: relative;
   width: 100%;
-  height: var(--screen-minus-header);
   background-color: var(--light-blue);
   display: flex;
 }
@@ -42,11 +41,16 @@
 @media (max-width: 700px) {
   .BGPic {
     width: 100%;
+    height: 60rem;
+  }
+
+  .Main {
+    flex-direction: column;
   }
 
   .Article {
     width: 100%;
-    position: absolute;
+    margin-top: -60rem;
   }
 
   .Backing {
