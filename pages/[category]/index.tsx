@@ -3,7 +3,7 @@ import Error from 'next/error'
 import { useRouter } from 'next/router'
 import { Op } from 'sequelize'
 import { useState } from 'react'
-import { Modal, Hidden, Grid } from '@mui/material'
+import { Modal, Hidden, Grid, Box } from '@mui/material'
 
 import {
   useConvertedLocationRecords,
@@ -67,13 +67,13 @@ const LandingPage = ({ preFetchedOrgs }: LandingPageProps) => {
       />
       <div className={classes.landingPageContainer}>
         <Grid container>
-          <Hidden lgUp>
+          <Box sx={{ display: { md: 'block', lg: 'none' } }}>
             <MobileButtonsLandingPage
               activeCopy={activeCopy}
               setOpen={setOpen}
               showFilter={true}
             />
-          </Hidden>
+          </Box>
           <Modal
             open={open}
             onClose={() => setOpen(false)}
