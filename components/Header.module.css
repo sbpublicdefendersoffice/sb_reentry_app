@@ -118,6 +118,14 @@
     color: white;
     font-size: 3rem;
   }
+
+  .Favorites {
+    display: none;
+  }
+
+  .ThriveLogo {
+    display: none;
+  }
 }
 
 @media (max-width: 1275px) {

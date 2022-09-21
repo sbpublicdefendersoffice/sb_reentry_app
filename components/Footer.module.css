@@ -54,6 +54,7 @@
   border-bottom: 0.25rem solid transparent;
   white-space: nowrap !important;
   text-align: left;
+  background: #12385e;
 }
 
 .About {
@@ -148,7 +149,7 @@
     text-align: left !important;
   }
 }
-@media (max-width: 950px) {
+@media (max-width: 900px) {
   .Footer {
     text-align: center !important;
     display: inline-flex !important;
@@ -164,6 +165,7 @@
     margin: auto !important;
     border-bottom: 0.25rem solid transparent;
     cursor: pointer;
+    background: #12385e;
   }
 
   .ThriveLogo {
@@ -177,6 +179,10 @@
     margin-left: 5rem !important;
     margin-top: 1rem !important;
     max-width: 79.33% !important;
+  }
+
+  .Drops {
+    background: pink;
   }
 
   .About {

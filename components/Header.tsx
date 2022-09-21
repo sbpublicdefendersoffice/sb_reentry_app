@@ -21,7 +21,7 @@ import {
   ENGLISH,
 } from '../constants'
 import { ThriveLogo } from '../ui'
-import { Hidden, Badge, Button, Menu, MenuItem, Grid } from '@mui/material'
+import { Hidden, Badge, Button, Menu, MenuItem, Grid, Box } from '@mui/material'
 import { Favorite, ArrowDropDown } from '@mui/icons-material'
 
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
@@ -202,7 +202,8 @@ const Header = () => {
           )}
         </div>
 
-        <Hidden lgDown>
+        {/* <Hidden lgDown> */}
+        <Box sx={{ display: { md: 'none', lg: 'block' } }}>
           <Grid container style={{ width: '36%' }}>
             <Grid item md={12} sm={4}>
               <div className={styles.DataSearch}>
@@ -211,7 +212,8 @@ const Header = () => {
             </Grid>
           </Grid>
           <h4 className={styles.Tagline}>{activeCopy.tagline}</h4>
-        </Hidden>
+        </Box>
+        {/* </Hidden> */}
 
         <div role="term" className={styles.Favorites}>
           <NextLink href="/favorites" as="/favorites">

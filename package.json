@@ -41,7 +41,8 @@
     "sequelize": "^6.21.5",
     "styled-components": "^5.3.5",
     "twilio": "^3.75.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "ws": "^7.4.6"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -55,9 +56,9 @@
     "@types/jsonwebtoken": "^8.5.8",
     "@types/lodash": "^4.14.179",
     "@types/mapbox-gl": "^2.6.3",
-    "@types/node": "^16.11.11",
+    "@types/node": "^18.7.18",
     "@types/qs": "6.9.7",
-    "@types/react": "^17.0.40",
+    "@types/react": "^18.0.20",
     "@types/sequelize": "^4.28.14",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^8.3.4",
@@ -78,10 +79,10 @@
     "prettier": "^2.5.1",
     "stylelint": "^14.5.3",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^24.0.0",
+    "stylelint-config-standard": "^28.0.0",
     "typescript": "^4.6.2",
-    "webpack-bundle-analyzer": "^4.4.2",
-    "webpack-stats-plugin": "^1.0.3"
+    "webpack-bundle-analyzer": "^4.6.1",
+    "webpack-stats-plugin": "^1.1.0"
   },
   "resolutions": {
     "**/**/ini": "^1.3.6",

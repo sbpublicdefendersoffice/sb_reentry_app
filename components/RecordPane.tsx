@@ -8,7 +8,7 @@ import { PGOrganizationResponse, WindowSize } from '../types/'
 import { ENGLISH } from '../constants/language'
 import styles from './RecordPane.module.css'
 import DesktopFilterView from './Filters'
-import { Hidden } from '@mui/material'
+import { Hidden, Box } from '@mui/material'
 export interface RecordPaneProps {
   displayCategory: string
   routeCategory: string
@@ -69,14 +69,16 @@ const RecordPane = ({
       >
         {displayCategory}
       </Paragraph>
-      <Hidden mdDown>
+      {/* <Hidden mdDown> */}
+      <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
         <DesktopFilterView
           fields={fields}
           handleFieldsSelected={handleFieldsSelected}
           routeCategory={routeCategory}
           activeCopy={activeCopy}
         />
-      </Hidden>
+      </Box>
+      {/* </Hidden> */}
       <Details
         role="list"
         open
