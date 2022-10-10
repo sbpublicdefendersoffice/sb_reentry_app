@@ -132,15 +132,43 @@
 }
 
 .LeftInfoBox {
+  display: flex;
   flex: 1;
   padding: 2rem;
   margin: 2rem;
+  align-items: center;
+  align-items: space-between;
+  justify-content: center;
+}
+
+.LeftInfoBoxText {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 2rem;
+  align-items: center;
 }
 
 .RightInfoBox {
+  display: flex;
   flex: 1;
   padding: 2rem;
   margin: 2rem;
+  align-items: center;
+  align-items: space-between;
+  justify-content: center;
+}
+
+.ListIcon {
+  width: 12rem;
+}
+
+.RightInfoBoxText {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 2rem;
+  align-items: center;
 }
 
 @media (max-width: 700px) {
@@ -203,5 +231,13 @@
 
   .Stepdown {
     width: 100%;
+  }
+
+  .LeftInfoBox {
+    flex-direction: column;
+  }
+
+  .RightInfoBox {
+    flex-direction: column;
   }
 }

@@ -149,41 +149,69 @@ const Credo47Landing = () => {
             </Typography>
             <br />
             <Typography variant="h5" component="div">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Vehicula ipsum a arcu cursus. Tellus molestie nunc non blandit
-              massa enim nec dui nunc. Egestas maecenas pharetra convallis
-              posuere morbi leo urna molestie. Felis eget velit aliquet sagittis
-              id consectetur purus ut faucibus. Elit eget gravida cum sociis
-              natoque penatibus. Erat pellentesque adipiscing commodo elit. Amet
-              justo donec enim diam vulputate ut pharetra. Tincidunt id aliquet
-              risus feugiat. Risus nullam eget felis eget. Mollis aliquam ut
-              porttitor leo a diam sollicitudin tempor. Elit at imperdiet dui
-              accumsan. Duis ultricies lacus sed turpis tincidunt. Suspendisse
-              interdum consectetur libero id. At volutpat diam ut venenatis
-              tellus in metus vulputate eu. Viverra justo nec ultrices dui.
-              Tristique magna sit amet purus gravida.
+              The Santa Barbara County Co-Response program is an operational
+              partnership between the Sheriffs Office and Department of
+              Behavioral Wellness. The mission of the partnership is to divert
+              persons in mental health crisis from the criminal justice system
+              when safe and appropriate. Together, a Crisis Intervention Trained
+              (CIT) deputy and a licensed clinician respond to 911 mental health
+              calls together as a team, de escalating persons in crisis and
+              providing treatment options and resources.
             </Typography>
           </div>
         </div>
         <div className={styles.InfoBox}>
           <Paper className={styles.LeftInfoBox} elevation={3}>
-            <Typography variant="h4" component="div">
-              Contact
-            </Typography>
-            <br />
-            <Typography variant="h5" component="div">
-              Call 911, Sheriff’s dispatch will assess and connect to CRT
-            </Typography>
+            <div>
+              <img
+                className={styles.ListIcon}
+                src={'/../icons/phonecall.svg'}
+                alt="Phone icon"
+              />
+            </div>
+            <div className={styles.LeftInfoBoxText}>
+              <Typography variant="h4" component="div">
+                Contact
+              </Typography>
+              <br />
+              <Typography variant="h5" component="div">
+                Call 911, Sheriff's dispatch will assess and connect to CRT
+              </Typography>
+            </div>
           </Paper>
           <Paper className={styles.RightInfoBox} elevation={3}>
-            <Typography variant="h4" component="div">
-              Eligibility
-            </Typography>
-            <br />
-            <Typography variant="h5" component="div">
-              Individuals in mental health or substance use related emergency
-            </Typography>
+            <div>
+              <a
+                className={styles.Link}
+                href="https://www.sbsheriff.org/wp-content/uploads/2019/05/911-checklist-SBSO-May2019F1.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className={styles.ListIcon}
+                  src={'/../icons/checklist.svg'}
+                  alt="check list icon"
+                />
+              </a>
+            </div>
+            <div className={styles.RightInfoBoxText}>
+              <Typography variant="h4" component="div">
+                Eligibility
+              </Typography>
+              <br />
+              <Typography variant="h5" component="div">
+                Individuals in mental health or substance use related emergency
+                <br />
+                <a
+                  className={styles.Link}
+                  href="https://www.sbsheriff.org/wp-content/uploads/2019/05/911-checklist-SBSO-May2019F1.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  911 Checklist
+                </a>
+              </Typography>
+            </div>
           </Paper>
         </div>
       </div>
@@ -212,27 +240,55 @@ const Credo47Landing = () => {
         </div>
         <div className={styles.InfoBox}>
           <Paper className={styles.LeftInfoBox} elevation={3}>
-            <Typography variant="h4" component="div">
-              Contact
-            </Typography>
-            <br />
-            <Typography variant="h5" component="div">
-              Call 805-250-9022 to ensure there is a bed available at the
-              CREDO47 Stabilization Center. 427 Camino Del Remedio, Santa
-              Barbara Open 24 hours a day, 7 days a week
-            </Typography>
+            <div>
+              <img
+                className={styles.ListIcon}
+                src={'/../icons/phonecall.svg'}
+                alt="Phone icon"
+              />
+            </div>
+            <div className={styles.LeftInfoBoxText}>
+              <Typography variant="h4" component="div">
+                Contact
+              </Typography>
+              <br />
+              <Typography variant="h5" component="div">
+                Check availability please call
+                <a href="tel:8052509022"> (805) 250-9022</a>.
+                <br />
+                427 Camino Del Remedio, Santa Barbara
+                <br />
+                Open 24 hours a day, 7 days a week
+              </Typography>
+            </div>
           </Paper>
-          <div className={styles.RightInfoBox}>
-            <Typography variant="h4" component="div">
-              Eligibility
-            </Typography>
-            <br />
-            <Typography variant="h5" component="div">
-              Individuals over the age of 18 who are cooperative and amenable to
-              services will be assessed by medical professionals for
-              eligibility.
-            </Typography>
-          </div>
+          <Paper className={styles.RightInfoBox} elevation={3}>
+            <div>
+              <a
+                className={styles.Link}
+                href="https://www.sbsheriff.org/wp-content/uploads/2019/05/911-checklist-SBSO-May2019F1.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className={styles.ListIcon}
+                  src={'/../icons/checklist.svg'}
+                  alt="check list icon"
+                />
+              </a>
+            </div>
+            <div className={styles.RightInfoBoxText}>
+              <Typography variant="h4" component="div">
+                Eligibility
+              </Typography>
+              <br />
+              <Typography variant="h5" component="div">
+                Individuals over the age of 18 who are cooperative and amenable
+                to services will be assessed by medical professionals for
+                eligibility.
+              </Typography>
+            </div>
+          </Paper>
         </div>
       </div>
       <div id="Diversion" className={styles.Blue}>
@@ -244,20 +300,17 @@ const Credo47Landing = () => {
             </Typography>
             <br />
             <Typography variant="h5" component="div">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Vehicula ipsum a arcu cursus. Tellus molestie nunc non blandit
-              massa enim nec dui nunc. Egestas maecenas pharetra convallis
-              posuere morbi leo urna molestie. Felis eget velit aliquet sagittis
-              id consectetur purus ut faucibus. Elit eget gravida cum sociis
-              natoque penatibus. Erat pellentesque adipiscing commodo elit. Amet
-              justo donec enim diam vulputate ut pharetra. Tincidunt id aliquet
-              risus feugiat. Risus nullam eget felis eget. Mollis aliquam ut
-              porttitor leo a diam sollicitudin tempor. Elit at imperdiet dui
-              accumsan. Duis ultricies lacus sed turpis tincidunt. Suspendisse
-              interdum consectetur libero id. At volutpat diam ut venenatis
-              tellus in metus vulputate eu. Viverra justo nec ultrices dui.
-              Tristique magna sit amet purus gravida.
+              Pre- and post-filing diversion for individuals who have been
+              cite-released or booked into custody. Individuals who have been
+              cite-released or booked into custody undergo a thorough,
+              three-stage screening process to determine their eligibility for
+              the CREDO47 program. Individuals with cases that are approved by
+              the Holistic Defense Advocate, Public Defender, and, ultimately,
+              the District Attorney, are approved for diversion and formally
+              enrolled in the program. Clients have the opportunity to have
+              their charges dropped or dismissed pending successful completion.
+              Completion requirements are tailored to each individual and
+              reflect their unique SUD and mental health needs.
             </Typography>
           </div>
         </div>
