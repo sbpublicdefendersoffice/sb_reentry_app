@@ -130,6 +130,103 @@ const DiversionLandingPage = () => {
             {credo47lbl}
           </Paragraph>
         </div>
+        <div role="listitem" className={styles.Tile}>
+          <img
+            role="img"
+            className={styles.Image}
+            src={src}
+            alt={`${title} image`}
+          />
+          <Paragraph role="term" size="med-text">
+            {credo47lbl}
+          </Paragraph>
+        </div>
+        <div role="listitem" className={styles.Tile}>
+          <img
+            role="img"
+            className={styles.Image}
+            src={src}
+            alt={`${title} image`}
+          />
+          <Paragraph role="term" size="med-text">
+            {credo47lbl}
+          </Paragraph>
+        </div>
+      </div>
+      <div className={styles.Programs}>
+        <div role="listitem" className={styles.Tile}>
+          <Button onClick={handleOpen}>
+            <img
+              role="img"
+              className={styles.Image}
+              src={src}
+              alt={`${title} image`}
+            />
+          </Button>
+          <Paragraph role="term" size="med-text">
+            {credo47lbl}
+          </Paragraph>
+          <Modal
+            open={isOpen}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Card className={styles.Modal}>
+              <Typography id="modal-modal-title" variant="h5" component="h2">
+                Credo-47
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                {explain}
+              </Typography>
+              <br />
+              <NextLink href={'/letushelp/diversion/credo47'}>
+                {/* <Paragraph role="term" size="med-text">
+                  {title}
+                </Paragraph> */}
+                <Button size="medium">Learn More</Button>
+              </NextLink>
+            </Card>
+          </Modal>
+        </div>
+        <div role="listitem" className={styles.Tile}>
+          <img
+            role="img"
+            className={styles.Image}
+            src={src}
+            alt={`${title} image`}
+          />
+          <Paragraph role="term" size="med-text">
+            {credo47lbl}
+          </Paragraph>
+        </div>
+        <div role="listitem" className={styles.Tile}>
+          <img
+            role="img"
+            className={styles.Image}
+            src={src}
+            alt={`${title} image`}
+          />
+          <Paragraph role="term" size="med-text">
+            {credo47lbl}
+          </Paragraph>
+        </div>
+        <div role="listitem" className={styles.Tile}>
+          <img
+            role="img"
+            className={styles.Image}
+            src={src}
+            alt={`${title} image`}
+          />
+          <Paragraph role="term" size="med-text">
+            {credo47lbl}
+          </Paragraph>
+        </div>
       </div>
     </div>
   )

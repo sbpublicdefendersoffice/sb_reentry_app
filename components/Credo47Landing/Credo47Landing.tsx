@@ -214,6 +214,27 @@ const Credo47Landing = () => {
             </div>
           </Paper>
         </div>
+        <div className={styles.AdditionalInfo}>
+          <Paper className={styles.AddPaper} elevation={3}>
+            <a
+              className={styles.Link}
+              href="https://www.sbsheriff.org/behavioral-sciences-unit/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div>
+                <img
+                  className={styles.ListIcon}
+                  src={'/../icons/website.svg'}
+                  alt="Phone icon"
+                />
+              </div>
+              <Typography variant="h4" component="div">
+                Sheriff's website
+              </Typography>
+            </a>
+          </Paper>
+        </div>
       </div>
       <div id="StabCenter" className={styles.White}>
         <div className={styles.AboutProg}>
@@ -290,6 +311,22 @@ const Credo47Landing = () => {
             </div>
           </Paper>
         </div>
+        <div className={styles.AdditionalInfo}>
+          <NextLink href="/documents/stabalizationcenterbrochure">
+            <Paper className={styles.AddPaper} elevation={3}>
+              <div>
+                <img
+                  className={styles.ListIcon}
+                  src={'/../icons/documents.svg'}
+                  alt="Phone icon"
+                />
+              </div>
+              <Typography variant="h4" component="div">
+                Stabalization Center Brochure
+              </Typography>
+            </Paper>
+          </NextLink>
+        </div>
       </div>
       <div id="Diversion" className={styles.Blue}>
         <div className={styles.AboutProg}>
@@ -314,27 +351,90 @@ const Credo47Landing = () => {
             </Typography>
           </div>
         </div>
+
         <div className={styles.InfoBox}>
           <Paper className={styles.LeftInfoBox} elevation={3}>
-            <Typography variant="h4" component="div">
-              Contact
-            </Typography>
-            <br />
-            <Typography variant="h5" component="div">
-              Julia Lara Holistic Defense Advocate Office of the Public Defender
-              of Santa Barbara CREDO 47 Office: (805) 568-3498 Email:
-              julara@publicdefendersb.org
-            </Typography>
+            <div>
+              <img
+                className={styles.ListIcon}
+                src={'/../icons/phonecall.svg'}
+                alt="Phone icon"
+              />
+            </div>
+            <div className={styles.LeftInfoBoxText}>
+              <Typography variant="h4" component="div">
+                Contact
+              </Typography>
+              <br />
+              <Typography variant="h5" component="div">
+                Julia Lara Holistic Defense Advocate Office of the Public
+                Defender of Santa Barbara CREDO 47 Office:
+                <br />
+                <a href="tel:8055683498"> (805) 568-3498 </a>
+                <br />
+                Email:
+                <a href="mailto:julara@countyofsb.org" target="_blank">
+                  {' '}
+                  julara@countyofsb.org
+                </a>
+              </Typography>
+            </div>
           </Paper>
           <Paper className={styles.RightInfoBox} elevation={3}>
-            <Typography variant="h4" component="div">
-              Eligibility
-            </Typography>
-            <br />
-            <Typography variant="h5" component="div">
-              Individuals in mental health or substance use related emergency
-            </Typography>
+            <div>
+              <a
+                className={styles.Link}
+                href="https://www.sbsheriff.org/wp-content/uploads/2019/05/911-checklist-SBSO-May2019F1.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className={styles.ListIcon}
+                  src={'/../icons/checklist.svg'}
+                  alt="check list icon"
+                />
+              </a>
+            </div>
+            <div className={styles.RightInfoBoxText}>
+              <Typography variant="h4" component="div">
+                Eligibility
+              </Typography>
+              <br />
+              <Typography variant="h5" component="div">
+                Individuals in mental health or substance use related emergency
+              </Typography>
+            </div>
           </Paper>
+        </div>
+        <div className={styles.AdditionalInfo}>
+          <NextLink href="/documents/diversionreferralform">
+            <Paper className={styles.AddPaper} elevation={3}>
+              <div>
+                <img
+                  className={styles.ListIcon}
+                  src={'/../icons/documents.svg'}
+                  alt="Phone icon"
+                />
+              </div>
+              <Typography variant="h4" component="div">
+                Diversion Referral Form
+              </Typography>
+            </Paper>
+          </NextLink>
+          <NextLink href="/documents/diversionreferralinstruction">
+            <Paper className={styles.AddPaper} elevation={3}>
+              <div>
+                <img
+                  className={styles.ListIcon}
+                  src={'/../icons/documents.svg'}
+                  alt="Phone icon"
+                />
+              </div>
+              <Typography variant="h4" component="div">
+                Diversion Referral Form Instruction
+              </Typography>
+            </Paper>
+          </NextLink>
         </div>
       </div>
       <div id="StepHousing" className={styles.White}>
@@ -372,33 +472,81 @@ const Credo47Landing = () => {
         </div>
         <div className={styles.InfoBox}>
           <Paper className={styles.LeftInfoBox} elevation={3}>
-            <Typography variant="h4" component="div">
-              Contact
-            </Typography>
-            <br />
-            <Typography variant="h5" component="div">
-              Julia Lara Holistic Defense Advocate Office of the Public Defender
-              of Santa Barbara CREDO 47 Office: (805) 568-3498 Email:
-              julara@publicdefendersb.org
-            </Typography>
+            <div>
+              <img
+                className={styles.ListIcon}
+                src={'/../icons/phonecall.svg'}
+                alt="Phone icon"
+              />
+            </div>
+            <div className={styles.LeftInfoBoxText}>
+              <Typography variant="h4" component="div">
+                Contact
+              </Typography>
+              <br />
+              <Typography variant="h5" component="div">
+                Julia Lara Holistic Defense Advocate Office of the Public
+                Defender of Santa Barbara CREDO 47 Office:
+                <br />
+                <a href="tel:8055683498"> (805) 568-3498 </a>
+                <br />
+                Email:
+                <a href="mailto:julara@countyofsb.org" target="_blank">
+                  {' '}
+                  julara@countyofsb.org
+                </a>
+              </Typography>
+            </div>
           </Paper>
-          <div className={styles.RightInfoBox}>
-            <Typography variant="h4" component="div">
-              Eligibility
-            </Typography>
-            <br />
-            <Typography variant="h5" component="div">
-              • SB county resident eligible for SB County Medi-Cal/Medi-Care •
-              Willing to sign Universal ROI with program partners (i.e. Good
-              Sam, FSA, BWell, PD) • Criminal conviction and/or has an open
-              case, in a diversion program, on probation/parole • Completed
-              Mental Health and/or Substance Use Disorder assessment and is
-              participating in services • Homeless (verified & if possible
-              documented) • Eligible for Good Samaritan programs • No arson
-              conviction, no 290 registration; violent charges/convictions will
-              be reviewed on case-by-case basis
-            </Typography>
-          </div>
+          <Paper className={styles.RightInfoBox} elevation={3}>
+            <div>
+              <a
+                className={styles.Link}
+                href="https://www.sbsheriff.org/wp-content/uploads/2019/05/911-checklist-SBSO-May2019F1.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className={styles.ListIcon}
+                  src={'/../icons/checklist.svg'}
+                  alt="check list icon"
+                />
+              </a>
+            </div>
+            <div className={styles.RightInfoBoxText}>
+              <Typography variant="h4" component="div">
+                Eligibility
+              </Typography>
+              <br />
+              <Typography variant="h5" component="div">
+                • SB county resident eligible for SB County Medi-Cal/Medi-Care •
+                Willing to sign Universal ROI with program partners (i.e. Good
+                Sam, FSA, BWell, PD) • Criminal conviction and/or has an open
+                case, in a diversion program, on probation/parole • Completed
+                Mental Health and/or Substance Use Disorder assessment and is
+                participating in services • Homeless (verified & if possible
+                documented) • Eligible for Good Samaritan programs • No arson
+                conviction, no 290 registration; violent charges/convictions
+                will be reviewed on case-by-case basis
+              </Typography>
+            </div>
+          </Paper>
+        </div>
+        <div className={styles.AdditionalInfo}>
+          <NextLink href="/documents/stepdownhousingbrief">
+            <Paper className={styles.AddPaper} elevation={3}>
+              <div>
+                <img
+                  className={styles.ListIcon}
+                  src={'/../icons/documents.svg'}
+                  alt="Phone icon"
+                />
+              </div>
+              <Typography variant="h4" component="div">
+                Stepdown Housing Brief
+              </Typography>
+            </Paper>
+          </NextLink>
         </div>
       </div>
     </div>

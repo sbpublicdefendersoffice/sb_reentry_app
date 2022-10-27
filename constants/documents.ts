@@ -26,3 +26,27 @@ export const financePDFSpanish: DocumentInfo = {
   doc_title_spanish:
     'Formulario de declaración financiera de eliminación de antecedentes penales',
 }
+
+export const stabalizationPDF: DocumentInfo = {
+  file: 'Stabilization_Center_brochure.pdf',
+  doc_title_english: 'Stabalization Center Brochure',
+  doc_title_spanish: 'Folleto del Centro de Estabilización',
+}
+
+export const diversionReferralFormPDF: DocumentInfo = {
+  file: 'Diversion_Referral_Form.pdf',
+  doc_title_english: 'Diversion Referral Form',
+  doc_title_spanish: 'Formulario de referencia de desvío',
+}
+
+export const diversionReferralInstructionPDF: DocumentInfo = {
+  file: 'Diversion_Referral_Instructions.pdf',
+  doc_title_english: 'Diversion Referral Instruction',
+  doc_title_spanish: 'Instrucción de remisión de desvío',
+}
+
+export const stepdownHousingBriefPDF: DocumentInfo = {
+  file: 'Stepdown_Housing_Brief.pdf',
+  doc_title_english: 'Stepdown Housing Brief',
+  doc_title_spanish: 'Resumen de vivienda reductora',
+}
