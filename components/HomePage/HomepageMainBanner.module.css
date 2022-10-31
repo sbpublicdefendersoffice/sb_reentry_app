@@ -4,7 +4,6 @@
   background-color: var(--light-blue);
   display: flex;
   overflow: hidden;
-  justify-content: center;
 }
 
 .BGPic {

@@ -4,7 +4,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--pad-lg) 0;
+  position: relative;
+  /* background-image: url('/images/maja_bg.jpg'); */
+  background-size: cover;
+}
+
+.ResourceHub::before {
+  content: '';
+  background-image: url('/images/maja_bg.jpg');
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.5;
+  align-items: center;
+  justify-content: center;
 }
 
 .tileContainer {
@@ -13,21 +29,27 @@
   display: inherit;
   flex-wrap: wrap;
   justify-content: space-between;
+  top: 0;
+  z-index: 2;
 }
 
 .singleTileHolder {
-  width: 25%;
+  /* width: 25%; */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1rem 0;
-  text-align: center;
+  margin: 1rem 1rem;
+  text-align: cener;
 }
 
 .link {
+  background-color: var(--primary);
   display: inherit;
   flex-direction: inherit;
   align-items: inherit;
+  width: 10rem;
+  height: 100%;
 }
 
 .image {
@@ -36,26 +58,43 @@
 }
 
 .imgBg {
-  background-color: var(--green-transparent);
-  border-radius: 50%;
+  /* background-color: var(--primary); */
+  /* border-radius: 50%; */
   padding: var(--pad-std);
+  margin: 0 1rem;
+  z-index: 3;
 }
 
 .text {
   margin-bottom: var(--margin-lg);
   text-align: center;
+  position: relative;
+  z-index: 4;
 }
 
 .categoryTitle {
-  font-size: var(--med-text);
-  color: var(--primary);
+  /* font-size: var(--med-text); */
+  color: var(--light);
   margin-top: var(--margin-std);
+  width: 100%;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: small;
 }
 
 .singleTileHolder > :hover .imgBg,
 .singleTileHolder > :active .imgBg {
   background-color: var(--green);
   animation: bounce 0.35s;
+}
+
+.PageTitle {
+  position: relative;
+  font-size: 65rem;
+  color: black;
+  z-index: 3;
+  margin-top: 5rem;
+  font-weight: 500;
 }
 
 @media (max-width: 800px) {

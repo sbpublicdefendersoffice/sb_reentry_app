@@ -31,12 +31,10 @@ const Home = () => {
           />,
         ]}
       />
-      <HomepageMainBanner>
-        <Newsfeed />
-      </HomepageMainBanner>
-      <WhatWeDo />
-      <UnsureWhereToStart />
       <ResourceHub />
+      <HomepageMainBanner>{/* <Newsfeed /> */}</HomepageMainBanner>
+      <WhatWeDo />
+      {/* <UnsureWhereToStart /> */}
     </>
   )
 }

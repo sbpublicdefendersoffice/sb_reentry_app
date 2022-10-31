@@ -36,16 +36,14 @@ const ResourceHub = () => {
                 <img
                   loading="lazy"
                   role="img"
-                  width="10rem"
-                  height="10rem"
                   className={styles.image}
                   src={imgPath}
                   alt={`${title}_icon`}
                 />
+                <Paragraph className={styles.categoryTitle} role="note">
+                  {title}
+                </Paragraph>
               </div>
-              <Paragraph className={styles.categoryTitle} role="note">
-                {title}
-              </Paragraph>
             </a>
           </NextLink>
         </div>
@@ -55,7 +53,12 @@ const ResourceHub = () => {
 
   return (
     <section className={styles.ResourceHub} id="resourcehub">
-      <Title role="heading">{activeCopy.hub}</Title>
+      <Title className={styles.PageTitle} role="heading">
+        ThriveSBC
+      </Title>
+      <Title className={styles.text} role="heading">
+        {activeCopy.hub}
+      </Title>
       <Paragraph
         role="article"
         className={styles.text}
