@@ -1,4 +1,5 @@
 .OrgRecordDisplay {
+  flex: 1;
   overflow: scroll;
   height: var(--screen-minus-header);
   width: 33%;
@@ -17,6 +18,11 @@
 
 .LocationHeading {
   margin: var(--margin-lg) 0;
+}
+
+.Website {
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 1275px) {

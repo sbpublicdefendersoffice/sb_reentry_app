@@ -102,31 +102,34 @@ const LocationRecordDisplay = ({
         </Paragraph>
       )}
       {address && (
-        <>
-          <Paragraph role="listitem" size="med-text">
-            <strong role="note">{activeCopy.address}: </strong>
-            {fullAddress}, {cityStateZip}
-            <SendText
+        <div className={styles.Address}>
+          {/* <Paragraph role="listitem" size="med-text"> */}
+          {/* <strong role="note">{activeCopy.address}: </strong> */}
+          {/* {fullAddress},<br /> {cityStateZip} */}
+          {/* <SendText
               id={id}
               org_name={org_name}
               fullAddress={fullAddress}
               cityStateZip={cityStateZip}
-            />
-            <Paragraph size="med-text" className={styles.Link}>
-              <a
-                role="note"
-                href={`${baseUrl}${hrefToGoogleMaps}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() =>
-                  isProd && googleCustomClick({ used_google_maps: true })
-                }
-              >
-                {activeCopy.find}
-              </a>
-            </Paragraph>
+            /> */}
+          <img className={styles.AddressIcon} src={'/icons/website.svg'}></img>
+          <Paragraph size="med-text" className={styles.Link}>
+            <a
+              role="note"
+              href={`${baseUrl}${hrefToGoogleMaps}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                isProd && googleCustomClick({ used_google_maps: true })
+              }
+            >
+              {fullAddress}
+              <br /> {cityStateZip}
+              {/* {activeCopy.find} */}
+            </a>
           </Paragraph>
-        </>
+          {/* </Paragraph> */}
+        </div>
       )}
       {phone && (
         <>

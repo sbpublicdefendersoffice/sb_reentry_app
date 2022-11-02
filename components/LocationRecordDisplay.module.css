@@ -1,23 +1,48 @@
 .LocationRecordDisplay {
-  padding: var(--pad-lg);
+  /* padding: var(--pad-lg); */
+  padding: 0rem !important;
   display: flex;
   flex-direction: column;
 }
 
-.LocationRecordDisplay > * {
+/* .LocationRecordDisplay > * {
   margin-bottom: var(--pad-lg);
-}
+} */
 
 .heading {
-  font-weight: 100;
+  background-color: var(--light-blue);
+  padding: 1rem;
+  text-align: center;
+  font-weight: 500;
 }
 
-.heading,
+.Notes {
+  padding: 1rem;
+  font-weight: 400;
+}
+
+.Address {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.AddressIcon {
+  margin-right: 2rem;
+}
+
+/* .heading,
 .Link,
 .Notes {
   text-align: center;
-}
+} */
 
 .Link {
   margin-top: var(--margin-sm);
 }
+
+/* @media (max-width: 1275px) {
+  .Address {
+  
+  }
+} */

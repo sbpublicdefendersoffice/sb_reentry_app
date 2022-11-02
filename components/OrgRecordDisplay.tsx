@@ -64,7 +64,6 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
             {org_name}
           </Title>
         </Grid>
-
         <Grid
           item
           md={5}
@@ -89,7 +88,6 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
             <div>{heart}</div>
           </button>
         </Grid>
-        {/* </div> */}
       </Grid>
       <Details open summary={activeCopy.orgInfo} className={styles.listing}>
         {notes && (
@@ -106,8 +104,9 @@ const OrgRecordDisplay = ({ sortedRecord }: OrgRecordDisplayProps) => {
               {activeCopy.thingsToKnow}
             </Paragraph>
             {website && (
-              <Paragraph size="med-text">
-                <strong role="term">{activeCopy.website} </strong>
+              <Paragraph className={styles.Website} size="med-text">
+                <img src={'/icons/website.svg'}></img>
+                {/* <strong role="term">{activeCopy.website} </strong> */}
                 <a href={website} target="_blank" rel="noopener noreferrer">
                   {website}
                 </a>
