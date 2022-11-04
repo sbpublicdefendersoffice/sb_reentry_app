@@ -112,7 +112,7 @@ const LocationRecordDisplay = ({
               fullAddress={fullAddress}
               cityStateZip={cityStateZip}
             /> */}
-          <img className={styles.AddressIcon} src={'/icons/website.svg'}></img>
+          <img className={styles.AddressIcon} src={'/icons/home.svg'}></img>
           <Paragraph size="med-text" className={styles.Link}>
             <a
               role="note"
@@ -132,27 +132,29 @@ const LocationRecordDisplay = ({
         </div>
       )}
       {phone && (
-        <>
-          <Paragraph role="listitem" size="med-text">
+        <div className={styles.Phone}>
+          <img className={styles.PhoneIcon} src={'/icons/phoneFill.svg'}></img>
+          {/* <Paragraph role="listitem" size="med-text">
             <strong role="note">{activeCopy.phone}: </strong>
-            {phone}
-            <Paragraph size="med-text" className={styles.Link}>
-              <a role="note" href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
-                {activeCopy.call}
-              </a>
-            </Paragraph>
+            {phone} */}
+          <Paragraph size="med-text" className={styles.Link}>
+            <a role="note" href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
+              {phone}
+            </a>
+            {/* </Paragraph> */}
           </Paragraph>
-        </>
+        </div>
       )}
       {website && (
-        <>
-          <Paragraph role="listitem" size="med-text">
-            <strong role="note">{activeCopy.locationSite}: </strong>
+        <div className={styles.Website}>
+          <img className={styles.WebsiteIcon} src={'/icons/website.svg'}></img>
+          <Paragraph role="listitem" size="med-text" className={styles.Link}>
+            {/* <strong role="note">{activeCopy.locationSite}: </strong> */}
             <a href={website} target="_blank" rel="noopener noreferrer">
               {website}
             </a>
           </Paragraph>
-        </>
+        </div>
       )}
       {Boolean(services?.length) && (
         <>
