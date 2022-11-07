@@ -15,6 +15,7 @@
 .Notes {
   padding: 1rem;
   font-weight: 400;
+  text-align: center;
 }
 .Schedule {
   display: flex;
@@ -25,9 +26,19 @@
   margin-bottom: 0.5rem;
 }
 
+.Email {
+  background-color: yellow;
+}
+
+.TextInfo {
+  display: flex;
+  justify-content: center;
+}
+
+.TextInfo,
+.EmailSection,
 .Name,
 .Schedule,
-.Email,
 .Services,
 .Address,
 .Phone,
@@ -38,9 +49,9 @@
   display: flex;
 }
 
+.EmailIcon,
 .Name,
 .Schedule,
-.Email,
 .Services,
 .AddressIcon,
 .PhoneIcon,

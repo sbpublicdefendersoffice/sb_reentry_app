@@ -103,15 +103,6 @@ const LocationRecordDisplay = ({
       )}
       {address && (
         <div className={styles.Address}>
-          {/* <Paragraph role="listitem" size="med-text"> */}
-          {/* <strong role="note">{activeCopy.address}: </strong> */}
-          {/* {fullAddress},<br /> {cityStateZip} */}
-          {/* <SendText
-              id={id}
-              org_name={org_name}
-              fullAddress={fullAddress}
-              cityStateZip={cityStateZip}
-            /> */}
           <img className={styles.AddressIcon} src={'/icons/home.svg'}></img>
           <Paragraph size="med-text" className={styles.Link}>
             <a
@@ -125,23 +116,17 @@ const LocationRecordDisplay = ({
             >
               {fullAddress}
               <br /> {cityStateZip}
-              {/* {activeCopy.find} */}
             </a>
           </Paragraph>
-          {/* </Paragraph> */}
         </div>
       )}
       {phone && (
         <div className={styles.Phone}>
           <img className={styles.PhoneIcon} src={'/icons/phoneFill.svg'}></img>
-          {/* <Paragraph role="listitem" size="med-text">
-            <strong role="note">{activeCopy.phone}: </strong>
-            {phone} */}
           <Paragraph size="med-text" className={styles.Link}>
             <a role="note" href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
               {phone}
             </a>
-            {/* </Paragraph> */}
           </Paragraph>
         </div>
       )}
@@ -149,31 +134,16 @@ const LocationRecordDisplay = ({
         <div className={styles.Website}>
           <img className={styles.WebsiteIcon} src={'/icons/website.svg'}></img>
           <Paragraph role="listitem" size="med-text" className={styles.Link}>
-            {/* <strong role="note">{activeCopy.locationSite}: </strong> */}
             <a href={website} target="_blank" rel="noopener noreferrer">
               {website}
             </a>
           </Paragraph>
         </div>
       )}
-      {Boolean(services?.length) && (
-        <div className={styles.Services}>
-          <Paragraph role="listitem" size="med-text">
-            <strong role="note">{activeCopy.services}: </strong>
-            {services.reduce(
-              (str, record, i) =>
-                (str += `${record[`name_${language}`]}${
-                  i !== services.length - 1 ? ', ' : ''
-                }`),
-              '',
-            )}
-          </Paragraph>
-        </div>
-      )}
       {email && (
-        <div className={styles.Email}>
-          <img className={styles.AddressIcon} src={'/icons/email.svg'}></img>
-          <Paragraph role="listitem" size="med-text">
+        <div className={styles.EmailSection}>
+          <img className={styles.EmailIcon} src={'/icons/email.svg'}></img>
+          <Paragraph className={styles.Link} role="listitem" size="med-text">
             <a
               href={`mailto:${email}`}
               target="_blank"
@@ -196,6 +166,30 @@ const LocationRecordDisplay = ({
           {schedules.map((scheduleInfo, i) => (
             <ScheduleRecordDisplay key={i} {...scheduleInfo} />
           ))}
+        </div>
+      )}
+      {Boolean(services?.length) && (
+        <div className={styles.Services}>
+          <Paragraph role="listitem" size="med-text">
+            <strong role="note">{activeCopy.services}: </strong>
+            {services.reduce(
+              (str, record, i) =>
+                (str += `${record[`name_${language}`]}${
+                  i !== services.length - 1 ? ', ' : ''
+                }`),
+              '',
+            )}
+          </Paragraph>
+        </div>
+      )}
+      {address && (
+        <div className={styles.TextInfo}>
+          <SendText
+            id={id}
+            org_name={org_name}
+            fullAddress={fullAddress}
+            cityStateZip={cityStateZip}
+          />
         </div>
       )}
     </Card>
