@@ -157,7 +157,7 @@ const LocationRecordDisplay = ({
         </div>
       )}
       {Boolean(services?.length) && (
-        <>
+        <div className={styles.Services}>
           <Paragraph role="listitem" size="med-text">
             <strong role="note">{activeCopy.services}: </strong>
             {services.reduce(
@@ -168,25 +168,35 @@ const LocationRecordDisplay = ({
               '',
             )}
           </Paragraph>
-        </>
+        </div>
       )}
       {email && (
-        <Paragraph role="listitem" size="med-text">
-          <strong role="note">{activeCopy.email}: </strong>
-          <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
-            {email}
-          </a>
-        </Paragraph>
+        <div className={styles.Email}>
+          <img className={styles.AddressIcon} src={'/icons/email.svg'}></img>
+          <Paragraph role="listitem" size="med-text">
+            <a
+              href={`mailto:${email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {email}
+            </a>
+          </Paragraph>
+        </div>
       )}
       {Boolean(schedules?.length) && (
-        <>
-          <Paragraph role="listitem" size="med-text">
+        <div className={styles.Schedule}>
+          <Paragraph
+            className={styles.SchedTitle}
+            role="listitem"
+            size="med-text"
+          >
             <strong role="note">{activeCopy.schedule}: </strong>
           </Paragraph>
           {schedules.map((scheduleInfo, i) => (
             <ScheduleRecordDisplay key={i} {...scheduleInfo} />
           ))}
-        </>
+        </div>
       )}
     </Card>
   )

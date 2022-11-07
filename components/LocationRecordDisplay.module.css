@@ -16,7 +16,19 @@
   padding: 1rem;
   font-weight: 400;
 }
+.Schedule {
+  display: flex;
+  flex-direction: column !important;
+}
 
+.SchedTitle {
+  margin-bottom: 0.5rem;
+}
+
+.Name,
+.Schedule,
+.Email,
+.Services,
 .Address,
 .Phone,
 .Website {
@@ -26,10 +38,15 @@
   display: flex;
 }
 
+.Name,
+.Schedule,
+.Email,
+.Services,
 .AddressIcon,
 .PhoneIcon,
 .WebsiteIcon {
   margin-right: 2rem;
+  margin-left: 2rem;
 }
 
 /* .heading,
