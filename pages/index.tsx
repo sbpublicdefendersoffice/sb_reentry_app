@@ -31,7 +31,7 @@ const Home = () => {
           />,
         ]}
       />
-      <ResourceHub />
+      {/* <ResourceHub /> */}
       <HomepageMainBanner>{/* <Newsfeed /> */}</HomepageMainBanner>
       <WhatWeDo />
       {/* <UnsureWhereToStart /> */}

@@ -56,21 +56,21 @@ const HomepageMainBanner = ({ children }) => {
         className={styles.BGPic}
       /> */}
       <article className={styles.Article}>
-        <div className={styles.Backing}>
-          <Paragraph color="highlight" size="med-text" className={styles.About}>
-            {about}
-          </Paragraph>
-          <Title>{title}</Title>
-          <Paragraph className={styles.Paragraph}>{explainer}</Paragraph>
-          <Button onClick={() => push(hub, hub, { shallow: true })}>
-            {buttonText}
-          </Button>
-          <Paragraph className={styles.Paragraph}>{loginCopy}</Paragraph>
-          <Button onClick={() => push('/login')}>{loginButtonText}</Button>
-          <Paragraph className={styles.Paragraph}>{freshStart}</Paragraph>
-          <Button onClick={() => push('/freshstart')}>Fresh Start</Button>
-          {children}
-        </div>
+        {/* <div className={styles.Backing}> */}
+        <Paragraph color="highlight" size="med-text" className={styles.About}>
+          {about}
+        </Paragraph>
+        <Title>{title}</Title>
+        <Paragraph className={styles.Paragraph}>{explainer}</Paragraph>
+        <Button onClick={() => push(hub, hub, { shallow: true })}>
+          {buttonText}
+        </Button>
+        <Paragraph className={styles.Paragraph}>{loginCopy}</Paragraph>
+        <Button onClick={() => push('/login')}>{loginButtonText}</Button>
+        <Paragraph className={styles.Paragraph}>{freshStart}</Paragraph>
+        <Button onClick={() => push('/freshstart')}>Fresh Start</Button>
+        {children}
+        {/* </div> */}
       </article>
     </section>
   )

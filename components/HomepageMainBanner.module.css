@@ -1,13 +1,25 @@
 .Main {
   position: relative;
   width: 100%;
+  height: 50rem;
   background-color: var(--light-blue);
   display: flex;
   overflow: hidden;
-  justify-content: center;
+  background-image: url('/images/maja_bg.jpg');
+  background-size: cover;
+  align-content: center;
 }
 
-.BGPic {
+.Article {
+  width: 100%;
+  background-color: rgb(0 0 0 / 35%);
+  margin: 4rem;
+}
+
+.About {
+  background-color: white;
+}
+/* .BGPic {
   width: 50%;
   height: 100%;
   background-size: cover;
@@ -63,4 +75,4 @@
   .Paragraph {
     font-size: var(--standard-text);
   }
-}
+} */
