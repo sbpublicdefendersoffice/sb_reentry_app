@@ -1,7 +1,7 @@
 .Main {
   position: relative;
   width: 100%;
-  height: 50rem;
+  height: 80rem;
   background-color: var(--light-blue);
   display: flex;
   overflow: hidden;
@@ -11,68 +11,153 @@
 }
 
 .Article {
-  width: 100%;
-  background-color: rgb(0 0 0 / 35%);
-  margin: 4rem;
-}
-
-.About {
-  background-color: white;
-}
-/* .BGPic {
-  width: 50%;
-  height: 100%;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.Article {
-  width: 50%;
-  height: 100%;
-  padding: 3rem;
-  display: inherit;
+  display: flex;
   flex-direction: column;
-}
-
-.Backing {
-  padding: 0;
   width: 100%;
-  background-color: transparent;
+  background-color: rgb(255 255 255 / 80%);
+  margin: 4rem;
+  padding: 4rem;
+  align-items: center;
 }
 
-.Backing > *:not(.About) {
-  margin-top: var(--margin-std);
-}
-
-.About {
-  text-transform: uppercase;
+.Title {
+  color: var(--primary);
+  font-weight: 500;
+  text-align: center;
+  font-size: 6rem;
+  margin-bottom: 2rem;
 }
 
 .Paragraph {
-  font-size: var(--med-text);
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
 }
 
-@media (max-width: 700px) {
-  .BGPic {
-    width: 100%;
-    height: 60rem;
+.tileContainer {
+  width: 80%;
+  height: inherit;
+  display: inherit;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  top: 0;
+}
+
+.singleTileHolder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 1rem;
+  text-align: cener;
+}
+
+.singleTileHolder > :hover .imgBg,
+.singleTileHolder > :active .imgBg {
+  background-color: var(--green);
+  animation: bounce 0.35s;
+}
+
+.link {
+  background-color: var(--primary);
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+  width: 14rem;
+  height: 100%;
+}
+
+.imgBg {
+  padding: var(--pad-std);
+  margin: 0 1rem;
+}
+
+.image {
+  width: 12rem;
+  height: 10rem;
+}
+
+.categoryTitle {
+  color: var(--light);
+  margin-top: var(--margin-std);
+  width: 100%;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: small;
+  word-break: normal;
+}
+
+@media (max-width: 1440px) {
+  .Main {
+    height: 80rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .tileContainer {
+    width: 90%;
   }
 
   .Main {
-    flex-direction: column;
+    height: 85rem;
+  }
+
+  .link {
+    width: 10rem;
+  }
+
+  .image {
+    width: 10rem;
+    height: 8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tileContainer {
+    width: 100%;
+  }
+
+  .Main {
+    height: 110rem;
+  }
+
+  .link {
+    width: 12rem;
+  }
+
+  .image {
+    width: 12rem;
+    height: 8rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .tileContainer {
+    width: 100%;
+    margin: 0rem;
+  }
+
+  .Title {
+    font-size: 3rem;
   }
 
   .Article {
-    width: 100%;
-    margin-top: -60rem;
+    padding: 2rem;
+    margin: 2rem;
   }
 
-  .Backing {
-    padding: var(--pad-lg);
-    background-color: var(--light-transparent);
+  .link {
+    width: 10rem;
   }
 
-  .Paragraph {
-    font-size: var(--standard-text);
+  .image {
+    width: 8rem;
+    height: 6rem;
   }
-} */
+
+  .Main {
+    height: 125rem;
+  }
+}
