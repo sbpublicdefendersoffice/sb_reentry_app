@@ -5,6 +5,12 @@
   flex-direction: column;
 }
 
+.InfoBoxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .heading {
   background-color: var(--light-blue);
   padding: 1rem;
@@ -60,20 +66,17 @@
   margin-left: 2rem;
 }
 
-/* .heading,
-.Link,
-.Notes {
-  text-align: center;
-} */
+.Services {
+  justify-content: center;
+}
 
 .Link {
-  /* margin-top: var(--margin-sm); */
   display: flex;
   align-items: center;
 }
 
-/* @media (max-width: 1275px) {
-  .Address {
-  
+@media (max-width: 425px) {
+  .InfoBoxes {
+    justify-content: flex-start;
   }
-} */
+}

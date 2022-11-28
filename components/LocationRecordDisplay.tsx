@@ -101,73 +101,81 @@ const LocationRecordDisplay = ({
           {notes}
         </Paragraph>
       )}
-      {address && (
-        <div className={styles.Address}>
-          <img className={styles.AddressIcon} src={'/icons/home.svg'}></img>
-          <Paragraph size="med-text" className={styles.Link}>
-            <a
-              role="note"
-              href={`${baseUrl}${hrefToGoogleMaps}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() =>
-                isProd && googleCustomClick({ used_google_maps: true })
-              }
+      <div className={styles.InfoBoxes}>
+        {address && (
+          <div className={styles.Address}>
+            <img className={styles.AddressIcon} src={'/icons/home.svg'}></img>
+            <Paragraph size="med-text" className={styles.Link}>
+              <a
+                role="note"
+                href={`${baseUrl}${hrefToGoogleMaps}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  isProd && googleCustomClick({ used_google_maps: true })
+                }
+              >
+                {fullAddress}
+                <br /> {cityStateZip}
+              </a>
+            </Paragraph>
+          </div>
+        )}
+        {phone && (
+          <div className={styles.Phone}>
+            <img
+              className={styles.PhoneIcon}
+              src={'/icons/phoneFill.svg'}
+            ></img>
+            <Paragraph size="med-text" className={styles.Link}>
+              <a role="note" href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
+                {phone}
+              </a>
+            </Paragraph>
+          </div>
+        )}
+        {website && (
+          <div className={styles.Website}>
+            <img
+              className={styles.WebsiteIcon}
+              src={'/icons/website.svg'}
+            ></img>
+            <Paragraph role="listitem" size="med-text" className={styles.Link}>
+              <a href={website} target="_blank" rel="noopener noreferrer">
+                {website}
+              </a>
+            </Paragraph>
+          </div>
+        )}
+        {email && (
+          <div className={styles.EmailSection}>
+            <img className={styles.EmailIcon} src={'/icons/email.svg'}></img>
+            <Paragraph className={styles.Link} role="listitem" size="med-text">
+              <a
+                href={`mailto:${email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {email}
+              </a>
+            </Paragraph>
+          </div>
+        )}
+        {Boolean(schedules?.length) && (
+          <div className={styles.Schedule}>
+            <Paragraph
+              className={styles.SchedTitle}
+              role="listitem"
+              size="med-text"
             >
-              {fullAddress}
-              <br /> {cityStateZip}
-            </a>
-          </Paragraph>
-        </div>
-      )}
-      {phone && (
-        <div className={styles.Phone}>
-          <img className={styles.PhoneIcon} src={'/icons/phoneFill.svg'}></img>
-          <Paragraph size="med-text" className={styles.Link}>
-            <a role="note" href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
-              {phone}
-            </a>
-          </Paragraph>
-        </div>
-      )}
-      {website && (
-        <div className={styles.Website}>
-          <img className={styles.WebsiteIcon} src={'/icons/website.svg'}></img>
-          <Paragraph role="listitem" size="med-text" className={styles.Link}>
-            <a href={website} target="_blank" rel="noopener noreferrer">
-              {website}
-            </a>
-          </Paragraph>
-        </div>
-      )}
-      {email && (
-        <div className={styles.EmailSection}>
-          <img className={styles.EmailIcon} src={'/icons/email.svg'}></img>
-          <Paragraph className={styles.Link} role="listitem" size="med-text">
-            <a
-              href={`mailto:${email}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {email}
-            </a>
-          </Paragraph>
-        </div>
-      )}
-      {Boolean(schedules?.length) && (
-        <div className={styles.Schedule}>
-          <Paragraph
-            className={styles.SchedTitle}
-            role="listitem"
-            size="med-text"
-          >
-            <strong role="note">{activeCopy.schedule}: </strong>
-          </Paragraph>
-          {schedules.map((scheduleInfo, i) => (
-            <ScheduleRecordDisplay key={i} {...scheduleInfo} />
-          ))}
-        </div>
-      )}
+              <strong role="note">{activeCopy.schedule}: </strong>
+            </Paragraph>
+            {schedules.map((scheduleInfo, i) => (
+              <ScheduleRecordDisplay key={i} {...scheduleInfo} />
+            ))}
+          </div>
+        )}
+      </div>
       {Boolean(services?.length) && (
         <div className={styles.Services}>
           <Paragraph role="listitem" size="med-text">
