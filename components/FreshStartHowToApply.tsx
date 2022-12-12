@@ -97,7 +97,8 @@ const FreshStartHowToApply = () => {
     </>,
     <>
       {call}
-      <a href="tel:8056991444">(805) 699-1444</a>
+      <a href="tel:8055683470">(805) 568-3470</a>
+      <a href="tel:8053467500">(805) 346-7500</a>
     </>,
     <>
       {download}
