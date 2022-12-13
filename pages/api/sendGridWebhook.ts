@@ -32,10 +32,10 @@ const sendGridWebhook = async (
       if (client && !client.hasBeenNotifiedOfExpungement) {
         const { email, expungementEmail, phone, commPrefs } = client
         const textEng: string =
-          "The Santa Barbara Public Defender's Office has recieved your FreshStart expungement application and will begin processing it shortly. If you have not heard from the SBPD in 5-7 days, please contact them directly at (805) 568-3470"
+          "The Santa Barbara Public Defender's Office has recieved your FreshStart expungement application and will begin processing it shortly. If you have not heard from the SBPD in 6 weeks, please contact them directly at (805) 568-3470"
 
         const textSpan: string =
-          'La Oficina del Defensor Público de Santa Bárbara ha recibido su solicitud de eliminación de antecedentes penales FreshStart y comenzará a procesarla en breve. Si no ha tenido noticias del SBPD en 5-7 días, comuníquese con ellos directamente al (805) 568-3470'
+          'La Oficina del Defensor Público de Santa Bárbara ha recibido su solicitud de eliminación de antecedentes penales FreshStart y comenzará a procesarla en breve. Si no ha tenido noticias del SBPD en 6 semanas, comuníquese con ellos directamente al (805) 568-3470'
 
         const text: string = `${textEng}\n\n${textSpan}`
 
