@@ -11,7 +11,19 @@ import useView from '../hooks/useView'
 import useResizeEvent from '../hooks/useResizeEvent'
 import { WindowSize } from '../types/'
 
-import { Modal, Hidden, Grid } from '@mui/material'
+import {
+  Modal,
+  Hidden,
+  Grid,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Checkbox,
+  ListItem,
+  ListItemText,
+  Typography,
+} from '@mui/material'
 import MobileButtonsLandingPage from '../components/MobileButtonsLandingPage'
 export interface TagPaneProps {
   orgInfo: PGOrganizationResponse[]
@@ -25,6 +37,22 @@ const TagPane = ({ orgInfo }: TagPaneProps) => {
     width: innerWidth,
     height: innerHeight,
   })
+
+  const cities = []
+
+  orgInfo.map(org => {
+    org.locations.map(loc => {
+      if (cities.indexOf(loc.city) === -1) {
+        cities.push(loc.city)
+      }
+    })
+  })
+
+  console.log('these are the cites')
+  console.log(cities)
+
+  console.log(orgInfo)
+  console.log('I am in tagpane')
 
   useResizeEvent(() =>
     setWindowSize({
@@ -53,6 +81,21 @@ const TagPane = ({ orgInfo }: TagPaneProps) => {
         }
         summary={` ${language === ENGLISH ? 'Records' : 'Registros'}`}
       >
+        <div>
+          <FormControl>
+            <InputLabel>City</InputLabel>
+            <Select>
+              {cities.map(city => {
+                return (
+                  <MenuItem>
+                    <Checkbox />
+                    <ListItemText primary={<Typography>{city}</Typography>} />
+                  </MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+        </div>
         {recordsReady &&
           orgInfo.map((record: PGOrganizationResponse, i: number) => (
             <Fragment key={i}>
