@@ -1,7 +1,7 @@
 .Main {
   position: relative;
   width: 100%;
-  height: 80rem;
+  height: 87rem;
   background-color: var(--light-blue);
   display: flex;
   overflow: hidden;
@@ -37,11 +37,11 @@
 }
 
 .tileContainer {
-  width: 80%;
+  width: 100%;
   height: inherit;
-  display: inherit;
+  display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   top: 0;
 }
 
@@ -49,16 +49,16 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 1rem 1rem;
   text-align: cener;
 }
 
-.singleTileHolder > :hover .imgBg,
+/* .singleTileHolder > :hover .imgBg,
 .singleTileHolder > :active .imgBg {
   background-color: var(--green);
   animation: bounce 0.35s;
-}
+} */
 
 .link {
   background-color: var(--primary);
@@ -70,8 +70,12 @@
 }
 
 .imgBg {
-  padding: var(--pad-std);
-  margin: 0 1rem;
+  margin: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary);
 }
 
 .image {
@@ -89,56 +93,7 @@
   word-break: normal;
 }
 
-@media (max-width: 1440px) {
-  .Main {
-    height: 80rem;
-  }
-}
-
-@media (max-width: 1024px) {
-  .tileContainer {
-    width: 90%;
-  }
-
-  .Main {
-    height: 85rem;
-  }
-
-  .link {
-    width: 10rem;
-  }
-
-  .image {
-    width: 10rem;
-    height: 8rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .tileContainer {
-    width: 100%;
-  }
-
-  .Main {
-    height: 110rem;
-  }
-
-  .link {
-    width: 12rem;
-  }
-
-  .image {
-    width: 12rem;
-    height: 8rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .tileContainer {
-    width: 100%;
-    margin: 0rem;
-  }
-
+@media (max-width: 1200px) {
   .Title {
     font-size: 3rem;
   }
@@ -148,8 +103,24 @@
     margin: 2rem;
   }
 
-  .link {
-    width: 10rem;
+  .image {
+    width: 8rem;
+    height: 6rem;
+  }
+
+  .Main {
+    height: 62rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .Title {
+    font-size: 3rem;
+  }
+
+  .Article {
+    padding: 2rem;
+    margin: 2rem;
   }
 
   .image {
@@ -158,6 +129,26 @@
   }
 
   .Main {
-    height: 125rem;
+    height: 76rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .Title {
+    font-size: 3rem;
+  }
+
+  .Article {
+    padding: 2rem;
+    margin: 2rem;
+  }
+
+  .image {
+    width: 8rem;
+    height: 6rem;
+  }
+
+  .Main {
+    height: 100rem;
   }
 }

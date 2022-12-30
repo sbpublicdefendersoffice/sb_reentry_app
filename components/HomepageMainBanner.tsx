@@ -10,6 +10,7 @@ import { resourceRoutes } from '../constants/routes'
 import { Paragraph, Title, Button } from '../ui'
 
 import styles from './HomepageMainBanner.module.css'
+import { Grid } from '@mui/material'
 
 const copy: CopyHolder = {
   english: {
@@ -59,24 +60,24 @@ const HomepageMainBanner = ({ children }) => {
       const title: string = link[`title_${language}`]
 
       return (
-        <div key={i} className={styles.singleTileHolder}>
+        <Grid xs={5} sm={4} md={3} key={i} className={styles.singleTileHolder}>
           <NextLink href={route}>
-            <a className={`${styles.link} not-text-link`}>
-              <div className={styles.imgBg}>
-                <img
-                  loading="lazy"
-                  role="img"
-                  className={styles.image}
-                  src={imgPath}
-                  alt={`${title}_icon`}
-                />
-                <Paragraph className={styles.categoryTitle} role="note">
-                  {title}
-                </Paragraph>
-              </div>
-            </a>
+            {/* <a className={`${styles.link} not-text-link`}> */}
+            <div className={styles.imgBg}>
+              <img
+                loading="lazy"
+                role="img"
+                className={styles.image}
+                src={imgPath}
+                alt={`${title}_icon`}
+              />
+              <Paragraph className={styles.categoryTitle} role="note">
+                {title}
+              </Paragraph>
+            </div>
+            {/* </a> */}
           </NextLink>
-        </div>
+        </Grid>
       )
     },
   )
@@ -89,7 +90,9 @@ const HomepageMainBanner = ({ children }) => {
         <Button onClick={() => push('/freshstart')}>Fresh Start</Button>
         <Paragraph className={styles.Paragraph}>{explainer}</Paragraph>
         {children}
-        <div className={styles.tileContainer}>{PageTiles}</div>
+        <Grid container spacing={0} className={styles.tileContainer}>
+          {PageTiles}
+        </Grid>
       </article>
     </section>
   )
