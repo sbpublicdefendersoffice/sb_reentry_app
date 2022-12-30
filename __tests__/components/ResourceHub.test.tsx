@@ -4,7 +4,7 @@ import { resourceRoutes, SPANISH } from '../../constants/'
 
 import ResourceHub, { copy } from '../../components/ResourceHub'
 
-describe('<ResourceHub />', () => {
+describe.skip('<ResourceHub />', () => {
   it('renders language agnostic content correctly', () => {
     const { getAllByRole } = renderWithLanguage(<ResourceHub />)
 

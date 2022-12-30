@@ -1,65 +1,154 @@
 .Main {
   position: relative;
   width: 100%;
+  height: 87rem;
   background-color: var(--light-blue);
   display: flex;
   overflow: hidden;
-}
-
-.BGPic {
-  width: 50%;
-  height: 100%;
+  background-image: url('/images/maja_bg.jpg');
   background-size: cover;
-  background-repeat: no-repeat;
+  align-content: center;
 }
 
 .Article {
-  width: 50%;
-  height: 100%;
-  padding: 3rem;
-  display: inherit;
+  display: flex;
   flex-direction: column;
-}
-
-.Backing {
-  padding: 0;
   width: 100%;
-  background-color: transparent;
+  background-color: rgb(255 255 255 / 80%);
+  margin: 4rem;
+  padding: 4rem;
+  align-items: center;
 }
 
-.Backing > *:not(.About) {
-  margin-top: var(--margin-std);
-}
-
-.About {
-  text-transform: uppercase;
+.Title {
+  color: var(--primary);
+  font-weight: 500;
+  text-align: center;
+  font-size: 6rem;
+  margin-bottom: 2rem;
 }
 
 .Paragraph {
-  font-size: var(--med-text);
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
 }
 
-@media (max-width: 700px) {
-  .BGPic {
-    width: 100%;
-    height: 60rem;
-  }
+.tileContainer {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  top: 0;
+}
 
-  .Main {
-    flex-direction: column;
+.singleTileHolder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: cener;
+}
+
+/* .singleTileHolder > :hover .imgBg,
+.singleTileHolder > :active .imgBg {
+  background-color: var(--green);
+  animation: bounce 0.35s;
+} */
+
+.link {
+  background-color: var(--primary);
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+  width: 14rem;
+  height: 100%;
+}
+
+.imgBg {
+  margin: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary);
+}
+
+.image {
+  width: 12rem;
+  height: 10rem;
+}
+
+.categoryTitle {
+  color: var(--light);
+  margin-top: var(--margin-std);
+  width: 100%;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: small;
+  word-break: normal;
+}
+
+@media (max-width: 1200px) {
+  .Title {
+    font-size: 3rem;
   }
 
   .Article {
-    width: 100%;
-    margin-top: -60rem;
+    padding: 2rem;
+    margin: 2rem;
   }
 
-  .Backing {
-    padding: var(--pad-lg);
-    background-color: var(--light-transparent);
+  .image {
+    width: 8rem;
+    height: 6rem;
   }
 
-  .Paragraph {
-    font-size: var(--standard-text);
+  .Main {
+    height: 62rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .Title {
+    font-size: 3rem;
+  }
+
+  .Article {
+    padding: 2rem;
+    margin: 2rem;
+  }
+
+  .image {
+    width: 8rem;
+    height: 6rem;
+  }
+
+  .Main {
+    height: 76rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .Title {
+    font-size: 3rem;
+  }
+
+  .Article {
+    padding: 2rem;
+    margin: 2rem;
+  }
+
+  .image {
+    width: 8rem;
+    height: 6rem;
+  }
+
+  .Main {
+    height: 100rem;
   }
 }
