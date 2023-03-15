@@ -1,6 +1,6 @@
 .DisplayMap {
   position: relative;
-  flex: 1;
+  flex: 2;
   width: 50%;
   height: var(--screen-minus-header) !important;
 }

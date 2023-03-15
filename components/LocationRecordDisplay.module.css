@@ -1,6 +1,6 @@
 .LocationRecordDisplay {
   /* padding: var(--pad-lg); */
-  padding: 0rem !important;
+  padding: 0 !important;
   display: flex;
   flex-direction: column;
 }
@@ -23,6 +23,7 @@
   font-weight: 400;
   text-align: center;
 }
+
 .Schedule {
   display: flex;
   flex-direction: column !important;
@@ -50,7 +51,6 @@
 .Phone,
 .Website {
   padding: 1rem;
-  display: flex;
   flex-direction: row;
   display: flex;
 }
