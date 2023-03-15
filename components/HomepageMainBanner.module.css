@@ -15,14 +15,14 @@
   flex-direction: column;
   width: 100%;
   background-color: rgb(255 255 255 / 80%);
-  margin: 4rem;
+  margin: 10em 4rem;
   padding: 4rem;
   align-items: center;
+  justify-content: center;
 }
 
 .Title {
   color: var(--primary);
-  font-weight: 500;
   text-align: center;
   font-size: 6rem;
   margin-bottom: 2rem;
@@ -54,24 +54,11 @@
   text-align: cener;
 }
 
-/* .singleTileHolder > :hover .imgBg,
-.singleTileHolder > :active .imgBg {
-  background-color: var(--green);
-  animation: bounce 0.35s;
-} */
-
-.link {
-  background-color: var(--primary);
-  display: inherit;
-  flex-direction: inherit;
-  align-items: inherit;
-  width: 14rem;
-  height: 100%;
-}
-
 .imgBg {
+  height: 12rem;
+  width: 12rem;
   margin: 0.5rem;
-  width: 100%;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,23 +66,22 @@
 }
 
 .image {
-  width: 12rem;
-  height: 10rem;
+  width: 7rem;
+  height: 8rem;
 }
 
 .categoryTitle {
   color: var(--light);
-  margin-top: var(--margin-std);
   width: 100%;
   text-align: center;
   text-overflow: ellipsis;
-  font-size: small;
+  font-size: medium;
   word-break: normal;
 }
 
 @media (max-width: 1200px) {
   .Title {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
   .Article {
@@ -103,13 +89,8 @@
     margin: 2rem;
   }
 
-  .image {
-    width: 8rem;
-    height: 6rem;
-  }
-
   .Main {
-    height: 62rem;
+    height: 70rem;
   }
 }
 
@@ -123,19 +104,29 @@
     margin: 2rem;
   }
 
-  .image {
-    width: 8rem;
-    height: 6rem;
-  }
-
   .Main {
-    height: 76rem;
+    height: 105rem;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 576px) {
   .Title {
     font-size: 3rem;
+  }
+
+  .imgBg {
+    height: 8rem;
+    width: 8rem;
+    justify-content: center;
+  }
+
+  .image {
+    width: 4rem;
+    height: 5rem;
+  }
+
+  .categoryTitle {
+    font-size: x-small;
   }
 
   .Article {
@@ -143,9 +134,34 @@
     margin: 2rem;
   }
 
+  .Main {
+    height: 96rem;
+  }
+}
+
+@media (max-width: 427px) {
+  .Title {
+    font-size: 3rem;
+  }
+
+  .imgBg {
+    height: 7rem;
+    width: 7rem;
+    justify-content: center;
+  }
+
   .image {
-    width: 8rem;
-    height: 6rem;
+    width: 3.5rem;
+    height: 4.5rem;
+  }
+
+  .categoryTitle {
+    font-size: x-small;
+  }
+
+  .Article {
+    padding: 2rem;
+    margin: 2rem;
   }
 
   .Main {

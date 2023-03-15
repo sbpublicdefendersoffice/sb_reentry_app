@@ -23,7 +23,7 @@ const copy: CopyHolder = {
     loginCopy:
       'Or, Login to ThriveSBC to manage your info, apply for record expungement and more',
     freshStart:
-      'Apply for criminal record expungement with via our Fresh Start tool',
+      'Apply for criminal record expungement via our Fresh Start tool',
   },
   spanish: {
     about: 'Sobre nosotros',
@@ -60,7 +60,7 @@ const HomepageMainBanner = ({ children }) => {
       const title: string = link[`title_${language}`]
 
       return (
-        <Grid xs={5} sm={4} md={3} key={i} className={styles.singleTileHolder}>
+        <>
           <NextLink href={route}>
             {/* <a className={`${styles.link} not-text-link`}> */}
             <div className={styles.imgBg}>
@@ -77,7 +77,7 @@ const HomepageMainBanner = ({ children }) => {
             </div>
             {/* </a> */}
           </NextLink>
-        </Grid>
+        </>
       )
     },
   )
@@ -90,9 +90,7 @@ const HomepageMainBanner = ({ children }) => {
         <Button onClick={() => push('/freshstart')}>Fresh Start</Button>
         <Paragraph className={styles.Paragraph}>{explainer}</Paragraph>
         {children}
-        <Grid container spacing={0} className={styles.tileContainer}>
-          {PageTiles}
-        </Grid>
+        <div className={styles.tileContainer}>{PageTiles}</div>
       </article>
     </section>
   )
