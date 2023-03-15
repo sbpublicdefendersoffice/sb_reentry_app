@@ -1,23 +1,82 @@
 .LocationRecordDisplay {
-  padding: var(--pad-lg);
+  /* padding: var(--pad-lg); */
+  padding: 0 !important;
   display: flex;
   flex-direction: column;
 }
 
-.LocationRecordDisplay > * {
-  margin-bottom: var(--pad-lg);
+.InfoBoxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .heading {
-  font-weight: 100;
+  background-color: var(--light-blue);
+  padding: 1rem;
+  text-align: center;
+  font-weight: 500;
 }
 
-.heading,
-.Link,
 .Notes {
+  padding: 1rem;
+  font-weight: 400;
   text-align: center;
 }
 
+.Schedule {
+  display: flex;
+  flex-direction: column !important;
+}
+
+.SchedTitle {
+  margin-bottom: 0.5rem;
+}
+
+.Email {
+  background-color: yellow;
+}
+
+.TextInfo {
+  display: flex;
+  justify-content: center;
+}
+
+.TextInfo,
+.EmailSection,
+.Name,
+.Schedule,
+.Services,
+.Address,
+.Phone,
+.Website {
+  padding: 1rem;
+  flex-direction: row;
+  display: flex;
+}
+
+.EmailIcon,
+.Name,
+.Schedule,
+.Services,
+.AddressIcon,
+.PhoneIcon,
+.WebsiteIcon {
+  margin-right: 2rem;
+  margin-left: 2rem;
+}
+
+.Services {
+  justify-content: center;
+}
+
 .Link {
-  margin-top: var(--margin-sm);
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 425px) {
+  .InfoBoxes {
+    justify-content: flex-start;
+  }
 }

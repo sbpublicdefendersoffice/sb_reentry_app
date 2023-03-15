@@ -21,12 +21,12 @@ export interface SendTextProps {
 export const copy: CopyHolder = {
   english: {
     error: 'Phone Number is 10 digits, numbers only',
-    placeholder: 'Phone Number',
+    placeholder: ' Phone Number',
     location: 'Send Location Information',
   },
   spanish: {
     error: 'El número de teléfono tiene 10 dígitos, solo números',
-    placeholder: 'Número de Teléfono',
+    placeholder: ' Número de Teléfono',
     location: 'Enviar información de ubicación',
   },
 }
