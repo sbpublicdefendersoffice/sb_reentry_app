@@ -60,26 +60,24 @@ const HomepageMainBanner = ({ children }) => {
       const title: string = link[`title_${language}`]
 
       return (
-        // <Grid xs={5} sm={4} md={3} key={i} className={styles.singleTileHolder}>
         <>
-          {/* <NextLink href={route}> */}
-          {/* <a className={`${styles.link} not-text-link`}> */}
-          <div className={styles.imgBg}>
-            <img
-              loading="lazy"
-              role="img"
-              className={styles.image}
-              src={imgPath}
-              alt={`${title}_icon`}
-            />
-            <Paragraph className={styles.categoryTitle} role="note">
-              {title}
-            </Paragraph>
-          </div>
-          {/* </a> */}
-          {/* </NextLink> */}
+          <NextLink href={route}>
+            {/* <a className={`${styles.link} not-text-link`}> */}
+            <div className={styles.imgBg}>
+              <img
+                loading="lazy"
+                role="img"
+                className={styles.image}
+                src={imgPath}
+                alt={`${title}_icon`}
+              />
+              <Paragraph className={styles.categoryTitle} role="note">
+                {title}
+              </Paragraph>
+            </div>
+            {/* </a> */}
+          </NextLink>
         </>
-        // </Grid>
       )
     },
   )
@@ -93,9 +91,6 @@ const HomepageMainBanner = ({ children }) => {
         <Paragraph className={styles.Paragraph}>{explainer}</Paragraph>
         {children}
         <div className={styles.tileContainer}>{PageTiles}</div>
-        {/* <Grid container spacing={0} className={styles.tileContainer}>
-          {PageTiles}
-        </Grid> */}
       </article>
     </section>
   )
