@@ -20,6 +20,9 @@ export const copy: CopyHolder = {
   english: {
     title: 'Diversion',
     whatIs: 'What is Diversion?',
+    learn: 'Learn More',
+    diversion:
+      'Diversion is an alternative to the traditional path of a criminal case. It is an alternative to jail, probation, and other forms of punishment. These alternatives are for those people with minimal criminal records or who live with mental illness or developmental disabilities. People may also live with substance use disorder which often co-occurs with mental illness. The goal of diversion is to link individuals with support, treatment, or other services to avoid future contact with the legal system.',
     explain:
       'CREDO-47 is a diversion program that links individuals with substance use and mental health problems to treatment and provides assistance with housing, jobs, education and other resources. If you are accepted in the program and participate in treatment, you are able to get your criminal case dismissed.',
     howWill: 'How will I know if I am eligible?',
@@ -36,6 +39,9 @@ export const copy: CopyHolder = {
   spanish: {
     title: 'Desviación',
     whatIs: '¿Qué es el desvío?',
+    learn: 'Aprende Más',
+    diversion:
+      'El desvío es una alternativa a la vía tradicional de un caso penal. Es una alternativa a la cárcel, la libertad condicional y otras formas de castigo. Estas alternativas son para aquellas personas con antecedentes penales mínimos o que viven con enfermedades mentales o discapacidades del desarrollo. Las personas también pueden vivir con un trastorno por uso de sustancias que a menudo ocurre junto con una enfermedad mental. El objetivo de la desviación es vincular a las personas con apoyo, tratamiento u otros servicios para evitar futuros contactos con el sistema legal.',
     explain:
       'CREDO-47 es un programa alternativo que vincula a las personas con problemas de salud mental y uso de sustancias con el tratamiento y brinda asistencia con vivienda, trabajo, educación y otros recursos. Si es aceptado en el programa y participa en el tratamiento, puede hacer que se desestime su caso penal.',
     howWill: '¿Cómo sabré si soy elegible?',
@@ -53,7 +59,8 @@ export const copy: CopyHolder = {
 
 const DiversionLandingPage = () => {
   const { language } = useLanguage()
-  const { title, whatIs, credo47lbl, explain } = copy[language]
+  const { title, whatIs, credo47lbl, explain, diversion, learn } =
+    copy[language]
 
   const [isOpen, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
@@ -65,17 +72,16 @@ const DiversionLandingPage = () => {
         <Title className={styles.HeaderText}>{title}</Title>
       </div>
       <div className={styles.About}>
-        <Paragraph role="title" size="large-text">
+        <Paragraph
+          className={styles.WhatIsTitle}
+          role="title"
+          // size="large-text"
+        >
           {whatIs}
         </Paragraph>
         <br />
-        <Paragraph role="title" size="med-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-          interdum dignissim aliquet. Morbi varius volutpat dolor, sed imperdiet
-          quam mattis et. Pellentesque vitae arcu dolor. Donec lacus sem, rutrum
-          ut fermentum id, molestie id dolor. Nulla id sem ac dui vehicula
-          dictum vitae quis quam. Nulla dictum dolor diam, eu euismod leo luctus
-          vel. Cras lobortis et est luctus dictum. Fusce sed aliquam lorem.
+        <Paragraph className={styles.DiversionInfo} role="title">
+          {diversion}
         </Paragraph>
       </div>
       <div className={styles.Programs}>
@@ -111,121 +117,10 @@ const DiversionLandingPage = () => {
               </Typography>
               <br />
               <NextLink href={'/letushelp/diversion/credo47'}>
-                {/* <Paragraph role="term" size="med-text">
-                  {title}
-                </Paragraph> */}
-                <Button size="medium">Learn More</Button>
+                <Button size="medium">{learn}</Button>
               </NextLink>
             </Card>
           </Modal>
-        </div>
-        <div role="listitem" className={styles.Tile}>
-          <img
-            role="img"
-            className={styles.Image}
-            src={src}
-            alt={`${title} image`}
-          />
-          <Paragraph role="term" size="med-text">
-            {credo47lbl}
-          </Paragraph>
-        </div>
-        <div role="listitem" className={styles.Tile}>
-          <img
-            role="img"
-            className={styles.Image}
-            src={src}
-            alt={`${title} image`}
-          />
-          <Paragraph role="term" size="med-text">
-            {credo47lbl}
-          </Paragraph>
-        </div>
-        <div role="listitem" className={styles.Tile}>
-          <img
-            role="img"
-            className={styles.Image}
-            src={src}
-            alt={`${title} image`}
-          />
-          <Paragraph role="term" size="med-text">
-            {credo47lbl}
-          </Paragraph>
-        </div>
-      </div>
-      <div className={styles.Programs}>
-        <div role="listitem" className={styles.Tile}>
-          <Button onClick={handleOpen}>
-            <img
-              role="img"
-              className={styles.Image}
-              src={src}
-              alt={`${title} image`}
-            />
-          </Button>
-          <Paragraph role="term" size="med-text">
-            {credo47lbl}
-          </Paragraph>
-          <Modal
-            open={isOpen}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Card className={styles.Modal}>
-              <Typography id="modal-modal-title" variant="h5" component="h2">
-                Credo-47
-              </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                {explain}
-              </Typography>
-              <br />
-              <NextLink href={'/letushelp/diversion/credo47'}>
-                {/* <Paragraph role="term" size="med-text">
-                  {title}
-                </Paragraph> */}
-                <Button size="medium">Learn More</Button>
-              </NextLink>
-            </Card>
-          </Modal>
-        </div>
-        <div role="listitem" className={styles.Tile}>
-          <img
-            role="img"
-            className={styles.Image}
-            src={src}
-            alt={`${title} image`}
-          />
-          <Paragraph role="term" size="med-text">
-            {credo47lbl}
-          </Paragraph>
-        </div>
-        <div role="listitem" className={styles.Tile}>
-          <img
-            role="img"
-            className={styles.Image}
-            src={src}
-            alt={`${title} image`}
-          />
-          <Paragraph role="term" size="med-text">
-            {credo47lbl}
-          </Paragraph>
-        </div>
-        <div role="listitem" className={styles.Tile}>
-          <img
-            role="img"
-            className={styles.Image}
-            src={src}
-            alt={`${title} image`}
-          />
-          <Paragraph role="term" size="med-text">
-            {credo47lbl}
-          </Paragraph>
         </div>
       </div>
     </div>

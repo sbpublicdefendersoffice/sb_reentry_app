@@ -56,14 +56,26 @@
   justify-content: space-evenly;
 }
 
+.Image {
+  width: 13rem;
+  height: 13rem;
+}
+
 .Tile {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #e3e8ee;
-  margin: 3rem;
+  padding: 3rem;
   width: 20rem;
+}
+
+.WhatIsTitle {
+  font-size: 6rem;
+}
+
+.DiversionInfo {
+  font-size: 2rem;
 }
 
 .Modal {
@@ -74,11 +86,42 @@
 
 @media (max-width: 700px) {
   .HeaderText {
+    font-size: 8rem;
+  }
+
+  .Header {
+    height: 15rem;
+  }
+
+  .WhatIsTitle {
+    font-size: 3.5rem;
+  }
+
+  .DiversionInfo {
+    font-size: 2.5rem;
+  }
+
+  .Programs {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .HeaderText {
     font-size: 6rem;
   }
 
   .Header {
     height: 15rem;
+  }
+
+  .WhatIsTitle {
+    font-size: 2.5rem;
+  }
+
+  .DiversionInfo {
+    font-size: 1.5rem;
   }
 
   .Programs {
