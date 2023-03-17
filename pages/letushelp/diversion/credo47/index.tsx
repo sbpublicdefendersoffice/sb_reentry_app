@@ -1,13 +1,14 @@
-import { CallToAction, Paragraph } from '../../../ui'
-import { CopyHolder } from '../../../types/language'
-import useLanguage from '../../../hooks/useLanguage'
+import { CopyHolder } from '../../../../types/language'
+import useLanguage from '../../../../hooks/useLanguage'
 import {
   DiversionQualify,
   LetUsHelpIndexTitle,
   HeadTags,
-} from '../../../components'
-import { margin, siteTitle } from '../../../constants/'
-import DiversionLandingPage from '../../../components/DiversionLanding/DiversionLandingPage'
+} from '../../../../components'
+import { margin, siteTitle } from '../../../../constants'
+import Credo47Landing from '../../../../components/Credo47Landing/Credo47Landing'
+
+// import DiversionLandingPage from '../../../components/DiversionLanding/DiversionLandingPage'
 
 export const copy: CopyHolder = {
   english: {
@@ -44,7 +45,7 @@ export const copy: CopyHolder = {
 
 export const src: string = '/icons/diversion.svg'
 
-const DiversionLanding = () => {
+const CredoLanding = () => {
   const { language } = useLanguage()
 
   const {
@@ -64,10 +65,10 @@ const DiversionLanding = () => {
     <>
       <HeadTags
         title={`${siteTitle} | ${title}`}
-        href="/letushelp/diversion"
+        href="/letushelp/diversion/credo47"
         description="Resources concerning diversion in Santa Barbara County"
       />
-      <DiversionLandingPage></DiversionLandingPage>
+      <Credo47Landing></Credo47Landing>
       {/* <LetUsHelpIndexTitle {...{ src, title, whatIs, explain }} />
       <DiversionQualify />
       <CallToAction blueBg>
@@ -101,4 +102,4 @@ const DiversionLanding = () => {
   )
 }
 
-export default DiversionLanding
+export default CredoLanding

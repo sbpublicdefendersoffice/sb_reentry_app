@@ -23,6 +23,10 @@ export {
   intakeSpanishPDF,
   financePDF,
   financePDFSpanish,
+  stabalizationPDF,
+  diversionReferralFormPDF,
+  diversionReferralInstructionPDF,
+  stepdownHousingBriefPDF,
   howToApplyIntakePDF,
   howToApplyIntakeSpanishPDF,
 } from './documents'
