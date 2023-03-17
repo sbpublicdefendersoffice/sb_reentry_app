@@ -73,6 +73,18 @@ export const resourceRoutes: RouteInfo[] = [
     route: '/substanceuse',
     imgPath: './icons/substanceuse.svg',
   },
+  {
+    title_english: 'Court Preparation',
+    title_spanish: 'Preparación de la Corte',
+    route: './letushelp/prearraignment',
+    imgPath: './icons/documents.svg',
+  },
+  {
+    title_english: 'Public Defender Service',
+    title_spanish: 'Servicio de Defensoría Pública',
+    route: './letushelp',
+    imgPath: './icons/specialtycourts.svg',
+  },
 ]
 
 export const staticPageRoutes: RouteInfo[] = [

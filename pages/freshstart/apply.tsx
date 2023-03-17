@@ -20,12 +20,12 @@ interface ExpungementPageProps {
 const copy: CopyHolder = {
   english: {
     applied:
-      'You have successfully applied for record expungement. The Public Defender should reach out to you within 5-7 business days',
+      'You have successfully applied for record expungement. The Public Defender should reach out to you within 4 to 6 weeks',
     notVerified: 'You have not yet been verified',
   },
   spanish: {
     applied:
-      'Ha solicitado con éxito la eliminación de antecedentes penales. El Defensor Público debe comunicarse con usted en un plazo de 5 a 7 días hábiles',
+      'Ha solicitado con éxito la eliminación de antecedentes penales. El Defensor Público debe comunicarse con usted en un plazo de 4 a 6 semanas',
     notVerified: 'Aún no has sido verificado',
   },
 }

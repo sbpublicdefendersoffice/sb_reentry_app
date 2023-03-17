@@ -1,61 +1,170 @@
 .Main {
   position: relative;
   width: 100%;
-  height: var(--screen-minus-header);
+  height: 87rem;
   background-color: var(--light-blue);
   display: flex;
-}
-
-.BGPic {
-  width: 50%;
-  height: 100%;
+  overflow: hidden;
+  background-image: url('/images/maja_bg.jpg');
   background-size: cover;
-  background-repeat: no-repeat;
+  align-content: center;
 }
 
 .Article {
-  width: 50%;
-  height: 100%;
-  padding: 3rem;
-  display: inherit;
+  display: flex;
   flex-direction: column;
-}
-
-.Backing {
-  padding: 0;
   width: 100%;
-  background-color: transparent;
-  overflow: scroll;
+  background-color: rgb(255 255 255 / 80%);
+  margin: 10em 4rem;
+  padding: 4rem;
+  align-items: center;
+  justify-content: center;
 }
 
-.Backing > *:not(.About) {
-  margin-top: var(--margin-std);
-}
-
-.About {
-  text-transform: uppercase;
+.Title {
+  color: var(--primary);
+  text-align: center;
+  font-size: 6rem;
+  margin-bottom: 2rem;
 }
 
 .Paragraph {
-  font-size: var(--med-text);
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
 }
 
-@media (max-width: 700px) {
-  .BGPic {
-    width: 100%;
+.tileContainer {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  top: 0;
+}
+
+.singleTileHolder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: cener;
+}
+
+.imgBg {
+  height: 12rem;
+  width: 12rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--primary);
+}
+
+.image {
+  width: 7rem;
+  height: 8rem;
+}
+
+.categoryTitle {
+  color: var(--light);
+  width: 100%;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-size: medium;
+  word-break: normal;
+}
+
+@media (max-width: 1200px) {
+  .Title {
+    font-size: 4rem;
   }
 
   .Article {
-    width: 100%;
-    position: absolute;
+    padding: 2rem;
+    margin: 2rem;
   }
 
-  .Backing {
-    padding: var(--pad-lg);
-    background-color: var(--light-transparent);
+  .Main {
+    height: 70rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .Title {
+    font-size: 3rem;
   }
 
-  .Paragraph {
-    font-size: var(--standard-text);
+  .Article {
+    padding: 2rem;
+    margin: 2rem;
+  }
+
+  .Main {
+    height: 105rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .Title {
+    font-size: 3rem;
+  }
+
+  .imgBg {
+    height: 8rem;
+    width: 8rem;
+    justify-content: center;
+  }
+
+  .image {
+    width: 4rem;
+    height: 5rem;
+  }
+
+  .categoryTitle {
+    font-size: x-small;
+  }
+
+  .Article {
+    padding: 2rem;
+    margin: 2rem;
+  }
+
+  .Main {
+    height: 96rem;
+  }
+}
+
+@media (max-width: 427px) {
+  .Title {
+    font-size: 3rem;
+  }
+
+  .imgBg {
+    height: 7rem;
+    width: 7rem;
+    justify-content: center;
+  }
+
+  .image {
+    width: 3.5rem;
+    height: 4.5rem;
+  }
+
+  .categoryTitle {
+    font-size: x-small;
+  }
+
+  .Article {
+    padding: 2rem;
+    margin: 2rem;
+  }
+
+  .Main {
+    height: 110rem;
   }
 }

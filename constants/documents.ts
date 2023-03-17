@@ -13,6 +13,13 @@ export const intakePDF: DocumentInfo = {
     'Formulario de admisión de cancelación de antecedentes penales',
 }
 
+export const intakeSpanishPDF: DocumentInfo = {
+  file: 'FreshStartIntakeFormSpanish.pdf',
+  doc_title_english: 'Record expungement intake form',
+  doc_title_spanish:
+    'Formulario de admisión de cancelación de antecedentes penales',
+}
+
 export const financePDF: DocumentInfo = {
   file: 'Financial_Declaration.pdf',
   doc_title_english: 'Record expungement financial declaration form',
@@ -49,4 +56,16 @@ export const stepdownHousingBriefPDF: DocumentInfo = {
   file: 'Stepdown_Housing_Brief.pdf',
   doc_title_english: 'Stepdown Housing Brief',
   doc_title_spanish: 'Resumen de vivienda reductora',
+}
+
+export const howToApplyIntakePDF: DocumentInfo = {
+  file: 'ExpungementQuickStartGuide.pdf',
+  doc_title_english: 'Instructions on how to apply',
+  doc_title_spanish: 'Instrucciones sobre cómo aplicar',
+}
+
+export const howToApplyIntakeSpanishPDF: DocumentInfo = {
+  file: 'ExpungementQuickStartGuide.pdf',
+  doc_title_english: 'Instructions on how to apply',
+  doc_title_spanish: 'Instrucciones sobre cómo aplicar',
 }

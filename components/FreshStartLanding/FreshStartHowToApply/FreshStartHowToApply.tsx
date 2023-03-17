@@ -46,7 +46,9 @@ const copy: CopyHolder = {
     drop: 'or drop them off at:',
     recognize:
       'We recognize that different options work for different people. With this is mind, we have multiple ways to apply for record expungement',
-    financialForm: '/documents/expungementfinanceform',
+    financialForm: '/documents/expungementintakeform',
+    instruction: 'Instructions on how to apply',
+    instructionref: '/documents/expungementquickstartguide',
   },
   spanish: {
     pageTitle: 'Nuevo Comienzo',
@@ -64,7 +66,9 @@ const copy: CopyHolder = {
     drop: 'o dejarlos en:',
     recognize:
       'Reconocemos que diferentes opciones funcionan para diferentes personas. Teniendo esto en cuenta, tenemos varias formas de solicitar la eliminación de antecedentes penales.',
-    financialForm: '/documents/expungementfinanceformSpanish',
+    financialForm: '/documents/expungementintakeformSpanish',
+    instruction: 'Instrucciones sobre cómo aplicar',
+    instructionref: '/documents/expungementquickstartguideSpanish',
   },
 }
 
@@ -85,6 +89,8 @@ const FreshStartHowToApply = () => {
     fax,
     drop,
     financialForm,
+    instruction,
+    instructionref,
   } = copy[language]
   return (
     <div className={styles.HowToApply}>
@@ -103,10 +109,19 @@ const FreshStartHowToApply = () => {
               {pageTitle + ' ' + login}
             </Button>
           </NextLink>
+          <NextLink href={instructionref}>
+            <Button
+              className={styles.ApplyButton}
+              variant="contained"
+              size="large"
+            >
+              {instruction}
+            </Button>
+          </NextLink>
         </Paper>
         <Paper className={styles.Card} elevation={3}>
           <Typography variant="h5">{download + intake}</Typography>
-          <NextLink href="/documents/expungementintakeform">
+          <NextLink href={financialForm}>
             <Button
               className={styles.ApplyButton}
               variant="contained"
@@ -121,7 +136,14 @@ const FreshStartHowToApply = () => {
             {call}
             <br />
             <br />
-            <a href="tel:8056991444">(805) 699-1444</a>
+            Santa Barbara
+            <br />
+            <a href="tel:8055683470">(805) 568-3470</a>
+            <br />
+            <br />
+            Santa Maria & Lompoc
+            <br />
+            <a href="tel:8053467500">(805) 346-7500</a>
           </Typography>
         </Paper>
       </div>

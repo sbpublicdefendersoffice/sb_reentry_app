@@ -101,17 +101,10 @@ const LocationRecordDisplay = ({
           {notes}
         </Paragraph>
       )}
-      {address && (
-        <>
-          <Paragraph role="listitem" size="med-text">
-            <strong role="note">{activeCopy.address}: </strong>
-            {fullAddress}, {cityStateZip}
-            <SendText
-              id={id}
-              org_name={org_name}
-              fullAddress={fullAddress}
-              cityStateZip={cityStateZip}
-            />
+      <div className={styles.InfoBoxes}>
+        {address && (
+          <div className={styles.Address}>
+            <img className={styles.AddressIcon} src={'/icons/home.svg'}></img>
             <Paragraph size="med-text" className={styles.Link}>
               <a
                 role="note"
@@ -122,37 +115,69 @@ const LocationRecordDisplay = ({
                   isProd && googleCustomClick({ used_google_maps: true })
                 }
               >
-                {activeCopy.find}
+                {fullAddress}
+                <br /> {cityStateZip}
               </a>
             </Paragraph>
-          </Paragraph>
-        </>
-      )}
-      {phone && (
-        <>
-          <Paragraph role="listitem" size="med-text">
-            <strong role="note">{activeCopy.phone}: </strong>
-            {phone}
+          </div>
+        )}
+        {phone && (
+          <div className={styles.Phone}>
+            <img
+              className={styles.PhoneIcon}
+              src={'/icons/phoneFill.svg'}
+            ></img>
             <Paragraph size="med-text" className={styles.Link}>
               <a role="note" href={`tel:${phone.replace(/[^0-9]/g, '')}`}>
-                {activeCopy.call}
+                {phone}
               </a>
             </Paragraph>
-          </Paragraph>
-        </>
-      )}
-      {website && (
-        <>
-          <Paragraph role="listitem" size="med-text">
-            <strong role="note">{activeCopy.locationSite}: </strong>
-            <a href={website} target="_blank" rel="noopener noreferrer">
-              {website}
-            </a>
-          </Paragraph>
-        </>
-      )}
+          </div>
+        )}
+        {website && (
+          <div className={styles.Website}>
+            <img
+              className={styles.WebsiteIcon}
+              src={'/icons/website.svg'}
+            ></img>
+            <Paragraph role="listitem" size="med-text" className={styles.Link}>
+              <a href={website} target="_blank" rel="noopener noreferrer">
+                {website}
+              </a>
+            </Paragraph>
+          </div>
+        )}
+        {email && (
+          <div className={styles.EmailSection}>
+            <img className={styles.EmailIcon} src={'/icons/email.svg'}></img>
+            <Paragraph className={styles.Link} role="listitem" size="med-text">
+              <a
+                href={`mailto:${email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {email}
+              </a>
+            </Paragraph>
+          </div>
+        )}
+        {Boolean(schedules?.length) && (
+          <div className={styles.Schedule}>
+            <Paragraph
+              className={styles.SchedTitle}
+              role="listitem"
+              size="med-text"
+            >
+              <strong role="note">{activeCopy.schedule}: </strong>
+            </Paragraph>
+            {schedules.map((scheduleInfo, i) => (
+              <ScheduleRecordDisplay key={i} {...scheduleInfo} />
+            ))}
+          </div>
+        )}
+      </div>
       {Boolean(services?.length) && (
-        <>
+        <div className={styles.Services}>
           <Paragraph role="listitem" size="med-text">
             <strong role="note">{activeCopy.services}: </strong>
             {services.reduce(
@@ -163,25 +188,17 @@ const LocationRecordDisplay = ({
               '',
             )}
           </Paragraph>
-        </>
+        </div>
       )}
-      {email && (
-        <Paragraph role="listitem" size="med-text">
-          <strong role="note">{activeCopy.email}: </strong>
-          <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
-            {email}
-          </a>
-        </Paragraph>
-      )}
-      {Boolean(schedules?.length) && (
-        <>
-          <Paragraph role="listitem" size="med-text">
-            <strong role="note">{activeCopy.schedule}: </strong>
-          </Paragraph>
-          {schedules.map((scheduleInfo, i) => (
-            <ScheduleRecordDisplay key={i} {...scheduleInfo} />
-          ))}
-        </>
+      {address && (
+        <div className={styles.TextInfo}>
+          <SendText
+            id={id}
+            org_name={org_name}
+            fullAddress={fullAddress}
+            cityStateZip={cityStateZip}
+          />
+        </div>
       )}
     </Card>
   )

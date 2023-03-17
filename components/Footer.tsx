@@ -1,6 +1,6 @@
 import NextLink from 'next/link'
 import { ReactElement, useState, Fragment } from 'react'
-import { Grid, Hidden, Button } from '@mui/material'
+import { Grid, Button, Paper, Box } from '@mui/material'
 import { RouteInfo, CopyHolder } from '../types/'
 import useLanguage from '../hooks/useLanguage'
 import { ENGLISH } from '../constants/language'
@@ -13,9 +13,7 @@ import {
 } from '../constants'
 import styles from './Footer.module.css'
 import { useStyles } from '../constants/materialStyles'
-import TwitterIcon from '@mui/icons-material/Twitter'
-import FacebookIcon from '@mui/icons-material/Facebook'
-import InstagramIcon from '@mui/icons-material/Instagram'
+
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 const currentYear: number = new Date().getFullYear()
 export const copyright: string = `© Copyright 2021${
@@ -64,7 +62,8 @@ const Footer = () => {
         return (
           <Fragment key={i}>
             <Grid item xs={12} md={2} sm={4} className={styles.Grid}>
-              <Hidden smDown>
+              {/* <Hidden smDown> */}
+              <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                 <div style={{ width: '10rem' }}>
                   <Button
                     onClick={() => setCourtButtonClicked(!courtButtonClicked)}
@@ -105,8 +104,9 @@ const Footer = () => {
                       )
                     })}
                 </div>
-              </Hidden>
-              <Hidden mdUp>
+              </Box>
+              {/* <Hidden mdUp> */}
+              <Box sx={{ display: { sm: 'block', md: 'none' } }}>
                 <Button
                   onClick={() => setCourtButtonClicked(!courtButtonClicked)}
                   className={styles.ButtonStyle}
@@ -154,10 +154,12 @@ const Footer = () => {
                       )
                     })}
                 </div>
-              </Hidden>
+              </Box>
+              {/* </Hidden> */}
             </Grid>
             <Grid item xs={12} md={2} sm={3} className={styles.Grid}>
-              <Hidden smDown>
+              {/* <Hidden smDown> */}
+              <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                 <div
                   style={{
                     width: '10rem',
@@ -199,8 +201,10 @@ const Footer = () => {
                       )
                     })}
                 </div>
-              </Hidden>
-              <Hidden mdUp>
+              </Box>
+              {/* </Hidden> */}
+              {/* <Hidden mdUp> */}
+              <Box sx={{ display: { sm: 'block', md: 'none' } }}>
                 <Button
                   onClick={() =>
                     setResourceButtonClicked(!resourceButtonClicked)
@@ -236,7 +240,8 @@ const Footer = () => {
                       )
                     })}
                 </div>
-              </Hidden>
+              </Box>
+              {/* </Hidden> */}
             </Grid>
             <div className={styles.About}>{link}</div>
           </Fragment>

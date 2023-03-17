@@ -1,11 +1,16 @@
+import { StarPurple500Sharp } from '@mui/icons-material'
+import { ReactElement } from 'react'
 import { useRouter } from 'next/router'
-
+import NextLink from 'next/link'
 import { useLanguage } from '../hooks/'
 import { CopyHolder } from '../types/language'
+import { RouteInfo } from '../types'
+import { resourceRoutes } from '../constants/routes'
 
 import { Paragraph, Title, Button } from '../ui'
 
 import styles from './HomepageMainBanner.module.css'
+import { Grid } from '@mui/material'
 
 const copy: CopyHolder = {
   english: {
@@ -18,7 +23,7 @@ const copy: CopyHolder = {
     loginCopy:
       'Or, Login to ThriveSBC to manage your info, apply for record expungement and more',
     freshStart:
-      'Apply for criminal record expungement with via our Fresh Start tool',
+      'Apply for criminal record expungement via our Fresh Start tool',
   },
   spanish: {
     about: 'Sobre nosotros',
@@ -36,7 +41,7 @@ const copy: CopyHolder = {
 
 export const hub: string = '/#resourcehub'
 
-const HomepageMainBanner = () => {
+const HomepageMainBanner = ({ children }) => {
   const { push } = useRouter()
   const { language } = useLanguage()
   const {
@@ -49,27 +54,43 @@ const HomepageMainBanner = () => {
     freshStart,
   } = copy[language]
 
+  const PageTiles: ReactElement[] = resourceRoutes.map(
+    (link: RouteInfo, i: number) => {
+      const { route, imgPath } = link
+      const title: string = link[`title_${language}`]
+
+      return (
+        <>
+          <NextLink href={route}>
+            {/* <a className={`${styles.link} not-text-link`}> */}
+            <div className={styles.imgBg}>
+              <img
+                loading="lazy"
+                role="img"
+                className={styles.image}
+                src={imgPath}
+                alt={`${title}_icon`}
+              />
+              <Paragraph className={styles.categoryTitle} role="note">
+                {title}
+              </Paragraph>
+            </div>
+            {/* </a> */}
+          </NextLink>
+        </>
+      )
+    },
+  )
+
   return (
     <section className={styles.Main}>
-      <div
-        style={{ backgroundImage: 'url("./images/maja_bg.jpg")' }}
-        className={styles.BGPic}
-      />
       <article className={styles.Article}>
-        <div className={styles.Backing}>
-          <Paragraph color="highlight" size="med-text" className={styles.About}>
-            {about}
-          </Paragraph>
-          <Title>{title}</Title>
-          <Paragraph className={styles.Paragraph}>{explainer}</Paragraph>
-          <Button onClick={() => push(hub, hub, { shallow: true })}>
-            {buttonText}
-          </Button>
-          <Paragraph className={styles.Paragraph}>{loginCopy}</Paragraph>
-          <Button onClick={() => push('/login')}>{loginButtonText}</Button>
-          <Paragraph className={styles.Paragraph}>{freshStart}</Paragraph>
-          <Button onClick={() => push('/freshstart')}>Fresh Start</Button>
-        </div>
+        <Title className={styles.Title}>{title}</Title>
+        <Paragraph className={styles.Paragraph}>{freshStart}</Paragraph>
+        <Button onClick={() => push('/freshstart')}>Fresh Start</Button>
+        <Paragraph className={styles.Paragraph}>{explainer}</Paragraph>
+        {children}
+        <div className={styles.tileContainer}>{PageTiles}</div>
       </article>
     </section>
   )

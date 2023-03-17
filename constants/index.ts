@@ -20,12 +20,15 @@ export {
 export {
   specialCourtReqsPDF,
   intakePDF,
+  intakeSpanishPDF,
   financePDF,
   financePDFSpanish,
   stabalizationPDF,
   diversionReferralFormPDF,
   diversionReferralInstructionPDF,
   stepdownHousingBriefPDF,
+  howToApplyIntakePDF,
+  howToApplyIntakeSpanishPDF,
 } from './documents'
 export {
   financeFormFields,

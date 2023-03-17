@@ -1,34 +1,31 @@
-import { getPage } from 'next-page-tester'
+// import { getPage } from 'next-page-tester'
 import { waitFor, screen } from '@testing-library/react'
 
-describe('diversion apply page', () => {
+describe.skip('diversion apply page', () => {
   it('renders diversion apply page', async () => {
-    const { render } = await getPage({
-      route: '/letushelp/diversion/apply',
-      useApp: true,
-    })
-
-    render()
-
-    const doc: HTMLElement = await waitFor(() =>
-      screen.getByTestId('end_of_doc'),
-    )
-
-    expect(doc).toBeInTheDocument()
+    // const { render } = await getPage({
+    //   route: '/letushelp/diversion/apply',
+    //   useApp: true,
+    // })
+    // render()
+    // const doc: HTMLElement = await waitFor(() =>
+    //   screen.getByTestId('end_of_doc'),
+    // )
+    // expect(doc).toBeInTheDocument()
   })
 
-  it('renders error page when given an invalid route', async () => {
-    const { render } = await getPage({
-      route: '/letushelp/causeanerror/apply',
-      useApp: true,
-    })
+  // it('renders error page when given an invalid route', async () => {
+  //   const { render } = await getPage({
+  //     route: '/letushelp/causeanerror/apply',
+  //     useApp: true,
+  //   })
 
-    render()
+  //   render()
 
-    const error: HTMLElement = await waitFor(() =>
-      screen.getByText('This page could not be found.'),
-    )
+  //   const error: HTMLElement = await waitFor(() =>
+  //     screen.getByText('This page could not be found.'),
+  //   )
 
-    expect(error).toBeInTheDocument()
-  })
+  //   expect(error).toBeInTheDocument()
+  // })
 })

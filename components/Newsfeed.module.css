@@ -49,7 +49,7 @@
   height: 100%;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .Newsfeed {
     padding: var(--pad-lg);
     background-color: var(--light-transparent);
@@ -59,13 +59,28 @@
     width: 6rem;
     height: 6rem;
   }
+
+  .Links {
+    flex-direction: column;
+  }
+
+  .Link {
+    margin: 0;
+  }
 }
 
 @media (max-width: 499px) {
   .Newsfeed {
     margin-top: 0;
-    background-color: var(--light-blue);
     max-height: 22rem;
     overflow: scroll;
+  }
+
+  .Links {
+    flex-direction: column;
+  }
+
+  .Link {
+    margin: 0;
   }
 }
