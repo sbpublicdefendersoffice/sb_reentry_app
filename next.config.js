@@ -113,6 +113,7 @@ const nextConfigOptions = {
 
     return config
   },
+  staticPageGenerationTimeout: 100000,
 }
 
 console.log(`THE ENV_NODE IS: ----> ${process.env.NODE_ENV} <----`)

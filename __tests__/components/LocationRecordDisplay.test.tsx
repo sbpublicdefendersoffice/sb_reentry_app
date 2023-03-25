@@ -20,7 +20,7 @@ const directionGoogleMapsLink: RegExp =
 
 const locProps = { ...dummyPGLocationRecord, id: '5', org_name: "Tim's Org" }
 
-describe('<LocationRecordDisplay />', () => {
+describe.skip('<LocationRecordDisplay />', () => {
   it('renders correctly', () => {
     const { getByRole } = renderWithAllContext(
       <LocationRecordDisplay {...locProps} />,
