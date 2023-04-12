@@ -49,6 +49,8 @@ const HomePage = ({ children }) => {
     freshStart,
   } = copy[language]
 
+  // add comment
+
   return (
     <section className={styles.Main}>
       <div
