@@ -10,6 +10,7 @@ import {
 import useLanguage from '../hooks/useLanguage'
 import { isProd } from '../constants/env'
 import { CopyHolder } from '../types/language'
+import { useToast } from '../hooks'
 
 export interface SendTextProps {
   org_name: string
@@ -23,11 +24,13 @@ export const copy: CopyHolder = {
     error: 'Phone Number is 10 digits, numbers only',
     placeholder: ' Phone Number',
     location: 'Send Location Information',
+    confirm: 'Message Sent Successfully',
   },
   spanish: {
     error: 'El número de teléfono tiene 10 dígitos, solo números',
     placeholder: ' Número de Teléfono',
     location: 'Enviar información de ubicación',
+    confirm: 'Mensaje enviado con éxito',
   },
 }
 
@@ -43,6 +46,7 @@ const SendText = ({
 }: SendTextProps) => {
   const { language } = useLanguage()
   const activeCopy = copy[language]
+  const { setToast } = useToast()
 
   const [numberToSendTo, setNumberToSendTo] = useState<string | null>(null)
   const [inputErrorMsg, setInputErrorMsg] = useState<string | null>(null)
@@ -63,8 +67,11 @@ const SendText = ({
 
       const textResponse = await text.json()
       if (textResponse.error) throw new Error(textResponse.error)
-      /* istanbul ignore next */ else
+      else {
         isProd && googleCustomClick({ used_twilio: true })
+        setNumberToSendTo('')
+        setToast(activeCopy.confirm)
+      }
     } catch (error) {
       if (error.message === INVALID_NUMBER) setInputErrorMsg(activeCopy.error)
       else setInputErrorMsg(error.message)

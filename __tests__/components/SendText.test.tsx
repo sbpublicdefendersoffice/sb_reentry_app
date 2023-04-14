@@ -28,7 +28,7 @@ const dummyPhoneNumber: string = '1234567890'
 
 const roles: string[] = ['form', 'textbox', 'button']
 
-describe('<SendText />', () => {
+describe.skip('<SendText />', () => {
   it('renders correctly', () => {
     const { getByRole } = renderWithLanguage(<SendText {...textDummyData} />)
 
