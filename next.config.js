@@ -17,7 +17,8 @@ const nextConfigOptions = {
           },
         ]
       : [],
-  target: 'serverless',
+  output: 'standalone',
+  //target: 'serverless',
   webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.pdf/,
