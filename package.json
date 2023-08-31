@@ -59,7 +59,7 @@
     "@types/mapbox-gl": "^2.6.3",
     "@types/node": "^18.7.18",
     "@types/qs": "6.9.7",
-    "@types/react": "^18.0.20",
+    "@types/react": "^17.0.0",
     "@types/sequelize": "^4.28.14",
     "@types/styled-components": "^5.1.26",
     "@types/uuid": "^8.3.4",
