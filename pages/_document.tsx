@@ -32,7 +32,7 @@ export default class MyDocument extends Document {
           <link
             rel="preconnect"
             href="https://fonts.googleapis.com/"
-            crossOrigin="true"
+            crossOrigin="anonymous"
           />
           <link
             rel="stylesheet"
@@ -44,7 +44,7 @@ export default class MyDocument extends Document {
           <link
             rel="preconnect"
             href="https://api.mapbox.com/"
-            crossOrigin="true"
+            crossOrigin="anonymous"
           />
           <link
             rel="preload"
