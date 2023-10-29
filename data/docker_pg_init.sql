@@ -10,11 +10,14 @@ CREATE TABLE organizations
     customers_served_spanish TEXT,
     notes_english TEXT,
     notes_spanish TEXT,
-    categories_english TEXT
-    [],
+    categories_english TEXT[],
 	categories_spanish TEXT[],
 	tags_english TEXT[],
-	tags_spanish TEXT[]
+	tags_spanish TEXT[],
+    "createdBy" INT,
+    "updatedBy" INT,
+    "updatedAt" TIMESTAMPTZ,
+    "createdAt" TIMESTAMPTZ
 );
 
     CREATE TABLE locations
@@ -31,14 +34,22 @@ CREATE TABLE organizations
         email TEXT,
         notes TEXT,
         latitude DOUBLE PRECISION,
-        longitude DOUBLE PRECISION
+        longitude DOUBLE PRECISION,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     CREATE TABLE services
     (
         id SERIAL PRIMARY KEY,
         name_english TEXT,
-        name_spanish TEXT
+        name_spanish TEXT,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     CREATE TABLE schedules
@@ -47,7 +58,11 @@ CREATE TABLE organizations
         open_time TEXT,
         close_time TEXT,
         days TEXT,
-        notes TEXT
+        notes TEXT,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     CREATE TABLE is_this_usefuls
@@ -57,7 +72,11 @@ CREATE TABLE organizations
         is_useful BOOLEAN,
         route TEXT,
         language TEXT,
-        comment TEXT
+        comment TEXT,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     CREATE TABLE cbos
@@ -70,7 +89,11 @@ CREATE TABLE organizations
         "hashedPassword" TEXT,
         "verificationString" TEXT,
         "passwordResetCode" TEXT,
-        "isVerified" BOOLEAN
+        "isVerified" BOOLEAN,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     CREATE TABLE clients
@@ -87,37 +110,61 @@ CREATE TABLE organizations
         "hashedPassword" TEXT,
         "verificationString" TEXT,
         "passwordResetCode" TEXT,
-        "isVerified" BOOLEAN
+        "isVerified" BOOLEAN,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     CREATE TABLE locations_organizations
     (
         locations_id INT,
-        organizations_id INT
+        organizations_id INT,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     CREATE TABLE schedules_locations
     (
         schedules_id INT,
-        locations_id INT
+        locations_id INT,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     CREATE TABLE schedules_organizations
     (
         schedules_id INT,
-        organizations_id INT
+        organizations_id INT,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     CREATE TABLE services_locations
     (
         services_id INT,
-        locations_id INT
+        locations_id INT,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     CREATE TABLE services_organizations
     (
         services_id INT,
-        organizations_id INT
+        organizations_id INT,
+        "createdBy" INT,
+        "updatedBy" INT,
+        "updatedAt" TIMESTAMPTZ,
+        "createdAt" TIMESTAMPTZ
     );
 
     COPY organizations

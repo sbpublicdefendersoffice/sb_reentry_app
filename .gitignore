@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
 
 # testing
 /coverage
@@ -20,6 +21,7 @@
 *.pem
 .eslintcache
 .stylelintcache
+tsconfig.tsbuildinfo
 
 # debug
 npm-debug.log*
