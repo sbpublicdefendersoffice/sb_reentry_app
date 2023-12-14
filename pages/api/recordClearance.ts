@@ -22,7 +22,10 @@ const recordClearance = async (
     const { clientObj } = initDb()
 
     const body: ExpungeFormInfo = JSON.parse(req.body)
-    const { language, clientId, Email, Phone, Text } = body
+    const { language, clientId, CheckBox9, CheckBox10, CheckBox11 } = body
+    const Email = CheckBox9
+    const Phone = CheckBox10
+    const Text = CheckBox11
     const name: string = body['Full Name']
 
     validations.forEach((v: Validation): void => {
