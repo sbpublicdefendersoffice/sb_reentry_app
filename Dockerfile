@@ -1,5 +1,5 @@
 # dependency image
-FROM node:14.18.1-alpine AS DEPS
+FROM node:18-alpine AS DEPS
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed
 RUN apk add --no-cache libc6-compat
@@ -17,7 +17,7 @@ RUN yarn install --frozen-lockfile --network-timeout 100000
 
 # =========
 # build image
-FROM node:14.18.1-alpine AS BUILDER
+FROM node:18-alpine AS BUILDER
 
 WORKDIR /app
 
@@ -35,7 +35,7 @@ RUN rm .babelrc
 RUN yarn docker-build && yarn install --prod --prefer-offline --network-timeout 100000
 # =========
 # runtime image
-FROM node:14.18.1-alpine AS RUNNER
+FROM node:18-alpine AS RUNNER
 
 RUN apk add --no-cache bash
 
