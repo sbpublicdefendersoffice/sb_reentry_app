@@ -491,7 +491,6 @@ const ExpungementForm = ({
         <section className={Field}>
           <label>{leave_message}</label>
           <Card className={RadioCard}>
-            <label htmlFor="CheckBox5">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -499,7 +498,7 @@ const ExpungementForm = ({
               value="Is it okay to leave a voice message_yes_On"
               id="CheckBox5"
             />
-            <label htmlFor="CheckBox6">No</label>
+            <label htmlFor="CheckBox5">{yes}</label>
             <Input
               onChange={handleChange}
               checked={expungeInfo?.CheckBox6}
@@ -508,6 +507,7 @@ const ExpungementForm = ({
               value="Is it okay to leave a voice message_no_On"
               id="CheckBox6"
             />
+            <label htmlFor="CheckBox6">No</label>
           </Card>
         </section>
         <section className={Field}>
@@ -515,7 +515,6 @@ const ExpungementForm = ({
           <Input onChange={handleChange} type="tel" id="Alternate Number" />
           <label>{leave_message_alt}</label>
           <Card className={RadioCard}>
-            <label htmlFor="alternate_phone_yes">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -523,7 +522,7 @@ const ExpungementForm = ({
               value="Is is okay to leave a voice message_yes_On"
               id="CheckBox7"
             />
-            <label htmlFor="alternate_phone_no">No</label>
+            <label htmlFor="alternate_phone_yes">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -531,6 +530,7 @@ const ExpungementForm = ({
               value="Is is okay to leave a voice message_no_On"
               id="CheckBox8"
             />
+            <label htmlFor="alternate_phone_no">No</label>
           </Card>
         </section>
         <section className={Field}>
@@ -579,27 +579,27 @@ const ExpungementForm = ({
           <label>{communicate}</label>
           <Paragraph color="deselected">{multiple}</Paragraph>
           <Card className={RadioCard}>
-            <label htmlFor="Email">E-mail</label>
             <Input
               checked={expungeInfo?.CheckBox9}
               onChange={handleChange}
               type="checkbox"
               id="CheckBox9"
             />
-            <label htmlFor="Phone">{phone}</label>
+            <label htmlFor="Email">E-mail</label>
             <Input
               checked={expungeInfo?.CheckBox10}
               onChange={handleChange}
               type="checkbox"
               id="CheckBox10"
             />
-            <label htmlFor="Text">{text}</label>
+            <label htmlFor="Phone">{phone}</label>
             <Input
               checked={expungeInfo?.CheckBox11}
               onChange={handleChange}
               type="checkbox"
               id="CheckBox11"
             />
+            <label htmlFor="Text">{text}</label>
           </Card>
         </section>
         <ExpungementDemographics
@@ -609,14 +609,14 @@ const ExpungementForm = ({
         <section className={Field}>
           <label>{whatIsPrimaryLang}</label>
           <Card className={RadioCard}>
-            <label htmlFor="English">{english}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox1" />
-            <label htmlFor="Spanish">{spanish}</label>
+            <label htmlFor="English">{english}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox2" />
-            <label htmlFor="Mixteco">{mixteco}</label>
+            <label htmlFor="Spanish">{spanish}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox3" />
-            <label htmlFor="other">{other}</label>
+            <label htmlFor="Mixteco">{mixteco}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox4" />
+            <label htmlFor="other">{other}</label>
             {expungeInfo?.CheckBox4 && (
               <Input onChange={handleChange} id="Other" type="text" />
             )}
@@ -625,16 +625,16 @@ const ExpungementForm = ({
         <section className={Field}>
           <label>{purpose}</label>
           <Card className={RadioCard}>
-            <label htmlFor="Employment">{employment}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox15" />
-            <label htmlFor="Housing">{housing}</label>
+            <label htmlFor="Employment">{employment}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox16" />
-            <label htmlFor="Government Benefits">{benefits}</label>
+            <label htmlFor="Housing">{housing}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox17" />
-            <label htmlFor="Licensing">{licensing}</label>
+            <label htmlFor="Government Benefits">{benefits}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox18" />
-            <label htmlFor="show-other">{other}</label>
+            <label htmlFor="Licensing">{licensing}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox19" />
+            <label htmlFor="show-other">{other}</label>
             {expungeInfo?.CheckBox19 && (
               <Input onChange={handleChange} id="Other-0" type="text" />
             )}
@@ -643,7 +643,6 @@ const ExpungementForm = ({
         <section className={Field}>
           <label>{currently_on_probation}</label>
           <Card className={RadioCard}>
-            <label htmlFor="current_probation_yes">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -651,7 +650,7 @@ const ExpungementForm = ({
               value="Are you currently on probation or parole_yes_On"
               id="CheckBox12"
             />
-            <label htmlFor="current_probation_no">No</label>
+            <label htmlFor="current_probation_yes">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -659,7 +658,7 @@ const ExpungementForm = ({
               value="Are you currently on probation or parole_no_On"
               id="CheckBox13"
             />
-            <label htmlFor="current_probation_unsure">{dont_know}</label>
+            <label htmlFor="current_probation_no">No</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -667,6 +666,7 @@ const ExpungementForm = ({
               value="Are you currently on probation or parole_unsure If yes where_On"
               id="CheckBox14"
             />
+            <label htmlFor="current_probation_unsure">{dont_know}</label>
           </Card>
         </section>
         {(expungeInfo?.CheckBox12 || expungeInfo?.CheckBox14) && (
@@ -687,19 +687,18 @@ const ExpungementForm = ({
         <section className={Field}>
           <label>{case_type}</label>
           <Card className={RadioCard}>
-            <label htmlFor="Felony">{case_felony}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox25" />
-            <label htmlFor="Misdemeanor">{case_misdemeanor}</label>
+            <label htmlFor="Felony">{case_felony}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox26" />
-            <label htmlFor="Unsure">{dont_know}</label>
+            <label htmlFor="Misdemeanor">{case_misdemeanor}</label>
             <Input onChange={handleChange} type="checkbox" id="CheckBox27" />
+            <label htmlFor="Unsure">{dont_know}</label>
           </Card>
         </section>
         <section className={Field}>
           <label>{marijuana}</label>
           <Paragraph color="deselected">{prop64}</Paragraph>
           <Card className={RadioCard}>
-            <label htmlFor="marijuana_related_yes">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -707,7 +706,7 @@ const ExpungementForm = ({
               value="Was it marijuana related_yes_On"
               id="CheckBox28"
             />
-            <label htmlFor="marijuana_related_no">No</label>
+            <label htmlFor="marijuana_related_yes">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -715,6 +714,7 @@ const ExpungementForm = ({
               value="Was it marijuana related_no_On"
               id="CheckBox29"
             />
+            <label htmlFor="marijuana_related_no">No</label>
           </Card>
         </section>
         <section className={Field}>
@@ -728,7 +728,6 @@ const ExpungementForm = ({
         <section className={Field}>
           <label>{county}</label>
           <Card className={RadioCard}>
-            <label htmlFor="convicted_in_sb_yes">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -736,7 +735,7 @@ const ExpungementForm = ({
               value="Convicted in Santa Barbara County_yes_On"
               id="CheckBox20"
             />
-            <label htmlFor="convicted_in_sb_no">No</label>
+            <label htmlFor="convicted_in_sb_yes">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -744,33 +743,34 @@ const ExpungementForm = ({
               value="Convicted in Santa Barbara County_no If yes_On"
               id="CheckBox21"
             />
+            <label htmlFor="convicted_in_sb_no">No</label>
           </Card>
         </section>
         {expungeInfo?.CheckBox20 && (
           <section className={Field}>
             <label>{county}</label>
             <Card className={RadioCard}>
-              <label htmlFor="sb_convicted_in_sb_yes">Santa Barbara</label>
               <Input
                 onChange={handleChange}
                 type="radio"
                 name="cityConvicted"
                 id="CheckBox22"
               />
-              <label htmlFor="sm_convicted_in_sb_no">Santa Maria</label>
+              <label htmlFor="sb_convicted_in_sb_yes">Santa Barbara</label>
               <Input
                 onChange={handleChange}
                 type="radio"
                 name="cityConvicted"
                 id="CheckBox23"
               />
-              <label htmlFor="lom_convicted_in_sb_no">Lompoc</label>
+              <label htmlFor="sm_convicted_in_sb_no">Santa Maria</label>
               <Input
                 onChange={handleChange}
                 type="radio"
                 name="cityConvicted"
                 id="CheckBox24"
               />
+              <label htmlFor="lom_convicted_in_sb_no">Lompoc</label>
             </Card>
           </section>
         )}
@@ -778,7 +778,6 @@ const ExpungementForm = ({
           <label>{marital}</label>
           <Paragraph color="deselected">{maritalExplain}</Paragraph>
           <Card className={RadioCard}>
-            <label htmlFor="marital_status_single">{single}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -786,7 +785,7 @@ const ExpungementForm = ({
               value="Marital Status_Single_On"
               id="CheckBox59"
             />
-            <label htmlFor="marital_status_married">{married}</label>
+            <label htmlFor="marital_status_single">{single}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -794,7 +793,7 @@ const ExpungementForm = ({
               value="Marital Status_Married_On"
               id="CheckBox60"
             />
-            <label htmlFor="marital_status_separated">{separated}</label>
+            <label htmlFor="marital_status_married">{married}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -802,7 +801,7 @@ const ExpungementForm = ({
               value="Marital Status_Separated_On"
               id="CheckBox61"
             />
-            <label htmlFor="marital_status_divorced">{divorced}</label>
+            <label htmlFor="marital_status_separated">{separated}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -810,7 +809,7 @@ const ExpungementForm = ({
               value="Marital Status_Divorced_On"
               id="CheckBox62"
             />
-            <label htmlFor="marital_status_commonlaw">{commonlaw}</label>
+            <label htmlFor="marital_status_divorced">{divorced}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -818,6 +817,7 @@ const ExpungementForm = ({
               value="Marital Status_CommonLaw_On"
               id="CheckBox63"
             />
+            <label htmlFor="marital_status_commonlaw">{commonlaw}</label>
           </Card>
         </section>
         <section className={Field}>
@@ -837,34 +837,34 @@ const ExpungementForm = ({
         <section className={Field}>
           <label>{frequency}</label>
           <Card className={RadioCard}>
-            <label htmlFor="Monthly">{month}</label>
             <Input
               onChange={handleChange}
               type="radio"
               name="pay-freq"
               id="CheckBox64"
             />
-            <label htmlFor="Weekly Take Home Pay">{week}</label>
+            <label htmlFor="Monthly">{month}</label>
             <Input
               onChange={handleChange}
               type="radio"
               name="pay-freq"
               id="CheckBox65"
             />
-            <label htmlFor="Bi-Weekly Take Home Pay">{biWeekly}</label>
+            <label htmlFor="Weekly Take Home Pay">{week}</label>
             <Input
               onChange={handleChange}
               type="radio"
               name="pay-freq"
               id="CheckBox66"
             />
-            <label htmlFor="Annual Take Home Pay">{annually}</label>
+            <label htmlFor="Bi-Weekly Take Home Pay">{biWeekly}</label>
             <Input
               onChange={handleChange}
               type="radio"
               name="pay-freq"
               id="CheckBox67"
             />
+            <label htmlFor="Annual Take Home Pay">{annually}</label>
           </Card>
         </section>
         <section className={Field}>
@@ -878,7 +878,6 @@ const ExpungementForm = ({
           <Paragraph color="deselected">{realEstateExplain}</Paragraph>
           <Paragraph color="deselected">{exact}</Paragraph>
           <Card className={RadioCard}>
-            <label htmlFor="real_estate_yes">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -886,7 +885,7 @@ const ExpungementForm = ({
               value="Real Estate_Yes_On"
               name="Real Estate"
             />
-            <label htmlFor="real_estate_no">No</label>
+            <label htmlFor="real_estate_yes">{yes}</label>
             <Input
               onChange={handleChange}
               type="radio"
@@ -894,6 +893,7 @@ const ExpungementForm = ({
               value="Real Estate_No_On"
               name="Real Estate"
             />
+            <label htmlFor="real_estate_no">No</label>
             {expungeInfo?.CheckBox72 && (
               <>
                 <label htmlFor="Textfield-13">{value}</label>

@@ -115,7 +115,6 @@ const ExpungementDemographics = ({
         <label id="race-label">{race}</label>
         <Paragraph color="deselected">{ethnicCollect}</Paragraph>
         <Card id="race-card" className={styles.RadioCard}>
-          <label htmlFor="indianOrAlaskan">{indOrAl}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -126,7 +125,7 @@ const ExpungementDemographics = ({
             name="Race"
             value="_American Indian or Alaskan_On"
           />
-          <label htmlFor="black">{black}</label>
+          <label htmlFor="indianOrAlaskan">{indOrAl}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -137,7 +136,7 @@ const ExpungementDemographics = ({
             name="Race"
             value="_Black or African American_On"
           />
-          <label htmlFor="islander">{islander}</label>
+          <label htmlFor="black">{black}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -148,7 +147,7 @@ const ExpungementDemographics = ({
             name="Race"
             value="_Native Hawaiian or Pacific Islander_On"
           />
-          <label htmlFor="asian">{asian}</label>
+          <label htmlFor="islander">{islander}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -159,7 +158,7 @@ const ExpungementDemographics = ({
             name="Race"
             value="_Asian_On"
           />
-          <label htmlFor="hispanic">{hispanic}</label>
+          <label htmlFor="asian">{asian}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -170,7 +169,7 @@ const ExpungementDemographics = ({
             name="Race"
             value="_HispanicLatinx_On"
           />
-          <label htmlFor="white">{white}</label>
+          <label htmlFor="hispanic">{hispanic}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -181,7 +180,7 @@ const ExpungementDemographics = ({
             name="Race"
             value="_White_On"
           />
-          <label htmlFor="eastOrAf">{eastOrAf}</label>
+          <label htmlFor="white">{white}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -192,7 +191,7 @@ const ExpungementDemographics = ({
             name="Race"
             value="_Middle EasternNorth African_On"
           />
-          <label htmlFor="declineRace">{decline}</label>
+          <label htmlFor="eastOrAf">{eastOrAf}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -203,7 +202,7 @@ const ExpungementDemographics = ({
             name="Race"
             value="_Decline_Race_On"
           />
-          <label htmlFor="difRace">{difRace}</label>
+          <label htmlFor="declineRace">{decline}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -214,6 +213,7 @@ const ExpungementDemographics = ({
             name="Race"
             value="_Different race_On"
           />
+          <label htmlFor="difRace">{difRace}</label>
           {expungeInfo?.CheckBox45 && (
             <Input
               onChange={handleChange}
@@ -227,7 +227,6 @@ const ExpungementDemographics = ({
         <label id="gender-label">{gender}</label>
         <Paragraph color="deselected">{genderCollect}</Paragraph>
         <Card id="gender-card" className={styles.RadioCard}>
-          <label htmlFor="female">{female}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -238,7 +237,7 @@ const ExpungementDemographics = ({
             name="Gender"
             value="_Female_On"
           />
-          <label htmlFor="male">{male}</label>
+          <label htmlFor="female">{female}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -249,7 +248,7 @@ const ExpungementDemographics = ({
             name="Gender"
             value="_Male_On"
           />
-          <label htmlFor="transFem">{transFem}</label>
+          <label htmlFor="male">{male}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -260,7 +259,7 @@ const ExpungementDemographics = ({
             name="Gender"
             value="_Trans_Female_On"
           />
-          <label htmlFor="transMas">{transMas}</label>
+          <label htmlFor="transFem">{transFem}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -271,7 +270,7 @@ const ExpungementDemographics = ({
             name="Gender"
             value="_Trans_Male_On"
           />
-          <label htmlFor="nonBin">{nonBin}</label>
+          <label htmlFor="transMas">{transMas}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -282,7 +281,7 @@ const ExpungementDemographics = ({
             name="Gender"
             value="_Non_Binary_On"
           />
-          <label htmlFor="declineIdent">{decline}</label>
+          <label htmlFor="nonBin">{nonBin}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -293,7 +292,7 @@ const ExpungementDemographics = ({
             name="Gender"
             value="_Decline_Identity_On"
           />
-          <label htmlFor="difIdent">{difIdent}</label>
+          <label htmlFor="declineIdent">{decline}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -304,6 +303,7 @@ const ExpungementDemographics = ({
             name="Gender"
             value="_Different_Identity_On"
           />
+          <label htmlFor="difIdent">{difIdent}</label>
           {expungeInfo?.CheckBox52 && (
             <Input
               onChange={handleChange}
@@ -317,7 +317,6 @@ const ExpungementDemographics = ({
         <label id="pronouns-label">{pronouns}</label>
         <Paragraph color="deselected">{pronounCollect}</Paragraph>
         <Card id="pronouns-card" className={styles.RadioCard}>
-          <label htmlFor="she">{she}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -328,7 +327,7 @@ const ExpungementDemographics = ({
             name="Pronouns"
             value="_She_her_On"
           />
-          <label htmlFor="he">{he}</label>
+          <label htmlFor="she">{she}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -339,7 +338,7 @@ const ExpungementDemographics = ({
             name="Pronouns"
             value="_He-him_On"
           />
-          <label htmlFor="they">{they}</label>
+          <label htmlFor="he">{he}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -350,7 +349,7 @@ const ExpungementDemographics = ({
             name="Pronouns"
             value="_They_them_On"
           />
-          <label htmlFor="declinePro">{decline}</label>
+          <label htmlFor="they">{they}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -361,7 +360,7 @@ const ExpungementDemographics = ({
             name="Pronouns"
             value="_Decline_Pronouns_On"
           />
-          <label htmlFor="difPro">{difPro}</label>
+          <label htmlFor="declinePro">{decline}</label>
           <Input
             onChange={e => {
               handleChange(e)
@@ -372,6 +371,7 @@ const ExpungementDemographics = ({
             name="Pronouns"
             value="_Different_Pronouns_On"
           />
+          <label htmlFor="difPro">{difPro}</label>
           {expungeInfo?.CheckBox57 && (
             <Input
               onChange={handleChange}
