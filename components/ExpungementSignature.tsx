@@ -75,8 +75,8 @@ const ExpungementSignature = ({
           htmlFor="certified"
           style={{ textAlign: 'center' }}
         >
-          {certify}
           <Input onChange={handleChange} type="checkbox" id="certified" />
+          {certify}
         </label>
       </section>
     </Card>
