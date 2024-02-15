@@ -44,6 +44,15 @@
   margin-right: var(--margin-sm);
 }
 
+.RadioCard > label {
+  margin-right: var(--margin-std);
+}
+
+.RadioCard > input {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .Load {
   animation: load 1s;
 }
