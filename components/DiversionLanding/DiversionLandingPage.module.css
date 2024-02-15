@@ -19,10 +19,10 @@
   background-image: url('/images/Jill-Stanton.jpg');
   background-size: cover;
   position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   opacity: 0.5;
   align-items: center;
   justify-content: center;
@@ -40,7 +40,7 @@
   text-align: center;
   justify-content: center;
   font-weight: 600;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
 }
 
 .About {
