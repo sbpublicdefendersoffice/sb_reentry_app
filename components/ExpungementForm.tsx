@@ -824,7 +824,7 @@ const ExpungementForm = ({
           <label htmlFor="Number of Dependents">{dependents}</label>
           <Input
             onChange={handleChange}
-            type="number"
+            type="text"
             id="Number of Dependents"
           />
         </section>
@@ -832,7 +832,7 @@ const ExpungementForm = ({
           <label htmlFor="Take Home Pay">{income}</label>
           <Paragraph color="deselected">{incomeExplain}</Paragraph>
           <Paragraph color="deselected">{exact}</Paragraph>
-          <Input onChange={handleChange} type="number" id="Take Home Pay" />
+          <Input onChange={handleChange} type="text" id="Take Home Pay" />
         </section>
         <section className={Field}>
           <label>{frequency}</label>
@@ -871,7 +871,7 @@ const ExpungementForm = ({
           <label htmlFor="Textfield-18">{savings}</label>
           <Paragraph color="deselected">{saveExplain}</Paragraph>
           <Paragraph color="deselected">{exact}</Paragraph>
-          <Input onChange={handleChange} type="number" id="Textfield-18" />
+          <Input onChange={handleChange} type="text" id="Textfield-18" />
         </section>
         <section className={Field}>
           <label>{realEstate}</label>
@@ -897,11 +897,7 @@ const ExpungementForm = ({
             {expungeInfo?.CheckBox72 && (
               <>
                 <label htmlFor="Textfield-13">{value}</label>
-                <Input
-                  onChange={handleChange}
-                  type="number"
-                  id="Textfield-13"
-                />
+                <Input onChange={handleChange} type="text" id="Textfield-13" />
               </>
             )}
           </Card>
@@ -910,7 +906,7 @@ const ExpungementForm = ({
           <label htmlFor="Textfield-17">{expenses}</label>
           <Paragraph color="deselected">{expenseExplain}</Paragraph>
           <Paragraph color="deselected">{exact}</Paragraph>
-          <Input onChange={handleChange} type="number" id="Textfield-17" />
+          <Input onChange={handleChange} type="text" id="Textfield-17" />
         </section>
         <ExpungementAdditionalInfoForm setExpungeInfo={setExpungeInfo} />
         <section className={Field}>
