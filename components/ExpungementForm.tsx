@@ -67,6 +67,7 @@ const copy: CopyHolder = {
     marijuana: 'Was your case marijuana related?',
     numbers: 'What were your case numbers, if you know?',
     county: 'Were You Convicted in Santa Barbara County?',
+    city_convicted: 'If yes, where in Santa Barbara County?',
     currently_on_probation: 'Are you currently on probation or parole?',
     where: 'If you are on probation or parole, what county is it in?',
     dependents: 'How many people depend on your financial support?',
@@ -157,6 +158,7 @@ const copy: CopyHolder = {
     marijuana: '¿Estuvo relacionado tu caso con la marihuana?',
     numbers: '¿Cuáles fueron sus números de caso, si lo sabe?',
     county: '¿Fue condenado en el condado de Santa Bárbara?',
+    city_convicted: 'Si es así, ¿en qué parte del condado de Santa Bárbara?',
     currently_on_probation:
       '¿Está actualmente en libertad condicional o en libertad condicional?',
     where:
@@ -269,6 +271,7 @@ const ExpungementForm = ({
     marijuana,
     numbers,
     county,
+    city_convicted,
     currently_on_probation,
     where,
     dependents,
@@ -748,7 +751,7 @@ const ExpungementForm = ({
         </section>
         {expungeInfo?.CheckBox20 && (
           <section className={Field}>
-            <label>{county}</label>
+            <label>{city_convicted}</label>
             <Card className={RadioCard}>
               <label htmlFor="sb_convicted_in_sb_yes">Santa Barbara</label>
               <Input
