@@ -8,6 +8,7 @@ import { useStyles, siteTitle } from '../../constants'
 import { CopyHolder } from '../../types'
 import { HeadTags } from '../../components'
 import { Input, Paragraph } from '../../ui'
+import styles from './index.module.css'
 
 export const copy: CopyHolder = {
   english: {
@@ -144,11 +145,10 @@ const ForgotPasswordPage = () => {
                 onBlur={handleBlur}
                 style={{ marginBottom: '1.5rem' }}
               />
-              <div>
+              <div className={styles.SignupType}>
                 <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
                   {iAm}
                 </Paragraph>
-                <label htmlFor="cbo">{cbo}</label>
                 <Input
                   type="radio"
                   name="signupType"
@@ -156,7 +156,7 @@ const ForgotPasswordPage = () => {
                   id="cbo"
                   onChange={handleChange}
                 />
-                <label htmlFor="client">{client}</label>
+                <label htmlFor="cbo">{cbo}</label>
                 <Input
                   type="radio"
                   name="signupType"
@@ -164,6 +164,7 @@ const ForgotPasswordPage = () => {
                   id="client"
                   onChange={handleChange}
                 />
+                <label htmlFor="client">{client}</label>
               </div>
               <Button
                 className={
