@@ -180,9 +180,8 @@ const SignupPage = () => {
               <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
                 {iAm}
               </Paragraph>
-              <div className={styles.Radios}>
+              <div className={styles.Radios + ' ' + styles.CommPrefs}>
                 <div>
-                  <label htmlFor="client">{client}</label>
                   <Input
                     type="radio"
                     name="signupType"
@@ -190,9 +189,9 @@ const SignupPage = () => {
                     id="client"
                     onChange={handleChange}
                   />
+                  <label htmlFor="client">{client}</label>
                 </div>
                 <div>
-                  <label htmlFor="cbo">{cbo}</label>
                   <Input
                     type="radio"
                     name="signupType"
@@ -200,6 +199,7 @@ const SignupPage = () => {
                     id="cbo"
                     onChange={handleChange}
                   />
+                  <label htmlFor="cbo">{cbo}</label>
                 </div>
               </div>
             </div>
@@ -305,27 +305,29 @@ const SignupPage = () => {
                 <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
                   {commPref}
                 </Paragraph>
-                <label htmlFor="commByEmail">Email</label>
-                <Input
-                  type="checkbox"
-                  name="commByEmail"
-                  id="commByEmail"
-                  onChange={handleChange}
-                />
-                <label htmlFor="commByText">{text}</label>
-                <Input
-                  type="checkbox"
-                  name="commByText"
-                  id="commByText"
-                  onChange={handleChange}
-                />
-                <label htmlFor="commByPhone">{phone}</label>
-                <Input
-                  type="checkbox"
-                  name="commByPhone"
-                  id="commByPhone"
-                  onChange={handleChange}
-                />
+                <div className={styles.CommPrefs}>
+                  <Input
+                    type="checkbox"
+                    name="commByEmail"
+                    id="commByEmail"
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="commByEmail">Email</label>
+                  <Input
+                    type="checkbox"
+                    name="commByText"
+                    id="commByText"
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="commByText">{text}</label>
+                  <Input
+                    type="checkbox"
+                    name="commByPhone"
+                    id="commByPhone"
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="commByPhone">{phone}</label>
+                </div>
               </div>
             )}
             <hr style={{ margin: '2rem' }} />

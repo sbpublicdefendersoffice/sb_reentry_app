@@ -6,3 +6,12 @@
 .Radios {
   display: flex;
 }
+
+.CommPrefs label {
+  margin-right: var(--margin-std);
+}
+
+.CommPrefs input {
+  margin-left: 0;
+  margin-right: 0;
+}
