@@ -1,0 +1,8 @@
+.SignupType label {
+  margin-right: var(--margin-std);
+}
+
+.SignupType input {
+  margin-left: 0;
+  margin-right: 0;
+}

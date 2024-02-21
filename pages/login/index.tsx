@@ -8,6 +8,7 @@ import { CopyHolder } from '../../types'
 import { useLanguage, useToast, useFormFields } from '../../hooks'
 import { POST, validator } from '../../helpers/'
 import { Input, Paragraph } from '../../ui'
+import styles from './index.module.css'
 
 export const copy: CopyHolder = {
   english: {
@@ -159,11 +160,10 @@ const LoginPage = () => {
             onBlur={handleBlur}
           />
 
-          <div>
+          <div className={styles.SignupType}>
             <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
               {iAm}
             </Paragraph>
-            <label htmlFor="cbo">{cbo}</label>
             <Input
               type="radio"
               name="signupType"
@@ -171,7 +171,7 @@ const LoginPage = () => {
               id="cbo"
               onChange={handleChange}
             />
-            <label htmlFor="client">{client}</label>
+            <label htmlFor="cbo">{cbo}</label>
             <Input
               type="radio"
               name="signupType"
@@ -179,6 +179,7 @@ const LoginPage = () => {
               id="client"
               onChange={handleChange}
             />
+            <label htmlFor="client">{client}</label>
           </div>
           <hr style={{ margin: '2rem' }} />
           <Button
