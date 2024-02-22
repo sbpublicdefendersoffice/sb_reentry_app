@@ -844,13 +844,6 @@ const ExpungementForm = ({
               onChange={handleChange}
               type="radio"
               name="pay-freq"
-              id="CheckBox64"
-            />
-            <label htmlFor="Monthly">{month}</label>
-            <Input
-              onChange={handleChange}
-              type="radio"
-              name="pay-freq"
               id="CheckBox65"
             />
             <label htmlFor="Weekly Take Home Pay">{week}</label>
@@ -861,6 +854,13 @@ const ExpungementForm = ({
               id="CheckBox66"
             />
             <label htmlFor="Bi-Weekly Take Home Pay">{biWeekly}</label>
+            <Input
+              onChange={handleChange}
+              type="radio"
+              name="pay-freq"
+              id="CheckBox64"
+            />
+            <label htmlFor="Monthly">{month}</label>
             <Input
               onChange={handleChange}
               type="radio"
