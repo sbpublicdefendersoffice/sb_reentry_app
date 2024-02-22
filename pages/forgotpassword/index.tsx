@@ -152,19 +152,19 @@ const ForgotPasswordPage = () => {
                 <Input
                   type="radio"
                   name="signupType"
-                  value="cbo"
-                  id="cbo"
-                  onChange={handleChange}
-                />
-                <label htmlFor="cbo">{cbo}</label>
-                <Input
-                  type="radio"
-                  name="signupType"
                   value="client"
                   id="client"
                   onChange={handleChange}
                 />
                 <label htmlFor="client">{client}</label>
+                <Input
+                  type="radio"
+                  name="signupType"
+                  value="cbo"
+                  id="cbo"
+                  onChange={handleChange}
+                />
+                <label htmlFor="cbo">{cbo}</label>
               </div>
               <Button
                 className={
