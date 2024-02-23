@@ -180,7 +180,7 @@ const SignupPage = () => {
               <Paragraph size="med-text" style={{ marginTop: '.5rem' }}>
                 {iAm}
               </Paragraph>
-              <div className={styles.Radios + ' ' + styles.CommPrefs}>
+              <div className={styles.Radios + ' ' + styles.SignupType}>
                 <div>
                   <Input
                     type="radio"
