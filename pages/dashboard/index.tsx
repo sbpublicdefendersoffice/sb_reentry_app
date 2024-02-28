@@ -14,6 +14,8 @@ import TabPanel from '../../components/TabPanel/TabPanel'
 import DisplayLocations from '../../components/DisplayLocations/DisplayLocations'
 import DisplayCBOOrgInfo from '../../components/DisplayCBOUserInfo/DisplayCBOOrgInfo'
 
+import { useLoginStatus } from '../../hooks'
+
 interface DashboardProps {
   userId: number
   orgId: number
@@ -40,11 +42,13 @@ const Dashboard = ({ isVerified, orgId }: DashboardProps) => {
     fetchData()
   }, [])
 
+  const { setIsLoggedIn } = useLoginStatus()
   const logout = async () => {
     const loggingOut: Response = await fetch('/api/logout')
     const logoutMessage = await loggingOut.json()
     if (logoutMessage.error) console.log('oh no!')
     else {
+      setIsLoggedIn(false)
       push('/login')
     }
   }

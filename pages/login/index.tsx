@@ -5,7 +5,12 @@ import { Button, TextField } from '@mui/material'
 import { HeadTags } from '../../components'
 import { siteTitle, useStyles } from '../../constants'
 import { CopyHolder } from '../../types'
-import { useLanguage, useToast, useFormFields } from '../../hooks'
+import {
+  useLanguage,
+  useToast,
+  useFormFields,
+  useLoginStatus,
+} from '../../hooks'
 import { POST, validator } from '../../helpers/'
 import { Input, Paragraph } from '../../ui'
 import styles from './index.module.css'
@@ -60,6 +65,7 @@ const LoginPage = () => {
   const [successful, setSuccessful] = useState(false)
   const { language } = useLanguage()
   const [errorMessage, setErrorMessage] = useState('')
+  const { setIsLoggedIn } = useLoginStatus()
   const {
     login,
     forgot,
@@ -105,7 +111,10 @@ const LoginPage = () => {
       setToast(tryAgain)
     } else {
       if (apiResponse.type === 'cbo') push('/dashboard')
-      else push('/freshstart')
+      else {
+        setIsLoggedIn(true)
+        push('/freshstart')
+      }
       setToast(successfulLogin)
 
       stateValue.email = ''

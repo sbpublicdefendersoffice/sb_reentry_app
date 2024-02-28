@@ -7,7 +7,7 @@ import { HeadTags, ExpungementForm } from '../../components'
 import { CallToAction, Title, Button } from '../../ui'
 import { siteTitle } from '../../constants'
 import { CopyHolder } from '../../types'
-import { useLanguage } from '../../hooks'
+import { useLanguage, useLoginStatus } from '../../hooks'
 
 interface ExpungementPageProps {
   id: number
@@ -44,13 +44,14 @@ const ExpungementPage = ({
   const { language } = useLanguage()
 
   const { applied, notVerified } = copy[language]
-
+  const { setIsLoggedIn } = useLoginStatus()
   const logOut = async (): Promise<void> => {
     const loggingOut: Response = await fetch('/api/logout')
     const logoutMessage = await loggingOut.json()
     if (logoutMessage.error) console.log('oh no!')
     else {
       console.log('oh yeah')
+      setIsLoggedIn(false)
       push('/login')
     }
   }
