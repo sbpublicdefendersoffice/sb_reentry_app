@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 
 import useLanguage from '../hooks/useLanguage'
 import { Paragraph, Button } from '../ui'
+import { useLoginStatus } from '../hooks'
+import { useEffect } from 'react'
 
 const copy: CopyHolder = {
   english: {
@@ -35,11 +37,19 @@ const FreshStartApplyTag = ({
   const { notLoggedIn, notVerified, verifiedNotApplied, applied, apply } =
     copy[language]
 
+  const { setIsLoggedIn } = useLoginStatus()
+  useEffect(() => {
+    setIsLoggedIn(isLoggedIn)
+  }, [])
+
   const logOut = async (): Promise<void> => {
     const loggingOut: Response = await fetch('/api/logout')
     const logoutMessage = await loggingOut.json()
     if (logoutMessage.error) console.error(logoutMessage.error)
-    else push('/login')
+    else {
+      setIsLoggedIn(false)
+      push('/login')
+    }
   }
 
   return (

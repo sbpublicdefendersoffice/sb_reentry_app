@@ -12,6 +12,7 @@ import {
   ToastProvider,
   ViewProvider,
   FavoriteProvider,
+  LoginStatusProvider,
 } from '../hooks'
 import {
   Footer,
@@ -110,15 +111,17 @@ const App = ({ Component, pageProps }: AppProps) => {
               <LocationProvider value={{ coords, setCoords }}>
                 <ToastProvider value={{ toast, setToast }}>
                   <GlobalSearchProvider>
-                    <LangSwitcher />
-                    <Header />
-                    <main>
-                      <Component {...pageProps} />
-                    </main>
-                    <IsThisUsefulTag />
-                    <Footer />
-                    <MobileAppBar />
-                    <Toast />
+                    <LoginStatusProvider>
+                      <LangSwitcher />
+                      <Header />
+                      <main>
+                        <Component {...pageProps} />
+                      </main>
+                      <IsThisUsefulTag />
+                      <Footer />
+                      <MobileAppBar />
+                      <Toast />
+                    </LoginStatusProvider>
                   </GlobalSearchProvider>
                 </ToastProvider>
               </LocationProvider>

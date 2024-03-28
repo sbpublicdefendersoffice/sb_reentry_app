@@ -8,6 +8,7 @@ import {
   useResizeEvent,
   useOnClickOutside,
   useFavorite,
+  useLoginStatus,
 } from '../hooks'
 import { CopyHolder } from '../types/'
 import styles from './Header.module.css'
@@ -23,6 +24,8 @@ import {
 import { ThriveLogo } from '../ui'
 import { Hidden, Badge, Button, Menu, MenuItem, Grid, Box } from '@mui/material'
 import { Favorite, ArrowDropDown } from '@mui/icons-material'
+import { useRouter } from 'next/router'
+import logout from '../pages/api/logout'
 
 const lastStaticRouteIndex: number = staticPageRoutes.length - 1
 
@@ -51,8 +54,36 @@ const Header = () => {
     else setIsBurgerVisible(false)
   }
   useResizeEvent(burgerVisibility)
+
+  // LoginStatus hook
+  const { isLoggedIn, setIsLoggedIn } = useLoginStatus()
+  const { push } = useRouter()
+  // Logout onclick function
+  const logOut = async (): Promise<void> => {
+    const loggingOut: Response = await fetch('/api/logout')
+    const logoutMessage = await loggingOut.json()
+    if (logoutMessage.error) console.error(logoutMessage.error)
+    else {
+      setIsLoggedIn(false)
+      push('/login')
+    }
+  }
+
+  // Logout page route
+  const logoutRoute: RouteInfo = {
+    title_english: 'Logout',
+    title_spanish: 'Cerrar sesión',
+    route: '',
+  }
+
   const StaticPages: ReactElement[] = staticPageRoutes.map(
     (routeData: RouteInfo, i: number) => {
+      // Check LoginStatus to replace login with logout route
+      let isLoginLink = false
+      if (isLoggedIn && routeData['title_english'] === 'Login') {
+        routeData = logoutRoute
+        isLoginLink = true
+      }
       const title = routeData[`title_${language}`]
       const [anchorElCourt, setAnchorElCourt] = useState(null)
       const [anchorElResource, setAnchorElResource] = useState(null)
@@ -73,7 +104,11 @@ const Header = () => {
       }
       const link: ReactElement = (
         <NextLink href={route} as={route}>
-          <h2 role="term" className={styles.Title}>
+          <h2
+            onClick={isLoginLink ? logOut : undefined}
+            role="term"
+            className={styles.Title}
+          >
             {title}
           </h2>
         </NextLink>

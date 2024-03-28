@@ -8,6 +8,7 @@ import {
   LocationProvider,
   ToastProvider,
   GlobalSearchProvider,
+  LoginStatusProvider,
 } from '../hooks'
 import { ENGLISH } from '../constants/language'
 
@@ -146,7 +147,9 @@ export const renderWithAllContext = (
               setToast: blankFn,
             }}
           >
-            <GlobalSearchProvider>{component}</GlobalSearchProvider>
+            <GlobalSearchProvider>
+              <LoginStatusProvider>{component}</LoginStatusProvider>
+            </GlobalSearchProvider>
           </ToastProvider>
         </LocationProvider>
       </LangProvider>
