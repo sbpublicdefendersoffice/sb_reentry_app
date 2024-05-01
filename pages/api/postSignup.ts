@@ -69,6 +69,29 @@ const postSignup = async (
           })
 
           res.json(addCBO)
+          try {
+            //@ts-ignore
+            await sendEmail({
+              to: process.env.SBPD_MAINTAINER,
+              from: 'verification@thrivesbc.com',
+              subject: 'Verify Account',
+              text: `
+              
+                      ${email} has just created an account for ${org}
+      
+              ✅ Make sure the account has been verified in the database. 
+              ✅ Verify that the person is actually associated with ${org}. Through email domain, Linkedin or other research methods.
+                website: ${orgWebsite}
+                customers served: ${customers}
+                language spoken: ${languageSpoken}
+              ✅ Make sure to assign this person to the correct organization which should be ➡️ ${org}.
+              ✅ Respond to ${email} when the all three steps are completed and inform them that they are now allowed to login to their dashboard.
+               `,
+            })
+          } catch (err) {
+            console.error(err)
+            res.status(500)
+          }
         }
       }
       try {
@@ -86,29 +109,6 @@ const postSignup = async (
         console.error(err)
         res.status(500)
       }
-    }
-    try {
-      //@ts-ignore
-      await sendEmail({
-        to: process.env.SBPD_MAINTAINER,
-        from: 'verification@thrivesbc.com',
-        subject: 'Verify Account',
-        text: `
-        
-                ${email} has just created an account for ${org}
-
-        ✅ Make sure the account has been verified in the database. 
-        ✅ Verify that the person is actually associated with ${org}. Through email domain, Linkedin or other research methods.
-          website: ${orgWebsite}
-          customers served: ${customers}
-          language spoken: ${languageSpoken}
-        ✅ Make sure to assign this person to the correct organization which should be ➡️ ${org}.
-        ✅ Respond to ${email} when the all three steps are completed and inform them that they are now allowed to login to their dashboard.
-         `,
-      })
-    } catch (err) {
-      console.error(err)
-      res.status(500)
     }
   } catch (err) {
     const error: string = err.message
