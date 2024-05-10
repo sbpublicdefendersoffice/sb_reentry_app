@@ -21,6 +21,16 @@ export const validations: Validation[] = [
     inputId: 'Date of Birth',
   },
   {
+    field: 'Place of Birth',
+    error: {
+      english: 'Place of Birth must be entered for record keeping purposes',
+      spanish:
+        'Se debe ingresar el lugar de nacimiento a efectos de mantenimiento de registros',
+    },
+    id: 'pob-label',
+    inputId: 'Place of Birth',
+  },
+  {
     field: 'Address',
     error: {
       english: 'An address is required',

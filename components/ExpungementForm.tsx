@@ -35,6 +35,7 @@ const copy: CopyHolder = {
     name: 'What is your full name?',
     alias: 'Are there any other names that might be on your record?',
     dob: 'What is your Date of Birth?',
+    pob: 'What is your Country of Birth?',
     primary_phone: 'What is your phone number?',
     leave_message: 'May we leave a message at this number?',
     yes: 'Yes',
@@ -125,6 +126,7 @@ const copy: CopyHolder = {
     name: '¿Cuál es su nombre completo?',
     alias: '¿Hay otros nombres que podrían estar en su registro?',
     dob: '¿Cuál es tu fecha de nacimiento?',
+    pob: '¿Cuál es tu país de nacimiento?',
     primary_phone: '¿Cuál es tu número de teléfono?',
     leave_message: '¿Podemos dejar un mensaje en este número?',
     yes: 'Si',
@@ -239,6 +241,7 @@ const ExpungementForm = ({
     name,
     alias,
     dob,
+    pob,
     primary_phone,
     yes,
     leave_message,
@@ -486,6 +489,12 @@ const ExpungementForm = ({
             {dob}
           </label>
           <Input onChange={handleChange} type="date" id="Date of Birth" />
+        </section>
+        <section className={Field}>
+          <label id="pob-label" htmlFor="Place of Birth">
+            {pob}
+          </label>
+          <Input onChange={handleChange} type="text" id="Place of Birth" />
         </section>
         <section className={Field}>
           <label htmlFor="Phone Number">{primary_phone}</label>
