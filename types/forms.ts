@@ -34,6 +34,7 @@ export interface ExpungementInfo {
   'Any other names that might be on your record'?: string
   'Social Security No'?: string
   'Date of Birth': string
+  'Place of Birth': string
   RaceEthnicity: string
   English?: boolean
   Spanish?: boolean
