@@ -43,7 +43,7 @@ const copy: CopyHolder = {
     intake: 'Intake',
     and: ' and ',
     finance: 'Financial Declaration',
-    forms: ' forms, fill them out and email them to Amanda Paison at ',
+    forms: ' forms, fill them out and email them to ',
     fax: ' fax them to (805) 568-3564, ',
     drop: 'or drop them off at:',
     financialForm: '/documents/expungementfinanceform',
@@ -60,8 +60,7 @@ const copy: CopyHolder = {
     intake: 'admisión',
     and: ' y ',
     finance: 'declaración financiera',
-    forms:
-      ', complétalos y envíalos por correo electrónico a  Amanda Paison a ',
+    forms: ', complétalos y envíalos por correo electrónico a ',
     fax: ' enviar por fax (805) 614-6735 ',
     drop: 'o dejarlos en:',
     financialForm: '/documents/expungementintakeSpanishform',
@@ -106,8 +105,8 @@ const FreshStartHowToApply = () => {
       {and}
       <NextLink href={financialForm}>{finance}</NextLink>
       {forms}
-      <a href="mailto:apaison@countyofsb.org" target="_blank">
-        apaison@countyofsb.org
+      <a href="mailto:pubdefpcu@countyofsb.org" target="_blank">
+        pubdefpcu@countyofsb.org
       </a>
       ,
       <br />

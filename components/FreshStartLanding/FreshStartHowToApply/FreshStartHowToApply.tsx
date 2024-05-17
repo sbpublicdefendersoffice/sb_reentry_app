@@ -41,7 +41,7 @@ const copy: CopyHolder = {
     intake: 'Intake',
     and: ' and ',
     finance: 'Financial Declaration',
-    forms: ' Fill them out and email them to Amanda Paison at ',
+    forms: ' Fill them out and email them to ',
     fax: ' fax them to (805) 568-3564, ',
     drop: 'or drop them off at:',
     recognize:
@@ -61,7 +61,7 @@ const copy: CopyHolder = {
     intake: 'admisión',
     and: ' y ',
     finance: 'declaración financiera',
-    forms: 'Complétalos y envíalos por correo electrónico a  Amanda Paison a ',
+    forms: 'Complétalos y envíalos por correo electrónico a ',
     fax: ' enviar por fax (805) 614-6735 ',
     drop: 'o dejarlos en:',
     recognize:
@@ -149,8 +149,8 @@ const FreshStartHowToApply = () => {
       </div>
       <Paragraph size="med-text">
         {forms}
-        <a href="mailto:apaison@countyofsb.org" target="_blank">
-          apaison@countyofsb.org
+        <a href="mailto:pubdefpcu@countyofsb.org" target="_blank">
+          pubdefpcu@countyofsb.org
         </a>
         {fax + drop}
       </Paragraph>
