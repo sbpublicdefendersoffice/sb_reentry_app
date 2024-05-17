@@ -42,7 +42,7 @@ const copy: CopyHolder = {
     and: ' and ',
     finance: 'Financial Declaration',
     forms: ' Fill them out and email them to ',
-    fax: ' fax them to (805) 568-3564, ',
+    fax: ', fax them to (805) 568-3564, ',
     drop: 'or drop them off at:',
     recognize:
       'We recognize that different options work for different people. With this is mind, we have multiple ways to apply for record expungement',
@@ -62,7 +62,7 @@ const copy: CopyHolder = {
     and: ' y ',
     finance: 'declaración financiera',
     forms: 'Complétalos y envíalos por correo electrónico a ',
-    fax: ' enviar por fax (805) 614-6735 ',
+    fax: ', enviar por fax (805) 614-6735 ',
     drop: 'o dejarlos en:',
     recognize:
       'Reconocemos que diferentes opciones funcionan para diferentes personas. Teniendo esto en cuenta, tenemos varias formas de solicitar la eliminación de antecedentes penales.',
