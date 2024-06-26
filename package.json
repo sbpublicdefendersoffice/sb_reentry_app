@@ -103,7 +103,8 @@
     "**/**/tmpl": "^1.0.5",
     "**/**/validator": "^13.7.0",
     "**/postcss": "^8.4.31",
-    "@testing-library/jest-dom/@adobe/css-tools": "^4.3.2"
+    "@testing-library/jest-dom/@adobe/css-tools": "^4.3.2",
+    "braces": "~3.0.3"
   },
   "description": "A joint project between [Code for America](https://www.codeforamerica.org/) and [The County of Santa Barbara Public Defender's Office](https://www.countyofsb.org/defender)",
   "repository": {
