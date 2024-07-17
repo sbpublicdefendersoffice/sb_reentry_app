@@ -16,6 +16,7 @@ const GlobalSearchResult = ({
   searchQuery,
   record,
   delimiter,
+  setIsFocused,
 }: GlobalSearchResultProps) => {
   const { id, multiple_categories } = record
   const { language } = useLanguage()
@@ -46,7 +47,12 @@ const GlobalSearchResult = ({
 
   return (
     <NextLink href="/orgs/[id]" as={`/orgs/${id}`}>
-      <li role="listitem" className={styles.GlobalSearchResult} tabIndex={0}>
+      <li
+        onClick={() => setIsFocused(false)}
+        role="listitem"
+        className={styles.GlobalSearchResult}
+        tabIndex={0}
+      >
         <img
           role="img"
           width="3rem"
