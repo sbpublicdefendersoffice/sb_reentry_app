@@ -47,27 +47,27 @@ const GlobalSearchResult = ({
 
   return (
     <NextLink href="/orgs/[id]" as={`/orgs/${id}`}>
-      <li
-        onClick={() => setIsFocused(false)}
-        role="listitem"
-        className={styles.GlobalSearchResult}
-        tabIndex={0}
-      >
-        <img
-          role="img"
-          width="3rem"
-          height="3rem"
-          className={styles.Image}
-          src={`/icons/${imgSrc.replace(' ', '')}.svg`}
-          alt={`${imgSrc}_icon`}
-        />
-        <div className={styles.Text}>
-          <Paragraph size="med-text">
-            <span role="heading">{record[`name_${language}`]}</span>
-          </Paragraph>
-          <em role="term" className={styles.SingleSearchTerm}>
-            {mapRecordSearchTerms(record[`tags_${language}`])}
-          </em>
+      <li role="listitem" className={styles.GlobalSearchResult} tabIndex={0}>
+        <div
+          className={styles.ClickableSection}
+          onClick={() => setIsFocused(false)}
+        >
+          <img
+            role="img"
+            width="3rem"
+            height="3rem"
+            className={styles.Image}
+            src={`/icons/${imgSrc.replace(' ', '')}.svg`}
+            alt={`${imgSrc}_icon`}
+          />
+          <div className={styles.Text}>
+            <Paragraph size="med-text">
+              <span role="heading">{record[`name_${language}`]}</span>
+            </Paragraph>
+            <em role="term" className={styles.SingleSearchTerm}>
+              {mapRecordSearchTerms(record[`tags_${language}`])}
+            </em>
+          </div>
         </div>
         <button
           role="button"
