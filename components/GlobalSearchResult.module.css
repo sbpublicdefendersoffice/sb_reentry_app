@@ -2,17 +2,22 @@
   padding: var(--pad-sm) var(--pad-lg) var(--pad-sm) 0;
   border-top: var(--border-width) solid var(--light-2);
   outline: none;
-  cursor: pointer;
   display: flex;
 }
 
-.GlobalSearchResult:hover > div > p {
+.GlobalSearchResult:hover > div > div > p {
   color: var(--highlight);
 }
 
 .SingleSearchTerm {
   color: var(--highlight);
   text-transform: capitalize;
+}
+
+.ClickableSection {
+  cursor: pointer;
+  display: flex;
+  flex: 1 !important;
 }
 
 .Text {
@@ -26,6 +31,7 @@
   margin-right: 1rem;
   justify-content: flex-end;
 }
+
 @media (max-width: 1275px) {
   .GlobalSearchResult {
     position: relative;
