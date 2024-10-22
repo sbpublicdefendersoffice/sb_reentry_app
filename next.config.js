@@ -1,5 +1,9 @@
 // watch out with adding external sources and apis in production mode, make sure to add them to CSP below
 const nextConfigOptions = {
+  //Workaround to patch next.js CVE-2024-47831
+  images: {
+    unoptimized: true,
+  },
   headers: async () =>
     process.env.NODE_ENV === 'production'
       ? [
