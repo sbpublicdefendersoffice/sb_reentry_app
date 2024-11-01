@@ -104,7 +104,8 @@ const recordClearance = async (
     res.json({ ...sendMsg })
   } catch (error) {
     console.error(error)
-    res.json({ error: error.message })
+    res.json({ error: 'An error has occurred.' })
+    res.status(500)
   }
 }
 

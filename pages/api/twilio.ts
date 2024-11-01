@@ -35,7 +35,8 @@ const text = async (
       else throw new Error(response.errorMessage)
       // else throw new Error(response.errorCode)
     } catch (error) {
-      res.json({ error: error.message })
+      res.json({ error: 'An error has occurred.' })
+      res.status(500)
     }
   } else
     res.json({

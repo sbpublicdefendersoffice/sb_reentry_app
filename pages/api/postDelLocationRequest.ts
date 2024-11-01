@@ -83,7 +83,8 @@ const postDelLocationRequest = async (
       res.json(response)
     })
     .catch(err => {
-      res.json(err)
+      res.json({ error: 'An error has occurred.' })
+      res.status(500)
     })
 }
 
