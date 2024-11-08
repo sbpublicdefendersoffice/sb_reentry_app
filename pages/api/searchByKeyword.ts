@@ -44,7 +44,6 @@ const searchByKeyword = async (
     const error: string = err.message
     console.error(error)
     res.json({ error: 'An error has occurred.' })
-    res.status(500)
   }
 }
 

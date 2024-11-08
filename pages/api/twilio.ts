@@ -36,7 +36,6 @@ const text = async (
       // else throw new Error(response.errorCode)
     } catch (error) {
       res.json({ error: 'An error has occurred.' })
-      res.status(500)
     }
   } else
     res.json({

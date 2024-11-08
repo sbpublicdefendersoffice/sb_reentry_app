@@ -105,7 +105,6 @@ const recordClearance = async (
   } catch (error) {
     console.error(error)
     res.json({ error: 'An error has occurred.' })
-    res.status(500)
   }
 }
 
