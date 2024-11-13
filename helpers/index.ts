@@ -20,4 +20,5 @@ export {
   INVALID_NUMBER,
   POST,
   GET,
+  ValidationError,
 } from './validators'
