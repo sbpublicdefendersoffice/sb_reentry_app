@@ -3,7 +3,7 @@ import sendGrid, { MailDataRequired } from '@sendgrid/mail'
 import { readFileSync } from 'fs'
 import { sign } from 'jsonwebtoken'
 
-import { fillOutPDFForm } from '../../helpers'
+import { fillOutPDFForm, ValidationError } from '../../helpers'
 import initDb from '../../helpers/sequelize'
 import { validations, oneWeekInSeconds } from '../../constants'
 import { Validation, ExpungeFormInfo } from '../../types'
@@ -29,7 +29,7 @@ const recordClearance = async (
     validations.forEach((v: Validation): void => {
       const { error, field, id, inputId } = v
       if (!body[field])
-        throw new Error(`${error[language]}&&#${id}&&${inputId}`)
+        throw new ValidationError(`${error[language]}&&#${id}&&${inputId}`)
     })
 
     const filledOutApp = await fillOutPDFForm(
@@ -104,7 +104,11 @@ const recordClearance = async (
     res.json({ ...sendMsg })
   } catch (error) {
     console.error(error)
-    res.json({ error: 'An error has occurred.' })
+    if (error instanceof ValidationError) {
+      res.json({ error })
+    } else {
+      res.json({ error: 'An error has occurred.' })
+    }
   }
 }
 

@@ -6,6 +6,7 @@ import {
   INVALID_NUMBER,
   validateRequest,
   POST,
+  ValidationError,
 } from '../../helpers/validators'
 
 const secretId: string = process.env.TWILIO_SID
@@ -21,7 +22,7 @@ const text = async (
       const { to, message } = JSON.parse(req.body)
 
       const validPhoneNumber = validatePhoneNumber(to)
-      if (!validPhoneNumber) throw new Error(INVALID_NUMBER)
+      if (!validPhoneNumber) throw new ValidationError(INVALID_NUMBER)
 
       const texter = twilio(secretId, authToken)
       const text = await texter.messages.create({
@@ -32,10 +33,15 @@ const text = async (
 
       const response = await text.toJSON()
       if (!response.errorCode) res.json(response)
-      else throw new Error(response.errorMessage)
+      else throw new ValidationError('Error sending text message.')
       // else throw new Error(response.errorCode)
     } catch (error) {
-      res.json({ error: 'An error has occurred.' })
+      console.log(error)
+      if (error instanceof ValidationError) {
+        res.json({ error: error.message })
+      } else {
+        res.json({ error: 'An error has occurred.' })
+      }
     }
   } else
     res.json({
