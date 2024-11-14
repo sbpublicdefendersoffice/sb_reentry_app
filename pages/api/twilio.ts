@@ -17,37 +17,40 @@ const text = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
-  if (validateRequest(req, POST)) {
-    try {
-      const { to, message } = JSON.parse(req.body)
+  // temporarily disable this API. Not in use and not secure.
+  return res.status(501).json({ error: 'Not implemented.' })
 
-      const validPhoneNumber = validatePhoneNumber(to)
-      if (!validPhoneNumber) throw new ValidationError(INVALID_NUMBER)
+  // *************************
+  // DO NOT USE THE FOLLOWING. It should not accept custom messages in the request body unless properly authenticated
+  // *************************
+  //
+  // if (validateRequest(req, POST)) {
+  //   try {
+  //     const { to, message } = JSON.parse(req.body)
 
-      const texter = twilio(secretId, authToken)
-      const text = await texter.messages.create({
-        to: `+1${to}`,
-        from,
-        body: message,
-      })
+  //     const validPhoneNumber = validatePhoneNumber(to)
+  //     if (!validPhoneNumber) throw new Error(INVALID_NUMBER)
 
-      const response = await text.toJSON()
-      if (!response.errorCode) res.json(response)
-      else throw new ValidationError('Error sending text message.')
-      // else throw new Error(response.errorCode)
-    } catch (error) {
-      console.log(error)
-      if (error instanceof ValidationError) {
-        res.json({ error: error.message })
-      } else {
-        res.json({ error: 'An error has occurred.' })
-      }
-    }
-  } else
-    res.json({
-      error:
-        'Your request is from an invalid source, or is sending an incorrect request',
-    })
+  //     const texter = twilio(secretId, authToken)
+  //     const text = await texter.messages.create({
+  //       to: `+1${to}`,
+  //       from,
+  //       body: message,
+  //     })
+
+  //     const response = await text.toJSON()
+  //     if (!response.errorCode) res.json(response)
+  //     else throw new Error(response.errorMessage)
+  //     // else throw new Error(response.errorCode)
+  //   } catch (error) {
+  //     res.json({ error: 'An error has occurred.' })
+  //     res.status(500)
+  //   }
+  // } else
+  //   res.json({
+  //     error:
+  //       'Your request is from an invalid source, or is sending an incorrect request',
+  //   })
 }
 
 export default text
