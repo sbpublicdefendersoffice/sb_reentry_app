@@ -37,8 +37,7 @@ const postVerifyEmail = async (
   } catch (err) {
     const error: string = err.message
     console.error(error)
-    res.json({ error: 'An error has occurred.' })
-    res.status(500)
+    res.json({ error: 'Unable to verify email.' })
   }
 }
 

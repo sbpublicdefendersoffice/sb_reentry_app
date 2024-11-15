@@ -3,6 +3,7 @@ import { Op, fn, where, col } from 'sequelize'
 
 import { ENGLISH, SPANISH } from '../../constants/language'
 import initDb from '../../helpers/sequelize'
+import { ValidationError } from '../../helpers'
 
 const searchByKeyword = async (
   req: NextApiRequest,
@@ -38,13 +39,16 @@ const searchByKeyword = async (
 
       res.json(returnedOrgs)
     } else {
-      throw new Error('language parameter is not valid')
+      throw new ValidationError('language parameter is not valid')
     }
   } catch (err) {
     const error: string = err.message
     console.error(error)
-    res.json({ error: 'An error has occurred.' })
-    res.status(500)
+    if (err instanceof ValidationError) {
+      res.json({ error })
+    } else {
+      res.json({ error: 'An error has occurred.' })
+    }
   }
 }
 

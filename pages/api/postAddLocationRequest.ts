@@ -77,7 +77,6 @@ const postAddLocationRequest = async (
     })
     .catch(err => {
       res.json({ error: 'An error has occurred.' })
-      res.status(500)
     })
 }
 

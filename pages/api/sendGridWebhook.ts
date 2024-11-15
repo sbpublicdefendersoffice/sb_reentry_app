@@ -82,8 +82,7 @@ const sendGridWebhook = async (
     // a user should see their expungement status when they open their info in the app
   } catch (error) {
     console.error(error)
-    res.json({ error: 'An error has occurred.' })
-    res.status(500)
+    res.status(500).json({ error: 'An error has occured.' })
   }
 }
 

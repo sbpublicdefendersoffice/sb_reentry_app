@@ -26,7 +26,6 @@ const postUpdateOrganization = async (
     .catch(err => {
       const error: string = err.message
       res.json({ error: 'An error has occurred.' })
-      res.status(500)
     })
 }
 export default postUpdateOrganization
