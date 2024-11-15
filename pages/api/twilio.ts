@@ -6,7 +6,6 @@ import {
   INVALID_NUMBER,
   validateRequest,
   POST,
-  ValidationError,
 } from '../../helpers/validators'
 
 const secretId: string = process.env.TWILIO_SID
