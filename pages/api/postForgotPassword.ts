@@ -23,7 +23,7 @@ const postForgotPassword = async (
         { where: { email } },
       )
       if (cbo[0] !== 1) {
-        res.status(401).json({ message: 'error' })
+        res.status(200).json({ message: 'Email was sent to your inbox' })
       } else updated = true
     } else {
       const { clientObj } = initDb()
@@ -34,7 +34,7 @@ const postForgotPassword = async (
         { where: { email } },
       )
       if (client[0] !== 1) {
-        res.status(401).json({ message: 'error' })
+        res.status(200).json({ message: 'Email was sent to your inbox' })
       } else updated = true
     }
 
@@ -55,9 +55,7 @@ const postForgotPassword = async (
     }
   } catch (err) {
     console.error(err)
-    res
-      .status(500)
-      .json({ message: 'We did not find this email in our system' })
+    res.status(500).json({ error: 'An error has occurred.' })
   }
 }
 export default postForgotPassword
