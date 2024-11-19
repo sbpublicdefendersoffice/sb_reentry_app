@@ -5,6 +5,7 @@ import { hashSync } from 'bcryptjs'
 import { sendEmail } from '../../helpers/sendEmail'
 import initDb from '../../helpers/sequelize'
 import { isProd } from '../../constants'
+import { ValidationError } from '../../helpers'
 
 const saltRounds: number = 10
 let verificationString: string
@@ -24,7 +25,7 @@ const postSignup = async (
         const client = await clientObj.findOne({ where: { email: email } })
 
         if (client) {
-          throw new Error('Email Already Exists')
+          throw new ValidationError('Email Already Exists')
         }
 
         const hashedPassword: string = hashSync(pwd, saltRounds)
@@ -45,7 +46,7 @@ const postSignup = async (
           commPrefs,
         })
 
-        res.json(addClient)
+        res.json({})
       } else {
         if (org) {
           const { cboObj } = initDb()
@@ -53,7 +54,7 @@ const postSignup = async (
           const cbo = await cboObj.findOne({ where: { email: email } })
 
           if (cbo) {
-            throw new Error('Email Already Exists')
+            throw new ValidationError('Email Already Exists')
           }
 
           const hashedPassword: string = hashSync(pwd, saltRounds)
@@ -68,7 +69,7 @@ const postSignup = async (
             isVerified: false,
           })
 
-          res.json(addCBO)
+          res.json({})
           try {
             //@ts-ignore
             await sendEmail({
@@ -113,7 +114,14 @@ const postSignup = async (
   } catch (err) {
     const error: string = err.message
     console.error(error)
-    res.json({ error: 'An error has occurred.' })
+    // Added to prevent account existing from responding with an error
+    // Temporary fix until input validation/sanitization is in place
+    // Did not want to refactor until then
+    if (err instanceof ValidationError) {
+      res.json({})
+    } else {
+      res.json({ error: 'An error has occurred.' })
+    }
   }
 }
 export default postSignup
