@@ -19,9 +19,10 @@ export const copy: CopyHolder = {
     someone: 'someone',
     sendReset: 'Send Reset Link',
     validEmail: 'Please enter a valid email address',
-    doesNotExist: 'User does not exist in our system',
-    emailSent: 'An email was sent to the email provided',
-    iAm: 'I am an',
+    unexpectedError:
+      'We were unable to process your request. Please try again.',
+    emailSent: 'If an account exists, you will receive an email shortly.',
+    iAm: 'I am a',
     cbo: 'Community Based Orgaization',
     client: 'Client',
   },
@@ -36,9 +37,9 @@ export const copy: CopyHolder = {
     sendReset: 'Enviar enlace de reinicio',
     validEmail:
       'Por favor, introduce una dirección de correo electrónico válida',
-    userDoesNotExist: 'La usuario no existe en nuestro sistema',
-    emailSent:
-      'El correo electrónico se envió al correo electrónico proporcionado',
+    unexpectedError:
+      'No pudimos procesar su solicitud. Por favor inténtalo de nuevo.',
+    emailSent: 'Si existe una cuenta, recibirá un correo electrónico en breve.',
     iAm: 'Soy un',
     cbo: 'Organización basada en la comunidad',
     client: 'Cliente',
@@ -62,7 +63,7 @@ const ForgotPasswordPage = () => {
     enterEmail,
     someone,
     sendReset,
-    doesNotExist,
+    unexpectedError,
     emailSent,
     iAm,
     cbo,
@@ -93,8 +94,8 @@ const ForgotPasswordPage = () => {
     )
     const apiResponse = await postCBOToPostgres.json()
 
-    if (apiResponse.message == 'error') {
-      setToast(doesNotExist)
+    if (apiResponse.error) {
+      setToast(unexpectedError)
     } else {
       setSuccess(true)
       setTimeout(() => {
