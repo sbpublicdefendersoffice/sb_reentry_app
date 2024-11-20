@@ -6,12 +6,12 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 export const copy: CopyHolder = {
   english: {
-    successMessage: `Your account was successfully created`,
-    failMessage: 'Account already exists',
+    successMessage: `Your account was successfully created.`,
+    failMessage: 'We were unable to create your account. Please try again.',
   },
   spanish: {
-    successMessage: 'Su cuenta fue creada con éxito',
-    failMessage: 'Your account was successfully created',
+    successMessage: 'Su cuenta fue creada con éxito.',
+    failMessage: 'No pudimos crear su cuenta. Por favor inténtalo de nuevo.',
   },
 }
 const useForm = ({ initState, callback, validator }) => {
