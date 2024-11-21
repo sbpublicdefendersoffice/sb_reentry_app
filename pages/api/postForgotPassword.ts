@@ -4,13 +4,12 @@ import { sendEmail } from '../../helpers/sendEmail'
 import initDb from '../../helpers/sequelize'
 import { isProd } from '../../constants'
 
-let updated: boolean = false
-let passwordResetCode: string
-
 const postForgotPassword = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
+  let updated: boolean = false
+  let passwordResetCode: string
   try {
     const { email, signupType } = JSON.parse(req.body)
 
