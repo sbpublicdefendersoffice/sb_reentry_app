@@ -22,9 +22,9 @@ const postForgotPassword = async (
         { passwordResetCode },
         { where: { email } },
       )
-      if (cbo[0] !== 1) {
-        res.status(200).json({ message: 'Email was sent to your inbox' })
-      } else updated = true
+      if (cbo[0] === 1) {
+        updated = true
+      }
     } else {
       const { clientObj } = initDb()
       passwordResetCode = `cli${uuid().slice(3)}`
@@ -33,9 +33,9 @@ const postForgotPassword = async (
         { passwordResetCode },
         { where: { email } },
       )
-      if (client[0] !== 1) {
-        res.status(200).json({ message: 'Email was sent to your inbox' })
-      } else updated = true
+      if (client[0] === 1) {
+        updated = true
+      }
     }
 
     if (updated) {
@@ -51,8 +51,9 @@ const postForgotPassword = async (
           }/forgotpassword/${passwordResetCode}
           `,
       })
-      res.status(200).json({ message: 'Email was sent to your inbox' })
     }
+    // Keep response regardless of updated status
+    res.status(200).json({ message: 'Email was sent to your inbox' })
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: 'An error has occurred.' })
