@@ -100,8 +100,13 @@ const recordClearance = async (
         )}; Max-Age=${oneWeekInSeconds}; Path=/; HttpOnly; Secure; SameSite=Strict`,
       )
     }
-
-    res.json({ ...sendMsg })
+    // Returning a stripped down version of the sendGrid response
+    // with only statusCode, instead of the whole thing
+    res.json({
+      0: {
+        statusCode: sgResponse.statusCode,
+      },
+    })
   } catch (error) {
     console.error(error)
     if (error instanceof ValidationError) {
