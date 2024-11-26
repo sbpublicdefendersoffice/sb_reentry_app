@@ -419,8 +419,8 @@ const ExpungementForm = ({
     } catch (err) {
       const [msg, id, inputId] = err.message.split('&&')
       setToast(msg)
-      // If id and inputId exist, then it's a Validation Error
-      // from recordClearance API and should highlight missing field
+      // If id and inputId exist, then it's a specially structured
+      // Validation Error and should highlight missing field
       if (id != null && inputId != null) {
         const targInput = document.getElementById(inputId)
         push(id, id, { shallow: true })
