@@ -107,9 +107,10 @@ const recordClearance = async (
         statusCode: sgResponse.statusCode,
       },
     })
-  } catch (error) {
+  } catch (err) {
+    const error: string = err.message
     console.error(error)
-    if (error instanceof ValidationError) {
+    if (err instanceof ValidationError) {
       res.json({ error })
     } else {
       res.json({ error: 'An error has occurred.' })
