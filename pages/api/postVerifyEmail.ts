@@ -20,7 +20,7 @@ const postVerifyEmail = async (
 
       if (!clientIsVerified)
         throw new Error('The email verification code is incorrect')
-      else res.json({ ...client })
+      else res.json({})
     } else {
       const { cboObj } = initDb()
       const cbo = await cboObj.update(
@@ -32,7 +32,7 @@ const postVerifyEmail = async (
 
       if (!cboIsVerified)
         throw new Error('The email verification code is incorrect')
-      else res.json({ ...cbo })
+      else res.json({})
     }
   } catch (err) {
     const error: string = err.message

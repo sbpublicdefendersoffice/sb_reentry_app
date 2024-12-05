@@ -42,7 +42,7 @@ const postFeedback = async (
       }
 
       await sendGrid.send(message)
-      res.json(addFeedback)
+      res.json({})
     }
   } catch (err) {
     const error: string = err.message
