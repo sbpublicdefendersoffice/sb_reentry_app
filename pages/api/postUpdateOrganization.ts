@@ -21,7 +21,7 @@ const postUpdateOrganization = async (
       { where: { id: id } },
     )
     .then(response => {
-      res.json(response)
+      res.json({})
     })
     .catch(err => {
       const error: string = err.message

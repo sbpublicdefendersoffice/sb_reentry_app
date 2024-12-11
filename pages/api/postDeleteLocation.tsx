@@ -5,6 +5,10 @@ const postDeleteLocation = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
+  // disabled because API is not in use.
+  // If re-enabling check that only relevant info is returned in
+  // response instead of entire sequelize database object
+  return res.status(501).json({ error: 'Not implemented.' })
   try {
     const body = JSON.parse(req.body)
     let { locationInfo, org_id, org_name } = body

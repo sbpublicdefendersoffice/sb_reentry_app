@@ -55,7 +55,7 @@ const postEditScheduleRequest = async (
   await sendGrid
     .send(message)
     .then(response => {
-      res.json(response)
+      res.json({})
     })
     .catch(err => {
       res.json({ error: 'An error has occurred.' })
