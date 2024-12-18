@@ -6,6 +6,10 @@ const postUpdateLocation = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
+  // disabled because API is not secure.
+  // If re-enabling you must authenticate and authorize user
+  return res.status(501).json({ error: 'Not implemented.' })
+
   const { locObj } = initDb()
   const {
     id,
