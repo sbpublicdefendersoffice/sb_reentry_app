@@ -6,6 +6,10 @@ const postUpdateOrganization = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
+  // disabled because API is not secure.
+  // If re-enabling you must authenticate and authorize user
+  return res.status(501).json({ error: 'Not implemented.' })
+
   const { orgObj } = initDb()
   const { id, name_english, website, languages_spoken_english, notes_english } =
     JSON.parse(req.body)
