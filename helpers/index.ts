@@ -22,3 +22,4 @@ export {
   GET,
   ValidationError,
 } from './validators'
+export { getVerifiedAuthToken, isAuthorizedUserForId } from './authUtils'

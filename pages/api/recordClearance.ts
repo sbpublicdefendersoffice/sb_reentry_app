@@ -3,7 +3,12 @@ import sendGrid, { MailDataRequired } from '@sendgrid/mail'
 import { readFileSync } from 'fs'
 import { sign } from 'jsonwebtoken'
 
-import { fillOutPDFForm, ValidationError } from '../../helpers'
+import {
+  fillOutPDFForm,
+  ValidationError,
+  getVerifiedAuthToken,
+  isAuthorizedUserForId,
+} from '../../helpers'
 import initDb from '../../helpers/sequelize'
 import { validations, oneWeekInSeconds } from '../../constants'
 import { Validation, ExpungeFormInfo } from '../../types'
@@ -19,12 +24,21 @@ const recordClearance = async (
   res: NextApiResponse,
 ): Promise<void> => {
   try {
-    const { clientObj } = initDb()
-
+    // Have to destructure clientId before checking authorization
     const body: ExpungeFormInfo = JSON.parse(req.body)
     const { language, clientId } = body
+
+    // Get auth token and check authorization
+    const authToken = getVerifiedAuthToken(req.headers.cookie)
+    const isAuthorized = isAuthorizedUserForId(authToken, clientId)
+    if (!isAuthorized) {
+      return res.status(403).json({ error: 'Forbidden.' })
+    }
+
     const { CheckBox9: Email, CheckBox10: Phone, CheckBox11: Text } = body
     const name: string = body['Full Name']
+
+    const { clientObj } = initDb()
 
     validations.forEach((v: Validation): void => {
       const { error, field, id, inputId } = v
