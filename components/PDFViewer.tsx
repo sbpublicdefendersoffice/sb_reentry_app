@@ -28,13 +28,27 @@ const PDFViewer = ({ src }: PDFViewerProps) => {
   }, [])
 
   return (
-    <embed
-      className={styles.PDFViewer}
+    <object
+      data={pdfReady}
       type="application/pdf"
-      src={pdfReady}
       width={windowSize.width}
       height={windowSize.height}
-    />
+    >
+      <p>
+        We are unable to display this file on your browser. Instead you can{' '}
+        <a href={pdfReady} download>
+          click here to download the file.
+        </a>
+      </p>
+      <br></br>
+      <p>
+        {' '}
+        No podemos mostrar este archivo en su navegador. En su lugar, puede{' '}
+        <a href={pdfReady} download>
+          hacer clic aquí para descargar el archivo.
+        </a>
+      </p>
+    </object>
   )
 }
 
